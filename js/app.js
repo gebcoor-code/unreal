@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261014072316';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261014081143';
   const MAIL_PNG = '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';
-  const APP_VER = '0.44.3'; // About, System Info (history: changes3.txt)
-  const BUILD = '20261014072316'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.46.2'; // About, System Info (history: changes3.txt)
+  const BUILD = '20261014081143'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2221,10 +2221,23 @@
   // start a REST API link on this page (the model is switched when it is another one), or mount its files only
   async function runLink(q, mk, mountOnly) {
     const p = linkParse(q);
-    if (mountOnly) { for (const k of Object.keys(p)) if (!MOUNT_KEYS.includes(k)) delete p[k]; }
+    if (mountOnly) { // Autostart off: only the files go in, the machine stays (an OS entry: its HDD / SD card image)
+      const os = OS_MODELS[linkModelKey(p.model)];
+      for (const k of Object.keys(p)) if (!MOUNT_KEYS.includes(k)) delete p[k];
+      if (os && !p.hdd && !p.sd) { if (os.sd) p.sd = os.sd; else if (os.hdd) p.hdd = os.hdd; }
+      // HDD / SD card as in Load / Options: no interface switching, no reset
+      for (const [k, put] of [['hdd', async (n, b, u) => { cpmDirNoReset = true; try { await hddFromBytes(0, n, b); } finally { cpmDirNoReset = false; } hddSrc[0] = u; hddUI(); }], ['sd', async (n, b, u) => { await sdFromBytes(n, b); sdSrc = u; sdUI(); }]]) {
+        if (!p[k]) continue;
+        const url = new URL(lowDir(p[k]), location.href).href, name = urlName(url); delete p[k];
+        ldMsg('Loading ' + name + '…');
+        try { await put(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), url); ldMsg(''); toast((k === 'sd' ? 'SD card: ' : 'HDD 0: ') + name); }
+        catch (err) { ldMsg(name + ': ' + err.message, true); return false; }
+      }
+      if (!Object.keys(p).length) { srvShow(); return true; }
+    }
     else if (mk) p.model = LINK_NAME[mk] || mk;
     if (!mountOnly && p.cpm) p.xt = '1'; // CP/M programs: ATM mode (XT keyboard) always on
-    if (!Object.keys(p).length) { ldMsg('Nothing to mount: this entry only starts a machine (turn Autostart on)', true); return false; }
+    if (!Object.keys(p).length) { ldMsg('Nothing to mount in this entry', true); return false; }
     const want = mountOnly ? null : linkModelKey(p.model);
     LINK = p;
     try {
@@ -3007,13 +3020,16 @@
   }
   // ATM CP/M drive C: (HDD 0 in the BIOS 1.07 layout) with DirEntries= in its .chs: the HDD table in ROM gets that number
   // (CP/M builds the DPB from it at start), so the machine is reset when it changes. Other disks leave the ROM as it is.
+  let cpmDirNoReset = false; // Load with Autostart off: the ROM is patched, the machine is not reset
   function cpmDirApply() {
     if (!E || !E.web_rom_dirents || !hdds[0] || !E.web_hdd_get(0, 5)) return '';
     const cur = E.web_rom_dirents(0), g = hddGeom(0);
     if (!cur || (g.parts && g.parts.length)) return '';
     const want = g.dir || 128;
     if (want === cur) return '';
-    E.web_rom_dirents(want); E.web_reset(0);
+    E.web_rom_dirents(want);
+    if (cpmDirNoReset) return ` · CP/M C: directory ${want} entries from the next CP/M start (Reset)`;
+    E.web_reset(0);
     return ` · CP/M C: directory ${want} entries (machine reset)`;
   }
   const hddDirty = [false, false]; // written since mounted / saved (by the emulator or File Commander)

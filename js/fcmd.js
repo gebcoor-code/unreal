@@ -13,7 +13,7 @@
   const pad = (s, n) => (s + ' '.repeat(n)).slice(0, n);
   const u16 = (a, o) => a[o] | (a[o + 1] << 8);
   const put16 = (a, o, v) => { a[o] = v & 255; a[o + 1] = (v >> 8) & 255; };
-  const fmtSize = (n) => n >= 10240 ? Math.round(n / 1024) + 'K' : String(n);
+  const fmtSize = (n) => n >= 10485760 ? (n / 1048576).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 10240 ? Math.round(n / 1024) + 'K' : String(n);
   const dirNote = (v) => { if (!v.dirFree) return ''; const d = v.dirFree(); return ` · dir ${d.free}/${d.all}`; }; // CP/M: free directory entries
 
   // ---- Hobeta: 17-byte header (name 8, type 1, start 2, length 2, size in sectors << 8, checksum) + sector data
@@ -129,6 +129,7 @@
         if (it.id === cnt - 1) { // the last file: its space comes back
           img[info + 0xE1] = e[14]; img[info + 0xE2] = e[15];
           put16(img, info + 0xE5, u16(img, info + 0xE5) + e[13]);
+          const at = (e[15] * 16 + e[14]) * 256; img.fill(0, at, Math.min(img.length, at + e[13] * 256)); // zeroed: a saved zip shrinks
           img[info + 0xE4] = cnt - 1; e.fill(0);
         } else { e[0] = 1; img[info + 0xF4]++; }
       },
@@ -465,7 +466,7 @@
         let long = '';
         if (lfn.length) { for (let i = lfn.length - 1; i >= 0; i--) { const q = lfn[i]; for (const k of [1, 3, 5, 7, 9, 14, 16, 18, 20, 22, 24, 28, 30]) { const ch = u16a(q + k); if (ch === 0 || ch === 0xFFFF) break; long += String.fromCharCode(ch); } } }
         const name = short === '.' || short === '..' ? short : long || (short + (ext ? '.' + ext : ''));
-        if (name !== '.' && name !== '..') out.push({ o, lfn: lfn.slice(), name, dir: !!(a[o + 11] & 0x10), size: u32a(o + 28), clus: u16a(o + 26) | (type === 32 ? u16a(o + 20) << 16 : 0) });
+        if (name !== '.' && name !== '..') out.push({ o, lfn: lfn.slice(), name, dir: !!(a[o + 11] & 0x10), size: u32a(o + 28), date: u16a(o + 24) * 65536 + u16a(o + 22), clus: u16a(o + 26) | (type === 32 ? u16a(o + 20) << 16 : 0) });
         lfn = [];
       }
       return out;
@@ -534,7 +535,7 @@
         if (path.length > 1) out.push({ id: null, up: true, dir: true, name: '..', ext: '', size: 0, show: '', sub: '' });
         for (const e of entries(cwd())) {
           const [n, x] = e.dir ? [e.name, ''] : split(e.name);
-          out.push({ id: e, dir: e.dir, name: n, ext: x, size: e.dir ? 0 : e.size, show: e.dir ? '<DIR>' : e.size, sub: '' });
+          out.push({ id: e, dir: e.dir, name: n, ext: x, size: e.dir ? 0 : e.size, show: e.dir ? '<DIR>' : e.size, sub: '', date: e.date });
         }
         return out;
       },
@@ -556,12 +557,14 @@
         try { makeEntry(cwd(), short83(name, cwd()), 0x20, cs[0] || 0, f.data.length, name); } catch (e) { cs.forEach((c) => setF(c, 0)); throw e; }
         onWrite && onWrite();
       },
-      del(it) {
+      del(it) { // a folder goes with everything inside it
         if (it.up) return;
-        const e = it.id;
-        if (e.dir && entries(e.clus).length) throw new Error('directory not empty');
-        chain(e.clus).forEach((c) => setF(c, 0));
-        for (const q of e.lfn.concat(e.o)) a[q] = 0xE5;
+        const kill = (e) => {
+          if (e.dir && e.clus) for (const x of entries(e.clus)) kill(x);
+          if (e.clus) chain(e.clus).forEach((c) => { a.fill(0, coff(c), coff(c) + cb); setF(c, 0); }); // zeroed: a saved zip shrinks
+          for (const q of e.lfn.concat(e.o)) a[q] = 0xE5;
+        };
+        kill(it.id);
         onWrite && onWrite();
       },
       mkdir(name0) {
@@ -648,7 +651,7 @@
         if (path.length > 1) out.push({ id: null, up: true, dir: true, name: '..', ext: '', size: 0, show: '', sub: '' });
         for (const { i, e } of entries(cwd())) {
           const [n, x] = dname(e), d = isDir(e);
-          out.push({ id: { i, e }, dir: !!d, name: n, ext: x, size: d ? 0 : len3(e), show: d ? '<DIR>' : len3(e), sub: '', sys: e[11] === 0xFF });
+          out.push({ id: { i, e }, dir: !!d, name: n, ext: x, size: d ? 0 : len3(e), show: d ? '<DIR>' : len3(e), sub: '', sys: e[11] === 0xFF, date: u16(e, 30) * 65536 });
         }
         return out;
       },
@@ -715,10 +718,15 @@
         if (it.up) return;
         const e = it.id.e;
         if (it.sys) throw new Error('system file');
-        if (it.dir) throw new Error('directories are not deleted here');
-        const { secs, maps } = chain(e);
-        for (const s of secs.concat(maps)) if (s < total) setUsed(s, 0);
-        e[11] &= ~1;
+        const sysIn = (d) => entries(d).some(({ e: x }) => x[11] === 0xFF || (isDir(x) && sysIn(openDir(x))));
+        if (it.dir && sysIn(openDir(e))) throw new Error('a system file inside');
+        const kill = (x) => { // a folder goes with everything inside it
+          if (isDir(x)) for (const { e: y } of entries(openDir(x))) kill(y);
+          const { secs, maps } = chain(x);
+          for (const s of secs.concat(maps)) if (s < total) { S(s).fill(0); setUsed(s, 0); } // zeroed: a saved zip shrinks
+          x[11] &= ~1;
+        };
+        kill(e);
         const me = self(cwd()); me[22] = entries(cwd()).length;
       },
     };
@@ -1018,7 +1026,8 @@
       out.push(['RAM', 'RAM']);
       return out;
     }
-    const P = [0, 1].map((i) => ({ el: $('fcp' + i), src: api.load('fc.src' + i) || (i ? 'RAM' : 'A'), want: null, vol: null, items: [], cur: 0, sel: new Set(), msg: '', commit: null, dir: [] }));
+    const SORTS = ['name', 'size', 'date'];
+    const P = [0, 1].map((i) => ({ el: $('fcp' + i), src: api.load('fc.src' + i) || (i ? 'RAM' : 'A'), want: null, vol: null, items: [], cur: 0, sel: new Set(), msg: '', commit: null, dir: [], sort: SORTS.includes(api.load('fc.sort' + i)) ? api.load('fc.sort' + i) : 'name' }));
     let act = 0;
     P.forEach((p) => { p.want = p.src; });
     const fw = api.floatWin(win, 'fcpos', () => {
@@ -1164,23 +1173,53 @@
       P.forEach((p, i) => { if (p.src !== was[i] || !p.vol) load(i); });
     }
     setInterval(poll, 700);
-    function listed(vol) { // ".." , folders, files (each in its disk order)
-      const rank = (x) => (x.up ? 0 : x.dir ? 1 : 2);
-      return vol.list().map((x, k) => [x, k]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map((x) => x[0]);
+    // ".." , folders, files; each group by name (A–Z, numbers in order). TR-DOS stays in its catalogue order
+    // (the order there matters: boot first, the space of the last file comes back on delete)
+    const byName = (x, y) => (x.name + '.' + (x.ext || '')).localeCompare(y.name + '.' + (y.ext || ''), undefined, { numeric: true, sensitivity: 'base' });
+    // the panel's sort (the list next to Delete): name, size (largest first), date (newest first, FAT and iS-DOS)
+    function listed(vol, mode) {
+      const rank = (x) => (x.up ? 0 : x.dir ? 1 : 2), abc = vol.kind !== 'TR-DOS';
+      const by = mode === 'size' ? (x, y) => (y.dir || x.dir ? 0 : (y.size || 0) - (x.size || 0)) || (abc && byName(x, y))
+        : mode === 'date' ? (x, y) => (y.date || 0) - (x.date || 0) || (abc && byName(x, y))
+        : (x, y) => abc && byName(x, y);
+      return vol.list().map((x, k) => [x, k]).sort((a, b) => rank(a[0]) - rank(b[0]) || by(a[0], b[0]) || a[1] - b[1]).map((x) => x[0]);
     }
+    const fdate = (d) => { if (!d) return ''; const v = d >>> 16, t = d & 0xFFFF; const z = (n) => String(n).padStart(2, '0');
+      return `${1980 + (v >> 9)}-${z((v >> 5) & 15)}-${z(v & 31)}` + (t ? ` ${z(t >> 11)}:${z((t >> 5) & 63)}` : ''); };
     function load(i) {
       const p = P[i];
       const r = openVol(p.src);
       p.vol = r.vol || null; p.commit = r.commit || null; p.msg = r.err || '';
       if (p.vol && p.vol.setPath) p.dir = p.vol.setPath(p.dir); // iS-DOS: stay in the same directory
-      p.items = p.vol ? listed(p.vol) : [];
+      p.items = p.vol ? listed(p.vol, p.sort) : [];
       p.sel.clear(); p.cur = Math.min(p.cur, Math.max(0, p.items.length - 1));
       draw(i);
+    }
+    // the size of an item; a folder: everything inside it (counted once per listing)
+    const sizes = new WeakMap();
+    function treeSize(p, it) {
+      if (!it.dir) return it.size || 0;
+      if (sizes.has(it)) return sizes.get(it);
+      let sum = 0;
+      if (p.vol && p.vol.setPath) {
+        const walk = (names, depth) => {
+          p.vol.setPath(names);
+          for (const x of p.vol.list()) {
+            if (x.up) continue;
+            if (!x.dir) sum += x.size || 0;
+            else if (depth < 32) { walk(names.concat(x.name), depth + 1); p.vol.setPath(names); }
+          }
+        };
+        try { walk((p.dir || []).concat(it.name), 0); } catch (e) {}
+        p.vol.setPath(p.dir || []);
+      }
+      sizes.set(it, sum);
+      return sum;
     }
     function draw(i) {
       const p = P[i], el = p.el;
       el.classList.toggle('act', i === act);
-      if (i === act) $('fcmkdir').disabled = !(p.vol && p.vol.mkdir);
+      if (i === act) { $('fcmkdir').disabled = !(p.vol && p.vol.mkdir); $('fcsort').value = p.sort; }
       el.querySelector('.fcsrc').value = p.src;
       el.querySelector('.fckind').textContent = p.vol ? (p.vol.kind + (p.vol.label ? ' · ' + p.vol.label : '') + (p.vol.setPath ? ' · ' + p.vol.path : '')) : '';
       const list = el.querySelector('.fclist');
@@ -1191,7 +1230,7 @@
         r.className = 'fcrow' + (k === p.cur ? ' cur' : '') + (p.sel.has(k) ? ' sel' : '') + (it.dir ? ' dir' : '');
         r.innerHTML = '<span class="n"></span><span class="e"></span><span class="s"></span>';
         r.children[0].textContent = it.name; r.children[1].textContent = it.ext; r.children[2].textContent = fmtSize(it.show);
-        r.title = it.dir ? (it.up ? 'up' : it.name + ': directory (Enter opens it)') : it.zx ? `${it.name} <${it.zx.type}>  start ${it.zx.start}  length ${it.zx.len}` : `${it.name}.${it.ext}  ${it.size} bytes`;
+        r.title = it.dir ? (it.up ? 'up' : it.name + ': directory (Enter opens it)') : it.zx ? `${it.name} <${it.zx.type}>  start ${it.zx.start}  length ${it.zx.len}` : `${it.name}.${it.ext}  ${it.size} bytes` + (it.date ? '  ' + fdate(it.date) : '');
         r.onmousedown = (e) => {
           e.preventDefault(); setAct(i);
           // rows are rebuilt on every click, so the browser's dblclick never fires: a second press on the same row
@@ -1205,9 +1244,10 @@
         };
         list.appendChild(r);
       });
-      const n = p.sel.size, bytes = [...p.sel].reduce((s, k) => s + (p.items[k] ? p.items[k].size : 0), 0);
+      const sel = [...p.sel].map((k) => p.items[k]).filter((x) => x && !x.up), n = sel.length;
+      const nd = sel.filter((x) => x.dir).length, bytes = sel.reduce((s, x) => s + treeSize(p, x), 0);
       el.querySelector('.fcfoot').textContent = p.vol
-        ? (n ? `${n} selected, ${fmtSize(bytes)}` : `${p.items.filter((x) => !x.dir).length} files`) + ` · free ${fmtSize(p.vol.free())}` + dirNote(p.vol) : '\u00a0';
+        ? (n ? `${n} selected${nd ? ` (${nd} folder${nd > 1 ? 's' : ''})` : ''}, ${fmtSize(bytes)}` : `${p.items.filter((x) => !x.dir).length} files`) + ` · free ${fmtSize(p.vol.free())}` + dirNote(p.vol) : '\u00a0';
       const c = list.children[p.cur]; if (c && i === act) c.scrollIntoView({ block: 'nearest' });
     }
     let lastDown = { t: 0 };
@@ -1219,7 +1259,7 @@
       if (!p.vol || !p.vol.enter || !it || !it.dir) return false;
       const from = p.vol.path;
       try { p.dir = p.vol.enter(it); } catch (e) { status(it.name + ': ' + e.message, true); return true; }
-      p.items = listed(p.vol); p.sel.clear(); p.cur = 0;
+      p.items = listed(p.vol, p.sort); p.sel.clear(); p.cur = 0;
       if (it.up) { const back = from.slice(from.lastIndexOf('/') + 1); const k = p.items.findIndex((x) => x.dir && x.name === back); if (k >= 0) p.cur = k; }
       draw(act); return true;
     }
@@ -1291,13 +1331,17 @@
     }
     async function del() {
       const s = P[act]; if (!s.vol) return;
-      const list = picked(s); if (!list.length) return;
-      if (!await ask({ title: 'Delete', text: `Delete ${what(list)} from ${srcName(s)}?`, ok: 'Delete', danger: true })) return;
+      const list = pickedAll(s); if (!list.length) return;
+      const nd = list.filter((it) => it.dir).length, nf = list.length - nd;
+      const txt = list.length === 1 ? (nd ? 'folder ' + list[0].name + ' with all its contents' : fname(list[0]))
+        : [nf ? what(list.filter((it) => !it.dir)) : '', nd ? nd + ' folder' + (nd > 1 ? 's' : '') + ' with all their contents' : ''].filter(Boolean).join(' and ');
+      if (!await ask({ title: 'Delete', text: `Delete ${txt} from ${srcName(s)}?`, ok: 'Delete', danger: true })) return;
       // TR-DOS: from the end, so the space of trailing files comes back
       const order = s.vol.kind === 'TR-DOS' ? list.slice().sort((a, b) => b.id - a.id) : list;
-      for (const it of order) s.vol.del(it);
-      try { if (s.commit) s.commit(); } catch (e) { status(e.message, true); }
-      load(act); status(`Deleted ${list.length}`);
+      const errs = []; let ok = 0;
+      for (const it of order) { try { s.vol.del(it); ok++; } catch (e) { errs.push(it.name + ': ' + e.message); } }
+      try { if (s.commit) s.commit(); } catch (e) { errs.push(e.message); }
+      load(act); status(errs.length ? `Deleted ${ok}, errors: ` + errs.join('; ') : `Deleted ${ok}`, errs.length > 0);
     }
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     // progress in the status line; gives the browser a moment to show it (and stay responsive) every 60 ms
@@ -1698,6 +1742,12 @@
       } catch (e) { status('HDD: ' + e.message, true); }
     }
     $('fchdd').onclick = hddBuild;
+    $('fcsort').onchange = () => { // the active panel's sort; the cursor stays on the same item
+      const p = P[act], it = p.items[p.cur], sel = new Set([...p.sel].map((k) => p.items[k]));
+      p.sort = $('fcsort').value; api.store('fc.sort' + act, p.sort);
+      if (p.vol) { p.items = listed(p.vol, p.sort); p.cur = Math.max(0, p.items.indexOf(it)); p.sel = new Set(p.items.map((x, k) => (sel.has(x) ? k : -1)).filter((k) => k >= 0)); }
+      draw(act); p.el.querySelector('.fclist').focus();
+    };
     $('fccopy').onclick = copy; $('fcdel').onclick = del; $('fcdown').onclick = download; $('fcnew').onclick = newDisk;
     $('fcup').onclick = () => $('fcfile').click();
     $('fcfile').onchange = (e) => { if (e.target.files.length) upload(e.target.files); e.target.value = ''; };
