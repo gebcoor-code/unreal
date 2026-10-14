@@ -1,0 +1,14 @@
+[
+ { "name": "8 colors Editor", "run": "?model=atm710&a=trd/8%20colors%20Editor.zip&autorun=1&press=0", "tag": "TRD" },
+ { "name": "Dizzy 5 (CM) (1991)", "run": "?model=atm710&a=trd/Dizzy%205%20(CM)%20(1991).zip&autorun=1&press=0", "tag": "TRD" },
+ { "name": "Honey Commander 4.00 (OHG) (ATM710)", "run": "?model=atm710&a=trd/Honey%20Commander%204.00%20(OHG)%20(ATM710).zip&autorun=1&press=0", "tag": "TRD" },
+ { "name": "Square Head (RU) (1996)", "run": "?model=atm710&a=trd/Square%20Head%20(RU)%20(1996).zip&autorun=1&press=0&xt=1", "tag": "TRD" },
+ { "name": "Music GEB (play amiga)", "run": "?model=atm710&a=trd/Music_GEB.zip&cpm=b:play%20amiga&xt=1", "tag": "CPM" },
+ { "name": "Prince of Persia", "run": "?model=atm710&a=trd/Prince%20of%20Persia.zip&cpm=b:pr2&xt=1", "tag": "CPM" },
+ { "name": "SEA", "run": "?model=atm710&a=trd/SEA.zip&cpm=b:sea&xt=1", "tag": "CPM" },
+ { "name": "Neo8 Tracker player", "run": "?model=atm710&a=trd/neo8tracker-cpm.zip&cpm=b:neo8&xt=1", "tag": "CPM" },
+ { "name": "Neo8 Tracker player (HDD)", "run": "?model=atm710&hdd=hdd/neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
+ { "name": "TASiS v5.40", "run": "?model=tasis", "tag": "HDD OS" },
+ { "name": "NedoOS", "run": "?model=nedoos", "tag": "SD OS" },
+ { "name": "Profi CPM FDD", "run": "?model=profi&a=trd/ProfiCPM.zip", "tag": "PRO" }
+]
