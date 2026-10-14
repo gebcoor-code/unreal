@@ -1164,14 +1164,16 @@
       P.forEach((p, i) => { if (p.src !== was[i] || !p.vol) load(i); });
     }
     setInterval(poll, 700);
+    function listed(vol) { // ".." , folders, files (each in its disk order)
+      const rank = (x) => (x.up ? 0 : x.dir ? 1 : 2);
+      return vol.list().map((x, k) => [x, k]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map((x) => x[0]);
+    }
     function load(i) {
       const p = P[i];
       const r = openVol(p.src);
       p.vol = r.vol || null; p.commit = r.commit || null; p.msg = r.err || '';
       if (p.vol && p.vol.setPath) p.dir = p.vol.setPath(p.dir); // iS-DOS: stay in the same directory
-      p.items = p.vol ? p.vol.list() : [];
-      const rank = (x) => (x.up ? 0 : x.dir ? 1 : 2); // ".." , folders, files (each in its disk order)
-      p.items = p.items.map((x, k) => [x, k]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map((x) => x[0]);
+      p.items = p.vol ? listed(p.vol) : [];
       p.sel.clear(); p.cur = Math.min(p.cur, Math.max(0, p.items.length - 1));
       draw(i);
     }
@@ -1217,7 +1219,7 @@
       if (!p.vol || !p.vol.enter || !it || !it.dir) return false;
       const from = p.vol.path;
       try { p.dir = p.vol.enter(it); } catch (e) { status(it.name + ': ' + e.message, true); return true; }
-      p.items = p.vol.list(); p.sel.clear(); p.cur = 0;
+      p.items = listed(p.vol); p.sel.clear(); p.cur = 0;
       if (it.up) { const back = from.slice(from.lastIndexOf('/') + 1); const k = p.items.findIndex((x) => x.dir && x.name === back); if (k >= 0) p.cur = k; }
       draw(act); return true;
     }
