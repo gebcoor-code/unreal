@@ -1219,7 +1219,8 @@
     function draw(i) {
       const p = P[i], el = p.el;
       el.classList.toggle('act', i === act);
-      if (i === act) { $('fcmkdir').disabled = !(p.vol && p.vol.mkdir); $('fcsort').value = p.sort; }
+      if (i === act) $('fcmkdir').disabled = !(p.vol && p.vol.mkdir);
+      el.querySelector('.fcsort').value = p.sort;
       el.querySelector('.fcsrc').value = p.src;
       el.querySelector('.fckind').textContent = p.vol ? (p.vol.kind + (p.vol.label ? ' · ' + p.vol.label : '') + (p.vol.setPath ? ' · ' + p.vol.path : '')) : '';
       const list = el.querySelector('.fclist');
@@ -1368,9 +1369,9 @@
         const body = document.createElement('div'); body.className = 'fchdd';
         body.innerHTML = `<label><input type="radio" name="fcgf" value="zip"${api.load('fc.getzip') === '0' ? '' : ' checked'}> <b>One archive</b> <span class="d">FCfiles.zip</span></label>` +
           `<label><input type="radio" name="fcgf" value="each"${api.load('fc.getzip') === '0' ? ' checked' : ''}> <b>Separately</b> <span class="d">${sel.length} files</span></label>`;
-        if (!await ask({ title: 'Get Files', text: `Get ${what(sel)} from ${srcName(s)}\n`, body, ok: 'Get' })) return;
+        if (!await ask({ title: 'Download Files', text: `Get ${what(sel)} from ${srcName(s)}\n`, body, ok: 'Get' })) return;
         zip = body.querySelector('[name=fcgf]:checked').value === 'zip'; api.store('fc.getzip', zip ? '1' : '0');
-      } else if (!await ask({ title: 'Get Files', text: `Get ${sel.length === 1 ? sel[0].name : sel.length + ' items'} from ${srcName(s)} as FCfiles.zip?\nFolders are packed with everything inside them.`, ok: 'Get' })) return;
+      } else if (!await ask({ title: 'Download Files', text: `Get ${sel.length === 1 ? sel[0].name : sel.length + ' items'} from ${srcName(s)} as FCfiles.zip?\nFolders are packed with everything inside them.`, ok: 'Get' })) return;
       const files = [], seen = new Set(), base = s.dir ? s.dir.slice() : [];
       let nd = 0;
       tickAt = 0;
@@ -1388,7 +1389,7 @@
           if (it.dir) { nd++; walk(base.concat(it.name), it.name + '/'); s.vol.setPath(base); }
           else files.push(fileOf(it, '', seen));
         }
-      } catch (e) { status('Get Files: ' + e.message, true); }
+      } catch (e) { status('Download Files: ' + e.message, true); }
       if (s.vol.setPath) s.vol.setPath(base);
       const real = files.filter((f) => !f.dir);
       if (zip) {
@@ -1451,7 +1452,7 @@
       const note = tree ? (dirSet.size ? `The folders are made as in the archive${isd ? ' (names cut to 8 characters)' : ''}.` : '')
         : (dirSet.size ? 'Folders are ignored: all files go into one place. ' : '') +
           (kind === 'TR-DOS' ? 'Names are cut to 8 characters; files other than Hobeta become code files.' : 'Names are cut to 8.3.');
-      if (!await ask({ title: 'Put Files', text: `Unpack ${zips.map((z) => z[0]).join(', ')}: ${nf} file${nf === 1 ? '' : 's'}${dirSet.size ? ', ' + dirSet.size + ' folder' + (dirSet.size === 1 ? '' : 's') : ''}\ninto ${where}?\n${note}`, ok: 'Copy' })) return;
+      if (!await ask({ title: 'Upload Files', text: `Unpack ${zips.map((z) => z[0]).join(', ')}: ${nf} file${nf === 1 ? '' : 's'}${dirSet.size ? ', ' + dirSet.size + ' folder' + (dirSet.size === 1 ? '' : 's') : ''}\ninto ${where}?\n${note}`, ok: 'Copy' })) return;
       status('Copying…'); await sleep(20);
       const base = t.dir ? t.dir.slice() : [];
       const dname = (n) => isd ? n.toUpperCase().slice(0, 8) : n;
@@ -1548,7 +1549,7 @@
       };
       body.addEventListener('change', upd); body.querySelector('.fmb').addEventListener('input', upd);
       setTimeout(upd, 0);
-      if (!await ask({ title: 'New disk', text: '', body, ok: 'Create' })) return;
+      if (!await ask({ title: 'New Disk', text: '', body, ok: 'Create' })) return;
       const kind = body.querySelector('[name=fcnk]:checked').value, label = body.querySelector('.nm').value.trim() || 'NEW';
       api.store('fc.newkind', kind);
       const fpl = fatPlan(+body.querySelector('.fmb').value || FAT_MB[kind], body.querySelector('.ft').value), fmb = fpl.mb;
@@ -1698,10 +1699,10 @@
       const has = (x) => { const n = api.hddName(x); return !!(n && api.fs.exists(n)); }, hasParts = (x) => has(x) && (api.hddParts(x) || []).length > 0;
       let d = /^H[01]/.test(P[act].src) ? +P[act].src[1] : hasParts(0) ? 0 : hasParts(1) ? 1 : has(0) ? 0 : 1;
       const parts = api.hddParts(d) || [], name = api.hddName(d);
-      if (!has(d)) { status('HDD…: no HDD image mounted', true); return; }
+      if (!has(d)) { status('HDD Remaster: no HDD image mounted', true); return; }
       if (!parts.length) {
         let fat = false; try { fat = fatFind(api.fs.read(name)).length > 0; } catch (e) {}
-        status(`HDD…: ${name} in HDD ${d} is ${fat ? 'a FAT disk' : 'one CP/M drive (ATM BIOS 1.07 layout)'}: no drives to choose from — save it as it is in the Save window`, true); return;
+        status(`HDD Remaster: ${name} in HDD ${d} is ${fat ? 'a FAT disk' : 'one CP/M drive (ATM BIOS 1.07 layout)'}: no drives to choose from — save it as it is in the Save window`, true); return;
       }
       const g = api.hddGeo(d), cylB = g.h * g.s * 512, base0 = name.replace(/^.*[\\/]/, '').replace(/\.[^.]*$/, '');
       const body = document.createElement('div'); body.className = 'fchdd';
@@ -1741,15 +1742,43 @@
         status(`Saved ${base}.zip: ${sel.length} drive${sel.length > 1 ? 's' : ''}, ${Math.round(img.length / 1048576)} MB image` + `, ${r.patched} drive tables updated` + (r.bootMoved ? `, boots ${r.bootMoved.letter}:` : ''));
       } catch (e) { status('HDD: ' + e.message, true); }
     }
-    $('fchdd').onclick = hddBuild;
-    $('fcsort').onchange = () => { // the active panel's sort; the cursor stays on the same item
-      const p = P[act], it = p.items[p.cur], sel = new Set([...p.sel].map((k) => p.items[k]));
-      p.sort = $('fcsort').value; api.store('fc.sort' + act, p.sort);
-      if (p.vol) { p.items = listed(p.vol, p.sort); p.cur = Math.max(0, p.items.indexOf(it)); p.sel = new Set(p.items.map((x, k) => (sel.has(x) ? k : -1)).filter((k) => k >= 0)); }
-      draw(act); p.el.querySelector('.fclist').focus();
-    };
-    $('fccopy').onclick = copy; $('fcdel').onclick = del; $('fcdown').onclick = download; $('fcnew').onclick = newDisk;
-    $('fcup').onclick = () => $('fcfile').click();
+    P.forEach((p, i) => { // each panel's sort (right of its header); the cursor stays on the same item
+      const sel0 = p.el.querySelector('.fcsort');
+      sel0.onchange = () => {
+        const it = p.items[p.cur], sel = new Set([...p.sel].map((k) => p.items[k]));
+        p.sort = sel0.value; api.store('fc.sort' + i, p.sort);
+        if (p.vol) { p.items = listed(p.vol, p.sort); p.cur = Math.max(0, p.items.indexOf(it)); p.sel = new Set(p.items.map((x, k) => (sel.has(x) ? k : -1)).filter((k) => k >= 0)); }
+        setAct(i); draw(i); p.el.querySelector('.fclist').focus();
+      };
+    });
+    // Files / Disks: small menus over the button bar (the look of the page's lists, usel.js)
+    let mpop = null;
+    function menuClose() { if (!mpop) return; mpop.btn.classList.remove('open'); mpop.remove(); mpop = null; }
+    function menuBtn(btn, items) {
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const was = mpop && mpop.btn === btn; menuClose(); if (was) return;
+        const pop = document.createElement('div'); pop.className = 'usel-pop fcmpop'; pop.btn = btn;
+        for (const [t, d, fn] of items) {
+          const it = document.createElement('div'); it.className = 'usel-it'; it.textContent = t;
+          if (d) { const s = document.createElement('span'); s.className = 'd'; s.textContent = d; it.appendChild(s); }
+          it.onclick = (ev) => { ev.stopPropagation(); menuClose(); P[act].el.querySelector('.fclist').focus(); fn(); };
+          pop.appendChild(it);
+        }
+        document.body.appendChild(pop); mpop = pop; btn.classList.add('open');
+        const r = btn.getBoundingClientRect(), h = pop.offsetHeight, w = pop.offsetWidth;
+        const wr = win.getBoundingClientRect(), wl = Math.max(wr.left, 0) + 4, wrr = Math.min(wr.right, window.innerWidth) - 4;
+        pop.style.left = Math.max(wl, Math.min(r.left, wrr - w)) + 'px'; // inside the window: from the button's left, moved left at the right edge
+        const wb = Math.min(wr.bottom, window.innerHeight) - 4; // down when it fits, else up
+        pop.style.top = (r.bottom + 2 + h <= wb ? r.bottom + 2 : Math.max(4, r.top - 2 - h)) + 'px';
+      };
+    }
+    document.addEventListener('pointerdown', (e) => { if (mpop && !mpop.contains(e.target) && e.target.closest('.fcmenu') !== mpop.btn) menuClose(); }, true);
+    document.addEventListener('keydown', (e) => { if (mpop && e.key === 'Escape') { e.stopPropagation(); menuClose(); } }, true);
+    window.addEventListener('resize', menuClose);
+    menuBtn($('fcfiles'), [['Download Files', 'to PC', () => download()], ['Upload Files', 'from PC', () => $('fcfile').click()]]);
+    menuBtn($('fcdisks'), [['New Disk', '', () => newDisk()], ['HDD Remaster', '', () => hddBuild()]]);
+    $('fccopy').onclick = copy; $('fcdel').onclick = del;
     $('fcfile').onchange = (e) => { if (e.target.files.length) upload(e.target.files); e.target.value = ''; };
     $('fcclose').onclick = () => show(false);
     // help: opens at the File Commander window's side (right, left when there is no room, over it on a narrow screen),
@@ -1795,7 +1824,7 @@
       end: (r) => { api.store('fc.size', JSON.stringify({ w: Math.round(r.width), h: Math.round(r.height) })); fw.setPos({ x: r.left, y: r.top }); } });
     function show(v) {
       if (!v && dlgDone) dlgDone(false);
-      if (!v) { viewer.close(); help(false); }
+      if (!v) { viewer.close(); help(false); menuClose(); }
       win.hidden = !v;
       $('fcbtn').classList.toggle('on', v);
       if (v) { fitSize(); fw.place(); fillSrc(); load(0); load(1); status('Tab: other panel · Space/Ins: select · Enter: run, mount disk image, open folder · F2 re-read · F3 view · F5 copy · F7 MkDir · F8 delete · ? help'); P[act].el.querySelector('.fclist').focus(); }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261014081143">
+<meta name="build" content="20261014085537">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -554,8 +554,12 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 .fcbar kbd { font: 9px ui-monospace, Consolas, monospace; color: var(--dim); margin-left: 2px; }
 .fcbar .sp { flex: 1; }
 .fcbar { align-items: center; }
-.fcbar button, .fcbar #fcsort { height: 20px; min-height: 0; box-sizing: border-box; padding-top: 0; padding-bottom: 0; }
-.fcbar #fcsort { padding: 0 5px; font-size: 10px; line-height: 14px; border-radius: 4px; width: auto; }
+.fcbar button { height: 20px; min-height: 0; box-sizing: border-box; padding-top: 0; padding-bottom: 0; }
+.fcbar .fcmenu .ar { font-size: 9px; color: var(--dim); margin-left: 2px; }
+.fcbar .fcmenu.open { border-color: var(--accent); }
+.usel-pop.fcmpop { font-size: 11px; min-width: 100px; } .usel-pop.fcmpop .usel-it { padding: 3px 10px; } .fcmpop .usel-it .d { color: var(--dim); font-size: 9px; margin-left: 8px; }
+.fchead .fckind { flex: 1; min-width: 0; }
+.fchead .fcsort { width: auto; font-size: 10px; flex: none; }
 .fcstat { padding: 2px 10px 3px; font-size: 10px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid var(--line); }
 .fcstat.err { color: #e07a6a; }
 /* drop-down lists (usel.js): the page's own box and list instead of the browser's select; "select" rules apply to .usel too */
@@ -1160,10 +1164,11 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     </dl>
     <h4>Buttons</h4>
     <dl>
-      <dt>New disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
-      <dt>Put Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS and FAT keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
-      <dt>Get Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
-      <dt>HDD…</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
+      <dt>Files / Download Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
+      <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS and FAT keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
+      <dt>Disks / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
+      <dt>Disks / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
+      <dt>name / size / date</dt><dd>sort of the panel (right of its header): folders first; date on FAT and iS-DOS</dd>
     </dl>
     <h4>Names</h4>
     <p>TR-DOS: 8 characters + type; CP/M and iS-DOS: 8.3; FAT: long names (NAME~1.EXT short name is added).</p>
@@ -1273,20 +1278,17 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="fcwin" hidden role="dialog" aria-label="File Commander">
   <div class="dbghead fhead"><span>File Commander</span><button id="fchelpbtn" title="Help">?</button><button id="fcclose" title="Close (F1 / Esc)">✕</button></div>
   <div class="fcpanels">
-    <div class="fcpanel" id="fcp0"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span></div><div class="fclist"></div><div class="fcfoot"></div></div>
-    <div class="fcpanel" id="fcp1"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span></div><div class="fclist"></div><div class="fcfoot"></div></div>
+    <div class="fcpanel" id="fcp0"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. Date: FAT and iS-DOS disks. TR-DOS keeps its catalogue order by name"><option value="name">name</option><option value="size">size</option><option value="date">date</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
+    <div class="fcpanel" id="fcp1"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. Date: FAT and iS-DOS disks. TR-DOS keeps its catalogue order by name"><option value="name">name</option><option value="size">size</option><option value="date">date</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
   </div>
   <div class="fcbar">
     <button id="fcview" title="View the file (F3)">View <kbd>F3</kbd></button>
     <button id="fccopy" title="Copy to the other panel (F5)">Copy <kbd>F5</kbd></button>
     <button id="fcmkdir" title="New directory (iS-DOS and FAT disks)">MkDir <kbd>F7</kbd></button>
     <button id="fcdel" title="Delete (F8)">Delete <kbd>F8</kbd></button>
-    <select id="fcsort" title="Sort of this panel: folders first, then files. Date: FAT and iS-DOS disks. TR-DOS keeps its catalogue order by name"><option value="name">name</option><option value="size">size</option><option value="date">date</option></select>
     <span class="sp"></span>
-    <button id="fcnew" title="An empty TR-DOS, CP/M or iS-DOS disk in this panel's drive (or in an empty A: / B:), a new HDD or SD card image">New disk</button>
-    <button id="fcup" title="Put files from the PC on this panel's disk (or drop them on a panel); a .zip is unpacked">Put Files</button>
-    <button id="fcdown" title="Get the selected files and folders (TR-DOS files as Hobeta; several: separately or in FCfiles.zip)">Get Files</button>
-    <button id="fchdd" title="New HDD image from chosen drives of HDD 0 / 1 (ZIP with the image and its .chs)">HDD…</button>
+    <button id="fcfiles" class="fcmenu" title="Download / upload files">Files <span class="ar">▾</span></button>
+    <button id="fcdisks" class="fcmenu" title="New disk, HDD remaster">Disks <span class="ar">▾</span></button>
   </div>
   <div class="fcstat" id="fcstat"></div>
   <input type="file" id="fcfile" hidden multiple>
@@ -1310,14 +1312,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261014081143"></script>
-<script src="js/scancodes.js?v=20261014081143"></script>
-<script src="js/unzip.js?v=20261014081143"></script>
-<script src="js/vkbd.js?v=20261014081143"></script>
-<script src="js/asyncify.js?v=20261014081143"></script>
-<script src="js/gfx.js?v=20261014081143"></script>
-<script src="js/usel.js?v=20261014081143"></script>
-<script src="js/fcmd.js?v=20261014081143"></script>
-<script src="js/app.js?v=20261014081143"></script>
+<script src="js/wasi_fs.js?v=20261014085537"></script>
+<script src="js/scancodes.js?v=20261014085537"></script>
+<script src="js/unzip.js?v=20261014085537"></script>
+<script src="js/vkbd.js?v=20261014085537"></script>
+<script src="js/asyncify.js?v=20261014085537"></script>
+<script src="js/gfx.js?v=20261014085537"></script>
+<script src="js/usel.js?v=20261014085537"></script>
+<script src="js/fcmd.js?v=20261014085537"></script>
+<script src="js/app.js?v=20261014085537"></script>
 </body>
 </html>
