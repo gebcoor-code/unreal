@@ -1,0 +1,4 @@
+[
+  { "name": "SD test (8MB, FAT16)", "url": "sd.zip" },
+  { "name": "NedoOS (70MB, FAT32)", "url": "nedoos.zip" }
+]
