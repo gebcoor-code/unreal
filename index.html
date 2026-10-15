@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261014085537">
+<meta name="build" content="20261015151533">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -559,6 +559,10 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 .fcbar .fcmenu.open { border-color: var(--accent); }
 .usel-pop.fcmpop { font-size: 11px; min-width: 100px; } .usel-pop.fcmpop .usel-it { padding: 3px 10px; } .fcmpop .usel-it .d { color: var(--dim); font-size: 9px; margin-left: 8px; }
 .fchead .fckind { flex: 1; min-width: 0; }
+.eff7grid { display: grid; grid-template-columns: auto auto auto 1fr; gap: 1px 10px; align-items: center; font-size: 12px; }
+.eff7grid .eh { font-size: 10px; color: var(--dim); }
+.eff7grid input { margin: 0; } .eff7grid .dis { opacity: .45; }
+.h3n { font: 11px ui-monospace, Consolas, monospace; color: var(--dim); margin-left: 6px; }
 .fchead .fcsort { width: auto; font-size: 10px; flex: none; }
 .fcstat { padding: 2px 10px 3px; font-size: 10px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid var(--line); }
 .fcstat.err { color: #e07a6a; }
@@ -855,6 +859,12 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <input type="range" id="speedrange" min="0" max="9" step="1" value="3">
             <div class="ticks" id="speedticks"></div>
           </div>
+        </div>
+        <div class="card" id="eff7card" hidden>
+          <h3>Port #EFF7 <span class="h3n" id="eff7val"></span></h3>
+          <div class="eff7grid" id="eff7grid"><span class="eh">bit</span><span class="eh" title="Current state of the bit (changed by programs with OUT (#EFF7) unless locked)">on</span><span class="eh" title="Locked: programs cannot change the bit, Reset keeps it as set here">lock</span><span class="eh"></span></div>
+          <p class="note" id="eff7later" hidden>Not started yet: the bits set here (on = on and locked) are used when the model starts.</p>
+          <p class="note">Locked bits stay as set here: programs cannot change them and Reset keeps them. Unlocked bits are set by programs and cleared on Reset. Bit 4 is always on.</p>
         </div>
       </div>
       <div class="pane" data-pane="opt">
@@ -1168,7 +1178,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS and FAT keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
       <dt>Disks / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
       <dt>Disks / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
-      <dt>name / size / date</dt><dd>sort of the panel (right of its header): folders first; date on FAT and iS-DOS</dd>
+      <dt>ext / name / size</dt><dd>sort of the panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
     <h4>Names</h4>
     <p>TR-DOS: 8 characters + type; CP/M and iS-DOS: 8.3; FAT: long names (NAME~1.EXT short name is added).</p>
@@ -1278,8 +1288,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="fcwin" hidden role="dialog" aria-label="File Commander">
   <div class="dbghead fhead"><span>File Commander</span><button id="fchelpbtn" title="Help">?</button><button id="fcclose" title="Close (F1 / Esc)">✕</button></div>
   <div class="fcpanels">
-    <div class="fcpanel" id="fcp0"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. Date: FAT and iS-DOS disks. TR-DOS keeps its catalogue order by name"><option value="name">name</option><option value="size">size</option><option value="date">date</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
-    <div class="fcpanel" id="fcp1"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. Date: FAT and iS-DOS disks. TR-DOS keeps its catalogue order by name"><option value="name">name</option><option value="size">size</option><option value="date">date</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
+    <div class="fcpanel" id="fcp0"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. ext: by extension, then by name. TR-DOS keeps its catalogue order for ext / name"><option value="ext">ext</option><option value="name">name</option><option value="size">size</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
+    <div class="fcpanel" id="fcp1"><div class="fchead"><select class="fcsrc" title="Drive"></select><span class="fckind"></span><select class="fcsort" title="Sort of this panel: folders first, then files. ext: by extension, then by name. TR-DOS keeps its catalogue order for ext / name"><option value="ext">ext</option><option value="name">name</option><option value="size">size</option></select></div><div class="fclist"></div><div class="fcfoot"></div></div>
   </div>
   <div class="fcbar">
     <button id="fcview" title="View the file (F3)">View <kbd>F3</kbd></button>
@@ -1312,14 +1322,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261014085537"></script>
-<script src="js/scancodes.js?v=20261014085537"></script>
-<script src="js/unzip.js?v=20261014085537"></script>
-<script src="js/vkbd.js?v=20261014085537"></script>
-<script src="js/asyncify.js?v=20261014085537"></script>
-<script src="js/gfx.js?v=20261014085537"></script>
-<script src="js/usel.js?v=20261014085537"></script>
-<script src="js/fcmd.js?v=20261014085537"></script>
-<script src="js/app.js?v=20261014085537"></script>
+<script src="js/wasi_fs.js?v=20261015151533"></script>
+<script src="js/scancodes.js?v=20261015151533"></script>
+<script src="js/unzip.js?v=20261015151533"></script>
+<script src="js/vkbd.js?v=20261015151533"></script>
+<script src="js/asyncify.js?v=20261015151533"></script>
+<script src="js/gfx.js?v=20261015151533"></script>
+<script src="js/usel.js?v=20261015151533"></script>
+<script src="js/fcmd.js?v=20261015151533"></script>
+<script src="js/app.js?v=20261015151533"></script>
 </body>
 </html>

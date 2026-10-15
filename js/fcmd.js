@@ -1026,8 +1026,8 @@
       out.push(['RAM', 'RAM']);
       return out;
     }
-    const SORTS = ['name', 'size', 'date'];
-    const P = [0, 1].map((i) => ({ el: $('fcp' + i), src: api.load('fc.src' + i) || (i ? 'RAM' : 'A'), want: null, vol: null, items: [], cur: 0, sel: new Set(), msg: '', commit: null, dir: [], sort: SORTS.includes(api.load('fc.sort' + i)) ? api.load('fc.sort' + i) : 'name' }));
+    const SORTS = ['ext', 'name', 'size'];
+    const P = [0, 1].map((i) => ({ el: $('fcp' + i), src: api.load('fc.src' + i) || (i ? 'RAM' : 'A'), want: null, vol: null, items: [], cur: 0, sel: new Set(), msg: '', commit: null, dir: [], sort: SORTS.includes(api.load('fc.sort' + i)) ? api.load('fc.sort' + i) : 'ext' }));
     let act = 0;
     P.forEach((p) => { p.want = p.src; });
     const fw = api.floatWin(win, 'fcpos', () => {
@@ -1176,11 +1176,12 @@
     // ".." , folders, files; each group by name (A–Z, numbers in order). TR-DOS stays in its catalogue order
     // (the order there matters: boot first, the space of the last file comes back on delete)
     const byName = (x, y) => (x.name + '.' + (x.ext || '')).localeCompare(y.name + '.' + (y.ext || ''), undefined, { numeric: true, sensitivity: 'base' });
-    // the panel's sort (the list next to Delete): name, size (largest first), date (newest first, FAT and iS-DOS)
+    // the panel's sort (right of its header): ext (then name), name, size (largest first)
     function listed(vol, mode) {
       const rank = (x) => (x.up ? 0 : x.dir ? 1 : 2), abc = vol.kind !== 'TR-DOS';
+      const byExt = (x, y) => (x.dir || y.dir ? 0 : String(x.ext || '').localeCompare(String(y.ext || ''), undefined, { numeric: true, sensitivity: 'base' }));
       const by = mode === 'size' ? (x, y) => (y.dir || x.dir ? 0 : (y.size || 0) - (x.size || 0)) || (abc && byName(x, y))
-        : mode === 'date' ? (x, y) => (y.date || 0) - (x.date || 0) || (abc && byName(x, y))
+        : mode === 'ext' ? (x, y) => abc && (byExt(x, y) || byName(x, y))
         : (x, y) => abc && byName(x, y);
       return vol.list().map((x, k) => [x, k]).sort((a, b) => rank(a[0]) - rank(b[0]) || by(a[0], b[0]) || a[1] - b[1]).map((x) => x[0]);
     }
