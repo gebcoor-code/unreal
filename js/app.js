@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261015151533';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261015154226';
   const MAIL_PNG = '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';
-  const APP_VER = '0.47.1'; // About, System Info (history: changes3.txt)
-  const BUILD = '20261015151533'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.48.0'; // About, System Info (history: changes3.txt)
+  const BUILD = '20261015154226'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2890,6 +2890,7 @@
     if (st === 'cpm' && $('rav_cpm').value.trim()) q.push('cpm=' + linkEnc($('rav_cpm').value.trim()));
     if (on('xt')) q.push('xt=1');
     if (on('mute')) q.push('mute=1');
+    if (on('kbd')) q.push('kbd=' + $('rav_kbd').value);
     $('raout').value = location.href.replace(/[?#].*$/, '') + (q.length ? '?' + q.join('&') : '');
     let note = '';
     if (st === 'cpm' && !CPM_MODELS.includes($('rav_model').value.toUpperCase())) note = 'cpm= needs model atm710 / evo';
@@ -2935,6 +2936,7 @@
     names.forEach((n) => { const o = document.createElement('option'); o.value = n.replace(/ <.>$/, ''); o.textContent = n; sel.appendChild(o); });
     sel.hidden = !names.length; $('rav_runtxt').hidden = !!names.length;
     $('ra_xt').checked = !!E.web_xt_kbd() && MODELS[model].xt; $('ra_mute').checked = muted;
+    $('rav_kbd').value = $('vkbd').hidden ? 'off' : (vkbd && vkbd.tab) || 'zx';
     raBuild();
   }
   function showRest(v) {
@@ -2950,6 +2952,7 @@
     $('raclose').onclick = () => showRest(false);
     $('rav_a').addEventListener('change', () => raPicked(0)); $('rav_hdd').addEventListener('change', () => { $('ra_hdd').checked = !!$('rav_hdd').value.trim(); });
     $('rav_sd').addEventListener('change', () => { $('ra_sd').checked = !!$('rav_sd').value.trim(); });
+    $('rav_kbd').addEventListener('change', () => { $('ra_kbd').checked = true; });
     $('restwin').addEventListener('input', raBuild); $('restwin').addEventListener('change', raBuild);
     $('restwin').addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); showRest(false); } });
     $('racopy').onclick = async () => {
@@ -3741,7 +3744,7 @@
     $('sticky').value = String(sticky);
     $('sticky').onchange = () => { store('sticky', $('sticky').value); vkbd.setSticky(+$('sticky').value); $('sticky').blur(); };
     vkbd = UnrealVKbd.create(panel, { press: vkPress, release: vkRelease, tab: load('vktab'), joy: load('vkjoy') || 'sinclair2', sticky,
-      onTab: (t) => { store('vktab', t); $('kbdtype').value = t; }, onJoy: (j) => store('vkjoy', j),
+      onTab: (t) => { if (!kbdNoStore) store('vktab', t); $('kbdtype').value = t; }, onJoy: (j) => store('vkjoy', j),
       overlayHost: $('screenwrap'), ovBarHost: $('sbjoy'), onLayout: () => applyScale(),
       joyOpts: (() => { try { return JSON.parse(load('vkjoyopt') || '{}'); } catch (e) { return {}; } })(), onJoyOpts: (o) => store('vkjoyopt', JSON.stringify(o)) });
     $('kbdtype').value = vkbd.tab;
@@ -3750,14 +3753,20 @@
       panel.hidden = !v; $('kbdtype').hidden = !v; $('kbdbtn').classList.toggle('on', v);
       $('kbdbtn').title = v ? 'Hide keyboard' : 'On-screen keyboard';
       vkbd.visible(v);
-      store('vkbd', v ? '1' : '0');
+      if (!kbdNoStore) store('vkbd', v ? '1' : '0');
       applyScale();
+    };
+    kbdLink = (t) => { // REST API kbd=: shown / hidden for this visit, the saved setting stays
+      kbdNoStore = true;
+      try { if (/^(zx|xt|joy)$/.test(t)) { vkbd.show(t); showKbd(true); } else if (/^(off|0|no|none|false)$/.test(t)) showKbd(false); }
+      finally { kbdNoStore = false; }
     };
     $('kbdbtn').onclick = () => showKbd(panel.hidden);
     const saved = load('vkbd');
     showKbd(saved === null ? (matchMedia('(pointer: coarse)').matches) : saved === '1');
   }
 
+  let kbdNoStore = false, kbdLink = () => {};
   function bindUI() {
     buildDrives();
     $('file').onchange = async (e) => {
@@ -3863,6 +3872,7 @@
       if (isFinite(x) && x > 0) { let best = 0; SPEEDS.forEach((s, i) => { if (Math.abs(s - x) < Math.abs(SPEEDS[best] - x)) best = i; }); setSpeed(best, false); }
     }
     if (LINK.mute !== undefined && yes(LINK.mute)) { muted = true; updateSoundBtn(); }
+    if (LINK.kbd !== undefined) kbdLink(String(LINK.kbd).toLowerCase()); // kbd=zx|xt|joy|off: for this visit only
     if (LINK.xt !== undefined && MODELS[model].xt && !!E.web_xt_kbd() !== yes(LINK.xt)) toggleXT();
     const auto = (LINK.autorun !== undefined && yes(LINK.autorun)) && !LINK.run && !LINK.cpm;
     if (LINK.hdd) { // hdd=: an HDD image (zip with .chs, or .hdd) into HDD 0
