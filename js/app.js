@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261015154226';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261015203727';
   const MAIL_PNG = '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';
-  const APP_VER = '0.48.0'; // About, System Info (history: changes3.txt)
-  const BUILD = '20261015154226'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.48.1'; // About, System Info (history: changes3.txt)
+  const BUILD = '20261015203727'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -336,7 +336,7 @@
   function applyPal() {
     const sel = $('palsel');
     if (!sel.options.length) {
-      for (let i = 0, n = E.web_pal_count(); i < n; i++) { const nm = cstr(E.web_pal_name(i)); if (/^atari\./i.test(nm)) continue; const o = document.createElement('option'); o.value = nm; o.textContent = nm; sel.appendChild(o); } // atari.* are AtariPreset colour tables, not palettes
+      for (let i = 0, n = E.web_pal_count(); i < n; i++) { const nm = cstr(E.web_pal_name(i)); if (/^atari\./i.test(nm)) continue; const o = document.createElement('option'); o.value = nm; o.textContent = nm; sel.appendChild(o); } // atari.* are AtariPreset color tables, not palettes
       sel.onchange = () => { setPal(sel.value); store('pal', sel.value); };
     }
     setPal(load('pal'));
@@ -689,7 +689,7 @@
     c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
     vzBins.fill(0); vzPeak.fill(0); vzCh.fill(0); vzChP.fill(0);
   }
-  // colours: quiet → loud (Options / Sound), one pair for all sources (AY and General Sound)
+  // colors: quiet → loud (Options / Sound), one pair for all sources (AY and General Sound)
   const VZ_COL = { ay: ['#f0783c', '#ffecaa'] };
   const vzCol = { ay: (load('vizcol.ay') || '').split(',') };
   for (const k in VZ_COL) if (!vzCol[k].every((c) => /^#[0-9a-f]{6}$/i.test(c)) || vzCol[k].length !== 2) vzCol[k] = VZ_COL[k].slice();
@@ -783,7 +783,7 @@
         g.fillStyle = k < na ? ayG : gsG; g.fillRect(x, H - 1 - bh, 3, bh);
         if (vzDecay && vzChP[k] > 0.05) { g.fillStyle = mixc('ay', 1, .85); g.fillRect(x, H - 2 - vzChP[k] * (H - 2), 3, 1); }
       }
-    } else if (vzMode === 'water') { // spectrogram: time runs to the left, low notes at the bottom, loudness as heat colour
+    } else if (vzMode === 'water') { // spectrogram: time runs to the left, low notes at the bottom, loudness as heat color
       const nb = VZ_NB.water, dpr = c.width / W;
       vzBands(an, nb);
       g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = 'copy';
@@ -1161,7 +1161,7 @@
     return { x, y: r.top };
   }
   function toolsMenu(v) { $('toolspop').classList.toggle('open', v); $('toolsbtn').classList.toggle('open', v); }
-  function toolsUI() {} // the Tools button keeps one colour; the menu items show what is open
+  function toolsUI() {} // the Tools button keeps one color; the menu items show what is open
   // Graph Search: the floppy images in the drives (TRD; iS-DOS disks as ISD)
   function gfxDisks() {
     const out = [];
@@ -1598,7 +1598,7 @@
   window.addEventListener("blur", () => { releaseAll(); afterDbg.clear(); });
 
   function toggleXT() { releaseAll(); E.web_toggle_xt(); updateUI(); xtMsg(); }
-  // ATM mode label next to the XT icon (bottom left), in the colour of the icon
+  // ATM mode label next to the XT icon (bottom left), in the color of the icon
   let xtMsgT = 0;
   function xtMsg() {
     if (!E || $('xt').hidden) return;
@@ -2575,7 +2575,7 @@
 
   // ------------------------------------------------------------------ System Info: everything about the machine, the emulator and the browser in one window
   let siFW = null, siTimer = 0;
-  const VMODES = { 0: 'EGA 320×200, 16 colours', 2: 'hi-res 640×200', 3: 'ZX 256×192', 6: 'text 80×25', 7: 'ZX 256×192' };
+  const VMODES = { 0: 'EGA 320×200, 16 colors', 2: 'hi-res 640×200', 3: 'ZX 256×192', 6: 'text 80×25', 7: 'ZX 256×192' };
   function siData() {
     const kv = {};
     for (const ln of cstr(E.web_sysinfo()).split('\n')) { const i = ln.indexOf('\t'); if (i > 0) kv[ln.slice(0, i)] = ln.slice(i + 1); }
@@ -2749,7 +2749,7 @@
     const max = def.max || Math.max(def.limit ? def.limit * 1.25 : 8, ...data) * 1.15;
     if (data.length < 2) return;
     const x = (i) => w - (data.length - 1 - i) * (w / (PF_N - 1)), y = (v) => h - 1 - Math.min(1, v / max) * (h - 3);
-    // a series drawn in its colour; with a limit (Frames: real time), the part above it in red
+    // a series drawn in its color; with a limit (Frames: real time), the part above it in red
     const paint = (color, clip) => {
       g.save();
       if (clip) { g.beginPath(); g.rect(0, clip[0], w, clip[1] - clip[0]); g.clip(); }
@@ -3627,7 +3627,7 @@
     loadSpeed();
   }
   // ------------------------------------------------------------------ port #EFF7 (Pentagon: Options / System, as the EFF7 page of the Win32 settings)
-  const EFF7_BITS = ['16 colours (4 bits per pixel)', 'Pentagon 512×192 monochrome', 'disable memory above 128K', 'RAM 0 at #0000', 'no turbo (always on)',
+  const EFF7_BITS = ['16 colors (4 bits per pixel)', 'Pentagon 512×192 monochrome', 'disable memory above 128K', 'RAM 0 at #0000', 'no turbo (always on)',
     'hardware multicolor (8×1 attributes at #6000)', '384×304 video mode', 'CMOS (#DFF7 / #BFF7)'];
   let eff7Built = false;
   const eff7Key = (m) => 'eff7.' + (m || model);

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261015154226">
+<meta name="build" content="20261015203727">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -26,7 +26,7 @@
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
 .fhead, #mainwin > #toolbar { background: #171b21 !important; }
 .wact > .fhead, #mainwin.wact > #toolbar { background: #1f252d !important; color: var(--text) !important; }
-/* buttons in a title bar follow its focus: dim on an inactive window, lighter on the active one (toggled ones keep their colour) */
+/* buttons in a title bar follow its focus: dim on an inactive window, lighter on the active one (toggled ones keep their color) */
 .fhead button:not(.on), #mainwin #toolbar button.ico:not(.on) { background: #171b21; color: #66717e; border-color: #262e37; transition: background .15s, color .15s, border-color .15s; }
 .wact > .fhead button:not(.on), #mainwin.wact #toolbar button.ico:not(.on) { background: #1f252d; color: var(--dim); border-color: var(--line); }
 .fhead button:hover:not(:disabled), #mainwin #toolbar button.ico:hover:not(:disabled) { border-color: var(--accent); }
@@ -813,7 +813,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   <div class="hbody">
     <p>Shows memory as pictures. Width W is in pixels and is rounded to whole bytes: 8 pixels (ZX, VGA) or 2 pixels (EGA). Height follows window.<br>Live view: memory is redrawn 25 times a second while emulator runs; in debugger stopped state is shown.</p>
     <h4>Modes</h4>
-    <dl><dt>ZX</dt><dd>1 bit per pixel, square pixels</dd><dt>VGA</dt><dd>1 bit per pixel, narrow (640×200)</dd><dt>EGA</dt><dd>ATM 320×200, 16 colours, 2 pixels per byte</dd></dl>
+    <dl><dt>ZX</dt><dd>1 bit per pixel, square pixels</dd><dt>VGA</dt><dd>1 bit per pixel, narrow (640×200)</dd><dt>EGA</dt><dd>ATM 320×200, 16 colors, 2 pixels per byte</dd></dl>
     <h4>Memory</h4>
     <dl><dt>CPU 64K</dt><dd>as paged in now</dd><dt>RAM</dt><dd>all pages in row, address page:offset</dd><dt>ROM</dt><dd>all ROM pages in row, page:offset</dd><dt>A: … D:</dt><dd>floppy image in drive (TRD order; iS-DOS as ISD), offset in image; read when chosen (Live view: every second, off for disk by default)</dd></dl>
     <h4>Keys</h4>
@@ -997,7 +997,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <tr><td>Turbo 2+ xBIOS 1.36</td><td>v1.36: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
           <tr><td>ZX-Evolution</td><td>4096K, EVO Reset Service, CMOS</td></tr>
-          <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM</td></tr>
+          <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
           <tr><td>KAY 1024</td><td>1024K, JV Kramis 0.3</td></tr>
@@ -1324,14 +1324,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261015154226"></script>
-<script src="js/scancodes.js?v=20261015154226"></script>
-<script src="js/unzip.js?v=20261015154226"></script>
-<script src="js/vkbd.js?v=20261015154226"></script>
-<script src="js/asyncify.js?v=20261015154226"></script>
-<script src="js/gfx.js?v=20261015154226"></script>
-<script src="js/usel.js?v=20261015154226"></script>
-<script src="js/fcmd.js?v=20261015154226"></script>
-<script src="js/app.js?v=20261015154226"></script>
+<script src="js/wasi_fs.js?v=20261015203727"></script>
+<script src="js/scancodes.js?v=20261015203727"></script>
+<script src="js/unzip.js?v=20261015203727"></script>
+<script src="js/vkbd.js?v=20261015203727"></script>
+<script src="js/asyncify.js?v=20261015203727"></script>
+<script src="js/gfx.js?v=20261015203727"></script>
+<script src="js/usel.js?v=20261015203727"></script>
+<script src="js/fcmd.js?v=20261015203727"></script>
+<script src="js/app.js?v=20261015203727"></script>
 </body>
 </html>
