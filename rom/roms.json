@@ -6,6 +6,7 @@
   {"file":"pentagon.rom","page":0,"slot":"128","name":"128 BASIC + menu (Pentagon)"},
   {"file":"qc_3_05.rom","slot":"128","name":"Quick Commander 3.05"},
   {"file":"qc_3_22.rom","slot":"128","name":"Quick Commander 3.22"},  
+  {"file":"qc_3_33.rom","slot":"128","name":"Quick Commander 3.33"},    
   {"file":"rrom_200.rom","slot":"128","name":"RRom 2.00 (STS 6.2)"},
   {"file":"trd503.rom","slot":"dos","name":"TR-DOS 5.03"},
   {"file":"trd504tm.rom","slot":"dos","name":"TR-DOS 5.04TM"},
