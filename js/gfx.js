@@ -156,7 +156,7 @@
       // disk images: whole (5-digit offsets); RAM / ROM: the 64K from the page of the address
       const start = st.src === 0 || st.src >= 9 || all.length <= 0x10000 ? 0 : Math.min(st.addr & ~0x3FFF, Math.max(0, all.length - 0x10000));
       const data = st.src >= 9 ? all.slice() : all.slice(start, start + 0x10000), hx = (v) => '#' + v.toString(16).toUpperCase();
-      api.view({ name, data, org: st.src === 0 ? 0 : 0 }, 'Graph Search · ' + name + (start ? ' from ' + hx(start) : ''), m, st.addr - start);
+      api.view({ name, data, org: st.src === 0 ? 0 : 0 }, 'Graf Search · ' + name + (start ? ' from ' + hx(start) : ''), m, st.addr - start);
     }
     // iOS: the picker may report the choice by 'input' only; both save it
     // a disk image is not live (it is read again every second while shown); back on RAM / ROM / CPU the earlier choice returns

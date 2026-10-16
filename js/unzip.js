@@ -27,7 +27,9 @@
       let name;
       try { name = new TextDecoder((flags & 0x800) ? 'utf-8' : 'ibm866').decode(raw); }
       catch (e) { name = String.fromCharCode.apply(null, raw); }
-      if (dirs || !name.endsWith('/')) out.push({ name, size, csize, method, offset, encrypted: !!(flags & 1) });
+      const dt = u16(b, p + 14), tm = u16(b, p + 12); // DOS date / time of the entry
+      const time = dt ? new Date(1980 + (dt >> 9), ((dt >> 5) & 15) - 1, dt & 31, tm >> 11, (tm >> 5) & 63, (tm & 31) * 2) : null;
+      if (dirs || !name.endsWith('/')) out.push({ name, size, csize, method, offset, encrypted: !!(flags & 1), time });
       p += 46 + nlen + xlen + clen;
     }
     return out;
@@ -77,7 +79,11 @@
     return new Blob([...parts, ...cen, e], { type: 'application/zip' });
   }
 
-  const api = { isZip, list, extract, create, crc32 };
+  function comment(b) { // the archive comment (GitHub puts the commit id there)
+    for (let i = b.length - 22; i >= Math.max(0, b.length - 22 - 65535); i--) if (u32(b, i) === 0x06054B50) { const n = u16(b, i + 20); return new TextDecoder().decode(b.subarray(i + 22, i + 22 + n)); }
+    return '';
+  }
+  const api = { isZip, list, extract, create, crc32, comment };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.UnrealZip = api;
 })(typeof self !== 'undefined' ? self : this);

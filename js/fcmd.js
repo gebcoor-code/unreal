@@ -375,7 +375,7 @@
         ncl = Math.floor((P - rsvd - 2 * fsz - rootEnt / 16) / spc);
       };
       if (t === 32) { // 4K clusters (8K above 8 GB, …), smaller while the count would make it FAT16
-        spc = P > 64 * 2097152 ? 64 : P > 32 * 2097152 ? 32 : P > 16 * 2097152 ? 16 : 8;
+        spc = o.spc || (P > 64 * 2097152 ? 64 : P > 32 * 2097152 ? 32 : P > 16 * 2097152 ? 16 : 8);
         for (calc(); spc > 1 && ncl < 65525; calc()) spc /= 2;
         return ncl >= 65525;
       }
@@ -565,6 +565,12 @@
           for (const q of e.lfn.concat(e.o)) a[q] = 0xE5;
         };
         kill(it.id);
+        onWrite && onWrite();
+      },
+      reserve(bytes) { // the current directory gets room for `bytes` of entries now, in clusters that follow each other
+        const d = cwd(); if (d === 0) return; // FAT12/16 root: fixed size
+        const cs = chain(d), need = Math.ceil(bytes / cb); if (cs.length >= need) return;
+        const add = freeN(need - cs.length); add.forEach((c) => a.fill(0, coff(c), coff(c) + cb)); link(cs.concat(add));
         onWrite && onWrite();
       },
       mkdir(name0) {
@@ -965,14 +971,14 @@
       w.hidden = false; fw.place(); render(); body.scrollTop = 0; body.focus();
     }
     function close() { w.hidden = true; file = null; }
-    // from Graph Search: memory in a given view (text / hex / dis), the cursor at an address
+    // from Graf Search: memory in a given view (text / hex / dis), the cursor at an address
     function openAt(f, title, m, go) {
       if (MODES.includes(m)) mode = m;
       open(f, title);
       if (go !== undefined && mode !== 'text') goTo(go.toString(16));
     }
     $('fvmode').onchange = () => {
-      if ($('fvmode').value === 'gfx') { // Graf: Graph Search over this file only (the viewer keeps its view)
+      if ($('fvmode').value === 'gfx') { // Graf: Graf Search over this file only (the viewer keeps its view)
         $('fvmode').value = mode;
         if (file && api.graf) api.graf((file.name || 'file').trim() + (file.ext && file.ext.trim() ? '.' + file.ext.trim() : ''), file.data);
         return;
@@ -1490,12 +1496,16 @@
     const FAT_MB = { hfat: 10, sfat: 8 };
     // FAT type and size: FAT32 needs 65525 clusters at least (about 35 MB with 512-byte clusters: fewer clusters make any
     // driver see FAT16); FAT16 stays within 2 GB (32K clusters). Auto: FAT16 up to 256 MB, FAT32 above.
-    function fatPlan(mb0, ft) {
+    function fatPlan(mb0, ft, cl) {
       let mb = Math.max(2, Math.min(4096, Math.round(mb0) || 8)), note = '';
       const type = ft === '32' ? 32 : ft === '16' ? 16 : mb > 256 ? 32 : 16;
       if (type === 32 && mb < 35) { mb = 35; note = " (FAT32 needs at least 35 MB)"; }
       if (type === 16 && mb > 2047) { mb = 2047; note = ' (FAT16: at most 2047 MB)'; }
-      return { mb, type, note };
+      // cluster (sectors): FAT32 as chosen (fewer than 65525 clusters: halved, as fatFormat does); FAT16 / Auto: the smallest that fits
+      const P = mb * 2048; let spc = +cl || 0;
+      if (type === 32) { spc = spc || (P > 64 * 2097152 ? 64 : P > 32 * 2097152 ? 32 : P > 16 * 2097152 ? 16 : 8); while (spc > 1 && P / spc < 65525) spc /= 2; }
+      else { spc = 1; while (P / spc >= 65525 && spc < 128) spc *= 2; if (+cl && +cl > spc) note += ' (FAT16: the cluster is chosen by the size)'; }
+      return { mb, type, note, spc: type === 32 ? spc : 0, cl: spc === 1 ? '512 B' : spc / 2 + 'K' };
     }
     // New HDD geometry. CP/M: the ATM BIOS 1.07 drive C: has a fixed size (its DPB is in the ROM: 6 MB, logical 17 sectors ×
     // 5 heads), so the image is exactly that: CHS 149/5/17, nothing wasted. iS-DOS: drives of 1–16 MB (16 MB = 33 cylinders
@@ -1522,27 +1532,29 @@
         '<span class="isd"> &nbsp; Drives <select class="nd">' + [1, 2, 3, 4, 5, 6, 7, 8].map((n) => `<option${n === 1 ? ' selected' : ''}>${n}</option>`).join('') + '</select>' +
         ' &nbsp; of <select class="mb">' + [1, 2, 4, 8, 12, 16].map((m) => `<option${m === 16 ? ' selected' : ''}>${m}</option>`).join('') + '</select> MB</span>' +
         `<span class="cdir"> &nbsp; Directory <select class="dn">${[128, 512, 1024].map((n) => `<option value="${n}"${String(n) === (api.load('fc.cpmdir') || '128') ? ' selected' : ''}>${n}</option>`).join('')}</select></span>` +
-        '</div><div class="frow">Size <input class="fmb" type="number" min="2" max="4096" step="1"> MB &nbsp; <select class="ft"><option value="">Auto</option><option value="16">FAT16</option><option value="32">FAT32</option></select></div><div class="d geo"></div>';
+        '</div><div class="frow">Size <input class="fmb" type="number" min="2" max="4096" step="1"> MB &nbsp; <select class="ft"><option value="">Auto</option><option value="16">FAT16</option><option value="32">FAT32</option></select>' +
+        ' &nbsp; Cluster <select class="fcl"><option value="">Auto</option>' + [1, 2, 4, 8, 16, 32, 64].map((k) => `<option value="${k}">${k === 1 ? '512 B' : k / 2 + 'K'}</option>`).join('') + '</select>' +
+        '<div class="d">If FAT32 is for NedoOS, use 512-byte cluster</div></div><div class="d geo"></div>';
       let fk = '';
       const upd = () => {
         const k = body.querySelector('[name=fcnk]:checked').value, hdd = k[0] === 'h', fat = FAT_MB[k], n = +body.querySelector('.nd').value;
         body.querySelector('.hrow').hidden = !hdd; body.querySelector('.isd').hidden = k !== 'hisd'; body.querySelector('.cdir').hidden = k !== 'hcpm'; body.querySelector('.frow').hidden = !fat;
         const fi = body.querySelector('.fmb');
-        if (fat && fk !== k) { fi.value = api.load('fc.mb.' + k) || FAT_MB[k]; body.querySelector('.ft').value = api.load('fc.ft.' + k) || ''; }
+        if (fat && fk !== k) { fi.value = api.load('fc.mb.' + k) || FAT_MB[k]; body.querySelector('.ft').value = api.load('fc.ft.' + k) || ''; body.querySelector('.fcl').value = api.load('fc.cl.' + k) || ''; }
         fk = k;
-        const fp = fatPlan(+fi.value || FAT_MB[k], body.querySelector('.ft').value), mb = fp.mb;
+        const fp = fatPlan(+fi.value || FAT_MB[k], body.querySelector('.ft').value, body.querySelector('.fcl').value), mb = fp.mb;
         const geo = body.querySelector('.geo'); geo.textContent = '';
         if (hdd) {
           const g = hddGeoFor(k, k === 'hfat' ? mb : +body.querySelector('.mb').value, n);
           geo.textContent = k === 'hisd'
             ? `CHS ${g.C}/16/63 · ${g.mb} MB: cylinder 0 + ${n} × ${g.per} cylinders (${g.drive} MB)`
-            : k === 'hfat' ? `CHS ${g.C}/16/63 · ${g.mb} MB · FAT${fp.type}, one partition${fp.note}`
+            : k === 'hfat' ? `CHS ${g.C}/16/63 · ${g.mb} MB · FAT${fp.type}, ${fp.cl} clusters, one partition${fp.note}`
             : `CHS ${g.C}/${g.H}/${g.S} · ${g.mb} MB · ` + ({
               512: '512 entries; ROM table changed while mounted. ',
               1024: '1024 entries: up to 1024 small files (directory 32K); ROM table changed while mounted. ' }[body.querySelector('.dn').value]
               || '128 entries of 16K: about 2MB (as real HW)');
           if (k === 'hcpm' && body.querySelector('.dn').value !== '128') { const w = document.createElement('span'); w.style.color = 'var(--accent)'; w.textContent = 'Real HW BIOS needs the same changes'; geo.appendChild(w); }
-        } else if (k === 'sfat') geo.textContent = `${mb} MB · FAT${fp.type}, one partition${fp.note}`;
+        } else if (k === 'sfat') geo.textContent = `${mb} MB · FAT${fp.type}, ${fp.cl} clusters, one partition${fp.note}`;
         const t = hdd ? 'HDD ' + body.querySelector('.hd').value : drv + ':';
         dlgText(hdd ? (api.hddName(+body.querySelector('.hd').value) ? 'The image in ' + t + ' will be replaced (save it first if it was changed).\n' : '')
           : k === 'sfat' ? (api.sdName && api.sdName() ? 'The SD card image will be replaced (save it first if it was changed).\n' : '')
@@ -1553,12 +1565,12 @@
       if (!await ask({ title: 'New Disk', text: '', body, ok: 'Create' })) return;
       const kind = body.querySelector('[name=fcnk]:checked').value, label = body.querySelector('.nm').value.trim() || 'NEW';
       api.store('fc.newkind', kind);
-      const fpl = fatPlan(+body.querySelector('.fmb').value || FAT_MB[kind], body.querySelector('.ft').value), fmb = fpl.mb;
-      if (FAT_MB[kind]) { api.store('fc.mb.' + kind, String(fmb)); api.store('fc.ft.' + kind, body.querySelector('.ft').value); }
+      const fpl = fatPlan(+body.querySelector('.fmb').value || FAT_MB[kind], body.querySelector('.ft').value, body.querySelector('.fcl').value), fmb = fpl.mb;
+      if (FAT_MB[kind]) { api.store('fc.mb.' + kind, String(fmb)); api.store('fc.ft.' + kind, body.querySelector('.ft').value); api.store('fc.cl.' + kind, body.querySelector('.fcl').value); }
       const fname = (sfx) => (label.replace(/[\\/:*?"<>| ]/g, '_').toLowerCase() || 'new') + sfx;
       if (kind === 'sfat') { // a new SD card image (mounted, marked as changed)
         status('Creating the SD card image…'); await new Promise((r) => setTimeout(r, 30));
-        await api.sdNew(fname('_sd.vhd'), fatFormat(fmb * 1048576, label, { start: 2048, type: fpl.type }));
+        await api.sdNew(fname('_sd.vhd'), fatFormat(fmb * 1048576, label, { start: 2048, type: fpl.type, spc: fpl.spc || undefined }));
         p.src = p.want = 'SD'; api.store('fc.src' + act, p.src);
         fillSrc(); load(act); if (P[1 - act].src.startsWith('SD')) load(1 - act);
         status(`New SD card: ${fname('_sd.vhd')} (${fmb} MB, FAT${fpl.type}) — Save it from the Save window`);
@@ -1570,7 +1582,7 @@
         status('Creating the HDD image…'); await new Promise((r) => setTimeout(r, 30));
         let img, chs;
         if (kind === 'hfat') {
-          img = fatFormat(g.C * ISD_CYL_B, label, { start: 63, heads: 16, spt: 63, type: fpl.type });
+          img = fatFormat(g.C * ISD_CYL_B, label, { start: 63, heads: 16, spt: 63, type: fpl.type, spc: fpl.spc || undefined });
           chs = `# ${label}: FAT (ZX-Evolution, NEMO interface)\r\nCHS=${g.C}/16/63\r\nInterface=NEMO-DIVIDE\r\n`;
         } else if (kind === 'hcpm') {
           const H = g.H, S = g.S, cylL = CPM_HDD.spt * CPM_HDD.heads;
@@ -1749,7 +1761,7 @@
         const it = p.items[p.cur], sel = new Set([...p.sel].map((k) => p.items[k]));
         p.sort = sel0.value; api.store('fc.sort' + i, p.sort);
         if (p.vol) { p.items = listed(p.vol, p.sort); p.cur = Math.max(0, p.items.indexOf(it)); p.sel = new Set(p.items.map((x, k) => (sel.has(x) ? k : -1)).filter((k) => k >= 0)); }
-        setAct(i); draw(i); p.el.querySelector('.fclist').focus();
+        setAct(i); draw(i); setTimeout(() => p.el.querySelector('.fclist').focus(), 0); // after the list box takes the focus back
       };
     });
     // Files / Disks: small menus over the button bar (the look of the page's lists, usel.js)

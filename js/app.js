@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261015203727';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261016102127';
   const MAIL_PNG = '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';
-  const APP_VER = '0.48.1'; // About, System Info (history: changes3.txt)
-  const BUILD = '20261015203727'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.52.1'; // About, System Info (history: changes.txt)
+  const BUILD = '20261016102127'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -36,7 +36,7 @@
     // CP/M starts "B:XC /R" (X-Commander from the CP/M drive B: = floppy A:) by itself
     ATM450: { name: 'ATM Turbo 1 (4.50)', base: 69888, speed: 2.5, xt: false, files: ['atm1041r.rom'], note: '512 KB · BIOS 1.04.1R',
       ini: { MISC: { HIMEM: 'ATM450', RAMSize: '512', CMOS: 'none', RESET: 'SYS' }, ROM: { ROMSET: '', ATM1: 'atm1041r.rom' }, ULA: { Preset: 'ATM1_2_3.5MHz' } } },
-    EVO: { name: 'ZX-Evolution 4096', base: 69888, speed: 2.5, xt: true, files: ['zxevo_fe.rom', 'CMOS'], note: '4096 KB · EVO Reset Service FE · CMOS (this session only)',
+    EVO: { name: 'ZX-Evolution 4096', sysName: 'ZX Evolution 4096 (BaseConf)', base: 69888, speed: 2.5, xt: true, files: ['zxevo_fe.rom', 'CMOS'], note: '4096 KB · EVO Reset Service FE · CMOS (this session only)',
       ini: { MISC: { HIMEM: 'ATM3', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', ATM3: 'zxevo_fe.rom' } } },
     PENTAGON: { name: 'Pentagon 128', base: 71680, speed: 2.5, xt: false, files: ['pentagon.rom', 'trd504tm.rom'], note: '128 KB · 128K ROM + TR-DOS',
       ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'pentagon' }, 'ROM.pentagon': { 128: 'pentagon.rom:0', sos: 'pentagon.rom:1', dos: 'trd504tm.rom', sys: 'trd504tm.rom' }, ULA: { Preset: 'PENTAGON' } } },
@@ -277,7 +277,7 @@
   function applyFdd() { if (E.web_fdd_accurate) E.web_fdd_accurate(load('fdd.acc') === '1' ? 1 : 0); const c = $('fddacc'); if (c) c.checked = load('fdd.acc') === '1'; }
   // ------------------------------------------------------------------ Options: sound (defaults come from unreal.ini)
   // volumes are stored as % of the unreal.ini value (100% = ini)
-  const SND_VOL = [0, 1, 2, 3, 4], SND_OPT = { aychip: 5, aystereo: 6, ayvoltab: 7, sndfilter: 8, sdon: 9 };
+  const SND_VOL = [0, 1, 2, 3, 4, 11], SND_OPT = { aychip: 5, aystereo: 6, ayvoltab: 7, sndfilter: 8, sdon: 9 };
   const SND_DEF = { 0: '5', 8: '1' }; // until changed in Options / Sound: beeper 5%, low-pass filter on
   const sndPref = (id) => { const v = load('snd.' + id); return v !== null ? v : SND_DEF[id] !== undefined ? SND_DEF[id] : null; };
   const volOf = (id, pct) => { const d = E.web_snd_get(100 + id) || 4000; return Math.round(d * pct / 100); };
@@ -303,13 +303,40 @@
     if (!E.web_set_gs(gs === '1' ? 1 : 0) && gs === '1') toast('General Sound: rom/bootgs.rom (512 KB) not found', true);
     if (E.web_gs_auto_set) E.web_gs_auto_set(gs === '2' && fs.exists(GS_ROM) ? 1 : 0);
     if (ay !== null) E.web_set_ay_scheme(+ay);
+    zxbusApply(false);
     $('gssel').value = gs === '2' ? '2' : String(E.web_get_gs());
     const sc = String(E.web_get_ay_scheme());
     if ([...$('aysel').options].some((o) => o.value === sc)) $('aysel').value = sc;
   }
   // General Sound: '0' off, '1' on, '2' auto (default): off until a program touches the GS ports
   const gsPref = () => { const v = load('gs'); return v === '0' || v === '1' ? v : '2'; };
+  // ZXBUS cards: ZX-MultiSound (Rev.A2 / Max) = TurboSound FM + SAA1099 + GS + SounDrive (+ OPL3 on Max), ZXM-MoonSound = OPL4
+  let zxbusWas = false;
+  const MOON_ROM = 'YRW801-M.rom'; // rom/YRW801-M.zip (the .rom in it) or rom/YRW801-M.rom
+  async function zxbusApply(user) {
+    if (!E || !E.web_opl) return;
+    const ms = load('zxms') || '', moon = load('moon') === '1';
+    if (user && ms) { // the board's chips on: AY = TurboSound with YM2203, SAA, SounDrive, GS (auto when it was off)
+      E.web_set_ay_scheme(6); store('ay', '6'); E.web_snd_set(5, 2); store('snd.5', '2'); E.web_snd_set(9, 1); store('snd.9', '1');
+      if (gsPref() === '0') { store('gs', '2'); await ensureFiles([GS_ROM]); if (E.web_gs_auto_set) E.web_gs_auto_set(fs.exists(GS_ROM) ? 1 : 0); }
+    }
+    if (user && !ms && zxbusWas) { // MultiSound off: the AY block (scheme, chip, stereo, volume table, volume) and Covox / SD as in unreal.ini
+      E.web_set_ay_scheme(E.web_snd_get(112)); for (const id of [5, 6, 7]) E.web_snd_set(id, E.web_snd_get(100 + id));
+      E.web_snd_set(1, E.web_snd_get(101)); E.web_snd_set(9, E.web_snd_get(109) ? 1 : 0);
+      for (const k of ['ay', 'snd.1', 'snd.5', 'snd.6', 'snd.7', 'snd.9']) try { localStorage.removeItem('unreal.' + k); } catch (e) {}
+    }
+    zxbusWas = !!ms;
+    E.web_snd_set(10, ms ? 1 : 0);
+    if (moon && !fs.exists(MOON_ROM)) { try { await ensureFiles([MOON_ROM]); } catch (e) {} }
+    const r = E.web_opl(moon ? 2 : ms === 'max' ? 1 : 0);
+    $('moonrom').textContent = moon && !(r & 0x100) ? 'no rom/YRW801-M.zip: FM only, wavetable silent' : '';
+    $('moonrom').classList.toggle('err', moon && !(r & 0x100));
+    if (user) { syncSoundUI(); $('gssel').value = gsPref() === '2' ? '2' : String(E.web_get_gs()); const sc = String(E.web_get_ay_scheme()); if ([...$('aysel').options].some((o) => o.value === sc)) $('aysel').value = sc; }
+  }
   function bindSoundOpts() {
+    $('zxms').value = load('zxms') || ''; $('moon').checked = load('moon') === '1';
+    $('zxms').onchange = () => { store('zxms', $('zxms').value); zxbusApply(true); };
+    $('moon').onchange = () => { store('moon', $('moon').checked ? '1' : '0'); zxbusApply(true); };
     $('gssel').onchange = async () => {
       const v = $('gssel').value, on = v === '1' ? 1 : 0;
       if (v !== '0') await ensureFiles([GS_ROM]);
@@ -1120,7 +1147,7 @@
   }
   // position for a helper window next to the right edge of its parent (left edge if no room)
   // (no room on either side, e.g. a phone: over the parent, at its right edge)
-  // one window resizer for every window with edges (File Commander, its viewer, Graph Search): grips on the 4 edges and
+  // one window resizer for every window with edges (File Commander, its viewer, Graf Search): grips on the 4 edges and
   // 4 corners (CSS .rz), mouse and touch alike. o.minW() / o.minH: the least size; o.fixedW(): width not changed
   // (phone); o.size(w, h): the window applies the size itself (default: style width / height); o.end(rect): saved
   function edgeResize(win, o) {
@@ -1162,7 +1189,7 @@
   }
   function toolsMenu(v) { $('toolspop').classList.toggle('open', v); $('toolsbtn').classList.toggle('open', v); }
   function toolsUI() {} // the Tools button keeps one color; the menu items show what is open
-  // Graph Search: the floppy images in the drives (TRD; iS-DOS disks as ISD)
+  // Graf Search: the floppy images in the drives (TRD; iS-DOS disks as ISD)
   function gfxDisks() {
     const out = [];
     for (let d = 0; d < NDRIVES; d++) if (E && E.web_disk_present(d)) out.push({ drive: d, label: DRV[d] + ': ' + (drives[d] ? drives[d].name : cstr(E.web_disk_name(d)).replace(/^.*[\\/]/, '')) });
@@ -1212,7 +1239,7 @@
       if (e.target.closest('#fcwin, #fvwin')) fcVk = true;
       else if (e.target.closest('#screenwrap, #toolbar')) fcVk = false;
     }, true);
-    // Tools: one toolbar button with a small drop-down (Debugger, Graph Search, File Commander)
+    // Tools: one toolbar button with a small drop-down (Debugger, Graf Search, File Commander)
     $('toolsbtn').onclick = (e) => { e.stopPropagation(); toolsMenu(!$('toolspop').classList.contains('open')); };
     $('toolspop').addEventListener('click', (e) => e.stopPropagation());
     document.addEventListener('click', () => { if ($('toolspop').classList.contains('open')) { toolsMenu(false); canvas.focus(); } });
@@ -1541,6 +1568,7 @@
   const HOTKEYS = new Set(['F1', 'F2', 'F3', 'F4', 'F5', 'F7', 'F12', 'Slash', 'NumpadDivide']);
   function hotkey(e) {
     if (e.ctrlKey && e.altKey && !e.metaKey && e.code === 'KeyZ' && MODELS[model].xt) { toggleXT(); return true; } // ATM mode on / off
+    if (e.altKey && !(e.ctrlKey || e.shiftKey || e.metaKey) && e.code === 'F1') { showOptions(!optOpen()); return true; } // Alt+F1: Options (as in the debugger)
     if (E.web_xt_kbd()) { // in ATM (XT) mode every key goes to the machine
       if (HOTKEYS.has(e.code) && !(e.shiftKey || e.ctrlKey || e.altKey || e.metaKey)) xtMsg();
       return false;
@@ -1571,7 +1599,7 @@
       if ($('options').contains(document.activeElement)) return; // keys for the option controls
     }
     if (fc && fc.open && fc.hasFocus()) return; // keys for File Commander
-    if (gfx && gfx.open && gfx.hasFocus()) { // keys for Graph Search, not for the debugger / emulator
+    if (gfx && gfx.open && gfx.hasFocus()) { // keys for Graf Search, not for the debugger / emulator
       if (!gfx.typing() && gfx.key(e)) e.preventDefault();
       return;
     }
@@ -1791,13 +1819,177 @@
     return cmds;
   }
   // an OS model: its HDD image into HDD 0 (ATM IDE on), then xBIOS XT setup: Space, 2 × ↓ (vTR-dos cold → IDE hard drive master), Enter
+  // ------------------------------------------------------------------ NedoOS: build date of sd/nedoos.zip, Rebuild (a new image from the release)
+  const NEDO_REPO = (OS_MODELS.NEDOOS.link || '').replace(/^https:\/\/github\.com\//, '').replace(/\/$/, '') || 'alfishe/NedoOS', NEDO_DIR = 'release';
+  const nedoDate = (d) => { const t = new Date(d), z = (n) => String(n).padStart(2, '0'); return isNaN(t) ? '' : t.getFullYear() + '-' + z(t.getMonth() + 1) + '-' + z(t.getDate()); };
+  function nedoNote(b) { // the build of a loaded nedoos.zip: its nedoos.json, else the date of the image in the archive
+    try {
+      if (!UnrealZip.isZip(b)) return;
+      const ents = UnrealZip.list(b), j = ents.find((e) => /\.json$/i.test(e.name)), img = ents.reduce((a, e) => (e.size > a.size ? e : a), { size: -1 });
+      const done = (o) => { store('nedoos.build', JSON.stringify(o)); if ($('modelsel').value === 'NEDOOS') nedoUI(); };
+      if (j) UnrealZip.extract(b, j).then((d) => { const o = JSON.parse(new TextDecoder().decode(d)); done({ date: o.date || o.built, commit: o.commit || '', built: o.built || '' }); }).catch(() => {});
+      else if (img.time) done({ date: img.time.toISOString(), commit: '', zipdate: true });
+    } catch (e) {}
+  }
+  function nedoUI() {
+    const on = $('modelsel').value === 'NEDOOS'; $('nedorow').hidden = !on; if (!on) return;
+    let o = null; try { o = JSON.parse(load('nedoos.build') || 'null'); } catch (e) {}
+    $('nedobuild').textContent = o && o.date ? (o.zipdate ? 'from ' : 'build ') + nedoDate(o.date) + (o.commit ? ' · ' + o.commit.slice(0, 7) : '') : 'build date: after the first start';
+    $('nedobuild').title = o && o.zipdate ? 'nedoos.zip has no nedoos.json: date of the image file in it' : o && o.built ? 'image made ' + o.built : '';
+  }
+  let nedoFW = null, nedoLast = null, nedoBusy = false;
+  function nedoStat(t, err) { $('nedostat').textContent = t; $('nedostat').classList.toggle('err', !!err); }
+  function nedoProg(v) { const p = $('nedoprog'); p.hidden = v === null; if (v !== null) p.value = v; }
+  function showNedo(v) {
+    $('nedowin').hidden = !v;
+    if (v) { if (!nedoFW) nedoFW = floatWin($('nedowin'), 'nedopos', () => { const r = $('screenwrap').getBoundingClientRect(), w = $('nedowin').offsetWidth; return { x: Math.max(4, r.left + (r.width - w) / 2), y: Math.max(8, r.top + 60) }; });
+      $('nedomb').value = load('nedo.mb') || '100'; nedoFW.place(); }
+  }
+  // the release folder from GitHub: 4 API calls (head commit, trees, last change of the folder), then each file from raw.githubusercontent.com
+  async function nedoFromGit() {
+    const A = 'https://api.github.com/repos/' + NEDO_REPO, j = async (u) => {
+      let r; try { r = await fetch(u, { headers: { Accept: 'application/vnd.github+json' } }); } catch (e) { throw new Error('GitHub cannot be reached from this page (network or CORS)'); }
+      if (r.status === 403 || r.status === 429) throw new Error('GitHub API limit for this address (60 requests an hour): try later or use From file');
+      if (!r.ok) throw new Error('GitHub API: HTTP ' + r.status);
+      return r.json();
+    };
+    nedoStat('GitHub: ' + NEDO_REPO + ' · reading the file list…');
+    const head = await j(A + '/commits/HEAD'), root = await j(A + '/git/trees/' + head.commit.tree.sha);
+    const rel = root.tree.find((x) => x.path.toLowerCase() === NEDO_DIR && x.type === 'tree'); if (!rel) throw new Error('no folder ' + NEDO_DIR + ' in ' + NEDO_REPO);
+    const t = await j(A + '/git/trees/' + rel.sha + '?recursive=1'); if (t.truncated) throw new Error('GitHub gave a cut list of files');
+    let date = head.commit.committer.date; try { const c = await j(A + '/commits?path=' + rel.path + '&per_page=1'); if (c[0]) date = c[0].commit.committer.date; } catch (e) {}
+    const blobs = t.tree.filter((x) => x.type === 'blob'), dirs = t.tree.filter((x) => x.type === 'tree').map((x) => x.path), files = new Array(blobs.length);
+    const total = blobs.reduce((n, x) => n + (x.size || 0), 0); let got = 0, done = 0, next = 0;
+    const raw = (p) => 'https://raw.githubusercontent.com/' + NEDO_REPO + '/' + head.sha + '/' + rel.path + '/' + p.split('/').map(encodeURIComponent).join('/');
+    const one = async (k) => {
+      for (let a = 0; ; a++) {
+        try { const r = await fetch(raw(blobs[k].path)); if (!r.ok) throw new Error('HTTP ' + r.status); files[k] = { path: blobs[k].path, data: new Uint8Array(await r.arrayBuffer()) }; break; }
+        catch (e) { if (a >= 2) throw new Error(blobs[k].path + ': ' + e.message); await new Promise((res) => setTimeout(res, 500 * (a + 1))); }
+      }
+      got += files[k].data.length; done++;
+      if (done % 20 === 0 || done === blobs.length) { nedoStat(`GitHub: ${done} / ${blobs.length} files · ${(got / 1048576).toFixed(1)} of ${(total / 1048576).toFixed(1)} MB`); nedoProg(got / Math.max(1, total)); }
+    };
+    await Promise.all(Array.from({ length: 12 }, async () => { while (next < blobs.length) await one(next++); }));
+    return { files, dirs, info: { source: 'https://github.com/' + NEDO_REPO + '/tree/' + head.sha + '/' + rel.path, commit: head.sha, date } };
+  }
+  // a ZIP from this computer: the folder with sd_boot.$C (release/ of a repository ZIP, or a ZIP of that folder)
+  async function nedoFromZip(b) {
+    if (!UnrealZip.isZip(b)) throw new Error('not a ZIP');
+    const ents = UnrealZip.list(b, true).map((e) => Object.assign(e, { name: e.name.replace(/\\/g, '/') })), boots = ents.filter((e) => /(^|\/)sd_boot\.\$c$/i.test(e.name)).map((e) => e.name.slice(0, e.name.length - 10));
+    if (!boots.length) throw new Error('no sd_boot.$C in the archive: it is not a NedoOS release');
+    const base = boots.find((x) => /(^|\/)release\/$/i.test(x)) || boots.sort((x, y) => x.length - y.length)[0];
+    const mine = ents.filter((e) => e.name.startsWith(base) && e.name.length > base.length), files = [], dirs = [];
+    let latest = 0, k = 0;
+    for (const e of mine) {
+      const p = e.name.slice(base.length);
+      if (p.endsWith('/')) { dirs.push(p.slice(0, -1)); continue; }
+      files.push({ path: p, data: await UnrealZip.extract(b, e) }); if (e.time && e.time.getFullYear() > 1980 && +e.time > latest) latest = +e.time; // 1980: no date in the ZIP
+      if (++k % 50 === 0) { nedoStat(`Unpacking: ${k} / ${mine.length}`); nedoProg(k / mine.length); await new Promise((r) => setTimeout(r, 0)); }
+    }
+    const sha = (/^[0-9a-f]{40}$/i.exec(UnrealZip.comment(b).trim()) || [''])[0]; // GitHub ZIPs carry the commit id as the comment
+    return { files, dirs, info: { source: 'ZIP: ' + (base || '(root)'), commit: sha, date: latest ? new Date(latest).toISOString() : new Date().toISOString() } };
+  }
+  // the files on a new FAT32 image (New Disk / SD card logic); a size too small for them grows to what they need
+  async function nedoImage(set, mb0) {
+    const T = UnrealFC._test, files = set.files.slice().sort((a, b) => a.path.localeCompare(b.path)), dirs = new Set(set.dirs);
+    for (const f of files) { const p = f.path.split('/'); for (let i = 1; i < p.length; i++) dirs.add(p.slice(0, i).join('/')); }
+    const data = files.reduce((n, f) => n + f.data.length, 0);
+    let mb = Math.max(64, mb0 | 0), note = ''; const skipped = [];
+    for (let tries = 0; tries < 6; tries++) {
+      // 512-byte clusters, as the images NedoOS ships (its kernel of 13-14.10.2026 does not find bin/term.com on 1K clusters)
+      const img = T.fatFormat(mb * 1048576, 'NEDOOS', { start: 2048, type: 32, spc: 1 }), base = T.fatFind(img)[0], vol = T.fatVol(img, base);
+      const cb = (img[base + 11] | img[base + 12] << 8) * img[base + 13];
+      const per = new Map(); for (const p of [...files.map((f) => f.path), ...dirs]) { const d = p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '', n = p.slice(p.lastIndexOf('/') + 1); per.set(d, (per.get(d) || 0) + 1 + (/^[a-z0-9_$~!#%&'()@^`{}-]{1,8}(\.[a-z0-9_$~!#%&'()@^`{}-]{1,3})?$/i.test(n) ? 0 : Math.ceil(n.length / 13))); } // entries: short + long-name ones
+      const need = files.reduce((n, f) => n + Math.ceil(f.data.length / cb) * cb, 0) + [...dirs, ''].reduce((n, d) => n + Math.ceil(((per.get(d) || 0) * 32 + 64) / cb) * cb, 0);
+      if (need > vol.free()) { const nmb = mb + Math.ceil((need - vol.free()) * 1.05 / 1048576) + 1; note = `${mb} MB is too small for ${(data / 1048576).toFixed(1)} MB of files in ${files.length} files: the image is ${nmb} MB`; mb = nmb; continue; }
+      try {
+        nedoStat(`Writing ${files.length} files on a ${mb} MB FAT32 image…`); skipped.length = 0;
+        // each folder gets all its entries' room at once, in clusters that follow each other (no folder spread over the disk)
+        vol.setPath([]); vol.reserve((per.get('') || 0) * 32 + 64);
+        for (const d of [...dirs].sort((a, b) => a.split('/').length - b.split('/').length || a.localeCompare(b))) { const p = d.split('/'); vol.setPath(p.slice(0, -1)); vol.mkdir(p[p.length - 1]); vol.setPath(p); vol.reserve((per.get(d) || 0) * 32 + 64); }
+        let k = 0;
+        for (const f of files) {
+          const p = f.path.split('/'), nm = p.pop(), dot = nm.lastIndexOf('.');
+          vol.setPath(p);
+          try { vol.write(dot > 0 ? { name: nm.slice(0, dot), ext: nm.slice(dot + 1), data: f.data } : { name: nm, ext: '', data: f.data }); }
+          catch (e) { if (!/exists/i.test(e.message)) throw e; skipped.push(f.path); } // same name in another case: FAT keeps one
+          if (++k % 100 === 0) { nedoStat(`Writing: ${k} / ${files.length}`); nedoProg(k / files.length); await new Promise((r) => setTimeout(r, 0)); }
+        }
+        if (skipped.length) note += (note ? '\n' : '') + skipped.length + ' file(s) left out (same name in another case): ' + skipped.slice(0, 3).join(', ');
+        return { img, mb, note, nfiles: files.length - skipped.length, data };
+      } catch (e) { if (!/full/i.test(e.message)) throw e; const nmb = Math.ceil(mb * 1.15) + 1; note = `${mb} MB was not enough: the image is ${nmb} MB`; mb = nmb; }
+    }
+    throw new Error('the image cannot be made');
+  }
+  async function nedoRun(get) {
+    if (nedoBusy) return; nedoBusy = true;
+    $('nedodone').hidden = true; $('nedogit').disabled = $('nedofile').disabled = true; nedoProg(0);
+    try {
+      const mb = Math.max(64, Math.min(2047, parseInt($('nedomb').value, 10) || 100)); store('nedo.mb', String(mb));
+      const set = await get();
+      const boot = set.files.find((f) => /^sd_boot\.\$c$/i.test(f.path));
+      if (!boot) throw new Error('no sd_boot.$C in the release folder');
+      // the programs the loader starts (its texts: "term.com cmd.com autoexec.bat") must be in bin/
+      const want = [...new Set((String.fromCharCode(...boot.data).match(/[a-z0-9_]{1,8}\.(com|bat)/gi) || []).map((x) => x.toLowerCase()))];
+      const have = new Set(set.files.map((f) => f.path.toLowerCase()));
+      const lost = want.filter((x) => !have.has('bin/' + x) && !have.has(x));
+      if (lost.length) throw new Error('sd_boot.$C starts ' + lost.join(', ') + ', but the release has no bin/' + lost[0] + ' — this ZIP is not a whole NedoOS release (' + set.files.length + ' files)');
+      const r = await nedoImage(set, mb);
+      nedoStat('Packing nedoos.zip…'); nedoProg(null);
+      const info = { os: 'NedoOS', date: set.info.date, commit: set.info.commit, source: set.info.source, built: new Date().toISOString(), size_mb: r.mb, files: r.nfiles };
+      const vhd = vhdFixed(r.img);
+      const zip = await UnrealZip.create([{ name: 'nedoos.vhd', data: vhd }, { name: 'nedoos.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
+      nedoLast = { zip, vhd, info };
+      downloadBytes('nedoos.zip', zip);
+      nedoStat((r.note ? r.note + '\n' : '') + `Done: nedoos.zip (${(zip.size / 1048576).toFixed(1)} MB) · ${r.mb} MB FAT32 VHD · ${r.nfiles} files, ${(r.data / 1048576).toFixed(1)} MB\nbuild ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}`);
+      $('nedodone').hidden = false;
+    } catch (e) { nedoProg(null); nedoStat(e.message + (/GitHub/.test(e.message) ? '\nFrom file: download the repository (GitHub: Code / Download ZIP) or a ZIP of its release folder and choose it here' : ''), true); }
+    finally { nedoBusy = false; $('nedogit').disabled = $('nedofile').disabled = false; }
+  }
+  // ------------------------------------------------------------------ About / changes: the history (changes.txt) to read, not to copy
+  let chFW = null, chText = null;
+  async function showChanges(v) {
+    const w = $('chwin');
+    if (!v) { w.hidden = true; return; }
+    if (!chFW) {
+      chFW = floatWin(w, 'chpos', () => { const r = $('options').getBoundingClientRect(); return { x: Math.max(4, r.left + 24), y: Math.max(8, r.top + 24) }; });
+      edgeResize(w, { minW: () => 300, minH: 200, end: (r) => store('chsize', JSON.stringify({ w: Math.round(r.width), h: Math.round(r.height) })) });
+      let sz = null; try { sz = JSON.parse(load('chsize') || 'null'); } catch (e) {}
+      const o = $('options').getBoundingClientRect(); // first time: the height of Options, wide enough for the 72-character lines
+      w.style.width = (sz ? sz.w : Math.min(document.documentElement.clientWidth - 8, Math.max(540, Math.round(o.width) || 440))) + 'px'; w.style.height = (sz ? sz.h : Math.round(o.height) || 420) + 'px';
+      const t = $('chtext');
+      for (const ev of ['copy', 'cut', 'contextmenu', 'selectstart', 'dragstart']) t.addEventListener(ev, (e) => e.preventDefault());
+      t.addEventListener('keydown', (e) => { if ((e.ctrlKey || e.metaKey) && /^Key[ACX]$/.test(e.code)) e.preventDefault(); });
+      w.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); showChanges(false); } });
+      $('chclose').onclick = () => showChanges(false);
+    }
+    w.hidden = false; chFW.place();
+    if (chText === null) {
+      $('chtext').textContent = 'Loading…';
+      try { const r = await fetch('changes.txt', { cache: 'no-cache' }); if (!r.ok) throw new Error('HTTP ' + r.status); chText = await r.text(); }
+      catch (e) { $('chtext').textContent = 'changes.txt: ' + e.message; return; }
+      $('chtext').textContent = chText;
+    }
+    $('chtext').focus();
+  }
+  function bindNedo() {
+    $('nedobtn').onclick = () => showNedo($('nedowin').hidden);
+    $('nedoclose').onclick = () => showNedo(false);
+    $('nedowin').addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); showNedo(false); } });
+    $('nedogit').title = 'Folder ' + NEDO_DIR + ' of github.com/' + NEDO_REPO + ' (latest commit), file by file';
+    $('nedogit').onclick = () => nedoRun(nedoFromGit);
+    $('nedofile').onclick = () => $('nedoinput').click();
+    $('nedoinput').onchange = (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) nedoRun(async () => { nedoStat('Reading ' + f.name + '…'); return nedoFromZip(new Uint8Array(await f.arrayBuffer())); }); };
+    $('nedodl').onclick = () => { if (nedoLast) downloadBytes('nedoos.zip', nedoLast.zip); };
+    $('nedouse').onclick = async () => { if (!nedoLast) return; await sdFromBytes('nedoos.vhd', nedoLast.vhd); if (sdName) sdSrc = new URL(lowDir(OS_MODELS.NEDOOS.sd), location.href).href; /* NedoOS start keeps it */ store('nedoos.build', JSON.stringify({ date: nedoLast.info.date, commit: nedoLast.info.commit, built: nedoLast.info.built })); nedoUI(); };
+  }
   async function osBoot() {
     const os = OS_MODELS[model]; if (!os) return;
     if (os.sd) { // an SD card OS: the image (kept when it is already in: its changes stay), Reset, 5 in the EVO Reset Service
       const url = new URL(lowDir(os.sd), location.href).href;
       if (!(sdName && fs.exists(sdName) && sdSrc === url)) {
         toast('Loading ' + os.sd + '…');
-        try { await sdFromBytes(os.sd.replace(/^.*\//, ''), await fetchBytes(os.sd), true); if (sdName) sdSrc = url; } catch (e) { sdName = null; }
+        try { const b = await fetchBytes(os.sd); if (model === 'NEDOOS') nedoNote(b); await sdFromBytes(os.sd.replace(/^.*\//, ''), b, true); if (sdName) sdSrc = url; } catch (e) { sdName = null; }
         if (!sdName) { toast(os.sd + ' not found', true); return; }
       }
       if (!sdOn()) store('sd.if.' + M(), '1');
@@ -3315,7 +3507,7 @@
     if (m === 'CUSTOM') { customUI(); loadRomParts(); }
     $('modelnote').textContent = MODELS[m].note;
     if (MODELS[m].link) { const a = document.createElement('a'); a.href = MODELS[m].link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = ' · ' + MODELS[m].link.replace(/^https:\/\//, ''); $('modelnote').appendChild(a); }
-    eff7UI();
+    eff7UI(); nedoUI();
     $('modelapply').disabled = (m === model && !(m === 'CUSTOM' && customDirty)) || switching || (m === 'CUSTOM' && !customPlan().ini);
   }
   function customUI() {
@@ -3516,10 +3708,10 @@
   }
   function bindModels() {
     const sel = $('modelsel');
-    for (const [k, v] of Object.entries(MODELS)) { const o = document.createElement('option'); o.value = k; o.textContent = v.name; sel.appendChild(o); }
+    for (const [k, v] of Object.entries(MODELS)) { const o = document.createElement('option'); o.value = k; o.textContent = (!OS_MODELS[k] && v.sysName) || v.name; sel.appendChild(o); }
     sel.onchange = modelSelUI;
     bindCustom();
-    $('modelapply').onclick = () => { const f = sel.value === 'CUSTOM' && customDirty; customDirty = false; setModel(sel.value, f); };
+    $('modelapply').onclick = () => { const f = sel.value === 'CUSTOM' && customDirty; customDirty = false; showNedo(false); showOptions(false); setModel(sel.value, f); }; // Start: Options (and its NedoOS window) close
     $('forcefetch').checked = load('fetch.reload') === '1';
     $('forcefetch').onchange = () => store('fetch.reload', $('forcefetch').checked ? '1' : '0');
     $('romdiskboot').onclick = () => { showOptions(false); romDiskMacro(true); };
@@ -3784,11 +3976,13 @@
     btn('turbo', toggleTurbo);
     bindSpeed();
     bindVKbd();
+    bindNedo();
     bindDebugger();
     bindSysInfo();
     bindPerf();
     // About: version and author; the e-mail is a picture (not a mailto / text for address harvesters)
-    $('aboutver').innerHTML = `v.${APP_VER} by ae485 (<img class="mailimg" alt="e-mail" src="data:image/png;base64,${MAIL_PNG}">). Based on UnrealSpeccy 0.39.0.`;
+    $('aboutver').innerHTML = `v.${APP_VER} by ae485 (<img class="mailimg" alt="e-mail" src="data:image/png;base64,${MAIL_PNG}">). <a href="#" id="chlink">changes</a>.<br>Based on UnrealSpeccy 0.39.0.`;
+    $('chlink').onclick = (e) => { e.preventDefault(); showChanges(true); };
     bindIosMix();
     bindRest();
     bindSave();

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261015203727">
+<meta name="build" content="20261016102127">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -305,15 +305,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-.gfxwin .rz, #fvwin .rz, #fcwin .rz { position: absolute; z-index: 3; touch-action: none; }
-.gfxwin .rz.n, #fvwin .rz.n, #fcwin .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-.gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-.gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-.gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-.gfxwin .rz.ne, #fvwin .rz.ne, #fcwin .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-.gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-.gfxwin .rz.nw, #fvwin .rz.nw, #fcwin .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-.gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+.gfxwin .rz, #fvwin .rz, #fcwin .rz, #chwin .rz { position: absolute; z-index: 3; touch-action: none; }
+.gfxwin .rz.n, #fvwin .rz.n, #fcwin .rz, #chwin .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+.gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz, #chwin .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+.gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz, #chwin .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+.gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz, #chwin .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+.gfxwin .rz.ne, #fvwin .rz.ne, #fcwin .rz, #chwin .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+.gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz, #chwin .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+.gfxwin .rz.nw, #fvwin .rz.nw, #fcwin .rz, #chwin .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+.gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz, #chwin .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -321,8 +321,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  .gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz.e, .gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz.w { width: 16px; } .gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz.s { height: 14px; }
-  .gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz.se, .gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz.sw { width: 26px; height: 26px; }
+  .gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz, #chwin .rz.e, .gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz, #chwin .rz.w { width: 16px; } .gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz, #chwin .rz.s { height: 14px; }
+  .gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz, #chwin .rz.se, .gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz, #chwin .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
@@ -497,6 +497,28 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #customrom[hidden], #customrom [hidden] { display: none; }
 #romdiskrow { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--dim); }
 #romdiskrow[hidden] { display: none; }
+#nedorow { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: var(--dim); }
+#nedorow[hidden], #nedowin[hidden], #chwin[hidden] { display: none; }
+#chwin { position: fixed; left: 0; top: 0; z-index: 10; width: min(440px, calc(100vw - 8px)); height: 60vh; display: flex; flex-direction: column;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 16px 50px rgba(0,0,0,.55); }
+#chwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; flex: none; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
+#chwin .dbghead span { flex: 1; } #chwin .dbghead button { padding: 1px 7px; font-size: 12px; }
+#chtext { flex: 1; min-height: 0; margin: 0; padding: 8px 10px; overflow: auto; font: 11px/1.45 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; outline: none; overscroll-behavior: contain; }
+#aboutver a { color: inherit; }
+#nedorow b { flex: 1; min-width: 0; color: var(--text); font-weight: 500; }
+#nedowin { position: fixed; left: 0; top: 0; z-index: 9; width: min(420px, calc(100vw - 8px)); display: flex; flex-direction: column;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
+#nedowin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
+#nedowin .dbghead span { flex: 1; } #nedowin .dbghead button { padding: 1px 7px; font-size: 12px; }
+.nedobody { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+.nedobody .nrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.nedobody input[type=number] { width: 80px; height: 24px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+.nedobody .nd { color: var(--dim); font-size: 11px; }
+#nedostat { min-height: 32px; font: 11px/1.4 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre-wrap; }
+#nedostat.err { color: #ff8a7a; }
+#nedoprog { width: 100%; height: 6px; }
+.moonrow { display: flex; gap: 8px; align-items: center; } .moonrow .ranote { flex: 1; } .moonrow button { font-size: 12px; } #moonrom.err { color: #ff8a7a; }
 #romdiskrow b { flex: 1; min-width: 0; color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #romdiskrow button { padding: 2px 8px; font-size: 12px; }
 .note + .note { margin-top: 6px; }
@@ -607,7 +629,7 @@ select.usel-src { display: none !important; }
 .fchdd .nm { width: 60%; font-size: 12px; }
 .fchdd .hrow, .fchdd .frow { margin-top: 6px; } .fchdd .geo { margin-top: 10px; }
 .fchdd .fmb { width: 80px; font-size: 12px; }
-.fchdd .ft { font-size: 12px; height: 22px; padding: 0 4px; }
+.fchdd .ft, .fchdd .fcl { font-size: 12px; height: 22px; padding: 0 4px; }
 .fchdd .fmb { height: 22px; box-sizing: border-box; }
 .fchdd .hrow select { font-size: 12px; margin-right: 8px; }
 .fchdd .hrow select:disabled { opacity: .4; }
@@ -747,7 +769,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <button class="ico wide" id="toolsbtn" title="Tools"><svg><use href="#i-tools"/></svg><svg class="caret"><use href="#i-caret"/></svg></button>
         <div class="pop menu" id="toolspop">
           <button id="dbgbtn"><svg><use href="#i-bug"/></svg><span>Debugger</span><kbd>Shift+F1</kbd></button>
-          <button id="gfxbtn"><svg><use href="#i-gfx"/></svg><span>Graph Search</span></button>
+          <button id="gfxbtn"><svg><use href="#i-gfx"/></svg><span>Graf Search</span></button>
           <button id="fcbtn"><svg><use href="#i-fc"/></svg><span>File Commander</span><kbd>F1</kbd></button>
           <button id="pfbtn"><svg><use href="#i-perf"/></svg><span>Performance</span></button>
           <button id="sibtn"><svg><use href="#i-info"/></svg><span>System Info</span></button>
@@ -793,8 +815,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   <div class="hbody"></div>
 </div>
 
-<div id="gfxwin" class="gfxwin" hidden role="dialog" aria-label="Graph Search">
-  <div class="dbghead fhead"><span>Graph Search</span><button id="gfxhelpbtn" title="Help">?</button><button id="gfxclose" title="Close (Esc)">✕</button></div>
+<div id="gfxwin" class="gfxwin" hidden role="dialog" aria-label="Graf Search">
+  <div class="dbghead fhead"><span>Graf Search</span><button id="gfxhelpbtn" title="Help">?</button><button id="gfxclose" title="Close (Esc)">✕</button></div>
   <div class="gfxbar">
     <select id="gfxmode" title="Mode (M); Text / Hex / Z80asm open the File Commander viewer at this address"><option>ZX</option><option>EGA</option><option>VGA</option><option value="v:text">TEXT</option><option value="v:hex">HEX</option><option value="v:dis">Z80ASM</option></select>
     <select id="gfxsrc" title="Memory: CPU 64K, RAM, ROM or the floppy image in a drive"><option value="0">CPU 64K</option><option value="1">RAM</option><option value="2">ROM</option></select>
@@ -808,8 +830,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   <div class="gfxstat" id="gfxstat"></div>
 </div>
 
-<div id="gfxhelp" hidden role="dialog" aria-label="Graph Search help">
-  <div class="dbghead fhead"><span>Graph Search help</span><button id="gfxhelpclose" title="Close">✕</button></div>
+<div id="gfxhelp" hidden role="dialog" aria-label="Graf Search help">
+  <div class="dbghead fhead"><span>Graf Search help</span><button id="gfxhelpclose" title="Close">✕</button></div>
   <div class="hbody">
     <p>Shows memory as pictures. Width W is in pixels and is rounded to whole bytes: 8 pixels (ZX, VGA) or 2 pixels (EGA). Height follows window.<br>Live view: memory is redrawn 25 times a second while emulator runs; in debugger stopped state is shown.</p>
     <h4>Modes</h4>
@@ -849,6 +871,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label class="crrow" id="crresetrow"><span>Start in</span><select id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
           </div>
           <p class="note" id="modelnote"></p>
+          <div id="nedorow" hidden><span>Image</span><b id="nedobuild"></b><button id="nedobtn" title="Build a new SD card image (nedoos.zip) from the NedoOS release on GitHub or from a ZIP on this computer">Rebuild…</button></div>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
           <div id="romdiskrow" hidden><span>ROM disk</span><b id="romdiskname"></b><button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button><button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">Remove</button></div>
         </div>
@@ -957,6 +980,16 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           </div>
         </div>
         <div class="card">
+          <h3>ZXBUS sound cards</h3>
+          <div class="optgrid sndgrid">
+            <label for="zxms">ZX-MultiSound</label>
+            <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here"><option value="">Off</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
+            <label class="chk span3" for="moon" title="OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/YRW801-M.zip)"><input type="checkbox" id="moon"> ZXM-MoonSound (OPL4)</label>
+            <div class="span3 moonrow"><span class="ranote" id="moonrom"></span></div>
+            <label for="vol11">OPL3/OPL4</label><input type="range" id="vol11" data-snd="11" min="0" max="200" step="5"><output for="vol11"></output>
+          </div>
+        </div>
+        <div class="card">
           <h3>Beeper, Covox, Tape</h3>
           <div class="optgrid sndgrid">
             <label for="vol0">Beeper</label><input type="range" id="vol0" data-snd="0" min="0" max="200" step="5"><output for="vol0"></output>
@@ -996,7 +1029,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <tr><td>Turbo 2+ xBIOS XT</td><td>v1.32XT: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>Turbo 2+ xBIOS 1.36</td><td>v1.36: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
-          <tr><td>ZX-Evolution</td><td>4096K, EVO Reset Service, CMOS</td></tr>
+          <tr><td>ZX Evolution</td><td>4096K, BaseConf</td></tr>
           <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
@@ -1013,7 +1046,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <h3>Hardware</h3>
         <table class="keys">
           <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; filters</td></tr>
-          <tr><td>Sound</td><td>AY/YM2149, TurboSound, Soundrive</td></tr>
+          <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive</td></tr>
+          <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793), +3 (µPD765)</td></tr>
           <tr><td>HDD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI</td></tr>
@@ -1025,7 +1059,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <h3>Tools</h3>
         <table class="keys">
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
-          <tr><td>Graph Search</td><td>live memory viewer as graphics (ZX/EGA/VGA)</td></tr>
+          <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA)</td></tr>
           <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
           <tr><td>System Info</td><td>CPU, ports, disks, sound, host (live)</td></tr>
@@ -1041,13 +1075,16 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <tr><td>TASiS distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
           <tr><td>iS-DOS HDD boot, drivers</td><td>Yu. Korsunin</td></tr>
           <tr><td>iS-DOS</td><td>Iskra Soft</td></tr>
-          <tr><td>NedoOS</td><td>Alone Coder and NedoOS team (nedoos.ru)</td></tr>
+          <tr><td>NedoOS</td><td>Alone Coder and NedoOS team (<a href="https://nedoos.ru" target="_blank" rel="noopener">nedoos.ru</a>)</td></tr>
           <tr><td>TR-DOS</td><td>Technology Research Ltd.</td></tr>
           <tr><td>CP/M 2.2</td><td>Digital Research</td></tr>
           <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad</td></tr>
           <tr><td>ATM Turbo 2+ hardware</td><td>MicroART</td></tr>
           <tr><td>Honey Commander</td><td>Honey Soft</td></tr>
           <tr><td>Web port</td><td>ae485; WebAssembly: wasi-sdk, Binaryen</td></tr>
+          <tr><td>ZX-MultiSound</td><td><a href="https://github.com/SeregaButylkin/zx-multisound" target="_blank" rel="noopener">SeregaButylkin</a></td></tr>
+          <tr><td>ZXM-MoonSound</td><td><a href="http://micklab.ru" target="_blank" rel="noopener">Mick Laboratory</a></td></tr>
+          <tr><td>YM2203, YMF262,<br>YMF278B, YRW801-M</td><td>Yamaha Corporation</td></tr>
         </table>
       </div>
       </div>
@@ -1067,6 +1104,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>F5</td><td>start / stop emulation</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu)</td></tr>
+      <tr><td>Alt+F1</td><td>Options</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
       <tr><td>Ctrl+Alt+Z</td><td>ATM mode (XT keyboard) on/off</td></tr>
       <tr><td>Esc</td><td>releases captured mouse</td></tr>
@@ -1200,6 +1238,23 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   </div>
 </div>
 
+<div id="chwin" hidden role="dialog" aria-label="Changes history">
+  <div class="dbghead fhead"><span>Changes history</span><button id="chclose" title="Close (Esc)">✕</button></div>
+  <pre id="chtext" tabindex="0"></pre>
+</div>
+
+<div id="nedowin" hidden role="dialog" aria-label="NedoOS image">
+  <div class="dbghead fhead"><span>NedoOS image</span><button id="nedoclose" title="Close (Esc)">✕</button></div>
+  <div class="nedobody">
+    <div class="nd">A new SD card image: the folder <b>release</b> of NedoOS on a FAT32 VHD, saved as nedoos.zip (automatically, after rebuild).</div>
+    <div class="nrow"><span>VHD size</span><input type="number" id="nedomb" min="64" max="2047" step="1" value="100"><span>MB · FAT32</span></div>
+    <div class="nrow"><button id="nedogit" class="primary" title="">From GitHub</button><button id="nedofile" title="A ZIP with the release folder (or the whole repository: GitHub Code / Download ZIP)">From file…</button><input type="file" id="nedoinput" accept=".zip" hidden></div>
+    <progress id="nedoprog" max="1" value="0" hidden></progress>
+    <div id="nedostat"></div>
+    <div class="nrow" id="nedodone" hidden><button id="nedodl">Download nedoos.zip</button><button id="nedouse" title="Put the new image into the SD card of this emulator (NedoOS model: press Start / Reset)">Insert as SD card</button></div>
+  </div>
+</div>
+
 <div id="restwin" hidden role="dialog" aria-label="REST API link">
   <div class="dbghead fhead"><span>REST API link</span><button id="raclose" title="Close (Esc)">✕</button></div>
   <div class="rabody">
@@ -1312,7 +1367,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="fvwin" hidden role="dialog" aria-label="Viewer">
   <div class="dbghead fhead"><span id="fvtitle">Viewer</span><button id="fvclose" title="Close (Esc)">✕</button></div>
   <div class="fvbar">
-    <select id="fvmode" title="View: F4 cycles · T text · H hex · D Z80asm · G go to address · Graf: Graph Search over this file"><option value="text">Text</option><option value="hex">Hex</option><option value="dis">Z80asm</option><option value="gfx">Graf</option></select>
+    <select id="fvmode" title="View: F4 cycles · T text · H hex · D Z80asm · G go to address · Graf: Graf Search over this file"><option value="text">Text</option><option value="hex">Hex</option><option value="dis">Z80asm</option><option value="gfx">Graf</option></select>
     <select id="fvenc" title="Encoding (F8 / E)"></select>
     <label id="fvorgl" for="fvorg">Org #</label><input id="fvorg" maxlength="4" spellcheck="false" autocomplete="off" title="Load address (hex) for Hex and Disassembler">
     <label id="fvgol" for="fvgo">Go #</label><input id="fvgo" maxlength="5" spellcheck="false" autocomplete="off" title="Jump to an address (hex), Enter. G in the viewer puts the cursor here">
@@ -1324,14 +1379,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261015203727"></script>
-<script src="js/scancodes.js?v=20261015203727"></script>
-<script src="js/unzip.js?v=20261015203727"></script>
-<script src="js/vkbd.js?v=20261015203727"></script>
-<script src="js/asyncify.js?v=20261015203727"></script>
-<script src="js/gfx.js?v=20261015203727"></script>
-<script src="js/usel.js?v=20261015203727"></script>
-<script src="js/fcmd.js?v=20261015203727"></script>
-<script src="js/app.js?v=20261015203727"></script>
+<script src="js/wasi_fs.js?v=20261016102127"></script>
+<script src="js/scancodes.js?v=20261016102127"></script>
+<script src="js/unzip.js?v=20261016102127"></script>
+<script src="js/vkbd.js?v=20261016102127"></script>
+<script src="js/asyncify.js?v=20261016102127"></script>
+<script src="js/gfx.js?v=20261016102127"></script>
+<script src="js/usel.js?v=20261016102127"></script>
+<script src="js/fcmd.js?v=20261016102127"></script>
+<script src="js/app.js?v=20261016102127"></script>
 </body>
 </html>
