@@ -400,12 +400,12 @@
       a[b + 64] = 0x80; a[b + 66] = 0x29; p32(b + 67, serial); for (let i = 0; i < 11; i++) a[b + 71 + i] = lab.charCodeAt(i);
       for (let i = 0; i < 8; i++) a[b + 82 + i] = 'FAT32   '.charCodeAt(i);
       const fi = b + 512; p32(fi, 0x41615252); p32(fi + 484, 0x61417272); p32(fi + 488, ncl - 1); p32(fi + 492, 3); p16(fi + 510, 0xAA55);
-      a.copyWithin(b + 6 * 512, b, b + 1024); // backup boot sector + FSInfo
     } else {
       a[b + 36] = 0x80; a[b + 38] = 0x29; p32(b + 39, serial); for (let i = 0; i < 11; i++) a[b + 43 + i] = lab.charCodeAt(i);
       for (let i = 0; i < 8; i++) a[b + 54 + i] = (type === 12 ? 'FAT12   ' : 'FAT16   ').charCodeAt(i);
     }
     p16(b + 510, 0xAA55);
+    if (type === 32) a.copyWithin(b + 6 * 512, b, b + 1024); // backup boot sector + FSInfo (after the boot signature)
     for (let f = 0; f < 2; f++) {
       const t = b + (rsvd + f * fsz) * 512;
       if (type === 12) a.set([0xF8, 0xFF, 0xFF], t);
@@ -1534,7 +1534,7 @@
         `<span class="cdir"> &nbsp; Directory <select class="dn">${[128, 512, 1024].map((n) => `<option value="${n}"${String(n) === (api.load('fc.cpmdir') || '128') ? ' selected' : ''}>${n}</option>`).join('')}</select></span>` +
         '</div><div class="frow">Size <input class="fmb" type="number" min="2" max="4096" step="1"> MB &nbsp; <select class="ft"><option value="">Auto</option><option value="16">FAT16</option><option value="32">FAT32</option></select>' +
         ' &nbsp; Cluster <select class="fcl"><option value="">Auto</option>' + [1, 2, 4, 8, 16, 32, 64].map((k) => `<option value="${k}">${k === 1 ? '512 B' : k / 2 + 'K'}</option>`).join('') + '</select>' +
-        '<div class="d">If FAT32 is for NedoOS, use 512-byte cluster</div></div><div class="d geo"></div>';
+        '<div class="d">For NedoOS do not use 1K cluster (seems to cause problems with loading files)</div></div><div class="d geo"></div>';
       let fk = '';
       const upd = () => {
         const k = body.querySelector('[name=fcnk]:checked').value, hdd = k[0] === 'h', fat = FAT_MB[k], n = +body.querySelector('.nd').value;

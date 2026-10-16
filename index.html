@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261016102127">
+<meta name="build" content="20261016135604">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -450,7 +450,6 @@ select option { background: var(--panel2); color: var(--text); }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
 #crname { font-size: 12px; color: var(--text); margin-left: 8px; overflow-wrap: anywhere; }
-#crinfo { white-space: pre-line; font-size: 11px; margin: 2px 0 6px; overflow-wrap: anywhere; }
 #ldrunmodel { height: 26px; font-size: 12px; } #ldrunmodel[hidden] { display: none; } #ldrunone { font-size: 12px; color: var(--dim); }
 /* selects: one focus mark (orange, as on hover), not the browser's blue ring next to the hover border */
 select:focus { outline: none; } select:focus-visible { border-color: var(--accent); }
@@ -861,9 +860,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <div class="selbtn"><select id="modelsel" aria-label="Model"></select><button id="modelapply" class="primary" disabled title="Start this model (the machine restarts)">Start</button></div>
           <div id="customrom" hidden>
             <div class="crrow"><button id="crfile" title="ROM images (16 KB pages: .rom / .bin, also in .zip). A ZIP saved here (Save / Custom ROM) brings its settings too">Select ROM…</button><span id="crname"></span></div>
-            <p class="note" id="crinfo" hidden title="What each 16K page of the ROM file looks like (by its texts); ⚠ in a slot list: the page looks like another slot"></p>
             <label class="crrow"><span>Machine</span><select id="crmach" title="The machine the ROM runs on (memory model, RAM, timings)"></select></label>
-            <label class="crrow" id="crwholerow"><span>ROM</span><select id="crwhole" title="The ROM file taken whole by this machine"></select></label>
             <label class="crrow" id="crsrow_128"><span>128</span><select id="crs_128" title="128 BASIC / menu page (or a replacement: Quick Commander, RRom)"></select></label>
             <label class="crrow" id="crsrow_sos"><span>48 BASIC</span><select id="crs_sos" title="48 BASIC page (required)"></select></label>
             <label class="crrow" id="crsrow_dos"><span>TR-DOS</span><select id="crs_dos" title="TR-DOS page"></select></label>
@@ -871,7 +868,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label class="crrow" id="crresetrow"><span>Start in</span><select id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
           </div>
           <p class="note" id="modelnote"></p>
-          <div id="nedorow" hidden><span>Image</span><b id="nedobuild"></b><button id="nedobtn" title="Build a new SD card image (nedoos.zip) from the NedoOS release on GitHub or from a ZIP on this computer">Rebuild…</button></div>
+          <div id="nedorow" hidden><span>Image</span><b id="nedobuild"></b><button id="nedobtn" title="Build a new SD card image (nedoos.zip) from the NedoOS release on GitHub or from a ZIP on this computer">Make Image…</button></div>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
           <div id="romdiskrow" hidden><span>ROM disk</span><b id="romdiskname"></b><button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button><button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">Remove</button></div>
         </div>
@@ -1243,10 +1240,10 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   <pre id="chtext" tabindex="0"></pre>
 </div>
 
-<div id="nedowin" hidden role="dialog" aria-label="NedoOS image">
-  <div class="dbghead fhead"><span>NedoOS image</span><button id="nedoclose" title="Close (Esc)">✕</button></div>
+<div id="nedowin" hidden role="dialog" aria-label="NedoOS SD image">
+  <div class="dbghead fhead"><span>NedoOS SD image</span><button id="nedoclose" title="Close (Esc)">✕</button></div>
   <div class="nedobody">
-    <div class="nd">A new SD card image: the folder <b>release</b> of NedoOS on a FAT32 VHD, saved as nedoos.zip (automatically, after rebuild).</div>
+    <div class="nd">A new SD card image: the folder <b>release</b> of NedoOS on a FAT32 VHD, saved as nedoos.zip (automatically, when made).</div>
     <div class="nrow"><span>VHD size</span><input type="number" id="nedomb" min="64" max="2047" step="1" value="100"><span>MB · FAT32</span></div>
     <div class="nrow"><button id="nedogit" class="primary" title="">From GitHub</button><button id="nedofile" title="A ZIP with the release folder (or the whole repository: GitHub Code / Download ZIP)">From file…</button><input type="file" id="nedoinput" accept=".zip" hidden></div>
     <progress id="nedoprog" max="1" value="0" hidden></progress>
@@ -1286,6 +1283,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <select id="svfmt" class="sv-disk">
           <option value="isd" hidden>ISD</option><option value="pro" hidden>PRO</option><option value="0">TRD</option><option value="scl">SCL</option><option value="1">FDI</option><option value="2">UDI</option><option value="3">TD0</option>
         </select>
+        <label for="svrom" class="sv-rom">ROM</label>
+        <select id="svrom" class="sv-rom"></select>
         <label for="svsrc" class="sv-mem">Memory</label>
         <select id="svsrc" class="sv-mem"><option value="0">CPU 64K</option><option value="1">RAM</option></select>
         <label for="svstart" class="sv-mem">Start</label>
@@ -1379,14 +1378,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261016102127"></script>
-<script src="js/scancodes.js?v=20261016102127"></script>
-<script src="js/unzip.js?v=20261016102127"></script>
-<script src="js/vkbd.js?v=20261016102127"></script>
-<script src="js/asyncify.js?v=20261016102127"></script>
-<script src="js/gfx.js?v=20261016102127"></script>
-<script src="js/usel.js?v=20261016102127"></script>
-<script src="js/fcmd.js?v=20261016102127"></script>
-<script src="js/app.js?v=20261016102127"></script>
+<script src="js/wasi_fs.js?v=20261016135604"></script>
+<script src="js/scancodes.js?v=20261016135604"></script>
+<script src="js/unzip.js?v=20261016135604"></script>
+<script src="js/vkbd.js?v=20261016135604"></script>
+<script src="js/asyncify.js?v=20261016135604"></script>
+<script src="js/gfx.js?v=20261016135604"></script>
+<script src="js/usel.js?v=20261016135604"></script>
+<script src="js/fcmd.js?v=20261016135604"></script>
+<script src="js/app.js?v=20261016135604"></script>
 </body>
 </html>

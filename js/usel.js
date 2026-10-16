@@ -136,13 +136,13 @@
     const r = popAnchor.getBoundingClientRect(), vv = window.visualViewport, vw = document.documentElement.clientWidth;
     let lo = 4, hi = Math.min(window.innerHeight, document.documentElement.clientHeight || 1e9, vv ? vv.height + vv.offsetTop : 1e9) - 4;
     if (vv) lo = Math.max(lo, vv.offsetTop + 4);
-    const win = popAnchor.closest('.fwin, .optwin, [role="dialog"], #fcwin, #restwin, #dbgdlg');
-    if (win) { // inside the window; a window with almost no room on both sides of the box: the screen
-      const wr = win.getBoundingClientRect();
-      if (Math.max(wr.bottom - r.bottom, r.top - wr.top) >= 100) { hi = Math.min(hi, wr.bottom - 4); lo = Math.max(lo, wr.top + 4); }
-    }
     pop.style.minWidth = Math.round(r.width) + 'px'; pop.style.maxWidth = (vw - 8) + 'px';
     pop.style.maxHeight = ''; pop.style.top = pop.style.bottom = '';
+    const win = popAnchor.closest('.fwin, .optwin, [role="dialog"], #fcwin, #restwin, #dbgdlg');
+    if (win) { // inside the window; a small window (the list, or 240 px of it, does not fit on either side of the box): the screen
+      const wr = win.getBoundingClientRect();
+      if (Math.max(wr.bottom - r.bottom, r.top - wr.top) - 6 >= Math.min(pop.scrollHeight, 240)) { hi = Math.min(hi, wr.bottom - 4); lo = Math.max(lo, wr.top + 4); }
+    }
     const below = hi - r.bottom - 2, above = r.top - 2 - lo, want = Math.min(pop.scrollHeight, 320);
     if (below >= Math.min(want, 120) || below >= above) { pop.style.top = (r.bottom + 2) + 'px'; pop.style.maxHeight = Math.max(60, below) + 'px'; }
     else { pop.style.top = Math.max(lo, r.top - 2 - Math.min(pop.scrollHeight, above)) + 'px'; pop.style.maxHeight = Math.max(60, above) + 'px'; }

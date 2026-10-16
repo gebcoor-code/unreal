@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261016102127';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261016135604';
   const MAIL_PNG = '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';
-  const APP_VER = '0.52.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261016102127'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.53.2'; // About, System Info (history: changes.txt)
+  const BUILD = '20261016135604'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -96,10 +96,10 @@
     { file: 'glukpen.rom', slot: 'sys', name: 'Gluk Reset Service 6.5R' },
     { file: 'gluk61r.rom', slot: 'sys', name: 'Gluk Reset Service 6.1R' },
   ];
-  // local ROM files of this session (FS name, file name, KB); a slot is 'f:<fs>:<page>' (local) or 's:<file>' (server part)
-  const crPool = [];
+  // the selected ROM file of this session (FS name, file name, KB, its pages); a slot is 'f:<fs>:<page>' (local) or 's:<file>' (server part)
+  let crCur = null;
   const customCfg = { mach: 'PENT128', reset: '', name: '', whole: '', slots: { 128: '', sos: '', dos: '', sys: '' } };
-  const crFile = (fsn) => crPool.find((p) => p.fs === fsn);
+  const crFile = (fsn) => (crCur && crCur.fs === fsn ? crCur : null);
   // → { ini, files } or { why }
   function customPlan() {
     const c = MACHINES[customCfg.mach], ini = { MISC: { HIMEM: c.himem, RAMSize: String(c.ram), CMOS: c.cmos || 'none' }, ROM: {} };
@@ -1819,23 +1819,29 @@
     return cmds;
   }
   // an OS model: its HDD image into HDD 0 (ATM IDE on), then xBIOS XT setup: Space, 2 × ↓ (vTR-dos cold → IDE hard drive master), Enter
-  // ------------------------------------------------------------------ NedoOS: build date of sd/nedoos.zip, Rebuild (a new image from the release)
+  // ------------------------------------------------------------------ NedoOS: build date of sd/nedoos.zip, Make Image (a new image from the release)
   const NEDO_REPO = (OS_MODELS.NEDOOS.link || '').replace(/^https:\/\/github\.com\//, '').replace(/\/$/, '') || 'alfishe/NedoOS', NEDO_DIR = 'release';
   const nedoDate = (d) => { const t = new Date(d), z = (n) => String(n).padStart(2, '0'); return isNaN(t) ? '' : t.getFullYear() + '-' + z(t.getMonth() + 1) + '-' + z(t.getDate()); };
-  function nedoNote(b) { // the build of a loaded nedoos.zip: its nedoos.json, else the date of the image in the archive
+  function nedoNote(b) { // the build of a loaded nedoos.zip: its nedoos.json, else the date of the image in the archive (none: nothing)
+    const done = (o) => { try { if (o) localStorage.setItem('unreal.nedoos.build', JSON.stringify(o)); else localStorage.removeItem('unreal.nedoos.build'); } catch (e) {} if ($('modelsel').value === 'NEDOOS') nedoUI(); };
+    const dated = (t) => t && !isNaN(t) && t.getFullYear() > 1980; // a ZIP entry without a date reads as 1980-01-01 (DOS date 0)
     try {
-      if (!UnrealZip.isZip(b)) return;
+      if (!UnrealZip.isZip(b)) { done(null); return; }
       const ents = UnrealZip.list(b), j = ents.find((e) => /\.json$/i.test(e.name)), img = ents.reduce((a, e) => (e.size > a.size ? e : a), { size: -1 });
-      const done = (o) => { store('nedoos.build', JSON.stringify(o)); if ($('modelsel').value === 'NEDOOS') nedoUI(); };
-      if (j) UnrealZip.extract(b, j).then((d) => { const o = JSON.parse(new TextDecoder().decode(d)); done({ date: o.date || o.built, commit: o.commit || '', built: o.built || '' }); }).catch(() => {});
-      else if (img.time) done({ date: img.time.toISOString(), commit: '', zipdate: true });
-    } catch (e) {}
+      const byImg = () => done(dated(img.time) ? { date: img.time.toISOString(), commit: '', zipdate: true } : null);
+      if (!j) { byImg(); return; }
+      UnrealZip.extract(b, j).then((d) => {
+        const o = JSON.parse(new TextDecoder().decode(d)), date = o.date || o.built;
+        if (dated(new Date(date))) done({ date, commit: o.commit || '', built: o.built || '' }); else byImg();
+      }).catch(byImg);
+    } catch (e) { done(null); }
   }
   function nedoUI() {
     const on = $('modelsel').value === 'NEDOOS'; $('nedorow').hidden = !on; if (!on) return;
     let o = null; try { o = JSON.parse(load('nedoos.build') || 'null'); } catch (e) {}
-    $('nedobuild').textContent = o && o.date ? (o.zipdate ? 'from ' : 'build ') + nedoDate(o.date) + (o.commit ? ' · ' + o.commit.slice(0, 7) : '') : 'build date: after the first start';
-    $('nedobuild').title = o && o.zipdate ? 'nedoos.zip has no nedoos.json: date of the image file in it' : o && o.built ? 'image made ' + o.built : '';
+    const d = o && o.date ? nedoDate(o.date) : '', ok = d && d > '1980-12-31'; // no data (or the DOS zero date): nothing is written
+    $('nedobuild').textContent = ok ? (o.zipdate ? 'from ' : 'build ') + d + (o.commit ? ' · ' + o.commit.slice(0, 7) : '') : '';
+    $('nedobuild').title = ok && o.zipdate ? 'nedoos.zip has no nedoos.json: date of the image file in it' : ok && o.built ? 'image made ' + o.built : '';
   }
   let nedoFW = null, nedoLast = null, nedoBusy = false;
   function nedoStat(t, err) { $('nedostat').textContent = t; $('nedostat').classList.toggle('err', !!err); }
@@ -2589,8 +2595,20 @@
     try { fs.remove('__chk.isd'); } catch (e) {}
     return ok;
   }
+  // Save / ROM: the ROMs of the models, the General Sound ROM and everything rom/roms.json lists — one entry per file
+  function svRomList() {
+    const sel = $('svrom'), was = sel.value, seen = new Map();
+    const put = (f, t) => { if (!/\.rom$/i.test(f)) return; const k = f.toLowerCase(); if (!seen.has(k)) seen.set(k, [f, []]); if (!seen.get(k)[1].includes(t)) seen.get(k)[1].push(t); };
+    for (const [k, v] of Object.entries(MODELS)) if (!OS_MODELS[k] && !v.custom) put(v.files[0], v.sysName || v.name);
+    put(GS_ROM, 'General Sound');
+    for (const r of romJson.length ? romJson : romParts) if (r.page === undefined || !seen.has(r.file.toLowerCase())) put(r.file, r.name); // pages of a model ROM: the model says it
+    sel.innerHTML = '';
+    for (const [f, t] of seen.values()) { const o = document.createElement('option'); o.value = f; o.textContent = f + ' · ' + t.join(', '); sel.appendChild(o); }
+    sel.value = seen.has(was.toLowerCase()) ? was : sel.options.length ? sel.options[0].value : '';
+  }
   function openSave(what) {
     if (!E) return;
+    svRomList(); if (!romPartsLoaded) loadRomParts().then(() => { svRomList(); if ($('svtype').value === 'srvrom') svUpdate(true); });
     const sel = $('svtype'); sel.innerHTML = '';
     const add = (v, t, parent) => { const o = document.createElement('option'); o.value = v; o.textContent = t; (parent || sel).appendChild(o); };
     for (let i = 0; i < NDRIVES; i++) if (E.web_disk_present(i)) add('disk:' + i, `Disk ${DRV[i]}: ${diskBase(i)}${E.web_disk_changed(i) ? ' *' : ''}`);
@@ -2600,6 +2618,7 @@
     add('scr', 'Screen (SCR)');
     add('png', 'Screenshot (PNG)');
     add('mem', 'Memory block (BIN)');
+    add('srvrom', 'ROM');
     add('rom', 'Custom ROM');
     if (emuFiles.size) {
       const g = document.createElement('optgroup'); g.label = 'Written by the emulator'; sel.appendChild(g);
@@ -2614,6 +2633,7 @@
     const t = $('svtype').value, disk = t.startsWith('disk:'), mem = t === 'mem';
     document.querySelectorAll('#savedlg .sv-disk').forEach((e) => { e.hidden = !disk; });
     document.querySelectorAll('#savedlg .sv-mem').forEach((e) => { e.hidden = !mem; });
+    document.querySelectorAll('#savedlg .sv-rom').forEach((e) => { e.hidden = t !== 'srvrom'; });
     let name = '', note = '';
     if (disk) {
       const d = +t.slice(5);
@@ -2650,6 +2670,9 @@
       const st = hexv($('svstart').value) || 0;
       name = 'block_' + st.toString(16).toUpperCase().padStart(4, '0') + '.bin';
       note = 'Start and length in hex. RAM: linear address (page × #4000 + offset).';
+    } else if (t === 'srvrom') {
+      name = $('svrom').value || 'rom';
+      note = 'The ROM file as it is on the server (rom/), not changed.';
     } else if (t === 'rom') {
       const z = romZip(); name = z ? z.name.replace(/\.zip$/i, '') : 'rom';
       note = 'ROM + json. Can be loaded as a custom ROM.';
@@ -2742,6 +2765,9 @@
       data = new Uint8Array(E.memory.buffer, p + (src === 1 ? st : 0), src === 1 ? n : 0x10000).slice(src === 1 ? 0 : st, src === 1 ? n : st + n);
     } else if (t.startsWith('file:')) {
       data = fs.read(t.slice(5));
+    } else if (t === 'srvrom') {
+      const f = $('svrom').value; if (!f) { toast('Choose a ROM', true); return; }
+      try { data = fs.exists(f) ? fs.read(f).slice() : await fetchSrv(f); } catch (e) { toast(f + ': ' + e.message, true); return; }
     } else if (t === 'sd') {
       data = sdName && fs.read(sdName); if (data) { data = vhdFixed(data); sdDirty = false; sdUI(); }
     }
@@ -2756,6 +2782,7 @@
   function bindSave() {
     $('savebtn').onclick = () => openSave();
     $('svtype').onchange = () => svUpdate(true);
+    $('svrom').onchange = () => svUpdate(true);
     $('svfmt').onchange = () => svUpdate(false);
     $('svstart').addEventListener('input', () => { if ($('svtype').value === 'mem') svUpdate(true); });
     $('svgo').onclick = doSave;
@@ -3514,17 +3541,12 @@
     const c = MACHINES[customCfg.mach];
     $('crmach').value = customCfg.mach;
     const opt = (sel, v, t) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel.appendChild(o); };
-    // whole ROM: the local files
-    const w = $('crwhole'); w.innerHTML = ''; opt(w, '', crPool.length ? '— choose —' : '— add a ROM file —');
-    for (const p of crPool) opt(w, p.fs, p.name + ' · ' + p.kb + ' KB' + (c.sizes && !c.sizes.includes(p.kb) ? ' (size does not fit)' : ''));
-    w.value = crFile(customCfg.whole) ? customCfg.whole : '';
-    $('crwholerow').hidden = true; // the selected file is the ROM (its name is next to the button)
-    const cur = crPool[0];
+    const cur = crCur; // a whole ROM: the selected file (its name is next to the button)
     $('crname').textContent = cur ? cur.name + ' · ' + cur.kb + ' KB' + (!c.set && c.sizes && !c.sizes.includes(cur.kb) ? ' (size does not fit ' + c.name + ')' : '') : '';
     // ROM set: each slot from a page of a local file or a part on the server
     for (const [s] of SLOTS) {
       const sel = $('crs_' + s); sel.innerHTML = ''; opt(sel, '', '— none —');
-      for (const p of crPool) for (let i = 0; i < p.kb / 16; i++) { const pi = p.pages && p.pages[i];
+      if (crCur) for (let i = 0, p = crCur; i < p.kb / 16; i++) { const pi = p.pages && p.pages[i];
         if (pi && (pi.label === 'empty' || (p.kb > 64 && !pi.slot))) continue; // a big file: the pages that look like a slot only
         opt(sel, 'f:' + p.fs + ':' + i, p.name + (p.kb > 16 ? ' · page ' + i : '') + (pi ? ' · ' + pi.label + (pi.slot && pi.slot !== s ? ' ⚠' : '') : '')); }
       for (const r of romParts.filter((x) => x.slot === s)) opt(sel, 's:' + r.file + (r.page !== undefined ? ':' + r.page : ''), r.name);
@@ -3532,20 +3554,14 @@
       $('crsrow_' + s).hidden = !c.set;
     }
     $('crresetrow').hidden = !c.set;
-    // what the ROM files hold, page by page; a whole file made for another machine is said too
-    const info = crPool.map((p) => {
-      const pg = (p.pages || []).map((x, i) => [i, x]), big = pg.length > 8, shown = big ? pg.filter(([, x]) => x.slot) : pg;
-      return 'pages: ' + shown.map(([i, x]) => i + ' ' + x.label).join(' · ') + (big ? ' (+ ' + (pg.length - shown.length) + ' other pages of ' + pg.length + ')' : '') +
-        (p.guess ? '\n  looks like ' + p.guess[1] + (p.guess[0] !== customCfg.mach ? ' — machine for it: ' + MACHINES[p.guess[0]].name : '') : '');
-    });
-    $('crinfo').textContent = info.join('\n'); $('crinfo').hidden = !info.length;
     $('crreset').value = customCfg.reset;
     customApply();
   }
   let romPartsLoaded = false;
+  let romJson = []; // every entry of rom/roms.json (Save / ROM lists them all, also the ones that are no ROM set part)
   async function loadRomParts() { // rom/roms.json: [{ file, slot, name }] — the parts the server offers for ROM sets
     if (romPartsLoaded) return; romPartsLoaded = true;
-    try { const j = JSON.parse(new TextDecoder().decode(await fetchBytes(ROM_DIR + 'roms.json'))); if (Array.isArray(j) && j.length) romParts = j.filter((r) => r && r.file && SLOTS.some(([s]) => s === r.slot)); } catch (e) {}
+    try { const j = JSON.parse(new TextDecoder().decode(await fetchBytes(ROM_DIR + 'roms.json'))); if (Array.isArray(j) && j.length) { romJson = j.filter((r) => r && r.file); romParts = romJson.filter((r) => SLOTS.some(([s]) => s === r.slot)); } } catch (e) {}
     if ($('modelsel').value === 'CUSTOM') customUI();
   }
   // What is in a 16K ROM page (by its texts and first bytes): slot it fits ('128', 'sos', 'dos', 'sys'), a label, or nothing
@@ -3598,17 +3614,16 @@
     }
     if (!b.length || b.length & 16383 || b.length > 1 << 20) { toast(name + ': a ROM image is 16 KB pages, up to 1024 KB (' + b.length + ' bytes)', true); return; }
     // one ROM file at a time: the new one replaces the one selected before (its pages leave the slots too)
-    for (const o of crPool) try { fs.remove(o.fs); } catch (e) {}
-    crPool.length = 0; customCfg.whole = '';
+    if (crCur) try { fs.remove(crCur.fs); } catch (e) {}
+    crCur = null; customCfg.whole = '';
     for (const [s] of SLOTS) if (customCfg.slots[s].startsWith('f:')) customCfg.slots[s] = '';
     crSeq++;
     const p = { fs: 'cr' + crSeq + '.rom', name, kb: b.length >> 10 };
     p.pages = []; for (let i = 0; i < p.kb / 16; i++) p.pages.push(romPageInfo(b.subarray(i * 16384, (i + 1) * 16384)));
     p.guess = romMachineGuess(b);
-    fs.write(p.fs, b); crPool.push(p);
+    fs.write(p.fs, b); crCur = p;
     if (!cfg && p.guess && MACHINES[p.guess[0]]) { customCfg.mach = p.guess[0]; toast(name + ': ' + p.guess[1] + ' → ' + MACHINES[p.guess[0]].name); }
     const c = MACHINES[customCfg.mach];
-    if (cfg && cfg.machine === 'ATM3') cfg.machine = 'EVO'; // the core's name of ZX-Evolution
     if (cfg && MACHINES[cfg.machine]) { // settings from the saved ZIP
       customCfg.mach = cfg.machine; customCfg.reset = cfg.reset && cfg.reset !== 'auto' ? cfg.reset : ''; customCfg.name = cfg.name || '';
       const pg = (v) => (typeof v === 'number' ? v : v && typeof v.page === 'number' ? v.page : null);
@@ -3632,11 +3647,10 @@
     sel.onchange = () => {
       customCfg.mach = sel.value;
       if (MACHINES[sel.value].set && SLOTS.every(([s]) => !customCfg.slots[s])) // a ROM set with nothing chosen yet: pages that fit, from the files added
-        for (const p of [...crPool].reverse()) for (const [s] of SLOTS) { const i = (p.pages || []).findIndex((x) => x.slot === s); if (i >= 0 && !customCfg.slots[s]) customCfg.slots[s] = 'f:' + p.fs + ':' + i; }
-      if (!MACHINES[sel.value].set && !crFile(customCfg.whole) && crPool.length) customCfg.whole = crPool[crPool.length - 1].fs;
+        if (crCur) for (const [s] of SLOTS) { const i = (crCur.pages || []).findIndex((x) => x.slot === s); if (i >= 0 && !customCfg.slots[s]) customCfg.slots[s] = 'f:' + crCur.fs + ':' + i; }
+      if (!MACHINES[sel.value].set && crCur) customCfg.whole = crCur.fs;
       changed();
     };
-    $('crwhole').onchange = () => { customCfg.whole = $('crwhole').value; changed(); };
     for (const [s] of SLOTS) $('crs_' + s).onchange = () => { customCfg.slots[s] = $('crs_' + s).value; changed(); };
     $('crreset').onchange = () => { customCfg.reset = $('crreset').value; changed(); };
     $('crfile').onclick = () => $('crinput').click();

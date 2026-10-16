@@ -1205,3 +1205,29 @@ Web Unreal Speccy — version history
         version 0.52.0                  16 oct 2026
 
 + About: link "changes" opens the Changes history window
+
+
+        version 0.53.0                  16 oct 2026
+
++ Save: ROM — a ROM file from the server (rom/: the ROMs of the models,
+  General Sound, the ROM set parts and other entries of rom/roms.json),
+  downloaded as it is (or in a ZIP)
+* File Commander, New Disk FAT32: the backup boot sector has its
+  signature too (fsck no longer reports a difference)
+
+
+        version 0.53.1                  16 oct 2026
+
+* Options / System, NedoOS: Image shows the date only when it is known
+  (nedoos.json, else a real date of the image in the ZIP); a ZIP entry
+  without a date (1980-01-01) gives nothing
+- Custom ROM: the page list under Select ROM (the slot lists show the
+  pages) and the hidden list of several ROM files (one file since
+  0.39.0) removed
+
+
+        version 0.53.2                  16 oct 2026
+
+! Drop-down lists in small windows (Save / What): the list was cut at
+  the window's edge (ROM, Custom ROM out of sight, no scroll bar seen);
+  when the list does not fit in its window it may go past it now
