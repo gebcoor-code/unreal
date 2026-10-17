@@ -124,6 +124,14 @@
         img[info + 0xE1] = lin % 16; img[info + 0xE2] = Math.floor(lin / 16);
         img[info + 0xE4] = cnt + 1; put16(img, info + 0xE5, u16(img, info + 0xE5) - secs);
       },
+      // the editor: new contents of a file in its own sectors when they still fit the same count (catalogue order kept)
+      rewrite(it, data) {
+        const e = img.subarray(it.id * 16, it.id * 16 + 16), secs = Math.max(1, Math.ceil(data.length / 256));
+        if (secs !== e[13]) return false;
+        const off = (e[15] * 16 + e[14]) * 256; img.fill(0, off, off + secs * 256); img.set(data, off);
+        if (e[8] !== 0x42) put16(e, 11, data.length); // code / data: the length; BASIC keeps its header
+        return true;
+      },
       del(it) {
         const cnt = img[info + 0xE4], e = img.subarray(it.id * 16, it.id * 16 + 16);
         if (it.id === cnt - 1) { // the last file: its space comes back
@@ -1011,6 +1019,222 @@
     return { open, openAt, close, hasFocus: () => !w.hidden && w.contains(document.activeElement) };
   }
 
+  // ---- file editor (F4): text or hex, the encodings of the viewer; Save writes the file back to its disk
+  // Text: every byte has its own character, so a file goes back byte for byte: controls as ␀…␟, bytes the encoding has
+  // no letter for as private-use characters; line ends as the file had them (CR, LF or CR LF); CP/M text up to ^Z.
+  const edTabs = {};
+  function edTable(enc) {
+    if (edTabs[enc]) return edTabs[enc];
+    const t = table(enc).slice(), back = new Map();
+    for (let i = 0; i < 256; i++) {
+      let c = t[i];
+      if (i < 32) c = String.fromCharCode(0x2400 + i);
+      else if (i === 127 && enc !== 'zx') c = '␡';
+      else if (c === '·' || (enc === 'zx' && i >= 128) || (enc === 'latin1' && i >= 128 && i < 160)) c = String.fromCharCode(0xE000 + i);
+      if (back.has(c)) c = String.fromCharCode(0xE000 + i);
+      t[i] = c; back.set(c, i);
+    }
+    return (edTabs[enc] = { dec: t, back });
+  }
+  function makeEditor(api) {
+    const w = $('fewin'), ta = $('fetext'), hx = $('fehex'), rows = hx.querySelector('.ferows'), sp = hx.querySelector('.fesp');
+    let doc = null, mode = api.load('fe.mode') === 'hex' ? 'hex' : 'text', enc = api.load('fv.enc') || 'zx', bytes = null, dirty = false, eol = '\r', ctrlZ = false;
+    let pos = 0, nib = 0, pane = 'hex';
+    const fw = api.floatWin(w, 'fepos', () => {
+      const r = $('fcwin').getBoundingClientRect(), vw = document.documentElement.clientWidth;
+      return { x: Math.max(4, Math.min(r.left + 60, vw - w.offsetWidth - 4)), y: Math.max(8, r.top + 40) };
+    });
+    ENC.forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; $('feenc').appendChild(o); });
+    try { const z = JSON.parse(api.load('fe.size')); if (z && z.w > 0 && z.h > 0) { w.style.width = z.w + 'px'; w.style.height = z.h + 'px'; } } catch (e) {}
+    api.edgeResize(w, { minW: () => 300, minH: 180, end: (r) => { api.store('fe.size', JSON.stringify({ w: Math.round(r.width), h: Math.round(r.height) })); fw.setPos({ x: r.left, y: r.top }); drawHex(); } });
+    const info = (t, err) => { $('feinfo').textContent = t; $('feinfo').classList.toggle('err', !!err); };
+    // questions of the editor: a box inside its own window (modal for the editor only)
+    let dlgEnd = null;
+    function ask(o) {
+      const d = $('fedlg');
+      d.querySelector('.t').textContent = o.title || ''; const x = d.querySelector('.x'); x.textContent = o.text || ''; if (o.body) x.appendChild(o.body);
+      const okb = d.querySelector('.ok'); okb.textContent = o.ok || 'OK'; d.querySelector('.no').textContent = o.no || 'Cancel';
+      d.hidden = false; setTimeout(() => (o.focus ? o.focus() : okb.focus()), 20);
+      return new Promise((res) => { dlgEnd = (v) => { d.hidden = true; dlgEnd = null; (mode === 'text' ? ta : hx).focus(); res(v); }; });
+    }
+    $('fedlg').querySelector('.ok').onclick = () => dlgEnd && dlgEnd(true);
+    $('fedlg').querySelector('.no').onclick = () => dlgEnd && dlgEnd(false);
+    $('fedlg').addEventListener('keydown', (e) => {
+      if (!dlgEnd) return;
+      if (e.key === 'Escape') dlgEnd(false);
+      else if (e.key === 'Enter' && (e.target.classList.contains('ok') || e.target.tagName === 'INPUT')) dlgEnd(true);
+      else if (e.key === 'Enter' && e.target.classList.contains('no')) dlgEnd(false);
+      else { e.stopPropagation(); return; }
+      e.preventDefault(); e.stopPropagation();
+    });
+    const showInfo = () => info((bytes ? bytes.length : 0) + ' bytes' + (dirty ? ' · changed' : '') + (mode === 'hex' ? ' · offset ' + pos.toString(16).toUpperCase().padStart(5, '0') : ''));
+    const setDirty = (v) => { dirty = v; $('fetitle').textContent = (dirty ? '* ' : '') + doc.title; showInfo(); };
+    // bytes ↔ text
+    function toText(b) {
+      const { dec } = edTable(enc); let end = b.length; ctrlZ = false;
+      if (!doc.zx) { const z = b.indexOf(0x1A); if (z >= 0) { end = z; ctrlZ = true; } }
+      let cr = 0, lf = 0, crlf = 0; for (let i = 0; i < end; i++) { if (b[i] === 13) { if (b[i + 1] === 10) { crlf++; i++; } else cr++; } else if (b[i] === 10) lf++; }
+      eol = crlf >= cr && crlf >= lf && crlf ? '\r\n' : lf > cr ? '\n' : '\r';
+      const out = [];
+      for (let i = 0; i < end; i++) {
+        const c = b[i];
+        if (eol === '\r\n' && c === 13 && b[i + 1] === 10) { out.push('\n'); i++; }
+        else if ((eol === '\r' && c === 13) || (eol === '\n' && c === 10)) out.push('\n');
+        else if (c === 9) out.push('\t');
+        else out.push(dec[c]);
+      }
+      return out.join('');
+    }
+    function fromText(s) {
+      const { back } = edTable(enc), out = []; let bad = 0;
+      for (const ch of s) {
+        if (ch === '\n') { for (const c of eol) out.push(c.charCodeAt(0)); continue; }
+        if (ch === '\t') { out.push(9); continue; }
+        const v = back.get(ch); if (v === undefined) { bad++; out.push(0x3F); } else out.push(v);
+      }
+      if (ctrlZ) out.push(0x1A);
+      return { b: new Uint8Array(out), bad };
+    }
+    // hex: only the rows in sight are drawn
+    const LH = () => parseFloat(getComputedStyle(rows).lineHeight) || 16;
+    let cw = 0;
+    function drawHex() {
+      if (mode !== 'hex' || !bytes) return;
+      const lh = LH(), n = Math.ceil((bytes.length + 1) / 16);
+      sp.style.height = n * lh + 'px';
+      const first = Math.max(0, Math.floor(hx.scrollTop / lh)), cnt = Math.ceil(hx.clientHeight / lh) + 1, { dec } = edTable(enc);
+      const disp = (v) => { const c = dec[v]; return c.charCodeAt(0) >= 0x2400 && c.charCodeAt(0) < 0x2422 || c.charCodeAt(0) >= 0xE000 ? '·' : c; };
+      let html = '';
+      for (let r = first; r < Math.min(n, first + cnt); r++) {
+        const o = r * 16; let h = '', c = '';
+        for (let i = 0; i < 16; i++) {
+          const k = o + i, here = k === pos, cls = here ? (pane === 'hex' ? ' class="cur"' : ' class="cur2"') : '', cls2 = here ? (pane === 'chr' ? ' class="cur"' : ' class="cur2"') : '';
+          if (k < bytes.length) { const x = bytes[k].toString(16).toUpperCase().padStart(2, '0'); h += (here && pane === 'hex' ? `<b${cls}>${nib ? x[0] + '<u>' + x[1] + '</u>' : '<u>' + x[0] + '</u>' + x[1]}</b>` : `<b${cls}>${x}</b>`) + (i === 7 ? '  ' : ' '); c += `<b${cls2}>${esc(disp(bytes[k]))}</b>`; }
+          else if (k === bytes.length && here) { h += `<b${cls}>__</b>` + (i === 7 ? '  ' : ' '); c += `<b${cls2}> </b>`; }
+          else { h += i === 7 ? '    ' : '   '; }
+        }
+        html += o.toString(16).toUpperCase().padStart(5, '0') + '  ' + h + ' ' + c + '\n';
+      }
+      rows.style.top = first * lh + 'px'; rows.innerHTML = html; showInfo();
+    }
+    const esc = (c) => (c === '<' ? '&lt;' : c === '&' ? '&amp;' : c === '>' ? '&gt;' : c);
+    function seen() { // keep the cursor row in sight
+      const lh = LH(), r = Math.floor(pos / 16), top = r * lh;
+      if (top < hx.scrollTop) hx.scrollTop = top; else if (top + lh > hx.scrollTop + hx.clientHeight) hx.scrollTop = top + lh - hx.clientHeight;
+      drawHex();
+    }
+    function setMode(m) {
+      if (m === mode && (m === 'text' ? !ta.hidden : !hx.hidden)) return;
+      if (mode === 'text' && !ta.hidden) { const r = fromText(ta.value); bytes = r.b; if (r.bad) info(r.bad + ' characters not in ' + enc + ': saved as ?', true); }
+      mode = m; api.store('fe.mode', mode); $('femode').value = mode;
+      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex';
+      if (mode === 'text') { ta.value = toText(bytes); ta.focus(); ta.setSelectionRange(0, 0); ta.scrollTop = 0; }
+      else { pos = Math.min(pos, bytes.length); hx.focus(); seen(); }
+      showInfo();
+    }
+    function open(o) { // o: { title, name, data, zx, save(bytes) → Promise<string>, saveAs(bytes, name, panel), targets(), here() }
+      doc = o; bytes = o.data.slice(); pos = 0; nib = 0; pane = 'hex';
+      enc = api.load('fv.enc') || enc; $('feenc').value = enc; $('femode').value = mode;
+      w.hidden = false; fw.place();
+      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex';
+      if (mode === 'text') { ta.value = toText(bytes); ta.scrollTop = 0; ta.focus(); ta.setSelectionRange(0, 0); } else { hx.scrollTop = 0; hx.focus(); drawHex(); }
+      setDirty(false);
+    }
+    const current = () => { if (mode === 'text') { const r = fromText(ta.value); return r; } return { b: bytes, bad: 0 }; };
+    const badNote = (r) => (r.bad ? ' · ' + r.bad + ' characters not in the encoding saved as ?' : '');
+    async function save() {
+      if (!doc || dlgEnd) return;
+      const r = current(); if (mode === 'text') bytes = r.b;
+      try { const msg = await doc.save(r.b); setDirty(false); info((msg || 'Saved') + badNote(r), !!r.bad); }
+      catch (e) {
+        info('Not saved: ' + e.message, true);
+        if (e.saveAs && doc.saveAs) await saveAs(e.message + '.\nSave as a new file?');
+      }
+    }
+    // a new name (and the disk: this one or the other panel's); the original file stays as it was
+    async function saveAs(why) {
+      if (!doc || !doc.saveAs || dlgEnd) return;
+      const r = current(); if (mode === 'text') bytes = r.b;
+      const body = document.createElement('div'); body.className = 'fesa';
+      const tg = doc.targets();
+      body.innerHTML = '<label>Name <input class="nm" spellcheck="false" autocomplete="off"></label><label>To <select class="tg"></select></label>';
+      const nm = body.querySelector('.nm'), sel = body.querySelector('.tg');
+      tg.forEach(([i, t]) => { const o = document.createElement('option'); o.value = i; o.textContent = t; sel.appendChild(o); });
+      const here = doc.here(); sel.value = String(why && tg.length > 1 ? tg.find(([i]) => i !== here)[0] : here >= 0 ? here : tg.length ? tg[0][0] : 0);
+      const dot = doc.name.lastIndexOf('.'); nm.value = dot > 0 ? doc.name.slice(0, dot) + '_1' + doc.name.slice(dot) : doc.name + '_1';
+      if (!await ask({ title: 'Save as', text: (why ? why + '\n' : '') + '', body, ok: 'Save', focus: () => { nm.focus(); nm.select(); } })) return;
+      try { const o = await doc.saveAs(r.b, nm.value.trim(), +sel.value); doc.title = o.title; doc.name = nm.value.trim(); setDirty(false); info(o.msg + badNote(r), !!r.bad); }
+      catch (e) { info('Not saved: ' + e.message, true); if (e.saveAs) await saveAs(e.message + '.\nChoose another disk or a shorter file.'); }
+    }
+    async function close() {
+      if (!doc) { w.hidden = true; return; }
+      if (dlgEnd) return;
+      if (dirty && !await ask({ title: 'Close', text: doc.title + ' was changed. Close without saving?', ok: 'Close' })) return;
+      w.hidden = true; doc = null; bytes = null;
+      const l = document.querySelector('#fcwin .fcpanel.act .fclist'); if (l) l.focus();
+    }
+    $('femode').onchange = () => setMode($('femode').value);
+    $('feenc').onchange = () => {
+      const was = enc;
+      if (mode === 'text') { const keep = dirty; enc = was; const r = fromText(ta.value); bytes = r.b; enc = $('feenc').value; ta.value = toText(bytes); setDirty(keep); }
+      else { enc = $('feenc').value; drawHex(); }
+      api.store('fv.enc', enc); (mode === 'text' ? ta : hx).focus();
+    };
+    $('fesave').onclick = save; $('fesaveas').onclick = () => saveAs(''); $('feclose').onclick = close;
+    ta.addEventListener('input', () => { if (!dirty) setDirty(true); });
+    hx.addEventListener('scroll', drawHex);
+    // a click in the hex rows: the byte under it (hex column or character column)
+    hx.addEventListener('pointerdown', (e) => {
+      if (!bytes) return;
+      if (!cw) { const s = document.createElement('span'); s.textContent = '0000000000'; rows.appendChild(s); cw = s.getBoundingClientRect().width / 10; s.remove(); }
+      const r = rows.getBoundingClientRect(), lh = LH(), row = Math.floor((e.clientY - r.top) / lh) + Math.floor(parseFloat(rows.style.top || 0) / lh);
+      const col = Math.floor((e.clientX - r.left - parseFloat(getComputedStyle(rows).paddingLeft)) / cw);
+      let k = -1;
+      if (col >= 7 && col < 7 + 49) { const c = col - 7, i = c < 24 ? Math.floor(c / 3) : Math.floor((c - 25) / 3) + 8; if (i >= 0 && i < 16) { k = row * 16 + i; pane = 'hex'; nib = 0; } }
+      else if (col >= 57 && col < 73) { k = row * 16 + (col - 57); pane = 'chr'; }
+      if (k >= 0) { pos = Math.min(k, bytes.length); e.preventDefault(); hx.focus(); drawHex(); }
+    });
+    hx.addEventListener('keydown', (e) => {
+      if (!bytes) return;
+      const k = e.key, rowsIn = Math.max(1, Math.floor(hx.clientHeight / LH()) - 1);
+      const mv = (p) => { pos = Math.max(0, Math.min(bytes.length, p)); nib = 0; seen(); };
+      if (e.ctrlKey || e.metaKey || e.altKey) { if (k === 'Home') mv(0); else if (k === 'End') mv(bytes.length); else return; }
+      else if (k === 'ArrowRight') { if (pane === 'hex' && !nib && pos < bytes.length) { nib = 1; drawHex(); } else mv(pos + 1); }
+      else if (k === 'ArrowLeft') { if (pane === 'hex' && nib) { nib = 0; drawHex(); } else mv(pos - 1); }
+      else if (k === 'ArrowDown') mv(pos + 16); else if (k === 'ArrowUp') mv(pos - 16);
+      else if (k === 'PageDown') mv(pos + 16 * rowsIn); else if (k === 'PageUp') mv(pos - 16 * rowsIn);
+      else if (k === 'Home') mv(pos - pos % 16); else if (k === 'End') mv(Math.min(bytes.length, pos - pos % 16 + 15));
+      else if (k === 'Tab') { pane = pane === 'hex' ? 'chr' : 'hex'; nib = 0; drawHex(); }
+      else if (k === 'Insert') { const b = new Uint8Array(bytes.length + 1); b.set(bytes.subarray(0, pos)); b.set(bytes.subarray(pos), pos + 1); bytes = b; nib = 0; setDirty(true); seen(); }
+      else if (k === 'Delete') { if (pos < bytes.length) { const b = new Uint8Array(bytes.length - 1); b.set(bytes.subarray(0, pos)); b.set(bytes.subarray(pos + 1), pos); bytes = b; nib = 0; setDirty(true); seen(); } }
+      else if (k === 'Backspace') mv(pos - 1);
+      else if (pane === 'hex' && /^[0-9a-f]$/i.test(k)) {
+        if (pos >= bytes.length) { const b = new Uint8Array(bytes.length + 1); b.set(bytes); bytes = b; } // typing past the end adds bytes
+        const v = parseInt(k, 16); bytes[pos] = nib ? (bytes[pos] & 0xF0) | v : (bytes[pos] & 0x0F) | (v << 4);
+        if (nib) { nib = 0; pos++; } else nib = 1;
+        setDirty(true); seen();
+      } else if (pane === 'chr' && k.length === 1) {
+        const v = edTable(enc).back.get(k); if (v === undefined) { info('"' + k + '" is not in ' + enc, true); e.preventDefault(); return; }
+        if (pos >= bytes.length) { const b = new Uint8Array(bytes.length + 1); b.set(bytes); bytes = b; }
+        bytes[pos] = v; pos++; setDirty(true); seen();
+      } else return;
+      e.preventDefault(); e.stopPropagation();
+    });
+    w.addEventListener('keydown', (e) => {
+      if (dlgEnd) { if (!$('fedlg').contains(e.target)) { e.preventDefault(); e.stopPropagation(); } return; } // the question is answered first
+      if ((e.target.tagName === 'SELECT' || (e.target.classList && e.target.classList.contains('usel'))) && e.key !== 'Escape') return;
+      const k = e.key;
+      if (k === 'Escape' || k === 'F10') close();
+      else if ((k === 'F2' && e.shiftKey) || ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 's' || k === 'S'))) saveAs('');
+      else if (k === 'F2' || ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'S'))) save();
+      else if (k === 'F4') setMode(mode === 'text' ? 'hex' : 'text');
+      else if (k === 'F8') { const i = ENC.findIndex((x) => x[0] === enc); $('feenc').value = ENC[(i + 1) % ENC.length][0]; $('feenc').onchange(); }
+      else { e.stopPropagation(); return; } // typing stays in the editor
+      e.preventDefault(); e.stopPropagation();
+    });
+    return { open, close, get open_() { return !w.hidden; }, hasFocus: () => !w.hidden && w.contains(document.activeElement) };
+  }
+
   function create(api) {
     const win = $('fcwin'), ram = [];
     let SRC = [];
@@ -1641,6 +1865,7 @@
       if (k === 'Enter') { if (!enter()) run(); return true; }
       if (k === 'Backspace') { goUp(); return true; }
       if (k === 'F3') { view(); return true; }
+      if (k === 'F4') { edit(); return true; }
       if (k === 'F5') { copy(); return true; }
       if (k === 'F7') { mkdir(); return true; }
       if (k === 'F8' || k === 'Delete') { del(); return true; }
@@ -1686,6 +1911,72 @@
       if (res) { status(res, true); return; }
       show(false);
     }
+    // F4: the editor; Save puts the new contents back in place of the file (same name, type, start) and writes the disk
+    function edit() {
+      const s = P[act]; if (!s.vol) return;
+      const it0 = s.items[s.cur]; if (!it0 || it0.dir) return;
+      if (!s.vol.write || !s.vol.del) { status('Edit: this disk cannot be written', true); return; }
+      const f0 = s.vol.read(it0);
+      const f = f0.zx && f0.zx.len && f0.zx.type !== 'B' ? Object.assign({}, f0, { data: f0.data.subarray(0, f0.zx.len) }) : f0;
+      const key = (x) => x.name + '|' + (x.ext || '') + '|' + (x.zx ? x.zx.type + x.zx.start : '');
+      // which image a source is now: a Save must go into the very image the file came from (not one put in its place since)
+      const ident = (src) => src === 'A' || src === 'B' ? (api.E().web_disk_present(src === 'A' ? 0 : 1) ? 'disk:' + api.diskName(src === 'A' ? 0 : 1) : '')
+        : /^H[01]/.test(src) ? (api.hddName(+src[1]) || '') : /^SD/.test(src) ? ((api.sdName && api.sdName()) || '') : src;
+      const at = { src: s.src, k: key(it0), id: ident(s.src), dir: (s.dir || []).slice(), name: srcName(s) }; // where the file is now (Save as moves it)
+      const offer = (m) => { const e = new Error(m); e.saveAs = true; return e; }; // the editor then offers Save as
+      // the source as it is now, read again (no panel needed); the file found by name, type and start
+      function fresh() {
+        const id = ident(at.src);
+        if (id !== at.id) throw offer(at.name + (id ? ' now holds another image' : ' is empty now (ejected)') + ' — the file was not saved');
+        const r = openVol(at.src); if (!r.vol) throw offer(at.name + ': ' + (r.err || 'cannot be read'));
+        if (r.vol.setPath) r.vol.setPath(at.dir);
+        const cur = r.vol.list().find((x) => key(x) === at.k);
+        return { vol: r.vol, commit: r.commit, cur };
+      }
+      const after = (src, nm, ext) => { // panels showing that source: read again, the cursor on the file
+        P.forEach((p, i) => { if (p.src !== src) return; load(i); const again = p.items.find((x) => key(x) === at.k) || p.items.find((x) => x.name.trim() === nm.trim() && (x.ext || '').trim() === (ext || '').trim()); if (again) { p.cur = p.items.indexOf(again); draw(i); } });
+      };
+      const save = async (bytes) => {
+        const { vol, commit, cur } = fresh();
+        if (!cur) throw offer(fname({ name: f0.name, ext: it0.ext, zx: f0.zx }) + ' is not on ' + at.name + ' any more');
+        let how = 'in place';
+        if (!(vol.rewrite && vol.rewrite(cur, bytes))) {
+          const old = vol.read(cur), nf = Object.assign({}, old, { data: bytes });
+          if (old.zx) nf.zx = Object.assign({}, old.zx, old.zx.type === 'B' ? {} : { len: bytes.length });
+          const free = vol.free ? vol.free() : Infinity;
+          const need = vol.kind === 'TR-DOS' ? Math.ceil(bytes.length / 256) * 256 : bytes.length - (cur.size || old.data.length); // TR-DOS writes a moved file at the end
+          if (need > free) throw offer('Not enough space on ' + at.name + ' (' + free + ' bytes free, ' + need + ' more needed)');
+          vol.del(cur);
+          try { vol.write(nf); } catch (e) { try { vol.write(old); } catch (e2) {} throw /full/i.test(e.message) ? offer('Not enough space on ' + at.name + ' (' + e.message + ')') : e; }
+          how = vol.kind === 'TR-DOS' ? 'at the end of the disk (size in sectors changed)' : 'rewritten';
+        }
+        if (commit) commit();
+        at.id = ident(at.src); // written back: the disk may have a new name (aaa.scl → aaa.trd)
+        after(at.src, cur.name, cur.ext);
+        status('Edit: ' + fname(cur) + ' saved, ' + bytes.length + ' bytes');
+        return 'Saved, ' + bytes.length + ' bytes, ' + how;
+      };
+      // Save as: a new file on a disk of a panel (read again first); the original stays; later Saves go to the new file
+      const saveAs = async (bytes, name, ti) => {
+        const p = P[ti]; if (!p) throw new Error('no panel');
+        load(ti); if (!p.vol || !p.vol.write) throw new Error(srcName(p) + ': ' + (p.msg || 'cannot be written'));
+        const dot = name.lastIndexOf('.'), base = (dot > 0 ? name.slice(0, dot) : name).trim(), ext = dot > 0 ? name.slice(dot + 1).trim() : '';
+        if (!base) throw new Error('no name');
+        const nf = { name: base, ext, data: bytes };
+        if (f0.zx && p.vol.kind === 'TR-DOS') { nf.zx = Object.assign({}, f0.zx, f0.zx.type === 'B' ? {} : { len: bytes.length }); nf.ext = f0.zx.type; }
+        if (p.vol.free && p.vol.free() < bytes.length) { const e = new Error('Not enough space on ' + srcName(p) + ' (' + p.vol.free() + ' bytes free)'); e.saveAs = true; throw e; }
+        p.vol.write(nf);
+        if (p.commit) p.commit();
+        load(ti);
+        const nm = p.vol.kind === 'TR-DOS' ? base.slice(0, 8) : base, made = p.items.find((x) => x.name.trim().toLowerCase() === nm.toLowerCase() && (x.ext || '').trim().toLowerCase() === (nf.ext || '').toLowerCase());
+        Object.assign(at, { src: p.src, id: ident(p.src), dir: (p.dir || []).slice(), name: srcName(p), k: made ? key(made) : '' });
+        if (made) { p.cur = p.items.indexOf(made); draw(ti); }
+        status('Edit: saved as ' + srcName(p) + ' ' + name);
+        return { msg: 'Saved as ' + srcName(p) + ' ' + name + ', ' + bytes.length + ' bytes', title: srcName(p) + ' ' + name };
+      };
+      const targets = () => P.map((p, i) => [i, p]).filter(([, p]) => p.vol && p.vol.write).map(([i, p]) => [i, srcName(p) + ' (' + p.vol.kind + ')' + (p.src === at.src && ident(p.src) === at.id ? ' — this disk' : '')]);
+      editor.open({ title: srcName(s) + ' ' + fname(it0), name: it0.name.trim() + (it0.ext && !it0.zx ? '.' + it0.ext.trim() : ''), data: f.data, zx: f.zx, save, saveAs, targets, here: () => P.findIndex((p) => p.src === at.src && ident(p.src) === at.id) });
+    }
     function view() {
       const s = P[act]; if (!s.vol) return;
       const it = s.items[s.cur]; if (!it || it.dir) return;
@@ -1705,7 +1996,7 @@
       list.addEventListener('dragleave', () => list.classList.remove('drop'));
       list.addEventListener('drop', (e) => { e.preventDefault(); e.stopPropagation(); list.classList.remove('drop'); setAct(i); if (e.dataTransfer.files.length) upload(e.dataTransfer.files); });
     });
-    $('fcmkdir').onclick = mkdir; $('fcview').onclick = view;
+    $('fcmkdir').onclick = mkdir; $('fcview').onclick = view; $('fcedit').onclick = edit;
     // ---- a new HDD image from chosen drives of a partitioned one (+ its .chs), saved as ZIP
     async function hddBuild() {
       // the HDD of this panel; else the first one with drives in its .chs, else the first one mounted
@@ -1815,7 +2106,7 @@
     window.addEventListener('blur', () => { hadFocus = !win.hidden && win.contains(document.activeElement); });
     window.addEventListener('focus', () => { if (hadFocus) setTimeout(focusList, 0); });
 
-    const viewer = makeViewer(api);
+    const viewer = makeViewer(api), editor = makeEditor(api);
     // size: at least as wide as the buttons under the panels need (one row), at most half the page high;
     // a phone (narrow screen): the screen width, the height as before
     function fitSize() {
@@ -1837,10 +2128,10 @@
       end: (r) => { api.store('fc.size', JSON.stringify({ w: Math.round(r.width), h: Math.round(r.height) })); fw.setPos({ x: r.left, y: r.top }); } });
     function show(v) {
       if (!v && dlgDone) dlgDone(false);
-      if (!v) { viewer.close(); help(false); menuClose(); }
+      if (!v) { viewer.close(); if (!$('fewin').hidden) editor.close(); help(false); menuClose(); }
       win.hidden = !v;
       $('fcbtn').classList.toggle('on', v);
-      if (v) { fitSize(); fw.place(); fillSrc(); load(0); load(1); status('Tab: other panel · Space/Ins: select · Enter: run, mount disk image, open folder · F2 re-read · F3 view · F5 copy · F7 MkDir · F8 delete · ? help'); P[act].el.querySelector('.fclist').focus(); }
+      if (v) { fitSize(); fw.place(); fillSrc(); load(0); load(1); status('Tab: other panel · Space/Ins: select · Enter: run, mount disk image, open folder · F2 re-read · F3 view · F4 edit · F5 copy · F7 MkDir · F8 delete · ? help'); P[act].el.querySelector('.fclist').focus(); }
       else if (api.onClose) api.onClose();
     }
     // a key of the on-screen keyboard (KeyboardEvent.code + held modifiers) as if typed into the window in use
@@ -1855,12 +2146,13 @@
       else if (code in PLAIN) key = shift && SHIFTED[code] ? SHIFTED[code] : PLAIN[code];
       let t;
       const fv = $('fvwin');
-      if (dlgDone) t = $('fcdlg').contains(document.activeElement) ? document.activeElement : $('fcdlg').querySelector('.ok');
+      if (editor.hasFocus()) t = document.activeElement;
+      else if (dlgDone) t = $('fcdlg').contains(document.activeElement) ? document.activeElement : $('fcdlg').querySelector('.ok');
       else if (!fv.hidden && (viewer.hasFocus() || !win.contains(document.activeElement))) t = fv.contains(document.activeElement) ? document.activeElement : $('fvbody');
       else t = win.contains(document.activeElement) && document.activeElement.tagName !== 'BUTTON' ? document.activeElement : P[act].el.querySelector('.fclist');
       t.dispatchEvent(new KeyboardEvent('keydown', { key, code, shiftKey: shift, ctrlKey: ctrl, altKey: alt, bubbles: true, cancelable: true }));
     }
-    return { show, vkey, view: (f, title, m, go) => viewer.openAt(f, title, m, go), get open() { return !win.hidden; }, hasFocus: () => win.contains(document.activeElement) || viewer.hasFocus() };
+    return { show, vkey, view: (f, title, m, go) => viewer.openAt(f, title, m, go), get open() { return !win.hidden; }, hasFocus: () => win.contains(document.activeElement) || viewer.hasFocus() || editor.hasFocus() };
   }
   window.UnrealFC = { create, _test: { trdos, cpm, isdos, looksIsdos, isdosFormat, trdFormat, hobetaMake, hobetaParse, toZx, toCpm, looksCpm, CPM_FLOPPY, cpmPart, cpmDpb, hddRepack, fatFind, fatVol, fatFormat, partExt, joinParts } };
 })();

@@ -1278,3 +1278,55 @@ Web Unreal Speccy — version history
 * Drop-down lists: in a small window (Save) a long list stays inside the
   emulator window and scrolls (at most 360 px); scroll bar easier to see
 * About / changes: the history opens at its end (newest versions)
+
+
+        version 0.56.0                  17 oct 2026
+
++ File Commander: editor (Edit, F4) — text or hex, the encodings of the
+  viewer (ZX, CP866, KOI8-R, Windows-1251, Latin-1). Text: every byte
+  keeps its own character (controls as ␀…␟), line ends as the file has
+  them, CP/M text up to ^Z. Hex: overwrite, Ins / Del insert / remove a
+  byte, Tab to the character column. Save (F2, Ctrl+S) writes the file
+  back in place (TR-DOS: in its own sectors when their count stays,
+  otherwise at the end of the disk; same name, type and start)
+* NedoOS Make Image: asks before nedoos.zip is downloaded
+! File Commander: window resize grips were all in one place (since
+  0.52.0); now on the edges and the corner again, as other windows
+
+
+        version 0.57.0                  17 oct 2026
+
++ Offline copy (sw.js, service worker; https or localhost): the page,
+  scripts, wasm and unreal.ini are kept in the browser for each build;
+  ROMs, disks, HDD / SD images and lists are kept once fetched. Without
+  internet the emulator starts from the copy (iOS home screen too)
++ Options / System, Offline: Make offline — downloads into the copy the
+  ROMs of the models and, as checked, ROM set parts / GS / YRW801,
+  disks of the server list, HDD images, SD images (NedoOS); Clear files
++ File Commander editor: Save as (Shift+F2) — a new name, on this disk
+  or the other panel's; offered when the file does not fit back on its
+  disk. Questions of the editor are asked inside its window
+
+
+        version 0.57.4                  17 oct 2026
+
+* Phones / tablets: the on-screen keyboard of a text field (File
+  Commander editor and others) no longer changes the size of the
+  emulator window; it is fitted again when the field is left
+* File Commander editor: window sizes and limits as the viewer
+
+
+        version 0.57.5                  17 oct 2026
+
+* iPhone / iPad: File Commander editor, hex — rows came out in a large
+  font (Safari text autosizing); off for the whole page
+
+
+        version 0.57.6                  17 oct 2026
+
+* Autorun via the 128 menu (Pentagon, Scorpion, KAY, ATM): 1 s in the
+  menu at the usual clock (was 3.4 s), longer at a lower clock
+! File Commander editor: Save writes only into the image the file came
+  from, read again at that moment. Ejected or replaced meanwhile (disk,
+  HDD, SD card), or the file gone: nothing is written, Save as is
+  offered (a panel's disk, the original image stays untouched)

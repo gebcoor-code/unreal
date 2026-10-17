@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261017073201';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017145703';
   const MAIL_PNG = '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';
-  const APP_VER = '0.55.5'; // About, System Info (history: changes.txt)
-  const BUILD = '20261017073201'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.57.6'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017145703'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1254,7 +1254,7 @@
     $('dbghelpclose').onclick = () => { showDbgHelp(false); c.focus(); };
     gfx = UnrealGfx.create({ E: () => E, floatWin, edgeResize, load, store, snapRight, live: () => !AS.suspended, disks: gfxDisks, diskBytes: gfxDiskBytes, view: (f, t, m, go) => fc && fc.view(f, t, m, go), onToggle: () => toolsUI(), onClose: () => (dbgOn ? c : canvas).focus() });
     $('gfxbtn').onclick = () => { toolsMenu(false); releaseMouse(); gfx.show(!gfx.open); toolsUI(); };
-    fc = UnrealFC.create({ E: () => E, fs, setName, floatWin, edgeResize, snapRight, load, store, download: downloadBytes,
+    fc = UnrealFC.create({ E: () => E, fs, setName, floatWin, edgeResize, snapRight, load, store, download: downloadBytes, askBox,
       insert: (name, d) => { if (d >= 0) E.web_disk_mark(d, 0); return insertFromFs(name, d, true); }, // FC writes the disk back: no "save the changed disk?" question
       diskName: (d) => drives[d] ? drives[d].name : cstr(E.web_disk_name(d)),
       hddName: (d) => hdds[d], hddParts: (d) => hddGeom(d).parts || null, hddGeo: (d) => hddGeom(d), sdName: () => sdName, sdTouch: () => { sdDirty = true; sdUI(); }, sdNew: async (name, bytes) => { await sdFromBytes(name, bytes); sdDirty = true; sdUI(); }, hddTouch: (d) => { hddDirty[d] = true; hddUI(); }, hddNew: async (d, name, bytes) => { await hddFromBytes(d, name, bytes); hddDirty[d] = true; hddUI(); }, zip: (files) => UnrealZip.create(files), hddRemount: (d) => { hddDirty[d] = true; hddMount(d); hddUI(); },
@@ -1262,7 +1262,7 @@
     $('fcbtn').onclick = () => { toolsMenu(false); releaseMouse(); fc.show(!fc.open); fcVk = fc.open; };
     // which window the on-screen keyboard types into: File Commander after a touch inside it, the machine after a touch on the screen
     document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('#fcwin, #fvwin')) fcVk = true;
+      if (e.target.closest('#fcwin, #fvwin, #fewin')) fcVk = true;
       else if (e.target.closest('#screenwrap, #toolbar')) fcVk = false;
     }, true);
     // Tools: one toolbar button with a small drop-down (Debugger, Graf Search, File Commander)
@@ -1972,7 +1972,8 @@
       const vhd = vhdFixed(r.img);
       const zip = await UnrealZip.create([{ name: 'nedoos.vhd', data: vhd }, { name: 'nedoos.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
       nedoLast = { zip, vhd, info };
-      downloadBytes('nedoos.zip', zip);
+      nedoProg(null); nedoStat('Image made: nedoos.zip ' + (zip.size / 1048576).toFixed(1) + ' MB');
+      if (await askBox('NedoOS image', `Image made: ${r.mb} MB FAT32 VHD, ${r.nfiles} files, build ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}.\nDownload nedoos.zip (${(zip.size / 1048576).toFixed(1)} MB)?`, 'Download')) downloadBytes('nedoos.zip', zip);
       nedoStat((r.note ? r.note + '\n' : '') + `Done: nedoos.zip (${(zip.size / 1048576).toFixed(1)} MB) · ${r.mb} MB FAT32 VHD · ${r.nfiles} files, ${(r.data / 1048576).toFixed(1)} MB\nbuild ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}`);
       $('nedodone').hidden = false;
     } catch (e) { nedoProg(null); nedoStat(e.message + (/GitHub/.test(e.message) ? '\nFrom file: download the repository (GitHub: Code / Download ZIP) or a ZIP of its release folder and choose it here' : ''), true); }
@@ -2235,12 +2236,14 @@
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx])); // ROM boot waits, tuned at 1x (shorter at higher clock)
     // the menus are walked with ZX keys: ATM mode (XT keyboard) off meanwhile, back on at the end when it was on
     const xtWas = !!(E.web_xt_kbd && E.web_xt_kbd());
+    // the 128 menu takes keys after it has run a while: 1 s at the usual clock (2.5x), longer at a lower one
+    const m128 = (f) => Math.max(f, Math.ceil(f * 2.5 / SPEEDS[speedIdx]));
     if (M() === 'XBIOSXT') // setup utility: Boot → "TR-dos boot" (TR-DOS 5.04R runs boot from A:)
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.SPACE }, { wait: w(30) }, ...rep(5, { key: UP }), { key: DOWN }, { key: ZK.ENTER }]);
     else if (M() === 'EVO') // ZX-Evolution: EVO Reset Service, Z = TR-DOS boot, Enter = run the first program
       runMacro([{ reset: 3 }, { wait: Math.ceil(120 * k) }, { key: ZK.Z }, { wait: Math.ceil(150 * k) }, { key: ZK.ENTER }]);
     else if (M() === 'ATM710' || M() === 'ATM450') // ATM BIOS menu → SPECTRUM 128 → 128 menu: ↑ = TR-DOS (128K) → RUN
-      runMacro([{ reset: 0 }, { wait: w(120) }, { key: DOWN }, { key: DOWN }, { key: ZK.ENTER }, { wait: 170 }, // the 128 menu counts frames (interrupts) before it takes keys
+      runMacro([{ reset: 0 }, { wait: w(120) }, { key: DOWN }, { key: DOWN }, { key: ZK.ENTER }, { wait: m128(50) }, // the 128 menu counts frames (interrupts) before it takes keys
         { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
     else if (M() === 'QUORUM') // ROM-MENU: 3 = Boot DOS
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.K3 }]);
@@ -2248,11 +2251,11 @@
     // Pentagon, Scorpion, KAY, Profi: through the reset menu into TR-DOS in 128K mode (128 BASIC set up, #7FFD paging works);
     // reset straight into TR-DOS gives 48K mode: programs then see "ZX 48K" (Quick Commander: no memory pages)
     else if (M() === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS
-      runMacro([{ reset: 0 }, { wait: 170 }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 0 }, { wait: m128(50) }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
     else if (M() === 'SCORPION') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
-      runMacro([{ reset: 2 }, { wait: 170 }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 2 }, { wait: m128(70) }, { key: ZK.ENTER }]); // its 128 ROM tests memory first: a bit longer
     else if (M() === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
-      runMacro([{ reset: 2 }, { wait: 170 }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
     else if (M() === 'PROFI') // main menu: "TR-DOS 128K" is two below CP/M; it runs boot by itself
       runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: DOWN }, { wait: 20 }, { key: DOWN }, { wait: 20 }, { key: ZK.ENTER }]);
     else // other machines (Custom ROM): reset straight into TR-DOS, R = RUN, Enter
@@ -3790,6 +3793,58 @@
     if (audio) audio.flush();
     modelUI(); applyScale();
   }
+  // ------------------------------------------------------------------ Offline (service worker sw.js): the page, scripts, wasm and the site's files kept in the browser
+  const SW_OK = 'serviceWorker' in navigator && BUILD !== 'dev' && (location.protocol === 'https:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname));
+  let swErr = '';
+  async function swStart() {
+    if (!SW_OK) return;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (optOpen()) offUI(); }); // took over this page: the tab shows it
+    try { await navigator.serviceWorker.register('sw.js?v=' + BUILD); swErr = ''; } catch (e) { swErr = /404|fetch|bad http|not found/i.test(e.message) ? 'sw.js not found on the server' : 'sw.js: ' + e.message; log('offline: ' + e.message); }
+    if (optOpen()) offUI();
+  }
+  function swAsk(msg) { // → answer of the active service worker (null: none)
+    return new Promise((res) => {
+      const c = navigator.serviceWorker && navigator.serviceWorker.controller; if (!c) { res(null); return; }
+      const ch = new MessageChannel(); ch.port1.onmessage = (e) => res(e.data); c.postMessage(msg, [ch.port2]); setTimeout(() => res(null), 3000);
+    });
+  }
+  const offMsg = (t, err) => { $('offstat').textContent = t; $('offstat').hidden = !t; $('offstat').classList.toggle('err', !!err); };
+  async function offUI() {
+    if (!SW_OK) { offMsg('needs https', true); $('ofmake').disabled = $('ofclear').disabled = true; return; }
+    const a = await swAsk({ cmd: 'list' });
+    if (!a) { offMsg(swErr, !!swErr); return; } // not running yet: nothing to show
+    const files = a.urls.filter((u) => /\/(rom|trd|hdd|sd)\//i.test(u)).length;
+    let est = ''; try { const e = await navigator.storage.estimate(); if (e && e.usage) est = ', ' + (e.usage / 1048576).toFixed(1) + ' MB used'; } catch (e) {}
+    offMsg('build ' + a.build + '\n' + files + ' files' + est);
+  }
+  async function makeOffline() {
+    if (!navigator.serviceWorker || !navigator.serviceWorker.controller) { await offUI(); return; }
+    $('ofmake').disabled = true;
+    try { if (navigator.storage && navigator.storage.persist) await navigator.storage.persist(); } catch (e) {}
+    const jobs = [], seen = new Set(), add = (label, fn, key) => { if (seen.has(key)) return; seen.add(key); jobs.push([label, fn]); };
+    for (const [k, m] of Object.entries(MODELS)) for (const f of m.files || []) if (/\.rom$/i.test(f)) add(f, () => fetchSrv(f), 'r:' + f);
+    if ($('of_parts').checked) {
+      await loadRomParts().catch(() => {});
+      add(GS_ROM, () => fetchSrv(GS_ROM), 'r:' + GS_ROM); add(MOON_ROM, () => fetchSrv(MOON_ROM), 'r:' + MOON_ROM);
+      for (const r of (romJson.length ? romJson : romParts)) add(r.file, () => fetchSrv(r.file), 'r:' + r.file);
+    }
+    const lists = [];
+    if ($('of_trd').checked) lists.push(['trd/trd.json', (it) => [it.url, ...(it.rp ? MOUNT_KEYS.map((k) => it.rp[k]).filter(Boolean).map((u) => new URL(lowDir(u), location.href).href) : [])]]);
+    if ($('of_hdd').checked) { lists.push(['hdd/hdd.json', (it) => [it.url]]); for (const o of Object.values(OS_MODELS)) if (o.hdd) add(o.hdd, () => fetchBytes(o.hdd), o.hdd); add('hdd/cpm.zip', () => fetchBytes('hdd/cpm.zip').catch(() => fetchBytes('hdd/cpm.hdd')), 'hdd/cpm'); }
+    if ($('of_sd').checked) { lists.push(['sd/sd.json', (it) => [it.url]]); for (const o of Object.values(OS_MODELS)) if (o.sd) add(o.sd, () => fetchBytes(o.sd), o.sd); }
+    for (const [j, urls] of lists) { const l = await fetchList(j); for (const it of l) for (const u of urls(it)) if (u) add(decodeURIComponent(u.replace(/^.*\//, '')), () => fetchBytes(u), u); }
+    let ok = 0, bad = 0, bytes = 0;
+    for (const [i, [label, fn]] of jobs.entries()) {
+      offMsg(`Downloading ${i + 1} / ${jobs.length}: ${label}`);
+      try { const b = await fn(); bytes += b.length || 0; ok++; } catch (e) { bad++; }
+    }
+    $('ofmake').disabled = false;
+    await offUI();
+  }
+  function bindOffline() {
+    $('ofmake').onclick = makeOffline;
+    $('ofclear').onclick = async () => { if (!await askBox('Offline', 'Drop the downloaded files of the offline copy? The emulator itself stays.', 'Drop')) return; await swAsk({ cmd: 'clear' }); offUI(); };
+  }
   function bindModels() {
     const sel = $('modelsel');
     for (const [k, v] of Object.entries(MODELS)) { const o = document.createElement('option'); o.value = k; o.textContent = (!OS_MODELS[k] && v.sysName) || v.name; sel.appendChild(o); }
@@ -3834,7 +3889,7 @@
   const optOpen = () => !$('options').hidden;
   function showOptions(v) {
     const w = $('options');
-    if (v) { releaseMouse(); updateUI(); w.hidden = false; fixOptHeight(); optFW.place(); }
+    if (v) { releaseMouse(); updateUI(); w.hidden = false; fixOptHeight(); optFW.place(); offUI(); }
     else { w.hidden = true; canvas.focus(); }
     $('optbtn').classList.toggle('on', v); sysBtnUI();
   }
@@ -4090,18 +4145,23 @@
     $('mainhelpbtn').onclick = () => showMainHelp($('mainhelp').hidden);
     $('mainhelpclose').onclick = () => { showMainHelp(false); canvas.focus(); };
     showPane('sys');
-    bindModels();
+    bindModels(); bindOffline();
     bindLoad();
     $('snd').onclick = toggleSound;
     $('sndhint').onclick = (e) => { e.stopPropagation(); unlockAudio(); $('sndhint').hidden = true; canvas.focus(); };
     $('scale').onchange = () => { store('scale', $('scale').value); applyScale(); canvas.focus(); };
     const sv = load('scale'); if (sv) $('scale').value = sv;
-    window.addEventListener('resize', applyScale);
+    // a text field in use on a touch device: the on-screen keyboard narrows the viewport — the emulator keeps its size
+    // (File Commander editor, Go #, names…); it is fitted again when the field is left
+    const typing = () => { const a = document.activeElement; return !!a && matchMedia('(pointer: coarse)').matches && (a.tagName === 'TEXTAREA' || (a.tagName === 'INPUT' && !/^(checkbox|radio|range|button|file|submit)$/i.test(a.type))); };
+    const scaleNow = () => { if (!typing()) applyScale(); };
+    document.addEventListener('focusout', () => setTimeout(scaleNow, 350));
+    window.addEventListener('resize', scaleNow);
     // iOS (home-screen app, back-forward cache): the final viewport size arrives late, without a resize event
     const rescale = () => { applyScale(); setTimeout(applyScale, 150); setTimeout(applyScale, 600); setTimeout(applyScale, 1500); };
     window.addEventListener('pageshow', rescale); window.addEventListener('orientationchange', rescale);
     document.addEventListener('visibilitychange', () => { if (!document.hidden) rescale(); });
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', applyScale);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', scaleNow);
     rescale();
     document.addEventListener('fullscreenchange', () => { applyScale(); canvas.focus(); });
     const wrap = $('screenwrap');
@@ -4241,6 +4301,7 @@
       requestAnimationFrame(tick);
       linkApply();
       checkUpdate();
+      swStart(); // offline copy (sw.js)
     } catch (err) {
       let msg = 'Startup error: ' + err.message;
       if (location.protocol === 'file:') msg += '<br>Open page through a web server.';

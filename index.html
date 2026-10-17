@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261017073201">
+<meta name="build" content="20261017145703">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -20,6 +20,7 @@
   --bg: #111418; --panel: #1b2027; --panel2: #232a33; --line: #2e3742;
   --text: #d8dee6; --dim: #8894a3; --accent: #f0a050; --ok: #5fc27e; --warn: #e26d5a;
 }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; } /* iOS: no text autosizing (the editor's hex rows came out large) */
 * { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: #3a4552 transparent; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: #3a4552; border-radius: 3px; }
@@ -305,15 +306,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-.gfxwin .rz, #fvwin .rz, #fcwin .rz, #chwin .rz { position: absolute; z-index: 3; touch-action: none; }
-.gfxwin .rz.n, #fvwin .rz.n, #fcwin .rz, #chwin .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-.gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz, #chwin .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-.gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz, #chwin .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-.gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz, #chwin .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-.gfxwin .rz.ne, #fvwin .rz.ne, #fcwin .rz, #chwin .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-.gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz, #chwin .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-.gfxwin .rz.nw, #fvwin .rz.nw, #fcwin .rz, #chwin .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-.gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz, #chwin .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz { position: absolute; z-index: 3; touch-action: none; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -321,8 +322,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  .gfxwin .rz.e, #fvwin .rz.e, #fcwin .rz, #chwin .rz.e, .gfxwin .rz.w, #fvwin .rz.w, #fcwin .rz, #chwin .rz.w { width: 16px; } .gfxwin .rz.s, #fvwin .rz.s, #fcwin .rz, #chwin .rz.s { height: 14px; }
-  .gfxwin .rz.se, #fvwin .rz.se, #fcwin .rz, #chwin .rz.se, .gfxwin .rz.sw, #fvwin .rz.sw, #fcwin .rz, #chwin .rz.sw { width: 26px; height: 26px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.s { height: 14px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
@@ -638,6 +639,28 @@ select.usel-src { display: none !important; }
 #fcdlg .fcjoin { display: block; margin-top: 8px; color: var(--text); white-space: normal; }
 #fcdlg .fcjoin input { vertical-align: -2px; margin: 0 6px 0 0; }
 #fcdlg button.danger { background: #c4553f; border-color: #c4553f; color: #fff; }
+#fvwin[hidden], #fewin[hidden], #fetext[hidden], #fehex[hidden] { display: none; }
+#fewin { position: fixed; left: 0; top: 0; z-index: 10; display: flex; flex-direction: column; width: min(640px, calc(100vw - 8px)); height: min(460px, calc(100vh - 16px));
+  min-width: 300px; min-height: 180px; max-width: calc(100vw - 4px); max-height: calc(100vh - 8px); overflow: hidden;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
+#fewin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
+#fewin .dbghead span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#fewin .dbghead button { padding: 1px 7px; font-size: 12px; }
+#fesave, #fesaveas { height: 24px; padding: 0 8px; font-size: 12px; } #fesave kbd { font-size: 10px; opacity: .7; }
+#fedlg[hidden] { display: none; }
+#fedlg { position: absolute; inset: 28px 0 0 0; z-index: 5; display: flex; align-items: center; justify-content: center; background: rgba(5,7,10,.55); }
+#fedlg .box { width: min(380px, calc(100% - 24px)); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 12px 14px; font-size: 13px; color: var(--text); }
+#fedlg .t { font-weight: 600; margin-bottom: 6px; } #fedlg .x { white-space: pre-line; color: var(--dim); }
+#fedlg .btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; } #fedlg .btns button { padding: 3px 14px; }
+#fedlg .fesa { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; color: var(--text); }
+#fedlg .fesa label { display: flex; align-items: center; gap: 8px; } #fedlg .fesa input { flex: 1; min-width: 0; height: 24px; padding: 0 6px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+#fedlg .fesa select { flex: 1; min-width: 0; height: 24px; }
+#feinfo { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } #feinfo.err { color: #e0785e; }
+#fetext { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; border: 0; resize: none; outline: none; background: var(--bg); color: var(--text); font: 12px/1.35 ui-monospace, Consolas, monospace; tab-size: 8; white-space: pre; overflow: auto; user-select: text; -webkit-user-select: text; }
+#fehex { flex: 1; min-height: 0; position: relative; overflow: auto; outline: none; }
+#fehex .ferows { position: absolute; left: 0; top: 0; margin: 0; padding: 0 10px; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre; user-select: none; cursor: text; }
+#fehex .ferows b { font-weight: normal; } #fehex .ferows .cur { background: var(--accent); color: #111; } #fehex .ferows .cur2 { outline: 1px solid var(--dim); }
+#fehex .ferows .cur u { text-decoration: none; background: #fff; }
 #fvwin[hidden] { display: none; }
 #fvwin { position: fixed; left: 0; top: 0; z-index: 10; display: flex; flex-direction: column; width: min(640px, calc(100vw - 8px)); height: min(460px, calc(100vh - 16px));
   min-width: 300px; min-height: 180px; max-width: calc(100vw - 4px); max-height: calc(100vh - 8px); overflow: hidden;
@@ -714,6 +737,9 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 .card .note { margin-top: 8px; }
 #modelnote { white-space: pre-line; }
 #forcefetchrow { margin-top: 12px; }
+#offcard .offgrid { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 12px; }
+#offcard .offbtns { display: flex; gap: 8px; margin-top: 8px; } #offcard .offbtns button { padding: 3px 12px; font-size: 12px; }
+#offstat { white-space: pre-line; margin: 0 0 6px; } #offstat[hidden] { display: none; } #offstat.err { color: #e0785e; }
 /* video filters (drawn over the canvas) */
 #fx { position: absolute; left: 0; top: 0; pointer-events: none; display: none; }
 #screenwrap.fx-smooth canvas { image-rendering: auto; }
@@ -855,10 +881,24 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 
 <div id="options" class="optwin" hidden role="dialog" aria-label="Options">
     <header class="fhead">
-      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="about">About</button></div>
+      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="off">Offline</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="about">About</button></div>
       <button data-close title="Close">✕</button>
     </header>
     <div class="body panes">
+      <div class="pane gone" data-pane="off">
+        <div class="card" id="offcard">
+          <h3>Offline mode</h3>
+          <p class="note" id="offstat" hidden></p>
+          <div class="offgrid">
+            <label class="chk"><input type="checkbox" id="of_rom" checked disabled> Emulator, ROMs of models</label>
+            <label class="chk"><input type="checkbox" id="of_parts" checked> ROM set parts, GS, YRW801</label>
+            <label class="chk"><input type="checkbox" id="of_trd" checked> Server List disks</label>
+            <label class="chk"><input type="checkbox" id="of_hdd"> HDD images (TASiS, Chic, CP/M…)</label>
+            <label class="chk"><input type="checkbox" id="of_sd"> SD images (NedoOS ~30 MB)</label>
+          </div>
+          <div class="offbtns"><button id="ofmake" title="Download what is checked into the offline copy of this site: the emulator then starts without internet (also from the iOS home screen)">Make offline</button><button id="ofclear" title="Drop the downloaded files of the offline copy (the emulator itself stays)">Clear files</button></div>
+        </div>
+      </div>
       <div class="pane" data-pane="sys">
         <div class="card">
           <h3>Models &amp; OS</h3>
@@ -1194,6 +1234,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code)</dd>
+      <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
       <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta)</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT)</dd>
       <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
@@ -1234,7 +1275,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="nedowin" hidden role="dialog" aria-label="NedoOS SD image">
   <div class="dbghead fhead"><span>NedoOS SD image</span><button id="nedoclose" title="Close (Esc)">✕</button></div>
   <div class="nedobody">
-    <div class="nd">New SD card image: folder <b>release</b> of NedoOS on FAT32 VHD, saved as nedoos.zip (automatically, when made).</div>
+    <div class="nd">New SD card image: folder <b>release</b> of NedoOS on FAT32 VHD, saved as nedoos.zip (asks before download).</div>
     <div class="nrow"><span>VHD size</span><input type="number" id="nedomb" min="64" max="2047" step="1" value="100"><span>MB · FAT32</span></div>
     <div class="nrow"><button id="nedogit" class="primary" title="">From GitHub</button><button id="nedofile" title="A ZIP with the release folder (or the whole repository: GitHub Code / Download ZIP)">From file…</button><input type="file" id="nedoinput" accept=".zip" hidden></div>
     <progress id="nedoprog" max="1" value="0" hidden></progress>
@@ -1377,6 +1418,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   </div>
   <div class="fcbar">
     <button id="fcview" title="View the file (F3)">View <kbd>F3</kbd></button>
+    <button id="fcedit" title="Edit the file: text or hex (F4)">Edit <kbd>F4</kbd></button>
     <button id="fccopy" title="Copy to the other panel (F5)">Copy <kbd>F5</kbd></button>
     <button id="fcmkdir" title="New directory (iS-DOS and FAT disks)">MkDir <kbd>F7</kbd></button>
     <button id="fcdel" title="Delete (F8)">Delete <kbd>F8</kbd></button>
@@ -1402,18 +1444,31 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   </div>
   <pre id="fvbody" tabindex="0"></pre>
 </div>
+<div id="fewin" hidden role="dialog" aria-label="Editor">
+  <div class="dbghead fhead"><span id="fetitle">Editor</span><button id="feclose" title="Close (Esc)">✕</button></div>
+  <div class="fvbar">
+    <select id="femode" title="Text or hex (F4)"><option value="text">Text</option><option value="hex">Hex</option></select>
+    <select id="feenc" title="Encoding (F8)"></select>
+    <button id="fesave" title="Write the file back to its disk (F2, Ctrl+S)">Save <kbd>F2</kbd></button>
+    <button id="fesaveas" title="Save under a new name, on this disk or the other panel's (Shift+F2)">Save as…</button>
+    <span id="feinfo"></span>
+  </div>
+  <textarea id="fetext" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off"></textarea>
+  <div id="fehex" tabindex="0" hidden><div class="fesp"></div><pre class="ferows"></pre></div>
+  <div id="fedlg" hidden><div class="box"><div class="t"></div><div class="x"></div><div class="btns"><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
+</div>
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261017073201"></script>
-<script src="js/scancodes.js?v=20261017073201"></script>
-<script src="js/unzip.js?v=20261017073201"></script>
-<script src="js/vkbd.js?v=20261017073201"></script>
-<script src="js/asyncify.js?v=20261017073201"></script>
-<script src="js/gfx.js?v=20261017073201"></script>
-<script src="js/usel.js?v=20261017073201"></script>
-<script src="js/fcmd.js?v=20261017073201"></script>
-<script src="js/app.js?v=20261017073201"></script>
+<script src="js/wasi_fs.js?v=20261017145703"></script>
+<script src="js/scancodes.js?v=20261017145703"></script>
+<script src="js/unzip.js?v=20261017145703"></script>
+<script src="js/vkbd.js?v=20261017145703"></script>
+<script src="js/asyncify.js?v=20261017145703"></script>
+<script src="js/gfx.js?v=20261017145703"></script>
+<script src="js/usel.js?v=20261017145703"></script>
+<script src="js/fcmd.js?v=20261017145703"></script>
+<script src="js/app.js?v=20261017145703"></script>
 </body>
 </html>
