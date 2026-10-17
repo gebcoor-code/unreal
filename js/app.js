@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261017170100';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017174308';
   const MAIL_PNG = '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';
-  const APP_VER = '0.57.7'; // About, System Info (history: changes.txt)
-  const BUILD = '20261017170100'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.59.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017174308'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -284,13 +284,22 @@
     eff7Apply();
     applySoundPrefs();
     applyPal();
-    applyFdd();
+    applyFdd(); applyMouseSwap(); applyBorder();
     await applyHdd();
     sdMount(); sdUI();
     updateUI();
   }
 
   // accurate FDD (Options / Disk): off by default — TR-DOS traps and no WD1793 delays, as before
+  // Options / Video / Border: the visitor's choice (kept); not chosen yet: unreal.ini (or a Custom ROM ini) decides
+  function applyBorder() {
+    if (!E.web_border) return; const v = load('border'); if (v !== null) E.web_border(+v);
+    const atm = /^(ATM710|ATM3|ATM450|PROFI)$/.test(himem()); // their video modes need the border area: no "None"
+    $('bordersel').querySelector('[value="0"]').hidden = atm; $('bordersel').value = String(E.web_border(-1));
+  }
+  // Swap Mouse Buttons (Options / Input; swapmouse=1 in a link: this visit only). Off: unreal.ini / a Custom ROM ini decides
+  let mswapLink = false;
+  function applyMouseSwap() { if (E.web_mouse_swap && (mswapLink || load('mswap') === '1')) E.web_mouse_swap(1); const c = $('mswap'); if (c) c.checked = load('mswap') === '1'; }
   // a Custom ROM ZIP may set it ("fdd", or Traps / Fast in its ini [BETA128]): then the visitor's setting is not applied at start
   function applyFdd(user) {
     if (!E.web_fdd_accurate) return;
@@ -566,11 +575,11 @@
     class Ring extends AudioWorkletProcessor {
       constructor() {
         super();
-        this.buf = new Float32Array(${RATE} * 2); this.rd = 0; this.wr = 0; this.fill = 0; this.n = 0;
+        this.buf = new Float32Array(${RATE} * 2); this.rd = 0; this.wr = 0; this.fill = 0; this.n = 0; this.got = 0;
         this.port.onmessage = (e) => {
           const d = e.data;
           if (d === 'flush') { this.rd = this.wr = this.fill = 0; return; }
-          const cap = this.buf.length / 2;
+          const cap = this.buf.length / 2; this.got += d.length / 2; // all samples ever received: the page knows what is still on the way
           for (let i = 0; i < d.length; i += 2) {
             if (this.fill >= cap) { this.rd = (this.rd + 2) % this.buf.length; this.fill--; }
             this.buf[this.wr] = d[i]; this.buf[this.wr + 1] = d[i + 1];
@@ -584,7 +593,7 @@
           if (this.fill > 0) { L[i] = this.buf[this.rd]; R[i] = this.buf[this.rd + 1]; this.rd = (this.rd + 2) % this.buf.length; this.fill--; }
           else { L[i] = 0; R[i] = 0; }
         }
-        if ((++this.n & 3) === 0) this.port.postMessage({ fill: this.fill });
+        if ((++this.n & 3) === 0) this.port.postMessage({ fill: this.fill, got: this.got });
         return true;
       }
     }
@@ -626,7 +635,7 @@
     const anL = ctx.createAnalyser(), anR = ctx.createAnalyser(); anL.fftSize = anR.fftSize = 1024;
     split.connect(anL, 0); split.connect(anR, 1); anL.connect(merge, 0, 0); anR.connect(merge, 0, 1);
     merge.connect(an); an.connect(gain);
-    const a = { ctx, gain, an, anL, anR, node: null, fill: 0, reportAt: performance.now(), push: null, flush: null };
+    const a = { ctx, gain, an, anL, anR, node: null, fill: 0, got: 0, sent: 0, reportAt: performance.now(), push: null, flush: null };
     if (ctx.audioWorklet) {
       const urls = [];
       try { urls.push(URL.createObjectURL(new Blob([workletSrc], { type: 'application/javascript' }))); } catch (e) {}
@@ -636,9 +645,9 @@
           await ctx.audioWorklet.addModule(url);
           const node = new AudioWorkletNode(ctx, 'unreal-ring', { outputChannelCount: [2] });
           node.connect(split);
-          node.port.onmessage = (e) => { a.fill = e.data.fill; a.reportAt = performance.now(); };
+          node.port.onmessage = (e) => { a.fill = e.data.fill; a.got = e.data.got || 0; a.reportAt = performance.now(); };
           a.node = node;
-          a.push = (f) => node.port.postMessage(f, [f.buffer]);
+          a.push = (f) => { a.sent += f.length / 2; node.port.postMessage(f, [f.buffer]); };
           a.flush = () => { node.port.postMessage('flush'); a.fill = 0; };
           break;
         } catch (e) { /* try next */ }
@@ -940,7 +949,10 @@
       else if (audio && audio.ctx.state === 'running' && now >= resyncUntil && now - audio.reportAt < 250) {
         // audio-clocked: keep ~70 ms of sound queued
         if (audio.reportAt !== lastReportSeen) { lastReportSeen = audio.reportAt; sentSinceReport = 0; }
-        const est = audio.sp ? audio.fill : audio.fill + sentSinceReport - (now - audio.reportAt) * RATE / 1000;
+        // queued = what the worklet holds + what is still on the way to it (counted exactly: sent − received), minus what it
+        // has played since its report (at the context's own rate). Safari delivers the reports late and unevenly: the old
+        // "sent since the last report" guess swung by several frames there, the emulation then ran in bursts
+        const est = audio.sp ? audio.fill : audio.fill + (audio.sent - audio.got) - (now - audio.reportAt) * audio.ctx.sampleRate / 1000;
         let queued = est * 1000 / RATE;
         while (queued < 70 && run < 6) { run++; queued += 20; }
       } else {
@@ -3156,6 +3168,7 @@
     if (st === 'cpm' && $('rav_cpm').value.trim()) q.push('cpm=' + linkEnc($('rav_cpm').value.trim()));
     if (on('xt')) q.push('xt=1');
     if (on('mute')) q.push('mute=1');
+    if (on('swapmouse')) q.push('swapmouse=1');
     if (on('kbd')) q.push('kbd=' + $('rav_kbd').value);
     $('raout').value = location.href.replace(/[?#].*$/, '') + (q.length ? '?' + q.join('&') : '');
     let note = '';
@@ -3203,7 +3216,7 @@
     }
     names.forEach((n) => { const o = document.createElement('option'); o.value = n.replace(/ <.>$/, ''); o.textContent = n; sel.appendChild(o); });
     sel.hidden = !names.length; $('rav_runtxt').hidden = !!names.length;
-    $('ra_xt').checked = !!E.web_xt_kbd() && MODELS[model].xt; $('ra_mute').checked = muted;
+    $('ra_xt').checked = !!E.web_xt_kbd() && MODELS[model].xt; $('ra_mute').checked = muted; $('ra_swapmouse').checked = !!(E.web_mouse_swap && E.web_mouse_swap(-1));
     $('rav_kbd').value = $('vkbd').hidden ? 'off' : (vkbd && vkbd.tab) || 'zx';
     raBuild();
   }
@@ -3561,6 +3574,8 @@
   function buildDrives() {
     buildHdds(); bindSd(); bindLdStore();
     $('fddacc').onchange = (e) => { store('fdd.acc', e.target.checked ? '1' : '0'); applyFdd(true); canvas.focus(); };
+    $('bordersel').onchange = (e) => { store('border', e.target.value); if (E && E.web_border) { e.target.value = String(E.web_border(+e.target.value)); render(); } };
+    $('mswap').onchange = (e) => { store('mswap', e.target.checked ? '1' : '0'); if (E && E.web_mouse_swap) E.web_mouse_swap(e.target.checked || mswapLink ? 1 : 0); };
     const box = $('drives');
     for (let i = 0; i < NDRIVES; i++) {
       const el = document.createElement('div');
@@ -4230,6 +4245,7 @@
     }
     if (LINK.mute !== undefined && yes(LINK.mute)) { muted = true; updateSoundBtn(); }
     if (LINK.kbd !== undefined) kbdLink(String(LINK.kbd).toLowerCase()); // kbd=zx|xt|joy|off: for this visit only
+    if (LINK.swapmouse !== undefined && yes(LINK.swapmouse)) { mswapLink = true; applyMouseSwap(); } // not stored
     if (LINK.xt !== undefined && MODELS[model].xt && !!E.web_xt_kbd() !== yes(LINK.xt)) toggleXT();
     const auto = (LINK.autorun !== undefined && yes(LINK.autorun)) && !LINK.run && !LINK.cpm;
     if (LINK.hdd) { // hdd=: an HDD image (zip with .chs, or .hdd) into HDD 0

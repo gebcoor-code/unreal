@@ -1339,3 +1339,25 @@ Web Unreal Speccy — version history
   also when the name was edited (was: aa.zip held "aa" without one)
 ! File Commander: choosing a source in a panel's list gives that panel
   the focus again (keys work at once)
+
+
+        version 0.58.0                  17 oct 2026
+
++ Options / Input: Swap Mouse Buttons (off by default) — Kempston mouse
+  left and right buttons change places (bit 0 of #FADF: the right one,
+  as on the original Kempston mouse). REST API: swapmouse=1 (this visit
+  only), row swapmouse in the REST API link window
+! Sound clock: what is still on its way to the audio worklet is counted
+  exactly (samples sent − received) instead of guessed since its last
+  report. Safari delivers the reports late and unevenly: frames ran in
+  bursts (sound and scrolling jerked) while the host had time to spare
+! Border=wide (unreal.ini, Custom ROM .json ini): the picture was cut
+  right and bottom (the frame buffer held 640x480); now 768x608
+
+
+        version 0.59.0                  17 oct 2026
+
++ Options / Video: Border — None (256x192), Small (320x240), Wide
+  (384x288: full screens, .bsc). Changed at once, remembered; not chosen
+  yet: unreal.ini (or a Custom ROM ini) decides. ATM, ZX Evolution and
+  Profi have no None (their video modes need the border area)

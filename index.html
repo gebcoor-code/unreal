@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261017170100">
+<meta name="build" content="20261017174308">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -973,6 +973,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
               <select id="sticky"><option value="0">held while pressed</option><option value="1">sticky: one key</option><option value="2">locked until tapped again</option></select></label>
             <label class="chk" title="Drag on the screen moves the pointer. Programs move their pointer 1 or 2 pixels per Kempston step: if the pointer runs ahead of / behind the finger, switch this">Touch mouse: program pointer moves
               <select id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
+            <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX-Evolution)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
           </div>
         </div>
       </div>
@@ -1050,6 +1051,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <select id="scale">
               <option value="fit">Fit</option><option value="1">1x</option><option value="1.5" selected>1.5x</option><option value="2">2x</option>
             </select>
+            <label for="bordersel">Border</label>
+            <select id="bordersel" title="Border around the picture: none 256×192, small 320×240, wide 384×288 (full screens, .bsc)"><option value="0">None</option><option value="1">Small</option><option value="2">Wide</option></select>
             <label for="palsel">Palette</label>
             <select id="palsel"></select>
             <label for="fxsel">Filter</label>
@@ -1303,6 +1306,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code)</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
+      <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
@@ -1337,6 +1341,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <span class="ralab" id="ral_cpm">commands</span><input id="rav_cpm" placeholder="b:alasm" spellcheck="false" autocomplete="off">
       <label class="chk"><input type="checkbox" id="ra_xt">xt</label><span class="ranote">ATM mode on at start</span>
       <label class="chk"><input type="checkbox" id="ra_mute">mute</label><span class="ranote">sound off</span>
+      <label class="chk"><input type="checkbox" id="ra_swapmouse">swapmouse</label><span class="ranote">mouse buttons swapped</span>
       <label class="chk"><input type="checkbox" id="ra_kbd">kbd</label><select id="rav_kbd" title="On-screen keyboard at start"><option value="off">— (off)</option><option value="zx">ZX</option><option value="xt">XT</option><option value="joy">Joystick</option></select>
     </div>
     <textarea id="raout" readonly rows="3" spellcheck="false"></textarea>
@@ -1462,14 +1467,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261017170100"></script>
-<script src="js/scancodes.js?v=20261017170100"></script>
-<script src="js/unzip.js?v=20261017170100"></script>
-<script src="js/vkbd.js?v=20261017170100"></script>
-<script src="js/asyncify.js?v=20261017170100"></script>
-<script src="js/gfx.js?v=20261017170100"></script>
-<script src="js/usel.js?v=20261017170100"></script>
-<script src="js/fcmd.js?v=20261017170100"></script>
-<script src="js/app.js?v=20261017170100"></script>
+<script src="js/wasi_fs.js?v=20261017174308"></script>
+<script src="js/scancodes.js?v=20261017174308"></script>
+<script src="js/unzip.js?v=20261017174308"></script>
+<script src="js/vkbd.js?v=20261017174308"></script>
+<script src="js/asyncify.js?v=20261017174308"></script>
+<script src="js/gfx.js?v=20261017174308"></script>
+<script src="js/usel.js?v=20261017174308"></script>
+<script src="js/fcmd.js?v=20261017174308"></script>
+<script src="js/app.js?v=20261017174308"></script>
 </body>
 </html>
