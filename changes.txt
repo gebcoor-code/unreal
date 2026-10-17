@@ -1361,3 +1361,16 @@ Web Unreal Speccy — version history
   (384x288: full screens, .bsc). Changed at once, remembered; not chosen
   yet: unreal.ini (or a Custom ROM ini) decides. ATM, ZX Evolution and
   Profi have no None (their video modes need the border area)
+
+
+        version 0.60.0                  17 oct 2026
+
++ Options / Input: Capture mouse by a click on the screen (off by
+  default) — as the mouse button of the toolbar; Esc releases it
+! Safari: the machine ran ~43 frames a second instead of 48.8 (56 / 30 in
+  turns), the sound ran out and broke off. The emulation is now clocked
+  by time in sound samples, the sound queue only corrects it (under
+  60 ms one more frame, over 180 ms one less), measured with the audio
+  clock itself; the "at most 30 ms a refresh" limit is counted from the
+  start of the frames, not from the refresh time Safari passes (it may
+  be old: only one frame a refresh ran)

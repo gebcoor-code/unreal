@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261017174308">
+<meta name="build" content="20261017183926">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -973,6 +973,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
               <select id="sticky"><option value="0">held while pressed</option><option value="1">sticky: one key</option><option value="2">locked until tapped again</option></select></label>
             <label class="chk" title="Drag on the screen moves the pointer. Programs move their pointer 1 or 2 pixels per Kempston step: if the pointer runs ahead of / behind the finger, switch this">Touch mouse: program pointer moves
               <select id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
+            <label class="chk" title="A click on the emulator screen captures the mouse as the mouse button of the toolbar does (Esc releases it)"><input type="checkbox" id="mclick"> Capture mouse by a click on the screen</label>
             <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX-Evolution)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
           </div>
         </div>
@@ -1467,14 +1468,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261017174308"></script>
-<script src="js/scancodes.js?v=20261017174308"></script>
-<script src="js/unzip.js?v=20261017174308"></script>
-<script src="js/vkbd.js?v=20261017174308"></script>
-<script src="js/asyncify.js?v=20261017174308"></script>
-<script src="js/gfx.js?v=20261017174308"></script>
-<script src="js/usel.js?v=20261017174308"></script>
-<script src="js/fcmd.js?v=20261017174308"></script>
-<script src="js/app.js?v=20261017174308"></script>
+<script src="js/wasi_fs.js?v=20261017183926"></script>
+<script src="js/scancodes.js?v=20261017183926"></script>
+<script src="js/unzip.js?v=20261017183926"></script>
+<script src="js/vkbd.js?v=20261017183926"></script>
+<script src="js/asyncify.js?v=20261017183926"></script>
+<script src="js/gfx.js?v=20261017183926"></script>
+<script src="js/usel.js?v=20261017183926"></script>
+<script src="js/fcmd.js?v=20261017183926"></script>
+<script src="js/app.js?v=20261017183926"></script>
 </body>
 </html>

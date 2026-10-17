@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261017174308';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017183926';
   const MAIL_PNG = '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';
-  const APP_VER = '0.59.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261017174308'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.60.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017183926'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -528,7 +528,9 @@
       } else { setTouchMouse(true); toast('Mouse on'); }
     };
     canvas.addEventListener('mousedown', (e) => {
-      if (mouseLocked) { mbtn = e.buttons & 7; mouseSend(0, 0, 0, mbtn); e.preventDefault(); }
+      if (mouseLocked) { mbtn = e.buttons & 7; mouseSend(0, 0, 0, mbtn); e.preventDefault(); return; }
+      // Options / Input: a click on the screen captures the mouse (Esc releases it); that click is not a button press
+      if (load('mclick') === '1' && e.button === 0 && !matchMedia('(hover: none)').matches && !touchMouse && canLockMouse()) { e.preventDefault(); const p = canvas.requestPointerLock(); if (p && p.catch) p.catch(() => {}); }
     });
     document.addEventListener('mouseup', (e) => { if (mouseLocked) { mbtn = e.buttons & 7; mouseSend(0, 0, 0, mbtn); } });
     document.addEventListener('mousemove', (e) => {
@@ -593,7 +595,7 @@
           if (this.fill > 0) { L[i] = this.buf[this.rd]; R[i] = this.buf[this.rd + 1]; this.rd = (this.rd + 2) % this.buf.length; this.fill--; }
           else { L[i] = 0; R[i] = 0; }
         }
-        if ((++this.n & 3) === 0) this.port.postMessage({ fill: this.fill, got: this.got });
+        if ((++this.n & 3) === 0) this.port.postMessage({ fill: this.fill, got: this.got, t: currentTime }); // t: the audio clock of this report
         return true;
       }
     }
@@ -645,7 +647,7 @@
           await ctx.audioWorklet.addModule(url);
           const node = new AudioWorkletNode(ctx, 'unreal-ring', { outputChannelCount: [2] });
           node.connect(split);
-          node.port.onmessage = (e) => { a.fill = e.data.fill; a.got = e.data.got || 0; a.reportAt = performance.now(); };
+          node.port.onmessage = (e) => { a.fill = e.data.fill; a.got = e.data.got || 0; a.repT = e.data.t; a.reportAt = performance.now(); };
           a.node = node;
           a.push = (f) => { a.sent += f.length / 2; node.port.postMessage(f, [f.buffer]); };
           a.flush = () => { node.port.postMessage('flush'); a.fill = 0; };
@@ -921,13 +923,13 @@
 
   // ------------------------------------------------------------------ main loop
   let tickEnd = performance.now(), lastT = performance.now(), frameAcc = 0, fpsCount = 0, fpsT = performance.now();
-  let sentSinceReport = 0, lastReportSeen = 0;
+  let sentSinceReport = 0, lastReportSeen = 0, sampAcc = 0, frameN = 882; // frameN: sound samples of the last frame
 
   // The page was frozen (iOS app switch, locked screen, background tab) without a visibilitychange:
   // nothing is caught up — the machine continues as if it had been paused.
   let resyncUntil = 0;
   function resync(now) {
-    lastT = now; frameAcc = 0; resyncUntil = now + 300; fpsCount = 0; fpsT = now;
+    lastT = now; frameAcc = 0; sampAcc = 0; resyncUntil = now + 300; fpsCount = 0; fpsT = now;
     if (audio) { audio.flush(); sentSinceReport = 0; lastReportSeen = audio.reportAt; }
   }
   function tick(now) {
@@ -947,14 +949,18 @@
       if (turbo) run = 20;
       // audio-clocked only while the worklet reports in time (stale reports after a freeze would ask for a burst of frames)
       else if (audio && audio.ctx.state === 'running' && now >= resyncUntil && now - audio.reportAt < 250) {
-        // audio-clocked: keep ~70 ms of sound queued
+        // the machine runs by the clock in sound samples (a Pentagon frame is 903 samples: 48.8 frames a second), and the
+        // queue of sound is only a correction: under 60 ms one more frame, over 180 ms one less. The queue = what the worklet
+        // holds + what is on its way to it (sent − received, exact) − what it has played since its report, measured by the
+        // audio clock itself (the report's currentTime against the context's now: late reports in Safari do not matter)
         if (audio.reportAt !== lastReportSeen) { lastReportSeen = audio.reportAt; sentSinceReport = 0; }
-        // queued = what the worklet holds + what is still on the way to it (counted exactly: sent − received), minus what it
-        // has played since its report (at the context's own rate). Safari delivers the reports late and unevenly: the old
-        // "sent since the last report" guess swung by several frames there, the emulation then ran in bursts
-        const est = audio.sp ? audio.fill : audio.fill + (audio.sent - audio.got) - (now - audio.reportAt) * audio.ctx.sampleRate / 1000;
-        let queued = est * 1000 / RATE;
-        while (queued < 70 && run < 6) { run++; queued += 20; }
+        const played = audio.repT !== undefined ? Math.max(0, audio.ctx.currentTime - audio.repT) * audio.ctx.sampleRate : (now - audio.reportAt) * audio.ctx.sampleRate / 1000;
+        const queued = (audio.sp ? audio.fill : audio.fill + (audio.sent - audio.got) - played) * 1000 / RATE;
+        sampAcc += dt * RATE / 1000;
+        if (queued < 60) sampAcc += frameN * Math.min(2, Math.ceil((60 - queued) / 20)); // behind: make up (at most 2 frames a refresh)
+        else if (queued > 180) sampAcc = Math.min(sampAcc, 0);
+        sampAcc = Math.min(sampAcc, 6 * frameN);
+        run = Math.max(0, Math.floor(sampAcc / frameN)); sampAcc -= run * frameN;
       } else {
         frameAcc += dt / 20;
         run = Math.min(Math.floor(frameAcc), 6); frameAcc -= Math.floor(frameAcc);
@@ -963,9 +969,12 @@
     const t0 = performance.now();
     for (let i = 0; i < run; i++) {
       // a slow device (or a throttled page) must not dig itself in: at most ~30 ms of emulation per screen refresh
-      if (i && !turbo && performance.now() - now > 30) break;
+      // (measured from the start of this loop: Safari's requestAnimationFrame time can be well before the call, which let only one
+      // frame run per refresh — 30 frames a second at a 30 Hz refresh)
+      if (i && !turbo && performance.now() - t0 > 30) { if (audio) sampAcc += (run - i) * frameN; break; } // not done: kept for the next refresh
       const r = AS.call('web_frame');
       if (!r.done) { debugDraw(); tickEnd = performance.now(); return; } // stopped in the debugger
+      if (r.value > 100) frameN = r.value;
       frameDone(r.value);
     }
     if (run) { render(); coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
@@ -3575,6 +3584,8 @@
     buildHdds(); bindSd(); bindLdStore();
     $('fddacc').onchange = (e) => { store('fdd.acc', e.target.checked ? '1' : '0'); applyFdd(true); canvas.focus(); };
     $('bordersel').onchange = (e) => { store('border', e.target.value); if (E && E.web_border) { e.target.value = String(E.web_border(+e.target.value)); render(); } };
+    $('mclick').checked = load('mclick') === '1';
+    $('mclick').onchange = (e) => store('mclick', e.target.checked ? '1' : '0');
     $('mswap').onchange = (e) => { store('mswap', e.target.checked ? '1' : '0'); if (E && E.web_mouse_swap) E.web_mouse_swap(e.target.checked || mswapLink ? 1 : 0); };
     const box = $('drives');
     for (let i = 0; i < NDRIVES; i++) {
