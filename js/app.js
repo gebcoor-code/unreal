@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261016135604';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017073201';
   const MAIL_PNG = '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';
-  const APP_VER = '0.53.2'; // About, System Info (history: changes.txt)
-  const BUILD = '20261016135604'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.55.5'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017073201'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -98,7 +98,18 @@
   ];
   // the selected ROM file of this session (FS name, file name, KB, its pages); a slot is 'f:<fs>:<page>' (local) or 's:<file>' (server part)
   let crCur = null;
-  const customCfg = { mach: 'PENT128', reset: '', name: '', whole: '', slots: { 128: '', sos: '', dos: '', sys: '' } };
+  // extra: machine settings from the json of a Custom ROM ZIP (speed, fdd, hdd, ini) — they win over the visitor's own
+  // settings while this Custom ROM runs and are never stored
+  const customCfg = { mach: 'PENT128', reset: '', name: '', whole: '', slots: { 128: '', sos: '', dos: '', sys: '' }, extra: null };
+  const crX = () => (model === 'CUSTOM' && customCfg.extra) || {};
+  function iniMerge(dst, src) { // ini sections / keys of src over dst, names compared without case
+    for (const [sec, kv] of Object.entries(src || {})) {
+      if (!kv || typeof kv !== 'object') continue;
+      const ds = Object.keys(dst).find((k) => k.toLowerCase() === sec.toLowerCase()) || sec; dst[ds] = dst[ds] || {};
+      for (const [k, v] of Object.entries(kv)) { const dk = Object.keys(dst[ds]).find((x) => x.toLowerCase() === k.toLowerCase()) || k; dst[ds][dk] = String(v); }
+    }
+    return dst;
+  }
   const crFile = (fsn) => (crCur && crCur.fs === fsn ? crCur : null);
   // → { ini, files } or { why }
   function customPlan() {
@@ -110,6 +121,7 @@
       if (!p) return { why: 'Select ROM (' + c.sizes.join(' / ') + ' KB).' };
       if (!c.sizes.includes(p.kb)) return { why: c.name + ' takes ' + c.sizes.join(' / ') + ' KB, ' + p.name + ' is ' + p.kb + ' KB.' };
       ini.ROM.ROMSET = ''; ini.ROM[c.key] = p.fs + (c.page || ''); ini.MISC.RESET = 'SYS'; files.push(p.fs);
+      if (customCfg.extra && customCfg.extra.ini) iniMerge(ini, customCfg.extra.ini);
       return { ini, files };
     }
     const set = {};
@@ -123,6 +135,7 @@
     const auto = set.sys ? 'SYS' : set['128'] ? 'MENU' : 'BASIC';
     const r = customCfg.reset, ok = r && (r !== 'SYS' || set.sys) && (r !== 'MENU' || set['128']) && (r !== 'DOS' || set.dos);
     ini.MISC.RESET = ok ? r : auto;
+    if (customCfg.extra && customCfg.extra.ini) iniMerge(ini, customCfg.extra.ini);
     return { ini, files };
   }
   MODELS.CUSTOM = { name: 'Custom ROM', machine: 'CUSTOM', base: 71680, speed: 2.5, xt: false, files: [], ini: {}, note: '', custom: true };
@@ -130,7 +143,11 @@
     const p = customPlan(), m = MODELS.CUSTOM, c = MACHINES[customCfg.mach];
     if (p.ini) { m.ini = p.ini; m.files = p.files; }
     m.base = c.base; m.xt = !!c.xt;
+    const x = customCfg.extra || {}, sp = +x.speed;
+    m.speed = isFinite(sp) && sp > 0 ? SPEEDS.reduce((a, b) => (Math.abs(b - sp) < Math.abs(a - sp) ? b : a)) : 2.5;
+    const xs = [isFinite(sp) && sp > 0 ? 'clock ' + m.speed + 'x' : '', x.fdd ? 'FDD ' + x.fdd : '', x.hdd ? 'HDD ' + x.hdd : '', x.ini && Object.keys(x.ini).length ? 'ini: ' + Object.keys(x.ini).join(', ') : ''].filter(Boolean);
     m.note = (p.ini ? (customCfg.name ? customCfg.name + ' · ' : '') + c.name + (c.set ? ' · ROM set' : ' · whole ROM') : p.why)
+      + (xs.length ? '\nFrom its json: ' + xs.join(' · ') : '')
       + '\nMenu SAVE can store this combined ROM to load later.';
     return p;
   }
@@ -274,7 +291,16 @@
   }
 
   // accurate FDD (Options / Disk): off by default — TR-DOS traps and no WD1793 delays, as before
-  function applyFdd() { if (E.web_fdd_accurate) E.web_fdd_accurate(load('fdd.acc') === '1' ? 1 : 0); const c = $('fddacc'); if (c) c.checked = load('fdd.acc') === '1'; }
+  // a Custom ROM ZIP may set it ("fdd", or Traps / Fast in its ini [BETA128]): then the visitor's setting is not applied at start
+  function applyFdd(user) {
+    if (!E.web_fdd_accurate) return;
+    const x = crX(), b = x.ini ? Object.entries(x.ini).find(([k]) => k.toLowerCase() === 'beta128') : null;
+    const iniSets = !!b && Object.keys(b[1] || {}).some((k) => /^(traps|fast)$/i.test(k));
+    if (!user && x.fdd) E.web_fdd_accurate(/^acc/i.test(x.fdd) ? 1 : 0);
+    else if (!user && iniSets) { /* the ini of the ZIP decides */ }
+    else E.web_fdd_accurate(load('fdd.acc') === '1' ? 1 : 0);
+    const c = $('fddacc'); if (c) c.checked = !!E.web_fdd_accurate(-1);
+  }
   // ------------------------------------------------------------------ Options: sound (defaults come from unreal.ini)
   // volumes are stored as % of the unreal.ini value (100% = ini)
   const SND_VOL = [0, 1, 2, 3, 4, 11], SND_OPT = { aychip: 5, aystereo: 6, ayvoltab: 7, sndfilter: 8, sdon: 9 };
@@ -1082,7 +1108,7 @@
     helpZ();
   }
   // a help window always stays just above the window it belongs to (it may lie over it on a narrow screen)
-  const HELP_OF = [['dbghelp', 'dbgwin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
+  const HELP_OF = [['dbghelp', 'dbgwin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
   function helpZ() {
     WINS.forEach((x, k) => { x.style.zIndex = String(8 + 2 * k); });
     for (const [h, p] of HELP_OF) { const he = $(h), pe = $(p); if (he && pe && pe.style.zIndex) he.style.zIndex = String(+pe.style.zIndex + 1); }
@@ -1976,7 +2002,8 @@
       catch (e) { $('chtext').textContent = 'changes.txt: ' + e.message; return; }
       $('chtext').textContent = chText;
     }
-    $('chtext').focus();
+    const t = $('chtext'); t.scrollTop = t.scrollHeight; // the newest versions are at the end
+    t.focus({ preventScroll: true });
   }
   function bindNedo() {
     $('nedobtn').onclick = () => showNedo($('nedowin').hidden);
@@ -2218,7 +2245,17 @@
     else if (M() === 'QUORUM') // ROM-MENU: 3 = Boot DOS
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.K3 }]);
     else if (M() === 'PLUS3') toast('Spectrum +3: no TR-DOS (Beta Disk) — the disk is mounted, start it from +3 BASIC', true);
-    else // Pentagon, Scorpion, Profi, KAY: reset straight into TR-DOS, R = RUN, Enter
+    // Pentagon, Scorpion, KAY, Profi: through the reset menu into TR-DOS in 128K mode (128 BASIC set up, #7FFD paging works);
+    // reset straight into TR-DOS gives 48K mode: programs then see "ZX 48K" (Quick Commander: no memory pages)
+    else if (M() === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS
+      runMacro([{ reset: 0 }, { wait: 170 }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+    else if (M() === 'SCORPION') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
+      runMacro([{ reset: 2 }, { wait: 170 }, { key: ZK.ENTER }]);
+    else if (M() === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
+      runMacro([{ reset: 2 }, { wait: 170 }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+    else if (M() === 'PROFI') // main menu: "TR-DOS 128K" is two below CP/M; it runs boot by itself
+      runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: DOWN }, { wait: 20 }, { key: DOWN }, { wait: 20 }, { key: ZK.ENTER }]);
+    else // other machines (Custom ROM): reset straight into TR-DOS, R = RUN, Enter
       runMacro([{ reset: 1 }, { wait: w(160) }, { key: ZK.R }, { key: ZK.ENTER }]);
     if (macro && xtWas) { macro.steps.unshift({ xtmode: 0 }); macro.xtBack = true; } // keys added later (press=) still go as ZX keys
   }
@@ -3095,8 +3132,10 @@
   }
   const linkEnc = (v) => encodeURIComponent(v).replace(/%2F/gi, '/').replace(/%3A/gi, ':').replace(/%7C/gi, '|');
   function raBuild() {
-    const on = (k) => $('ra_' + k).checked, q = [];
-    if (on('model')) q.push('model=' + $('rav_model').value);
+    const on = (k) => $('ra_' + k).checked, q = [], rom = on('rom') && $('rav_rom').value.trim();
+    if (rom) q.push('rom=' + linkEnc(rom)); // the Custom ROM ZIP brings its machine: no model=
+    else if (on('model')) q.push('model=' + $('rav_model').value);
+    $('rav_model').disabled = $('ra_model').disabled = !!rom;
     if (on('speed')) q.push('speed=' + $('rav_speed').value);
     if (on('a') && $('rav_a').value.trim()) q.push('a=' + linkEnc($('rav_a').value.trim()));
     if (on('hdd') && $('rav_hdd').value.trim()) q.push('hdd=' + linkEnc($('rav_hdd').value.trim()));
@@ -3112,7 +3151,8 @@
     if (on('kbd')) q.push('kbd=' + $('rav_kbd').value);
     $('raout').value = location.href.replace(/[?#].*$/, '') + (q.length ? '?' + q.join('&') : '');
     let note = '';
-    if (st === 'cpm' && !CPM_MODELS.includes($('rav_model').value.toUpperCase())) note = 'cpm= needs model atm710 / evo';
+    if (st === 'cpm' && !rom && !CPM_MODELS.includes($('rav_model').value.toUpperCase())) note = 'cpm= needs model atm710 / evo';
+    if (on('rom') && !rom) note = 'rom=: put the path or URL of a Custom ROM ZIP';
     $('ranote').textContent = note;
   }
   function raFiles() {
@@ -3134,14 +3174,15 @@
     raFiles();
     const ms = $('rav_model');
     if (!ms.options.length) for (const [k, v] of Object.entries(LINK_NAME)) { const o = document.createElement('option'); o.value = v; o.textContent = v + ' — ' + MODELS[k].name; ms.appendChild(o); }
-    ms.value = LINK_NAME[model];
+    ms.value = LINK_NAME[model] || ms.value;
+    $('rav_rom').value = model === 'CUSTOM' && romLinkUrl ? relUrl(romLinkUrl) : ''; $('ra_rom').checked = !!$('rav_rom').value; // a Custom ROM from a file of this computer has no URL: put the ZIP on a site
     const sp = $('rav_speed');
     if (!sp.options.length) SPEEDS.forEach((x) => { const o = document.createElement('option'); o.value = String(x); o.textContent = x + 'x (' + (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz)'; sp.appendChild(o); });
     sp.value = String(SPEEDS[speedIdx]); $('ra_speed').checked = SPEEDS[speedIdx] !== MODELS[model].speed;
     const u = drives[0] && drives[0].url && E.web_disk_present(0) ? relUrl(drives[0].url) : '';
     $('rav_a').value = u; $('ra_a').checked = !!u;
     const h = hdds[0] && hddSrc[0] && !OS_MODELS[model] ? relUrl(hddSrc[0]) : '';
-    $('rav_hdd').value = h; $('ra_hdd').checked = !!h && !/(^|\/)cpm\.zip$/i.test(h); // the default cpm.zip needs no hdd=
+    $('rav_hdd').value = h; $('ra_hdd').checked = !!h && !/(^|\/)cpm\.(zip|hdd)$/i.test(h); // the default cpm.zip needs no hdd=
     const sv = sdName && sdSrc && !(OS_MODELS[model] && OS_MODELS[model].sd) ? relUrl(sdSrc) : '';
     $('rav_sd').value = sv; $('ra_sd').checked = !!sv;
     // run=: BASIC and code files of the TR-DOS disk in A:
@@ -3160,6 +3201,7 @@
   }
   function showRest(v) {
     $('restwin').hidden = !v; $('rabtn').classList.toggle('on', v);
+    if (!v) raHelp(false);
     if (v) { raFill(); raFW.place(); } else canvas.focus();
   }
   function bindRest() {
@@ -3179,6 +3221,19 @@
       catch (e) { $('raout').select(); document.execCommand && document.execCommand('copy'); toast('Link selected — copy it'); }
     };
     $('raopen').onclick = () => window.open($('raout').value, '_blank');
+    $('rav_rom').addEventListener('input', () => { $('ra_rom').checked = !!$('rav_rom').value.trim(); });
+    $('rahelpbtn').onclick = (e) => { e.stopPropagation(); raHelp($('rahelp').hidden); };
+    $('rahelpclose').onclick = () => raHelp(false);
+  }
+  // help of the REST API window: at its side (right, or left when there is no room), the same height; then it can be dragged
+  let raHelpFW = null;
+  function raHelp(v) {
+    const h = $('rahelp'), w = $('restwin');
+    if (!raHelpFW) raHelpFW = floatWin(h, 'rahelppos', () => ({ x: 0, y: 0 }));
+    h.hidden = !v; $('rahelpbtn').classList.toggle('on', v);
+    if (!v) return;
+    const r = w.getBoundingClientRect();
+    h.style.height = Math.max(r.height, 360) + 'px'; raHelpFW.setPos(snapRight(r, h));
   }
 
   // ------------------------------------------------------------------ UI
@@ -3220,7 +3275,9 @@
   const HDD_IF_DEF = { ATM3: '4', PLUS3: '0', QUORUM: '0', PROFI: '6', SCORPION: '5', PROFSCORP: '5', KAY: '2' }, HDD_IF_FIXED = { ATM3: '4', PLUS3: '0' };
   const himem = () => (MODELS[model].ini.MISC && MODELS[model].ini.MISC.HIMEM) || 'ATM710';
   const hddKey = () => (model === 'CUSTOM' ? 'CUSTOM.' + himem() : M());
-  const hddIfPref = () => { const h = himem(); if (HDD_IF_FIXED[h]) return HDD_IF_FIXED[h]; const v = load('hdd.if.' + hddKey()); return v !== null ? v : HDD_IF_DEF[h] !== undefined ? HDD_IF_DEF[h] : load('hdd.if'); };
+  const hddIfPref = () => { const h = himem(); if (HDD_IF_FIXED[h]) return HDD_IF_FIXED[h];
+    const xi = crX().hdd ? IF_NAMES.indexOf(String(crX().hdd).toUpperCase()) : -1; if (xi >= 0) return String(xi); // a Custom ROM ZIP's interface
+    const v = load('hdd.if.' + hddKey()); return v !== null ? v : HDD_IF_DEF[h] !== undefined ? HDD_IF_DEF[h] : load('hdd.if'); };
   async function applyHdd() {
     if (!hddIni) hddIni = [0, 1].map((d) => ({ c: E.web_hdd_get(d, 0), h: E.web_hdd_get(d, 1), s: E.web_hdd_get(d, 2), lba: 0, ro: !!E.web_hdd_get(d, 4) })); // LBA 0 = size of the image (the ini LBA is a real drive's)
     const sc = hddIfPref();
@@ -3495,7 +3552,7 @@
 
   function buildDrives() {
     buildHdds(); bindSd(); bindLdStore();
-    $('fddacc').onchange = (e) => { store('fdd.acc', e.target.checked ? '1' : '0'); applyFdd(); canvas.focus(); };
+    $('fddacc').onchange = (e) => { store('fdd.acc', e.target.checked ? '1' : '0'); applyFdd(true); canvas.focus(); };
     const box = $('drives');
     for (let i = 0; i < NDRIVES; i++) {
       const el = document.createElement('div');
@@ -3615,7 +3672,7 @@
     if (!b.length || b.length & 16383 || b.length > 1 << 20) { toast(name + ': a ROM image is 16 KB pages, up to 1024 KB (' + b.length + ' bytes)', true); return; }
     // one ROM file at a time: the new one replaces the one selected before (its pages leave the slots too)
     if (crCur) try { fs.remove(crCur.fs); } catch (e) {}
-    crCur = null; customCfg.whole = '';
+    crCur = null; customCfg.whole = ''; customCfg.extra = null;
     for (const [s] of SLOTS) if (customCfg.slots[s].startsWith('f:')) customCfg.slots[s] = '';
     crSeq++;
     const p = { fs: 'cr' + crSeq + '.rom', name, kb: b.length >> 10 };
@@ -3626,6 +3683,12 @@
     const c = MACHINES[customCfg.mach];
     if (cfg && MACHINES[cfg.machine]) { // settings from the saved ZIP
       customCfg.mach = cfg.machine; customCfg.reset = cfg.reset && cfg.reset !== 'auto' ? cfg.reset : ''; customCfg.name = cfg.name || '';
+      const x = {}; // machine settings of the ZIP (Save / Custom ROM writes them; may be edited by hand)
+      if (cfg.speed !== undefined && +cfg.speed > 0) x.speed = +cfg.speed;
+      if (/^(accurate|fast)$/i.test(cfg.fdd || '')) x.fdd = cfg.fdd.toLowerCase();
+      if (cfg.hdd && IF_NAMES.includes(String(cfg.hdd).toUpperCase())) x.hdd = String(cfg.hdd).toUpperCase();
+      if (cfg.ini && typeof cfg.ini === 'object') x.ini = cfg.ini;
+      customCfg.extra = Object.keys(x).length ? x : null;
       const pg = (v) => (typeof v === 'number' ? v : v && typeof v.page === 'number' ? v.page : null);
       if (MACHINES[cfg.machine].set) for (const [s] of SLOTS) customCfg.slots[s] = cfg.pages && pg(cfg.pages[s]) !== null ? 'f:' + p.fs + ':' + pg(cfg.pages[s]) : '';
       else customCfg.whole = p.fs;
@@ -3668,18 +3731,25 @@
     return (r ? r.name + ' · ' : '') + f + (pg ? ' page ' + pg : '');
   }
   const srcText = (src) => { const [f, n] = src.split(':'); const x = crFile(f); return (x ? x.name : f) + (n !== undefined ? ' page ' + n : ''); };
-  function romZip() {
-    const custom = model === 'CUSTOM';
+  // pre: the Custom ROM as chosen in Options / System (also before Start); its settings then come from its json only,
+  // unless this very Custom ROM is running (then as it runs, like Save / Custom ROM)
+  function romZip(pre) {
+    const m = pre ? 'CUSTOM' : model, custom = m === 'CUSTOM', live = !pre || (model === 'CUSTOM' && !customDirty);
     if (custom && !customPlan().ini) return null;
-    const ini = modelIniObj(model), misc = ini.MISC || {}, hm = misc.HIMEM || 'ATM710', ram = +(misc.RAMSize || (hm === 'ATM710' ? 1024 : 128));
+    const ini = modelIniObj(m), misc = ini.MISC || {}, hm = misc.HIMEM || 'ATM710', ram = +(misc.RAMSize || (hm === 'ATM710' ? 1024 : 128));
     const mach = custom ? customCfg.mach : Object.keys(MACHINES).find((k) => MACHINES[k].himem === hm && MACHINES[k].ram === ram) || Object.keys(MACHINES).find((k) => MACHINES[k].himem === hm);
     if (!mach) return null;
     const c = MACHINES[mach], set = ini.ROM && ini.ROM.ROMSET ? ini['ROM.' + ini.ROM.ROMSET] : null;
-    const romOf = (f) => f.replace(/\.[^.]*$/, ''), whole = !set && ((ini.ROM && ini.ROM[c.key]) || MODELS[model].files.find((f) => /\.rom$/i.test(f)));
+    const romOf = (f) => f.replace(/\.[^.]*$/, ''), whole = !set && ((ini.ROM && ini.ROM[c.key]) || MODELS[m].files.find((f) => /\.rom$/i.test(f)));
     if (!set && !whole) return null;
-    let base = custom ? customCfg.name || (set ? 'romset' : romOf(crFile(customCfg.whole).name)) : romOf(set ? MODELS[model].files[0] : whole.split(':')[0]);
+    let base = custom ? customCfg.name || (set ? 'romset' : romOf(crFile(customCfg.whole).name)) : romOf(set ? MODELS[m].files[0] : whole.split(':')[0]);
     base = base.replace(/[\\/:*?"<>|]/g, '_');
     const cfg = { type: 'unreal-web-custom-rom', name: custom && customCfg.name ? customCfg.name : base, machine: mach, machineName: c.name, rom: base + '.rom' };
+    // the machine as it runs now: clock, FDD mode, HDD interface (and the ini keys a loaded ZIP brought) — a link with rom= gets the same
+    const x = (custom && customCfg.extra) || {};
+    if (live) { cfg.speed = SPEEDS[speedIdx]; cfg.fdd = E && E.web_fdd_accurate && E.web_fdd_accurate(-1) ? 'accurate' : 'fast'; if (E) cfg.hdd = IF_NAMES[E.web_hdd_scheme(-1)] || 'NONE'; }
+    else { if (x.speed) cfg.speed = x.speed; if (x.fdd) cfg.fdd = x.fdd; if (x.hdd) cfg.hdd = x.hdd; }
+    if (custom && customCfg.extra && customCfg.extra.ini) cfg.ini = customCfg.extra.ini;
     let img;
     if (set) {
       img = new Uint8Array(65536).fill(0xFF); cfg.reset = custom ? customCfg.reset || 'auto' : misc.RESET || 'auto'; cfg.pages = {};
@@ -4073,6 +4143,20 @@
     const m = MODEL_ALIASES[LINK.model.toLowerCase().replace(/[\s_-]/g, '')] || Object.keys(MODELS).find((k) => k.toLowerCase() === LINK.model.toLowerCase());
     if (m) model = m; else toast('Link: unknown model "' + LINK.model + '" (' + Object.keys(MODEL_ALIASES).join(', ') + ')', true);
   }
+  // rom=: a Custom ROM ZIP (Save / Custom ROM: ROM + json with the machine, slots, clock, FDD, HDD interface, ini keys)
+  // or a plain ROM image — before the first start, so the machine starts as the ZIP says. Nothing of it is stored.
+  let romLinkUrl = '';
+  async function linkRom() {
+    if (!LINK.rom) return;
+    const url = new URL(lowDir(LINK.rom), location.href).href, name = urlName(url);
+    try {
+      await crAdd(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()));
+      if (!crCur) return;
+      const p = customApply();
+      if (!p.ini) { toast('Link: ' + name + ': ' + p.why, true); return; }
+      model = 'CUSTOM'; romLinkUrl = url;
+    } catch (err) { toast('Link: ' + name + ': ' + err.message, true); }
+  }
   // after the start: clock, keyboard, sound, files
   async function linkApply() {
     if (LINK.speed) { // 2, 2x or 7mhz; snapped to the nearest step of the clock slider, not saved
@@ -4140,12 +4224,13 @@
     if (t && t.closest && t.closest('#mainwin, #vkbd') && !isField(t) && e.cancelable) e.preventDefault();
   }, { passive: false });
   document.addEventListener('selectstart', (e) => { if (!isField(e.target)) e.preventDefault(); });
-  window.UnrealDebug = { get E() { return E; }, cstr: (p) => cstr(p), get runRestore() { return runRestore; }, get macro() { return macro; }, get audio() { return audio; } }; // for tests and the console
+  window.UnrealDebug = { get E() { return E; }, cstr: (p) => cstr(p), get runRestore() { return runRestore; }, get macro() { return macro; }, get audio() { return audio; }, runMacro: (st) => runMacro(st), ZK, UP, DOWN }; // for tests and the console
   // ------------------------------------------------------------------ boot
   window.addEventListener('DOMContentLoaded', async () => {
     bindUI();
     try {
       linkModel();
+      await linkRom(); // rom= (Custom ROM ZIP) wins over model=
       await start();
       modelUI();
       await osBoot();

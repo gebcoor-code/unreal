@@ -139,11 +139,14 @@
     pop.style.minWidth = Math.round(r.width) + 'px'; pop.style.maxWidth = (vw - 8) + 'px';
     pop.style.maxHeight = ''; pop.style.top = pop.style.bottom = '';
     const win = popAnchor.closest('.fwin, .optwin, [role="dialog"], #fcwin, #restwin, #dbgdlg');
-    if (win) { // inside the window; a small window (the list, or 240 px of it, does not fit on either side of the box): the screen
-      const wr = win.getBoundingClientRect();
-      if (Math.max(wr.bottom - r.bottom, r.top - wr.top) - 6 >= Math.min(pop.scrollHeight, 240)) { hi = Math.min(hi, wr.bottom - 4); lo = Math.max(lo, wr.top + 4); }
+    let cap = 1e9; // outside its own window a long list stays short and scrolls
+    if (win) { // inside the window (scrolling); a small window (neither the whole list nor 240 px of it fit on either side of the box):
+      // inside the emulator window (and the window itself), never the whole screen
+      const wr = win.getBoundingClientRect(), main = document.getElementById('mainwin'), mr = main ? main.getBoundingClientRect() : null;
+      if (Math.max(wr.bottom - r.bottom, r.top - wr.top) - 6 >= Math.min(pop.scrollHeight, 240) || !mr || !mr.height) { hi = Math.min(hi, wr.bottom - 4); lo = Math.max(lo, wr.top + 4); }
+      else { hi = Math.min(hi, Math.max(wr.bottom, mr.bottom) - 4); lo = Math.max(lo, Math.min(wr.top, mr.top) + 4); cap = 360; }
     }
-    const below = hi - r.bottom - 2, above = r.top - 2 - lo, want = Math.min(pop.scrollHeight, 320);
+    const below = Math.min(hi - r.bottom - 2, cap), above = Math.min(r.top - 2 - lo, cap), want = Math.min(pop.scrollHeight, 320);
     if (below >= Math.min(want, 120) || below >= above) { pop.style.top = (r.bottom + 2) + 'px'; pop.style.maxHeight = Math.max(60, below) + 'px'; }
     else { pop.style.top = Math.max(lo, r.top - 2 - Math.min(pop.scrollHeight, above)) + 'px'; pop.style.maxHeight = Math.max(60, above) + 'px'; }
     const w = pop.offsetWidth; pop.style.left = Math.max(4, Math.min(r.left, vw - w - 4)) + 'px';

@@ -1231,3 +1231,50 @@ Web Unreal Speccy — version history
 ! Drop-down lists in small windows (Save / What): the list was cut at
   the window's edge (ROM, Custom ROM out of sight, no scroll bar seen);
   when the list does not fit in its window it may go past it now
+
+
+        version 0.54.0                  17 oct 2026
+
++ REST API: rom= — a Custom ROM ZIP (Save / Custom ROM) by path or URL
+  (another site with CORS, e.g. raw.githubusercontent.com): the machine
+  starts with its ROM, slots and settings, for everyone the same; not
+  stored. REST API link window: row rom
++ Custom ROM ZIP .json: speed, fdd (accurate / fast), hdd (interface)
+  and ini (any unreal.ini keys by section); while that Custom ROM runs
+  they win over the visitor's own settings. Save / Custom ROM writes
+  speed, fdd and hdd as the machine runs
++ REST API link window: help (?) with all parameters and the .json
+  fields; the parameter list left Keys and files
+
+
+        version 0.55.0                  17 oct 2026
+
++ Options / System, Custom ROM: Save ROM — the Custom ROM as chosen
+  (ROM + .json in a ZIP), also before Start; server parts of a ROM set
+  are fetched for it. The settings in the .json: from the ZIP it came
+  from, or as the machine runs when this Custom ROM is running
+
+
+        version 0.55.1                  17 oct 2026
+
+* ZIP files made by the emulator (Save, File Commander Download Files,
+  Custom ROM, NedoOS Make Image): the files inside get the date and time
+  they were made (were 1980-01-01)
+
+
+        version 0.55.2                  17 oct 2026
+
+- Options / System, Custom ROM: Save ROM button removed (Save / Custom
+  ROM saves it)
+
+
+        version 0.55.5                  17 oct 2026
+
+! Autorun (Load, server list, REST autorun=1) on Pentagon, Scorpion, KAY,
+  Profi: TR-DOS was entered by reset straight into it, in 48K mode
+  (Quick Commander showed "ZX 48K", no memory pages). Now through the
+  128 menu (Pentagon, Scorpion, KAY: reset to 128 ROM) or the main menu
+  (Profi: TR-DOS 128K): 128K mode, #7FFD paging free
+* Drop-down lists: in a small window (Save) a long list stays inside the
+  emulator window and scrolls (at most 360 px); scroll bar easier to see
+* About / changes: the history opens at its end (newest versions)

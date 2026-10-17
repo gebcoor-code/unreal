@@ -54,8 +54,11 @@
     let c = 0xFFFFFFFF; for (let i = 0; i < d.length; i++) c = crcT[(c ^ d[i]) & 255] ^ (c >>> 8);
     return (c ^ 0xFFFFFFFF) >>> 0;
   }
-  // files: [{ name, data: Uint8Array }] → a ZIP (deflate when the browser can, stored otherwise)
+  // files: [{ name, data: Uint8Array, time?: Date }] → a ZIP (deflate when the browser can, stored otherwise);
+  // the entries get the date and time of now (local, as DOS keeps it) unless a file brings its own
   async function create(files) {
+    const dos = (t) => { const d = t instanceof Date && !isNaN(t) && t.getFullYear() >= 1980 ? t : new Date();
+      return [(d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1), ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()]; };
     const parts = [], cen = []; let off = 0;
     const p16 = (a, o, v) => { a[o] = v & 255; a[o + 1] = (v >> 8) & 255; };
     const p32 = (a, o, v) => { p16(a, o, v & 0xFFFF); p16(a, o + 2, v >>> 16); };
@@ -67,10 +70,11 @@
         if (z.length < f.data.length) { body = z; method = 8; }
       }
       const h = new Uint8Array(30 + name.length);
-      p32(h, 0, 0x04034B50); p16(h, 4, 20); p16(h, 6, 0x800); p16(h, 8, method); p16(h, 12, 0x21);
+      const [tm, dt] = dos(f.time);
+      p32(h, 0, 0x04034B50); p16(h, 4, 20); p16(h, 6, 0x800); p16(h, 8, method); p16(h, 10, tm); p16(h, 12, dt);
       p32(h, 14, crc); p32(h, 18, body.length); p32(h, 22, f.data.length); p16(h, 26, name.length); h.set(name, 30);
       const c = new Uint8Array(46 + name.length);
-      p32(c, 0, 0x02014B50); p16(c, 4, 20); p16(c, 6, 20); p16(c, 8, 0x800); p16(c, 10, method); p16(c, 14, 0x21);
+      p32(c, 0, 0x02014B50); p16(c, 4, 20); p16(c, 6, 20); p16(c, 8, 0x800); p16(c, 10, method); p16(c, 12, tm); p16(c, 14, dt);
       p32(c, 16, crc); p32(c, 20, body.length); p32(c, 24, f.data.length); p16(c, 28, name.length); p32(c, 42, off); c.set(name, 46);
       parts.push(h, body); cen.push(c); off += h.length + body.length;
     }

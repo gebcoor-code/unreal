@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261016135604">
+<meta name="build" content="20261017073201">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -527,7 +527,7 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #ziplist button { text-align: left; font-family: ui-monospace, Consolas, monospace; }
 /* debugger: floating, draggable window */
 #dbgwin { position: fixed; left: 0; top: 0; z-index: 8; background: #000; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); line-height: 0; }
-#dbgwin[hidden], #dbghelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
+#dbgwin[hidden], #dbghelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
 #restwin { position: fixed; left: 0; top: 0; z-index: 9; width: min(440px, calc(100vw - 8px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
 #restwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
@@ -595,6 +595,8 @@ select.usel-src { display: none !important; }
 .usel-arr { width: 10px; height: 6px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
 .usel.open, .usel:focus-visible { border-color: var(--accent); } .usel.open .usel-arr { transform: rotate(180deg); }
 .usel.usel-ph .usel-v { color: var(--dim); } .usel.usel-dis { opacity: .45; cursor: default; pointer-events: none; }
+.usel-pop::-webkit-scrollbar { width: 8px; } .usel-pop::-webkit-scrollbar-thumb { background: #66717e; border-radius: 4px; } .usel-pop::-webkit-scrollbar-track { background: rgba(255,255,255,.06); }
+.usel-pop { scrollbar-width: auto; scrollbar-color: #66717e rgba(255,255,255,.06); }
 .usel-pop { box-sizing: border-box; position: fixed; z-index: 70; overflow-y: auto; overscroll-behavior: contain; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 3px 0; font-size: 13px; color: var(--text); -webkit-overflow-scrolling: touch; }
 .usel-it { padding: 5px 10px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .usel-it.hot { background: var(--panel); } .usel-it.on { background: var(--accent); color: #1a1208; } .usel-it.dis { color: var(--dim); cursor: default; }
@@ -650,14 +652,14 @@ select.usel-src { display: none !important; }
 #fvorg[hidden], #fvorgl[hidden], #fvgo[hidden], #fvgol[hidden] { display: none; }
 #fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre-wrap; word-break: break-all; tab-size: 8; }
 #fvbody.hex { white-space: pre; word-break: normal; }
-#dbgwin .dbghead, #dbghelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
-#dbgwin .dbghead span, #dbghelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
-#dbgwin .dbghead button, #dbghelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
-:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
+#dbgwin .dbghead, #dbghelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
+#dbgwin .dbghead span, #dbghelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
+#dbgwin .dbghead button, #dbghelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
-:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
-:is(#dbghelp, #gfxhelp, #mainhelp, #pfhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
-:is(#dbghelp, #gfxhelp, #pfhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
+:is(#dbghelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
+:is(#dbghelp, #gfxhelp, #pfhelp, #rahelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
 :is(#dbghelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
 :is(#dbghelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
 :is(#dbghelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
@@ -675,6 +677,9 @@ select.usel-src { display: none !important; }
 #perfwin .dbghead b { font: 11px ui-monospace, Consolas, monospace; color: var(--dim); font-weight: 400; }
 #perfwin .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
 #pfhelp { width: min(300px, calc(100vw - 8px)); }
+#rahelp { width: min(420px, calc(100vw - 8px)); }
+#rahelp .dbghead { cursor: default; }
+#rahelp table.keys td:first-child { white-space: nowrap; vertical-align: top; }
 #pfhelp .dbghead { cursor: default; }
 .pfgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
 .pft { background: #0e1013; border: 1px solid #1f232a; border-radius: 6px; padding: 6px 8px 5px; min-width: 0; }
@@ -1124,21 +1129,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>F1 (in debugger)</td><td>full debugger key list</td></tr>
     </table>
     <h4>REST API</h4>
-    <table class="keys">
-      <tr><td>model=</td><td>atm710, xbiosxt, xbios136, atm450, evo, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
-      <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz</td></tr>
-      <tr><td>a=</td><td>disk image for A: (path on this site)</td></tr>
-      <tr><td>hdd=</td><td>HDD image for HDD 0: zip with image and its .chs, or .hdd (e.g. hdd/cpm.zip)</td></tr>
-      <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
-      <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
-      <tr><td>autorun=1</td><td>boot disk in A: (or start tape); not on +3 (no TR-DOS)</td></tr>
-      <tr><td>press=</td><td>with autorun: keys for boot menu (0 = first program, enter)</td></tr>
-      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code)</td></tr>
-      <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
-      <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
-      <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (the visitor's own setting is not changed)</td></tr>
-      <tr><td>example</td><td>?model=pentagon&amp;a=trd/game.trd&amp;run=game</td></tr>
-    </table>
+    <p>Start a machine, disks and programs from a link: Tools / REST API link (? there lists every parameter).</p>
     <h4>PC keyboard → ZX</h4>
     <table class="keys">
       <tr><td>Shift / right Shift</td><td>CAPS SHIFT / SYMBOL SHIFT</td></tr>
@@ -1175,7 +1166,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>HDD</td><td>raw images (.hdd, .img …): Options → HDD</td></tr>
       <tr><td>Save</td><td>disks TRD, SCL, FDI, UDI, TD0, ISD, PRO; HDD + .chs; SD as VHD; SNA; SCR; PNG; memory block BIN; Custom ROM (ROM + json)</td></tr>
       <tr><td>ROM</td><td>Custom ROM (Options → System): .rom / .bin / .zip (ZIP with json: machine and pages come back)</td></tr>
-      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts the REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": file only. Tags: CPM HDD PRO SD TRD OS</td></tr>
+      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": file only. Tags: CPM HDD PRO SD TRD OS</td></tr>
       <tr><td>Server ROMs</td><td>rom/&lt;name&gt;.zip (or rom/&lt;name&gt;.rom); parts for ROM sets: rom/roms.json</td></tr>
     </table>
   </div>
@@ -1214,11 +1205,11 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS and FAT keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
       <dt>Disks / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
       <dt>Disks / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
-      <dt>ext / name / size</dt><dd>sort of the panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
+      <dt>ext / name / size</dt><dd>sort of panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
     <h4>Names</h4>
     <p>TR-DOS: 8 characters + type; CP/M and iS-DOS: 8.3; FAT: long names (NAME~1.EXT short name is added).</p>
-    <p>Split files (long file cut into parts with same name): shown as NAME.001, NAME.002…; copy joins them into one file (S3M, MOD, ZIP… by contents, otherwise BIN), except onto TR-DOS. File over 255 sectors copied or put onto TR-DOS is split the same way.</p>
+    <p>Split files (long file cut into parts with same name): shown as NAME.001, NAME.002…; copy joins them into one file (S3M, MOD, ZIP… by contents, otherwise BIN), except onto TR-DOS. File over 255 sectors copied or put onto TR-DOS is split same way.</p>
   </div>
 </div>
 
@@ -1243,7 +1234,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="nedowin" hidden role="dialog" aria-label="NedoOS SD image">
   <div class="dbghead fhead"><span>NedoOS SD image</span><button id="nedoclose" title="Close (Esc)">✕</button></div>
   <div class="nedobody">
-    <div class="nd">A new SD card image: the folder <b>release</b> of NedoOS on a FAT32 VHD, saved as nedoos.zip (automatically, when made).</div>
+    <div class="nd">New SD card image: folder <b>release</b> of NedoOS on FAT32 VHD, saved as nedoos.zip (automatically, when made).</div>
     <div class="nrow"><span>VHD size</span><input type="number" id="nedomb" min="64" max="2047" step="1" value="100"><span>MB · FAT32</span></div>
     <div class="nrow"><button id="nedogit" class="primary" title="">From GitHub</button><button id="nedofile" title="A ZIP with the release folder (or the whole repository: GitHub Code / Download ZIP)">From file…</button><input type="file" id="nedoinput" accept=".zip" hidden></div>
     <progress id="nedoprog" max="1" value="0" hidden></progress>
@@ -1252,11 +1243,48 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   </div>
 </div>
 
+<div id="rahelp" hidden role="dialog" aria-label="REST API help">
+  <div class="dbghead fhead"><span>REST API help</span><button id="rahelpclose" title="Close">✕</button></div>
+  <div class="hbody">
+    <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;a=trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on).</p>
+    <h4>Parameters</h4>
+    <table class="keys">
+      <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
+      <tr><td>model=</td><td>atm710, xbiosxt, xbios136, atm450, evo, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
+      <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz</td></tr>
+      <tr><td>a=</td><td>disk image for A: (path on this site)</td></tr>
+      <tr><td>hdd=</td><td>HDD image for HDD 0: zip with image and its .chs, or .hdd (e.g. hdd/cpm.zip)</td></tr>
+      <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
+      <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
+      <tr><td>autorun=1</td><td>boot disk in A: (or start tape); not on +3 (no TR-DOS)</td></tr>
+      <tr><td>press=</td><td>with autorun: keys for boot menu (0 = first program, enter)</td></tr>
+      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code)</td></tr>
+      <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
+      <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
+      <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
+    </table>
+    <h4>rom=: one machine for everyone</h4>
+    <p>1. Options / System / Custom ROM: Select ROM, machine, slots (e.g. Quick Commander in 128), Start.<br>2. Set clock; Options / Disk: Accurate FDD, HDD interface.<br>3. Save / Custom ROM: ZIP with ROM and its .json.<br>4. Put ZIP on this site or on GitHub, link: <b>?rom=rom/my_machine.zip</b> (or rom=https://raw.githubusercontent.com/…/my_machine.zip). Other parameters (a=, hdd=, run=…) work with it.</p>
+    <h4>.json in ZIP</h4>
+    <table class="keys">
+      <tr><td>machine</td><td>PENT128, PENT1024, KAY, SCORPION, PROFSCORP, PROFI, PLUS3, QUORUM, ATM450, ATM710, EVO</td></tr>
+      <tr><td>pages</td><td>ROM set: 16K page of .rom for each slot (128, sos, dos, sys)</td></tr>
+      <tr><td>reset</td><td>start in: auto, SYS, MENU, BASIC, DOS</td></tr>
+      <tr><td>speed</td><td>clock: 1 = 3.5 MHz … 20 (nearest step is taken)</td></tr>
+      <tr><td>fdd</td><td>accurate (WD1793 timing, no TR-DOS traps) or fast</td></tr>
+      <tr><td>hdd</td><td>HDD interface: NONE, ATM, NEMO, NEMO-A8, NEMO-DIVIDE, SMUC, PROFI, DIVIDE</td></tr>
+      <tr><td>ini</td><td>any unreal.ini keys, by section (written by hand): {"BETA128": {"Traps": 0, "Fast": 1, "IL": 2}, "MISC": {"RAMSize": 512}}</td></tr>
+    </table>
+    <p>speed, fdd, hdd and ini keys win over what visitor has set in Options, while this machine runs. Order: link, then ZIP, then visitor's settings — speed= in link wins over speed of ZIP; HDD image from hdd= whose .chs has Interface= switches that interface on, over hdd of ZIP. Save / Custom ROM writes speed, fdd and hdd as machine runs now.</p>
+  </div>
+</div>
+
 <div id="restwin" hidden role="dialog" aria-label="REST API link">
-  <div class="dbghead fhead"><span>REST API link</span><button id="raclose" title="Close (Esc)">✕</button></div>
+  <div class="dbghead fhead"><span>REST API link</span><button id="rahelpbtn" title="Help">?</button><button id="raclose" title="Close (Esc)">✕</button></div>
   <div class="rabody">
     <div class="ragrid">
       <label class="chk"><input type="checkbox" id="ra_model" checked>model</label><select id="rav_model"></select>
+      <label class="chk"><input type="checkbox" id="ra_rom">rom</label><input id="rav_rom" placeholder="ROM url (CORS enabled)" spellcheck="false" autocomplete="off" title="A Custom ROM ZIP (Save / Custom ROM): the machine, its ROM and settings; instead of model=">
       <label class="chk"><input type="checkbox" id="ra_speed">speed</label><select id="rav_speed"></select>
       <label class="chk"><input type="checkbox" id="ra_a">a</label><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off">
       <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
@@ -1378,14 +1406,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261016135604"></script>
-<script src="js/scancodes.js?v=20261016135604"></script>
-<script src="js/unzip.js?v=20261016135604"></script>
-<script src="js/vkbd.js?v=20261016135604"></script>
-<script src="js/asyncify.js?v=20261016135604"></script>
-<script src="js/gfx.js?v=20261016135604"></script>
-<script src="js/usel.js?v=20261016135604"></script>
-<script src="js/fcmd.js?v=20261016135604"></script>
-<script src="js/app.js?v=20261016135604"></script>
+<script src="js/wasi_fs.js?v=20261017073201"></script>
+<script src="js/scancodes.js?v=20261017073201"></script>
+<script src="js/unzip.js?v=20261017073201"></script>
+<script src="js/vkbd.js?v=20261017073201"></script>
+<script src="js/asyncify.js?v=20261017073201"></script>
+<script src="js/gfx.js?v=20261017073201"></script>
+<script src="js/usel.js?v=20261017073201"></script>
+<script src="js/fcmd.js?v=20261017073201"></script>
+<script src="js/app.js?v=20261017073201"></script>
 </body>
 </html>
