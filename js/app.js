@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261017183926';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017214812';
   const MAIL_PNG = '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';
-  const APP_VER = '0.60.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261017183926'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.60.2'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017214812'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -983,11 +983,12 @@
     if (now - fpsT >= 1000) {
       // started from a link (no click yet): browsers keep the sound off until the first click / key
       // only while the machine is actually making a sound that cannot be heard
-      $('sndhint').hidden = muted || isPaused() || !!(audio && audio.ctx.state === 'running') || now - soundAt > 1500;
-      $('fps').textContent = Math.round(fpsCount * 1000 / (now - fpsT)) + ' fps';
+      const sh = muted || isPaused() || !!(audio && audio.ctx.state === 'running') || now - soundAt > 1500;
+      if ($('sndhint').hidden !== sh) $('sndhint').hidden = sh; // the page is changed only when something did change
+      hudSet('fps', Math.round(fpsCount * 1000 / (now - fpsT)) + ' fps');
       if (E && E.web_gs_auto_fired && E.web_gs_auto_fired()) toast('General Sound on: the program uses it (Options / Sound)');
       fpsCount = 0; fpsT = now;
-      updateUI();
+      if (optOpen() || !$('loadwin').hidden) updateUI(); // drives, HDD, SD rows: only while a window shows them (they are refreshed when it opens)
     }
     tickEnd = performance.now();
   }
@@ -2877,9 +2878,9 @@
     out.push(['Machine', [
       ['Model', m.name], ['Core', k.model], ['RAM', k.ram + ' KB'],
       ['ROM', model === 'CUSTOM' ? MACHINES[customCfg.mach].name + ': ' + m.files.filter((f) => /\.rom$/i.test(f)).map((f) => (crFile(f) || { name: f }).name).join(', ') : m.files.filter((f) => /\.rom$/i.test(f)).join(', ') + (romDisk && M() === 'XBIOSXT' ? ' + ROM disk ' + romDisk.name : '')],
-      ['CPU clock', $('mhz').textContent + ' (' + x + 'x)' + (m.fixed ? ', fixed' : '')],
+      ['CPU clock', hud.mhz + ' (' + x + 'x)' + (m.fixed ? ', fixed' : '')],
       ['Frame', k.frame + ' t-states, ' + k.intfq + ' Hz'],
-      ['State', state + ' · ' + $('fps').textContent],
+      ['State', state + ' · ' + hud.fps],
       ['Emulated time', Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + ' (' + k.frames + ' frames)'],
     ]]);
     out.push(['CPU', null, `<div class="regs">${[['PC', k.pc], ['SP', k.sp], ['AF', k.af], ['BC', k.bc], ['DE', k.de], ['HL', k.hl], ['IX', k.ix], ['IY', k.iy], ['IR', k.ir], ['IM', k.im], ['IFF', k.iff1], ['HALT', k.halted === '1' ? 'yes' : 'no']].map(([a, b]) => `<b>${a}</b><span>${b}</span>`).join('')}</div>`]);
@@ -3270,9 +3271,9 @@
   function updateUI() {
     if (!E) return;
     hddUI(); eff7UI();
-    const xt = E.web_xt_kbd();
+    const xt = E.web_xt_kbd(), xtt = xt ? 'XT-Keyboard: on' : 'XT-Keyboard: off';
     $('xt').classList.toggle('on', !!xt);
-    $('xt').title = xt ? 'XT-Keyboard: on' : 'XT-Keyboard: off';
+    if ($('xt').title !== xtt) $('xt').title = xtt;
     for (let i = 0; i < NDRIVES; i++) {
       const present = E.web_disk_present(i);
       const el = $('drv' + i);
@@ -3966,9 +3967,30 @@
   let speedIdx = SPEEDS.indexOf(2);
   function speedLabel(x) { return x + 'x'; }
   // the clock shown over the screen (the CPU clock setting only: the machine's own turbo bit is not emulated)
-  function mhzLabel() {
-    const t = $('speedmhz').textContent;
-    if ($('mhz').textContent !== t) $('mhz').textContent = t;
+  function mhzLabel() { hudSet('mhz', $('speedmhz').textContent); }
+  // MHz (top centre) and fps (top right) over the screen: drawn on a transparent canvas of its own, at the pixel density of the
+  // display — no page text changes every second (ad blockers in Safari rescan the page on each change: 1/3 s stalls)
+  const hud = { fps: '— fps', mhz: '' };
+  let hudW = 0, hudH = 0, hudDpr = 0;
+  function hudSet(k, v) { if (hud[k] === v) return; hud[k] = v; hudDraw(); }
+  // redrawn whenever its size changes (window resize, zoom, fullscreen, another display): the drawing is not stretched
+  if (window.ResizeObserver) new ResizeObserver(() => hudDraw()).observe($('hudc'));
+  window.addEventListener('resize', () => hudDraw());
+  function hudDraw() {
+    const c = $('hudc'); if (!c) return;
+    const r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    if (!r.width) return;
+    const w = Math.round(r.width * dpr), h = Math.round(Math.min(r.height, 24) * dpr);
+    if (w !== hudW || h !== hudH || dpr !== hudDpr) { c.width = hudW = w; c.height = hudH = h; hudDpr = dpr; c.style.height = (h / dpr) + 'px'; }
+    const g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+    const fs = window.innerWidth <= 520 ? 9 : 11; // as the page text had it (narrow screens: 9px)
+    g.font = fs + 'px ui-monospace, Consolas, Menlo, monospace'; g.textBaseline = 'top';
+    const put = (t, x, align) => {
+      if (!t) return; g.textAlign = align;
+      g.fillStyle = '#000'; g.shadowColor = '#000'; g.shadowBlur = 3; g.fillText(t, x + 1, 5); // the shadow of the old page text
+      g.shadowBlur = 0; g.fillStyle = 'rgba(225,232,240,.75)'; g.fillText(t, x, 4);
+    };
+    put(hud.mhz, r.width / 2, 'center'); put(hud.fps, r.width - 5, 'right');
   }
   function setSpeed(idx, save) {
     if (MODELS[model].fixed) { idx = SPEEDS.indexOf(MODELS[model].speed); save = false; }

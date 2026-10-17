@@ -1374,3 +1374,12 @@ Web Unreal Speccy — version history
   clock itself; the "at most 30 ms a refresh" limit is counted from the
   start of the frames, not from the refresh time Safari passes (it may
   be old: only one frame a refresh ran)
+
+
+        version 0.60.1                  17 oct 2026
+
+* MHz and fps over the screen are drawn on a canvas of their own, and
+  the drive / HDD / SD rows are refreshed once a second only while
+  Options or Load is open: the page text does not change while the
+  machine runs. Ad blockers in Safari (AdBlock, Adblock Plus) rescan a
+  page on each change and stopped it for ~1/3 s every 1-2 s

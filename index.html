@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261017183926">
+<meta name="build" content="20261017214812">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -68,6 +68,7 @@ canvas.smooth { image-rendering: auto; }
 #sndhint[hidden] { display: none; }
 #toast.err { border-color: var(--warn); }
 #viz { position: absolute; left: 7px; top: 6px; pointer-events: none; opacity: 0; }
+#hudc { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; } /* MHz and fps: drawn, not page text (ad blockers rescan a page on every text change) */
 #hud { position: absolute; right: 5px; top: 4px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; pointer-events: none; }
 #fps { font-size: 11px; line-height: 1; color: rgba(225,232,240,.75); font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; }
 #mhz { position: absolute; left: 50%; top: 4px; transform: translateX(-50%); pointer-events: none; font-size: 11px; line-height: 1; color: rgba(225,232,240,.75);
@@ -816,8 +817,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <div id="fx"></div>
     <div id="pausemark">PAUSE</div>
     <div id="toast"></div>
-    <div id="hud"><div id="fps">— fps</div></div>
-    <div id="mhz"></div>
+    <canvas id="hudc" aria-hidden="true"></canvas>
     <div id="sbar"><div id="sbjoy"></div><div id="mbar"><button data-b="1" title="Left button: tap = click, long tap = held until the next tap">LB</button><button id="mpps" title="The program moves its pointer 1 or 2 pixels per step">1pps</button><button data-b="2" title="Right button: tap = click, long tap = held until the next tap">RB</button></div></div>
     <div id="dled" hidden><svg id="dledi" viewBox="0 0 12 12"><use href="#i-floppy"/></svg></div>
     <canvas id="viz" width="56" height="16"></canvas>
@@ -1468,14 +1468,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261017183926"></script>
-<script src="js/scancodes.js?v=20261017183926"></script>
-<script src="js/unzip.js?v=20261017183926"></script>
-<script src="js/vkbd.js?v=20261017183926"></script>
-<script src="js/asyncify.js?v=20261017183926"></script>
-<script src="js/gfx.js?v=20261017183926"></script>
-<script src="js/usel.js?v=20261017183926"></script>
-<script src="js/fcmd.js?v=20261017183926"></script>
-<script src="js/app.js?v=20261017183926"></script>
+<script src="js/wasi_fs.js?v=20261017214812"></script>
+<script src="js/scancodes.js?v=20261017214812"></script>
+<script src="js/unzip.js?v=20261017214812"></script>
+<script src="js/vkbd.js?v=20261017214812"></script>
+<script src="js/asyncify.js?v=20261017214812"></script>
+<script src="js/gfx.js?v=20261017214812"></script>
+<script src="js/usel.js?v=20261017214812"></script>
+<script src="js/fcmd.js?v=20261017214812"></script>
+<script src="js/app.js?v=20261017214812"></script>
 </body>
 </html>
