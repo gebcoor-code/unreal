@@ -1987,7 +1987,7 @@
     // ---- wiring
     P.forEach((p, i) => {
       const sel = p.el.querySelector('.fcsrc');
-      sel.onchange = () => { p.src = p.want = sel.value; api.store('fc.src' + i, p.src); p.cur = 0; p.dir = []; setAct(i); load(i); p.el.querySelector('.fclist').focus(); };
+      sel.onchange = () => { p.src = p.want = sel.value; api.store('fc.src' + i, p.src); p.cur = 0; p.dir = []; setAct(i); load(i); setTimeout(() => p.el.querySelector('.fclist').focus(), 0); }; // after the list box takes the focus back
       const list = p.el.querySelector('.fclist');
       list.tabIndex = 0;
       list.addEventListener('focus', () => setAct(i));

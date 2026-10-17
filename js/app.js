@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261017145703';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261017170100';
   const MAIL_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAKMAAAAeCAYAAABAOK4rAAAHfUlEQVR42u2bfZBWVR3HP6vggoiiEWoOKYqOrkVMqIy0FcOLleguUThjcTDRyOBYTDZ5oGUjgTo2kg6eFMdS4cw2jilokA7m5BRiL7gmFtIwJTWuEiDQriQvCvXH831m7ty5z+7D7rPLKvc788yZ5zz3d8+953zP9/dydiFHjhw5cuTIkSNHjhw5cuTIkSPHexRV+RS8P+FDfAYYD9zsrAkd9fcG9DkGF6kPcCUwCRgDnAEMAlqBLcCzQHTW/C2ndM/iuGOMiNcCm4EngJnAR4DB2pQfAC4H5gGbfYgP+hBPyymSK2OlSVgN3Atcr67ngZ8D64GtwD7gdOB8oB64FvgKMMmH+BlnzZ/fa+/srJmQk7H3EfE44BfA1UALcIOz5umMS1/T5zc+xEbgNuAbwNM+xLHOmk25dh0FMvoQa4GbgE8opvov8CqwGvips2Zb6vrjgesAA4wABgI7pTx3OWueb4csnbL1Ib4EfEwq1gzMBcYBZwKvOWuG69JFIuIfgMnOmu1lqEor8E0f4mbgHuAxH+JIZ83+dp7hRWC+nmEwsB14HFjgrNntQ6wCZgA3ADVAX2AjsMhZ82SJdzxZz/554GJgqH76J/AUsMRZ8+8jSWC6uLE7nHMf4l5gAHCps+aFjHucI28E0D85p30yVORuYFbqHv0UU10KjAauSticpBhsXMrmQ8BUYKoPscFZszjjwTptm8AngQeA/ulY2Id4HvBt4A2gzlmzM/GeN2vDDQN2AI8A3wOagHpnTZWzZpkPcajiyFnAj0s8Q23GMwzVGON9iJcBDwFfTNldDqz2IU511qzMuO+PgK9l9F+sz3Qf4rijoNol57ySCcz3E0RsEvEGAKcClwALtbBJ/ERkehdo0CL0A0YCa4rq5EOckjF+V2yLmAW8DkwGBolE5+q3eVKgGUUiCsuAu4ALgWqNewvwW+DE1P0XAW+KuKUwW2o1Sap4BvAt4JBUcIPUbYm+D9DGbtYaLNEGSWMPcD9wBXCeFv8s4AvAJmAIsOIoeNT25rzrbtqHeBbwHX1d7KxpSFz3tiauOaVs58u9AtzqrEkqx0YfYj2wFpggIq+shG0K+4EJzpp/Zbj/yUCzs2Zton8i8FXZ3ap48lCCLANSLnufD/Fx4EYf4tnpcYSdQK2zZnei704f4iXAl4CLgPnOmkWJ31/wIU5Tdn+OSPrX1NhzM8Z6A1jpQ1wPvAJ83Ic4ylnT3INkzJzzSipjPXCCVGBhmfZXUSicb5fKpWOvw8ACfa2R26yEbRIrSkzKKOA0xW1J3Ki2wVmz1FmzzVmzw1lzHzCnxBgb1Q4v8fsDKSIWsV7t4SwXr1pmUbGHHWG2vB14Tl9H97Ayrqg0EdMx4wi165w1B8q0v0jty+3Y/BF4R+6yBvhHBWyTKBUvfbh4/wySAizPsFkuF358qv+g2hNLjFWqQL6jmKk7a95u55oPlrq3D3G8Ep/LFEtnXTekh8nYLTFqUhlPUbv7COxPTriOUjv4XaAtdX1XbbMWPI1iwbot1T8IOOCseTNjvHek1GkMS7jjUm6rI7fWEaoyiHgH8Ixc/fB2NkO/Hibjju4mY1tqEctBWyL7LVUO6JMgUluFbMvBHrWDU/2tQLUPcXCJ8Yak+qooHB/uB17qwfroGCVVxYRrtN7lBCUMVUoyexv+15lyYpqMxbioVicW5aDonka0YzNabhYF65WwLQctqXCgiBfVXpdhMy1jsm5SCNOUrjN2MyaqfdZZ83VnzZ+cNbuk3kVc0AvJuE/t6SV+H14OS58A7lT8Mk81t46wBrhDA89OB+kqVzQWyeSs+XuFbMtBM/CWMupkQvag6n0LfYgHgUdVWrpa718cv0bJzhyVMRp6eFH7JSoZWcr5OZWHehu2ikPjgF9lrOktHZLRWfO6YpR5QKMP8WwgKFitVp2rDjjTWTNTNlt8iE1SlNulcMuVkV9I4UjtCg3RmIrPOm1bZrZ50If4FHCND3Gis+bX6n/Sh7gCmA4s1SdJ4F0ad1MiWJ9S6qSjG1E8vbjSh9igTbRL8euX21vULoQGcxIbcqCzZm8nbvNLJVuzfYhbtdn3ybvcBowtx00XF/3+hBvboJ25R5PTmBHjzQJ+J2L/QCpyQG6/XtcscNY8WqJ42lnbcrBYZZW7fYinJPpnUDiZ2aJMuYVCEXysYsoWeYrpwEhnzZajoDCrKBThq6TsLVrUV4DvUjieXdMLlXGpQrBqCqd524D/aJ0/DfywrGDSWXMImOlDfJjCMdQYBfStkt/VwM9SNm+p/HC9VO6jwElSuPXAUmfNuhLq1WnbMtXxZR/iMpF+lQ+xzlmzV++5RJ80rukNK+qsOexD/CzgKJwFD1MS9SrwmJ79nt7GRK1pLYUacR2Fc+tW4PfA7RKcuWWVE95v8CH2VXnkU9qx0501GzqwqQHuA5Y5a5rI0SM4Jv7twIc4kMIZ7mR1rVUss05u5ACF8+QxUsY6qdA0Z82qnCY5GStNyCqVaebLdbSHdcBsZ81fcorkZOxOUvYHplD4C5tRUsS+imWeAx5O/mFFjhw5jkH8HzsgzyJO/agJAAAAAElFTkSuQmCC';
-  const APP_VER = '0.57.6'; // About, System Info (history: changes.txt)
-  const BUILD = '20261017145703'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.57.7'; // About, System Info (history: changes.txt)
+  const BUILD = '20261017170100'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2669,6 +2669,9 @@
     svUpdate(true);
     fwinShow('savedlg', true);
   }
+  let svExtCur = ''; // extension of the file to save (trd, scl, sna…): the name field may drop it, the file keeps it
+  const svBase = (v, ext) => { let b = String(v).trim().replace(/\.zip$/i, ''); const e = ext === undefined ? svExtCur : ext; if (e && b.toLowerCase().endsWith('.' + e.toLowerCase())) b = b.slice(0, -(e.length + 1)); return b || 'file'; };
+  const svName = (base, zip) => base + (zip ? '.zip' : svExtCur ? '.' + svExtCur : '');
   function svUpdate(resetName) {
     const t = $('svtype').value, disk = t.startsWith('disk:'), mem = t === 'mem';
     document.querySelectorAll('#savedlg .sv-disk').forEach((e) => { e.hidden = !disk; });
@@ -2720,8 +2723,10 @@
       name = t.slice(5);
       note = 'Written by the emulator into page memory (e.g. debugger Alt+W, quick save).';
     }
-    if (resetName || !$('svname').value) $('svname').value = name + ($('svzip').checked || t === 'rom' ? '.zip' : '');
-    else if (disk) $('svname').value = $('svname').value.replace(/\.zip$/i, '').replace(/\.[^.]*$/, '') + '.' + svExt() + ($('svzip').checked ? '.zip' : '');
+    // the field: aaa.zip when packed (the file inside always gets the extension of the format), else aaa.<ext>
+    const was = svExtCur; svExtCur = t === 'rom' ? '' : (/\.([^.]+)$/.exec(name) || ['', ''])[1];
+    const base = resetName || !$('svname').value ? name.replace(/\.[^.]*$/, '') : svBase($('svname').value, was);
+    $('svname').value = svName(base, $('svzip').checked || t === 'rom');
     $('svnote').textContent = note;
   }
   // the geometry.chs of HDD d: the one it came with (if the geometry is still the same) or made from the settings
@@ -2753,7 +2758,8 @@
   async function doSave() {
     const t = $('svtype').value, zip = $('svzip').checked;
     store('sv.zip', zip ? '1' : '0');
-    let name = $('svname').value.trim().replace(/[\\/:*?"<>|]/g, '_') || 'file.bin';
+    const sbase = svBase($('svname').value.replace(/[\\/:*?"<>|]/g, '_')), full = sbase + (svExtCur ? '.' + svExtCur : ''); // aaa.trd: the file itself
+    let name = zip || t === 'rom' ? sbase + '.zip' : full;
     let data = null;
     if (t === 'rom') { // always a ZIP: the image and custom.json
       const z = romZip(); if (!z) { toast('No ROM to save', true); return; }
@@ -2764,7 +2770,7 @@
     if (t.startsWith('hdd:')) { // image + geometry.chs: one ZIP, or two files
       const d = +t.slice(4), img = hdds[d] && fs.read(hdds[d]);
       if (!img) { toast('Nothing to save', true); return; }
-      const chs = new TextEncoder().encode(hddChs(d)), inner = zip ? name.replace(/\.zip$/i, '') : name;
+      const chs = new TextEncoder().encode(hddChs(d)), inner = full;
       if (zip) { toast('Packing ' + name + '…'); downloadBytes(/\.zip$/i.test(name) ? name : name + '.zip', await UnrealZip.create([{ name: inner, data: img }, { name: 'geometry.chs', data: chs }])); }
       else { downloadBytes(name, img); downloadBytes('geometry.chs', chs); }
       hddDirty[d] = false; hddUI();
@@ -2812,9 +2818,8 @@
       data = sdName && fs.read(sdName); if (data) { data = vhdFixed(data); sdDirty = false; sdUI(); }
     }
     if (!data) { toast('Nothing to save', true); return; }
-    if (zip) { // aaa.trd → aaa.trd.zip
-      const inner = name.replace(/\.zip$/i, ''); name = inner + '.zip';
-      downloadBytes(name, await UnrealZip.create([{ name: inner, data }]));
+    if (zip) { // aaa.zip with aaa.trd inside
+      downloadBytes(name, await UnrealZip.create([{ name: full, data }]));
     } else downloadBytes(name, data);
     toast('Downloaded: ' + name);
     fwinShow('savedlg', false); updateUI();
@@ -2828,7 +2833,7 @@
     $('svgo').onclick = doSave;
     $('dbgdlg').querySelector('[data-close]').onclick = dlgClose;
     $('svzip').checked = load('sv.zip') !== '0';
-    $('svzip').onchange = () => { const n = $('svname').value.replace(/\.zip$/i, ''); $('svname').value = n + ($('svzip').checked ? '.zip' : ''); };
+    $('svzip').onchange = () => { $('svname').value = svName(svBase($('svname').value), $('svzip').checked || $('svtype').value === 'rom'); };
     $('savedlg').addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); doSave(); } });
   }
 

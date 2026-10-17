@@ -1330,3 +1330,12 @@ Web Unreal Speccy — version history
   from, read again at that moment. Ejected or replaced meanwhile (disk,
   HDD, SD card), or the file gone: nothing is written, Save as is
   offered (a panel's disk, the original image stays untouched)
+
+
+        version 0.57.7                  17 oct 2026
+
+! Save, packed into ZIP: the name field is aaa.zip; the file inside
+  always gets the extension of the chosen format (aaa.trd, aaa.scl…),
+  also when the name was edited (was: aa.zip held "aa" without one)
+! File Commander: choosing a source in a panel's list gives that panel
+  the focus again (keys work at once)
