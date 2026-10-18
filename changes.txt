@@ -1449,3 +1449,29 @@ Web Unreal Speccy — version history
   its set: through its 128 menu (128K mode), as model=pentagon / kay
 * Tab is EXTEND MODE (Caps Shift+Symbol Shift), as in Fuse and USP;
   BREAK stays on Shift+Space. A Custom ROM ini may set its own
+
+
+        version 0.65.0                  18 oct 2026
+
++ Autorun on Profi with a Profi CP/M disk (.PRO) in A: (autorun=1,
+  Start TRDOS boot.b): main menu "CP/M" and "from FDD" are chosen
+! ATM mode stayed off after an autorun when another start (Server list,
+  Load window) or a model change came before the first one had ended;
+  it was then kept off for the session
+! run=: the catalogue put back after the start could go into another
+  disk inserted into the same drive in the meantime
+
+
+        version 0.66.0                  18 oct 2026
+
++ Load window, local file: Use boot.b (default; with "press in boot") -
+  disk in A: starts its boot, a disk without boot gets the emulator's
+  boot as before 0.64.0; or Autostart TRDOS - its boot, or its first
+  BASIC program (nothing written to the disk). One of them or none.
+  REST API autorun=1 and Server list as in 0.64.0
+
+
+        version 0.66.1                  18 oct 2026
+
+* Use boot.b: "press in boot" keys go only to the menu of the
+  emulator's boot; a boot of the disk's own gets no keys

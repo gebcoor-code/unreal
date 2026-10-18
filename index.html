@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261018175507">
+<meta name="build" content="20261018191744">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1327,7 +1327,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
-      <tr><td>autorun=1</td><td>boot disk in A: (or start tape); disk without boot: its first BASIC program starts (RUN "name" in TR-DOS, nothing written to disk); not on +3 (no TR-DOS)</td></tr>
+      <tr><td>autorun=1</td><td>boot disk in A: (or start tape); disk without boot: its first BASIC program starts (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; not on +3 (no TR-DOS)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for boot menu (0 = first program, enter); not sent when disk has no boot</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code)</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
@@ -1420,8 +1420,11 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <section><h3>Disk, tape, snapshot</h3>
       <div class="ldrow"><select id="lddrive" class="ldnarrow" title="Drive for disk images"><option value="0">A:</option><option value="1">B:</option><option value="9" title="ROM disk (xBIOS XT): the TR-DOS image is built into the 1 MB BIOS ROM and works as a read-only vTR-DOS drive">ROM disk</option></select><span class="ldname" id="lddname"></span><button class="ldej" id="lddej" title="Eject" hidden>⏏</button><button id="ldfile" title="Disk, tape, snapshot or ZIP (or drop it on the screen)">Choose File…</button></div>
       <div class="ldopts">
-        <label class="lddrv" title="Disk in A: reset to TR-DOS and RUN (boot; disk without boot: its first BASIC program). Tape: reset to the 128 menu and Tape Loader"><input type="checkbox" id="ldauto">Start TRDOS boot.b</label>
+        <label class="lddrv" title="Disk in A: reset to TR-DOS and RUN boot; a disk without boot gets the emulator's boot (boot.b menu). Tape: reset to the 128 menu and Tape Loader"><input type="checkbox" id="ldboot">Use boot.b</label>
         <label class="lddrv" id="ldpressrow" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">press in boot <input id="ldpress" value="0" spellcheck="false" autocomplete="off"></label>
+      </div>
+      <div class="ldopts">
+        <label class="lddrv" title="Disk in A: reset to TR-DOS and RUN its boot; a disk without boot: its first BASIC program (nothing written to the disk). Tape: reset to the 128 menu and Tape Loader"><input type="checkbox" id="ldauto">Autostart TRDOS</label>
       </div></section>
     <section><h3>Local server</h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
@@ -1497,14 +1500,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261018175507"></script>
-<script src="js/scancodes.js?v=20261018175507"></script>
-<script src="js/unzip.js?v=20261018175507"></script>
-<script src="js/vkbd.js?v=20261018175507"></script>
-<script src="js/asyncify.js?v=20261018175507"></script>
-<script src="js/gfx.js?v=20261018175507"></script>
-<script src="js/usel.js?v=20261018175507"></script>
-<script src="js/fcmd.js?v=20261018175507"></script>
-<script src="js/app.js?v=20261018175507"></script>
+<script src="js/wasi_fs.js?v=20261018191744"></script>
+<script src="js/scancodes.js?v=20261018191744"></script>
+<script src="js/unzip.js?v=20261018191744"></script>
+<script src="js/vkbd.js?v=20261018191744"></script>
+<script src="js/asyncify.js?v=20261018191744"></script>
+<script src="js/gfx.js?v=20261018191744"></script>
+<script src="js/usel.js?v=20261018191744"></script>
+<script src="js/fcmd.js?v=20261018191744"></script>
+<script src="js/app.js?v=20261018191744"></script>
 </body>
 </html>

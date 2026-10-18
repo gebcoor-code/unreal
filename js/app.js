@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261018175507';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261018191744';
   const MAIL_PNG = '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';
-  const APP_VER = '0.64.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261018175507'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.66.1'; // About, System Info (history: changes.txt)
+  const BUILD = '20261018191744'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -162,10 +162,10 @@
   // Tab = EXTEND MODE (Caps Shift+Symbol Shift; BREAK is Shift+Space). Only the ZX matrix: with the ATM XT keyboard on, the
   // ATM keyboard controller has its own table. Not for Quorum (own keys). The model's own ini (a Custom ROM json) is put
   // over it, so it may set its own ESC / TAB.
-  const ZX_ESC = { 'ZX.KEYS.default': { ESC: 'CAP 1', TAB: 'SYM CAP' } };
+  const ZX_KEYS_WEB = { 'ZX.KEYS.default': { ESC: 'CAP 1', TAB: 'SYM CAP' } };
   function modelIniObj(m) { // the ini overrides of model m, as they go to the emulator
     const quorum = (MODELS[m].machine || m) === 'QUORUM' || (m === 'CUSTOM' && customCfg.mach === 'QUORUM');
-    const ini = iniMerge(quorum ? {} : JSON.parse(JSON.stringify(ZX_ESC)), JSON.parse(JSON.stringify(MODELS[m].ini)));
+    const ini = iniMerge(quorum ? {} : JSON.parse(JSON.stringify(ZX_KEYS_WEB)), JSON.parse(JSON.stringify(MODELS[m].ini)));
     if ((MODELS[m].machine || m) === 'XBIOSXT' && romDisk && romDisk.model === xbiosOf(m) && fs.exists(ROMDISK_FILE)) ini.ROM.ATM2 = ROMDISK_FILE; // 1 MB: disk + empty + xBIOS
     // no TR-DOS ROM on the server: take TR-DOS 5.03 from the ATM BIOS (page 1)
     for (const set of Object.keys(ini).filter((k) => /^ROM\./.test(k))) for (const r of ['dos', 'sys']) if (ini[set][r] === 'trd504tm.rom' && !fs.exists('trd504tm.rom')) ini[set][r] = 'bios_1_07_13.rom:1';
@@ -1698,11 +1698,12 @@
   function insertFromFs(name, drive, quiet) {
     setName(name);
     // autorun into A:: the emulator's boot (boot6.$b) is not added at first — a disk without its own boot gets RUN "first BASIC"
-    const noBoot = autorunNext && !quiet && drive <= 0 && !!E.web_noboot;
+    if (runRestore && !quiet && (drive === runRestore.d || (drive < 0 && runRestore.d === 0))) runRestore = null; // another disk: the run= catalogue is not put back into it
+    const noBoot = !!autorunNext && !quiet && drive <= 0; // the boot is added (or not) once the catalogue has been seen
     if (noBoot) E.web_noboot(1);
     let ok; try { ok = E.web_load(drive); } finally { if (noBoot) E.web_noboot(0); }
     if (!ok) { toast('Cannot load ' + name, true); return false; }
-    const withBoot = (d) => { setName(name); E.web_load(d); }; // as without autorun: the emulator's boot added (when the disk has none)
+    const withBoot = (d) => E.web_addboot(d); // as a load without autorun: the emulator's boot added (when the disk has none)
     const ext = extOf(name);
     const isDisk = ['trd', 'scl', 'fdi', 'udi', 'td0', 'isd', 'pro', 'hob', 'dsk', 'ipf'].includes(ext) || ext.startsWith('$');
     if (isDisk) {
@@ -1714,10 +1715,13 @@
       drives[d] = { name, ext, url: loadingUrl || (quiet && drives[d] ? drives[d].url : null) }; // url: for the REST API link
       if (!quiet) toast('Drive ' + DRV[d] + ': ' + name);
       if (autorunNext && d === 0 && !quiet) {
-        const plan = noBoot ? diskRunPlan(0) : null;
-        if (noBoot && !(plan && plan.run)) withBoot(0); // its own boot, or nothing to type: as before
-        autorunNext = false; autorun(plan && plan.run ? plan : null); toast('Drive A: ' + name + ' — autorun' + (plan && plan.run ? ' (RUN "' + plan.run + '")' : ''));
-        if (!linkLoading && macro && !(autorunPlan && autorunPlan.run) && $('ldpress').value.trim()) macro.steps.push({ wait: 60 }, ...zxPress($('ldpress').value.trim())); // Load window: keys in the boot menu (the REST API has press=)
+        const useBoot = autorunNext === 'boot', found = noBoot ? diskRunPlan(0) : null;
+        const plan = !useBoot && found && found.run ? found : null; // Autostart TRDOS / autorun=1: RUN "first BASIC"
+        const added = noBoot && !plan && !(found && found.boot); // no boot of its own: the emulator's boot (its menu)
+        if (added) withBoot(0);
+        autorunNext = false; autorun(plan); toast('Drive A: ' + name + ' — autorun' + (plan ? ' (RUN "' + plan.run + '")' : ''));
+        // Use boot.b: keys for the menu of the emulator's boot (not for a boot of the disk's own)
+        if (useBoot && added && found && !linkLoading && macro && $('ldpress').value.trim()) macro.steps.push({ wait: 60 }, ...zxPress($('ldpress').value.trim()));
       } else if (noBoot) withBoot(d);
     } else {
       if (!quiet) toast('Loaded: ' + name);
@@ -1771,7 +1775,9 @@
     try { insertFromFs(name, d); } finally { coreAnswer = null; }
   }
   async function loadFile(file, drive) { await loadBytes(file.name, new Uint8Array(await file.arrayBuffer()), drive); }
-  // autorunNext: set by the Load window just before a load, used by the first disk inserted into A:
+  // autorunNext: set by the Load window just before a load, used by the first disk inserted into A: — true: its boot or its
+  // first BASIC program (REST API autorun=1, Server list, Autostart TRDOS); 'boot': its boot, the emulator's boot added when
+  // the disk has none (Use boot.b)
   let autorunNext = false, zipAuto = false, loadingUrl = null, linkLoading = false; // loadingUrl: where the file being loaded came from
   async function loadBytes(name, buf, drive) {
     if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await hddFromBytes(0, name, buf); return; } await putAndInsert(name, buf, drive); return; }
@@ -1820,7 +1826,9 @@
   const UP = [ZK.CS, ZK.K7], DOWN = [ZK.CS, ZK.K6]; // cursor keys = CAPS SHIFT + 7 / 6
   let macro = null;
   const zxKeys = (k, d) => [].concat(k).forEach((x) => E.web_zxkey(x, d));
-  function runMacro(steps) { if (macro && macro.key) zxKeys(macro.key, 0); macro = { steps: steps.slice(), n: 0, key: null }; }
+  // a macro that has turned ATM mode off for its menus (xtBack) and is replaced before its end: the new one turns it back on
+  function runMacro(steps) { if (macro && macro.key) zxKeys(macro.key, 0); const back = !!(macro && macro.xtBack); macro = { steps: steps.slice(), n: 0, key: null, xtBack: back }; }
+  const xtUser = () => (macro && macro.xtBack ? true : !!E.web_xt_kbd()); // ATM mode as the user has it (a menu macro may hold it off)
   function macroFrame() {
     if (!macro) return;
     if (macro.n > 0) { macro.n--; return; }
@@ -2123,7 +2131,17 @@
     out.push({ key: [ZXM.SS, ZXM.P] }, { key: ZXM.ENT });
     return out;
   }
-  // what autorun starts on the TR-DOS disk in drive d: its boot, or its first BASIC program (null: not a TR-DOS disk / no BASIC)
+  // a Profi CP/M disk (5 × 1024-byte sectors, CP/M directory in its first sector) in drive d
+  function profiCpmDisk(d) {
+    if (!E.web_disk_peek_isd) return false;
+    setName('__plan.isd');
+    let img = null; if (E.web_disk_peek_isd(d)) img = new Uint8Array(fs.read('__plan.isd'));
+    try { fs.remove('__plan.isd'); } catch (e) {}
+    const T = UnrealFC._test;
+    return !!img && T.looksCpm(img.subarray(0, 2048)) && !T.looksIsdos(img);
+  }
+  // what autorun starts on the TR-DOS disk in drive d: { boot } its own boot, { run } its first BASIC program, { none }
+  // neither (no BASIC / a name that cannot be typed); null: not a TR-DOS disk
   function diskRunPlan(d) {
     setName('__plan.trd');
     let img = null;
@@ -2133,7 +2151,7 @@
     const list = UnrealFC._test.trdos(img).list().filter((x) => x.zx.type === 'B');
     if (list.some((x) => x.name.trim() === 'boot')) return { boot: true };
     const first = list[0], name = first && first.name.replace(/ +$/, '');
-    return name && zxRunKeys(name) ? { run: name } : null;
+    return name && zxRunKeys(name) ? { run: name } : { none: true }; // none: a TR-DOS disk with nothing to type
   }
   // REST API run=: a TR-DOS file is started through a small "boot" (RANDOMIZE USR 15619: REM: RUN "name"), then the usual autorun
   const zxNum = (n) => [...String(n)].map((c) => c.charCodeAt(0)).concat([0x0E, 0, 0, n & 255, (n >> 8) & 255, 0]);
@@ -2332,6 +2350,8 @@
       runMacro([{ reset: 2 }, { wait: m128(70) }, { key: ZK.ENTER }, ...after(w(150))]); // its 128 ROM tests memory first: a bit longer
     else if (M() === 'KAY' || cm === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
       runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
+    else if (M() === 'PROFI' && profiCpmDisk(0)) // Profi CP/M disk (.PRO) in A:: main menu "CP/M system" → "from FDD"
+      runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: ZK.ENTER }, { wait: 25 }, { key: ZK.ENTER }]);
     else if (M() === 'PROFI') // main menu: "TR-DOS 128K" is two below CP/M; it runs boot by itself
       runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: DOWN }, { wait: 20 }, { key: DOWN }, { wait: 20 }, { key: ZK.ENTER }, ...after(w(150))]);
     else // other machines (Custom ROM): reset straight into TR-DOS, R = RUN, Enter
@@ -2635,9 +2655,15 @@
   function bindLoad() {
     const saved = load('ldsrv'); if (saved) $('ldsrv').value = saved;
     $('ldfile').onclick = () => { pendingDrive = ldDrive(); fromLoadWin = true; $('file').click(); };
-    $('ldauto').checked = load('ldauto') === '1';
-    $('ldauto').onchange = () => { store('ldauto', $('ldauto').checked ? '1' : '0'); $('ldpressrow').hidden = !$('ldauto').checked; };
-    $('ldpressrow').hidden = !$('ldauto').checked;
+    // local file autostart: Use boot.b (boot, or the emulator's boot added when the disk has none) or Autostart TRDOS (boot,
+    // or the disk's first BASIC program) — one of them or none; Use boot.b by default
+    const ldStart = (v) => { // 'boot' | 'auto' | ''
+      $('ldboot').checked = v === 'boot'; $('ldauto').checked = v === 'auto'; $('ldpressrow').hidden = v !== 'boot'; store('ld.start', v || 'none');
+    };
+    const ls = load('ld.start');
+    ldStart(ls === null ? 'boot' : ls === 'none' ? '' : ls);
+    $('ldboot').onchange = () => ldStart($('ldboot').checked ? 'boot' : '');
+    $('ldauto').onchange = () => ldStart($('ldauto').checked ? 'auto' : '');
     if (load('ldpress') !== null) $('ldpress').value = load('ldpress');
     $('ldpress').addEventListener('input', () => store('ldpress', $('ldpress').value));
     $('ldsrvgo').onclick = () => {
@@ -2730,7 +2756,7 @@
     sel.value = seen.has(was.toLowerCase()) ? was : sel.options.length ? sel.options[0].value : '';
   }
   // Save / Memory block / RAM: which 16K banks to write (the mapped ones at first; kept for the session)
-  let svBankSel = null;
+  let svBankSel = null, svMapped = new Set(), svBankN = 0; // chosen banks; mapped now; banks of this machine
   function svBanks() {
     const n = E.web_gfx_size(1) >> 14, box = $('svbanks');
     const mapped = new Set([0, 1, 2, 3].map((a) => (E.web_gfx_page ? E.web_gfx_page(a) : -1)).filter((p) => p >= 0 && p < n));
@@ -2742,7 +2768,7 @@
     }
     for (const b of box.children) { const p = +b.dataset.p; b.classList.toggle('on', svBankSel.has(p)); b.classList.toggle('map', mapped.has(p)); b.title = 'Bank ' + p + ' (#' + b.textContent + ')' + (mapped.has(p) ? ', mapped now' : ''); }
     $('svbsum').textContent = svBankSel.size + ' × 16K = ' + svBankSel.size * 16 + ' KB';
-    svBanks.mapped = mapped; svBanks.n = n;
+    svMapped = mapped; svBankN = n;
   }
   // the range in one bank: offset 0000-3FFF, length 1 … to the end of the bank (a value over the limit is cut to it)
   function svRange(edited) {
@@ -2963,7 +2989,7 @@
       if (![...e.data].every((c) => ok(t, c))) {
         e.preventDefault();
         const keep = [...e.data].filter((c) => ok(t, c)).join(''); // a paste: its hex part
-        if (keep && e.inputType !== 'insertText') t.setRangeText(keep, t.selectionStart, t.selectionEnd, 'end'), t.dispatchEvent(new Event('input', { bubbles: true }));
+        if (keep && e.inputType !== 'insertText') { t.setRangeText(keep, t.selectionStart, t.selectionEnd, 'end'); t.dispatchEvent(new Event('input', { bubbles: true })); }
       }
     }, true);
     document.addEventListener('input', (e) => { // what beforeinput could not stop (autofill, some mobile keyboards)
@@ -2984,9 +3010,9 @@
     for (const id of ['svboff', 'svblen']) $(id).addEventListener('blur', () => { const f = $(id); f.value = hex4(parseInt(f.value || '0', 16) || 0); if (id === 'svblen' && !(parseInt(f.value, 16) > 0)) f.value = hex4(0x4000 - (parseInt($('svboff').value, 16) || 0)); svRange(); svUpdate(true); });
     const rangeReset = () => { $('svboff').value = '0000'; $('svblen').value = '4000'; $('svblen').dataset.full = '1'; }; // a new bank: the whole of it
     $('svbanks').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; const p = +b.dataset.p; if (svBankSel.has(p)) svBankSel.delete(p); else svBankSel.add(p); rangeReset(); svUpdate(true); };
-    $('svball').onclick = () => { svBankSel = new Set(Array.from({ length: svBanks.n }, (x, i) => i)); svUpdate(true); };
+    $('svball').onclick = () => { svBankSel = new Set(Array.from({ length: svBankN }, (x, i) => i)); svUpdate(true); };
     $('svbnone').onclick = () => { svBankSel.clear(); svUpdate(true); };
-    $('svbmap').onclick = () => { svBankSel = new Set(svBanks.mapped); svUpdate(true); };
+    $('svbmap').onclick = () => { svBankSel = new Set(svMapped); svUpdate(true); };
     $('svgo').onclick = doSave;
     $('dbgdlg').querySelector('[data-close]').onclick = dlgClose;
     $('svzip').checked = load('sv.zip') !== '0';
@@ -3109,11 +3135,11 @@
     vals.forEach((v, i) => { if (v !== si.vals[i]) { si.vals[i] = v; siLive(si.cells[i], v); } });
   }
   // a value on its canvas: the same font and colors, wrapped at spaces to the cell's width
-  function siLive(cell, html, force) {
+  function siLive(cell, html) {
     let cv = cell.firstChild && cell.firstChild.tagName === 'CANVAS' ? cell.firstChild : null;
     if (!cv) { cell.textContent = ''; cv = document.createElement('canvas'); cv.className = 'sicv'; cell.appendChild(cv); }
     const dpr = window.devicePixelRatio || 1, cs = getComputedStyle(cell), W = cell.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    const key = html + '|' + W + '|' + dpr; if (!force && cv.key === key) return; cv.key = key; cv.html = html;
+    const key = html + '|' + W + '|' + dpr; if (cv.key === key) return; cv.key = key; cv.html = html;
     const g = cv.getContext('2d'), font = '12px ui-monospace, Consolas, monospace'; g.font = font;
     const un = (t) => t.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
     const segs = []; html.split(/(<span class="dim">.*?<\/span>)/).forEach((p) => { if (!p) return; const m = /^<span class="dim">(.*)<\/span>$/.exec(p); segs.push([un((m ? m[1] : p).replace(/<[^>]+>/g, '')), !!m]); });
@@ -4020,7 +4046,7 @@
     releaseAll(); releaseMouse();
     if (dbgOn) debugShown(false);
     try { if (E) E.web_save_nv(); } catch (e) {} // keep CMOS changes for the session
-    if (E && MODELS[model].xt) xtPref = !!E.web_xt_kbd(); // ATM mode stays as it was for this session
+    if (E && MODELS[model].xt) xtPref = xtUser(); // ATM mode stays as it was for this session (not as an autorun macro holds it)
     model = m;
     try {
       await start(); toast(MODELS[m].name);
@@ -4362,7 +4388,7 @@
     buildDrives();
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';
-      if (f) { fwinShow('loadwin', false); autorunNext = fromLoadWin && $('ldauto').checked; await loadFile(f, pendingDrive); autorunNext = false; }
+      if (f) { fwinShow('loadwin', false); autorunNext = fromLoadWin && ($('ldboot').checked ? 'boot' : $('ldauto').checked); await loadFile(f, pendingDrive); autorunNext = false; }
       fromLoadWin = false;
       pendingDrive = -1;
       canvas.focus();
