@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261018093524">
+<meta name="build" content="20261018151247">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -740,6 +740,7 @@ select.usel-src { display: none !important; }
 #svbanks button.on { background: var(--accent); border-color: var(--accent); color: #111; }
 .svbankbtn { display: flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 12px; }
 .svbankbtn button { padding: 1px 8px; font-size: 12px; }
+.svrange { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--dim); } .savemodal .svrange .hexfield { width: 64px; } #svbend { margin-left: auto; font-family: ui-monospace, Consolas, monospace; }
 .svbankbtn span { margin-left: auto; color: var(--dim); font-family: ui-monospace, Consolas, monospace; }
 button.primary { background: var(--accent); color: #1a1208; border-color: var(--accent); font-weight: 600; padding: 6px 18px; }
 /* options rows */
@@ -904,8 +905,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label class="chk"><input type="checkbox" id="of_rom" checked disabled> Emulator, ROMs of models</label>
             <label class="chk"><input type="checkbox" id="of_parts" checked> ROM set parts, GS, YRW801</label>
             <label class="chk"><input type="checkbox" id="of_trd" checked> Server List disks</label>
-            <label class="chk"><input type="checkbox" id="of_hdd"> HDD images (TASiS, Chic, CP/M…)</label>
-            <label class="chk"><input type="checkbox" id="of_sd"> SD images (NedoOS ~30 MB)</label>
+            <label class="chk"><input type="checkbox" id="of_hdd"> HDD images</label>
+            <label class="chk"><input type="checkbox" id="of_sd"> SD images</label>
           </div>
           <div class="offbtns"><button id="ofmake" title="Download what is checked into the offline copy of this site: the emulator then starts without internet (also from the iOS home screen)">Make offline</button><button id="ofclear" title="Drop the downloaded files of the offline copy (the emulator itself stays)">Clear files</button></div>
         </div>
@@ -1375,6 +1376,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <select id="svsrc" class="sv-mem"><option value="0">CPU 64K</option><option value="1">RAM</option></select>
         <label class="sv-ram">Banks</label>
         <div class="sv-ram svbankbox"><div id="svbanks"></div><div class="svbankbtn"><button id="svball">All</button><button id="svbnone">None</button><button id="svbmap" title="Banks mapped into the Z80 address space now (outlined)">Mapped</button><span id="svbsum"></span></div></div>
+        <label for="svboff" class="sv-one">Range</label>
+        <div class="sv-one svrange"><input id="svboff" class="hexfield" data-hex="" maxlength="4" value="0000" spellcheck="false" autocomplete="off" title="Offset in the bank: 0000-3FFF"><span>length</span><input id="svblen" class="hexfield" data-hex="" maxlength="4" value="4000" spellcheck="false" autocomplete="off" title="Bytes from the offset: up to the end of the bank"><span id="svbend"></span></div>
         <label for="svstart" class="sv-mem sv-cpu">Start</label>
         <input id="svstart" class="sv-mem sv-cpu hexfield" data-hex="" value="C000" spellcheck="false" autocomplete="off">
         <label for="svlen" class="sv-mem sv-cpu">Length</label>
@@ -1480,14 +1483,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261018093524"></script>
-<script src="js/scancodes.js?v=20261018093524"></script>
-<script src="js/unzip.js?v=20261018093524"></script>
-<script src="js/vkbd.js?v=20261018093524"></script>
-<script src="js/asyncify.js?v=20261018093524"></script>
-<script src="js/gfx.js?v=20261018093524"></script>
-<script src="js/usel.js?v=20261018093524"></script>
-<script src="js/fcmd.js?v=20261018093524"></script>
-<script src="js/app.js?v=20261018093524"></script>
+<script src="js/wasi_fs.js?v=20261018151247"></script>
+<script src="js/scancodes.js?v=20261018151247"></script>
+<script src="js/unzip.js?v=20261018151247"></script>
+<script src="js/vkbd.js?v=20261018151247"></script>
+<script src="js/asyncify.js?v=20261018151247"></script>
+<script src="js/gfx.js?v=20261018151247"></script>
+<script src="js/usel.js?v=20261018151247"></script>
+<script src="js/fcmd.js?v=20261018151247"></script>
+<script src="js/app.js?v=20261018151247"></script>
 </body>
 </html>

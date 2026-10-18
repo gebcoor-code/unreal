@@ -1419,3 +1419,10 @@ Web Unreal Speccy — version history
   drive: A:), hdd0= / hdd1= for HDD 0 / 1 (hdd= is HDD 0). Old a=, b=
   and hdd= links work as before. The link window has the drive choice
   for fdd and hdd
+
+
+        version 0.63.0                  18 oct 2026
+
++ Save / Memory block / RAM with one bank chosen: offset and length
+  inside the bank (cut to its end while typed; the whole bank at first),
+  the file name gets the range (ram_05_2000-2FFF.bin)
