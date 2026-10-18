@@ -1436,3 +1436,16 @@ Web Unreal Speccy — version history
 * Esc goes to the ZX keyboard as EDIT (Caps Shift+1, "back" in most
   programs) when no window has the focus and the mouse is not captured;
   ATM XT keyboard and Quorum as before, a Custom ROM ini may set its own
+
+
+        version 0.64.0                  18 oct 2026
+
++ Autorun of a disk without its own boot (autorun=1, Start TRDOS boot.b,
+  server list): no boot of the emulator is added, the first BASIC
+  program of the disk starts (RUN "name" typed in TR-DOS), the disk
+  stays as it is. A disk with its own boot, or with no BASIC program,
+  starts as before
+* Autorun on a Custom ROM of Pentagon / KAY with 128 ROM and TR-DOS in
+  its set: through its 128 menu (128K mode), as model=pentagon / kay
+* Tab is EXTEND MODE (Caps Shift+Symbol Shift), as in Fuse and USP;
+  BREAK stays on Shift+Space. A Custom ROM ini may set its own

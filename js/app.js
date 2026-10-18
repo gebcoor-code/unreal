@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261018153405';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261018175507';
   const MAIL_PNG = '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';
-  const APP_VER = '0.63.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261018153405'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.64.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261018175507'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -158,10 +158,11 @@
   // ROM disk (xBIOS 1.32XT, appendix 4): IMAGE.TRD (40 pages) + empty 256K + XBIOS.ROM = 1 MB ROM; vTR-DOS mounts it read-only
   const ROMDISK_FILE = 'romdisk.rom', ROMDISK_TRD = 40 * 16384, ROM_TARGET = 9;
   let romDisk = null; // { name } for this session
-  // Esc of the PC → EDIT (Caps Shift+1) of the ZX keyboard: "back / exit" in most programs (QC, TView, iS-DOS…). Only the
-  // ZX matrix: with the ATM XT keyboard on, Esc stays Esc. Not for Quorum (own keys, Esc there is unused in its layout).
-  // The model's own ini (a Custom ROM json) is put over it, so it may set its own ESC.
-  const ZX_ESC = { 'ZX.KEYS.default': { ESC: 'CAP 1' } };
+  // PC keys → ZX keyboard as in Fuse / USP: Esc = EDIT (Caps Shift+1, "back / exit" in most programs: QC, TView, iS-DOS…),
+  // Tab = EXTEND MODE (Caps Shift+Symbol Shift; BREAK is Shift+Space). Only the ZX matrix: with the ATM XT keyboard on, the
+  // ATM keyboard controller has its own table. Not for Quorum (own keys). The model's own ini (a Custom ROM json) is put
+  // over it, so it may set its own ESC / TAB.
+  const ZX_ESC = { 'ZX.KEYS.default': { ESC: 'CAP 1', TAB: 'SYM CAP' } };
   function modelIniObj(m) { // the ini overrides of model m, as they go to the emulator
     const quorum = (MODELS[m].machine || m) === 'QUORUM' || (m === 'CUSTOM' && customCfg.mach === 'QUORUM');
     const ini = iniMerge(quorum ? {} : JSON.parse(JSON.stringify(ZX_ESC)), JSON.parse(JSON.stringify(MODELS[m].ini)));
@@ -1693,9 +1694,15 @@
   // ------------------------------------------------------------------ disks
   const DRV = 'ABCD';
   function extOf(name) { const m = /\.([^.]+)$/.exec(name); return m ? m[1].toLowerCase() : ''; }
+  let autorunPlan = null; // the last autorun: { run: name } when it typed RUN "name" (no boot menu: press= keys are not sent)
   function insertFromFs(name, drive, quiet) {
     setName(name);
-    if (!E.web_load(drive)) { toast('Cannot load ' + name, true); return false; }
+    // autorun into A:: the emulator's boot (boot6.$b) is not added at first — a disk without its own boot gets RUN "first BASIC"
+    const noBoot = autorunNext && !quiet && drive <= 0 && !!E.web_noboot;
+    if (noBoot) E.web_noboot(1);
+    let ok; try { ok = E.web_load(drive); } finally { if (noBoot) E.web_noboot(0); }
+    if (!ok) { toast('Cannot load ' + name, true); return false; }
+    const withBoot = (d) => { setName(name); E.web_load(d); }; // as without autorun: the emulator's boot added (when the disk has none)
     const ext = extOf(name);
     const isDisk = ['trd', 'scl', 'fdi', 'udi', 'td0', 'isd', 'pro', 'hob', 'dsk', 'ipf'].includes(ext) || ext.startsWith('$');
     if (isDisk) {
@@ -1707,9 +1714,11 @@
       drives[d] = { name, ext, url: loadingUrl || (quiet && drives[d] ? drives[d].url : null) }; // url: for the REST API link
       if (!quiet) toast('Drive ' + DRV[d] + ': ' + name);
       if (autorunNext && d === 0 && !quiet) {
-        autorunNext = false; autorun(); toast('Drive A: ' + name + ' — autorun');
-        if (!linkLoading && macro && $('ldpress').value.trim()) macro.steps.push({ wait: 60 }, ...zxPress($('ldpress').value.trim())); // Load window: keys in the boot menu (the REST API has press=)
-      }
+        const plan = noBoot ? diskRunPlan(0) : null;
+        if (noBoot && !(plan && plan.run)) withBoot(0); // its own boot, or nothing to type: as before
+        autorunNext = false; autorun(plan && plan.run ? plan : null); toast('Drive A: ' + name + ' — autorun' + (plan && plan.run ? ' (RUN "' + plan.run + '")' : ''));
+        if (!linkLoading && macro && !(autorunPlan && autorunPlan.run) && $('ldpress').value.trim()) macro.steps.push({ wait: 60 }, ...zxPress($('ldpress').value.trim())); // Load window: keys in the boot menu (the REST API has press=)
+      } else if (noBoot) withBoot(d);
     } else {
       if (!quiet) toast('Loaded: ' + name);
       if (autorunNext && !quiet && ['tap', 'tzx', 'csw'].includes(ext)) { autorunNext = false; autorunTape(); toast('Tape: ' + name + ' — autorun'); }
@@ -2097,6 +2106,35 @@
     }
     return out;
   }
+  // autorun of a disk without its own boot: RUN "name" typed in TR-DOS (L mode: a-z plain, A-Z with CAPS SHIFT, symbols with
+  // SYMBOL SHIFT); null when the name has a character that cannot be typed this way (then the boot of the emulator is used)
+  const ZX_SYM = { '!': '1', '@': '2', '#': '3', '$': '4', '%': '5', '&': '6', "'": '7', '(': '8', ')': '9', '_': '0', '<': 'R', '>': 'T',
+    ';': 'O', '=': 'L', '+': 'K', '-': 'J', '^': 'H', ':': 'Z', '?': 'C', '/': 'V', '*': 'B', ',': 'N', '.': 'M' };
+  function zxRunKeys(name) {
+    const out = [{ key: ZXM.R }, { key: [ZXM.SS, ZXM.P] }]; // RUN (keyword mode), "
+    for (const c of name) {
+      const u = c.toUpperCase();
+      if (/^[a-z0-9]$/.test(c)) out.push({ key: ZXM[u] });
+      else if (/^[A-Z]$/.test(c)) out.push({ key: [ZXM.CS, ZXM[c]] });
+      else if (c === ' ') out.push({ key: ZXM.SPC });
+      else if (ZX_SYM[c]) out.push({ key: [ZXM.SS, ZXM[ZX_SYM[c]]] });
+      else return null;
+    }
+    out.push({ key: [ZXM.SS, ZXM.P] }, { key: ZXM.ENT });
+    return out;
+  }
+  // what autorun starts on the TR-DOS disk in drive d: its boot, or its first BASIC program (null: not a TR-DOS disk / no BASIC)
+  function diskRunPlan(d) {
+    setName('__plan.trd');
+    let img = null;
+    if (E.web_disk_peek_trd(d)) img = new Uint8Array(fs.read('__plan.trd'));
+    try { fs.remove('__plan.trd'); } catch (e) {}
+    if (!img || img[0x8E7] !== 0x10) return null;
+    const list = UnrealFC._test.trdos(img).list().filter((x) => x.zx.type === 'B');
+    if (list.some((x) => x.name.trim() === 'boot')) return { boot: true };
+    const first = list[0], name = first && first.name.replace(/ +$/, '');
+    return name && zxRunKeys(name) ? { run: name } : null;
+  }
   // REST API run=: a TR-DOS file is started through a small "boot" (RANDOMIZE USR 15619: REM: RUN "name"), then the usual autorun
   const zxNum = (n) => [...String(n)].map((c) => c.charCodeAt(0)).concat([0x0E, 0, 0, n & 255, (n >> 8) & 255, 0]);
   function zxLine(no, body) { const b = body.concat([0x0D]); return [no >> 8, no & 255, b.length & 255, b.length >> 8].concat(b); }
@@ -2257,7 +2295,11 @@
     else // Pentagon: the 128 menu comes up with Tape Loader selected
       runMacro([{ reset: 0 }, { wait: w(80) }, { key: ZK.ENTER }]);
   }
-  function autorun() {
+  // plan { run: name }: the disk has no boot — RUN "name" instead of RUN (boot); menus that start boot by themselves
+  // (xBIOS, Scorpion, Profi, Quorum) stop in TR-DOS with "No file", then RUN "name" is typed; the EVO boot menu runs the
+  // first BASIC file by itself
+  function autorun(plan) {
+    autorunPlan = plan || null;
     // the EVO service ROM needs CPU time: waits are longer at lower clock (tuned for 2x, doubled at 1x)
     const k = Math.max(1, 2 / SPEEDS[speedIdx]);
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx])); // ROM boot waits, tuned at 1x (shorter at higher clock)
@@ -2265,28 +2307,35 @@
     const xtWas = !!(E.web_xt_kbd && E.web_xt_kbd());
     // the 128 menu takes keys after it has run a while: 1 s at the usual clock (2.5x), longer at a lower one
     const m128 = (f) => Math.max(f, Math.ceil(f * 2.5 / SPEEDS[speedIdx]));
+    const run = plan && plan.run ? zxRunKeys(plan.run) : null;
+    const R_ENTER = run || [{ key: ZK.R }, { key: ZK.ENTER }]; // RUN (boot) or RUN "name"
+    const after = (wt) => (run ? [{ wait: wt }, ...run] : []); // after a menu that boots by itself
+    // Custom ROM on Pentagon / KAY with a 128 ROM and TR-DOS in its set: through its 128 menu as the model does (128K mode);
+    // other Custom ROMs: reset straight into TR-DOS
+    const cm = model === 'CUSTOM' && MACHINES[customCfg.mach] && MACHINES[customCfg.mach].set && customCfg.slots['128'] && customCfg.slots.dos
+      ? ({ PENT128: 'PENTAGON', PENT1024: 'PENTAGON', KAY: 'KAY' })[customCfg.mach] : null;
     if (M() === 'XBIOSXT') // setup utility: Boot → "TR-dos boot" (TR-DOS 5.04R runs boot from A:)
-      runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.SPACE }, { wait: w(30) }, ...rep(5, { key: UP }), { key: DOWN }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.SPACE }, { wait: w(30) }, ...rep(5, { key: UP }), { key: DOWN }, { key: ZK.ENTER }, ...after(w(150))]);
     else if (M() === 'EVO') // ZX-Evolution: EVO Reset Service, Z = TR-DOS boot, Enter = run the first program
-      runMacro([{ reset: 3 }, { wait: Math.ceil(120 * k) }, { key: ZK.Z }, { wait: Math.ceil(150 * k) }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 3 }, { wait: Math.ceil(120 * k) }, { key: ZK.Z }, { wait: Math.ceil(150 * k) }, { key: ZK.ENTER }]); // its boot menu starts the first BASIC file by itself (no boot: the program)
     else if (M() === 'ATM710' || M() === 'ATM450') // ATM BIOS menu → SPECTRUM 128 → 128 menu: ↑ = TR-DOS (128K) → RUN
       runMacro([{ reset: 0 }, { wait: w(120) }, { key: DOWN }, { key: DOWN }, { key: ZK.ENTER }, { wait: m128(50) }, // the 128 menu counts frames (interrupts) before it takes keys
-        { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+        { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'QUORUM') // ROM-MENU: 3 = Boot DOS
-      runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.K3 }]);
+      runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.K3 }, ...after(w(150))]);
     else if (M() === 'PLUS3') toast('Spectrum +3: no TR-DOS (Beta Disk) — the disk is mounted, start it from +3 BASIC', true);
     // Pentagon, Scorpion, KAY, Profi: through the reset menu into TR-DOS in 128K mode (128 BASIC set up, #7FFD paging works);
     // reset straight into TR-DOS gives 48K mode: programs then see "ZX 48K" (Quick Commander: no memory pages)
-    else if (M() === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS
-      runMacro([{ reset: 0 }, { wait: m128(50) }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+    else if (M() === 'PENTAGON' || cm === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS (a Custom ROM may reset elsewhere: 128 ROM)
+      runMacro([{ reset: cm ? 2 : 0 }, { wait: m128(50) }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'SCORPION') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
-      runMacro([{ reset: 2 }, { wait: m128(70) }, { key: ZK.ENTER }]); // its 128 ROM tests memory first: a bit longer
-    else if (M() === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
-      runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, { key: ZK.R }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 2 }, { wait: m128(70) }, { key: ZK.ENTER }, ...after(w(150))]); // its 128 ROM tests memory first: a bit longer
+    else if (M() === 'KAY' || cm === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
+      runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'PROFI') // main menu: "TR-DOS 128K" is two below CP/M; it runs boot by itself
-      runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: DOWN }, { wait: 20 }, { key: DOWN }, { wait: 20 }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 0 }, { wait: Math.max(120, w(300)) }, { key: DOWN }, { wait: 20 }, { key: DOWN }, { wait: 20 }, { key: ZK.ENTER }, ...after(w(150))]);
     else // other machines (Custom ROM): reset straight into TR-DOS, R = RUN, Enter
-      runMacro([{ reset: 1 }, { wait: w(160) }, { key: ZK.R }, { key: ZK.ENTER }]);
+      runMacro([{ reset: 1 }, { wait: w(160) }, ...R_ENTER]);
     if (macro && xtWas) { macro.steps.unshift({ xtmode: 0 }); macro.xtBack = true; } // keys added later (press=) still go as ZX keys
   }
 
@@ -4466,7 +4515,7 @@
       autorunNext = false;
     }
     if (LINK.run) { if (runInject(0, LINK.run)) { autorun(); toast('Run: ' + LINK.run); } }
-    else if (auto && LINK.press && macro) macro.steps.push({ wait: 60 }, ...zxPress(LINK.press)); // a key in the boot menu (usually 0 = the first program)
+    else if (auto && LINK.press && macro && !(autorunPlan && autorunPlan.run)) macro.steps.push({ wait: 60 }, ...zxPress(LINK.press)); // a key in the boot menu (usually 0 = the first program)
     else if (LINK.cpm) cpmRun(LINK.cpm);
   }
 
