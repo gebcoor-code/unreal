@@ -1485,3 +1485,9 @@ Web Unreal Speccy — version history
   and "run TR-DOS file" (no name: its boot or its first BASIC program)
 * press= keys go only to the menu of the emulator's boot, also with
   autorun=1 on a disk with no BASIC program to start
+
+
+        version 0.67.1                  18 oct 2026
+
+* REST API link window, run TR-DOS file: the boot the emulator added on
+  load is not in the list (a link brings the disk without it)
