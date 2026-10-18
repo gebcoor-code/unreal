@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261018072003';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261018093524';
   const MAIL_PNG = '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';
-  const APP_VER = '0.61.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261018072003'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.62.2'; // About, System Info (history: changes.txt)
+  const BUILD = '20261018093524'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2331,8 +2331,14 @@
   const lowDir = (u) => /^[a-z][a-z0-9+.-]*:|^\/\//i.test(u) ? u : u.replace(/^(.*\/)/, (d) => d.toLowerCase());
   // trd.json entries may carry "run": a REST API link (?model=atm710&a=trd/x.zip&cpm=b:x&xt=1); the file it mounts is the
   // entry's file, so "url" is not needed; "tag": labels drawn after the name (CPM HDD PRO SD TRD OS, several with spaces)
-  const MOUNT_KEYS = ['a', 'hdd', 'sd', 'b', 'tape', 'snap'];
-  function linkParse(q) { const o = {}; for (const [k, v] of new URLSearchParams(String(q).replace(/^[^?]*\?/, ''))) o[k.toLowerCase()] = v; return o; }
+  const MOUNT_KEYS = ['a', 'hdd', 'hdd1', 'sd', 'b', 'tape', 'snap'];
+  // one parameter into the link's keys: fdd=a:path / b:path (no drive: A:) → a / b; hdd0= → hdd (HDD 0), hdd1= → hdd1
+  function linkPut(o, k, v) {
+    k = k.toLowerCase();
+    if (k === 'fdd') { const m = /^([ab]):(?!\/\/)\/?(.*)$/i.exec(v); if (m) o[m[1].toLowerCase()] = m[2]; else o.a = v; return; }
+    o[k === 'hdd0' ? 'hdd' : k] = v;
+  }
+  function linkParse(q) { const o = {}; for (const [k, v] of new URLSearchParams(String(q).replace(/^[^?]*\?/, ''))) linkPut(o, k, v); return o; }
   const TAGS = ['CPM', 'HDD', 'PRO', 'SD', 'TRD', 'OS'];
   const tagList = (t) => String(t || '').split(/[\s,;]+/).filter(Boolean).map((x) => (/^cp\/?m$/i.test(x) ? 'CPM' : x.toUpperCase()).slice(0, 6));
   async function fetchList(json) {
@@ -2487,11 +2493,12 @@
       for (const k of Object.keys(p)) if (!MOUNT_KEYS.includes(k)) delete p[k];
       if (os && !p.hdd && !p.sd) { if (os.sd) p.sd = os.sd; else if (os.hdd) p.hdd = os.hdd; }
       // HDD / SD card as in Load / Options: no interface switching, no reset
-      for (const [k, put] of [['hdd', async (n, b, u) => { cpmDirNoReset = true; try { await hddFromBytes(0, n, b); } finally { cpmDirNoReset = false; } hddSrc[0] = u; hddUI(); }], ['sd', async (n, b, u) => { await sdFromBytes(n, b); sdSrc = u; sdUI(); }]]) {
+      const hddPut = (d) => async (n, b, u) => { cpmDirNoReset = true; try { await hddFromBytes(d, n, b); } finally { cpmDirNoReset = false; } hddSrc[d] = u; hddUI(); };
+      for (const [k, put] of [['hdd', hddPut(0)], ['hdd1', hddPut(1)], ['sd', async (n, b, u) => { await sdFromBytes(n, b); sdSrc = u; sdUI(); }]]) {
         if (!p[k]) continue;
         const url = new URL(lowDir(p[k]), location.href).href, name = urlName(url); delete p[k];
         ldMsg('Loading ' + name + '…');
-        try { await put(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), url); ldMsg(''); toast((k === 'sd' ? 'SD card: ' : 'HDD 0: ') + name); }
+        try { await put(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), url); ldMsg(''); toast((k === 'sd' ? 'SD card: ' : k === 'hdd1' ? 'HDD 1: ' : 'HDD 0: ') + name); }
         catch (err) { ldMsg(name + ': ' + err.message, true); return false; }
       }
       if (!Object.keys(p).length) { srvShow(); return true; }
@@ -3282,8 +3289,8 @@
     else if (on('model')) q.push('model=' + $('rav_model').value);
     $('rav_model').disabled = $('ra_model').disabled = !!rom;
     if (on('speed')) q.push('speed=' + $('rav_speed').value);
-    if (on('a') && $('rav_a').value.trim()) q.push('a=' + linkEnc($('rav_a').value.trim()));
-    if (on('hdd') && $('rav_hdd').value.trim()) q.push('hdd=' + linkEnc($('rav_hdd').value.trim()));
+    if (on('a') && $('rav_a').value.trim()) q.push('fdd=' + $('rav_fdrv').value + ':' + linkEnc($('rav_a').value.trim()));
+    if (on('hdd') && $('rav_hdd').value.trim()) q.push('hdd' + $('rav_hdrv').value + '=' + linkEnc($('rav_hdd').value.trim()));
     if (on('sd') && $('rav_sd').value.trim()) q.push('sd=' + linkEnc($('rav_sd').value.trim()));
     const st = $('rav_start').value;
     $('ral_run').hidden = $('rar_run').hidden = st !== 'run'; $('ral_cpm').hidden = $('rav_cpm').hidden = st !== 'cpm';
@@ -3298,6 +3305,12 @@
     $('raout').value = location.href.replace(/[?#].*$/, '') + (q.length ? '?' + q.join('&') : '');
     let note = '';
     if (st === 'cpm' && !rom && !CPM_MODELS.includes($('rav_model').value.toUpperCase())) note = 'cpm= needs model atm710 / evo';
+    // ATM CP/M sees only drive A: of the emulator (its B:) and only HDD 0 (its C:)
+    const it = srvList.find((x) => relUrl(x.url) === $('rav_a').value.trim()), cpm = st === 'cpm' || !!(it && it.cpm);
+    const warn = [];
+    if (cpm && on('a') && $('rav_fdrv').value === 'b') warn.push("fdd b: doesn't work with ATM CP/M, use a:");
+    if (cpm && on('hdd') && $('rav_hdrv').value === '1') warn.push("hdd1 doesn't work with ATM CP/M, use hdd0");
+    if (warn.length) note = (note ? note + '; ' : '') + warn.join('; ');
     if (on('rom') && !rom) note = 'rom=: put the path or URL of a Custom ROM ZIP';
     $('ranote').textContent = note;
   }
@@ -3314,7 +3327,7 @@
     const it = srvList.find((x) => relUrl(x.url) === v);
     if (!it || !it.cpm) return;
     $('rav_model').value = 'atm710'; $('ra_model').checked = true; $('ra_xt').checked = true; $('rav_start').value = 'cpm';
-    if (!$('rav_cpm').value.trim() && !d) $('rav_cpm').value = 'b:'; // drive A: of the emulator is B: in CP/M
+    if (!$('rav_cpm').value.trim() && !d) $('rav_cpm').value = 'b:'; // drive A: of the emulator is B: in CP/M (its B: is not seen)
   }
   function raFill() {
     raFiles();
@@ -3325,10 +3338,13 @@
     const sp = $('rav_speed');
     if (!sp.options.length) SPEEDS.forEach((x) => { const o = document.createElement('option'); o.value = String(x); o.textContent = x + 'x (' + (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz)'; sp.appendChild(o); });
     sp.value = String(SPEEDS[speedIdx]); $('ra_speed').checked = SPEEDS[speedIdx] !== MODELS[model].speed;
-    const u = drives[0] && drives[0].url && E.web_disk_present(0) ? relUrl(drives[0].url) : '';
-    $('rav_a').value = u; $('ra_a').checked = !!u;
-    const h = hdds[0] && hddSrc[0] && !OS_MODELS[model] ? relUrl(hddSrc[0]) : '';
-    $('rav_hdd').value = h; $('ra_hdd').checked = !!h && !/(^|\/)cpm\.(zip|hdd)$/i.test(h); // the default cpm.zip needs no hdd=
+    const durl = (i) => (drives[i] && drives[i].url && E.web_disk_present(i) ? relUrl(drives[i].url) : '');
+    const fd = durl(0) || !durl(1) ? 0 : 1, u = durl(fd); // the disk in A: (or in B: when A: has none from the site)
+    $('rav_fdrv').value = fd ? 'b' : 'a'; $('rav_a').value = u; $('ra_a').checked = !!u;
+    const hsrc = (d) => (hdds[d] && hddSrc[d] && !OS_MODELS[model] ? relUrl(hddSrc[d]) : '');
+    const dflt = (u) => /(^|\/)cpm\.(zip|hdd)$/i.test(u); // the default cpm.zip in HDD 0 needs no hdd0=
+    const hd = (hsrc(0) && !dflt(hsrc(0))) || !hsrc(1) ? 0 : 1, h = hsrc(hd);
+    $('rav_hdrv').value = String(hd); $('rav_hdd').value = h; $('ra_hdd').checked = !!h && !(hd === 0 && dflt(h));
     const sv = sdName && sdSrc && !(OS_MODELS[model] && OS_MODELS[model].sd) ? relUrl(sdSrc) : '';
     $('rav_sd').value = sv; $('ra_sd').checked = !!sv;
     // run=: BASIC and code files of the TR-DOS disk in A:
@@ -3357,7 +3373,7 @@
     });
     $('rabtn').onclick = () => { toolsMenu(false); showRest($('restwin').hidden); };
     $('raclose').onclick = () => showRest(false);
-    $('rav_a').addEventListener('change', () => raPicked(0)); $('rav_hdd').addEventListener('change', () => { $('ra_hdd').checked = !!$('rav_hdd').value.trim(); });
+    $('rav_a').addEventListener('change', () => raPicked($('rav_fdrv').value === 'b' ? 1 : 0)); $('rav_hdd').addEventListener('change', () => { $('ra_hdd').checked = !!$('rav_hdd').value.trim(); });
     $('rav_sd').addEventListener('change', () => { $('ra_sd').checked = !!$('rav_sd').value.trim(); });
     $('rav_kbd').addEventListener('change', () => { $('ra_kbd').checked = true; });
     $('restwin').addEventListener('input', raBuild); $('restwin').addEventListener('change', raBuild);
@@ -4357,7 +4373,7 @@
   };
   function linkParams() {
     const out = {};
-    const add = (q) => { for (const [k, v] of new URLSearchParams(q)) out[k.toLowerCase()] = v; };
+    const add = (q) => { for (const [k, v] of new URLSearchParams(q)) linkPut(out, k, v); };
     add(location.search);
     if (location.hash.length > 1 && location.hash.includes('=')) add(location.hash.slice(1));
     return out;
@@ -4396,12 +4412,13 @@
     if (LINK.swapmouse !== undefined && yes(LINK.swapmouse)) { mswapLink = true; applyMouseSwap(); } // not stored
     if (LINK.xt !== undefined && MODELS[model].xt && !!E.web_xt_kbd() !== yes(LINK.xt)) toggleXT();
     const auto = (LINK.autorun !== undefined && yes(LINK.autorun)) && !LINK.run && !LINK.cpm;
-    if (LINK.hdd) { // hdd=: an HDD image (zip with .chs, or .hdd) into HDD 0
-      const url = new URL(lowDir(LINK.hdd), location.href).href, name = urlName(url);
+    for (const [key, d] of [['hdd', 0], ['hdd1', 1]]) { // hdd0= (hdd=) / hdd1=: an HDD image (zip with .chs, or .hdd) into HDD 0 / 1
+      if (!LINK[key]) continue;
+      const url = new URL(lowDir(LINK[key]), location.href).href, name = urlName(url);
       try {
-        await hddFromBytes(0, name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true); hddSrc[0] = url;
-        if (!E.web_hdd_scheme(-1)) { E.web_hdd_scheme(+(HDD_IF_DEF[M()] || 1)); hddMount(0); }
-        hddUI(); toast('HDD 0: ' + hdds[0]);
+        await hddFromBytes(d, name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true); hddSrc[d] = url;
+        if (!E.web_hdd_scheme(-1)) { E.web_hdd_scheme(+(HDD_IF_DEF[M()] || 1)); hddMount(d); }
+        hddUI(); toast('HDD ' + d + ': ' + hdds[d]);
       } catch (err) { toast('Link: ' + name + ': ' + err.message, true); }
     }
     if (LINK.sd) { // sd=: an SD card image (.img / .vhd or a zip with it) on the Z-Controller

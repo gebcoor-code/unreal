@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261018072003">
+<meta name="build" content="20261018093524">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -544,10 +544,10 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 .ragrid select, .ragrid input:not([type]) { height: 26px; font-size: 12px; min-width: 0; }
 .ragrid input:not([type]) { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0 8px; font-family: ui-monospace, Consolas, monospace; }
 .ragrid [hidden] { display: none !important; }
-.rarow { display: flex; gap: 6px; min-width: 0; } .rarow > * { flex: 1; min-width: 0; }
+.rarow { display: flex; gap: 6px; min-width: 0; } .rarow > * { flex: 1; min-width: 0; } .rarow > .radrv { flex: 0 0 56px; }
 .ranote { font-size: 11px; color: var(--dim); }
 #raout { width: 100%; resize: vertical; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 12px/1.4 ui-monospace, Consolas, monospace; word-break: break-all; }
-.rabtns { display: flex; gap: 6px; align-items: center; } .rabtns .ranote { flex: 1; }
+.rabtns { display: flex; gap: 6px; align-items: center; } .rabtns .ranote { flex: 1; } #ranote { color: var(--accent); }
 #fcwin { position: fixed; left: 0; top: 0; z-index: 9; display: flex; flex-direction: column; width: min(620px, calc(100vw - 8px)); height: min(440px, 50vh);
   min-width: 360px; min-height: min(240px, 50vh); max-width: calc(100vw - 4px); max-height: calc(100vh - 8px); overflow: hidden;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
@@ -1302,14 +1302,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="rahelp" hidden role="dialog" aria-label="REST API help">
   <div class="dbghead fhead"><span>REST API help</span><button id="rahelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;a=trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on).</p>
+    <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;fdd=a:trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on).</p>
     <h4>Parameters</h4>
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
       <tr><td>model=</td><td>atm710, xbiosxt, xbios136, atm450, evo, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz</td></tr>
-      <tr><td>a=</td><td>disk image for A: (path on this site)</td></tr>
-      <tr><td>hdd=</td><td>HDD image for HDD 0: zip with image and its .chs, or .hdd (e.g. hdd/cpm.zip)</td></tr>
+      <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Old a= and b= work too. ATM CP/M sees only A: (its B:)</td></tr>
+      <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M sees only HDD 0 (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
       <tr><td>autorun=1</td><td>boot disk in A: (or start tape); not on +3 (no TR-DOS)</td></tr>
@@ -1321,7 +1321,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
-    <p>1. Options / System / Custom ROM: Select ROM, machine, slots (e.g. Quick Commander in 128), Start.<br>2. Set clock; Options / Disk: Accurate FDD, HDD interface.<br>3. Save / Custom ROM: ZIP with ROM and its .json.<br>4. Put ZIP on this site or on GitHub, link: <b>?rom=rom/my_machine.zip</b> (or rom=https://raw.githubusercontent.com/…/my_machine.zip). Other parameters (a=, hdd=, run=…) work with it.</p>
+    <p>1. Options / System / Custom ROM: Select ROM, machine, slots (e.g. Quick Commander in 128), Start.<br>2. Set clock; Options / Disk: Accurate FDD, HDD interface.<br>3. Save / Custom ROM: ZIP with ROM and its .json.<br>4. Put ZIP on this site or on GitHub, link: <b>?rom=rom/my_machine.zip</b> (or rom=https://raw.githubusercontent.com/…/my_machine.zip). Other parameters (fdd=, hdd0=, run=…) work with it.</p>
     <h4>.json in ZIP</h4>
     <table class="keys">
       <tr><td>machine</td><td>PENT128, PENT1024, KAY, SCORPION, PROFSCORP, PROFI, PLUS3, QUORUM, ATM450, ATM710, EVO</td></tr>
@@ -1343,8 +1343,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <label class="chk"><input type="checkbox" id="ra_model" checked>model</label><select id="rav_model"></select>
       <label class="chk"><input type="checkbox" id="ra_rom">rom</label><input id="rav_rom" placeholder="ROM url (CORS enabled)" spellcheck="false" autocomplete="off" title="A Custom ROM ZIP (Save / Custom ROM): the machine, its ROM and settings; instead of model=">
       <label class="chk"><input type="checkbox" id="ra_speed">speed</label><select id="rav_speed"></select>
-      <label class="chk"><input type="checkbox" id="ra_a">a</label><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off">
-      <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
+      <label class="chk"><input type="checkbox" id="ra_a">fdd</label><span class="rarow"><select id="rav_fdrv" class="radrv" title="Drive"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off"></span>
+      <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><span class="rarow"><select id="rav_hdrv" class="radrv" title="HDD"><option value="0">0</option><option value="1">1</option></select><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"></span><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
       <label class="chk"><input type="checkbox" id="ra_sd">sd</label><input id="rav_sd" list="ra_sds" placeholder="sd/card.zip" spellcheck="false" autocomplete="off">
       <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">autorun (boot A:)</option><option value="run">run= TR-DOS file</option><option value="cpm">cpm= CP/M commands</option></select>
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
@@ -1480,14 +1480,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261018072003"></script>
-<script src="js/scancodes.js?v=20261018072003"></script>
-<script src="js/unzip.js?v=20261018072003"></script>
-<script src="js/vkbd.js?v=20261018072003"></script>
-<script src="js/asyncify.js?v=20261018072003"></script>
-<script src="js/gfx.js?v=20261018072003"></script>
-<script src="js/usel.js?v=20261018072003"></script>
-<script src="js/fcmd.js?v=20261018072003"></script>
-<script src="js/app.js?v=20261018072003"></script>
+<script src="js/wasi_fs.js?v=20261018093524"></script>
+<script src="js/scancodes.js?v=20261018093524"></script>
+<script src="js/unzip.js?v=20261018093524"></script>
+<script src="js/vkbd.js?v=20261018093524"></script>
+<script src="js/asyncify.js?v=20261018093524"></script>
+<script src="js/gfx.js?v=20261018093524"></script>
+<script src="js/usel.js?v=20261018093524"></script>
+<script src="js/fcmd.js?v=20261018093524"></script>
+<script src="js/app.js?v=20261018093524"></script>
 </body>
 </html>

@@ -1411,3 +1411,11 @@ Web Unreal Speccy — version history
 * System Info is built once and redrawn only where values change
   (they are drawn on canvases): the open window no longer changes the
   page text twice a second
+
+
+        version 0.62.0                  18 oct 2026
+
++ REST API: fdd= with the drive (fdd=a:trd/x.trd, fdd=b:trd/y.trd; no
+  drive: A:), hdd0= / hdd1= for HDD 0 / 1 (hdd= is HDD 0). Old a=, b=
+  and hdd= links work as before. The link window has the drive choice
+  for fdd and hdd
