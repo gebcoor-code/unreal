@@ -1426,3 +1426,13 @@ Web Unreal Speccy — version history
 + Save / Memory block / RAM with one bank chosen: offset and length
   inside the bank (cut to its end while typed; the whole bank at first),
   the file name gets the range (ram_05_2000-2FFF.bin)
+
+
+        version 0.63.1                  18 oct 2026
+
+! REST API: fdd=a:/path lost the leading "/" (from the site root) and
+  the disk was looked for next to the page (404); now it is taken as is,
+  like a=/path
+* Esc goes to the ZX keyboard as EDIT (Caps Shift+1, "back" in most
+  programs) when no window has the focus and the mouse is not captured;
+  ATM XT keyboard and Quorum as before, a Custom ROM ini may set its own
