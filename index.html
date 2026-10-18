@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261018191744">
+<meta name="build" content="20261018215119">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1327,9 +1327,10 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
-      <tr><td>autorun=1</td><td>boot disk in A: (or start tape); disk without boot: its first BASIC program starts (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; not on +3 (no TR-DOS)</td></tr>
-      <tr><td>press=</td><td>with autorun: keys for boot menu (0 = first program, enter); not sent when disk has no boot</td></tr>
-      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code)</td></tr>
+      <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; not on +3 (no TR-DOS)</td></tr>
+      <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
+      <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
+      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
@@ -1361,7 +1362,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <label class="chk"><input type="checkbox" id="ra_a">fdd</label><span class="rarow"><select id="rav_fdrv" class="radrv" title="Drive"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off"></span>
       <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><span class="rarow"><select id="rav_hdrv" class="radrv" title="HDD"><option value="0">0</option><option value="1">1</option></select><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"></span><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
       <label class="chk"><input type="checkbox" id="ra_sd">sd</label><input id="rav_sd" list="ra_sds" placeholder="sd/card.zip" spellcheck="false" autocomplete="off">
-      <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">autorun (boot A:)</option><option value="run">run= TR-DOS file</option><option value="cpm">cpm= CP/M commands</option></select>
+      <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">use boot.b (A:)</option><option value="run">run TR-DOS file (A:)</option><option value="cpm">cpm= CP/M commands</option></select>
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
       <span class="ralab" id="ral_run">file</span><span class="rarow" id="rar_run"><select id="rav_run"></select><input id="rav_runtxt" placeholder="name" spellcheck="false" autocomplete="off"></span>
       <span class="ralab" id="ral_cpm">commands</span><input id="rav_cpm" placeholder="b:alasm" spellcheck="false" autocomplete="off">
@@ -1500,14 +1501,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261018191744"></script>
-<script src="js/scancodes.js?v=20261018191744"></script>
-<script src="js/unzip.js?v=20261018191744"></script>
-<script src="js/vkbd.js?v=20261018191744"></script>
-<script src="js/asyncify.js?v=20261018191744"></script>
-<script src="js/gfx.js?v=20261018191744"></script>
-<script src="js/usel.js?v=20261018191744"></script>
-<script src="js/fcmd.js?v=20261018191744"></script>
-<script src="js/app.js?v=20261018191744"></script>
+<script src="js/wasi_fs.js?v=20261018215119"></script>
+<script src="js/scancodes.js?v=20261018215119"></script>
+<script src="js/unzip.js?v=20261018215119"></script>
+<script src="js/vkbd.js?v=20261018215119"></script>
+<script src="js/asyncify.js?v=20261018215119"></script>
+<script src="js/gfx.js?v=20261018215119"></script>
+<script src="js/usel.js?v=20261018215119"></script>
+<script src="js/fcmd.js?v=20261018215119"></script>
+<script src="js/app.js?v=20261018215119"></script>
 </body>
 </html>

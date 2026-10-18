@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261018191744';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261018215119';
   const MAIL_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAKMAAAAeCAYAAABAOK4rAAAHfUlEQVR42u2bfZBWVR3HP6vggoiiEWoOKYqOrkVMqIy0FcOLleguUThjcTDRyOBYTDZ5oGUjgTo2kg6eFMdS4cw2jilokA7m5BRiL7gmFtIwJTWuEiDQriQvCvXH831m7ty5z+7D7rPLKvc788yZ5zz3d8+953zP9/dydiFHjhw5cuTIkSNHjhw5cuTIkSPHexRV+RS8P+FDfAYYD9zsrAkd9fcG9DkGF6kPcCUwCRgDnAEMAlqBLcCzQHTW/C2ndM/iuGOMiNcCm4EngJnAR4DB2pQfAC4H5gGbfYgP+hBPyymSK2OlSVgN3Atcr67ngZ8D64GtwD7gdOB8oB64FvgKMMmH+BlnzZ/fa+/srJmQk7H3EfE44BfA1UALcIOz5umMS1/T5zc+xEbgNuAbwNM+xLHOmk25dh0FMvoQa4GbgE8opvov8CqwGvips2Zb6vrjgesAA4wABgI7pTx3OWueb4csnbL1Ib4EfEwq1gzMBcYBZwKvOWuG69JFIuIfgMnOmu1lqEor8E0f4mbgHuAxH+JIZ83+dp7hRWC+nmEwsB14HFjgrNntQ6wCZgA3ADVAX2AjsMhZ82SJdzxZz/554GJgqH76J/AUsMRZ8+8jSWC6uLE7nHMf4l5gAHCps+aFjHucI28E0D85p30yVORuYFbqHv0UU10KjAauSticpBhsXMrmQ8BUYKoPscFZszjjwTptm8AngQeA/ulY2Id4HvBt4A2gzlmzM/GeN2vDDQN2AI8A3wOagHpnTZWzZpkPcajiyFnAj0s8Q23GMwzVGON9iJcBDwFfTNldDqz2IU511qzMuO+PgK9l9F+sz3Qf4rijoNol57ySCcz3E0RsEvEGAKcClwALtbBJ/ERkehdo0CL0A0YCa4rq5EOckjF+V2yLmAW8DkwGBolE5+q3eVKgGUUiCsuAu4ALgWqNewvwW+DE1P0XAW+KuKUwW2o1Sap4BvAt4JBUcIPUbYm+D9DGbtYaLNEGSWMPcD9wBXCeFv8s4AvAJmAIsOIoeNT25rzrbtqHeBbwHX1d7KxpSFz3tiauOaVs58u9AtzqrEkqx0YfYj2wFpggIq+shG0K+4EJzpp/Zbj/yUCzs2Zton8i8FXZ3ap48lCCLANSLnufD/Fx4EYf4tnpcYSdQK2zZnei704f4iXAl4CLgPnOmkWJ31/wIU5Tdn+OSPrX1NhzM8Z6A1jpQ1wPvAJ83Ic4ylnT3INkzJzzSipjPXCCVGBhmfZXUSicb5fKpWOvw8ACfa2R26yEbRIrSkzKKOA0xW1J3Ki2wVmz1FmzzVmzw1lzHzCnxBgb1Q4v8fsDKSIWsV7t4SwXr1pmUbGHHWG2vB14Tl9H97Ayrqg0EdMx4wi165w1B8q0v0jty+3Y/BF4R+6yBvhHBWyTKBUvfbh4/wySAizPsFkuF358qv+g2hNLjFWqQL6jmKk7a95u55oPlrq3D3G8Ep/LFEtnXTekh8nYLTFqUhlPUbv7COxPTriOUjv4XaAtdX1XbbMWPI1iwbot1T8IOOCseTNjvHek1GkMS7jjUm6rI7fWEaoyiHgH8Ixc/fB2NkO/Hibjju4mY1tqEctBWyL7LVUO6JMgUluFbMvBHrWDU/2tQLUPcXCJ8Yak+qooHB/uB17qwfroGCVVxYRrtN7lBCUMVUoyexv+15lyYpqMxbioVicW5aDonka0YzNabhYF65WwLQctqXCgiBfVXpdhMy1jsm5SCNOUrjN2MyaqfdZZ83VnzZ+cNbuk3kVc0AvJuE/t6SV+H14OS58A7lT8Mk81t46wBrhDA89OB+kqVzQWyeSs+XuFbMtBM/CWMupkQvag6n0LfYgHgUdVWrpa718cv0bJzhyVMRp6eFH7JSoZWcr5OZWHehu2ikPjgF9lrOktHZLRWfO6YpR5QKMP8WwgKFitVp2rDjjTWTNTNlt8iE1SlNulcMuVkV9I4UjtCg3RmIrPOm1bZrZ50If4FHCND3Gis+bX6n/Sh7gCmA4s1SdJ4F0ad1MiWJ9S6qSjG1E8vbjSh9igTbRL8euX21vULoQGcxIbcqCzZm8nbvNLJVuzfYhbtdn3ybvcBowtx00XF/3+hBvboJ25R5PTmBHjzQJ+J2L/QCpyQG6/XtcscNY8WqJ42lnbcrBYZZW7fYinJPpnUDiZ2aJMuYVCEXysYsoWeYrpwEhnzZajoDCrKBThq6TsLVrUV4DvUjieXdMLlXGpQrBqCqd524D/aJ0/DfywrGDSWXMImOlDfJjCMdQYBfStkt/VwM9SNm+p/HC9VO6jwElSuPXAUmfNuhLq1WnbMtXxZR/iMpF+lQ+xzlmzV++5RJ80rukNK+qsOexD/CzgKJwFD1MS9SrwmJ79nt7GRK1pLYUacR2Fc+tW4PfA7RKcuWWVE95v8CH2VXnkU9qx0501GzqwqQHuA5Y5a5rI0SM4Jv7twIc4kMIZ7mR1rVUss05u5ACF8+QxUsY6qdA0Z82qnCY5GStNyCqVaebLdbSHdcBsZ81fcorkZOxOUvYHplD4C5tRUsS+imWeAx5O/mFFjhw5jkH8HzsgzyJO/agJAAAAAElFTkSuQmCC';
-  const APP_VER = '0.66.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261018191744'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.67.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261018215119'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1694,7 +1694,6 @@
   // ------------------------------------------------------------------ disks
   const DRV = 'ABCD';
   function extOf(name) { const m = /\.([^.]+)$/.exec(name); return m ? m[1].toLowerCase() : ''; }
-  let autorunPlan = null; // the last autorun: { run: name } when it typed RUN "name" (no boot menu: press= keys are not sent)
   function insertFromFs(name, drive, quiet) {
     setName(name);
     // autorun into A:: the emulator's boot (boot6.$b) is not added at first — a disk without its own boot gets RUN "first BASIC"
@@ -1720,8 +1719,9 @@
         const added = noBoot && !plan && !(found && found.boot); // no boot of its own: the emulator's boot (its menu)
         if (added) withBoot(0);
         autorunNext = false; autorun(plan); toast('Drive A: ' + name + ' — autorun' + (plan ? ' (RUN "' + plan.run + '")' : ''));
-        // Use boot.b: keys for the menu of the emulator's boot (not for a boot of the disk's own)
-        if (useBoot && added && found && !linkLoading && macro && $('ldpress').value.trim()) macro.steps.push({ wait: 60 }, ...zxPress($('ldpress').value.trim()));
+        // keys for the menu of the emulator's boot (not for a boot of the disk's own): press= of a link, or Load / Use boot.b
+        const press = linkLoading ? String(LINK.press || '').trim() : useBoot ? $('ldpress').value.trim() : '';
+        if (added && found && press && macro) macro.steps.push({ wait: 60 }, ...zxPress(press));
       } else if (noBoot) withBoot(d);
     } else {
       if (!quiet) toast('Loaded: ' + name);
@@ -2317,7 +2317,6 @@
   // (xBIOS, Scorpion, Profi, Quorum) stop in TR-DOS with "No file", then RUN "name" is typed; the EVO boot menu runs the
   // first BASIC file by itself
   function autorun(plan) {
-    autorunPlan = plan || null;
     // the EVO service ROM needs CPU time: waits are longer at lower clock (tuned for 2x, doubled at 1x)
     const k = Math.max(1, 2 / SPEEDS[speedIdx]);
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx])); // ROM boot waits, tuned at 1x (shorter at higher clock)
@@ -3397,8 +3396,8 @@
     const st = $('rav_start').value;
     $('ral_run').hidden = $('rar_run').hidden = st !== 'run'; $('ral_cpm').hidden = $('rav_cpm').hidden = st !== 'cpm';
     $('ral_press').hidden = $('rav_press').hidden = st !== 'autorun';
-    if (st === 'autorun') { q.push('autorun=1'); if ($('rav_press').value.trim()) q.push('press=' + linkEnc($('rav_press').value.trim())); }
-    if (st === 'run') { const f = ($('rav_run').hidden ? $('rav_runtxt').value : $('rav_run').value).trim(); if (f) q.push('run=' + linkEnc(f)); }
+    if (st === 'autorun') { q.push('autorun=boot'); if ($('rav_press').value.trim()) q.push('press=' + linkEnc($('rav_press').value.trim())); } // use boot.b
+    if (st === 'run') { const f = ($('rav_run').hidden ? $('rav_runtxt').value : $('rav_run').value).trim(); q.push(f ? 'run=' + linkEnc(f) : 'autorun=1'); } // no name: its boot, or its first BASIC program
     if (st === 'cpm' && $('rav_cpm').value.trim()) q.push('cpm=' + linkEnc($('rav_cpm').value.trim()));
     if (on('xt')) q.push('xt=1');
     if (on('mute')) q.push('mute=1');
@@ -3457,6 +3456,7 @@
       if (E.web_disk_peek_trd(0)) { const img = new Uint8Array(fs.read('__ra.trd')); if (img[0x8E7] === 0x10) names = UnrealFC._test.trdos(img).list().filter((x) => x.zx.type === 'B' || x.zx.type === 'C').map((x) => x.name.trim() + ' <' + x.zx.type + '>'); }
       try { fs.remove('__ra.trd'); } catch (e) {}
     }
+    if (names.length) { const o = document.createElement('option'); o.value = ''; o.textContent = '— its boot or first BASIC —'; sel.appendChild(o); }
     names.forEach((n) => { const o = document.createElement('option'); o.value = n.replace(/ <.>$/, ''); o.textContent = n; sel.appendChild(o); });
     sel.hidden = !names.length; $('rav_runtxt').hidden = !!names.length;
     $('ra_xt').checked = !!E.web_xt_kbd() && MODELS[model].xt; $('ra_mute').checked = muted; $('ra_swapmouse').checked = !!(E.web_mouse_swap && E.web_mouse_swap(-1));
@@ -4513,7 +4513,8 @@
     if (LINK.kbd !== undefined) kbdLink(String(LINK.kbd).toLowerCase()); // kbd=zx|xt|joy|off: for this visit only
     if (LINK.swapmouse !== undefined && yes(LINK.swapmouse)) { mswapLink = true; applyMouseSwap(); } // not stored
     if (LINK.xt !== undefined && MODELS[model].xt && !!E.web_xt_kbd() !== yes(LINK.xt)) toggleXT();
-    const auto = (LINK.autorun !== undefined && yes(LINK.autorun)) && !LINK.run && !LINK.cpm;
+    // autorun=1 (or run= with no name): its boot, or its first BASIC program; autorun=boot: as Load / Use boot.b
+    const auto = ((LINK.autorun !== undefined && yes(LINK.autorun)) || LINK.run === '') && !LINK.run && !LINK.cpm ? (/^boot$/i.test(LINK.autorun || '') ? 'boot' : true) : false;
     for (const [key, d] of [['hdd', 0], ['hdd1', 1]]) { // hdd0= (hdd=) / hdd1=: an HDD image (zip with .chs, or .hdd) into HDD 0 / 1
       if (!LINK[key]) continue;
       const url = new URL(lowDir(LINK[key]), location.href).href, name = urlName(url);
@@ -4541,7 +4542,6 @@
       autorunNext = false;
     }
     if (LINK.run) { if (runInject(0, LINK.run)) { autorun(); toast('Run: ' + LINK.run); } }
-    else if (auto && LINK.press && macro && !(autorunPlan && autorunPlan.run)) macro.steps.push({ wait: 60 }, ...zxPress(LINK.press)); // a key in the boot menu (usually 0 = the first program)
     else if (LINK.cpm) cpmRun(LINK.cpm);
   }
 

@@ -1475,3 +1475,13 @@ Web Unreal Speccy — version history
 
 * Use boot.b: "press in boot" keys go only to the menu of the
   emulator's boot; a boot of the disk's own gets no keys
+
+
+        version 0.67.0                  18 oct 2026
+
++ REST API: autorun=boot - as Load / Use boot.b (its boot; a disk
+  without boot gets the emulator's boot, press= keys for its menu).
+  run= with no name works as autorun=1. Link window: start "use boot.b"
+  and "run TR-DOS file" (no name: its boot or its first BASIC program)
+* press= keys go only to the menu of the emulator's boot, also with
+  autorun=1 on a disk with no BASIC program to start
