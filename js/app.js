@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261018221456';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261019135917';
   const MAIL_PNG = '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';
-  const APP_VER = '0.67.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261018221456'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.73.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261019135917'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1046,11 +1046,19 @@
     if (r.done) { frameDone(r.value); render(); lastT = performance.now(); frameAcc = 0; }
     else debugDraw(idle);
   }
-  let gfx = null, fc = null, fcVk = false;
+  let gfx = null, fc = null, fcVk = false, dga = null;
+  // one debugger at a time: the Unreal debugger (Shift+F1) or deBUGa — the other one's menu item is off meanwhile
+  function dbgMenuUI() {
+    const g = !!(dga && dga.open);
+    $('dbgbtn').disabled = g; $('dgabtn').disabled = dbgOn && !g;
+    if (!g && !$('dgahelp').hidden) showDgaHelp(false);
+    $('dgabtn').classList.toggle('on', g);
+  }
   function debugDraw(idle) {
     if (!E.web_debug_active()) return;
     if (!idle && gfx && gfx.open) gfx.refresh(); // memory may have changed (step, edit, load)
     blit(); // the debugger repaints the ZX screen itself (dbgpaint.cpp / mon_scr)
+    if (dga && dga.open) { dga.refresh(); return; } // deBUGa shows the stop instead of the Unreal screen
     const c = $('dbgcanvas');
     if (!dbgCtx) { dbgCtx = c.getContext('2d', { alpha: false }); dbgImg = new ImageData(640, 480); }
     dbgImg.data.set(new Uint8ClampedArray(E.memory.buffer, E.web_debug_fb(), 640 * 480 * 4));
@@ -1067,11 +1075,12 @@
   function debugShown(on) {
     if (on === dbgOn) return;
     dbgOn = on;
-    const w = $('dbgwin');
-    w.hidden = !on;
-    $('dbgbtn').classList.toggle('on', on); toolsUI();
-    if (on) { placeDebugWin(); debugDraw(); $('dbgcanvas').focus(); }
-    else {
+    const g = !!(dga && dga.open), w = $('dbgwin');
+    w.hidden = !on || g;
+    $('dbgbtn').classList.toggle('on', on && !g); toolsUI(); dbgMenuUI();
+    if (g) { dga.state(on); if (on) { blit(); $('dgawin').focus(); } }
+    else if (on) { placeDebugWin(); debugDraw(); $('dbgcanvas').focus(); }
+    if (!on) {
       showDbgHelp(false); if (vkbd) vkbd.releaseAll(); E.web_keys_clear(); held.clear(); afterDbg = new Set(dbgDown); dbgDown.clear(); canvas.focus(); }
     if (audio && !isPaused()) {
       if (on) audio.ctx.suspend().catch(() => {});
@@ -1136,7 +1145,7 @@
     helpZ();
   }
   // a help window always stays just above the window it belongs to (it may lie over it on a narrow screen)
-  const HELP_OF = [['dbghelp', 'dbgwin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
+  const HELP_OF = [['dbghelp', 'dbgwin'], ['dgahelp', 'dgawin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
   function helpZ() {
     WINS.forEach((x, k) => { x.style.zIndex = String(8 + 2 * k); });
     for (const [h, p] of HELP_OF) { const he = $(h), pe = $(p); if (he && pe && pe.style.zIndex) he.style.zIndex = String(+pe.style.zIndex + 1); }
@@ -1187,7 +1196,23 @@
     window.addEventListener('resize', () => { if (!win.hidden) place(); });
     return { place, setPos(p) { pos = p; store(key, JSON.stringify(pos)); place(); } };
   }
-  let dbgFW = null, helpFW = null;
+  let dbgFW = null, helpFW = null, dgaHelpFW = null;
+  function showDgaHelp(v) { // deBUGa help: at the right side of its window, same height
+    const h = $('dgahelp');
+    if (v && !h.dataset.built) { h.querySelector('.hbody').innerHTML = helpHtml(DGA_HELP, '<p>deBUGa: a debugger after Xpeccy (SAM style) on the debugger loop of the Unreal core. One debugger at a time.</p>'); h.dataset.built = '1'; }
+    h.hidden = !v; $('dgahelpbtn').classList.toggle('on', v);
+    if (v) { const r = $('dgawin').getBoundingClientRect(); h.style.height = r.height + 'px'; dgaHelpFW.setPos(snapRight(r, h)); }
+  }
+  // the debugger of Shift+F1 (Options / System): 'u' Unreal, 'x' deBUGa; the Tools menu shows the key at it
+  let dbgDef = load('dbgdef') === 'x' ? 'x' : 'u';
+  function dbgDefUI() {
+    $('dbgbtn').querySelector('kbd').hidden = dbgDef !== 'u'; $('dgabtn').querySelector('kbd').hidden = dbgDef !== 'x';
+    $('dgaclose').title = 'Close (' + (dbgDef === 'x' ? 'Shift+F1 / ' : '') + 'Esc): the machine runs on';
+  }
+  function dbgShiftF1() { // Shift+F1 outside the Unreal debugger window
+    if (dbgDef === 'x') { if (dga.open) dga.show(false); else if (!dbgOn) { releaseMouse(); dga.show(true); } }
+    else { dbgIgnore = 'F1'; debugEnter(); } // (deBUGa open: the stop is shown there)
+  }
   function placeDebugWin() { dbgFW.place(); }
   function showDbgHelp(v) {
     const h = $('dbghelp');
@@ -1276,7 +1301,7 @@
       if (x < 0) { x = Math.max(0, Math.min(r.left + 24, vw - h.offsetWidth)); y = r.top + 32; }
       return { x, y };
     });
-    $('dbgbtn').onclick = () => { toolsMenu(false); if (dbgOn) debugClose(); else debugEnter(); };
+    $('dbgbtn').onclick = () => { toolsMenu(false); if (dga && dga.open) return; if (dbgOn) debugClose(); else debugEnter(); };
     $('dbgclose').onclick = (e) => { e.stopPropagation(); debugClose(); };
     $('dbghelpbtn').onclick = (e) => { e.stopPropagation(); showDbgHelp(h.hidden); c.focus(); };
     $('dbghelpclose').onclick = () => { showDbgHelp(false); c.focus(); };
@@ -1288,6 +1313,17 @@
       hddName: (d) => hdds[d], hddParts: (d) => hddGeom(d).parts || null, hddGeo: (d) => hddGeom(d), sdName: () => sdName, sdTouch: () => { sdDirty = true; sdUI(); }, sdNew: async (name, bytes) => { await sdFromBytes(name, bytes); sdDirty = true; sdUI(); }, hddTouch: (d) => { hddDirty[d] = true; hddUI(); }, hddNew: async (d, name, bytes) => { await hddFromBytes(d, name, bytes); hddDirty[d] = true; hddUI(); }, zip: (files) => UnrealZip.create(files), hddRemount: (d) => { hddDirty[d] = true; hddMount(d); hddUI(); },
       onClose: () => canvas.focus(), run: fcRun, mountDisk: async (name, data, d) => { const before = drives[d]; await putAndInsert(name, data, d); return drives[d] !== before; }, graf: (name, data) => { gfx.showFile(name, data); toolsUI(); } });
     $('fcbtn').onclick = () => { toolsMenu(false); releaseMouse(); fc.show(!fc.open); fcVk = fc.open; };
+    // deBUGa: the second debugger window on the same debugger loop of the core; one of the two debuggers at a time
+    dga = UnrealDbga.create({ E: () => E, cstr, floatWin, edgeResize, load, store, activate: activateWin,
+      stoppedNow: () => !!(E && E.web_debug_active() && AS.suspended), stop: () => { releaseMouse(); debugEnter(); },
+      // F24 (no action) wakes the loop of the core: it leaves when the action ended the stop
+      cmd: (n, a) => { E.web_dga_cmd(n, a); E.web_debug_key(0x87, 0); debugResume(); },
+      repaint: () => dbgRefresh(), changed: () => dbgMenuUI(), focusScreen: () => canvas.focus(), toast, download: downloadBytes, pickFile, askBox, model: () => model, diskName: () => (drives[0] ? drives[0].name : ''), txt: (t) => txtPut(t), help: () => showDgaHelp($('dgahelp').hidden), sysinfo: () => siData(), wdRows: (t) => wdRows(t) });
+    $('dgabtn').onclick = () => { toolsMenu(false); if (dbgOn && !dga.open) return; dga.show(!dga.open); };
+    const dh = $('dgahelp');
+    dgaHelpFW = floatWin(dh, 'dgahelppos', () => { const r = $('dgawin').getBoundingClientRect(); return { x: Math.max(0, r.left - dh.offsetWidth - 8), y: r.top }; });
+    $('dgahelpbtn').onclick = (e) => { e.stopPropagation(); showDgaHelp(dh.hidden); $('dgawin').focus({ preventScroll: true }); };
+    $('dgahelpclose').onclick = () => { showDgaHelp(false); if (dga.open) $('dgawin').focus({ preventScroll: true }); };
     // which window the on-screen keyboard types into: File Commander after a touch inside it, the machine after a touch on the screen
     document.addEventListener('pointerdown', (e) => {
       if (e.target.closest('#fcwin, #fvwin, #fewin')) fcVk = true;
@@ -1559,7 +1595,7 @@
         ['Ctrl+U', 'user watch address'], ['Alt+Y', 'active AY'], ['Ctrl+`', 'next CPU']]],
       ['Dialogs', [
         ['Alt+C', 'breakpoints: conditions, execution, memory R/W (kept in browser)'], ['Alt+O', 'watches setup'],
-        ['Ctrl+J', 'labels: list, go to, load file (.l, .sym)'], ['Alt+F6', 'memory search (cheats)'], ['Alt+P', 'pokes'],
+        ['Ctrl+J', 'labels: list, go to, load file (.l, .sym); sos.l loaded by default'], ['Alt+F6', 'memory search (cheats)'], ['Alt+P', 'pokes'],
         ['Shift+F7', 'tape browser'], ['F1', 'this help'], ['F2 / F3', 'Save / Load window'], ['Alt+F1', 'Options']]],
       ['Screen (any key returns)', [
         ['F9', 'video memory'], ['Shift+F9', 'shadow screen'], ['Alt+F9', 'ray-painted']]],
@@ -1573,6 +1609,11 @@
       ['Snapshots*', [
         ['Alt / Ctrl / Shift+F2', 'quick save 1/2/3'], ['Alt / Ctrl / Shift+F3', 'quick load 1/2/3']]],
     ]],
+    ['Expressions', [[null, [
+      ['C000', 'numbers: bare hex'], ['M x', 'byte at x'], ['a->b', 'byte at a+b'], ['OUT / IN', 'port of the last OUT / IN'], ['VAL', 'its value'], ['DOS', 'TR-DOS ports on'], ['FD', 'value of #7FFD']]]]],
+    ['Browser stand-ins', [[null, [
+      ['Alt+Shift+1…8', 'for Ctrl+1…8 (browser takes Ctrl)'], ['Alt+Shift+D / F', 'for Alt+D / Alt+F'],
+      ['Alt+Shift+H / T', 'for Ctrl+Tab / Ctrl+T'], ['Shift+F8', 'for F11']]]]],
     ['Registers', [[null, [
       ['←→↑↓', 'select'], ['Enter', 'edit'], ['Ctrl+A / Ctrl+F', 'A / flags'], ['Ctrl+B / Ctrl+D', 'BC / DE'],
       ['H P S X Y', 'HL, PC, SP, IX, IY'], ['I R M', 'I, R, IM'], ['Ctrl+1 / 2 or Alt+Shift+1 / 2', 'IFF1 / IFF2'],
@@ -1592,16 +1633,59 @@
     ['Mouse', [[null, [['Left click', 'select window, place cursor'], ['Right click', 'breakpoint in disassembler']]]]],
   ];
   function dbgHelpHtml() {
+    return helpHtml(DBG_HELP, '<p>Unreal Speccy debugger (full port; Win32 dialogs are page windows).<br>⚠️ may be taken by browser<br>* stored in page memory, not on disk</p>') + '<p class="hnote">Keys can be reassigned in [SYSTEM.KEYS] of unreal.ini.</p>';
+  }
+  // deBUGa key reference
+  const DGA_HELP = [
+    ['Run', [[null, [
+      ['F9', 'run / stop'], ['F7', 'step'], ['F8', 'step over CALL, RST, LDIR, DJNZ…'], ['F4', 'run to the cursor line'],
+      ['F6', 'run to return (out of the subroutine)'], ['Esc / ✕', 'close: the machine runs on'], ['F1', 'this help']]]]],
+    ['Window', [[null, [
+      ['Tab / Shift+Tab', 'next / previous part: listing, registers, memory, breakpoints (lit at its left edge)'], ['click', 'a part gets the keys'],
+      ['Go #', 'listing from an address (hex), Enter'], ['borders', 'drag: width of the registers, height of the lower part']]]]],
+    ['Listing', [[null, [
+      ['↑↓ PgUp PgDn wheel', 'move'], ['Home', 'cursor to PC'], ['Enter / double click', 'go to the jump target'], ['Backspace', 'back'],
+      ['Space / left edge', 'breakpoint (execution)'], ['Shift+↑↓', 'select lines'],
+      ['right click / long press', 'line menu: marks, label, comment, assemble'], ['Menu key', 'line menu'],
+      [':', 'label of the line'], [';', 'comment of the line'], ['letters, digits', 'assemble here (Enter: next line, Esc: drop)']]]]],
+    ['Assembler', [[null, [
+      ['ld a,#10  jp LOOP', 'Z80 commands, labels as addresses'], ['db 1,2,"text"', 'bytes, text'], ['dw #4000,LOOP', 'words'],
+      ['#10 $10 0x10 10h', 'hex numbers'], ['%1010', 'binary'], ['16', 'decimal'], ["'a'", 'character']]]]],
+    ['Marks (Mark ▾)', [[null, [
+      ['Code', 'disassemble (no mark)'], ['Bytes', 'db'], ['Words', 'dw'], ['Addresses', 'dw with labels'], ['Text', 'db "…"']]]]],
+    ['Registers & stack', [[null, [
+      ['click a value', 'edit (hex), Enter'], ['click a flag', 'toggle it'], ['IM / IFF', 'click: next value'], ['click a stack word', 'listing from it']]]]],
+    ['Memory', [[null, [
+      ['↑↓←→ PgUp PgDn', 'move'], ['Home / End', '0000 / FFFF'], ['click', 'byte'], ['hex digits', 'type over'], ['#', 'dump from an address, Enter'],
+      ['CPU 64K / RAM nn / ROM nn', 'the Z80 memory as paged now, or one 16K page (@: where it is mapped now)'],
+      ['Fill…', 'a block with bytes (AA 55) or "text", repeated'], ['Save…', 'a block: binary or Hobeta (.$C) download'], ['Load…', 'a file into memory (Hobeta: at its start)']]]]],
+    ['Watches', [[null, [
+      ['+', 'add: address (8000, #8000), label, register (HL, IX…)'], ['press', 'the dump from it'], ['×', 'remove']]]]],
+    ['Devices', [[null, [
+      ['AY', 'registers (selected one lit), tone / volume / mixer of A B C, noise, envelope, ports'], ['WD1793', 'registers, beta port, state'],
+      ['Tape', 'blocks; a press plays from that block']]]]],
+    ['Screen', [[null, [
+      ['shown now / RAM nn', 'ZX screen of a RAM page (6144 + 768 bytes) as the stop left it'], ['pointer', 'x, y, pixel and attribute byte'],
+      ['click', 'the pixel byte in the dump'], ['Shift+click', 'the attribute byte in the dump']]]]],
+    ['Breakpoints', [[null, [
+      ['Z80 addr', 'address or range, X / R / W'], ['RAM / ROM page', 'physical byte: 05:1A00 (whatever is mapped)'],
+      ['IN / OUT port', 'port and mask (00FF: low byte)'], ['INT', 'interrupt'], ['Stop / Count', 'stop, or only count the hits'],
+      ['Cursor', 'from the cursor line'], ['Save / Load', '.xbrk list']]]]],
+    ['Project', [[null, [
+      ['marks, labels, comments', 'bound to RAM / ROM pages, kept per model in the browser'], ['.xmap', 'project file: save / load'],
+      ['labels', 'load / save lists: PP:AAAA name, AAAA name, name equ #AAAA']]]]],
+  ];
+  function helpHtml(list, intro) {
     const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    let h = '<p>Unreal Speccy debugger (full port; Win32 dialogs are page windows).<br>⚠️ may be taken by browser<br>* stored in page memory, not on disk</p>';
-    for (const [title, groups] of DBG_HELP) {
+    let h = intro;
+    for (const [title, groups] of list) {
       h += `<h4>${esc(title)}</h4>`;
       for (const [sub, rows] of groups) {
         if (sub) h += `<h5>${esc(sub)}</h5>`;
         h += '<dl>' + rows.map(([k, d]) => `<dt>${esc(k)}</dt><dd>${esc(d)}</dd>`).join('') + '</dl>';
       }
     }
-    return h + '<p class="hnote">Keys can be reassigned in [SYSTEM.KEYS] of unreal.ini.</p>';
+    return h;
   }
 
   // ------------------------------------------------------------------ keyboard
@@ -1627,7 +1711,7 @@
       if (HOTKEYS.has(e.code) && !(e.shiftKey || e.ctrlKey || e.altKey || e.metaKey)) xtMsg();
       return false;
     }
-    if (e.code === 'F1' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { dbgIgnore = 'F1'; debugEnter(); return true; } // Shift+F1: debugger
+    if (e.code === 'F1' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { if (!e.repeat) dbgShiftF1(); return true; } // Shift+F1: the debugger chosen in Options / System
     if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return false;
     if (e.code === 'F12') { E.web_reset(0); return true; }
     if (e.code === 'F2') { openSave(); return true; }
@@ -1657,6 +1741,11 @@
       if (!gfx.typing() && gfx.key(e)) e.preventDefault();
       return;
     }
+    if (dga && dga.open && (dbgOn || dga.hasFocus())) { // deBUGa: its keys (F7 F8 F4 F6 F9…), nothing for the machine while stopped
+      if (e.code === 'F1' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey) && !(e.target && e.target.tagName === 'INPUT')) { e.preventDefault(); if (!e.repeat) dbgShiftF1(); return; }
+      if (dga.key(e) || dbgOn) e.preventDefault();
+      if (dbgOn || dga.hasFocus()) return;
+    }
     if (dbgOn) { e.preventDefault(); debugKey(e, true); return; }
     if (afterDbg.has(e.code)) { e.preventDefault(); return; } // still held since the debugger was closed
     startAudio();
@@ -1669,6 +1758,7 @@
     E.web_key(sc, 1, locks(e));
   });
   window.addEventListener('keyup', (e) => {
+    if (E && dbgOn && dga && dga.open) { e.preventDefault(); return; }
     if (E && dbgOn) { e.preventDefault(); debugKey(e, false); return; }
     if (E && dbgIgnore === e.code) dbgIgnore = null;
     if (afterDbg.delete(e.code)) { e.preventDefault(); return; }
@@ -3829,6 +3919,8 @@
     buildHdds(); bindSd(); bindLdStore();
     $('fddacc').onchange = (e) => { store('fdd.acc', e.target.checked ? '1' : '0'); applyFdd(true); canvas.focus(); };
     $('bordersel').onchange = (e) => { store('border', e.target.value); if (E && E.web_border) { e.target.value = String(E.web_border(+e.target.value)); render(); } };
+    $('dbgdef').value = dbgDef; dbgDefUI();
+    $('dbgdef').onchange = () => { dbgDef = $('dbgdef').value === 'x' ? 'x' : 'u'; store('dbgdef', dbgDef); dbgDefUI(); $('dbgdef').blur(); };
     $('mclick').checked = load('mclick') === '1';
     $('mclick').onchange = (e) => store('mclick', e.target.checked ? '1' : '0');
     $('mswap').onchange = (e) => { store('mswap', e.target.checked ? '1' : '0'); if (E && E.web_mouse_swap) E.web_mouse_swap(e.target.checked || mswapLink ? 1 : 0); };
@@ -4060,7 +4152,7 @@
     if (E && MODELS[model].xt) xtPref = xtUser(); // ATM mode stays as it was for this session (not as an autorun macro holds it)
     model = m;
     try {
-      await start(); toast(MODELS[m].name);
+      await start(); toast(MODELS[m].name); if (dga) dga.sync(); // deBUGa breakpoints into the new machine
       if (MODELS[m].xt && xtPref !== null && !!E.web_xt_kbd() !== xtPref) { E.web_toggle_xt(); updateUI(); }
       await osBoot();
     }

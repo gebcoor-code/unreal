@@ -1491,3 +1491,89 @@ Web Unreal Speccy — version history
 
 * REST API link window, run TR-DOS file: the boot the emulator added on
   load is not in the list (a link brings the disk without it)
+
+
+        version 0.68.0                  19 oct 2026
+
++ Tools / deBUGa: the second debugger, after Xpeccy (stage 1). Floating
+  window (moved, resized): registers (changed ones lit, click to edit,
+  flags toggle), disassembly with labels, breakpoints (left edge /
+  Space), jump target and taken / not taken at PC, Enter follows a
+  jump, Backspace back; memory dump (type hex), stack (click: go to).
+  Run / Stop F9, Step F7, Over F8, To cursor F4, Out F6. Opening it
+  stops the machine, closing runs on. Same breakpoints and stop as the
+  Unreal debugger; one of the two at a time
+
+
+        version 0.69.0                  19 oct 2026
+
++ deBUGa, stage 2: its own breakpoints (Breakpoints tab under the
+  listing): Z80 address or range, RAM / ROM physical page:offset (on
+  ATM / EVO paging), execution / read / write; IN / OUT port with mask;
+  INT. Each one stops or only counts its hits; on / off, delete, save
+  and load (.xbrk). The stop line names the breakpoint. Listing: left
+  edge / Space sets ours, a breakpoint of the Unreal debugger is shown
+  as a ring. Active only while deBUGa is open
+* deBUGa: the borders between listing / registers and upper / lower
+  part are dragged to change their sizes (kept)
+
+
+        version 0.69.1                  19 oct 2026
+
+! deBUGa: bytes of the memory dump could not be chosen and typed over
+  after the listing had the keys
+* deBUGa: memory dump from 0000 to FFFF with its own scroll bar (no wrap
+  round), Home / End; the part the keys go to (listing, registers and
+  stack, memory, breakpoints) is chosen by a click in it or by Tab and
+  lit at its left edge
+
+
+        version 0.70.0                  19 oct 2026
+
++ deBUGa: marks of the listing lines: code, bytes (db), words (dw),
+  addresses (dw label), text (db "..."); Shift+arrows select lines,
+  Mark menu or right click / long press on a line
++ deBUGa: typing on a listing line assembles in place: Z80 commands,
+  db 1,2,"text", dw #4000,LABEL (numbers #10 $10 0x10 10h %101 or
+  decimal)
++ deBUGa: labels (:) and comments (;) bound to the RAM / ROM page, so
+  they follow the memory mapping; kept per model in the browser
++ deBUGa: project file .xmap (marks, labels, comments), load / save of
+  labels lists (PP:AAAA name, AAAA name, name equ #AAAA)
+
+
+        version 0.71.0                  19 oct 2026
+
++ Options / System: Debugger - which one Shift+F1 opens (Unreal or
+  deBUGa); the Tools menu shows the key at it
++ deBUGa: help window (? in the title, F1)
+
+
+        version 0.72.0                  19 oct 2026
+
++ deBUGa: the memory dump shows the Z80 64K or one RAM / ROM page
+  (16K; the pages mapped now are marked with their window), edited in
+  place
++ deBUGa: Screen tab - ZX screen of a RAM page (the one shown now or
+  any), pixel / attribute address under the pointer, a click shows the
+  byte in the dump
+
+
+        version 0.72.1                  19 oct 2026
+
+! deBUGa: a click on a listing line, a byte of the memory dump, a
+  register or a stack word could get lost (the stop repaints them):
+  they act at the press now; registers are edited in place again
+* deBUGa: project name in the bar (default: the disk in A: or the
+  model); Save .xmap uses it, Load puts the name of the file there
+
+
+        version 0.73.0                  19 oct 2026
+
++ deBUGa: watches under the stack (address, label or register; 4 bytes
+  there, a press shows the dump from it)
++ deBUGa: Devices tab - AY registers and channels (both chips with
+  TurboSound), WD1793 registers and state, tape blocks (a press plays
+  from the block)
++ deBUGa: Fill / Save / Load of a memory block in the dump (Z80 64K or
+  a page); Save as binary or Hobeta file

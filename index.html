@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261018221456">
+<meta name="build" content="20261019135917">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -307,15 +307,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz { position: absolute; z-index: 3; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz { position: absolute; z-index: 3; touch-action: none; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -323,8 +323,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.s { height: 14px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin) .rz.sw { width: 26px; height: 26px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.s { height: 14px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin) .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
@@ -530,7 +530,7 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #ziplist button { text-align: left; font-family: ui-monospace, Consolas, monospace; }
 /* debugger: floating, draggable window */
 #dbgwin { position: fixed; left: 0; top: 0; z-index: 8; background: #000; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); line-height: 0; }
-#dbgwin[hidden], #dbghelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
+#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
 #restwin { position: fixed; left: 0; top: 0; z-index: 9; width: min(440px, calc(100vw - 8px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
 #restwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
@@ -664,6 +664,80 @@ select.usel-src { display: none !important; }
 #fehex .ferows b { font-weight: normal; } #fehex .ferows .cur { background: var(--accent); color: #111; } #fehex .ferows .cur2 { outline: 1px solid var(--dim); }
 #fehex .ferows .cur u { text-decoration: none; background: #fff; }
 #fvwin[hidden] { display: none; }
+#dgawin { position: fixed; left: 0; top: 0; z-index: 10; display: flex; flex-direction: column; width: min(780px, calc(100vw - 8px)); height: min(560px, calc(100vh - 16px));
+  min-width: 300px; min-height: 260px; max-width: calc(100vw - 4px); max-height: calc(100vh - 8px); overflow: hidden; outline: none;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
+#dgawin[hidden] { display: none; }
+#dgawin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); flex: none; }
+#dgawin .dbghead span { flex: 1; } #dgawin .dbghead b { font: 11px ui-monospace, Consolas, monospace; font-weight: 400; color: var(--dim); }
+#dgawin .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+.dgabar, .dgamemh { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 4px 6px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--dim); flex: none; }
+.dgabar button { padding: 2px 8px; font-size: 12px; } .dgabar label, .dgamemh label { display: flex; align-items: center; gap: 3px; margin-left: 4px; }
+.dgabar input, .dgamemh input { width: 52px; height: 22px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.dgamemh .dgahint { margin-left: auto; font-size: 11px; }
+.dgamain { flex: 1; display: flex; min-height: 0; }
+#dgadis, #dgamem, .dgaside { font: 12px/16px ui-monospace, Consolas, monospace; color: var(--text); user-select: none; }
+#dgadis { flex: 1; min-width: 0; overflow: hidden; padding: 2px 0; }
+#dgadis .dl { display: flex; height: 16px; white-space: nowrap; cursor: default; }
+#dgadis .bpm { flex: none; width: 16px; position: relative; cursor: pointer; }
+#dgadis .dl.bp .bpm::before { content: ''; position: absolute; left: 4px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #f05252; }
+#dgadis .ad { flex: none; width: 5ch; color: var(--dim); } #dgadis .lb { flex: none; min-width: 0; max-width: 14ch; overflow: hidden; color: #7fc8ff; margin-right: 1ch; }
+#dgadis .lb:empty { margin: 0; } #dgadis .tx { overflow: hidden; }
+#dgadis .dl.sel { background: rgba(240, 160, 80, .18); } #dgadis .dl.data .tx { color: #c9b98a; } #dgadis .cm { margin-left: 2ch; color: #6f9f6f; overflow: hidden; }
+#dgadis .dl.edit { overflow: visible; } .dgaline { width: 100%; min-width: 22ch; height: 16px; padding: 0 3px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--accent); border-radius: 3px; outline: none; } .dgaline.err { border-color: #f05252; }
+.dgamenu { position: fixed; z-index: 60; display: flex; flex-direction: column; min-width: 190px; padding: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+.dgamenu button { text-align: left; padding: 4px 10px; font-size: 12px; border: 0; background: none; color: var(--text); border-radius: 4px; } .dgamenu button:hover { background: var(--panel2); } .dgamenu hr { border: 0; border-top: 1px solid var(--line); margin: 3px 0; }
+#dgaprj { height: 24px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; } #dgaprj svg { display: block; }
+#dgaprjn { width: 130px; height: 24px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; }
+#dgaprjn::placeholder { color: var(--dim); opacity: .7; } #dgaprjn:hover, #dgaprjn:focus { color: var(--text); border-color: var(--accent); outline: none; }
+#dgadis .hint { margin-left: 1.5ch; } #dgadis .hint.go { color: #4ade80; } #dgadis .hint.no { color: var(--dim); }
+#dgadis .dl.pc { background: rgba(90, 169, 255, .22); } #dgadis .dl.cur { box-shadow: inset 0 0 0 1px var(--accent); }
+.dgaside { flex: none; width: 196px; overflow: auto; padding: 4px 8px; }
+.dgargrid { display: grid; grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 8px; }
+.dgargrid .n, .dgacap { color: var(--accent); } .dgargrid [data-r] { cursor: pointer; } .dgargrid .chg { color: #facc15; }
+.dgaflags { margin: 4px 0 2px; } .dgaflags span { display: inline-block; width: 1.6ch; text-align: center; color: #555c66; cursor: pointer; } .dgaflags span.on { color: var(--text); }
+.dgat { color: var(--dim); font-size: 11px; } .dgacap { margin-top: 6px; }
+#dgastack .sl { cursor: pointer; } #dgastack .sl.sp { background: rgba(90, 169, 255, .22); } #dgastack .ad { color: var(--dim); margin-right: 1ch; } #dgastack .lb { color: #7fc8ff; }
+#dgamem { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 0 6px; scrollbar-width: thin; }
+#dgamem .mrows { position: sticky; top: 0; }
+.dgabot { flex: none; height: 150px; min-height: 60px; display: flex; flex-direction: column; }
+.dgabot .dgamemh button { padding: 1px 8px; font-size: 12px; } .dgabot .dgamemh button.on { border-color: var(--accent); color: var(--text); }
+.dgabot .dgatm, .dgabot .dgatb, .dgabot .dgats { display: flex; align-items: center; gap: 4px; flex: 1; } .dgabot .dgatb { justify-content: flex-end; } .dgabot [hidden] { display: none !important; }
+.dgasplit { flex: none; position: relative; background: var(--line); touch-action: none; z-index: 2; } .dgasplit:hover, .dgasplit.drag { background: var(--accent); }
+.dgasplit::before { content: ''; position: absolute; } /* a wider grip than the 1 px line */
+.dgasplit.v { width: 1px; cursor: ew-resize; } .dgasplit.v::before { top: 0; bottom: 0; left: -4px; right: -4px; }
+.dgasplit.h { height: 1px; cursor: ns-resize; } .dgasplit.h::before { left: 0; right: 0; top: -4px; bottom: -4px; }
+#dgabp { flex: 1; min-height: 0; display: flex; flex-direction: column; font: 12px ui-monospace, Consolas, monospace; }
+.dgabpadd { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+.dgabpadd input:not([type]) { width: 70px; height: 22px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.dgabpadd select { height: 24px; font-size: 12px; } .dgabpadd button { padding: 2px 8px; font-size: 12px; }
+.dgaacc { display: flex; gap: 4px; } .dgaacc label { display: flex; align-items: center; gap: 1px; color: var(--dim); }
+#dgablist { flex: 1; min-height: 0; overflow: auto; padding: 2px 6px; }
+#dgablist .bl { display: flex; align-items: center; gap: 8px; height: 20px; white-space: nowrap; } #dgablist .bl.hit { background: rgba(240, 82, 82, .18); }
+#dgablist .bl .k { width: 7ch; color: var(--accent); } #dgablist .bl .r { width: 14ch; } #dgablist .bl .ac { width: 4ch; color: var(--dim); } #dgablist .bl .act { width: 6ch; } #dgablist .bl .n { width: 9ch; text-align: right; color: #facc15; }
+#dgablist .bl button { padding: 0 6px; font-size: 11px; } #dgablist .none { color: var(--dim); padding: 4px 0; }
+#dgadis .dl.ubp .bpm::before { content: ''; position: absolute; left: 4px; top: 4px; width: 6px; height: 6px; border-radius: 50%; border: 1px solid #f05252; }
+#dgascr { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 4px; overflow: hidden; }
+#dgascr canvas { max-width: 100%; max-height: 100%; aspect-ratio: 4 / 3; image-rendering: pixelated; cursor: crosshair; }
+#dgamsrc, #dgascrsrc { height: 22px; font-size: 12px; }
+.dgatm button { padding: 1px 7px; font-size: 12px; }
+.dgawh { display: flex; align-items: center; gap: 6px; } .dgawh button { padding: 0 6px; font-size: 12px; line-height: 15px; }
+#dgawatch .wl { display: flex; gap: 1ch; cursor: pointer; white-space: nowrap; overflow: hidden; } #dgawatch .wl .wn { color: #7fc8ff; min-width: 4ch; } #dgawatch .wl .wa { color: var(--dim); }
+#dgawatch .wl .wx { margin-left: auto; color: var(--dim); visibility: hidden; padding: 0 2px; } #dgawatch .wl:hover .wx { visibility: visible; } #dgawatch .wl .wx:hover { color: #f87171; }
+#dgawatch input { width: 100%; box-sizing: border-box; height: 16px; padding: 0 3px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 0; box-shadow: 0 0 0 1px var(--accent); border-radius: 2px; outline: none; }
+#dgadev { flex: 1; min-height: 0; overflow: auto; padding: 4px 8px; font: 12px/16px ui-monospace, Consolas, monospace; color: var(--text); display: flex; flex-wrap: wrap; gap: 4px 24px; align-content: flex-start; }
+#dgadev .dv { min-width: 230px; } #dgadev h6 { margin: 2px 0; font-size: 12px; color: var(--accent); font-weight: 600; } #dgadev .k { color: var(--dim); display: inline-block; min-width: 9ch; } #dgadev .dim { color: var(--dim); }
+#dgadev .ayr { display: grid; grid-template-columns: repeat(8, 3ch); gap: 0 6px; margin-bottom: 2px; } #dgadev .ayr .sel { background: rgba(240, 160, 80, .35); }
+#dgadev .tb { cursor: pointer; white-space: nowrap; } #dgadev .tb.cur { background: rgba(90, 169, 255, .22); } #dgadev .tb:hover { color: var(--accent); }
+.dgaform { position: fixed; z-index: 60; padding: 8px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,.5); font-size: 12px; color: var(--text); display: grid; grid-template-columns: auto auto; gap: 5px 8px; align-items: center; }
+.dgaform input, .dgaform select { height: 22px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; width: 120px; box-sizing: border-box; }
+.dgaform .fb { grid-column: 1 / -1; display: flex; gap: 6px; justify-content: flex-end; } .dgaform .fb button { padding: 2px 10px; font-size: 12px; } .dgaform .fn { grid-column: 1 / -1; color: var(--dim); font-size: 11px; max-width: 260px; }
+#dgamem .ml { white-space: nowrap; height: 16px; } #dgamem .ad { color: var(--dim); margin-right: 1ch; } #dgamem [data-m] { margin-right: .6ch; cursor: pointer; }
+#dgamem [data-m].cur { background: rgba(240, 160, 80, .35); } #dgamem .tx { margin-left: 1ch; color: var(--dim); }
+#dgawin.p-dis #dgadis, #dgawin.p-side .dgaside, #dgawin.p-mem #dgamem, #dgawin.p-bp #dgablist, #dgawin.p-scr #dgascr, #dgawin.p-dev #dgadev { box-shadow: inset 2px 0 0 var(--accent); }
+#dgawin.dgarun .dgamain, #dgawin.dgarun #dgamem { opacity: .45; }
+#dgawin .dgaedit { box-sizing: content-box; width: 4ch; height: 16px; margin: 0; padding: 0; vertical-align: top; font: 12px/16px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 0; box-shadow: 0 0 0 1px var(--accent); border-radius: 2px; outline: none; } /* the size of the 4 digits: the columns stay */
+#dgawin.narrow .dgamain { flex-direction: column; } #dgawin.narrow .dgaside { width: auto !important; border-left: 0; border-top: 1px solid var(--line); max-height: 40%; } #dgawin.narrow #dgasv { display: none; }
 #fvwin { position: fixed; left: 0; top: 0; z-index: 10; display: flex; flex-direction: column; width: min(640px, calc(100vw - 8px)); height: min(460px, calc(100vh - 16px));
   min-width: 300px; min-height: 180px; max-width: calc(100vw - 4px); max-height: calc(100vh - 8px); overflow: hidden;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
@@ -677,19 +751,19 @@ select.usel-src { display: none !important; }
 #fvorg[hidden], #fvorgl[hidden], #fvgo[hidden], #fvgol[hidden] { display: none; }
 #fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre-wrap; word-break: break-all; tab-size: 8; }
 #fvbody.hex { white-space: pre; word-break: normal; }
-#dbgwin .dbghead, #dbghelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
-#dbgwin .dbghead span, #dbghelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
-#dbgwin .dbghead button, #dbghelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
-:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
+#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
+#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
+#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
-:is(#dbghelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
-:is(#dbghelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
-:is(#dbghelp, #gfxhelp, #pfhelp, #rahelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
-:is(#dbghelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
-:is(#dbghelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
-:is(#dbghelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
-:is(#dbghelp, #gfxhelp, #fchelp) dd { margin: 0; }
-:is(#dbghelp, #gfxhelp) .hnote { margin-top: 12px; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
+:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #rahelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+:is(#dbghelp, #dgahelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dd { margin: 0; }
+:is(#dbghelp, #dgahelp, #gfxhelp) .hnote { margin-top: 12px; }
 #fchelp dt { white-space: normal; max-width: 140px; }
 #gfxhelp { width: min(340px, calc(100vw - 8px)); height: auto; max-height: min(520px, calc(100vh - 16px)); }
 /* Performance: small live graphs, two columns */
@@ -811,7 +885,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <div class="popwrap">
         <button class="ico wide" id="toolsbtn" title="Tools"><svg><use href="#i-tools"/></svg><svg class="caret"><use href="#i-caret"/></svg></button>
         <div class="pop menu" id="toolspop">
-          <button id="dbgbtn"><svg><use href="#i-bug"/></svg><span>Debugger</span><kbd>Shift+F1</kbd></button>
+          <button id="dbgbtn"><svg><use href="#i-bug"/></svg><span>Debugger (Unreal)</span><kbd>Shift+F1</kbd></button>
+          <button id="dgabtn" title="Xpeccy-style debugger: registers, disassembly, memory, stack (one debugger at a time)"><svg><use href="#i-bug"/></svg><span>deBUGa (Xpeccy)</span><kbd hidden>Shift+F1</kbd></button>
           <button id="gfxbtn"><svg><use href="#i-gfx"/></svg><span>Graf Search</span></button>
           <button id="fcbtn"><svg><use href="#i-fc"/></svg><span>File Commander</span><kbd>F1</kbd></button>
           <button id="pfbtn"><svg><use href="#i-perf"/></svg><span>Performance</span></button>
@@ -848,7 +923,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 </div>
 
 <div id="dbgwin" hidden role="dialog" aria-label="Debugger">
-  <div class="dbghead fhead"><span>Debugger</span><button id="dbghelpbtn" title="Keys">?</button><button id="dbgclose" title="Close (Shift+F1 / Esc)">✕</button></div>
+  <div class="dbghead fhead"><span>Debugger (Unreal)</span><button id="dbghelpbtn" title="Keys">?</button><button id="dbgclose" title="Close (Shift+F1 / Esc)">✕</button></div>
   <canvas id="dbgcanvas" width="640" height="480" tabindex="0"></canvas>
 </div>
 
@@ -935,6 +1010,13 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <div class="pophead"><span>3.5 MHz × step</span><b id="speedmhz">7.0 MHz</b></div>
             <input type="range" id="speedrange" min="0" max="9" step="1" value="3">
             <div class="ticks" id="speedticks"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Debugger</h3>
+          <div class="optcol">
+            <label class="chk" title="The debugger opened by Shift+F1 (Tools menu: the key is shown at it). The other one opens from the Tools menu">Shift+F1 opens
+              <select id="dbgdef"><option value="u">Debugger (Unreal)</option><option value="x">deBUGa (Xpeccy)</option></select></label>
           </div>
         </div>
         <div class="card" id="eff7card" hidden>
@@ -1117,6 +1199,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <h3>Tools</h3>
         <table class="keys">
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
+          <tr><td>deBUGa</td><td>debugger after Xpeccy: registers, disasm with labels, memory, stack</td></tr>
           <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA)</td></tr>
           <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
@@ -1139,6 +1222,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad</td></tr>
           <tr><td>ATM Turbo 2+ hardware</td><td>MicroART</td></tr>
           <tr><td>Honey Commander</td><td>Honey Soft</td></tr>
+          <tr><td>Xpeccy (deBUGa)</td><td>SAM style (<a href="https://github.com/samstyle/Xpeccy" target="_blank" rel="noopener">Xpeccy</a>, MIT)</td></tr>
           <tr><td>Web port</td><td>ae485; WebAssembly: wasi-sdk, Binaryen</td></tr>
           <tr><td>ZX-MultiSound</td><td><a href="https://github.com/SeregaButylkin/zx-multisound" target="_blank" rel="noopener">SeregaButylkin</a></td></tr>
           <tr><td>ZXM-MoonSound</td><td><a href="http://micklab.ru" target="_blank" rel="noopener">Mick Laboratory</a></td></tr>
@@ -1155,7 +1239,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <h4>Emulator keys</h4>
     <table class="keys">
       <tr><td>F1</td><td>File Commander</td></tr>
-      <tr><td>Shift+F1</td><td>debugger</td></tr>
+      <tr><td>Shift+F1</td><td>debugger (which one: Options / System; F1 in it: its keys)</td></tr>
       <tr><td>F2</td><td>Save window</td></tr>
       <tr><td>F3</td><td>Load window</td></tr>
       <tr><td>F4</td><td>sound on / off</td></tr>
@@ -1166,23 +1250,6 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>/</td><td>max speed on / off</td></tr>
       <tr><td>Ctrl+Alt+Z</td><td>ATM mode (XT keyboard) on/off</td></tr>
       <tr><td>Esc</td><td>releases captured mouse</td></tr>
-    </table>
-    <h4>Debugger (Shift+F1)</h4>
-    <table class="keys">
-      <tr><td>Alt+C</td><td>breakpoints: conditions, address ranges (exec / read / write); kept after reload</td></tr>
-      <tr><td>Alt+O</td><td>watch window expressions</td></tr>
-      <tr><td>Ctrl+J</td><td>labels: jump, load .l / .sym from computer (sos.l loaded by default)</td></tr>
-      <tr><td>Alt+F6 / Alt+P</td><td>search memory / pokes</td></tr>
-      <tr><td>Shift+F7</td><td>tape blocks</td></tr>
-      <tr><td>Alt+R / Alt+W</td><td>load memory block from computer / save block as download</td></tr>
-      <tr><td>Alt+T</td><td>ripper: ripped.bin as download</td></tr>
-      <tr><td>Right click</td><td>in disassembler: breakpoint on / off</td></tr>
-      <tr><td>expressions</td><td>bare hex (C000), M x = byte at x, a->b, OUT IN VAL DOS FD</td></tr>
-      <tr><td>Alt+Shift+1…8</td><td>stand-in for Ctrl+1…8 (browser takes Ctrl)</td></tr>
-      <tr><td>Alt+Shift+D / F</td><td>stand-in for Alt+D / Alt+F</td></tr>
-      <tr><td>Alt+Shift+H / T</td><td>stand-in for Ctrl+Tab / Ctrl+T</td></tr>
-      <tr><td>Shift+F8</td><td>stand-in for F11</td></tr>
-      <tr><td>F1 (in debugger)</td><td>full debugger key list</td></tr>
     </table>
     <h4>REST API</h4>
     <p>Start a machine, disks and programs from a link: Tools / REST API link (? there lists every parameter).</p>
@@ -1473,6 +1540,47 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 </div>
 <div id="askbox" hidden><div class="box" role="alertdialog" aria-modal="true"><div class="t"></div><div class="x"></div>
   <div class="b"><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
+<div id="dgawin" hidden role="dialog" aria-label="deBUGa" tabindex="-1">
+  <div class="dbghead fhead"><span>deBUGa (Xpeccy)</span><b id="dgastate"></b><button id="dgahelpbtn" title="Help (F1)">?</button><button id="dgaclose" title="Close (Esc): the machine runs on">✕</button></div>
+  <div class="dgabar">
+    <button id="dgarun" title="Stop / Run (F9)">Run</button>
+    <button data-c="1" title="Step (F7)">Step</button><button data-c="2" title="Step over CALL / RST / LDIR… (F8)">Over</button><button data-c="3" title="Run to the cursor line (F4)">To cursor</button><button data-c="4" title="Run to return from the subroutine (F6)">Out</button>
+    <label title="Disassembly from an address (hex), Enter">Go #<input id="dgago" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label>
+    <button id="dgamark" title="Mark the selected lines (Shift + arrows / click): code, bytes, words, addresses, text; label (:), comment (;). Also: right click / long press on a line">Mark ▾</button>
+    <input id="dgaprjn" placeholder="Project…" spellcheck="false" autocomplete="off" title="Project name: the file of Save .xmap (Load puts the name of the file here)"><button id="dgaprj" title="Project: Save / Load .xmap, labels, Clear (marks, labels, comments of this model are kept in the browser)" aria-haspopup="menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div class="dgamain">
+    <div id="dgadis" title="Click: cursor · left edge or Space: breakpoint · Enter / double click: go to the jump target · Backspace: back · Home: PC"></div>
+    <div class="dgasplit v" id="dgasv" title="Drag: width of the registers"></div>
+    <div class="dgaside"><div id="dgaregs"></div><div class="dgacap">Stack</div><div id="dgastack"></div><div class="dgacap dgawh">Watches<button id="dgawadd" title="Add a watch: address (hex, #hex), label or register (HL, (HL)…)">+</button></div><div id="dgawatch"></div></div>
+  </div>
+  <div class="dgasplit h" id="dgash" title="Drag: height of the lower part"></div>
+  <div class="dgabot" id="dgabot">
+    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="ZX screen of a RAM page as the stop left it">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
+      <span class="dgatm"><select id="dgamsrc" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
+      <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
+    <span class="dgats" hidden><select id="dgascrsrc" title="RAM page of the screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    </div>
+    <div id="dgamem"></div>
+    <div id="dgadev" hidden></div>
+    <div id="dgascr" hidden><canvas id="dgascv" width="256" height="192"></canvas></div>
+    <div id="dgabp" hidden>
+      <div class="dgabpadd">
+        <select id="dgabk" title="What is watched"><option value="0">Z80 addr</option><option value="1">RAM page</option><option value="2">ROM page</option><option value="3">IN port</option><option value="4">OUT port</option><option value="5">INT</option></select>
+        <input id="dgaba" placeholder="from" spellcheck="false" autocomplete="off" title="Address (hex); RAM / ROM: page:offset (05:1A00); port (hex)">
+        <input id="dgabb" placeholder="to" spellcheck="false" autocomplete="off" title="Last address of a range (empty: one); port: mask (hex, FFFF: whole port, 00FF: low byte)">
+        <span class="dgaacc"><label title="Execution (stops before the instruction)"><input type="checkbox" id="dgabx" checked>X</label><label title="Read (stops after the instruction)"><input type="checkbox" id="dgabr">R</label><label title="Write (stops after the instruction)"><input type="checkbox" id="dgabw">W</label></span>
+        <select id="dgabact" title="Stop, or only count the hits"><option value="0">Stop</option><option value="1">Count</option></select>
+        <button id="dgabcur" title="From the cursor line of the listing (RAM / ROM: its physical page now)">Cursor</button><button id="dgabadd" class="primary">Add</button>
+      </div>
+      <div id="dgablist"></div>
+    </div>
+  </div>
+</div>
+<div id="dgahelp" class="fwin" hidden role="dialog" aria-label="deBUGa help">
+  <div class="dbghead fhead"><span>deBUGa help</span><button id="dgahelpclose" title="Close">✕</button></div>
+  <div class="hbody"></div>
+</div>
 <div id="fvwin" hidden role="dialog" aria-label="Viewer">
   <div class="dbghead fhead"><span id="fvtitle">Viewer</span><button id="fvclose" title="Close (Esc)">✕</button></div>
   <div class="fvbar">
@@ -1501,14 +1609,15 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261018221456"></script>
-<script src="js/scancodes.js?v=20261018221456"></script>
-<script src="js/unzip.js?v=20261018221456"></script>
-<script src="js/vkbd.js?v=20261018221456"></script>
-<script src="js/asyncify.js?v=20261018221456"></script>
-<script src="js/gfx.js?v=20261018221456"></script>
-<script src="js/usel.js?v=20261018221456"></script>
-<script src="js/fcmd.js?v=20261018221456"></script>
-<script src="js/app.js?v=20261018221456"></script>
+<script src="js/wasi_fs.js?v=20261019135917"></script>
+<script src="js/scancodes.js?v=20261019135917"></script>
+<script src="js/unzip.js?v=20261019135917"></script>
+<script src="js/vkbd.js?v=20261019135917"></script>
+<script src="js/asyncify.js?v=20261019135917"></script>
+<script src="js/gfx.js?v=20261019135917"></script>
+<script src="js/usel.js?v=20261019135917"></script>
+<script src="js/fcmd.js?v=20261019135917"></script>
+<script src="js/dbga.js?v=20261019135917"></script>
+<script src="js/app.js?v=20261019135917"></script>
 </body>
 </html>
