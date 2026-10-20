@@ -1806,3 +1806,9 @@ Web Unreal Speccy — version history
 
 * REST API window: for tsconf speed offers 3.5 / 7 / 14 MHz (TS-BIOS CPU
   Speed); speed= of tsconf takes only these (1x / 2x / 4x dropped)
+
+
+        version 0.84.3                  20 oct 2026
+
+! File Commander, viewer: ZX Spectrum, Latin-1 and UTF-8 showed
+  "undefined" instead of the characters (since 0.84.0)

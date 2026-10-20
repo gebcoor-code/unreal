@@ -889,7 +889,8 @@
   function table(enc) { // 256 printable characters for the encoding (controls shown as ·)
     if (decTab[enc]) return decTab[enc];
     let t;
-    if (enc === 'zx' || enc === 'latin1' || enc === 'utf-8') { t = []; // UTF-8 byte by byte (hex, disassembler): ASCII only for (let i = 0; i < 256; i++) t.push(i < 32 ? '·' : i < 127 ? String.fromCharCode(i) : enc === 'latin1' && i >= 160 ? String.fromCharCode(i) : '·');
+    // UTF-8 byte by byte (hex, disassembler): ASCII only
+    if (enc === 'zx' || enc === 'latin1' || enc === 'utf-8') { t = []; for (let i = 0; i < 256; i++) t.push(i < 32 ? '·' : i < 127 ? String.fromCharCode(i) : enc === 'latin1' && i >= 160 ? String.fromCharCode(i) : '·');
       if (enc === 'zx') { t[0x5E] = '↑'; t[0x60] = '£'; t[0x7F] = '©'; } }
     else { const b = new Uint8Array(256); for (let i = 0; i < 256; i++) b[i] = i; t = [...new TextDecoder(enc).decode(b)];
       for (let i = 0; i < 32; i++) t[i] = '·'; if (t[127]) t[127] = '·'; }
