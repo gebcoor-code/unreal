@@ -109,6 +109,7 @@
     close();
     const box = done.get(sel);
     pop = document.createElement('div'); pop.className = 'usel-pop'; pop.setAttribute('role', 'listbox');
+    if (sel.dataset.popClass) pop.classList.add(...sel.dataset.popClass.split(/\s+/).filter(Boolean)); // data-pop-class: the list's own style
     let group = null;
     [...sel.options].forEach((o, i) => {
       if (o.hidden) return;
@@ -136,7 +137,9 @@
     const r = popAnchor.getBoundingClientRect(), vv = window.visualViewport, vw = document.documentElement.clientWidth;
     let lo = 4, hi = Math.min(window.innerHeight, document.documentElement.clientHeight || 1e9, vv ? vv.height + vv.offsetTop : 1e9) - 4;
     if (vv) lo = Math.max(lo, vv.offsetTop + 4);
-    pop.style.minWidth = Math.round(r.width) + 'px'; pop.style.maxWidth = (vw - 8) + 'px';
+    // data-pop-extra: the list this many px wider than the box; data-pop-scale: its height × this (a shorter list)
+    const ds = popFor ? popFor.dataset : {}, extra = +ds.popExtra || 0, scale = +ds.popScale || 1;
+    pop.style.minWidth = Math.round(r.width + extra) + 'px'; pop.style.maxWidth = (vw - 8) + 'px';
     pop.style.maxHeight = ''; pop.style.top = pop.style.bottom = '';
     const win = popAnchor.closest('.fwin, .optwin, [role="dialog"], #fcwin, #restwin, #dbgdlg');
     let cap = 1e9; // outside its own window a long list stays short and scrolls
@@ -149,6 +152,8 @@
     const below = Math.min(hi - r.bottom - 2, cap), above = Math.min(r.top - 2 - lo, cap), want = Math.min(pop.scrollHeight, 320);
     if (below >= Math.min(want, 120) || below >= above) { pop.style.top = (r.bottom + 2) + 'px'; pop.style.maxHeight = Math.max(60, below) + 'px'; }
     else { pop.style.top = Math.max(lo, r.top - 2 - Math.min(pop.scrollHeight, above)) + 'px'; pop.style.maxHeight = Math.max(60, above) + 'px'; }
+    if (scale !== 1) { const h = Math.max(60, Math.round(Math.min(parseFloat(pop.style.maxHeight) || 1e9, pop.scrollHeight) * scale)); pop.style.maxHeight = h + 'px';
+      if (pop.style.top && parseFloat(pop.style.top) < r.top) pop.style.top = Math.max(lo, r.top - 2 - Math.min(pop.scrollHeight, h)) + 'px'; }
     const w = pop.offsetWidth; pop.style.left = Math.max(4, Math.min(r.left, vw - w - 4)) + 'px';
   }
   function hot(d) { if (!pop) return; pop.querySelectorAll('.usel-it.hot').forEach((x) => x.classList.remove('hot')); d.classList.add('hot'); }

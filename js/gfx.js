@@ -7,6 +7,8 @@
     ZX:  { ppb: 8, sx: 2, sy: 2 },  // pixels per byte, CSS pixel size
     EGA: { ppb: 2, sx: 2, sy: 2 },
     VGA: { ppb: 8, sx: 1, sy: 2 },
+    '16C': { ppb: 2, sx: 1, sy: 1 },  // TS-Conf 16 colors: 2 pixels a byte, high nibble first (palette: CRAM, GPAL)
+    '256C': { ppb: 1, sx: 1, sy: 1 }, // TS-Conf 256 colors: 1 pixel a byte (CRAM)
   };
   const hex = (v, n) => v.toString(16).toUpperCase().padStart(n, '0');
 
@@ -107,11 +109,20 @@
       const px = new Uint32Array(img.data.buffer);
       const ink = 0xFFE8E8E8, paper = 0xFF000000, xor = st.inv ? 0xFF : 0; // inverse = inverted bytes
       const pal = st.mode === 'EGA' ? new Uint32Array(E.memory.buffer, E.web_gfx_pal(), 16).slice() : null;
+      // TS-Conf modes: the CRAM of the machine (16c: the 16 of GPAL); another machine: grey levels
+      let tpal = null;
+      if (st.mode === '16C' || st.mode === '256C') {
+        const ts = E.web_ts_info && E.web_ts_info() && api.tsOn && api.tsOn();
+        if (ts) { const all = new Uint32Array(E.memory.buffer, E.web_ts_pal(), 256).slice(); const g = (new Uint32Array(E.memory.buffer, E.web_ts_info(), 40)[5] & 15) << 4; tpal = st.mode === '16C' ? all.slice(g, g + 16) : all; }
+        else { const n = st.mode === '16C' ? 16 : 256; tpal = new Uint32Array(n); for (let i = 0; i < n; i++) { const v = Math.round(i * 255 / (n - 1)); tpal[i] = 0xFF000000 | (v << 16) | (v << 8) | v; } }
+      }
       let a = st.addr, o = 0;
       for (let y = 0; y < H; y++) {
         for (let x = 0; x < st.w; x++) {
           const b = a < size ? mem[a] ^ xor : 0; a++;
-          if (pal) { // ATM EGA: left pixel = bits 0,1,2,6; right pixel = bits 3,4,5,7
+          if (tpal) { // TS-Conf 16c (high nibble first) / 256c
+            if (st.mode === '16C') { px[o++] = tpal[b >> 4]; px[o++] = tpal[b & 15]; } else px[o++] = tpal[b];
+          } else if (pal) { // ATM EGA: left pixel = bits 0,1,2,6; right pixel = bits 3,4,5,7
             px[o++] = pal[(b & 7) | ((b >> 3) & 8)];
             px[o++] = pal[((b >> 3) & 7) | ((b >> 4) & 8)];
           } else {

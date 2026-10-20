@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261019135917';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261020105055';
   const MAIL_PNG = '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';
-  const APP_VER = '0.73.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261019135917'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.80.1'; // About, System Info (history: changes.txt)
+  const BUILD = '20261020105055'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -25,19 +25,20 @@
   const MODELS = {
     ATM710: { name: 'Turbo 2+ (7.10)', base: 69888, speed: 2.5, xt: true, ini: { MISC: { RESET: 'SYS' } }, files: ['bios_1_07_13.rom'],
       note: '1024 KB · BIOS 1.07.13' },
-    // eXtra BIOS 1.32XT (NedoPC): 128K ROM, dual TR-DOS (5.04R + vTR-DOS with a WD1793 emulator), setup utility
-    XBIOSXT: { name: 'Turbo 2+ xBIOS 1.32XT', base: 69888, speed: 2.5, xt: true, files: ['xbios132xt.rom'], note: '1024 KB · eXtra BIOS 1.32XT (128K ROM: TR-DOS 5.04R + vTR-DOS 2.4)',
-      ini: { MISC: { HIMEM: 'ATM710', RAMSize: '1024', RESET: 'SYS' }, ROM: { ROMSET: '', ATM2: 'xbios132xt.rom' } } },
-    // eXtra BIOS 1.36XT: same machine and menus as 1.32XT (start macros, CP/M, ROM disk)
-    XBIOS136: { name: 'Turbo 2+ xBIOS 1.36', machine: 'XBIOSXT', base: 69888, speed: 2.5, xt: true, files: ['xbios136.rom'], note: '1024 KB · eXtra BIOS 1.36XT (128K ROM: TR-DOS 5.04R + vTR-DOS)',
+    // eXtra BIOS 1.36XT (NedoPC): 128K ROM, dual TR-DOS (5.04R + vTR-DOS with a WD1793 emulator), setup utility (start macros,
+    // CP/M, ROM disk; TASiS / iS-DOS Chic boot on it)
+    XBIOS136: { name: 'Turbo 2+ xBIOS 1.36', base: 69888, speed: 2.5, xt: true, files: ['xbios136.rom'], note: '1024 KB · eXtra BIOS 1.36XT (128K ROM: TR-DOS 5.04R + vTR-DOS)',
       ini: { MISC: { HIMEM: 'ATM710', RAMSize: '1024', RESET: 'SYS' }, ROM: { ROMSET: '', ATM2: 'xbios136.rom' } } },
     // ATM-1: the BIOS times the CPU (copy protection, CP/M key), so the clock stays at 3.5 MHz
     // BIOS 1.04.1R: the CP/M part is plain (1.03 is encrypted with a key from CPU timing, so it ran at 3.5 MHz only);
     // CP/M starts "B:XC /R" (X-Commander from the CP/M drive B: = floppy A:) by itself
     ATM450: { name: 'ATM Turbo 1 (4.50)', base: 69888, speed: 2.5, xt: false, files: ['atm1041r.rom'], note: '512 KB · BIOS 1.04.1R',
       ini: { MISC: { HIMEM: 'ATM450', RAMSize: '512', CMOS: 'none', RESET: 'SYS' }, ROM: { ROMSET: '', ATM1: 'atm1041r.rom' }, ULA: { Preset: 'ATM1_2_3.5MHz' } } },
-    EVO: { name: 'ZX-Evolution 4096', sysName: 'ZX Evolution 4096 (BaseConf)', base: 69888, speed: 2.5, xt: true, files: ['zxevo_fe.rom', 'CMOS'], note: '4096 KB · EVO Reset Service FE · CMOS (this session only)',
+    EVO: { name: 'ZX Evo BaseConf', base: 69888, speed: 2.5, xt: true, files: ['zxevo_fe.rom', 'CMOS'], note: '4096 KB · EVO Reset Service FE · CMOS (this session only)',
       ini: { MISC: { HIMEM: 'ATM3', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', ATM3: 'zxevo_fe.rom' } } },
+    // ZX-Evolution with the TS configuration (TS-Conf): TS-BIOS, 4 MB, TS video modes; the program sets the CPU clock (3.5 / 7 / 14 MHz)
+    TSCONF: { name: 'ZX Evo TS-Conf', base: 71680, speed: 1, fixed: true, xt: false, files: ['zxevo.rom', 'CMOS'], note: '4096 KB · TS-BIOS · CMOS (this session only)',
+      ini: { MISC: { HIMEM: 'TSL', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', TSL: 'zxevo.rom' }, ULA: { Preset: 'PENTAGON' } } },
     PENTAGON: { name: 'Pentagon 128', base: 71680, speed: 2.5, xt: false, files: ['pentagon.rom', 'trd504tm.rom'], note: '128 KB · 128K ROM + TR-DOS',
       ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'pentagon' }, 'ROM.pentagon': { 128: 'pentagon.rom:0', sos: 'pentagon.rom:1', dos: 'trd504tm.rom', sys: 'trd504tm.rom' }, ULA: { Preset: 'PENTAGON' } } },
     // other Spectrum clones of UnrealSpeccy: one 64K ROM each (KAY: as a ROM set, the core has no single-file KAY ROM)
@@ -54,13 +55,13 @@
   };
   // operating systems on HDD: an xBIOS XT machine that boots HDD 0 (setup → Boot → IDE hard drive master) in ATM mode
   const OS_MODELS = {
-    TASIS: { name: 'TASiS v5.40', hdd: 'hdd/tasis540.zip', note: 'iS-DOS TASiS v5.40 · starts on Turbo 2+ xBIOS 1.32XT' },
-    CHIC: { name: 'iS-DOS Chic v5.01', hdd: 'hdd/isdos501.zip', note: 'iS-DOS Chic v5.01 · starts on Turbo 2+ xBIOS 1.32XT' },
+    TASIS: { name: 'TaSiS v5.40 (BIOS 1.36XT)', hdd: 'hdd/tasis540.zip', note: 'iS-DOS TASiS v5.40 · starts on Turbo 2+ xBIOS 1.36' },
+    CHIC: { name: 'iS-DOS Chic v5.01 (BIOS 1.36XT)', hdd: 'hdd/isdos501.zip', note: 'iS-DOS Chic v5.01 · starts on Turbo 2+ xBIOS 1.36' },
     // NedoOS on the SD card of ZX-Evolution: EVO Reset Service, 5 = SDcard boot (sd_boot.$C)
-    NEDOOS: { name: 'NedoOS', machine: 'EVO', sd: 'sd/nedoos.zip', note: 'NedoOS v0.2188.1 · starts on ZX-Evolution from SD (~30 MB, browser caches once)',
+    NEDOOS: { name: 'NedoOS (BaseConf)', machine: 'EVO', sd: 'sd/nedoos.zip', note: 'NedoOS v0.2188.1 · starts on ZX Evo BaseConf from SD (~30 MB, browser caches once)',
       link: 'https://github.com/alfishe/NedoOS' },
   };
-  for (const [k, v] of Object.entries(OS_MODELS)) MODELS[k] = Object.assign({}, MODELS[v.machine || 'XBIOSXT'], v, { machine: v.machine || 'XBIOSXT' });
+  for (const [k, v] of Object.entries(OS_MODELS)) MODELS[k] = Object.assign({}, MODELS[v.machine || 'XBIOS136'], v, { machine: v.machine || 'XBIOS136' });
   // ------------------------------------------------------------------ Custom ROM (Options / System)
   // The user picks the machine and what goes where; the page only turns that into web_model.ini.
   // Machine profiles: memory model (HIMEM), RAM, timings, CMOS; the ROM is either one file taken whole ([ROM] key,
@@ -76,7 +77,8 @@
     QUORUM: { name: 'Quorum 1024', himem: 'QUORUM', ram: 1024, base: 69888, key: 'QUORUM', sizes: [64] },
     ATM450: { name: 'ATM Turbo 1 (4.50)', himem: 'ATM450', ram: 512, base: 69888, ula: 'ATM1_2_3.5MHz', key: 'ATM1', sizes: [64] },
     ATM710: { name: 'ATM Turbo 2+ (7.10)', himem: 'ATM710', ram: 1024, base: 69888, key: 'ATM2', sizes: [64, 128, 512, 1024], xt: true },
-    EVO: { name: 'ZX-Evolution 4096', himem: 'ATM3', ram: 4096, base: 69888, key: 'ATM3', sizes: [64, 128, 512, 1024], xt: true, cmos: 'DALLAS' },
+    EVO: { name: 'ZX Evo BaseConf', himem: 'ATM3', ram: 4096, base: 69888, key: 'ATM3', sizes: [64, 128, 512, 1024], xt: true, cmos: 'DALLAS' },
+    TSCONF: { name: 'ZX Evo TS-Conf', himem: 'TSL', ram: 4096, base: 71680, ula: 'PENTAGON', key: 'TSL', sizes: [64, 512], cmos: 'DALLAS' },
   };
   const SLOTS = [['128', '128'], ['sos', '48 BASIC'], ['dos', 'TR-DOS'], ['sys', 'Service']]; // ROM set: ini name, label
   // parts on the server to build a ROM set from (rom/roms.json replaces this list): file in rom/ (or rom/<name>.zip), slot, title
@@ -154,8 +156,8 @@
   customApply();
   let model = 'ATM710';
   const M = () => MODELS[model].machine || model; // the machine under an OS model
-  const xbiosOf = (m) => (m === 'XBIOS136' ? 'XBIOS136' : 'XBIOSXT'); // the xBIOS model a ROM disk is built on
-  // ROM disk (xBIOS 1.32XT, appendix 4): IMAGE.TRD (40 pages) + empty 256K + XBIOS.ROM = 1 MB ROM; vTR-DOS mounts it read-only
+  const xbiosOf = () => 'XBIOS136'; // the xBIOS model a ROM disk is built on
+  // ROM disk (xBIOS XT manual, appendix 4): IMAGE.TRD (40 pages) + empty 256K + XBIOS.ROM = 1 MB ROM; vTR-DOS mounts it read-only
   const ROMDISK_FILE = 'romdisk.rom', ROMDISK_TRD = 40 * 16384, ROM_TARGET = 9;
   let romDisk = null; // { name } for this session
   // PC keys → ZX keyboard as in Fuse / USP: Esc = EDIT (Caps Shift+1, "back / exit" in most programs: QC, TView, iS-DOS…),
@@ -166,7 +168,7 @@
   function modelIniObj(m) { // the ini overrides of model m, as they go to the emulator
     const quorum = (MODELS[m].machine || m) === 'QUORUM' || (m === 'CUSTOM' && customCfg.mach === 'QUORUM');
     const ini = iniMerge(quorum ? {} : JSON.parse(JSON.stringify(ZX_KEYS_WEB)), JSON.parse(JSON.stringify(MODELS[m].ini)));
-    if ((MODELS[m].machine || m) === 'XBIOSXT' && romDisk && romDisk.model === xbiosOf(m) && fs.exists(ROMDISK_FILE)) ini.ROM.ATM2 = ROMDISK_FILE; // 1 MB: disk + empty + xBIOS
+    if ((MODELS[m].machine || m) === 'XBIOS136' && romDisk && romDisk.model === xbiosOf(m) && fs.exists(ROMDISK_FILE)) ini.ROM.ATM2 = ROMDISK_FILE; // 1 MB: disk + empty + xBIOS
     // no TR-DOS ROM on the server: take TR-DOS 5.03 from the ATM BIOS (page 1)
     for (const set of Object.keys(ini).filter((k) => /^ROM\./.test(k))) for (const r of ['dos', 'sys']) if (ini[set][r] === 'trd504tm.rom' && !fs.exists('trd504tm.rom')) ini[set][r] = 'bios_1_07_13.rom:1';
     return ini;
@@ -928,6 +930,7 @@
   document.addEventListener('resume', () => { hiddenPaused = document.hidden; applyRunState(); resync(performance.now()); });
 
   // ------------------------------------------------------------------ main loop
+  let refreshMs = 16.7, renderMs = 2, turboBudget = 12; // max speed: the emulation time per refresh = refresh − picture − margin
   let tickEnd = performance.now(), lastT = performance.now(), frameAcc = 0, fpsCount = 0, fpsT = performance.now();
   let sentSinceReport = 0, lastReportSeen = 0, sampAcc = 0, frameN = 882; // frameN: sound samples of the last frame
 
@@ -944,6 +947,10 @@
     // the page was not run for a while (frozen, app switch): only a gap between ticks counts, not a long tick of our own
     if (now - tickEnd > 400) { resync(now); tickEnd = now; return; }
     let dt = now - lastT; lastT = now;
+    if (!turbo && dt > 4 && dt < 50) refreshMs += (dt - refreshMs) * 0.05; // the screen refresh interval (smoothed; not while max speed stretches it)
+    // max speed: a tick takes whole refreshes (~33 ms: 2 at 60 Hz, 4 at 120 Hz): emulation, then one picture — about 90% of the time
+    // emulates and nothing is lost to a refresh missed by a little
+    { const k = Math.max(1, Math.round(33 / refreshMs)); turboBudget = Math.max(6, k * refreshMs - renderMs - 1.5); }
     if (dt > 100) dt = 100;
     if (AS.suspended) { // inside the debugger: wake it up when its Sleep() is over
       if (now >= AS.state.wakeAt) debugResume(true);
@@ -952,7 +959,7 @@
     }
     let run = 0;
     if (!isPaused()) {
-      if (turbo) run = 20;
+      if (turbo) run = 200; // max speed: as many frames as fit in ~12 ms of this screen refresh (below)
       // audio-clocked only while the worklet reports in time (stale reports after a freeze would ask for a burst of frames)
       else if (audio && audio.ctx.state === 'running' && now >= resyncUntil && now - audio.reportAt < 250) {
         // the machine runs by the clock in sound samples (a Pentagon frame is 903 samples: 48.8 frames a second), and the
@@ -978,12 +985,13 @@
       // (measured from the start of this loop: Safari's requestAnimationFrame time can be well before the call, which let only one
       // frame run per refresh — 30 frames a second at a 30 Hz refresh)
       if (i && !turbo && performance.now() - t0 > 30) { if (audio) sampAcc += (run - i) * frameN; break; } // not done: kept for the next refresh
+      if (i && turbo && performance.now() - t0 > turboBudget) break; // max speed: the refresh keeps its time for the picture (a fixed count of frames halved the speed when it did not fit)
       const r = AS.call('web_frame');
       if (!r.done) { debugDraw(); tickEnd = performance.now(); return; } // stopped in the debugger
       if (r.value > 100) frameN = r.value;
       frameDone(r.value);
     }
-    if (run) { render(); coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
+    if (run) { const r0 = performance.now(); render(); renderMs += (performance.now() - r0 - renderMs) * 0.1; coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
     else if (isPaused() && ledKey) { ledKey = ''; $('dled').hidden = true; }
     drawViz(now);
     if (now - fpsT >= 1000) {
@@ -992,6 +1000,7 @@
       const sh = muted || isPaused() || !!(audio && audio.ctx.state === 'running') || now - soundAt > 1500;
       if ($('sndhint').hidden !== sh) $('sndhint').hidden = sh; // the page is changed only when something did change
       hudSet('fps', Math.round(fpsCount * 1000 / (now - fpsT)) + ' fps');
+      tsClock();
       if (E && E.web_gs_auto_fired && E.web_gs_auto_fired()) toast('General Sound on: the program uses it (Options / Sound)');
       fpsCount = 0; fpsT = now;
       if (optOpen() || !$('loadwin').hidden) updateUI(); // drives, HDD, SD rows: only while a window shows them (they are refreshed when it opens)
@@ -1305,7 +1314,7 @@
     $('dbgclose').onclick = (e) => { e.stopPropagation(); debugClose(); };
     $('dbghelpbtn').onclick = (e) => { e.stopPropagation(); showDbgHelp(h.hidden); c.focus(); };
     $('dbghelpclose').onclick = () => { showDbgHelp(false); c.focus(); };
-    gfx = UnrealGfx.create({ E: () => E, floatWin, edgeResize, load, store, snapRight, live: () => !AS.suspended, disks: gfxDisks, diskBytes: gfxDiskBytes, view: (f, t, m, go) => fc && fc.view(f, t, m, go), onToggle: () => toolsUI(), onClose: () => (dbgOn ? c : canvas).focus() });
+    gfx = UnrealGfx.create({ E: () => E, tsOn: () => model === 'TSCONF' || (model === 'CUSTOM' && customCfg.mach === 'TSCONF'), floatWin, edgeResize, load, store, snapRight, live: () => !AS.suspended, disks: gfxDisks, diskBytes: gfxDiskBytes, view: (f, t, m, go) => fc && fc.view(f, t, m, go), onToggle: () => toolsUI(), onClose: () => (dbgOn ? c : canvas).focus() });
     $('gfxbtn').onclick = () => { toolsMenu(false); releaseMouse(); gfx.show(!gfx.open); toolsUI(); };
     fc = UnrealFC.create({ E: () => E, fs, setName, floatWin, edgeResize, snapRight, load, store, download: downloadBytes, askBox,
       insert: (name, d) => { if (d >= 0) E.web_disk_mark(d, 0); return insertFromFs(name, d, true); }, // FC writes the disk back: no "save the changed disk?" question
@@ -1314,7 +1323,7 @@
       onClose: () => canvas.focus(), run: fcRun, mountDisk: async (name, data, d) => { const before = drives[d]; await putAndInsert(name, data, d); return drives[d] !== before; }, graf: (name, data) => { gfx.showFile(name, data); toolsUI(); } });
     $('fcbtn').onclick = () => { toolsMenu(false); releaseMouse(); fc.show(!fc.open); fcVk = fc.open; };
     // deBUGa: the second debugger window on the same debugger loop of the core; one of the two debuggers at a time
-    dga = UnrealDbga.create({ E: () => E, cstr, floatWin, edgeResize, load, store, activate: activateWin,
+    dga = UnrealDbga.create({ E: () => E, tsOn: () => model === 'TSCONF' || (model === 'CUSTOM' && customCfg.mach === 'TSCONF'), cstr, floatWin, edgeResize, load, store, activate: activateWin,
       stoppedNow: () => !!(E && E.web_debug_active() && AS.suspended), stop: () => { releaseMouse(); debugEnter(); },
       // F24 (no action) wakes the loop of the core: it leaves when the action ended the stop
       cmd: (n, a) => { E.web_dga_cmd(n, a); E.web_debug_key(0x87, 0); debugResume(); },
@@ -1712,6 +1721,7 @@
       return false;
     }
     if (e.code === 'F1' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { if (!e.repeat) dbgShiftF1(); return true; } // Shift+F1: the debugger chosen in Options / System
+    if (e.code === 'F12' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey) && M() === 'TSCONF') { if (!e.repeat) tsSetup(); return true; } // TS-BIOS Setup
     if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return false;
     if (e.code === 'F12') { E.web_reset(0); return true; }
     if (e.code === 'F2') { openSave(); return true; }
@@ -1820,7 +1830,7 @@
     updateUI();
     return true;
   }
-  const LOADABLE = /\.(trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|pal|\$.)$/i;
+  const LOADABLE = /\.(trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|pal|\$.)$/i;
   // the page's question box: resolves true (OK) / false (Cancel, Esc); OK has the focus
   function askBox(title, text, ok, no) {
     const w = $('askbox'), okb = w.querySelector('.ok'), nob = w.querySelector('.no');
@@ -1846,6 +1856,7 @@
   async function putAndInsert(name, buf, drive) {
     name = name.replace(/^.*[\\/]/, '').replace(/[:]/g, '_');
     if (drive === ROM_TARGET) { const a = autorunNext; autorunNext = false; loadRomDisk(name, buf, a); return; }
+    if (/\.spg$/i.test(name)) { autorunNext = false; await spgLoad(name, buf); return; }
     // a disk into a drive whose disk was changed: asked here (the core's "Save disk" question is not used). No drive given:
     // the core's choice (the drive after the last one with a disk; Hobeta: that one)
     let d = drive;
@@ -1863,6 +1874,15 @@
     }
     fs.write(name, buf);
     try { insertFromFs(name, d); } finally { coreAnswer = null; }
+  }
+  // SPG: a TS-Conf program file (TS-Labs): loaded into RAM and started by the core; on another machine the model switches first
+  async function spgLoad(name, buf) {
+    if (model !== 'TSCONF') { toast(name + ': a TS-Conf program — ZX Evo TS-Conf starts'); await setModel('TSCONF', true); if (model !== 'TSCONF') return; }
+    const p = E.malloc(buf.length); new Uint8Array(E.memory.buffer, p, buf.length).set(buf);
+    let r; try { r = E.web_ts_spg(p, buf.length); } finally { E.free(p); }
+    const why = ['', 'not an SPG file', 'a block is missing (the file is cut)', 'a block does not depack'][r & 0xFF];
+    if (r) { toast(name + ': ' + why + (r > 0xFF ? ' (block ' + ((r >> 8) + 1) + ')' : ''), true); return; }
+    setName(name); toast('SPG: ' + name); updateUI();
   }
   async function loadFile(file, drive) { await loadBytes(file.name, new Uint8Array(await file.arrayBuffer()), drive); }
   // autorunNext: set by the Load window just before a load, used by the first disk inserted into A: — true: its boot or its
@@ -2173,16 +2193,16 @@
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx]));
     runMacro([{ reset: 0 }, { wait: w(100) }, { xtmode: 1 }, { xt: ['Space'] }, { wait: w(60) }, ...rep(2, { xt: ['ArrowDown'] }), { wait: 10 }, { xt: ['Enter'] }]);
   }
-  const CPM_MODELS = ['ATM710', 'XBIOSXT', 'EVO'];
+  const CPM_MODELS = ['ATM710', 'XBIOS136', 'EVO'];
   function cpmRun(v) {
-    if (!CPM_MODELS.includes(M())) { toast('cpm=: CP/M needs atm710, xbiosxt, xbios136 or evo', true); return; }
+    if (!CPM_MODELS.includes(M())) { toast('cpm=: CP/M needs atm710, xbios136 or evo', true); return; }
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx]));
     const k = Math.max(1, 2 / SPEEDS[speedIdx]);
     // into CP/M in ATM mode (XT keyboard): ATM BIOS menu Enter; xBIOS XT setup Space, 3 × ↑ (Boot → CP/M 2.2), Enter;
     // EVO Reset Service R (Service), C (CP/M). Backspace drops a menu key that reached the command line
     const boot = {
       ATM710: [{ reset: 0 }, { wait: Math.max(100, w(250)) }, { xtmode: 1 }, { xt: ['Enter'] }],
-      XBIOSXT: [{ reset: 0 }, { wait: w(100) }, { xtmode: 1 }, { xt: ['Space'] }, { wait: w(60) }, ...rep(3, { xt: ['ArrowUp'] }), { wait: 10 }, { xt: ['Enter'] }, { wait: w(100) }, { xt: ['Backspace'] }],
+      XBIOS136: [{ reset: 0 }, { wait: w(100) }, { xtmode: 1 }, { xt: ['Space'] }, { wait: w(60) }, ...rep(3, { xt: ['ArrowUp'] }), { wait: 10 }, { xt: ['Enter'] }, { wait: w(100) }, { xt: ['Backspace'] }],
       EVO: [{ reset: 3 }, { wait: Math.ceil(120 * k) }, { xtmode: 1 }, { xt: ['KeyR'] }, { wait: w(60) }, { xt: ['KeyC'] }, { wait: w(100) }, { xt: ['Backspace'] }],
     }[M()];
     const steps = [...boot, { prompt: true }];
@@ -2335,6 +2355,10 @@
   // File Commander quick run (Enter / double click): o = { kind, src, name, ext, type }; dry = only check.
   // Returns an error text or '' (started).
   function fcRun(o, dry) {
+    if (/^spg$/i.test(o.ext) && o.read) { // a TS-Conf program (any disk, SD, HDD): loaded and started (the model switches to TS-Conf)
+      if (dry) return '';
+      const data = o.read(); spgLoad(o.name + '.spg', data); return '';
+    }
     if (o.kind === 'TR-DOS') {
       if (o.src !== 'A') return 'Quick run: TR-DOS boots from drive A: only';
       if (o.type !== 'B' && o.type !== 'C') return 'Quick run: only BASIC and code files can be started';
@@ -2345,11 +2369,11 @@
     if (o.kind === 'CP/M' && o.profi) return 'Quick run: Profi CP/M disks (.PRO) can\'t be started from here';
     if (o.kind === 'CP/M') {
       if (!/^com$/i.test(o.ext)) return 'Quick run: only .COM files can be started';
-      if (!CPM_MODELS.includes(M())) return 'Quick run: CP/M .COM file needs Turbo 2+ or ZX-Evolution 4096';
+      if (!CPM_MODELS.includes(M())) return 'Quick run: CP/M .COM file needs Turbo 2+ or ZX Evo BaseConf';
       // ATM CP/M: A: = RAM disk, B: = floppy A:, C: = HDD (ZX-Evolution: HDD is not seen this way)
       // partitioned HDD 0 (config in cylinder 0): D:, E:, … as the panel shows them
       const drv = M() === 'EVO' ? { A: 'b' }[o.src] : o.src === 'A' ? 'b' : /^H0/.test(o.src) ? o.drive : '';
-      if (!drv) return M() === 'EVO' ? 'Quick run: ZX-Evolution CP/M — floppy A: only (as B:)' : 'Quick run: CP/M sees only floppy A: (as B:) and HDD 0';
+      if (!drv) return M() === 'EVO' ? 'Quick run: ZX Evo BaseConf CP/M — floppy A: only (as B:)' : 'Quick run: CP/M sees only floppy A: (as B:) and HDD 0';
       if (dry) return '';
       cpmRun(drv + ':' + o.name); return '';
     }
@@ -2375,7 +2399,7 @@
     if (E.web_load(3)) { setName('__romdisk.trd'); if (E.web_disk_peek_trd(3)) { img = new Uint8Array(fs.read('__romdisk.trd')); fs.remove('__romdisk.trd'); } E.web_eject(3); }
     try { fs.remove(name); } catch (e) {}
     if (!img || img.length < 0x900 || img[0x8E7] !== 0x10) { toast('ROM disk: ' + name + ' is not a TR-DOS disk', true); return; }
-    const rdModel = xbiosOf(model), xrom = MODELS[rdModel].ini.ROM.ATM2; // xBIOS 1.32XT or 1.36XT
+    const rdModel = xbiosOf(model), xrom = MODELS[rdModel].ini.ROM.ATM2; // xBIOS 1.36XT
     await ensureFiles([xrom]);
     if (!fs.exists(xrom)) { toast('ROM disk: rom/' + xrom + ' not found', true); return; }
     const x = fs.read(xrom), rom = new Uint8Array(1 << 20).fill(0xFF);
@@ -2392,7 +2416,7 @@
   function autorunTape() {
     const k = Math.max(1, 2 / SPEEDS[speedIdx]);
     const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx]));
-    if (M() === 'XBIOSXT') // menu → ZX-Spectrum menu → 128 menu: 128 BASIC → LOAD ""
+    if (M() === 'XBIOS136') // menu → ZX-Spectrum menu → 128 menu: 128 BASIC → LOAD ""
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.SPACE }, { wait: w(30) },
         ...rep(5, { key: UP }), ...rep(4, { key: DOWN }), { key: ZK.ENTER },
         { wait: w(100) }, { key: DOWN }, { key: DOWN }, { key: ZK.ENTER }, { wait: w(60) }, ...LOAD_QQ]);
@@ -2421,7 +2445,7 @@
     // other Custom ROMs: reset straight into TR-DOS
     const cm = model === 'CUSTOM' && MACHINES[customCfg.mach] && MACHINES[customCfg.mach].set && customCfg.slots['128'] && customCfg.slots.dos
       ? ({ PENT128: 'PENTAGON', PENT1024: 'PENTAGON', KAY: 'KAY' })[customCfg.mach] : null;
-    if (M() === 'XBIOSXT') // setup utility: Boot → "TR-dos boot" (TR-DOS 5.04R runs boot from A:)
+    if (M() === 'XBIOS136') // setup utility: Boot → "TR-dos boot" (TR-DOS 5.04R runs boot from A:)
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.SPACE }, { wait: w(30) }, ...rep(5, { key: UP }), { key: DOWN }, { key: ZK.ENTER }, ...after(w(150))]);
     else if (M() === 'EVO') // ZX-Evolution: EVO Reset Service, Z = TR-DOS boot, Enter = run the first program
       runMacro([{ reset: 3 }, { wait: Math.ceil(120 * k) }, { key: ZK.Z }, { wait: Math.ceil(150 * k) }, { key: ZK.ENTER }]); // its boot menu starts the first BASIC file by itself (no boot: the program)
@@ -2449,7 +2473,7 @@
   }
 
   // ------------------------------------------------------------------ Load window: local server, local file, server list, URL
-  const LOAD_EXT = /\.(zip|trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|pal|\$.)$/i;
+  const LOAD_EXT = /\.(zip|trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|pal|\$.)$/i;
   const ldDrive = () => +$('lddrive').value;
   function ldMsg(t, err) { $('ldmsg').textContent = t || ''; $('ldmsg').classList.toggle('err', !!err); }
   function showLoad(drive) {
@@ -2493,7 +2517,7 @@
   // Folders on the site are lower case ("TRD/x.trd" → "trd/x.trd")
   const lowDir = (u) => /^[a-z][a-z0-9+.-]*:|^\/\//i.test(u) ? u : u.replace(/^(.*\/)/, (d) => d.toLowerCase());
   // trd.json entries may carry "run": a REST API link (?model=atm710&a=trd/x.zip&cpm=b:x&xt=1); the file it mounts is the
-  // entry's file, so "url" is not needed; "tag": labels drawn after the name (CPM HDD PRO SD TRD OS, several with spaces)
+  // entry's file, so "url" is not needed; "tag": labels drawn after the name (CPM HDD PRO SD TRD OS SPG, several with spaces)
   const MOUNT_KEYS = ['a', 'hdd', 'hdd1', 'sd', 'b', 'tape', 'snap'];
   // one parameter into the link's keys: fdd=a:path / b:path (no drive: A:) → a / b; hdd0= → hdd (HDD 0), hdd1= → hdd1
   function linkPut(o, k, v) {
@@ -2502,7 +2526,7 @@
     o[k === 'hdd0' ? 'hdd' : k] = v;
   }
   function linkParse(q) { const o = {}; for (const [k, v] of new URLSearchParams(String(q).replace(/^[^?]*\?/, ''))) linkPut(o, k, v); return o; }
-  const TAGS = ['CPM', 'HDD', 'PRO', 'SD', 'TRD', 'OS'];
+  const TAGS = ['CPM', 'HDD', 'PRO', 'SD', 'TRD', 'OS', 'SPG'];
   const tagList = (t) => String(t || '').split(/[\s,;]+/).filter(Boolean).map((x) => (/^cp\/?m$/i.test(x) ? 'CPM' : x.toUpperCase()).slice(0, 6));
   async function fetchList(json) {
     let list = [];
@@ -2553,7 +2577,7 @@
   // Load window: HDD and SD card rows show what Options / Disk has mounted
   function ldStoreUI() {
     if (!$('ldhddname') || !E) return;
-    const rdOpt = $('lddrive').querySelector('[value="9"]'); rdOpt.hidden = M() !== 'XBIOSXT'; // ROM disk: xBIOS XT only
+    const rdOpt = $('lddrive').querySelector('[value="9"]'); rdOpt.hidden = M() !== 'XBIOS136'; // ROM disk: xBIOS XT only
     if (rdOpt.hidden && ldDrive() === ROM_TARGET) $('lddrive').value = '0';
     const dd = ldDrive(), dn = dd === ROM_TARGET ? (romDisk ? romDisk.name : '') : E.web_disk_present(dd) ? (drives[dd] ? drives[dd].name : cstr(E.web_disk_name(dd)).replace(/^.*[\\/]/, '')) + (E.web_disk_changed(dd) ? ' *' : '') : '';
     $('lddname').textContent = dn || '— empty —'; $('lddname').classList.toggle('off', !dn); $('lddej').hidden = !dn;
@@ -2635,7 +2659,7 @@
   function runModels(rp) { // machines the link can start on
     const m = linkModelKey(rp.model) || 'ATM710';
     if (OS_MODELS[m]) return [m];
-    if (rp.cpm) return ['ATM710', 'XBIOSXT', 'XBIOS136', 'EVO'];
+    if (rp.cpm) return ['ATM710', 'XBIOS136', 'EVO'];
     return Object.keys(LINK_NAME).filter((k) => !OS_MODELS[k] && !(k === 'PLUS3' && (rp.a || rp.b)));
   }
   function runRowUI() {
@@ -3127,8 +3151,8 @@
     const out = [];
     out.push(['Machine', [
       ['Model', m.name], ['Core', k.model], ['RAM', k.ram + ' KB'],
-      ['ROM', model === 'CUSTOM' ? MACHINES[customCfg.mach].name + ': ' + m.files.filter((f) => /\.rom$/i.test(f)).map((f) => (crFile(f) || { name: f }).name).join(', ') : m.files.filter((f) => /\.rom$/i.test(f)).join(', ') + (romDisk && M() === 'XBIOSXT' ? ' + ROM disk ' + romDisk.name : '')],
-      ['CPU clock', hud.mhz + ' (' + x + 'x)' + (m.fixed ? ', fixed' : '')],
+      ['ROM', model === 'CUSTOM' ? MACHINES[customCfg.mach].name + ': ' + m.files.filter((f) => /\.rom$/i.test(f)).map((f) => (crFile(f) || { name: f }).name).join(', ') : m.files.filter((f) => /\.rom$/i.test(f)).join(', ') + (romDisk && M() === 'XBIOS136' ? ' + ROM disk ' + romDisk.name : '')],
+      ['CPU clock', hud.mhz + ' (' + (tsMult || x) + 'x)' + (tsMult ? ', set by the program' : m.fixed ? ', fixed' : '')],
       ['Frame', k.frame + ' t-states, ' + k.intfq + ' Hz'],
       ['State', state + ' · ' + hud.fps],
       ['Emulated time', Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + ' (' + k.frames + ' frames)'],
@@ -3467,7 +3491,7 @@
   }
 
   // ------------------------------------------------------------------ REST API link builder (Tools): the link for the current machine, to copy
-  const LINK_NAME = { ATM710: 'atm710', XBIOSXT: 'xbiosxt', XBIOS136: 'xbios136', ATM450: 'atm450', EVO: 'evo', PENTAGON: 'pentagon', SCORPION: 'scorpion', PROFI: 'profi', KAY: 'kay', PLUS3: 'plus3', QUORUM: 'quorum', TASIS: 'tasis', CHIC: 'chic', NEDOOS: 'nedoos' };
+  const LINK_NAME = { ATM710: 'atm710', XBIOS136: 'xbios136', ATM450: 'atm450', EVO: 'evo', TSCONF: 'tsconf', PENTAGON: 'pentagon', SCORPION: 'scorpion', PROFI: 'profi', KAY: 'kay', PLUS3: 'plus3', QUORUM: 'quorum', TASIS: 'tasis', CHIC: 'chic', NEDOOS: 'nedoos' };
   let raFW = null;
   const pageDir = () => location.href.replace(/[?#].*$/, '').replace(/[^/]*$/, '');
   function relUrl(u) { // a file on this site → its path next to index.html
@@ -3637,7 +3661,7 @@
   // with no controller: the ports read #FF = busy forever)
   // by memory model: +3 has its µPD765 on #2FFD/#3FFD, which the ATM IDE ports would hide (the ROM hangs at start) — no IDE;
   // Profi / Scorpion / KAY: their usual interfaces (PROFI, SMUC, NEMO)
-  const HDD_IF_DEF = { ATM3: '4', PLUS3: '0', QUORUM: '0', PROFI: '6', SCORPION: '5', PROFSCORP: '5', KAY: '2' }, HDD_IF_FIXED = { ATM3: '4', PLUS3: '0' };
+  const HDD_IF_DEF = { ATM3: '4', TSL: '4', PLUS3: '0', QUORUM: '0', PROFI: '6', SCORPION: '5', PROFSCORP: '5', KAY: '2' }, HDD_IF_FIXED = { ATM3: '4', TSL: '4', PLUS3: '0' }; // ZX Evo (BaseConf and TS-Conf): the NEMO IDE is built in
   const himem = () => (MODELS[model].ini.MISC && MODELS[model].ini.MISC.HIMEM) || 'ATM710';
   const hddKey = () => (model === 'CUSTOM' ? 'CUSTOM.' + himem() : M());
   const hddIfPref = () => { const h = himem(); if (HDD_IF_FIXED[h]) return HDD_IF_FIXED[h];
@@ -3682,7 +3706,7 @@
   function hddUI() {
     if (!E || !hddIni) return;
     $('hddif').value = String(E.web_hdd_scheme(-1));
-    $('hddif').disabled = !!HDD_IF_FIXED[himem()]; $('hddif').title = himem() === 'ATM3' ? 'ZX-Evolution: the IDE is built in (NEMO-DIVIDE)' : himem() === 'PLUS3' ? 'Spectrum +3: no IDE (its floppy controller uses the same ports)' : '';
+    $('hddif').disabled = !!HDD_IF_FIXED[himem()]; $('hddif').title = himem() === 'ATM3' || himem() === 'TSL' ? 'ZX Evo: the IDE is built in (NEMO-DIVIDE)' : himem() === 'PLUS3' ? 'Spectrum +3: no IDE (its floppy controller uses the same ports)' : '';
     for (let d = 0; d < NHDD; d++) {
       const el = $('hdd' + d), g = hddGeom(d), on = !!E.web_hdd_get(d, 5);
       el.querySelector('.dname').textContent = on ? hdds[d] + (hddDirty[d] ? ' *' : '') : '— empty —';
@@ -3783,7 +3807,8 @@
   // the image lives in the page's file system; the core opens it through WASI (ZC=1, [ZC] SDCARD=name)
   let sdName = null, sdDirty = false, sdSrc = null, sdList = [];
   const SD_EXT = /\.(img|vhd|bin|sd|ima)$/i;
-  const sdOn = () => M() === 'EVO' || (load('sd.if.' + M()) || '1') === '1'; // the Z-Controller, per machine (on by default; built into ZX-Evolution)
+  const sdBuiltIn = () => M() === 'EVO' || M() === 'TSCONF'; // ZX-Evolution (BaseConf, TS-Conf): the Z-Controller is built in
+  const sdOn = () => sdBuiltIn() || (load('sd.if.' + M()) || '1') === '1'; // the Z-Controller, per machine (on by default; built into ZX-Evolution)
   function sdMount() { // after a (re)start of the emulator too
     if (!E || !E.web_sd_mount) return false;
     if (!sdName || !fs.exists(sdName) || !sdOn()) { E.web_sd_mount(0); return false; }
@@ -3815,7 +3840,7 @@
     el.querySelector('.save').disabled = !on; el.querySelector('.eject').disabled = !on;
     const n = on ? fs.read(sdName).length : 0;
     $('sdgeo').querySelector('.sz').textContent = on ? (n >= 1048576 ? Math.round(n / 1048576) + ' MB' : Math.round(n / 1024) + ' KB') : '';
-    $('sdif').value = sdOn() ? '1' : '0'; $('sdif').disabled = M() === 'EVO'; $('sdif').title = M() === 'EVO' ? 'ZX-Evolution: the Z-Controller is built in' : ''; el.querySelector('.wp').checked = load('sd.ro') === '1';
+    $('sdif').value = sdOn() ? '1' : '0'; $('sdif').disabled = sdBuiltIn(); $('sdif').title = sdBuiltIn() ? 'ZX Evo: the Z-Controller is built in' : ''; el.querySelector('.wp').checked = load('sd.ro') === '1';
     el.classList.toggle('off', !sdOn());
     ldStoreUI();
   }
@@ -3951,7 +3976,7 @@
     $('modelsel').value = model;
     modelSelUI();
     $('xt').hidden = !MODELS[model].xt;
-    $('romdiskrow').hidden = !(romDisk && M() === 'XBIOSXT');
+    $('romdiskrow').hidden = !(romDisk && M() === 'XBIOS136');
     $('romdiskname').textContent = romDisk ? romDisk.name : '';
   }
   // the choice is applied with the Apply button (switching restarts the machine)
@@ -4023,7 +4048,8 @@
     if (has(/Scorpion ZS/) && has(/Shadow Service/) && [64, 128, 256, 512].includes(kb)) return ['PROFSCORP', 'Scorpion ProfROM'];
     if (has(/Scorpion ZS/) && kb === 64) return ['SCORPION', 'Scorpion ROM'];
     if (has(/NEMO KAY/) && kb === 64) return ['KAY', 'KAY ROM (as a ROM set)'];
-    if (has(/BIOS\s+V1\.07\.\d+pe/) && kb >= 512) return ['EVO', 'ZX-Evolution ROM'];
+    if (has(/TS-BIOS/) && [64, 512].includes(kb)) return ['TSCONF', 'TS-Conf ROM (TS-BIOS)']; // before EVO: the TS flash has an ATM BIOS set too
+    if (has(/BIOS\s+V1\.07\.\d+pe/) && kb >= 512) return ['EVO', 'ZX Evo BaseConf ROM'];
     if (has(/XVR - PRO/) && has(/BIOS\s+V1\.0[34]/) && kb === 64) return ['ATM450', 'ATM Turbo 1 BIOS ' + (/BIOS\s+V(1\.0[34][\d.]*\w*)/.exec(t) || ['', ''])[1]];
     if (has(/XVR - PRO/) && [64, 128, 512, 1024].includes(kb)) return ['ATM710', has(/xBIOS|XBIOS/) ? 'ATM Turbo 2+ xBIOS' : 'ATM Turbo 2+ BIOS ' + (/BIOS\s+V(1\.07[\d.]*\w*)/.exec(t) || ['', ''])[1]];
     return null;
@@ -4304,6 +4330,21 @@
   function speedLabel(x) { return x + 'x'; }
   // the clock shown over the screen (the CPU clock setting only: the machine's own turbo bit is not emulated)
   function mhzLabel() { hudSet('mhz', $('speedmhz').textContent); }
+  // TS-Conf: the program sets the CPU clock (SysConfig: 3.5 / 7 / 14 MHz); the label shows it (the slider stays locked)
+  let tsMult = 0;
+  // TS-Conf: reset with Symbol Shift held (TS-BIOS opens Setup); the Shift keys of the PC are let go for it (left Shift is
+  // Caps Shift: TS-BIOS would start the CS boot instead)
+  function tsSetup() {
+    releaseAll(); E.web_zxkey(57, 1); E.web_reset(0);
+    setTimeout(() => { if (E) E.web_zxkey(57, 0); }, 1200);
+  }
+  function tsClock() {
+    const m = M() === 'TSCONF' && E && E.web_ts_mult ? E.web_ts_mult() : 0;
+    if (m === tsMult) return; tsMult = m;
+    if (!m) { setSpeed(speedIdx, false); return; }
+    $('speedmhz').textContent = (3.5 * m) + ' MHz'; mhzLabel();
+    $('speedticks').querySelectorAll('span').forEach((t) => t.classList.toggle('on', +t.dataset.x === m));
+  }
   // MHz (top centre) and fps (top right) over the screen: drawn on a transparent canvas of its own, at the pixel density of the
   // display — no page text changes every second (ad blockers in Safari rescan the page on each change: 1/3 s stalls)
   const hud = { fps: '— fps', mhz: '' };
@@ -4342,7 +4383,7 @@
   function bindSpeed() {
     const ticks = $('speedticks');
     $('speedrange').max = String(SPEEDS.length - 1);
-    SPEEDS.forEach((x, i) => { const t = document.createElement('span'); t.textContent = speedLabel(x); t.onclick = () => setSpeed(i, true); ticks.appendChild(t); });
+    SPEEDS.forEach((x, i) => { const t = document.createElement('span'); t.textContent = speedLabel(x); t.dataset.x = String(x); t.onclick = () => setSpeed(i, true); ticks.appendChild(t); });
     $('speedrange').oninput = () => setSpeed(+$('speedrange').value, true);
     loadSpeed();
   }
@@ -4568,7 +4609,7 @@
   // Parameters may also follow '#'. Keys and values are case-insensitive (file paths keep their case, folders are lower case).
   const MODEL_ALIASES = {
     atm710: 'ATM710', atm2: 'ATM710', atm: 'ATM710', 'atm2+': 'ATM710',
-    xbiosxt: 'XBIOSXT', xbios: 'XBIOSXT', xt132: 'XBIOSXT', xbios136: 'XBIOS136', xt136: 'XBIOS136',
+    xbiosxt: 'XBIOS136', xbios: 'XBIOS136', xbios136: 'XBIOS136', xt136: 'XBIOS136',
     atm450: 'ATM450', atm1: 'ATM450',
     evo: 'EVO', zxevo: 'EVO', atm3: 'EVO',
     pentagon: 'PENTAGON', p128: 'PENTAGON', pentagon128: 'PENTAGON',

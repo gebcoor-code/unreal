@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261019135917">
+<meta name="build" content="20261020105055">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -448,7 +448,7 @@ select option { background: var(--panel2); color: var(--text); }
 .dditem.on .tagic { color: #1a1208; }
 .ddcur .tagic + .tagic, .dditem .tagic + .tagic { margin-left: -2px; }
 .tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; }
-.tagic.tag-trd { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; }
+.tagic.tag-trd { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-spg { color: #e3cf5a; }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
 #crname { font-size: 12px; color: var(--text); margin-left: 8px; overflow-wrap: anywhere; }
@@ -600,6 +600,7 @@ select.usel-src { display: none !important; }
 .usel.usel-ph .usel-v { color: var(--dim); } .usel.usel-dis { opacity: .45; cursor: default; pointer-events: none; }
 .usel-pop::-webkit-scrollbar { width: 8px; } .usel-pop::-webkit-scrollbar-thumb { background: #66717e; border-radius: 4px; } .usel-pop::-webkit-scrollbar-track { background: rgba(255,255,255,.06); }
 .usel-pop { scrollbar-width: auto; scrollbar-color: #66717e rgba(255,255,255,.06); }
+.usel-pop.dgapop { scrollbar-width: thin; } .usel-pop.dgapop::-webkit-scrollbar { width: 4px; } /* deBUGa Screen: a narrow bar, the labels fit */
 .usel-pop { box-sizing: border-box; position: fixed; z-index: 70; overflow-y: auto; overscroll-behavior: contain; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 3px 0; font-size: 13px; color: var(--text); -webkit-overflow-scrolling: touch; }
 .usel-it { padding: 5px 10px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .usel-it.hot { background: var(--panel); } .usel-it.on { background: var(--accent); color: #1a1208; } .usel-it.dis { color: var(--dim); cursor: default; }
@@ -701,7 +702,7 @@ select.usel-src { display: none !important; }
 #dgamem { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 0 6px; scrollbar-width: thin; }
 #dgamem .mrows { position: sticky; top: 0; }
 .dgabot { flex: none; height: 150px; min-height: 60px; display: flex; flex-direction: column; }
-.dgabot .dgamemh button { padding: 1px 8px; font-size: 12px; } .dgabot .dgamemh button.on { border-color: var(--accent); color: var(--text); }
+.dgabot .dgamemh button { padding: 1px 8px; font-size: 12px; } .dgabot .dgamemh button.on { border-color: var(--accent); color: #1a1208; } /* dark on orange, like the other tabs */
 .dgabot .dgatm, .dgabot .dgatb, .dgabot .dgats { display: flex; align-items: center; gap: 4px; flex: 1; } .dgabot .dgatb { justify-content: flex-end; } .dgabot [hidden] { display: none !important; }
 .dgasplit { flex: none; position: relative; background: var(--line); touch-action: none; z-index: 2; } .dgasplit:hover, .dgasplit.drag { background: var(--accent); }
 .dgasplit::before { content: ''; position: absolute; } /* a wider grip than the 1 px line */
@@ -718,8 +719,13 @@ select.usel-src { display: none !important; }
 #dgablist .bl button { padding: 0 6px; font-size: 11px; } #dgablist .none { color: var(--dim); padding: 4px 0; }
 #dgadis .dl.ubp .bpm::before { content: ''; position: absolute; left: 4px; top: 4px; width: 6px; height: 6px; border-radius: 50%; border: 1px solid #f05252; }
 #dgascr { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 4px; overflow: hidden; }
-#dgascr canvas { max-width: 100%; max-height: 100%; aspect-ratio: 4 / 3; image-rendering: pixelated; cursor: crosshair; }
+#dgascr canvas { display: block; flex: none; image-rendering: pixelated; cursor: crosshair; } /* size: dbga.js scrFit (from the pane only) */
+.dgabot .dgamemh .dgats { flex: 1 1 0; } /* the hint never wraps the bar (the pane would change height under the pointer) */
+.dgabot .dgats .dgahint { flex: 1 1 0; width: 0; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: right; }
 #dgamsrc, #dgascrsrc { height: 22px; font-size: 12px; }
+.tspal { display: grid; grid-template-columns: repeat(16, 1fr); gap: 1px; max-width: 272px; }
+.tspal i { display: block; aspect-ratio: 1; border-radius: 1px; }
+.tspal i.g { outline: 1px solid var(--accent, #f80); outline-offset: -1px; }
 .dgatm button { padding: 1px 7px; font-size: 12px; }
 .dgawh { display: flex; align-items: center; gap: 6px; } .dgawh button { padding: 0 6px; font-size: 12px; line-height: 15px; }
 #dgawatch .wl { display: flex; gap: 1ch; cursor: pointer; white-space: nowrap; overflow: hidden; } #dgawatch .wl .wn { color: #7fc8ff; min-width: 4ch; } #dgawatch .wl .wa { color: var(--dim); }
@@ -935,7 +941,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="gfxwin" class="gfxwin" hidden role="dialog" aria-label="Graf Search">
   <div class="dbghead fhead"><span>Graf Search</span><button id="gfxhelpbtn" title="Help">?</button><button id="gfxclose" title="Close (Esc)">✕</button></div>
   <div class="gfxbar">
-    <select id="gfxmode" title="Mode (M); Text / Hex / Z80asm open the File Commander viewer at this address"><option>ZX</option><option>EGA</option><option>VGA</option><option value="v:text">TEXT</option><option value="v:hex">HEX</option><option value="v:dis">Z80ASM</option></select>
+    <select id="gfxmode" title="Mode (M); Text / Hex / Z80asm open the File Commander viewer at this address"><option>ZX</option><option>EGA</option><option>VGA</option><option value="16C" title="TS-Conf 16 colors (4 bits a pixel)">16C</option><option value="256C" title="TS-Conf 256 colors (8 bits a pixel)">256C</option><option value="v:text">TEXT</option><option value="v:hex">HEX</option><option value="v:dis">Z80ASM</option></select>
     <select id="gfxsrc" title="Memory: CPU 64K, RAM, ROM or the floppy image in a drive"><option value="0">CPU 64K</option><option value="1">RAM</option><option value="2">ROM</option></select>
     <label title="Start address (G). RAM: page:offset">@<input id="gfxaddr" class="hexin" data-hex=":" spellcheck="false" autocomplete="off"></label>
     <label class="spin" title="Width in pixels, rounded to whole bytes (Ctrl+←/→)">W<input id="gfxw" inputmode="numeric" spellcheck="false" autocomplete="off"></label>
@@ -950,15 +956,15 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="gfxhelp" hidden role="dialog" aria-label="Graf Search help">
   <div class="dbghead fhead"><span>Graf Search help</span><button id="gfxhelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Shows memory as pictures. Width W is in pixels and is rounded to whole bytes: 8 pixels (ZX, VGA) or 2 pixels (EGA). Height follows window.<br>Live view: memory is redrawn 25 times a second while emulator runs; in debugger stopped state is shown.</p>
+    <p>Shows memory as pictures. Width W is in pixels and is rounded to whole bytes: 8 pixels (ZX, VGA), 2 pixels (EGA, 16C) or 1 pixel (256C). Height follows window.<br>Live view: memory is redrawn 25 times a second while emulator runs; in debugger stopped state is shown.</p>
     <h4>Modes</h4>
-    <dl><dt>ZX</dt><dd>1 bit per pixel, square pixels</dd><dt>VGA</dt><dd>1 bit per pixel, narrow (640×200)</dd><dt>EGA</dt><dd>ATM 320×200, 16 colors, 2 pixels per byte</dd></dl>
+    <dl><dt>ZX</dt><dd>1 bit per pixel, square pixels</dd><dt>VGA</dt><dd>1 bit per pixel, narrow (640×200)</dd><dt>EGA</dt><dd>ATM 320×200, 16 colors, 2 pixels per byte</dd><dt>16C</dt><dd>TS-Conf 16 colors, 2 pixels per byte (high nibble first); a bitmap line is 256 bytes, W 512. Colors: CRAM with gfx palette of PalSel (other machines: grey levels)</dd><dt>256C</dt><dd>TS-Conf 256 colors, 1 pixel per byte (CRAM)</dd></dl>
     <h4>Memory</h4>
     <dl><dt>CPU 64K</dt><dd>as paged in now</dd><dt>RAM</dt><dd>all pages in row, address page:offset</dd><dt>ROM</dt><dd>all ROM pages in row, page:offset</dd><dt>A: … D:</dt><dd>floppy image in drive (TRD order; iS-DOS as ISD), offset in image; read when chosen (Live view: every second, off for disk by default)</dd></dl>
     <h4>Keys</h4>
     <dl><dt>↑↓ / ←→</dt><dd>line / byte</dd><dt>PgUp PgDn</dt><dd>page</dd><dt>Home End</dt><dd>start / end</dd>
       <dt>Ctrl+←→</dt><dd>width</dd>
-      <dt>M</dt><dd>mode ZX / EGA / VGA</dd><dt>Z</dt><dd>zoom 1x / 2x / 4x</dd><dt>I</dt><dd>inverse</dd><dt>G</dt><dd>enter address</dd><dt>F1</dt><dd>this help</dd><dt>Esc</dt><dd>close</dd></dl>
+      <dt>M</dt><dd>mode ZX / EGA / VGA / 16C / 256C</dd><dt>Z</dt><dd>zoom 1x / 2x / 4x</dd><dt>I</dt><dd>inverse</dd><dt>G</dt><dd>enter address</dd><dt>F1</dt><dd>this help</dd><dt>Esc</dt><dd>close</dd></dl>
     <h4>Mouse</h4>
     <dl><dt>wheel</dt><dd>8 lines</dd><dt>Shift+wheel</dt><dd>1 byte</dd><dt>Ctrl+wheel</dt><dd>page</dd>
       <dt>drag</dt><dd>scroll lines and bytes</dd><dt>orange line</dt><dd>drag to change width</dd><dt>window edges</dt><dd>drag to resize window</dd><dt>scrollbar</dt><dd>jump anywhere</dd><dt>hover</dt><dd>byte address in status line</dd></dl>
@@ -1050,7 +1056,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label for="sdif">Interface</label>
             <select id="sdif"><option value="0">None</option><option value="1">Z-Controller</option></select>
           </div>
-          <div class="drive" id="sdcard"><span class="dl" title="SD card on the Z-Controller (built into ZX-Evolution)">SD:</span><span class="dname">— empty —</span>
+          <div class="drive" id="sdcard"><span class="dl" title="SD card on the Z-Controller (built into ZX Evo)">SD:</span><span class="dname">— empty —</span>
             <button class="ins" title="Mount an SD card image (.img, .vhd or a ZIP with it)">Insert</button>
             <button class="save" title="Download the image (with the changes)">Save</button>
             <button class="eject" title="Unmount">⏏</button>
@@ -1067,7 +1073,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label class="chk" title="Drag on the screen moves the pointer. Programs move their pointer 1 or 2 pixels per Kempston step: if the pointer runs ahead of / behind the finger, switch this">Touch mouse: program pointer moves
               <select id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
             <label class="chk" title="A click on the emulator screen captures the mouse as the mouse button of the toolbar does (Esc releases it)"><input type="checkbox" id="mclick"> Capture mouse by a click on the screen</label>
-            <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX-Evolution)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
+            <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX Evo)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
           </div>
         </div>
       </div>
@@ -1166,26 +1172,26 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <h3>Models &amp; OS</h3>
         <table class="keys">
           <tr><td>Turbo 2+</td><td>v7.10, 1024K, BIOS v1.07.13, XT</td></tr>
-          <tr><td>Turbo 2+ xBIOS XT</td><td>v1.32XT: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>Turbo 2+ xBIOS 1.36</td><td>v1.36: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
-          <tr><td>ZX Evolution</td><td>4096K, BaseConf</td></tr>
+          <tr><td>ZX Evo BaseConf</td><td>4096K; Turbo 2+ compatible (EGA 320x200, hires 640x200, text 80x25, CP/M) and Pentagon 128 / 1024; 3.5 / 7 / 14 MHz; SD (Z-Controller), NEMO IDE, CMOS, PS/2 keyboard and mouse; Reset Service</td></tr>
+          <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs</td></tr>
           <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
           <tr><td>KAY 1024</td><td>1024K, JV Kramis 0.3</td></tr>
           <tr><td>Spectrum +3</td><td>128K, ROM 4.1, +3DOS (µPD765)</td></tr>
           <tr><td>Quorum 1024</td><td>1024K, ROM-MENU 4.2</td></tr>
-          <tr><td>TASiS v5.40</td><td>from HDD, Turbo 2+ xBIOS XT</td></tr>
-          <tr><td>iS-DOS Chic v5.01</td><td>from HDD, Turbo 2+ xBIOS XT</td></tr>
-          <tr><td>NedoOS</td><td>from SD card, ZX-Evolution (<a href="https://github.com/alfishe/NedoOS" target="_blank" rel="noopener">GitHub</a>)</td></tr>
+          <tr><td>TASiS v5.40</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
+          <tr><td>iS-DOS Chic v5.01</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
+          <tr><td>NedoOS</td><td>from SD card, ZX Evo BaseConf (<a href="https://github.com/alfishe/NedoOS" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>Custom ROM</td><td>own ROM or ROM set (128 / 48 / TR-DOS / service) on any of these machines; Save keeps ROM + json</td></tr>
         </table>
       </div>
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; filters</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; TS-Conf 16c / 256c up to 360x288, text 720; filters</td></tr>
           <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
@@ -1199,8 +1205,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
         <h3>Tools</h3>
         <table class="keys">
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
-          <tr><td>deBUGa</td><td>debugger after Xpeccy: registers, disasm with labels, memory, stack</td></tr>
-          <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA)</td></tr>
+          <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf, CP/M), devices (AY, WD1793, tape, TS-Conf), projects</td></tr>
+          <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA, TS-Conf 16C/256C)</td></tr>
           <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
           <tr><td>System Info</td><td>CPU, ports, disks, sound, host (live)</td></tr>
@@ -1213,6 +1219,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
           <tr><td>UnrealSpeccy</td><td>SMT (author), Alone Coder, deathsoft (0.38–0.39.0) and contributors; freeware with sources</td></tr>
           <tr><td>eXtra BIOS, vTR-DOS</td><td>ukms[z], NedoPC</td></tr>
           <tr><td>ZX-Evolution, ERS</td><td>NedoPC</td></tr>
+          <tr><td>TS-Conf, TS-BIOS</td><td>TS-Labs (TSL), NedoPC; after the Verilog of the configuration and its datasheet</td></tr>
           <tr><td>TASiS distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
           <tr><td>iS-DOS HDD boot, drivers</td><td>Yu. Korsunin</td></tr>
           <tr><td>iS-DOS</td><td>Iskra Soft</td></tr>
@@ -1246,6 +1253,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>F5</td><td>start / stop emulation</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu)</td></tr>
+      <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Alt+F1</td><td>Options</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
       <tr><td>Ctrl+Alt+Z</td><td>ATM mode (XT keyboard) on/off</td></tr>
@@ -1268,7 +1276,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>Numpad 1–9</td><td>Kempston joystick, 5 = fire</td></tr>
     </table>
     <h4>ATM mode (XT keyboard) → ZX</h4>
-    <p>Turbo 2+, xBIOS, ZX-Evolution with ATM mode on (XT icon, bottom left): keys go to ATM keyboard controller. CP/M and other ATM programs get PC keys; ZX programs get ZX keys from controller's own table. On-screen XT panel sends same keys as real keyboard.</p>
+    <p>Turbo 2+, xBIOS, ZX Evo BaseConf with ATM mode on (XT icon, bottom left): keys go to ATM keyboard controller. CP/M and other ATM programs get PC keys; ZX programs get ZX keys from controller's own table. On-screen XT panel sends same keys as real keyboard.</p>
     <table class="keys">
       <tr><td>letters, digits, Space, Enter</td><td>same keys</td></tr>
       <tr><td>Shift / right Shift</td><td>CAPS SHIFT / SYMBOL SHIFT</td></tr>
@@ -1299,11 +1307,12 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>Disks</td><td>TRD, SCL, FDI, UDI, TD0, ISD, PRO, $B, $C; DSK, IPF (read-only)</td></tr>
       <tr><td>Tapes</td><td>TAP, TZX, CSW</td></tr>
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
+      <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Archives</td><td>ZIP: pick file inside</td></tr>
       <tr><td>HDD</td><td>raw images (.hdd, .img …): Options → HDD</td></tr>
       <tr><td>Save</td><td>disks TRD, SCL, FDI, UDI, TD0, ISD, PRO; HDD + .chs; SD as VHD; SNA; SCR; PNG; memory block BIN; Custom ROM (ROM + json)</td></tr>
       <tr><td>ROM</td><td>Custom ROM (Options → System): .rom / .bin / .zip (ZIP with json: machine and pages come back)</td></tr>
-      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": file only. Tags: CPM HDD PRO SD TRD OS</td></tr>
+      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": file only. Tags: CPM HDD PRO SD TRD OS SPG (TS-Conf program: starts ZX Evo TS-Conf)</td></tr>
       <tr><td>Server ROMs</td><td>rom/&lt;name&gt;.zip (or rom/&lt;name&gt;.rom); parts for ROM sets: rom/roms.json</td></tr>
     </table>
   </div>
@@ -1388,7 +1397,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <h4>Parameters</h4>
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
-      <tr><td>model=</td><td>atm710, xbiosxt, xbios136, atm450, evo, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
+      <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz</td></tr>
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
@@ -1398,7 +1407,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
-      <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbiosxt, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
+      <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
@@ -1556,10 +1565,10 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   </div>
   <div class="dgasplit h" id="dgash" title="Drag: height of the lower part"></div>
   <div class="dgabot" id="dgabot">
-    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="ZX screen of a RAM page as the stop left it">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
+    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
       <span class="dgatm"><select id="dgamsrc" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" title="RAM page of the screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop" data-pop-extra="24" data-pop-scale="0.6" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
@@ -1608,16 +1617,16 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261019135917"></script>
-<script src="js/scancodes.js?v=20261019135917"></script>
-<script src="js/unzip.js?v=20261019135917"></script>
-<script src="js/vkbd.js?v=20261019135917"></script>
-<script src="js/asyncify.js?v=20261019135917"></script>
-<script src="js/gfx.js?v=20261019135917"></script>
-<script src="js/usel.js?v=20261019135917"></script>
-<script src="js/fcmd.js?v=20261019135917"></script>
-<script src="js/dbga.js?v=20261019135917"></script>
-<script src="js/app.js?v=20261019135917"></script>
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.$b,.$c,.$d,.hob">
+<script src="js/wasi_fs.js?v=20261020105055"></script>
+<script src="js/scancodes.js?v=20261020105055"></script>
+<script src="js/unzip.js?v=20261020105055"></script>
+<script src="js/vkbd.js?v=20261020105055"></script>
+<script src="js/asyncify.js?v=20261020105055"></script>
+<script src="js/gfx.js?v=20261020105055"></script>
+<script src="js/usel.js?v=20261020105055"></script>
+<script src="js/fcmd.js?v=20261020105055"></script>
+<script src="js/dbga.js?v=20261020105055"></script>
+<script src="js/app.js?v=20261020105055"></script>
 </body>
 </html>

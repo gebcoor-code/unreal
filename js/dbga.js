@@ -5,6 +5,7 @@
   'use strict';
   const hex2 = (v) => (v & 0xFF).toString(16).toUpperCase().padStart(2, '0');
   const hex4 = (v) => (v & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+  const hex6 = (v) => (v & 0xFFFFFF).toString(16).toUpperCase().padStart(6, '0');
   const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const REGS = ['AF', 'BC', 'DE', 'HL', "AF'", "BC'", "DE'", "HL'", 'IX', 'IY', 'SP', 'PC', 'IR'];
   const FLAGS = [['S', 0x80], ['Z', 0x40], ['5', 0x20], ['H', 0x10], ['3', 0x08], ['P', 0x04], ['N', 0x02], ['C', 0x01]];
@@ -224,14 +225,34 @@
       memTop = Math.min(memMax(), Math.round(mem.scrollTop / 16) * memCols); if (stopped) drawMem();
     });
     // ---- ZX screen of a RAM page (6144 pixels + 768 attributes), as the stop left it
-    const scv = $('dgascv'), scx = scv.getContext('2d'), scImg = scx.createImageData(256, 192);
-    let scrPage = -1; // -1: the one shown now (#7FFD bit 3: 7, else 5)
-    const scrNow = () => (scrPage >= 0 ? scrPage : (E().web_p7ffd() & 8) ? 7 : 5);
+    const scv = $('dgascv'), scx = scv.getContext('2d'); let scImg = scx.createImageData(256, 192);
+    // -3 As Shown: the last picture drawn (any mode); -2 TSframe: the TS-Conf video frame; -1 ZXScr: the ZX screen of the page shown now
+    // (#7FFD bit 3: 7, else 5); -4 / -5 CPM: the ATM picture drawn from the RAM now, the video page shown / the other one; 0..: a RAM page as a ZX screen
+    let scrPage = -1;
+    const scrNow = () => { const c = (E().web_p7ffd() & 8) ? 7 : 5; return scrPage >= 0 ? scrPage : scrPage === -6 ? c ^ 2 : c; }; // -6: the other ZX screen
+    const tsOn = () => api.tsOn && api.tsOn() && E().web_ts_frame;
+    function scrSize(w, h) { if (scv.width !== w || scv.height !== h) { scv.width = w; scv.height = h; scImg = scx.createImageData(w, h); } }
     function drawScr() {
-      const e = E(), nr = e.web_gfx_size(1) >> 14, pg = Math.min(scrNow(), nr - 1);
-      const sel = $('dgascrsrc'); let h = '<option value="-1">shown now (' + hex2(scrNow()) + ')</option>';
+      const e = E(), nr = e.web_gfx_size(1) >> 14, pg = Math.min(scrNow(), nr - 1), ts = tsOn();
+      const fw = e.web_fb_w(), fh = e.web_fb_h(), cur = (e.web_p7ffd() & 8) ? 7 : 5, atm = !!(e.web_scr_atm && e.web_scr_atm(cur));
+      if ((scrPage === -2 && !ts) || ((scrPage === -4 || scrPage === -5) && !atm)) scrPage = -1;
+      const sel = $('dgascrsrc'); let h = '<option value="-3">As Shown</option>' + (ts ? '<option value="-2">TSframe</option>' : '') + `<option value="-1">ZXScr (${hex2(cur)})</option><option value="-6">ZXScr (${hex2(cur ^ 2)})</option>`;
+      if (atm) h += `<option value="-4">CPM (${hex2(cur)})</option><option value="-5">CPM (${hex2(cur ^ 2)})</option>`;
       for (let i = 0; i < nr; i++) h += `<option value="${i}">RAM ${hex2(i)}</option>`;
       if (sel.dataset.h !== h) { sel.innerHTML = h; sel.dataset.h = h; } sel.value = String(scrPage);
+      if (scrPage === -3) { // the last picture the emulator drew: whatever the mode (ATM CP/M text and EGA, TS-Conf, ZX with the border)
+        scrSize(fw, fh); new Uint32Array(scImg.data.buffer).set(new Uint32Array(e.memory.buffer, e.web_fb(), fw * fh)); scx.putImageData(scImg, 0, 0); scrFit(); return;
+      }
+      if ((scrPage === -4 || scrPage === -5)) { // ATM: the screen as the video would draw it from the RAM now (the modes of the last frame), page 5 or 7
+        const p = e.web_scr_atm(scrPage === -4 ? cur : cur ^ 2);
+        scrSize(fw, fh); new Uint32Array(scImg.data.buffer).set(new Uint32Array(e.memory.buffer, p, fw * fh)); scx.putImageData(scImg, 0, 0); scrFit(); return;
+      }
+      if (scrPage === -2) { // the frame buffer of the TS video: 720×576 (doubled), every other pixel
+        scrSize(360, 288); const fb = new Uint32Array(e.memory.buffer, e.web_ts_frame(), 720 * 576), px = new Uint32Array(scImg.data.buffer);
+        for (let y = 0; y < 288; y++) for (let x = 0; x < 360; x++) px[y * 360 + x] = fb[y * 1440 + x * 2] | 0xFF000000;
+        scx.putImageData(scImg, 0, 0); scrFit(); return;
+      }
+      scrSize(256, 192);
       const ram = new Uint8Array(e.memory.buffer, e.web_gfx_mem(1, 0, 0) + pg * 0x4000, 0x1B00);
       const pal = new Uint32Array(e.memory.buffer, e.web_gfx_pal(), 16).slice(), px = new Uint32Array(scImg.data.buffer);
       for (let y = 0; y < 192; y++) {
@@ -241,16 +262,35 @@
           for (let k = 0; k < 8; k++) px[y * 256 + c * 8 + k] = (b & (0x80 >> k)) ? ink : pap;
         }
       }
-      scx.putImageData(scImg, 0, 0);
+      scx.putImageData(scImg, 0, 0); scrFit();
     }
+    // the size on the page: 1:1 at most, smaller when the pane is smaller; set from the pane only, so the pointer or the
+    // hint text never change it
+    function scrFit() {
+      const box = $('dgascr'), W = box.clientWidth - 8, H = box.clientHeight - 8; if (W <= 0 || H <= 0) return;
+      const k = Math.min(1, W / scv.width, H / scv.height), w = Math.floor(scv.width * k) + 'px', h = Math.floor(scv.height * k) + 'px';
+      if (scv.style.width !== w) scv.style.width = w; if (scv.style.height !== h) scv.style.height = h;
+    }
+    if (window.ResizeObserver) new ResizeObserver(scrFit).observe($('dgascr'));
     function scrAt(e) { // pixel under the pointer: { x, y, pix offset, attr offset }
-      const r = scv.getBoundingClientRect(), x = Math.floor((e.clientX - r.left) * 256 / r.width), y = Math.floor((e.clientY - r.top) * 192 / r.height);
+      const r = scv.getBoundingClientRect(), x = Math.floor((e.clientX - r.left) * scv.width / r.width), y = Math.floor((e.clientY - r.top) * scv.height / r.height);
+      if (x < 0 || y < 0 || x >= scv.width || y >= scv.height) return null;
+      if (scrPage === -4 || scrPage === -5) { // ATM: the byte under the point in the video mode of that line
+        const c = (E().web_p7ffd() & 8) ? 7 : 5, pg = scrPage === -4 ? c : c ^ 2, a = new Int32Array(E().memory.buffer, E().web_atm_at(pg, x, y), 5);
+        return a[0] < 0 ? { x, y, ts: 1 } : { x, y, atm: a[0], p: a[1], a: a[2], mx: a[3], my: a[4] };
+      }
+      if (scrPage < -1 && scrPage !== -6) return { x, y, ts: 1 };
       if (x < 0 || y < 0 || x > 255 || y > 191) return null;
       return { x, y, p: ((y & 0xC0) << 5) | ((y & 7) << 8) | ((y & 0x38) << 2) | (x >> 3), a: 0x1800 + (y >> 3) * 32 + (x >> 3) };
     }
-    scv.addEventListener('pointermove', (e) => { const q = scrAt(e); $('dgascrinfo').textContent = q ? `x ${q.x} y ${q.y} · pixel ${hex2(scrNow())}:${hex4(q.p)} · attr ${hex2(scrNow())}:${hex4(q.a)}` : ''; });
-    scv.addEventListener('click', (e) => { const q = scrAt(e); if (!q || !stopped) return; setTab('mem'); memSrc(1, scrNow(), e.shiftKey ? q.a : q.p); setPane('mem'); }); // the byte in the dump (Shift: its attribute)
-    $('dgascrsrc').onchange = () => { scrPage = +$('dgascrsrc').value; if (stopped) drawScr(); };
+    const AMODE = { 0: 'EGA', 2: 'hires', 6: 'text' };
+    scv.addEventListener('pointermove', (e) => { const q = scrAt(e); $('dgascrinfo').textContent = q && q.atm !== undefined ? `${AMODE[q.atm]} ${q.atm === 6 ? 'col' : 'x'} ${q.mx} ${q.atm === 6 ? 'row' : 'y'} ${q.my} · ${q.atm === 6 ? 'char' : 'pixel'} ${pa(q.p)}` + (q.a >= 0 ? ` · attr ${pa(q.a)}` : '') : q && q.ts ? `x ${q.x} y ${q.y} of ${scv.width}×${scv.height}` + (scrPage === -2 ? ' (the 256×192 ZX area from x 52 y 48)' : '') : q ? `x ${q.x} y ${q.y} · pixel ${hex2(scrNow())}:${hex4(q.p)} · attr ${hex2(scrNow())}:${hex4(q.a)}` : ''; });
+    scv.addEventListener('click', (e) => {
+      const q = scrAt(e); if (!q || q.ts || !stopped) return; setTab('mem');
+      if (q.atm !== undefined) { const v = e.shiftKey && q.a >= 0 ? q.a : q.p; memSrc(1, v >> 14, v & 0x3FFF); } else memSrc(1, scrNow(), e.shiftKey ? q.a : q.p);
+      setPane('mem');
+    }); // the byte in the dump (Shift: its attribute)
+    $('dgascrsrc').onchange = () => { scrPage = +$('dgascrsrc').value; $('dgascrinfo').textContent = scrPage === -2 ? 'the TS-Conf picture as the video drew it' : scrPage === -3 ? 'the last picture drawn, as on the screen' : 'click: the byte in the dump (Shift: its attribute)'; if (stopped) drawScr(); };
     // ---- watches (side, under the stack): address, label or register; 4 bytes there; a press: the dump from it
     let watches = []; try { const j = JSON.parse(api.load('dga.watch')); if (Array.isArray(j)) watches = j.filter((x) => typeof x === 'string'); } catch (e) {}
     const RNAMES = { AF: 0, BC: 1, DE: 2, HL: 3, "AF'": 4, "BC'": 5, "DE'": 6, "HL'": 7, IX: 8, IY: 9, SP: 10, PC: 11 };
@@ -282,6 +322,40 @@
 
     // ---- Devices: AY, WD1793, tape (as the stop left them; read only, a tape block can be chosen)
     const ENV = ['\\___', '\\___', '\\___', '\\___', '/|__', '/|__', '/|__', '/|__', '\\\\\\\\', '\\___', '\\/\\/', '\\|~~', '////', '/~~~', '/\\/\\', '/|__'];
+    // TS-Conf: the registers of the configuration, the memory, INT, DMA, the palette (CRAM) and the sprites (SFILE)
+    const VM = ['ZX', '16c', '256c', 'text'], RES = ['256×192', '320×200', '320×240', '360×288'];
+    function tsDev(e) {
+      const v = new Uint32Array(e.memory.buffer, e.web_ts_info(), 40), r = (k) => `<span class="k">${k}</span>`;
+      const [vconf, vpage, gx, gy, tsc, palsel, border, tmpage, t0g, t1g, sg, t0x, t0y, t1x, t1y, p0, p1, p2, p3, memconf, sysconf, intmask, hsint, vsint, vsinc, fmaddr, fddvirt, dsa, dda, dlen, dnum, mult, vdos, intf, cache, p7ffd, lock] = v;
+      let h = '<div class="dv"><h6>TS-Conf video</h6>';
+      h += `<div>${r('VConfig')}${hex2(vconf)} · ${VM[vconf & 3]} ${RES[vconf >> 6]}${vconf & 0x20 ? ' · no gfx' : ''}${vconf & 0x10 ? ' · no TSU' : ''}${vconf & 4 ? ' · FT812' : ''}</div>`;
+      h += `<div>${r('VPage')}${hex2(vpage)} · ${r('scroll')}X ${gx} Y ${gy} · ${r('border')}${hex2(border)}</div>`;
+      h += `<div>${r('PalSel')}${hex2(palsel)} · gfx ${palsel & 15} · T0 ${(palsel >> 4) & 3} T1 ${palsel >> 6}</div>`;
+      h += `<div>${r('TSConfig')}${hex2(tsc)} · ${tsc & 0x20 ? 'T0' : '<span class="dim">T0</span>'}${tsc & 4 ? '+z' : ''} ${tsc & 0x40 ? 'T1' : '<span class="dim">T1</span>'}${tsc & 8 ? '+z' : ''} ${tsc & 0x80 ? 'S' : '<span class="dim">S</span>'}</div>`;
+      h += `<div>${r('pages')}TMap ${hex2(tmpage)} · T0G ${hex2(t0g)} · T1G ${hex2(t1g)} · SG ${hex2(sg)}</div>`;
+      h += `<div>${r('T0 XY')}${t0x} ${t0y} · ${r('T1 XY')}${t1x} ${t1y}</div></div>`;
+      h += '<div class="dv"><h6>TS-Conf system</h6>';
+      h += `<div>${r('pages')}${hex2(p0)} ${hex2(p1)} ${hex2(p2)} ${hex2(p3)}${vdos ? ' · vDOS' : ''}</div>`;
+      h += `<div>${r('MemConfig')}${hex2(memconf)} · ${memconf & 8 ? 'RAM' : 'ROM'} at 0${memconf & 4 ? ' · no map' : ''}${memconf & 2 ? ' · W0 write' : ''} · #7FFD ${['512K', '128K', 'auto', '1024K'][memconf >> 6]}${lock ? ' · locked (bit 5)' : ''}</div>`;
+      h += `<div>${r('SysConfig')}${hex2(sysconf)} · ${3.5 * mult} MHz${sysconf & 4 ? ' · cache' : ''} · ${r('#7FFD')}${hex2(p7ffd)}</div>`;
+      h += `<div>${r('FMAddr')}${hex2(fmaddr)}${fmaddr & 0x10 ? ' · files at #' + hex2(fmaddr & 15).slice(1) + '000' : ''} · ${r('FDDVirt')}${hex2(fddvirt)}</div>`;
+      h += `<div>${r('INT')}mask ${hex2(intmask)} · line ${hsint} · Y ${vsint} +${vsinc} · ${['frame', 'line', 'DMA'].map((n, i) => intf & (1 << i) ? n : `<span class="dim">${n}</span>`).join(' ')}</div>`;
+      h += `<div>${r('DMA')}src ${hex6(dsa)} → ${hex6(dda)} · len ${dlen} (${(dlen + 1) * 2} b) · num ${dnum}</div></div>`;
+      const pal = new Uint32Array(e.memory.buffer, e.web_ts_pal(), 256), col = (c) => '#' + [c & 255, (c >> 8) & 255, (c >> 16) & 255].map((x) => x.toString(16).padStart(2, '0')).join('');
+      h += '<div class="dv"><h6>CRAM</h6><div class="tspal">';
+      for (let i = 0; i < 256; i++) h += `<i style="background:${col(pal[i])}" title="${hex2(i)}${(i >> 4) === (palsel & 15) ? ' · gfx' : ''}"${(i >> 4) === (palsel & 15) ? ' class="g"' : ''}></i>`;
+      h += '</div></div>';
+      if (e.web_ts_sfile) {
+        const sf = new Uint16Array(e.memory.buffer, e.web_ts_sfile(), 256); let n = 0, lst = '';
+        for (let i = 0; i < 85; i++) {
+          const w0 = sf[i * 3], w1 = sf[i * 3 + 1], w2 = sf[i * 3 + 2];
+          if (w0 & 0x2000) { n++; lst += `<div><span class="k">${String(i).padStart(2)}</span>X ${w1 & 511} Y ${w0 & 511} · ${((w1 >> 9) & 7) * 8 + 8}×${((w0 >> 9) & 7) * 8 + 8} · tile ${hex4(w2 & 0xFFF).slice(1)} pal ${w2 >> 12}${w1 & 0x8000 ? ' · X flip' : ''}${w0 & 0x8000 ? ' · Y flip' : ''}</div>`; }
+          if (w0 & 0x4000) lst += `<div class="dim">${String(i).padStart(2)} leap: the next layer</div>`;
+        }
+        h += `<div class="dv"><h6>Sprites · ${n} on</h6>${lst || '<span class="dim">none</span>'}</div>`;
+      }
+      return h;
+    }
     function drawDev() {
       const e = E(), k = api.sysinfo(); let h = '';
       const sch = +k.ayscheme || 0, nay = sch === 0 ? 0 : sch >= 3 ? 2 : 1;
@@ -298,6 +372,7 @@
         h += `<div><span class="k">noise</span>${hex2(r[6] & 31)}</div><div><span class="k">envelope</span>${hex4(r[11] | (r[12] << 8))} · shape ${hex2(r[13] & 15).slice(1)} ${esc(ENV[r[13] & 15])}</div>`;
         h += `<div><span class="k">ports A B</span>${hex2(r[14])} ${hex2(r[15])} <span class="dim">(mixer ${hex2(mx)})</span></div></div>`;
       }
+      if (tsOn() && e.web_ts_info) h += tsDev(e);
       h += '<div class="dv"><h6>WD1793</h6>' + api.wdRows(k.wdx).slice(0, 11).map(([n, v]) => `<div><span class="k">${esc(n)}</span>${v}</div>`).join('') + '</div>';
       const tp = (k.tape || '').split('|'), cur = e.web_tape_list(), ls = api.cstr(e.web_txt()).split('\n').filter(Boolean);
       h += `<div class="dv"><h6>Tape</h6>`;

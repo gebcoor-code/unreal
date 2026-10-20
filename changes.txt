@@ -1577,3 +1577,161 @@ Web Unreal Speccy — version history
   from the block)
 + deBUGa: Fill / Save / Load of a memory block in the dump (Z80 64K or
   a page); Save as binary or Hobeta file
+
+
+        version 0.74.0                  19 oct 2026
+
++ new model ZX-Evolution TS-Conf (stage 1): TS-BIOS, 4096 KB, memory
+  pages and #7FFD modes, the #nnAF registers, FMAPS, INT from frame /
+  line / DMA with their own vectors, DMA (RAM, fill, blit, SPI, CRAM,
+  SFILE), vDOS; video ZX, 16c, 256c and text (720 pixels), 256x192 to
+  360x288, scrolling, CRAM palette; the CPU clock (3.5 / 7 / 14 MHz)
+  is set by the program; REST model=tsconf. ROM: rom/zxevo.zip (or
+  .rom) with zxevo.rom of the TS-Conf firmware
+
+
+        version 0.74.1                  19 oct 2026
+
+* Custom ROM: machine ZX-Evolution TS-Conf (whole ROM of 64 / 512 KB)
+
+
+        version 0.74.2                  19 oct 2026
+
+! Custom ROM: the TS-Conf flash image was taken for a ZX-Evolution
+  BaseConf ROM (it has an ATM BIOS set too); now TS-BIOS selects the
+  machine ZX-Evolution TS-Conf
+
+
+        version 0.74.3                  19 oct 2026
+
+@ ZX-Evolution TS-Conf takes its ROM from rom/zxevo.zip (zxevo.rom),
+  not tsconf.rom
+
+
+        version 0.74.4                  19 oct 2026
+
++ ZX-Evolution TS-Conf: right Shift+F12 resets into TS-BIOS Setup
+  (Symbol Shift held), left Shift+F12 into the CS boot (Caps Shift)
+! ZX-Evolution TS-Conf: Shift+F12 (reset to 48 BASIC) locked #7FFD and
+  left the machine in a broken state
+
+
+        version 0.74.5                  19 oct 2026
+
+! ZX-Evolution TS-Conf: Shift+F12 seemed to hang: left Shift (Caps
+  Shift) started the CS boot from SD, a held F12 reset again and again;
+  now either Shift+F12 opens TS-BIOS Setup
+* ZX-Evolution TS-Conf: CPU clock label and System Info show the clock
+  the program set (3.5 / 7 / 14 MHz)
+
+
+        version 0.74.6                  19 oct 2026
+
+! the emulation core was ~20-30% slower than in 0.53: the ZX-Evolution
+  checks and the Performance window sampling ran after every Z80
+  instruction on all machines; now they cost nothing when not needed
+  (TS-Conf: INT and line events the same way)
+
+
+        version 0.74.7                  19 oct 2026
+
+* max speed: as many frames per screen refresh as fit in its time (was
+  20): a machine heavier per frame (ATM, Evo) lost every other refresh
+  and showed about half the speed
+
+
+        version 0.74.8                  19 oct 2026
+
+! max speed of 0.74.7 was slower on screens over 60 Hz: the time for
+  the picture was taken from every short refresh; now a tick of max
+  speed takes whole refreshes (~33 ms: emulation, then one picture)
+
+
+        version 0.74.9                  19 oct 2026
+
+! ATM Turbo 2+ / ZX-Evolution: with TR-DOS kept on by the ATM ports
+  (~CPM = 0, e.g. the BIOS menu) every instruction in RAM rebuilt the
+  memory map (~20% of the time); now it is skipped when nothing changes
+
+
+        version 0.75.0                  19 oct 2026
+
++ ZX-Evolution TS-Conf: SPG programs (TS-Labs format, blocks plain or
+  packed with MegaLZ / Hrust) start from Load, File Commander (any
+  disk, SD or HDD) and REST snap=; on another machine the model
+  switches to TS-Conf first
+
+
+        version 0.76.0                  20 oct 2026
+
++ ZX-Evolution TS-Conf: tiles and sprites (TSU) - two tile layers 64x64
+  with scrolling, palettes and flips, up to 85 sprites 8..64 pixels in
+  three layers (LEAP), drawn per line over the graphics and the border
+  in the pixel area; SFILE / tile map / scroll changes take effect at
+  the line where they are made
+
+
+        version 0.76.1                  20 oct 2026
+
+! ZX-Evolution TS-Conf: the screen was always 360x288 (bigger than the
+  other machines); now it follows Options / Video border: none 256x192,
+  small 320x240, full 360x288
+
+
+        version 0.77.0                  20 oct 2026
+
++ deBUGa, Devices: TS-Conf block - video and system registers, pages,
+  INT, DMA, the palette (CRAM) and the list of active sprites
++ deBUGa, Screen: "TS frame" - the TS-Conf picture as the video drew it
++ Graf Search: 16C and 256C modes (TS-Conf bitmaps, colors from CRAM)
+
+
+        version 0.78.0                  20 oct 2026
+
+! ZX-Evolution TS-Conf: tile and sprite graphics page is added to the
+  bitmap line instead of being cut to a 128K boundary (Zuma: the frog,
+  the level stones and the menu showed garbage)
+* ZX-Evolution TS-Conf: DMA with alignment wraps the address inside
+  its 256 / 512 bytes during a burst
++ deBUGa, Screen: "As shown" - the last picture drawn, in any mode
+  (ATM CP/M text and EGA, TS-Conf, ZX with the border)
+* deBUGa, Screen: the picture box keeps its size when the source
+  changes (the window no longer twitches); "ZX Screen (05)"
+
+
+        version 0.79.0                  20 oct 2026
+
++ deBUGa, Screen: CPM - the ATM screen drawn from the RAM now in the
+  current video mode, video page 5 or 7 (follows the code step by step)
+* deBUGa, Screen: the picture is 1:1 at most and smaller when the pane
+  is smaller; it no longer grows and twitches under the pointer
+
+
+        version 0.79.1                  20 oct 2026
+
+* deBUGa, Screen: ZXScr of the other screen page too (05 / 07)
+* deBUGa: the chosen tab under the code (Memory, Screen...) - dark text
+  on orange, the white was hard to read
+
+
+        version 0.79.2                  20 oct 2026
+
+* deBUGa, Screen, CPM: a click opens the byte under the point in the
+  dump (Shift: its attribute) - EGA, hires 640x200 and text 80x25; the
+  hint shows the mode, the position and both addresses
+
+
+        version 0.79.4                  20 oct 2026
+
+! ZX Evo TS-Conf: the HDD hung on the interface chosen in Options / Disk
+  (ATM by default) and TS-Conf software did not see it; now the NEMO IDE
+  is built in, as on ZX Evo BaseConf
+
+
+        version 0.80.0                  20 oct 2026
+
+- model Turbo 2+ xBIOS 1.32XT: TASiS and iS-DOS Chic start on Turbo 2+
+  xBIOS 1.36 now; old links with model=xbiosxt open xBIOS 1.36
++ server list: SPG tag (a TS-Conf program, starts ZX Evo TS-Conf)
+* deBUGa, Screen: the list is a bit wider (the names fit), with a thin
+  scroll bar, and 40% shorter

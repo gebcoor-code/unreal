@@ -1716,7 +1716,7 @@
     // after an empty cylinder 0 (CHS c/16/63, the drives in its geometry.chs). The HDD is mounted and marked as changed.
     const NEW_KINDS = [['trd', 'TR-DOS', '640K, 80 tracks × 2 sides'], ['cpm', 'CP/M', 'ATM CP/M 640K, 16 × 256 sectors'], ['isd', 'iS-DOS', '800K, 5 × 1024 sectors'], ['pro', 'Profi CP/M', '800K, 5 × 1024 sectors (.PRO, no system)'],
       ['hcpm', 'HDD CP/M', 'ATM (one drive C:), up to 6 MB'], ['hisd', 'HDD iS-DOS', 'drives of 1–16 MB, no boot loader'],
-      ['hfat', 'HDD FAT', 'ZX-Evolution (NEMO interface): FAT16 / FAT32'], ['sfat', 'SD card', 'Z-Controller: FAT16 / FAT32']];
+      ['hfat', 'HDD FAT', 'ZX Evo (NEMO interface): FAT16 / FAT32'], ['sfat', 'SD card', 'Z-Controller: FAT16 / FAT32']];
     const FAT_MB = { hfat: 10, sfat: 8 };
     // FAT type and size: FAT32 needs 65525 clusters at least (about 35 MB with 512-byte clusters: fewer clusters make any
     // driver see FAT16); FAT16 stays within 2 GB (32K clusters). Auto: FAT16 up to 256 MB, FAT32 above.
@@ -1807,7 +1807,7 @@
         let img, chs;
         if (kind === 'hfat') {
           img = fatFormat(g.C * ISD_CYL_B, label, { start: 63, heads: 16, spt: 63, type: fpl.type, spc: fpl.spc || undefined });
-          chs = `# ${label}: FAT (ZX-Evolution, NEMO interface)\r\nCHS=${g.C}/16/63\r\nInterface=NEMO-DIVIDE\r\n`;
+          chs = `# ${label}: FAT (ZX Evo, NEMO interface)\r\nCHS=${g.C}/16/63\r\nInterface=NEMO-DIVIDE\r\n`;
         } else if (kind === 'hcpm') {
           const H = g.H, S = g.S, cylL = CPM_HDD.spt * CPM_HDD.heads;
           img = new Uint8Array(g.C * H * S * 512);
@@ -1903,7 +1903,7 @@
       const s = P[act]; if (!s.vol || !api.run) return;
       const it = s.items[s.cur]; if (!it || it.dir) return;
       if (DISK_IMG.test('.' + (it.ext || '').trim()) && s.src !== 'A' && s.src !== 'B' && api.mountDisk) { mountImage(s, it); return; }
-      const o = { kind: s.vol.kind, profi: !!s.vol.profi, src: s.src, drive: s.vol.drive || '', name: it.name.trim(), ext: (it.ext || '').trim(), type: it.zx ? it.zx.type : '' };
+      const o = { kind: s.vol.kind, profi: !!s.vol.profi, src: s.src, drive: s.vol.drive || '', name: it.name.trim(), ext: (it.ext || '').trim(), type: it.zx ? it.zx.type : '', read: () => s.vol.read(it).data };
       const err = api.run(o, true);
       if (err) { status(err, true); return; }
       if (!await ask({ title: 'Run', text: `Run ${fname(it)} from ${srcName(s)}?\nThe machine will be reset.`, ok: 'Yes', no: 'No' })) return;
