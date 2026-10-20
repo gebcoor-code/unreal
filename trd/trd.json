@@ -12,5 +12,6 @@
  { "name": "Neo8 Tracker player (HDD)", "run": "?model=atm710&hdd0=hdd/neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
  { "name": "TASiS v5.40", "run": "?model=tasis", "tag": "HDD OS" },
  { "name": "NedoOS", "run": "?model=nedoos", "tag": "SD OS" },
+ { "name": "Zuma ", "run": "?model=tsconf&fdd=a:trd/zuma.zip", "tag": "SPG" },
  { "name": "Profi CPM FDD", "run": "?model=profi&fdd=a:trd/ProfiCPM.zip", "tag": "PRO" }
 ]
