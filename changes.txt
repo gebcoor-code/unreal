@@ -1735,3 +1735,74 @@ Web Unreal Speccy — version history
 + server list: SPG tag (a TS-Conf program, starts ZX Evo TS-Conf)
 * deBUGa, Screen: the list is a bit wider (the names fit), with a thin
   scroll bar, and 40% shorter
+
+
+        version 0.81.0                  20 oct 2026
+
++ Options / System / Update: SD card images of NedoOS (BaseConf) and
+  Wild Commander (TS-Conf) from GitHub or a ZIP (Make Image moved here
+  from Models & OS)
++ model Wild Commander (TS-Conf): sd/wc.zip on the SD card, TS-BIOS
+  boots boot.$C (Caps Shift + Reset); REST model=wc
++ ZX Evo TS-Conf: a ZIP with an SD card image, or with boot.$C and its
+  folders (Wild Commander), goes onto the SD card and boots
+! ZX Evo TS-Conf: DMA takes its time (DMAStatus busy, the DMA INT at the
+  end); with instant DMA an INT came into the middle of the DMA setup
+  (FishBone Crew 20yo hung)
+* ZX Evo TS-Conf: Status reports a VDAC (15-bit colors, as drawn)
+* ZX Evo TS-Conf: the screen never cuts the program's raster: 320x200,
+  320x240 and 360x288 are shown whole whatever the border setting
+
+
+        version 0.82.0                  20 oct 2026
+
+@ ZX Evo TS-Conf starts with Wild Commander: sd/wc.zip goes onto the SD
+  card (when no card is in) and TS-BIOS "Reset to" is set to boot.$C,
+  so every Reset boots it (TR-DOS: Shift+F12, Setup); the model
+  Wild Commander (TS-Conf) is gone, model=wc starts ZX Evo TS-Conf
+* Options / System / Update: the build shown is set when an image is
+  made too
+* ZX Evo TS-Conf: only the 360x288 raster ignores the border setting;
+  320x200 and 320x240 follow it again
+
+
+        version 0.83.0                  20 oct 2026
+
++ ZX Evo TS-Conf: PC keys mode (XT icon, Ctrl+Alt+Z): emulator hotkeys
+  off, F1-F12 and the other PC keys go to the machine (Wild Commander
+  F1-F10); ZX keys work as before
+
+
+        version 0.83.1                  20 oct 2026
+
+! ZX Evo TS-Conf: the first start could stay in TS-BIOS (its NVRAM was
+  set only when the SD card came in); now it is set before TS-BIOS
+  starts, a card that comes later gets one Reset; no card on the server:
+  Reset to ROM (TR-DOS) as before
+* ZX Evo TS-Conf: Options / Video / Border is off, the picture follows
+  the program's raster: 320x240 (256x192 with a border, 320x200,
+  320x240) or 360x288
+
+
+        version 0.83.2                  20 oct 2026
+
+@ ZX Evo TS-Conf starts in the TS-BIOS Setup with its NVRAM ready
+  ("Reset to: BD boot.$c"); F12 boots Wild Commander from the SD card.
+  A link that loads something (a=, snap=, cpm=...) starts as before.
+  The extra Reset after the card download (0.83.1) is gone
+* ATM mode / PC keys mode: Alt+F1 goes to the machine too (Wild
+  Commander: the drive of the left panel); Options: the toolbar button
+
+
+        version 0.84.0                  20 oct 2026
+
++ File Commander, viewer: UTF-8 text
++ touch mouse: a double tap clicks the left button again
++ REST API: speed= for tsconf: 3.5, 7 or 14 (MHz, or 1x / 2x / 4x), the
+  CPU Speed of TS-BIOS
+
+
+        version 0.84.2                  20 oct 2026
+
+* REST API window: for tsconf speed offers 3.5 / 7 / 14 MHz (TS-BIOS CPU
+  Speed); speed= of tsconf takes only these (1x / 2x / 4x dropped)

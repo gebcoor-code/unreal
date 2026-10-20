@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261020105055';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261020175221';
   const MAIL_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAKMAAAAeCAYAAABAOK4rAAAHfUlEQVR42u2bfZBWVR3HP6vggoiiEWoOKYqOrkVMqIy0FcOLleguUThjcTDRyOBYTDZ5oGUjgTo2kg6eFMdS4cw2jilokA7m5BRiL7gmFtIwJTWuEiDQriQvCvXH831m7ty5z+7D7rPLKvc788yZ5zz3d8+953zP9/dydiFHjhw5cuTIkSNHjhw5cuTIkSPHexRV+RS8P+FDfAYYD9zsrAkd9fcG9DkGF6kPcCUwCRgDnAEMAlqBLcCzQHTW/C2ndM/iuGOMiNcCm4EngJnAR4DB2pQfAC4H5gGbfYgP+hBPyymSK2OlSVgN3Atcr67ngZ8D64GtwD7gdOB8oB64FvgKMMmH+BlnzZ/fa+/srJmQk7H3EfE44BfA1UALcIOz5umMS1/T5zc+xEbgNuAbwNM+xLHOmk25dh0FMvoQa4GbgE8opvov8CqwGvips2Zb6vrjgesAA4wABgI7pTx3OWueb4csnbL1Ib4EfEwq1gzMBcYBZwKvOWuG69JFIuIfgMnOmu1lqEor8E0f4mbgHuAxH+JIZ83+dp7hRWC+nmEwsB14HFjgrNntQ6wCZgA3ADVAX2AjsMhZ82SJdzxZz/554GJgqH76J/AUsMRZ8+8jSWC6uLE7nHMf4l5gAHCps+aFjHucI28E0D85p30yVORuYFbqHv0UU10KjAauSticpBhsXMrmQ8BUYKoPscFZszjjwTptm8AngQeA/ulY2Id4HvBt4A2gzlmzM/GeN2vDDQN2AI8A3wOagHpnTZWzZpkPcajiyFnAj0s8Q23GMwzVGON9iJcBDwFfTNldDqz2IU511qzMuO+PgK9l9F+sz3Qf4rijoNol57ySCcz3E0RsEvEGAKcClwALtbBJ/ERkehdo0CL0A0YCa4rq5EOckjF+V2yLmAW8DkwGBolE5+q3eVKgGUUiCsuAu4ALgWqNewvwW+DE1P0XAW+KuKUwW2o1Sap4BvAt4JBUcIPUbYm+D9DGbtYaLNEGSWMPcD9wBXCeFv8s4AvAJmAIsOIoeNT25rzrbtqHeBbwHX1d7KxpSFz3tiauOaVs58u9AtzqrEkqx0YfYj2wFpggIq+shG0K+4EJzpp/Zbj/yUCzs2Zton8i8FXZ3ap48lCCLANSLnufD/Fx4EYf4tnpcYSdQK2zZnei704f4iXAl4CLgPnOmkWJ31/wIU5Tdn+OSPrX1NhzM8Z6A1jpQ1wPvAJ83Ic4ylnT3INkzJzzSipjPXCCVGBhmfZXUSicb5fKpWOvw8ACfa2R26yEbRIrSkzKKOA0xW1J3Ki2wVmz1FmzzVmzw1lzHzCnxBgb1Q4v8fsDKSIWsV7t4SwXr1pmUbGHHWG2vB14Tl9H97Ayrqg0EdMx4wi165w1B8q0v0jty+3Y/BF4R+6yBvhHBWyTKBUvfbh4/wySAizPsFkuF358qv+g2hNLjFWqQL6jmKk7a95u55oPlrq3D3G8Ep/LFEtnXTekh8nYLTFqUhlPUbv7COxPTriOUjv4XaAtdX1XbbMWPI1iwbot1T8IOOCseTNjvHek1GkMS7jjUm6rI7fWEaoyiHgH8Ixc/fB2NkO/Hibjju4mY1tqEctBWyL7LVUO6JMgUluFbMvBHrWDU/2tQLUPcXCJ8Yak+qooHB/uB17qwfroGCVVxYRrtN7lBCUMVUoyexv+15lyYpqMxbioVicW5aDonka0YzNabhYF65WwLQctqXCgiBfVXpdhMy1jsm5SCNOUrjN2MyaqfdZZ83VnzZ+cNbuk3kVc0AvJuE/t6SV+H14OS58A7lT8Mk81t46wBrhDA89OB+kqVzQWyeSs+XuFbMtBM/CWMupkQvag6n0LfYgHgUdVWrpa718cv0bJzhyVMRp6eFH7JSoZWcr5OZWHehu2ikPjgF9lrOktHZLRWfO6YpR5QKMP8WwgKFitVp2rDjjTWTNTNlt8iE1SlNulcMuVkV9I4UjtCg3RmIrPOm1bZrZ50If4FHCND3Gis+bX6n/Sh7gCmA4s1SdJ4F0ad1MiWJ9S6qSjG1E8vbjSh9igTbRL8euX21vULoQGcxIbcqCzZm8nbvNLJVuzfYhbtdn3ybvcBowtx00XF/3+hBvboJ25R5PTmBHjzQJ+J2L/QCpyQG6/XtcscNY8WqJ42lnbcrBYZZW7fYinJPpnUDiZ2aJMuYVCEXysYsoWeYrpwEhnzZajoDCrKBThq6TsLVrUV4DvUjieXdMLlXGpQrBqCqd524D/aJ0/DfywrGDSWXMImOlDfJjCMdQYBfStkt/VwM9SNm+p/HC9VO6jwElSuPXAUmfNuhLq1WnbMtXxZR/iMpF+lQ+xzlmzV++5RJ80rukNK+qsOexD/CzgKJwFD1MS9SrwmJ79nt7GRK1pLYUacR2Fc+tW4PfA7RKcuWWVE95v8CH2VXnkU9qx0501GzqwqQHuA5Y5a5rI0SM4Jv7twIc4kMIZ7mR1rVUss05u5ACF8+QxUsY6qdA0Z82qnCY5GStNyCqVaebLdbSHdcBsZ81fcorkZOxOUvYHplD4C5tRUsS+imWeAx5O/mFFjhw5jkH8HzsgzyJO/agJAAAAAElFTkSuQmCC';
-  const APP_VER = '0.80.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261020105055'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.84.2'; // About, System Info (history: changes.txt)
+  const BUILD = '20261020175221'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -37,7 +37,7 @@
     EVO: { name: 'ZX Evo BaseConf', base: 69888, speed: 2.5, xt: true, files: ['zxevo_fe.rom', 'CMOS'], note: '4096 KB · EVO Reset Service FE · CMOS (this session only)',
       ini: { MISC: { HIMEM: 'ATM3', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', ATM3: 'zxevo_fe.rom' } } },
     // ZX-Evolution with the TS configuration (TS-Conf): TS-BIOS, 4 MB, TS video modes; the program sets the CPU clock (3.5 / 7 / 14 MHz)
-    TSCONF: { name: 'ZX Evo TS-Conf', base: 71680, speed: 1, fixed: true, xt: false, files: ['zxevo.rom', 'CMOS'], note: '4096 KB · TS-BIOS · CMOS (this session only)',
+    TSCONF: { name: 'ZX Evo TS-Conf', base: 71680, speed: 1, fixed: true, xt: true, files: ['zxevo.rom', 'CMOS'], note: '4096 KB · TS-BIOS · CMOS (this session only) · SD: Wild Commander (sd/wc.zip), boots on Reset',
       ini: { MISC: { HIMEM: 'TSL', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', TSL: 'zxevo.rom' }, ULA: { Preset: 'PENTAGON' } } },
     PENTAGON: { name: 'Pentagon 128', base: 71680, speed: 2.5, xt: false, files: ['pentagon.rom', 'trd504tm.rom'], note: '128 KB · 128K ROM + TR-DOS',
       ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'pentagon' }, 'ROM.pentagon': { 128: 'pentagon.rom:0', sos: 'pentagon.rom:1', dos: 'trd504tm.rom', sys: 'trd504tm.rom' }, ULA: { Preset: 'PENTAGON' } } },
@@ -156,6 +156,7 @@
   customApply();
   let model = 'ATM710';
   const M = () => MODELS[model].machine || model; // the machine under an OS model
+  const isTS = () => M() === 'TSCONF' || (model === 'CUSTOM' && customCfg.mach === 'TSCONF'); // ZX Evo TS-Conf (also an OS on it, a Custom ROM)
   const xbiosOf = () => 'XBIOS136'; // the xBIOS model a ROM disk is built on
   // ROM disk (xBIOS XT manual, appendix 4): IMAGE.TRD (40 pages) + empty 256K + XBIOS.ROM = 1 MB ROM; vTR-DOS mounts it read-only
   const ROMDISK_FILE = 'romdisk.rom', ROMDISK_TRD = 40 * 16384, ROM_TARGET = 9;
@@ -252,7 +253,10 @@
     if (lost.length) toast('Cannot load: ' + lost.map((f) => whyMissing[f] || srcUrl(f) + ' not found').join(', '), true);
   }
 
+  let startedAt = 0; // when the machine was (re)started: TS-BIOS needs its power-up run first
+  let pageStarts = 0; // machine starts on this page (0: the first one, where a link may load something)
   async function start() {
+    startedAt = performance.now();
     if (!module) {
       const [wasm] = await Promise.all([fetchBytes(WASM_URL), ensureFiles(COMMON_FILES), ensureFiles(['sos.l'])]); // sos.l: labels of 48 BASIC for the debugger (optional)
       for (const f of COMMON_FILES) if (!fs.exists(f)) toast('File not found: ' + f, true);
@@ -293,6 +297,15 @@
     applySoundPrefs();
     applyPal();
     applyFdd(); applyMouseSwap(); applyBorder();
+    if (model === 'TSCONF') { // TS-BIOS starts in its Setup (Symbol Shift held over the power-up), its NVRAM already set:
+      // Reset to: BD boot.$c — F12 boots the SD card. A link that loads something (a=, snap=, cpm=...): TS-BIOS as before (TR-DOS)
+      const linkLoad = !pageStarts && ['a', 'b', 'snap', 'tape', 'hdd', 'hdd1', 'sd', 'cpm', 'autorun', 'run'].some((k) => LINK[k] !== undefined);
+      // speed= of a link: the CPU clock TS-BIOS sets (NVRAM "CPU Speed"): 3.5 / 7 / 14 (MHz)
+      if (!pageStarts && LINK.speed) { const mhz = parseFloat(LINK.speed); if (isFinite(mhz) && mhz > 0) tsNvSet(0xB1, mhz >= 10 ? 2 : mhz >= 5 ? 1 : 0); }
+      if (linkLoad) tsNvSet(0xB4, 0);
+      else { tsNvSet(0xB4, 3); E.web_zxkey(57, 1); setTimeout(() => { if (E) E.web_zxkey(57, 0); }, 1200); }
+    }
+    pageStarts++;
     await applyHdd();
     sdMount(); sdUI();
     updateUI();
@@ -304,6 +317,8 @@
     if (!E.web_border) return; const v = load('border'); if (v !== null) E.web_border(+v);
     const atm = /^(ATM710|ATM3|ATM450|PROFI)$/.test(himem()); // their video modes need the border area: no "None"
     $('bordersel').querySelector('[value="0"]').hidden = atm; $('bordersel').value = String(E.web_border(-1));
+    const ts = himem() === 'TSL'; $('bordersel').disabled = ts; // TS-Conf: the picture is the program's raster (320x240 / 360x288)
+    $('bordersel').title = ts ? 'ZX Evo TS-Conf: the picture follows the raster of the program (320×240, 360×288 whole)' : 'Border around the picture: none 256×192, small 320×240, wide 384×288 (full screens, .bsc)';
   }
   // Swap Mouse Buttons (Options / Input; swapmouse=1 in a link: this visit only). Off: unreal.ini / a Custom ROM ini decides
   let mswapLink = false;
@@ -462,7 +477,7 @@
   }
   function tmFrame() { if (!touchMouse) return; if (tmQ.length) tmQ.shift()(); else tmFrameMove(); }
   // touch: dragging moves the program's pointer by the same distance (start on the pointer and it stays under the finger),
-  // releasing stops it; 2 taps = left button, 3 taps = right button. The program reads the Kempston ports as 8-bit
+  // releasing stops it; a double tap = a left button click (or LB / RB of the bar, a second finger holds LB). The program reads the Kempston ports as 8-bit
   // counters, so the movement goes out in steps of at most 40 units a frame.
   const tmPend = { x: 0, y: 0 };
   function tmFrameMove() {
@@ -496,7 +511,16 @@
       tmPend.y += (e.clientY - drag.y) * 240 / r.height / k;
       drag.x = e.clientX; drag.y = e.clientY;
     });
-    const end = (e) => { if (drag && e.pointerId === drag.id) drag = null; };
+    let lastTap = null; // a tap (no move): a second one within 350 ms near it clicks the left button
+    const end = (e) => {
+      if (!drag || e.pointerId !== drag.id) return;
+      if (!drag.moved) {
+        const now = performance.now();
+        if (lastTap && now - lastTap.t < 350 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 40) { tmClick(1); lastTap = null; }
+        else lastTap = { t: now, x: e.clientX, y: e.clientY };
+      } else lastTap = null;
+      drag = null;
+    };
     canvas.addEventListener('pointerup', end);
     canvas.addEventListener('pointercancel', (e) => { if (drag && e.pointerId === drag.id) drag = null; });
   }
@@ -1314,7 +1338,7 @@
     $('dbgclose').onclick = (e) => { e.stopPropagation(); debugClose(); };
     $('dbghelpbtn').onclick = (e) => { e.stopPropagation(); showDbgHelp(h.hidden); c.focus(); };
     $('dbghelpclose').onclick = () => { showDbgHelp(false); c.focus(); };
-    gfx = UnrealGfx.create({ E: () => E, tsOn: () => model === 'TSCONF' || (model === 'CUSTOM' && customCfg.mach === 'TSCONF'), floatWin, edgeResize, load, store, snapRight, live: () => !AS.suspended, disks: gfxDisks, diskBytes: gfxDiskBytes, view: (f, t, m, go) => fc && fc.view(f, t, m, go), onToggle: () => toolsUI(), onClose: () => (dbgOn ? c : canvas).focus() });
+    gfx = UnrealGfx.create({ E: () => E, tsOn: isTS, floatWin, edgeResize, load, store, snapRight, live: () => !AS.suspended, disks: gfxDisks, diskBytes: gfxDiskBytes, view: (f, t, m, go) => fc && fc.view(f, t, m, go), onToggle: () => toolsUI(), onClose: () => (dbgOn ? c : canvas).focus() });
     $('gfxbtn').onclick = () => { toolsMenu(false); releaseMouse(); gfx.show(!gfx.open); toolsUI(); };
     fc = UnrealFC.create({ E: () => E, fs, setName, floatWin, edgeResize, snapRight, load, store, download: downloadBytes, askBox,
       insert: (name, d) => { if (d >= 0) E.web_disk_mark(d, 0); return insertFromFs(name, d, true); }, // FC writes the disk back: no "save the changed disk?" question
@@ -1323,7 +1347,7 @@
       onClose: () => canvas.focus(), run: fcRun, mountDisk: async (name, data, d) => { const before = drives[d]; await putAndInsert(name, data, d); return drives[d] !== before; }, graf: (name, data) => { gfx.showFile(name, data); toolsUI(); } });
     $('fcbtn').onclick = () => { toolsMenu(false); releaseMouse(); fc.show(!fc.open); fcVk = fc.open; };
     // deBUGa: the second debugger window on the same debugger loop of the core; one of the two debuggers at a time
-    dga = UnrealDbga.create({ E: () => E, tsOn: () => model === 'TSCONF' || (model === 'CUSTOM' && customCfg.mach === 'TSCONF'), cstr, floatWin, edgeResize, load, store, activate: activateWin,
+    dga = UnrealDbga.create({ E: () => E, tsOn: isTS, cstr, floatWin, edgeResize, load, store, activate: activateWin,
       stoppedNow: () => !!(E && E.web_debug_active() && AS.suspended), stop: () => { releaseMouse(); debugEnter(); },
       // F24 (no action) wakes the loop of the core: it leaves when the action ended the stop
       cmd: (n, a) => { E.web_dga_cmd(n, a); E.web_debug_key(0x87, 0); debugResume(); },
@@ -1715,11 +1739,11 @@
   const HOTKEYS = new Set(['F1', 'F2', 'F3', 'F4', 'F5', 'F7', 'F12', 'Slash', 'NumpadDivide']);
   function hotkey(e) {
     if (e.ctrlKey && e.altKey && !e.metaKey && e.code === 'KeyZ' && MODELS[model].xt) { toggleXT(); return true; } // ATM mode on / off
-    if (e.altKey && !(e.ctrlKey || e.shiftKey || e.metaKey) && e.code === 'F1') { showOptions(!optOpen()); return true; } // Alt+F1: Options (as in the debugger)
-    if (E.web_xt_kbd()) { // in ATM (XT) mode every key goes to the machine
+    if (E.web_xt_kbd()) { // in ATM (XT) mode every key goes to the machine (Alt+F1 too: Wild Commander picks a panel's drive with it)
       if (HOTKEYS.has(e.code) && !(e.shiftKey || e.ctrlKey || e.altKey || e.metaKey)) xtMsg();
       return false;
     }
+    if (e.altKey && !(e.ctrlKey || e.shiftKey || e.metaKey) && e.code === 'F1') { showOptions(!optOpen()); return true; } // Alt+F1: Options (as in the debugger)
     if (e.code === 'F1' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { if (!e.repeat) dbgShiftF1(); return true; } // Shift+F1: the debugger chosen in Options / System
     if (e.code === 'F12' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey) && M() === 'TSCONF') { if (!e.repeat) tsSetup(); return true; } // TS-BIOS Setup
     if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return false;
@@ -1785,7 +1809,8 @@
   function xtMsg() {
     if (!E || $('xt').hidden) return;
     const on = !!E.web_xt_kbd(), m = $('xtmsg');
-    m.textContent = on ? 'ATM mode on · emulator hotkeys off' : 'ATM mode off · emulator hotkeys on';
+    const nm = isTS() ? 'PC keys' : 'ATM mode'; // TS-Conf: no ATM keyboard controller, the mode only gives F1-F12 and the like to the machine
+    m.textContent = on ? nm + ' on · emulator hotkeys off' : nm + ' off · emulator hotkeys on';
     m.classList.toggle('on', on);
     clearTimeout(xtMsgT); xtMsgT = setTimeout(() => { m.textContent = ''; }, 2600);
   }
@@ -1877,7 +1902,7 @@
   }
   // SPG: a TS-Conf program file (TS-Labs): loaded into RAM and started by the core; on another machine the model switches first
   async function spgLoad(name, buf) {
-    if (model !== 'TSCONF') { toast(name + ': a TS-Conf program — ZX Evo TS-Conf starts'); await setModel('TSCONF', true); if (model !== 'TSCONF') return; }
+    if (!isTS()) { toast(name + ': a TS-Conf program — ZX Evo TS-Conf starts'); await setModel('TSCONF', true); if (!isTS()) return; }
     const p = E.malloc(buf.length); new Uint8Array(E.memory.buffer, p, buf.length).set(buf);
     let r; try { r = E.web_ts_spg(p, buf.length); } finally { E.free(p); }
     const why = ['', 'not an SPG file', 'a block is missing (the file is cut)', 'a block does not depack'][r & 0xFF];
@@ -1892,6 +1917,7 @@
   async function loadBytes(name, buf, drive) {
     if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await hddFromBytes(0, name, buf); return; } await putAndInsert(name, buf, drive); return; }
     try {
+      if (await tsZip(name, buf)) return;
       const entries = UnrealZip.list(buf).filter((e) => LOADABLE.test(e.name));
       if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await hddFromBytes(0, name, buf); return; }
       if (!entries.length) { toast('No disk, tape or snapshot images in the archive', true); return; }
@@ -1907,6 +1933,30 @@
       }
       releaseAll(); fwinShow('zippick', true);
     } catch (err) { toast(err.message, true); }
+  }
+  // ZX Evo TS-Conf programs come as the files of an SD card (run from Wild Commander): a ZIP for TS-Conf (the machine is
+  // TS-Conf, or the ZIP has an SPG) with an SD card image in it goes into the SD card; one with boot.$C (Wild Commander and
+  // its folder) is put on a new FAT32 SD card. Then TS-BIOS boots boot.$C of the card (Caps Shift + Reset). true: done
+  async function tsZip(name, buf) {
+    const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name)), spg = all.some((e) => /\.spg$/i.test(e.name));
+    if (!isTS() && !spg) return false;
+    const img = all.filter((e) => /\.(img|vhd|ima|sd)$/i.test(e.name) && e.size >= 1 << 20).sort((a, b) => b.size - a.size)[0];
+    const boot = all.filter((e) => /(^|\/)boot\.\$c$/i.test(e.name)).sort((a, b) => a.name.length - b.name.length)[0];
+    if (!img && !(boot && (isTS() || spg))) return false;
+    if (!isTS()) { toast(name + ': a TS-Conf SD card — ZX Evo TS-Conf starts'); await setModel('TSCONF', true); if (!isTS()) return true; }
+    if (img) await sdFromBytes(name, buf);
+    else { // the folder of boot.$C and all under it: a new card
+      const base = boot.name.replace(/[^/]*$/, ''), files = [], dirs = [];
+      for (const e of all) if (e.name.startsWith(base) && e.name.length > base.length) files.push({ path: e.name.slice(base.length).replace(/\\/g, '/'), data: await UnrealZip.extract(buf, e) });
+      toast('Making an SD card of ' + name + '…');
+      const r = await nedoImage({ files, dirs }, 64, 'TSCONF');
+      await sdFromBytes(name.replace(/\.zip$/i, '') + '.img', r.img);
+    }
+    if (!sdName) return true;
+    if (!sdOn()) store('sd.if.' + M(), '1');
+    sdMount(); sdUI(); tsBootSd();
+    toast('SD card: ' + sdName + ' · TS-BIOS starts boot.$C (Caps Shift + Reset)');
+    return true;
   }
   let pendingDrive = -1, fromLoadWin = false;
   // F3, the Load button and the drive Insert buttons open the Load window
@@ -1999,11 +2049,19 @@
     return cmds;
   }
   // an OS model: its HDD image into HDD 0 (ATM IDE on), then xBIOS XT setup: Space, 2 × ↓ (vTR-dos cold → IDE hard drive master), Enter
-  // ------------------------------------------------------------------ NedoOS: build date of sd/nedoos.zip, Make Image (a new image from the release)
-  const NEDO_REPO = (OS_MODELS.NEDOOS.link || '').replace(/^https:\/\/github\.com\//, '').replace(/\/$/, '') || 'alfishe/NedoOS', NEDO_DIR = 'release';
+  // ------------------------------------------------------------------ Options / System / Update: SD card images of the OS models from
+  // GitHub (or a ZIP): NedoOS (BaseConf), Wild Commander (TS-Conf). The build of the image in use is shown, Make Image builds a new one
+  const UPD = {
+    NEDOOS: { os: 'NEDOOS', sd: 'sd/nedoos.zip', repo: 'alfishe/NedoOS', dir: 'release', boot: /^sd_boot\.\$c$/i, bootName: 'sd_boot.$C', zip: 'nedoos.zip', vhd: 'nedoos.vhd', vol: 'NEDOOS', key: 'nedoos', title: 'NedoOS',
+      what: 'folder <b>release</b> of NedoOS' },
+    WCTS: { os: 'TSCONF', sd: 'sd/wc.zip', repo: 'tslabs/zx-evo', dir: 'pentevo/soft/WC/exe', boot: /^boot\.\$c$/i, bootName: 'boot.$C', zip: 'wc.zip', vhd: 'wc.vhd', vol: 'WC', key: 'wc', title: 'Wild Commander',
+      what: 'Wild Commander: folder <b>pentevo/soft/WC/exe</b> of TS-Labs zx-evo' },
+  };
+  let updKey = UPD[load('upd.sel')] ? load('upd.sel') : 'NEDOOS';
+  const updT = () => UPD[updKey];
   const nedoDate = (d) => { const t = new Date(d), z = (n) => String(n).padStart(2, '0'); return isNaN(t) ? '' : t.getFullYear() + '-' + z(t.getMonth() + 1) + '-' + z(t.getDate()); };
-  function nedoNote(b) { // the build of a loaded nedoos.zip: its nedoos.json, else the date of the image in the archive (none: nothing)
-    const done = (o) => { try { if (o) localStorage.setItem('unreal.nedoos.build', JSON.stringify(o)); else localStorage.removeItem('unreal.nedoos.build'); } catch (e) {} if ($('modelsel').value === 'NEDOOS') nedoUI(); };
+  function nedoNote(b, t) { // the build of a loaded image ZIP: its .json, else the date of the image in the archive (none: nothing)
+    const done = (o) => { try { if (o) localStorage.setItem('unreal.' + t.key + '.build', JSON.stringify(o)); else localStorage.removeItem('unreal.' + t.key + '.build'); } catch (e) {} nedoUI(); };
     const dated = (t) => t && !isNaN(t) && t.getFullYear() > 1980; // a ZIP entry without a date reads as 1980-01-01 (DOS date 0)
     try {
       if (!UnrealZip.isZip(b)) { done(null); return; }
@@ -2017,22 +2075,27 @@
     } catch (e) { done(null); }
   }
   function nedoUI() {
-    const on = $('modelsel').value === 'NEDOOS'; $('nedorow').hidden = !on; if (!on) return;
-    let o = null; try { o = JSON.parse(load('nedoos.build') || 'null'); } catch (e) {}
+    if (!$('updsel')) return;
+    $('updsel').value = updKey;
+    let o = null; try { o = JSON.parse(load(updT().key + '.build') || 'null'); } catch (e) {}
     const d = o && o.date ? nedoDate(o.date) : '', ok = d && d > '1980-12-31'; // no data (or the DOS zero date): nothing is written
     $('nedobuild').textContent = ok ? (o.zipdate ? 'from ' : 'build ') + d + (o.commit ? ' · ' + o.commit.slice(0, 7) : '') : '';
-    $('nedobuild').title = ok && o.zipdate ? 'nedoos.zip has no nedoos.json: date of the image file in it' : ok && o.built ? 'image made ' + o.built : '';
+    if (!ok) $('nedobuild').textContent = 'no data (start once or make an image)';
+    $('nedobuild').title = ok && o.zipdate ? updT().zip + ' has no .json: date of the image file in it' : ok && o.built ? 'image made ' + o.built : '';
   }
   let nedoFW = null, nedoLast = null, nedoBusy = false;
   function nedoStat(t, err) { $('nedostat').textContent = t; $('nedostat').classList.toggle('err', !!err); }
   function nedoProg(v) { const p = $('nedoprog'); p.hidden = v === null; if (v !== null) p.value = v; }
   function showNedo(v) {
     $('nedowin').hidden = !v;
+    if (v) { const t = updT(); $('nedotitle').textContent = t.title + ' SD image'; $('nedowhat').innerHTML = 'New SD card image: ' + t.what + ' on FAT32 VHD, saved as ' + t.zip + ' (asks before download).';
+      $('nedodl').textContent = 'Download ' + t.zip; $('nedogit').title = 'Folder ' + t.dir + ' of github.com/' + t.repo + ' (latest commit), file by file'; $('nedodone').hidden = true; nedoStat(''); }
     if (v) { if (!nedoFW) nedoFW = floatWin($('nedowin'), 'nedopos', () => { const r = $('screenwrap').getBoundingClientRect(), w = $('nedowin').offsetWidth; return { x: Math.max(4, r.left + (r.width - w) / 2), y: Math.max(8, r.top + 60) }; });
       $('nedomb').value = load('nedo.mb') || '100'; nedoFW.place(); }
   }
   // the release folder from GitHub: 4 API calls (head commit, trees, last change of the folder), then each file from raw.githubusercontent.com
   async function nedoFromGit() {
+    const t0 = updT(), NEDO_REPO = t0.repo;
     const A = 'https://api.github.com/repos/' + NEDO_REPO, j = async (u) => {
       let r; try { r = await fetch(u, { headers: { Accept: 'application/vnd.github+json' } }); } catch (e) { throw new Error('GitHub cannot be reached from this page (network or CORS)'); }
       if (r.status === 403 || r.status === 429) throw new Error('GitHub API limit for this address (60 requests an hour): try later or use From file');
@@ -2040,8 +2103,13 @@
       return r.json();
     };
     nedoStat('GitHub: ' + NEDO_REPO + ' · reading the file list…');
-    const head = await j(A + '/commits/HEAD'), root = await j(A + '/git/trees/' + head.commit.tree.sha);
-    const rel = root.tree.find((x) => x.path.toLowerCase() === NEDO_DIR && x.type === 'tree'); if (!rel) throw new Error('no folder ' + NEDO_DIR + ' in ' + NEDO_REPO);
+    const head = await j(A + '/commits/HEAD');
+    let sha = head.commit.tree.sha, rel = null; // the folder: one tree request a level (pentevo / soft / WC / exe)
+    for (const seg of t0.dir.split('/')) {
+      const tr = await j(A + '/git/trees/' + sha); rel = tr.tree.find((x) => x.path.toLowerCase() === seg.toLowerCase() && x.type === 'tree');
+      if (!rel) throw new Error('no folder ' + t0.dir + ' in ' + NEDO_REPO); sha = rel.sha;
+    }
+    rel = { sha, path: t0.dir };
     const t = await j(A + '/git/trees/' + rel.sha + '?recursive=1'); if (t.truncated) throw new Error('GitHub gave a cut list of files');
     let date = head.commit.committer.date; try { const c = await j(A + '/commits?path=' + rel.path + '&per_page=1'); if (c[0]) date = c[0].commit.committer.date; } catch (e) {}
     const blobs = t.tree.filter((x) => x.type === 'blob'), dirs = t.tree.filter((x) => x.type === 'tree').map((x) => x.path), files = new Array(blobs.length);
@@ -2061,9 +2129,10 @@
   // a ZIP from this computer: the folder with sd_boot.$C (release/ of a repository ZIP, or a ZIP of that folder)
   async function nedoFromZip(b) {
     if (!UnrealZip.isZip(b)) throw new Error('not a ZIP');
-    const ents = UnrealZip.list(b, true).map((e) => Object.assign(e, { name: e.name.replace(/\\/g, '/') })), boots = ents.filter((e) => /(^|\/)sd_boot\.\$c$/i.test(e.name)).map((e) => e.name.slice(0, e.name.length - 10));
-    if (!boots.length) throw new Error('no sd_boot.$C in the archive: it is not a NedoOS release');
-    const base = boots.find((x) => /(^|\/)release\/$/i.test(x)) || boots.sort((x, y) => x.length - y.length)[0];
+    const t0 = updT(), bn = t0.bootName.length;
+    const ents = UnrealZip.list(b, true).map((e) => Object.assign(e, { name: e.name.replace(/\\/g, '/') })), boots = ents.filter((e) => t0.boot.test(e.name.replace(/^.*\//, ''))).map((e) => e.name.slice(0, e.name.length - bn));
+    if (!boots.length) throw new Error('no ' + t0.bootName + ' in the archive: it is not ' + t0.title);
+    const tail = t0.dir.toLowerCase() + '/', base = boots.find((x) => x.toLowerCase().endsWith(tail)) || boots.sort((x, y) => x.length - y.length)[0];
     const mine = ents.filter((e) => e.name.startsWith(base) && e.name.length > base.length), files = [], dirs = [];
     let latest = 0, k = 0;
     for (const e of mine) {
@@ -2076,14 +2145,14 @@
     return { files, dirs, info: { source: 'ZIP: ' + (base || '(root)'), commit: sha, date: latest ? new Date(latest).toISOString() : new Date().toISOString() } };
   }
   // the files on a new FAT32 image (New Disk / SD card logic); a size too small for them grows to what they need
-  async function nedoImage(set, mb0) {
+  async function nedoImage(set, mb0, volName) {
     const T = UnrealFC._test, files = set.files.slice().sort((a, b) => a.path.localeCompare(b.path)), dirs = new Set(set.dirs);
     for (const f of files) { const p = f.path.split('/'); for (let i = 1; i < p.length; i++) dirs.add(p.slice(0, i).join('/')); }
     const data = files.reduce((n, f) => n + f.data.length, 0);
     let mb = Math.max(64, mb0 | 0), note = ''; const skipped = [];
     for (let tries = 0; tries < 6; tries++) {
       // 512-byte clusters, as the images NedoOS ships (its kernel of 13-14.10.2026 does not find bin/term.com on 1K clusters)
-      const img = T.fatFormat(mb * 1048576, 'NEDOOS', { start: 2048, type: 32, spc: 1 }), base = T.fatFind(img)[0], vol = T.fatVol(img, base);
+      const img = T.fatFormat(mb * 1048576, volName || updT().vol, { start: 2048, type: 32, spc: 1 }), base = T.fatFind(img)[0], vol = T.fatVol(img, base);
       const cb = (img[base + 11] | img[base + 12] << 8) * img[base + 13];
       const per = new Map(); for (const p of [...files.map((f) => f.path), ...dirs]) { const d = p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '', n = p.slice(p.lastIndexOf('/') + 1); per.set(d, (per.get(d) || 0) + 1 + (/^[a-z0-9_$~!#%&'()@^`{}-]{1,8}(\.[a-z0-9_$~!#%&'()@^`{}-]{1,3})?$/i.test(n) ? 0 : Math.ceil(n.length / 13))); } // entries: short + long-name ones
       const need = files.reduce((n, f) => n + Math.ceil(f.data.length / cb) * cb, 0) + [...dirs, ''].reduce((n, d) => n + Math.ceil(((per.get(d) || 0) * 32 + 64) / cb) * cb, 0);
@@ -2113,22 +2182,23 @@
     try {
       const mb = Math.max(64, Math.min(2047, parseInt($('nedomb').value, 10) || 100)); store('nedo.mb', String(mb));
       const set = await get();
-      const boot = set.files.find((f) => /^sd_boot\.\$c$/i.test(f.path));
-      if (!boot) throw new Error('no sd_boot.$C in the release folder');
+      const t = updT(), boot = set.files.find((f) => t.boot.test(f.path));
+      if (!boot) throw new Error('no ' + t.bootName + ' in the folder');
       // the programs the loader starts (its texts: "term.com cmd.com autoexec.bat") must be in bin/
       const want = [...new Set((String.fromCharCode(...boot.data).match(/[a-z0-9_]{1,8}\.(com|bat)/gi) || []).map((x) => x.toLowerCase()))];
       const have = new Set(set.files.map((f) => f.path.toLowerCase()));
-      const lost = want.filter((x) => !have.has('bin/' + x) && !have.has(x));
+      const lost = t.key !== 'nedoos' ? [] : want.filter((x) => !have.has('bin/' + x) && !have.has(x));
       if (lost.length) throw new Error('sd_boot.$C starts ' + lost.join(', ') + ', but the release has no bin/' + lost[0] + ' — this ZIP is not a whole NedoOS release (' + set.files.length + ' files)');
       const r = await nedoImage(set, mb);
-      nedoStat('Packing nedoos.zip…'); nedoProg(null);
-      const info = { os: 'NedoOS', date: set.info.date, commit: set.info.commit, source: set.info.source, built: new Date().toISOString(), size_mb: r.mb, files: r.nfiles };
+      nedoStat('Packing ' + t.zip + '…'); nedoProg(null);
+      const info = { os: t.title, date: set.info.date, commit: set.info.commit, source: set.info.source, built: new Date().toISOString(), size_mb: r.mb, files: r.nfiles };
       const vhd = vhdFixed(r.img);
-      const zip = await UnrealZip.create([{ name: 'nedoos.vhd', data: vhd }, { name: 'nedoos.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
-      nedoLast = { zip, vhd, info };
-      nedoProg(null); nedoStat('Image made: nedoos.zip ' + (zip.size / 1048576).toFixed(1) + ' MB');
-      if (await askBox('NedoOS image', `Image made: ${r.mb} MB FAT32 VHD, ${r.nfiles} files, build ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}.\nDownload nedoos.zip (${(zip.size / 1048576).toFixed(1)} MB)?`, 'Download')) downloadBytes('nedoos.zip', zip);
-      nedoStat((r.note ? r.note + '\n' : '') + `Done: nedoos.zip (${(zip.size / 1048576).toFixed(1)} MB) · ${r.mb} MB FAT32 VHD · ${r.nfiles} files, ${(r.data / 1048576).toFixed(1)} MB\nbuild ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}`);
+      const zip = await UnrealZip.create([{ name: t.vhd, data: vhd }, { name: t.key + '.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
+      nedoLast = { zip, vhd, info, t };
+      store(t.key + '.build', JSON.stringify({ date: info.date, commit: info.commit, built: info.built })); nedoUI(); // the image to go onto the server
+      nedoProg(null); nedoStat('Image made: ' + t.zip + ' ' + (zip.size / 1048576).toFixed(1) + ' MB');
+      if (await askBox(t.title + ' image', `Image made: ${r.mb} MB FAT32 VHD, ${r.nfiles} files, build ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}.\nDownload ${t.zip} (${(zip.size / 1048576).toFixed(1)} MB)?`, 'Download')) downloadBytes(t.zip, zip);
+      nedoStat((r.note ? r.note + '\n' : '') + `Done: ${t.zip} (${(zip.size / 1048576).toFixed(1)} MB) · ${r.mb} MB FAT32 VHD · ${r.nfiles} files, ${(r.data / 1048576).toFixed(1)} MB\nbuild ${nedoDate(info.date)}${info.commit ? ' · ' + info.commit.slice(0, 7) : ''}`);
       $('nedodone').hidden = false;
     } catch (e) { nedoProg(null); nedoStat(e.message + (/GitHub/.test(e.message) ? '\nFrom file: download the repository (GitHub: Code / Download ZIP) or a ZIP of its release folder and choose it here' : ''), true); }
     finally { nedoBusy = false; $('nedogit').disabled = $('nedofile').disabled = false; }
@@ -2164,24 +2234,26 @@
     $('nedobtn').onclick = () => showNedo($('nedowin').hidden);
     $('nedoclose').onclick = () => showNedo(false);
     $('nedowin').addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); showNedo(false); } });
-    $('nedogit').title = 'Folder ' + NEDO_DIR + ' of github.com/' + NEDO_REPO + ' (latest commit), file by file';
+    $('updsel').onchange = () => { updKey = $('updsel').value; store('upd.sel', updKey); nedoUI(); if (!$('nedowin').hidden) showNedo(true); };
     $('nedogit').onclick = () => nedoRun(nedoFromGit);
     $('nedofile').onclick = () => $('nedoinput').click();
     $('nedoinput').onchange = (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) nedoRun(async () => { nedoStat('Reading ' + f.name + '…'); return nedoFromZip(new Uint8Array(await f.arrayBuffer())); }); };
-    $('nedodl').onclick = () => { if (nedoLast) downloadBytes('nedoos.zip', nedoLast.zip); };
-    $('nedouse').onclick = async () => { if (!nedoLast) return; await sdFromBytes('nedoos.vhd', nedoLast.vhd); if (sdName) sdSrc = new URL(lowDir(OS_MODELS.NEDOOS.sd), location.href).href; /* NedoOS start keeps it */ store('nedoos.build', JSON.stringify({ date: nedoLast.info.date, commit: nedoLast.info.commit, built: nedoLast.info.built })); nedoUI(); };
+    $('nedodl').onclick = () => { if (nedoLast) downloadBytes(nedoLast.t.zip, nedoLast.zip); };
+    $('nedouse').onclick = async () => { if (!nedoLast) return; const t = nedoLast.t; await sdFromBytes(t.vhd, nedoLast.vhd); if (sdName) sdSrc = new URL(lowDir(t.sd), location.href).href; /* the model start keeps it */ store(t.key + '.build', JSON.stringify({ date: nedoLast.info.date, commit: nedoLast.info.commit, built: nedoLast.info.built })); nedoUI(); };
   }
   async function osBoot() {
+    if (model === 'TSCONF') { await tsWc(); return; }
     const os = OS_MODELS[model]; if (!os) return;
     if (os.sd) { // an SD card OS: the image (kept when it is already in: its changes stay), Reset, 5 in the EVO Reset Service
       const url = new URL(lowDir(os.sd), location.href).href;
       if (!(sdName && fs.exists(sdName) && sdSrc === url)) {
         toast('Loading ' + os.sd + '…');
-        try { const b = await fetchBytes(os.sd); if (model === 'NEDOOS') nedoNote(b); await sdFromBytes(os.sd.replace(/^.*\//, ''), b, true); if (sdName) sdSrc = url; } catch (e) { sdName = null; }
+        try { const b = await fetchBytes(os.sd); if (UPD[model]) nedoNote(b, UPD[model]); await sdFromBytes(os.sd.replace(/^.*\//, ''), b, true); if (sdName) sdSrc = url; } catch (e) { sdName = null; }
         if (!sdName) { toast(os.sd + ' not found', true); return; }
       }
       if (!sdOn()) store('sd.if.' + M(), '1');
       sdMount(); sdUI();
+      if (M() === 'TSCONF') { tsBootSd(); return; } // TS-BIOS: Caps Shift + Reset boots boot.$C of the SD card
       const k = Math.max(1, 2 / SPEEDS[speedIdx]);
       runMacro([{ reset: 0 }, { wait: Math.ceil(150 * k) }, { xtmode: 1 }, { xt: ['Digit5'] }]);
       return;
@@ -3552,15 +3624,24 @@
     for (let i = 0; i < n; i++) if (d[i] !== h[17 + i]) return false;
     return true;
   }
+  // speed=: the clock slider steps; tsconf: the CPU Speed of TS-BIOS, 3.5 / 7 / 14 MHz
+  function raSpeedOpts() {
+    const sp = $('rav_speed'), ts = $('rav_model').value === 'tsconf', kind = ts ? 'ts' : 'x';
+    if (sp.dataset.kind !== kind) {
+      sp.innerHTML = ''; sp.dataset.kind = kind;
+      if (ts) for (const m of ['3.5', '7', '14']) { const o = document.createElement('option'); o.value = m; o.textContent = m + ' MHz'; sp.appendChild(o); }
+      else SPEEDS.forEach((x) => { const o = document.createElement('option'); o.value = String(x); o.textContent = x + 'x (' + (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz)'; sp.appendChild(o); });
+    }
+    if (ts) { const m = isTS() && E && E.web_ts_mult ? E.web_ts_mult() : 1; sp.value = m >= 4 ? '14' : m >= 2 ? '7' : '3.5'; $('ra_speed').checked = isTS() && m > 1; }
+    else { sp.value = String(SPEEDS[speedIdx]); $('ra_speed').checked = SPEEDS[speedIdx] !== MODELS[model].speed; }
+  }
   function raFill() {
     raFiles();
     const ms = $('rav_model');
     if (!ms.options.length) for (const [k, v] of Object.entries(LINK_NAME)) { const o = document.createElement('option'); o.value = v; o.textContent = v + ' — ' + MODELS[k].name; ms.appendChild(o); }
     ms.value = LINK_NAME[model] || ms.value;
     $('rav_rom').value = model === 'CUSTOM' && romLinkUrl ? relUrl(romLinkUrl) : ''; $('ra_rom').checked = !!$('rav_rom').value; // a Custom ROM from a file of this computer has no URL: put the ZIP on a site
-    const sp = $('rav_speed');
-    if (!sp.options.length) SPEEDS.forEach((x) => { const o = document.createElement('option'); o.value = String(x); o.textContent = x + 'x (' + (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz)'; sp.appendChild(o); });
-    sp.value = String(SPEEDS[speedIdx]); $('ra_speed').checked = SPEEDS[speedIdx] !== MODELS[model].speed;
+    raSpeedOpts();
     const durl = (i) => (drives[i] && drives[i].url && E.web_disk_present(i) ? relUrl(drives[i].url) : '');
     const fd = durl(0) || !durl(1) ? 0 : 1, u = durl(fd); // the disk in A: (or in B: when A: has none from the site)
     $('rav_fdrv').value = fd ? 'b' : 'a'; $('rav_a').value = u; $('ra_a').checked = !!u;
@@ -3603,6 +3684,7 @@
     $('rav_a').addEventListener('change', () => raPicked($('rav_fdrv').value === 'b' ? 1 : 0)); $('rav_hdd').addEventListener('change', () => { $('ra_hdd').checked = !!$('rav_hdd').value.trim(); });
     $('rav_sd').addEventListener('change', () => { $('ra_sd').checked = !!$('rav_sd').value.trim(); });
     $('rav_kbd').addEventListener('change', () => { $('ra_kbd').checked = true; });
+    $('rav_model').addEventListener('change', raSpeedOpts); // before raBuild: tsconf has its own speed= values
     $('restwin').addEventListener('input', raBuild); $('restwin').addEventListener('change', raBuild);
     $('restwin').addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); showRest(false); } });
     $('racopy').onclick = async () => {
@@ -4338,6 +4420,37 @@
     releaseAll(); E.web_zxkey(57, 1); E.web_reset(0);
     setTimeout(() => { if (E) E.web_zxkey(57, 0); }, 1200);
   }
+  // ZX Evo TS-Conf: it starts in the TS-BIOS Setup; sd/wc.zip goes onto the SD card (unless a card is in) and NVRAM
+  // "Reset to" is "BD boot.$c", so Reset (F12) boots Wild Commander of the card (TR-DOS: Setup, Reset to: ROM)
+  async function tsWc() {
+    const t = UPD.WCTS, url = new URL(lowDir(t.sd), location.href).href;
+    if (!(sdName && fs.exists(sdName))) {
+      try { const b = await fetchBytes(t.sd); nedoNote(b, t); await sdFromBytes(t.sd.replace(/^.*\//, ''), b, true); if (sdName) sdSrc = url; } catch (e) {}
+    }
+    if (!sdName) { tsNvSet(0xB4, 0); return; } // no card (none on the server): Reset to ROM (TR-DOS)
+    if (!sdOn()) store('sd.if.' + M(), '1');
+    sdMount(); sdUI();
+  }
+  // a TS-BIOS NVRAM cell (#B0..#E5) with its CRC16 (CCITT, from #FFFF over #B1..#E5) at #E6 / #E7
+  function tsNvSet(cell, v) {
+    if (!E.web_cmos) return;
+    const c = new Uint8Array(E.memory.buffer, E.web_cmos(), 256);
+    const crc = () => { let r = 0xFFFF; for (let i = 0xB1; i <= 0xE5; i++) { r ^= c[i] << 8; for (let b = 0; b < 8; b++) r = r & 0x8000 ? ((r << 1) ^ 0x1021) & 0xFFFF : (r << 1) & 0xFFFF; } return r; };
+    if (crc() !== (c[0xE6] | c[0xE7] << 8)) { // no NVRAM yet: TS-BIOS defaults (nv_def of ts-bios.asm), as its Setup would write them
+      const def = [0, 0, 0, 1, 0, 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      for (let k = 0; k < 16; k++) { const g = k < 8 ? k * 2 : (k - 8) * 2 + 1, w = g << 10 | g << 5 | g; def.push(w & 0xFF, w >> 8); }
+      c.set(def, 0xB0);
+    }
+    c[cell] = v;
+    const r = crc(); c[0xE6] = r & 0xFF; c[0xE7] = r >> 8;
+  }
+  // TS-BIOS "CS Reset to: BD boot.$c" (its default): Caps Shift held over Reset starts boot.$C of the boot device (SD card)
+  function tsBootSd() {
+    const wait = 2500 - (performance.now() - startedAt); // just started: TS-BIOS first goes through its power-up (keys held there open the Setup)
+    if (wait > 0) { setTimeout(tsBootSd, wait); return; }
+    releaseAll(); E.web_zxkey(0, 1); E.web_reset(0);
+    setTimeout(() => { if (E) E.web_zxkey(0, 0); }, 1200);
+  }
   function tsClock() {
     const m = M() === 'TSCONF' && E && E.web_ts_mult ? E.web_ts_mult() : 0;
     if (m === tsMult) return; tsMult = m;
@@ -4615,7 +4728,7 @@
     pentagon: 'PENTAGON', p128: 'PENTAGON', pentagon128: 'PENTAGON',
     scorpion: 'SCORPION', scorp: 'SCORPION', zs256: 'SCORPION', profi: 'PROFI', kay: 'KAY', kay1024: 'KAY',
     plus3: 'PLUS3', '+3': 'PLUS3', p3: 'PLUS3', quorum: 'QUORUM',
-    tasis: 'TASIS', tasis540: 'TASIS', chic: 'CHIC', isdos: 'CHIC', isdos501: 'CHIC', nedoos: 'NEDOOS', nedo: 'NEDOOS',
+    tasis: 'TASIS', tasis540: 'TASIS', chic: 'CHIC', isdos: 'CHIC', isdos501: 'CHIC', nedoos: 'NEDOOS', nedo: 'NEDOOS', wc: 'TSCONF', wildcommander: 'TSCONF',
   };
   function linkParams() {
     const out = {};
@@ -4649,7 +4762,7 @@
   }
   // after the start: clock, keyboard, sound, files
   async function linkApply() {
-    if (LINK.speed) { // 2, 2x or 7mhz; snapped to the nearest step of the clock slider, not saved
+    if (LINK.speed && !isTS()) { // 2, 2x or 7mhz; snapped to the nearest step of the clock slider, not saved (TS-Conf: TS-BIOS NVRAM, see start)
       const v = parseFloat(LINK.speed), x = /mhz/i.test(LINK.speed) ? v / 3.5 : v;
       if (isFinite(x) && x > 0) { let best = 0; SPEEDS.forEach((s, i) => { if (Math.abs(s - x) < Math.abs(SPEEDS[best] - x)) best = i; }); setSpeed(best, false); }
     }
@@ -4716,7 +4829,7 @@
     if (t && t.closest && t.closest('#mainwin, #vkbd') && !isField(t) && e.cancelable) e.preventDefault();
   }, { passive: false });
   document.addEventListener('selectstart', (e) => { if (!isField(e.target)) e.preventDefault(); });
-  window.UnrealDebug = { get E() { return E; }, cstr: (p) => cstr(p), get runRestore() { return runRestore; }, get macro() { return macro; }, get audio() { return audio; }, runMacro: (st) => runMacro(st), ZK, UP, DOWN }; // for tests and the console
+  window.UnrealDebug = { get E() { return E; }, get fs() { return fs; }, cstr: (p) => cstr(p), get runRestore() { return runRestore; }, get macro() { return macro; }, get audio() { return audio; }, runMacro: (st) => runMacro(st), ZK, UP, DOWN }; // for tests and the console
   // ------------------------------------------------------------------ boot
   window.addEventListener('DOMContentLoaded', async () => {
     bindUI();

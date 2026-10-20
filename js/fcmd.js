@@ -884,12 +884,12 @@
   })();
 
   // ---- file viewer: text or address + hex + text, several 8-bit encodings
-  const ENC = [['zx', 'ZX Spectrum'], ['cp866', 'CP866 (alt)'], ['koi8-r', 'KOI8-R'], ['windows-1251', 'Windows-1251'], ['latin1', 'Latin-1']];
+  const ENC = [['zx', 'ZX Spectrum'], ['cp866', 'CP866 (alt)'], ['koi8-r', 'KOI8-R'], ['windows-1251', 'Windows-1251'], ['latin1', 'Latin-1'], ['utf-8', 'UTF-8']];
   const decTab = {};
   function table(enc) { // 256 printable characters for the encoding (controls shown as ·)
     if (decTab[enc]) return decTab[enc];
     let t;
-    if (enc === 'zx' || enc === 'latin1') { t = []; for (let i = 0; i < 256; i++) t.push(i < 32 ? '·' : i < 127 ? String.fromCharCode(i) : enc === 'latin1' && i >= 160 ? String.fromCharCode(i) : '·');
+    if (enc === 'zx' || enc === 'latin1' || enc === 'utf-8') { t = []; // UTF-8 byte by byte (hex, disassembler): ASCII only for (let i = 0; i < 256; i++) t.push(i < 32 ? '·' : i < 127 ? String.fromCharCode(i) : enc === 'latin1' && i >= 160 ? String.fromCharCode(i) : '·');
       if (enc === 'zx') { t[0x5E] = '↑'; t[0x60] = '£'; t[0x7F] = '©'; } }
     else { const b = new Uint8Array(256); for (let i = 0; i < 256; i++) b[i] = i; t = [...new TextDecoder(enc).decode(b)];
       for (let i = 0; i < 32; i++) t[i] = '·'; if (t[127]) t[127] = '·'; }
@@ -941,6 +941,10 @@
       } else {
         let end = d.length; if (!file.zx) { const z = d.indexOf(0x1A); if (z >= 0) end = z; } // CP/M text ends at ^Z
         const parts = [];
+        if (enc === 'utf-8') { // multi-byte characters: the whole text at once (a bad sequence: U+FFFD)
+          parts.push(new TextDecoder('utf-8').decode(d.subarray(0, end)).replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').replace(/[\x00-\x08\x0B-\x1F\x7F]/g, '·'));
+          end = 0;
+        }
         for (let i = 0; i < end; i++) {
           const b = d[i];
           if (b === 13) { parts.push('\n'); if (d[i + 1] === 10) i++; }
