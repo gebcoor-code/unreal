@@ -1899,7 +1899,7 @@
       if (!await ask({ title: 'Mount', text: `Mount ${fname(it)} from ${srcName(s)} into a drive?`, body, ok: 'Mount' })) return;
       const d = +body.querySelector('.dv').value; api.store('fc.mountdrv', String(d));
       const f = s.vol.read(it), name = (f.name || it.name).trim() + '.' + (f.ext || it.ext).trim().toLowerCase();
-      const ok = await api.mountDisk(name, f.data, d);
+      const ok = await api.mountDisk(name, f.data, d, s.src);
       if (ok === false) return;
       status(fname(it) + ' in drive ' + 'AB'[d] + ':');
       P.forEach((p, i) => { if (p.src === 'AB'[d]) load(i); });

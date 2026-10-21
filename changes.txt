@@ -1812,3 +1812,59 @@ Web Unreal Speccy — version history
 
 ! File Commander, viewer: ZX Spectrum, Latin-1 and UTF-8 showed
   "undefined" instead of the characters (since 0.84.0)
+
+
+        version 0.85.0                  21 oct 2026
+
++ ZX Evo TS-Conf: a TR-DOS disk put into a drive (Load, File
+  Commander) is copied as .trd into the root of the SD card too, so
+  Wild Commander sees it (Enter: its mounter, vDOS); Wild Commander on
+  the screen re-reads its panels. Another SD card, or one with
+  changes, is replaced with wc.zip after a question
+! ZX Evo TS-Conf: disk autostart (Load, File Commander, server list)
+  and tape autostart went to Wild Commander, not to TR-DOS / Tape
+  Loader: TS-BIOS "Reset to" is now set for that reset only
+
+
+        version 0.85.1                  21 oct 2026
+
+* ZX Evo TS-Conf: the SD card with a disk copied onto it for Wild
+  Commander is marked as changed (*); such copies alone still count as
+  wc.zip without changes (no question for the next disk)
+
+
+        version 0.86.0                  21 oct 2026
+
++ ZX Evo TS-Conf: Wild Commander programs (.wmf, also in a ZIP) from
+  Load and File Commander go into the root of the SD card, as disks
+  do (wc.zip; another card is replaced after a question); Enter on it
+  in Wild Commander. On another machine TS-Conf starts first
+
+
+        version 0.87.0                  21 oct 2026
+
++ ZX Evo TS-Conf: VDAC2 (FT812 video controller on the SPI of the
+  Z-Controller, port #77 bit 2): its memory and registers, its own
+  raster (REG_HSIZE x REG_VSIZE, up to 1280x1024, REG_ROTATE) shown
+  while VConfig bit 2 is on; frames by its clock and registers; its
+  INT as the line INT; status reports VDAC2
++ FT812 display list: points, lines, line strips, edge strips,
+  rectangles, bitmaps (all formats but the ROM-font text ones,
+  palettes, nearest / bilinear, wrap, transform matrix), blending,
+  alpha test, stencil, scissor, colour mask, context stack, call /
+  jump / macro, vertex format and translation
++ FT812 co-processor: CMD_DLSTART, SWAP, MEMWRITE, MEMSET, MEMZERO,
+  MEMCPY, MEMCRC, APPEND, REGREAD, INFLATE (zlib), LOADIMAGE (JPEG,
+  PNG, also from the media FIFO), GETPTR, GETPROPS, SETBITMAP,
+  LOADIDENTITY, TRANSLATE, SCALE, ROTATE, SETMATRIX, GETMATRIX,
+  REG_CMDB_WRITE; ROM fonts and widgets (TEXT, BUTTON, GRADIENT...)
+  are skipped for now
+
+
+        version 0.87.1                  21 oct 2026
+
+! SD card (Z-Controller): an SD v2 card now (CMD8 answered; it was a
+  v1 one), SDHC with block addresses when the program asks for it
+  (ACMD41 HCS), SDSC with byte addresses otherwise. Programs that
+  only know SDHC cards read the card right: Zuma for VDAC2 loaded
+  nothing and showed a black screen after its title
