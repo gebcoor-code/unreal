@@ -1868,3 +1868,36 @@ Web Unreal Speccy — version history
   (ACMD41 HCS), SDSC with byte addresses otherwise. Programs that
   only know SDHC cards read the card right: Zuma for VDAC2 loaded
   nothing and showed a black screen after its title
+
+
+        version 0.88.0                  21 oct 2026
+
++ on-screen joystick: type Arrow keys (the cursor keys, FIRE = Space)
++ Options / Input / Joystick: the type, the FIRE key of each type
+  (Kempston: its fire bit, fixed) and up to 3 extra buttons next to
+  FIRE, each on / off with its key; the joystick panel has a button
+  (BUTTONS) that opens it
+* deBUGa: the on-screen XT keyboard types into deBUGa (memory, listing,
+  its fields) after a touch in its window; the project name field
+  puts the caret at the end (the text was selected); help: Xpeccy
+  based, the Unreal engine loop core
+* Changes window: each entry wraps by words at the window's width
+
+
+        version 0.88.2                  21 oct 2026
+
+! ZX Evo TS-Conf VDAC2: the FT812 picture is drawn several times
+  faster (bitmaps in fixed point, per pixel format; an unchanged
+  picture is not copied again); Zuma ran at 50 fps with the host at
+  99% even at max speed
+
+
+        version 0.88.3                  21 oct 2026
+
+* ZX Evo TS-Conf VDAC2: CMD_INFLATE goes on from where it stopped as
+  each new chunk of the stream comes (it decoded the whole stream
+  again each time); the length of a JPEG for CMD_LOADIMAGE likewise
+* ZX Evo TS-Conf VDAC2: the FT812 picture is not drawn again when the
+  same display list is swapped in, nor when the program writes the
+  parts of RAM_G the picture does not use (loading the next pictures);
+  Zuma loads twice as fast at max speed, its menu runs faster

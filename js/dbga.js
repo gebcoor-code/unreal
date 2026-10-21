@@ -84,7 +84,7 @@
     function prjFile(ext) { let n = prjName.value.trim().replace(/[\\/:*?"<>|]/g, '_'); if (!n) n = defName(); return n.replace(/\.xmap$/i, '') + ext; }
     function defName() { const d = (api.diskName() || '').replace(/^.*[\\/]/, '').replace(/\.[^.]*$/, ''); return (d || prjModel.toLowerCase() || 'project') + '.xmap'; }
     function setPrjName(n) { prjName.value = n || ''; api.store('dga.prjname.' + prjModel, prjName.value); }
-    prjName.addEventListener('focus', () => { if (!prjName.value.trim()) setPrjName(defName()); prjName.select(); });
+    prjName.addEventListener('focus', () => { if (!prjName.value.trim()) setPrjName(defName()); requestAnimationFrame(() => { const n = prjName.value.length; try { prjName.setSelectionRange(n, n); } catch (e) {} }); }); // the caret at the end (no selection)
     prjName.addEventListener('change', () => setPrjName(prjName.value.trim() ? prjFile('.xmap') : ''));
     prjName.addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); prjName.blur(); win.focus({ preventScroll: true }); } });
     function prjLoad() {
@@ -657,6 +657,29 @@
     }
     function stopRun() { if (stopped) cmd(5); else api.stop(); }
     win.classList.add('p-dis');
+    // a key of the on-screen keyboard (XT): typed into the field in use, else a key of the window (the part in use)
+    const VK_PLAIN = { Space: ' ', Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']', Backslash: '\\', Semicolon: ';', Quote: "'", Comma: ',', Period: '.', Slash: '/', Backquote: '`' };
+    const VK_SHIFT = { Minus: '_', Equal: '+', BracketLeft: '{', BracketRight: '}', Backslash: '|', Semicolon: ':', Quote: '"', Comma: '<', Period: '>', Slash: '?', Backquote: '~' };
+    function vkey(code, mods) {
+      const has = (p) => [...mods].some((m) => m.startsWith(p)), shift = has('Shift'), ctrl = has('Control'), alt = has('Alt');
+      let k = code, m;
+      if ((m = /^Key([A-Z])$/.exec(code))) k = shift ? m[1] : m[1].toLowerCase();
+      else if ((m = /^Digit(\d)$/.exec(code))) k = shift ? ')!@#$%^&*('[+m[1]] : m[1];
+      else if (code in VK_PLAIN) k = shift && VK_SHIFT[code] ? VK_SHIFT[code] : VK_PLAIN[code];
+      const a = document.activeElement;
+      if (a && win.contains(a) && a.tagName === 'INPUT') {
+        const s0 = a.selectionStart, s1 = a.selectionEnd;
+        if (k.length === 1 && !ctrl && !alt) { a.setRangeText(k, s0, s1, 'end'); a.dispatchEvent(new Event('input', { bubbles: true })); return; }
+        if (k === 'Backspace') { if (s0 === s1) { if (s0 > 0) a.setRangeText('', s0 - 1, s0, 'end'); } else a.setRangeText('', s0, s1, 'end'); a.dispatchEvent(new Event('input', { bubbles: true })); return; }
+        if (k === 'Delete') { if (s0 === s1) a.setRangeText('', s0, s0 + 1, 'end'); else a.setRangeText('', s0, s1, 'end'); return; }
+        if (k === 'ArrowLeft' || k === 'ArrowRight') { const p = Math.max(0, Math.min(a.value.length, (k === 'ArrowLeft' ? Math.min(s0, s1) - (s0 === s1 ? 1 : 0) : Math.max(s0, s1) + (s0 === s1 ? 1 : 0)))); a.setSelectionRange(p, p); return; }
+        if (k === 'Home' || k === 'End') { const p = k === 'Home' ? 0 : a.value.length; a.setSelectionRange(p, p); return; }
+        a.dispatchEvent(new KeyboardEvent('keydown', { key: k, code, shiftKey: shift, ctrlKey: ctrl, altKey: alt, bubbles: false, cancelable: true })); // Enter, Esc, Tab: its own handler
+        return;
+      }
+      if (open && !win.contains(document.activeElement)) win.focus({ preventScroll: true });
+      win.dispatchEvent(new KeyboardEvent('keydown', { key: k, code, shiftKey: shift, ctrlKey: ctrl, altKey: alt, bubbles: false, cancelable: true }));
+    }
     function key(e) { // keys while the window (or the screen with the machine stopped) has the focus
       if (e.target && e.target.tagName === 'INPUT') return false;
       const k = e.key;
@@ -843,6 +866,7 @@
       get open() { return open; }, show, state, key, sync() { lastE = null; apply(); if (open && prjModel !== api.model()) { prjLoad(); render(); } }, // sync: a new machine instance
       refresh() { if (open && stopped) { const pc = pcNow(); if (pc !== shownPc) { shownPc = pc; if (!inView(pc)) top = pc; curs = pc; } if (!win.querySelector('.dgaline, .dgaedit')) render(); } }, // after a step: follow PC only when it moved (a plain repaint keeps the view)
       hasFocus() { return win.contains(document.activeElement); },
+      vkey,
     };
   }
   window.UnrealDbga = { create };

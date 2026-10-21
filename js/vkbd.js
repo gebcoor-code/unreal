@@ -25,7 +25,15 @@
     sinclair2: { name: 'Sinclair 2', left: 'Digit6', right: 'Digit7', down: 'Digit8', up: 'Digit9', fire: 'Digit0' },
     sinclair1: { name: 'Sinclair 1', left: 'Digit1', right: 'Digit2', down: 'Digit3', up: 'Digit4', fire: 'Digit5' },
     kempston:  { name: 'Kempston',   left: 'KJ_LEFT', right: 'KJ_RIGHT', down: 'KJ_DOWN', up: 'KJ_UP', fire: 'KJ_FIRE' },
+    arrows:    { name: 'Arrow keys', left: 'ArrowLeft', right: 'ArrowRight', down: 'ArrowDown', up: 'ArrowUp', fire: 'Space' },
   };
+  // keys for FIRE and the extra buttons (Options / Input / Joystick): KeyboardEvent codes, as the PC keyboard sends them
+  const JOY_KEYS = [['Space', 'Space'], ['Enter', 'Enter'], ['Escape', 'Esc'], ['Tab', 'Tab'], ['Backspace', 'Backspace'],
+    ['ShiftLeft', 'Shift (CS)'], ['ControlLeft', 'Ctrl'], ['AltLeft', 'Alt'], ['AltRight', 'AltGr'],
+    ['ArrowUp', 'Arrow up'], ['ArrowDown', 'Arrow down'], ['ArrowLeft', 'Arrow left'], ['ArrowRight', 'Arrow right'],
+    ...'0123456789'.split('').map((d) => ['Digit' + d, d]), ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c) => ['Key' + c, c])];
+  const keyShort = (code) => ({ Space: 'SPC', Enter: 'ENT', Escape: 'ESC', Tab: 'TAB', Backspace: 'BS', ShiftLeft: 'SH', ControlLeft: 'CTL', AltLeft: 'ALT', AltRight: 'AGR',
+    ArrowUp: '↑', ArrowDown: '↓', ArrowLeft: '←', ArrowRight: '→' })[code] || code.replace(/^(Digit|Key)/, '');
 
 
   // cursor arrows of the ZX keyboard: one outlined block arrow (the same on every system, fonts draw ⇦⇧⇨⇩ differently)
@@ -176,6 +184,28 @@
     label.addEventListener('pointerdown', (e) => e.stopPropagation());
     label.onchange = () => { releaseAll(); map = JOY_MAPS[label.value]; if (opts.onJoy) opts.onJoy(label.value); label.blur(); };
     const jopt = opts.joyOpts || {};
+    // FIRE key per joystick type (Kempston: its port bit, fixed) and up to 3 extra buttons: { fire: {type: code}, extra: [{on, key}] }
+    let jkeys = opts.joyKeys || {};
+    const fireCode = () => (map === JOY_MAPS.kempston ? map.fire : (jkeys.fire && jkeys.fire[label.value]) || map.fire);
+    let curFire = null; // the key FIRE holds now
+    const xwrap = document.createElement('div'); xwrap.className = 'vk-fires';
+    const xcol = document.createElement('div'); xcol.className = 'vk-xbtns';
+    xwrap.append(xcol, fire);
+    function buildExtra() {
+      xcol.textContent = '';
+      const list = (jkeys.extra || []).filter((x) => x && x.on && x.key);
+      for (const x of list) {
+        const b = document.createElement('div'); b.className = 'vk-xbtn'; b.textContent = keyShort(x.key); b.title = 'Button: ' + x.key;
+        let held = null;
+        b.addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); b.setPointerCapture(e.pointerId); buzz(10); held = x.key; b.classList.add('down'); down(held); });
+        const end = () => { if (held) { up(held); held = null; b.classList.remove('down'); } };
+        b.addEventListener('pointerup', end); b.addEventListener('pointercancel', end);
+        b.addEventListener('contextmenu', (e) => e.preventDefault());
+        xcol.appendChild(b);
+      }
+      xwrap.classList.toggle('x', list.length > 0);
+      joy.classList.toggle('xb', list.length > 0);
+    }
     const SIZES = [1, 0.75, 0.5], SIZE_TXT = { 1: '1x', 0.75: '¾x', 0.5: '½x' };
     let way8 = jopt.way8 !== false, auto = !!jopt.auto, swap = !!jopt.swap, overlay = !!jopt.overlay;
     let size = SIZES.includes(jopt.size) ? jopt.size : 1;
@@ -198,11 +228,12 @@
     let opac = Math.max(0, OPAC.findIndex((o) => o[0] === jopt.opac));
     const bOpac = tog('OPACITY ' + OPAC[opac][0], 'Transparency of the stick and fire over the screen: HI, MID, LOW', false, () => {
       opac = (opac + 1) % OPAC.length; lab(bOpac, 'OPACITY ' + OPAC[opac][0], 'OP·' + OPAC[opac][0]); layout(); return false; }, 'OP·' + OPAC[opac][0]);
+    const bSet = tog('⚙ BUTTONS', 'Joystick settings: FIRE key, extra buttons (Options / Input / Joystick)', false, () => { if (opts.onJoySettings) opts.onJoySettings(); return false; }, '⚙');
     pad.classList.toggle('w4', !way8);
     const mid = document.createElement('div'); mid.className = 'vk-joymid';
     const togs = document.createElement('div'); togs.className = 'vk-togs';
     togs.append(bWay, bAuto, bSwap, bSize, bOver, bOpac);
-    mid.append(label, togs);
+    mid.append(label, togs, bSet);
     // gamepad body: two round grips joined by a bridge (CSS), stick in one grip, fire in the other
     const gripL = document.createElement('div'); gripL.className = 'vk-grip l';
     const gripR = document.createElement('div'); gripR.className = 'vk-grip r';
@@ -217,8 +248,8 @@
     let shown = true;
     function layout() {
       const ov = overlay && !!opts.overlayHost;
-      if (ov) { ovBar.append(bOver, bAuto); ovl.append(pad, fire); if (!opts.ovBarHost) ovl.append(ovBar); }
-      else { gripL.appendChild(pad); gripR.appendChild(fire); togs.append(bWay, bAuto, bSwap, bSize, bOver, bOpac); }
+      if (ov) { ovBar.append(bOver, bAuto); ovl.append(pad, xwrap); if (!opts.ovBarHost) ovl.append(ovBar); }
+      else { gripL.appendChild(pad); gripR.appendChild(xwrap); togs.append(bWay, bAuto, bSwap, bSize, bOver, bOpac); }
       joy.classList.toggle('ov', ov);
       joy.classList.toggle('swap', swap); ovl.classList.toggle('swap', swap);
       if (opts.ovBarHost && opts.ovBarHost.parentElement) opts.ovBarHost.parentElement.classList.toggle('swap', swap);
@@ -286,17 +317,17 @@
     pad.addEventListener('pointercancel', padEnd);
     // fire; AUTOFIRE: a tap starts shooting (~8 presses per second), the next tap stops it
     let fireHeld = false, autoT = null, autoOn = false;
-    const startAuto = () => { autoOn = true; down(map.fire); fire.classList.add('down'); // the button stays down, the key repeats
-      autoT = setInterval(() => { autoOn = !autoOn; autoOn ? down(map.fire) : up(map.fire); }, 60); };
+    const startAuto = () => { curFire = fireCode(); autoOn = true; down(curFire); fire.classList.add('down'); // the button stays down, the key repeats
+      autoT = setInterval(() => { autoOn = !autoOn; autoOn ? down(curFire) : up(curFire); }, 60); };
     function stopFire() {
-      if (autoT) { clearInterval(autoT); autoT = null; if (autoOn) up(map.fire); autoOn = false; }
-      else if (fireHeld) up(map.fire);
+      if (autoT) { clearInterval(autoT); autoT = null; if (autoOn) up(curFire); autoOn = false; }
+      else if (fireHeld) up(curFire);
       fireHeld = false; fire.classList.remove('down');
     }
     fire.addEventListener('pointerdown', (e) => {
       e.preventDefault(); fire.setPointerCapture(e.pointerId); buzz(12);
       if (auto) { if (autoT) stopFire(); else startAuto(); return; }
-      fire.classList.add('down'); fireHeld = true; down(map.fire);
+      fire.classList.add('down'); fireHeld = true; curFire = fireCode(); down(curFire);
     });
     const fireEnd = () => { if (!auto && fireHeld) stopFire(); };
     fire.addEventListener('pointerup', fireEnd);
@@ -323,11 +354,16 @@
       container.querySelectorAll('.down').forEach((k) => k.classList.remove('down'));
     }
     show(opts.tab && pages[opts.tab] ? opts.tab : 'xt');
+    buildExtra();
     layout();
     // the panel was hidden / shown: the overlay goes with it
     function visible(v) { shown = !!v; if (!v) releaseAll(); ovlShow(); }
-    return { show, releaseAll, visible, setSticky(v) { sticky = v === true ? 1 : +v || 0; unlatchAll(); }, get tab() { return current; } };
+    return { show, releaseAll, visible, setSticky(v) { sticky = v === true ? 1 : +v || 0; unlatchAll(); }, get tab() { return current; },
+      // Options / Input / Joystick: the type, the FIRE keys and the extra buttons
+      get joy() { return label.value; },
+      setJoy(id) { if (!JOY_MAPS[id] || label.value === id) return; releaseAll(); label.value = id; map = JOY_MAPS[id]; if (opts.onJoy) opts.onJoy(id); },
+      setJoyKeys(k) { releaseAll(); jkeys = k || {}; buildExtra(); layout(); } };
   }
 
-  root.UnrealVKbd = { create };
+  root.UnrealVKbd = { create, JOY_MAPS, JOY_KEYS };
 })(window);

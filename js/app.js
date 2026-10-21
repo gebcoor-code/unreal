@@ -6,10 +6,10 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261021165228';
   const MAIL_PNG = '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';
-  const APP_VER = '0.87.1'; // About, System Info (history: changes.txt)
-  const BUILD = 'dev'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.88.3'; // About, System Info (history: changes.txt)
+  const BUILD = '20261021165228'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1079,7 +1079,7 @@
     if (r.done) { frameDone(r.value); render(); lastT = performance.now(); frameAcc = 0; }
     else debugDraw(idle);
   }
-  let gfx = null, fc = null, fcVk = false, dga = null;
+  let gfx = null, fc = null, fcVk = false, dga = null, dgaVk = false; // fcVk / dgaVk: the on-screen keyboard types into File Commander / deBUGa
   // one debugger at a time: the Unreal debugger (Shift+F1) or deBUGa — the other one's menu item is off meanwhile
   function dbgMenuUI() {
     const g = !!(dga && dga.open);
@@ -1232,7 +1232,7 @@
   let dbgFW = null, helpFW = null, dgaHelpFW = null;
   function showDgaHelp(v) { // deBUGa help: at the right side of its window, same height
     const h = $('dgahelp');
-    if (v && !h.dataset.built) { h.querySelector('.hbody').innerHTML = helpHtml(DGA_HELP, '<p>deBUGa: a debugger after Xpeccy (SAM style) on the debugger loop of the Unreal core. One debugger at a time.</p>'); h.dataset.built = '1'; }
+    if (v && !h.dataset.built) { h.querySelector('.hbody').innerHTML = helpHtml(DGA_HELP, '<p>Xpeccy based. Uses Unreal engine loop core.</p><p>deBUGa: a debugger after Xpeccy (SAM style) on the debugger loop of the Unreal core. One debugger at a time.</p>'); h.dataset.built = '1'; }
     h.hidden = !v; $('dgahelpbtn').classList.toggle('on', v);
     if (v) { const r = $('dgawin').getBoundingClientRect(); h.style.height = r.height + 'px'; dgaHelpFW.setPos(snapRight(r, h)); }
   }
@@ -1359,8 +1359,9 @@
     $('dgahelpclose').onclick = () => { showDgaHelp(false); if (dga.open) $('dgawin').focus({ preventScroll: true }); };
     // which window the on-screen keyboard types into: File Commander after a touch inside it, the machine after a touch on the screen
     document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('#fcwin, #fvwin, #fewin')) fcVk = true;
-      else if (e.target.closest('#screenwrap, #toolbar')) fcVk = false;
+      if (e.target.closest('#fcwin, #fvwin, #fewin')) { fcVk = true; dgaVk = false; }
+      else if (e.target.closest('#dgawin')) { dgaVk = true; fcVk = false; }
+      else if (e.target.closest('#screenwrap, #toolbar')) fcVk = dgaVk = false;
     }, true);
     // Tools: one toolbar button with a small drop-down (Debugger, Graf Search, File Commander)
     $('toolsbtn').onclick = (e) => { e.stopPropagation(); toolsMenu(!$('toolspop').classList.contains('open')); };
@@ -2208,6 +2209,19 @@
   }
   // ------------------------------------------------------------------ About / changes: the history (changes.txt) to read, not to copy
   let chFW = null, chText = null;
+  // changes.txt with its lines joined again: each entry wraps by words at the width of the window (hanging indent)
+  function chShow(text) {
+    const t = $('chtext'); t.textContent = '';
+    let cur = null;
+    for (const ln of text.replace(/\r/g, '').split('\n')) {
+      if (cur && /^  \S/.test(ln) && !/^  \[/.test(ln)) { cur.textContent += ' ' + ln.trim(); continue; } // a continuation line
+      const d = document.createElement('div');
+      if (/^[+!*@\-?] /.test(ln)) { d.className = 'che'; cur = d; }
+      else { d.className = ln.trim() ? 'chl' : 'chb'; cur = null; }
+      d.textContent = ln.trim() ? (d.className === 'che' ? ln : ln.replace(/^\s+/, (m) => m)) : '';
+      t.appendChild(d);
+    }
+  }
   async function showChanges(v) {
     const w = $('chwin');
     if (!v) { w.hidden = true; return; }
@@ -2228,7 +2242,7 @@
       $('chtext').textContent = 'Loading…';
       try { const r = await fetch('changes.txt', { cache: 'no-cache' }); if (!r.ok) throw new Error('HTTP ' + r.status); chText = await r.text(); }
       catch (e) { $('chtext').textContent = 'changes.txt: ' + e.message; return; }
-      $('chtext').textContent = chText;
+      chShow(chText);
     }
     const t = $('chtext'); t.scrollTop = t.scrollHeight; // the newest versions are at the end
     t.focus({ preventScroll: true });
@@ -3279,7 +3293,7 @@
       ['Keyboard', k.xt === '1' ? 'ATM mode: emulator hotkeys off' : 'ZX matrix, emulator hotkeys on'],
       ['Mouse', E.web_mouse_type() === 1 ? 'Kempston: ' + (mouseLocked ? 'on (captured)' : touchMouse ? 'on (touch taps)' : 'off') : 'none'],
       ['On-screen', $('vkbd').hidden ? 'hidden' : (vkbd ? vkbd.tab.toUpperCase() : '') + ' panel'],
-      ['Joystick', ({ sinclair2: 'Sinclair 2', sinclair1: 'Sinclair 1', kempston: 'Kempston' })[load('vkjoy') || 'sinclair2']],
+      ['Joystick', ((UnrealVKbd.JOY_MAPS[load('vkjoy') || 'sinclair2'] || {}).name || 'Sinclair 2')],
     ]]);
     const ua = navigator.userAgent, br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox\//.test(ua) ? 'Firefox' : /CriOS|Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'browser';
     const ver = (ua.match(/(?:Edg|OPR|Firefox|CriOS|Chrome|Version)\/(\d+)/) || [])[1] || '';
@@ -4662,12 +4676,45 @@
     return [vk, ch];
   }
 
+  // Options / Input / Joystick: the FIRE key of each joystick type (Kempston: its port bit) and 3 extra buttons
+  function joyKeys() { try { const k = JSON.parse(load('vkjoykeys') || '{}'); return { fire: k.fire || {}, extra: Array.isArray(k.extra) ? k.extra : [] }; } catch (e) { return { fire: {}, extra: [] }; } }
+  function joyUI() {
+    if (!vkbd || !$('joytype')) return;
+    const M = UnrealVKbd.JOY_MAPS, K = UnrealVKbd.JOY_KEYS, k = joyKeys(), t = vkbd.joy;
+    const fill = (sel, list) => { if (sel.options.length) return; for (const [v, n] of list) { const o = document.createElement('option'); o.value = v; o.textContent = n; sel.appendChild(o); } };
+    fill($('joytype'), Object.entries(M).map(([id, m]) => [id, m.name]));
+    fill($('joyfire'), [['KJ_FIRE', 'Kempston fire'], ...K]);
+    for (let i = 0; i < 3; i++) fill($('joyk' + i), K);
+    $('joytype').value = t;
+    const kemp = t === 'kempston';
+    $('joyfire').disabled = kemp; $('joyfire').value = kemp ? 'KJ_FIRE' : (k.fire[t] || M[t].fire);
+    for (let i = 0; i < 3; i++) { const x = k.extra[i] || {}; $('joyx' + i).checked = !!x.on; $('joyk' + i).value = x.key || ['Space', 'Enter', 'AltRight'][i]; $('joyk' + i).disabled = !x.on; }
+  }
+  function bindJoyOptions() {
+    const save = () => {
+      const k = joyKeys(), t = vkbd.joy;
+      if (t !== 'kempston') { const v = $('joyfire').value; if (v === UnrealVKbd.JOY_MAPS[t].fire) delete k.fire[t]; else k.fire[t] = v; }
+      k.extra = [0, 1, 2].map((i) => ({ on: $('joyx' + i).checked, key: $('joyk' + i).value }));
+      store('vkjoykeys', JSON.stringify(k)); vkbd.setJoyKeys(k); joyUI();
+    };
+    $('joytype').onchange = () => { vkbd.setJoy($('joytype').value); joyUI(); $('joytype').blur(); };
+    $('joyfire').onchange = () => { save(); $('joyfire').blur(); };
+    for (let i = 0; i < 3; i++) { $('joyx' + i).onchange = save; $('joyk' + i).onchange = () => { save(); $('joyk' + i).blur(); }; }
+    joyUI();
+  }
   function bindVKbd() {
     const panel = $('vkbd');
     // on-screen XT keys go to File Commander while it is the window in use (opened / last touched)
-    const vkFc = new Set(), vkFcMods = new Set();
+    const vkFc = new Set(), vkFcMods = new Set(), vkDga = new Set();
     const fcUsing = () => fc && fc.open && fcVk;
+    const dgaUsing = () => dga && dga.open && (dgaVk || dga.hasFocus());
     const vkPress = (code) => {
+      if (dgaUsing() || vkDga.size) { // deBUGa: into its field or its part in use
+        vkDga.add(code);
+        if (/^(Shift|Control|Alt)/.test(code)) { vkFcMods.add(code); return; }
+        dga.vkey(code, vkFcMods);
+        return;
+      }
       if (fcUsing() || vkFc.size) {
         vkFc.add(code);
         if (/^(Shift|Control|Alt)/.test(code)) { vkFcMods.add(code); return; }
@@ -4689,7 +4736,7 @@
       const sc = SCAN[code]; if (sc !== undefined) E.web_key(sc, 1, 0);
     };
     const vkRelease = (code) => {
-      if (vkFc.delete(code)) { vkFcMods.delete(code); return; }
+      if (vkFc.delete(code) || vkDga.delete(code)) { vkFcMods.delete(code); return; }
       if (!E) return;
       vkMods.delete(code);
       if (vkInDbg.delete(code)) { // pressed inside the debugger: never reaches the machine
@@ -4704,7 +4751,8 @@
     $('sticky').value = String(sticky);
     $('sticky').onchange = () => { store('sticky', $('sticky').value); vkbd.setSticky(+$('sticky').value); $('sticky').blur(); };
     vkbd = UnrealVKbd.create(panel, { press: vkPress, release: vkRelease, tab: load('vktab'), joy: load('vkjoy') || 'sinclair2', sticky,
-      onTab: (t) => { if (!kbdNoStore) store('vktab', t); $('kbdtype').value = t; }, onJoy: (j) => store('vkjoy', j),
+      onTab: (t) => { if (!kbdNoStore) store('vktab', t); $('kbdtype').value = t; }, onJoy: (j) => { store('vkjoy', j); joyUI(); },
+      joyKeys: joyKeys(), onJoySettings: () => { showOptions(true); showPane('inp'); const c = $('joycard'); c.scrollIntoView({ block: 'nearest' }); c.classList.add('hl'); setTimeout(() => c.classList.remove('hl'), 900); },
       overlayHost: $('screenwrap'), ovBarHost: $('sbjoy'), onLayout: () => applyScale(),
       joyOpts: (() => { try { return JSON.parse(load('vkjoyopt') || '{}'); } catch (e) { return {}; } })(), onJoyOpts: (o) => store('vkjoyopt', JSON.stringify(o)) });
     $('kbdtype').value = vkbd.tab;
@@ -4743,7 +4791,7 @@
     btn('xt', toggleXT);
     btn('turbo', toggleTurbo);
     bindSpeed();
-    bindVKbd();
+    bindVKbd(); bindJoyOptions();
     bindNedo();
     bindDebugger();
     bindSysInfo();
