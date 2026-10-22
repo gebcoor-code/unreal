@@ -1,1903 +1,228 @@
-Web Unreal Speccy — version history
-(web port of UnrealSpeccy 0.39.0)
-
-  [!] - serious bug fixed
-  [+] - new feature
-  [-] - obsolete feature removed
-  [*] - minor fixes
-  [@] - feature changed
-  [?] - feature added but not yet verified (mostly iPhone / iPad)
-
-
-        version 0.1.0                   1 oct 2026
-
-+ first web version: UnrealSpeccy 0.39.0 core (Z80, ATM 7.10 memory and
-  ports, ATM video modes, WD1793 / Beta 128, AY/YM, beeper) built on
-  WebAssembly; Win32 / DirectX layer replaced by a thin web layer
-+ unreal.ini; models override keys on top
-+ machines: ATM Turbo 2+ 7.10, xBIOS 1.32 XT / LE, ATM Turbo 1, ZX-Evolution,
-  Pentagon 128
-+ sound through Web Audio (AudioWorklet, ScriptProcessor fallback)
-+ disks: TRD, SCL, FDI, UDI, TD0, ISD, PRO, Hobeta, DSK; tapes TAP/TZX/CSW;
-  snapshots; zip archives
-+ Load window: local files, server list (files.json), URL
-+ HDD (IDE) images, cpm.hdd mounted as master
-+ General Sound, AY stereo / chip options, sound visualizer
-+ on-screen keyboards: XT, ZX (Spectrum+ layout), joystick
-+ ATM mode (XT keyboard) switch
-+ debugger, Graf Search, File Commander (TR-DOS, CP/M, iS-DOS,
-  HDD, RAM disk) with text / hex / Z80 disassembler viewer
-+ CPU clock and max speed, pause, reset menu, video filters, palettes
-
-
-        version 0.1.1                   3 oct 2026
-
-+ disk activity indicator on the screen
-
-
-        version 0.1.2                   3 oct 2026
-
-* sound visualizer: Spectrum and Mirror got their bar count back
-+ iS-DOS disks in FDI
-
-
-        version 0.1.3                   3 oct 2026
-
-! iOS: pressing ATM mode froze the screen (label animation)
-! FDI parser: header fields start at offset 4
-
-
-        version 0.1.4                   3 oct 2026
-
-@ Load window always starts with drive A:
-! iS-DOS directory parsing (root directory, deleted entries, tags)
-
-
-        version 0.1.5                   3 oct 2026
-
-+ iS-DOS: writing files, empty iS-DOS disk in New disk
-+ viewer: quick jump to an address (Go#, key G) in disasm / hex
-
-
-        version 0.1.6                   3 oct 2026
-
-+ Tools: System Info (machine, memory, CPU registers, ports,
-  drives, sound), copy as text
-
-
-        version 0.1.7                   3 oct 2026
-
-! external server: ROM folder not found (case-sensitive hosts)
-@ server folders are lower case: rom/, hdd/, trd/
-
-
-        version 0.1.8                   3 oct 2026
-
-! server list: 404 when loading a file
-
-
-        version 0.1.9                   4 oct 2026
-
-! iPad: FPS sped up after the page was frozen (resync after a freeze)
-+ home-screen icon (apple-touch-icon 180x180)
-! Firefox kept an old cpm.hdd (downloads are not cached)
-
-
-        version 0.1.10                  4 oct 2026
-
-+ REST API: model, speed, a, b, tape, snap, autorun, press, run, cpm, xt,
-  mute in the link (query string or #)
-+ run=: start a TR-DOS file by name (a small boot is put on the disk)
-+ cpm=: boot CP/M and type commands (b:|alasm)
-+ help: "REST API" table
-
-
-        version 0.1.11                  4 oct 2026
-
-+ Tools: REST API link builder (the link for the current machine, to copy)
-+ builder: file names from files.json, CP/M-tagged disks switch on XT and
-  CP/M start
-* "Tap for sound" only when started from a link
-
-
-        version 0.1.12                  4 oct 2026
-
-+ autorun: optional key pressed in the boot menu (press=, "0" by default)
-! Pentagon / ATM autorun lost keys (boot menu not ready yet)
-! EVO started the first BASIC file instead of the injected boot
-
-
-        version 0.1.13                  4 oct 2026
-
-! cpm.hdd repaired: broken directory entries
-
-
-        version 0.1.20                  4 oct 2026
-
-@ ZX keyboard: cursor arrows laid out as a cross
-! File Commander: keys did not work after the window got the focus back
-
-
-        version 0.1.21                  4 oct 2026
-
-+ joystick: draggable stick (finger or mouse), springs back on release
-+ joystick: 4-WAY / 8-WAY mode, autofire, haptics (where supported)
-+ File Commander: run a file with Enter / double click, with Yes/No:
-  TR-DOS BASIC / code from A:, CP/M .COM from A: and HDD 0
-+ File Commander: Run button
-
-
-        version 0.1.22                  4 oct 2026
-
-+ joystick: SWAP (fire left, stick right), SIZE 1x / 3/4 / 1/2,
-  OVERLAY (stick and fire over the screen)
-+ CP/M run on xBIOS XT / LE (File Commander and cpm=)
-@ run=: at most one boot_ left on the disk
-@ CPU clock moved to Options / System; MHz shown at the top of the screen,
-  floppy indicator between MHz and FPS
-+ toolbar: Kempston mouse button;
-- capture of the mouse by a click on the screen
-+ touch: Kempston mouse buttons on the screen
-- Options: "Kempston mouse" checkbox
-
-
-        version 0.1.23                  4 oct 2026
-
-@ autofire: FIRE stays down while on, no flicker
-@ CP/M on xBIOS XT / LE in ATM mode (XT keyboard), as on ATM 7.10
-+ CP/M on ZX-Evolution (Reset Service: R, C), floppy A: = B:
-
-
-        version 0.1.24                  4 oct 2026
-
-@ overlay: same size as in the panel, constant transparency
-@ overlay: only OVL and AF buttons over the screen; the panel hides
-+ joystick: START button
-! touch mouse: pointer landed in the wrong place (moves in small steps now)
-@ run=: the catalogue is written back after the program has loaded —
-  no boot_ left on the disk
-! sound: no data sent into a suspended audio context
-
-
-        version 0.1.25                  4 oct 2026
-
-! iOS: lags (5 fps) and no sound after the app switch — the sound is closed
-  when the page is hidden and restarted by the next touch ("Tap for sound")
-! iOS: scripts and wasm of different builds mixed from the cache —
-  versioned file names (?v=build), no-cache headers in .htaccess
-+ joystick: OPACITY HI / MID / LOW instead of START
-@ overlay: size 1:1 with the panel
-* frame loop: a long frame is not taken for a frozen page; at most ~30 ms
-  of emulation per screen refresh (no "spiral" on slow devices)
-
-
-        version 0.1.26                  4 oct 2026
-
-+ on-screen XT keyboard types into File Commander (list, viewer, Yes/No)
-! iOS home-screen app: FIT size lost on the second start
-@ "Tap for sound" only while the machine really makes a sound
-
-
-        version 0.1.27                  4 oct 2026
-
-@ touch mouse: drag moves the pointer with the finger
-+ touch mouse: LB / RB (sticky) and 1pps / 2pps bar at the bottom
-+ touch mouse: a second finger holds the left button
-
-
-        version 0.1.28                  5 oct 2026
-
-! touch mouse: LB and RB swapped
-@ screen buttons: more transparent, shadow as the FPS text; 1pps / 2pps in
-  one button; LB / RB tap = click, long tap = latch
-@ joystick: short button names on narrow screens, one line;
-  OVL / AF and mouse buttons in fixed places at the bottom of the screen
-
-
-        version 0.1.29                  5 oct 2026
-
-+ Graf Search: the scroll bar can be dragged with a finger
-! iPad: text selection / callout while dragging in Graf Search
-- touch mouse: double / triple taps (two fingers and LB / RB instead)
-+ Tools: Performance window — live graphs: Z80, Host, Memory, Disk, I/O,
-  Frames
-
-
-        version 0.1.30                  5 oct 2026
-
-? home-screen app: looks for a newer build on the server and reloads once
-? iOS / iPadOS: pinch zoom and double-tap zoom disabled
-? Options / Sound: "iOS: mix with other apps" (ambient audio session,
-  iOS 17+)
-! the page could be squeezed below 324 px (layout fell apart)
-@ Performance: memory as a map of 16K pages (written pages glow, mapped
-  pages outlined); Frames red above real time
-
-
-        version 0.1.31                  5 oct 2026
-
-@ Graf Search always starts with RAM
-@ "iOS: mix with other apps" on by default
-@ sound volumes 8192 (full scale) instead of 4000
-@ Performance: Frames red only above the real-time line
-@ Performance: Z80 shows where the code runs (ROM / RAM page)
-
-
-        version 0.1.32                  5 oct 2026
-
-! CP/M / BIOS waited a long time at "Memory size" when no HDD image is
-  mounted (IDE status reads "no drive" now)
-@ Performance: Z80 as a map of the 64K address space (16K banks x 1K),
-  hottest address, ROM / RAM share, busy
-+ Options / Input: modifier keys held / sticky for one key / locked until
-  tapped again
-
-
-        version 0.2.0                   5 oct 2026
-
-+ HDD images in ZIP archives (Options / Disk / HDD Insert, Load window,
-  drag & drop): image is biggest file (.hdd / .img / .hdf ...)
-+ HDD geometry taken from text file in archive ("Cylinders / Heads /
-  Sectors / LBA"), else from image size (16 heads, 63 sectors)
-+ HDD image (or ZIP with one) in Load window goes to HDD 0
-+ default HDD from server: hdd/cpm.hdd or hdd/cpm.zip
-
-
-        version 0.3.0                   5 oct 2026
-
-@ default HDD from server: hdd/cpm.zip (or CPM.zip) is tried first,
-  then hdd/cpm.hdd
-+ HDD geometry: one-line file "*.chs" in archive (CHS=400/16/63),
-  also .inf and files without extension are read as description
-
-
-        version 0.3.1                   5 oct 2026
-
-! geometry.chs saved by Windows Notepad as "Unicode" (UTF-16) was not read
-@ HDD image without description and of unusual size gets
-  unreal.ini geometry, not one left from previous image
-
-
-        version 0.3.2                   5 oct 2026
-
-* geometry.chs: "CHS0=723/15/38" / "LBA0=..." (unreal.ini style, with
-  drive number) accepted as well as "CHS=..."
-
-
-        version 0.4.0                   5 oct 2026
-
-+ File Commander: big ATM hard disks with config in cylinder 0 — every
-  CP/M drive (D:, E:, …) is separate source "HDD 0 D:", "HDD 0 E:", …;
-  block size, directory size and pointer width are read from directory
-  (empty drives are not found yet)
-+ quick run of .COM files from those drives (d:NAME, e:NAME, …)
-! CP/M volumes with blocks of 4K and more (several 16K extents per directory
-  entry): wrong sizes of files over 16K
-
-
-        version 0.5.0                   5 oct 2026
-
-@ HDD description: only *.chs file in archive, new format
-  ("#" comments, CHS=c/h/s, CPM=<drive> <cyl>-<cyl>,
-  ISDOS=<drive> <cyl>-<cyl>); .txt / .inf files, "Cylinders: …" and
-  CHS0= / LBA0= are not read any more
-@ File Commander: HDD drives come from .chs file, no search over
-  whole disk; without CPM= / ISDOS= lines — one CP/M drive (BIOS 1.07)
-+ File Commander: iS-DOS / TASiS drives on HDD ("HDD 0 iS B:", …)
-
-
-        version 0.6.0                   5 oct 2026
-
-+ File Commander: HDD… — new HDD image from chosen drives of
-  partitioned HDD (drives from its .chs file), saved as ZIP with
-  image and its geometry.chs; cylinder 0 (BIOS config, boot loaders) is
-  always copied. Drives stay at their cylinders (boot config stays
-  valid) or are packed from cylinder 1 (smaller image, drives must be
-  set up again in OS)
-* .chs: comment after drive line is kept and shown in list
-
-
-        version 0.6.1                   5 oct 2026
-
-! File Commander, HDD… packed: new image reset on boot — HDD boot
-  loader (cylinder 0) and iS-DOS HDD driver (in system drives,
-  also in saved system images) keep cylinders of drives A:–H:;
-  these tables are now moved with drives
-@ HDD… packed: only iS-DOS drives are moved, CP/M drives stay at their
-  cylinders; left-out drives that would land on packed ones are moved
-  past end of image
-
-
-        version 0.7.0                   5 oct 2026
-
-@ File Commander, HDD…: drives left out become "no drive" (0) in
-  drive tables, in both modes — iS-DOS driver answers error at
-  once instead of reading empty or foreign cylinders
-+ HDD…: cr_boot.com loaders (BOOT\bootsys?.com, start another system
-  from menu) get new cylinder of their system too
-+ HDD…: when system HDD boots was left out, first chosen
-  iS-DOS drive becomes boot drive
-
-
-        version 0.8.0                   5 oct 2026
-
-@ File Commander: Upload / Download renamed to Put Files / Get Files;
-  several files come as one FCfiles.zip
-+ File Commander: New disk asks which disk: TR-DOS, CP/M (ATM 640K) or
-  iS-DOS (800K), with label
-+ Save: "Pack into ZIP" (on by default): aaa.trd → aaa.trd.zip
-+ Save: HDD images, always with their geometry.chs (one image came
-  with, or made from CHS and drive settings)
-+ HDD: changes are tracked as on floppies (* in Options / Disk and Save),
-  both from emulator and from File Commander
-@ Options / Disk / HDD: Save opens Save window with that HDD chosen
-
-
-        version 0.9.0                   5 oct 2026
-
-+ Options / System / Model: TASiS v5.40 and iS-DOS Chic v5.01 —
-  Turbo 2+ xBIOS 1.32XT that mounts hdd/tasis540.zip or
-  hdd/isdos501.zip (image + .chs) as HDD 0 and boots it
-  (setup → Boot → IDE hard drive master) in ATM mode
-+ REST API: model=tasis, model=chic
-
-
-        version 0.10.0                  5 oct 2026
-
-@ TASiS / Chic boot: xBIOS setup Space, 2 × ↓ (IDE hard drive master),
-  Enter
-@ Sound defaults: beeper 5%, low-pass filter on (double click on volume
-  slider goes back to its default)
-
-
-        version 0.11.0                  6 oct 2026
-
-! ROM (or disk / HDD image) replaced on server by file with
-  older date (e.g. renamed) was still taken from browser cache
-+ Options / System: "Force update from server" — ROMs, disks and HDD
-  images are downloaded again on every start (off: cached, revalidated)
-
-
-        version 0.12.0                  6 oct 2026
-
-+ Save: iS-DOS disks (800K, 1024-byte sectors) as ISD (TRD is not offered
-  for them)
-+ File Commander: MkDir (F7) on iS-DOS disks and HDD drives
-+ File Commander, New disk: new HDD images — CP/M (ATM BIOS 1.07 drive C:)
-  or 1–8 empty iS-DOS drives of 16 MB; image is mounted as HDD 0 / 1
-  and saved from Save window with its geometry.chs
-+ REST API: hdd= (HDD 0 image); in link builder b row can be
-  switched to hdd
-@ REST API: cpm= example b:alasm; | only separates several commands
-+ Performance: help (?), stuck to window and moving with it
-! File Commander: second change of floppy asked "Disk A: changed. Save?"
-
-
-        version 0.13.0                  6 oct 2026
-
-@ disk list on server: trd/trd.json (was files.json next to
-  index.html); paths in it are relative to trd/ ("trd/game.trd" from
-  site root works too)
-+ HDD images on server: hdd/hdd.json — "Server…" list at each HDD in
-  Options / Disk, and in REST API link builder
-@ REST API link builder: hdd instead of b (b= is still understood in links)
-+ File Commander, New disk, HDD: size in MB, CHS worked out from it;
-  iS-DOS drives 1 by default, off for CP/M
-! File Commander: two new HDDs shared one image file (second one
-  replaced first)
-@ Options: at most 70% of window height on phones and tablets
-
-
-        version 0.13.1                  6 oct 2026
-
-@ File Commander, New disk, HDD CP/M: always 6 MB (BIOS 1.07 drive
-  has fixed size), CHS 149/5/17 — no unused space in image
-@ HDD iS-DOS: drives of 1, 2, 4, 8, 12 or 16 MB (rounded up to whole
-  cylinders); drive count and size are shown only for iS-DOS
-
-
-        version 0.13.2                  6 oct 2026
-
-! ZX-Evolution: newer ROMs (EVO Reset Service v0.59.12 FE) hung at start —
-  newer BaseConf reads memory configuration from ports #xxBD
-  (#00BD..#0FBD; #10BD..#16BD kept as written), core knew only #xxBE
-
-
-        version 0.14.0                  6 oct 2026
-
-+ SD card on Z-Controller (built into ZX-Evolution; ports #57, #77 on
-  other models too): Options / Disk / SD card — Insert (.img, .vhd or
-  ZIP with it, at least 512 KB), Select from server (sd/sd.json), Save
-  (with * mark when changed), Eject; kept across model switches
-
-
-        version 0.15.0                  6 oct 2026
-
-+ File Commander: FAT12/16/32 disks — SD card (sources "SD card",
-  "SD n" for each partition: superfloppy or MBR) and FAT hard disks in
-  HDD 0/1: browse folders (long names shown), view, copy both ways
-  (TR-DOS files go to FAT as Hobeta NAME.$t), MkDir, Delete; image
-  gets * mark and is saved with Save
-+ Options / Disk / BETA 128: Accurate FDD emulation (off by default) —
-  real WD1793 timing and no TR-DOS ROM traps; shown in System Info
-+ REST API: sd= — SD card image from server (.img, .vhd or ZIP);
-  sd row in link builder with list from sd/sd.json
-* HDD interface is kept per machine; ZX-Evolution starts with NEMO-DIVIDE
-  (its built-in IDE), ATM models keep ATM; hdd= on ZX-Evolution turns on
-  NEMO-DIVIDE; default hdd/cpm.zip is not loaded on ZX-Evolution
-
-
-        version 0.16.0                  6 oct 2026
-
-+ ZX-Evolution: "trdos emulation" (#13BD) — TR-DOS access to masked
-  drive maps RAM page #FE instead of ROM, OUT (#BE) returns; EVO
-  Reset Service FE mounts TRD images from SD card / HDD (Mount A:..D:,
-  Ramdisk) and TR-DOS boots from them
-+ ZX-Evolution: hardware trap (#10BD, #11BD, bit 4 of #BF): NMI right
-  after instruction at trap address
-+ ZX-Evolution: read-only windows (#xBF7, read back from #12BD)
-+ ZX-Evolution: CMOS cells #F0..#FF give BaseConf / bootloader
-
-
-        version ("Unreal Web 06.10.2026 beta" in EVO Reset Service)
-
-+ File Commander, New disk: HDD FAT (ZX-Evolution, NEMO interface; CHS
-  c/16/63, one FAT16 / FAT32 partition, any size) and SD card (FAT16 /
-  FAT32 image, mounted on Z-Controller); size is remembered
-* Options / Disk / SD card laid out like HDD: Interface (None /
-  Z-Controller, per machine), Insert / Save / Eject / RO (read only: writes
-  are dropped), Size, Select from server (sd/sd.json)
-
-
-        version 0.16.1                  6 oct 2026
-
-! ZX-Evolution: sd= (REST API) mounted card after EVO Reset Service
-  had already looked for it ("SD card lost" or failing SD boot,
-  bigger image more likely): machine is reset after card
-  is mounted. Insert in Options says to press Reset (as on real one)
-! File Commander, New disk: FAT32 on small disk (under ~260 MB, too few
-  clusters for FAT32) came out unreadable — now FAT32 drops to smaller
-  clusters or to FAT16
-* File Commander: FAT on any primary partition type (hidden FAT types too)
-  and logical partitions of extended one; partition number left from
-  another card falls back to last one; "no FAT file system" tells
-  why (dynamic VHD, no boot record, partition types found)
-
-
-        version 0.16.2                  6 oct 2026
-
-! ZX-Evolution: NedoOS hung after "Drive D mounted" (black screen with
-  blue border) when HDD interface was not NEMO-DIVIDE: it probes
-  built-in IDE, and with no controller ports read #FF (busy forever).
-  On ZX-Evolution interface is now always NEMO-DIVIDE (list in
-  Options / Disk / HDD is locked)
-
-
-        version 0.16.3                  6 oct 2026
-
-! ZX-Evolution: no keyboard in NedoOS (sd_boot.$C) — it reads PS/2 codes
-  from AVR buffer (CMOS cells #F0..#FF in mode 2), not key matrix:
-  keys are now also put there as PS/2 set 2 codes (E0 / F0 prefixes;
-  #FF on overflow, reset by writing 1 into cell #0C)
-
-
-        version 0.17.0                  7 oct 2026
-
-+ File Commander, New disk, HDD FAT / SD card: FAT type Auto / FAT16 /
-  FAT32 for any size it can have (FAT32 from 35 MB: fewer clusters make
-  every driver see FAT16; FAT16 up to 2047 MB); choice is remembered
-+ File Commander, FAT: long file and directory names are written too
-  (VFAT entries with NAME~1.EXT short name, as Windows does) — names
-  that are not plain upper-case 8.3 keep their case and length; MkDir
-  takes up to 64 characters
-
-
-        version 0.18.0                  7 oct 2026
-
-* Keys: F1 = File Commander (opens / closes it), Shift+F1 = debugger
-  (opens / closes it; Esc still leaves it); Tools menu and help updated
-+ File Commander: help (the ? button): keys, buttons, names; it sticks to
-  window and moves with it
-* Help windows (debugger, Graf Search, Performance, File Commander,
-  Keys and files): when there is no room on either side of their window
-  (phone) they lie over it, and they always stay above their window
-* File Commander: Run and Re-read buttons are gone (Enter / double
-  click and F2 do same); window is at least as wide as buttons
-  under panels need, at most half page high; on phone:
-  width of screen
-+ File Commander, Put Files: .zip is unpacked after question (what,
-  how many, where): iS-DOS and FAT get its folders (empty ones too;
-  iS-DOS names cut to 8), TR-DOS and CP/M take all files into one
-  place with names cut; names already there are listed in red
-+ File Commander, Get Files: several files — separately or one
-  FCfiles.zip (choice is remembered); folders (with everything in
-  them) only as FCfiles.zip
-
-
-        version 0.19.0                  7 oct 2026
-
-! File Commander, Put Files to FAT: Hobeta files (.$C, .$B …) were turned
-  into TR-DOS files and stored under name from their header — files
-  with same inner name (NedoOS: osatm3sd.$C, sd_boot.$C … all
-  "nedoos") collided and rest were lost. FAT now takes them as they
-  are, under their own names; CP/M and iS-DOS keep PC name too
-* File Commander: folders always on top (after ".."), files below in disk
-  order
-+ File Commander: progress in status line while copying, adding,
-  unpacking ZIP (n / total: name), packing and downloading
-
-
-        version 0.19.1                  7 oct 2026
-
-! File Commander, FAT: plain 8.3 name in lower or mixed case (sd_boot.$C)
-  got short name SD_BOO~1.$C, so EVO Reset Service did not find
-  sd_boot.$C for "SDcard boot" ("GO SLEEP"). Now as Windows does it:
-  short name is name itself in upper case; all-lower name or
-  extension is kept by NT case bits without long name
-* File Commander, FAT: new folders get date in their "." and ".."
-  entries too
-
-
-        version 0.20.0                  7 oct 2026
-
-+ Model NedoOS: ZX-Evolution with sd/nedoos.zip on SD card (FAT32
-  128 MB image with NedoOS release, ~30 MB zip); after start
-  page presses 5 (SDcard boot) in EVO Reset Service, ATM mode (XT
-  keyboard) on. Image is downloaded once (then browser cache
-  answers; Force update in Options asks server again); switching back
-  to NedoOS keeps card already in, with its changes. REST API:
-  model=nedoos. Model note links to NedoOS sources on GitHub
-* Save, SD card: saved as fixed VHD (NAME.vhd: image + 512-byte
-  footer, added when it has none); new SD cards from File Commander are
-  NAME_sd.vhd
-* Options / Disk / SD card: "Select from server" is always there (sd/sd.json;
-  read again on click while it is empty)
-
-
-        version 0.21.0                  7 oct 2026
-
-* ZX-Evolution: ROM is rom/zxevo_fe.rom (EVO Reset Service FE)
-+ Graf Search: Zoom 1x / 2x / 4x (Z), 1x by default, remembered
-! Graf Search: scrollbar thumb reaches bottom when view shows
-  end of memory (its range was whole memory, not last start)
-! File Commander, HDD…: with CP/M HDD (no drives in its .chs) it said
-  "no HDD image mounted" (it took other, empty HDD); now it says that
-  disk is one CP/M drive (or FAT disk) and there is nothing to choose
-
-
-        version 0.22.0                  7 oct 2026
-
-+ HDD .chs: Interface=ATM / NEMO / NEMO-A8 / NEMO-DIVIDE / SMUC / PROFI /
-  DIVIDE / NONE — switched on when image is mounted (and kept for
-  machine); without it hint says to choose interface; ZX-Evolution
-  keeps its built-in NEMO-DIVIDE (hint if .chs says otherwise). New
-  HDDs from File Commander and HDD… / Save write line
-! Load window, Boot TR-DOS autorun: 0 is pressed in boot menu (first
-  program), as REST API does with press=0
-! Graf Search: picture and its orange edge stay inside window
-  (zoom, Ctrl+→, W field, narrower window: picture narrows);
-  window is at least as wide as controls on top in one line; on
-  phone: width of screen with gap
-
-
-        version 0.23.0                  7 oct 2026
-
-+ Disk button on toolbar (next to Save): Options on Disk tab
-  (pressed again: closes them)
-+ Graf Search: memory sources ROM (all pages, page:offset) and floppy
-  images in drives (A: … D:, as TRD; iS-DOS disks as ISD; offset in
-  image, read again every second)
-! Load window, Boot TR-DOS autorun: key for boot menu was not
-  pressed for files from server list (it took them for REST API
-  load). Now "press in boot" (0 by default, remembered) shows up under
-  autorun box, as in REST API link builder
-* HDD .chs Interface=: mounting image for another interface than
-  one of other HDD says so (master and slave share one interface)
-
-
-        version 0.23.1                  7 oct 2026
-
-* Load window, press in boot: half the pause before keys (60 frames)
-* Graf Search: choosing disk image turns Live view off; back on RAM /
-  ROM / CPU 64K earlier Live view state returns; every opening: RAM,
-  Live view on
-
-
-        version 0.24.0                  7 oct 2026
-
-+ Load window: "Start TASiS v5.40 · NedoOS" line above Local server —
-  click starts that model (same as Options / System / Models & OS, Start)
-
-
-        version 0.25.0                  7 oct 2026
-
-+ model Turbo 2 (6.xx): ATM Turbo 2 v6.xx, BIOS 1.06 (rom/atm10602.rom),
-  REST model=atm6. Z signal on port #FE bit 7 (CP/M key), INT not gated
-  by #FF77; 3.5 MHz fixed, 70784 t per frame (boot menu counts CPU
-  speed and locks if it is off)
-+ proxy.php / proxy.ashx (PHP / IIS): files from other sites through own
-  server — http:// on https page, sites without CORS. Load / URL tries
-  site first, then proxy. Only emulator files, up to 64 MB, no local
-  addresses; host list can be set in file
-+ zxevo_fe.rom not in rom/: taken from svn.zxevo.ru (through proxy)
-* Load / URL: file name from link query too (dl.php?path=/x/game.trd)
-+ Options / Sound / Visualizer: AY and GS colours (quiet → loud
-  gradient, ↺ = default); GS default violet instead of cyan, channel
-  bars on dark track
-+ File Commander: TR-DOS split files (same name, parts in type + start
-  field) shown as NAME.001, .002…; copy joins them into one file
-  (extension by contents: S3M, MOD, XM, IT, ZIP, else BIN), except onto
-  TR-DOS; parts copied unjoined keep NAME.001… (no "file exists")
-
-
-        version 0.25.1                  7 oct 2026
-
-- model Turbo 2 (6.xx) and its core changes (Z signal, INT gate) removed
-- proxy.php / proxy.ashx, zxevo_fe.rom from svn.zxevo.ru and Load
-  window URL block removed: files only from this site (and local
-  server)
-* REST API press=: pause before keys as in Load window (60 frames)
-* File Commander, Copy: plain "Join split files" checkbox, no file list
-
-
-        version 0.25.2                  7 oct 2026
-
-* page never narrower than 360 px (toolbar buttons fit, no wrapping;
-  jump to two lines near 375 px fixed)
-! File Commander and Performance help windows could not be dragged:
-  they open at side of their window, then move freely
-
-
-        version 0.26.0                  8 oct 2026
-
-! ATM Turbo 2+ / xBIOS / ZX-Evolution: machine's own turbo (port #77
-  bit 3: CP/M, BIOS "TURBO ON") doubles clock as on real hardware. CP/M
-  AY music played slow at 1x (it ran at 3.5 MHz instead of 7). Clock
-  over screen shows it: "7 MHz (turbo)"; System Info too
-- model Turbo 2+ xBIOS 1.32LE removed (REST model=xbiosle too)
-+ General Sound "Auto (on first use)", default: off until program
-  touches GS ports (#BB / #B3 / #33), then on (programs waiting for GS
-  no longer hang); ROM fetched at start
-+ Save: disk as SCL; Screenshot (PNG) as on screen
-+ Load window: HDD (0 / 1) and SD card rows: Choose File, Select from
-  server; same images as in Options / Disk
-+ File Commander: file over 255 sectors copied or put onto TR-DOS is
-  split (NAME.001, .002…)
-* ATM mode (XT keyboard) kept when switching models in session
-* visualizer: one color pair for AY and GS
-* Graf Search on tablet: window width can be changed (phone: screen
-  width as before); wider grips for fingers
-* iOS / iPadOS: no page drag (rubber band), text selection, magnifier
-  or context menu over emulator and on-screen panels
-* icons with folder in address: copies of emulator in different
-  folders of one site keep their own home screen / favorites icon
-@ unreal.ini: Windows-only keys commented out (";web- "); sound volumes
-  8192 and empty HDD Image0 now in ini (page no longer overrides them)
-
-
-        version 0.27.0                  8 oct 2026
-
-- ATM turbo bit (port #77 bit 3) not emulated again: clock is only
-  CPU clock setting (2.5x by default)
-- Load window: New disk removed (new disks: File Commander, New disk)
-+ System Info: WD1793 section (CMD, STATUS with flags, TRK, SEC, DATA,
-  beta port with INTRQ / DRQ, system, state, state2, drive, side, time,
-  next, tshift, rwptr, rwlen, cylinders, head position, READY, TR00)
-
-
-        version 0.27.1                  8 oct 2026
-
-@ Load window: first block "Disk, tape, snapshot": drive (A: / B: /
-  ROM), what is mounted there, Choose File; Boot TR-DOS autorun on own
-  line; "Drive:" label removed
-
-
-        version 0.28.0                  9 oct 2026
-
-+ model Turbo 2+ xBIOS 1.36XT (rom/xbios136.rom, REST model=xbios136):
-  menus, CP/M, autorun and ROM disk as 1.32XT
-+ File Commander viewer: window size by dragging its edges
-  (remembered); "Disassembler" view renamed Z80asm
-+ Graf Search: Text / Hex / Z80asm in mode list open File Commander
-  viewer over current memory at current address
-* Load window: drive "ROM" renamed "ROM disk", shown for xBIOS XT only
-
-
-        version 0.29.0                  9 oct 2026
-
-@ ATM Turbo 1: BIOS 1.04.1R (rom/atm1041r.rom) instead of 1.03 — CP/M
-  part not encrypted, so CPU clock is free (2.5x by default, was 3.5 MHz
-  fixed). CP/M starts "B:XC /R" (X-Commander) itself: BIOS feature
-* Graf Search: TEXT / HEX / Z80ASM plain items in mode list; disk images
-  shown whole in viewer (5-digit offsets in HEX and Z80ASM)
-+ Load window: ⏏ next to mounted disk, HDD and SD card (as in Options /
-  Disk)
-
-
-        version 0.30.0                  10 oct 2026
-
-+ System: model "Custom ROM" (last in list): choose ROM image (.rom /
-  .bin, also in .zip), machine found from size and texts inside: ATM
-  Turbo 1 / Turbo 2+ (BIOS, xBIOS) / ZX-Evolution / Profi / Scorpion
-  BIOS taken whole; 16K / 32K / other 64K run on Pentagon 128 as 48,
-  128 + 48 or 128 + 48 + service + TR-DOS ROM set (TR-DOS 5.04T added if
-  missing). Kept for this session
-@ Server files: scripts in js/, emulator (unreal.wasm, unreal.ini,
-  boot6.$b, CMOS) in unreal/; index.html, web.config, .htaccess,
-  changes2.txt stay in root. Old copies in root can be deleted
-* xBIOS 1.36XT: TR-DOS autorun and cpm= checked (menus same as 1.32XT)
-
-
-        version 0.31.0                  10 oct 2026
-
-+ Models: Scorpion ZS 256 (rom/scorp295), Profi 1024 (rom/profi), KAY
-  1024 (rom/kay1024), Spectrum +3 (rom/plus341), Quorum 1024
-  (rom/qu7v42); REST model=scorpion / profi / kay / plus3 / quorum.
-  TR-DOS autorun on all of them except +3 (no Beta Disk)
-@ ROMs from server: rom/<name>.zip first (ROM inside), then rom/<name>.rom
-@ Custom ROM: user chooses everything — machine (Pentagon 128 / 1024,
-  KAY, Scorpion, Scorpion + ProfROM, Profi, +3, Quorum, ATM Turbo 1,
-  Turbo 2+, ZX-Evolution); whole ROM file, or ROM set of 4 slots (128,
-  48 BASIC, TR-DOS, Service) each from page of local file or from parts
-  on server (list: rom/roms.json); start ROM selectable. Local files
-  only from own computer (several, also in .zip)
-+ Save: "Custom ROM + settings (ZIP)" — ROM (set joined into one 64K
-  image) and custom.json; this ZIP loaded in Custom ROM restores machine
-  and pages
-* HDD interface by machine: +3 none (its floppy controller shares ports
-  with ATM IDE: ROM hung at start), Profi PROFI, Scorpion SMUC, KAY NEMO,
-  Quorum none; default CP/M HDD image only on Turbo 2+ / Pentagon
-
-
-        version 0.31.1                  10 oct 2026
-
-@ Custom ROM: server parts listed without group header; parts may be a
-  page of a server ROM (rom/roms.json "page"): Pentagon 128 / 48 from
-  pentagon.rom; names as on server (trdos.rom, dos_607+.rom)
-@ custom.json: each page says which ROM it is and where it came from;
-  "version" dropped. Any .json in ZIP is read; part .json (slot) puts
-  ROM into its slot
-
-
-        version 0.31.2                  10 oct 2026
-
-@ Save: "Custom ROM" for every model — ROM of running machine (also
-  ATM BIOS, xBIOS, EVO ...) + <rom name>.json in one ZIP; ROM set
-  (Pentagon, KAY, Custom) joined into one 64K image. Load it in Custom
-  ROM to start same ROM again
-* ZX-Evolution model id EVO everywhere (custom.json "machine": "EVO";
-  old "ATM3" still read)
-
-
-        version 0.32.0                  10 oct 2026
-
-+ Debugger: Win32 dialogs of Unreal made as page windows:
-  Alt+C breakpoints (conditions, execution ranges, memory read / write
-  ranges; kept in browser between sessions), Alt+O watches, Ctrl+J
-  labels (list with filter, go to in disassembler / dump, load labels
-  file from computer: Unreal .l, sjasmplus .sym / .lab, "name EQU
-  addr"), Alt+F6 memory search (cheats), Alt+P pokes, Shift+F7 tape
-  browser; F1 help, F2 / F3 Save / Load, Alt+F1 Options
-+ Debugger: right click in disassembler = breakpoint; Alt+T ripper and
-  Alt+W binary / disassembly blocks are downloaded; Alt+R "from binary
-  file" loads file from computer
-+ Debugger: stand-ins for keys browser takes: Alt+Shift+1…8 = Ctrl+1…8,
-  Alt+Shift+D / F = Alt+D / F, Alt+Shift+H = Ctrl+Tab, Alt+Shift+T =
-  Ctrl+T, Shift+F8 = F11
-+ unreal/sos.l: labels of 48 BASIC ROM in disassembler (no more
-  "can't find label file" at start)
-* Expressions: hex numbers also as #C000, $C000, 0xC000, C000h
-
-
-        version 0.32.1                  10 oct 2026
-
-@ Windows can be dragged partly past left screen edge (by hand only;
-  auto placement keeps them in view)
-@ Main window placed a bit higher from start: on-screen keyboard
-  appears below without moving it; joystick panel hangs lower
-
-
-        version 0.33.0                  10 oct 2026
-
-+ File Commander, CP/M: free directory entries in status line
-  ("dir 3/128"); "directory full" error tells how many entries the
-  file needs. ATM BIOS 1.07 HDD drive C: has 128 entries of 16K each
-  (BIOS DPB), so it holds about 2 MB of files though 6 MB is free
-@ HDD with Interface= for another IDE in its .chs: Profi, Scorpion,
-  KAY, Quorum, +3, ZX-Evolution keep their own interface (toast says
-  their BIOS will not boot this disk)
-
-
-        version 0.34.0                  10 oct 2026
-
-! Server lists (trd.json, hdd.json, sd.json): file names with # ? %
-  were cut (# read as URL fragment); "url" may be "x.zip" (relative to
-  its folder) or "trd/x.zip" (from site root), both work
-
-
-        version 0.35.0                  10 oct 2026
-
-! HDD (ATM IDE): CP/M could not write to HDD (SAVE, PIP, ERA hung):
-  BIOS 1.07 reads the status after every word, which cleared INTRQ the
-  emulated drive raised at once; it waited for INTRQ forever. Status
-  read right after a sector is written keeps INTRQ now
-+ HDD CP/M with 512 directory entries: "DirEntries=512" in .chs; while
-  such disk is HDD 0, the HDD table in ROM (BIOS 1.07, xBIOS) gets
-  512 instead of 128 and the machine is reset (CP/M builds the DPB from
-  it at start). All 6.2 MB usable (128 entries: about 2 MB). Other
-  disks put 128 back. On real ATM such disk needs the same ROM change
-+ File Commander, New disk, HDD CP/M: Directory 128 / 512
-* File Commander reads / writes HDD CP/M with DirEntries= of its .chs
-
-
-        version 0.36.0                  10 oct 2026
-
-+ File Commander, New disk, HDD CP/M: Directory 1024 too (up to 1024
-  small files, directory 32K; 1024 is the most CP/M 2.2 allows with 2K
-  blocks). Size stays 6.2 MB (fixed by BIOS 1.07)
-
-
-        version 0.37.0                  11 oct 2026
-
-+ Load, Server list: trd.json entries with "run" (REST API link, e.g.
-  "?model=atm710&hdd=hdd/neo8.zip&cpm=c:neo8&xt=1"); the file is taken
-  from the link. After choosing: "Autostart after load" (on by
-  default) and machine list (default from the link; CP/M links: ATM
-  models only, OS: its own). On: Load starts the link on this page
-  (machine switched when needed). Off: only the files of the link are
-  mounted
-+ Server list tags: CPM (orange), HDD (teal), PRF (violet), SD (blue),
-  TRD (green), OS (pink); several in one "tag" with spaces; no tag in
-  json - no label
-
-
-        version 0.37.1                  11 oct 2026
-
-@ Load: "Start TRDOS boot.b" works for the disk / tape / snapshot block
-  (Choose File) only; Server list (its own Autostart) and Local server
-  just load
-- Load: "Start TASiS · NedoOS" line removed (they are in the Server
-  list now)
-
-
-        version 0.38.0                  11 oct 2026
-
-@ Toolbar: Disk button removed (Options / Disk); System button
-  (Options / System: machine, ROM, CPU clock) is first now
-+ Custom ROM: every 16K page of an added ROM file is recognised by its
-  texts (48 BASIC, 128 BASIC + menu, TR-DOS / vTR-DOS / PereDOS,
-  service: Gluk, xBIOS, Profi, Quorum, KAY, Scorpion; ATM BIOS + CP/M,
-  +3 ROMs, empty) and listed under "Add ROM file"; slot lists show it
-  (⚠: page looks like another slot); a ROM set gets the pages that fit
-  (was: fixed order 128 / 48 / service / TR-DOS, so ATM BIOS 1.07.13
-  as Pentagon set had TR-DOS as 48 BASIC and did not start)
-+ Custom ROM: a whole ROM made for a known machine picks it (ATM 2+
-  BIOS / xBIOS, ATM 1, EVO, Profi, Scorpion, +3, Quorum, KAY); machine
-  can still be changed; switching to a ROM set machine fills the slots
-* CPU clock: 15x and 20x steps
-
-
-        version 0.39.0                  11 oct 2026
-
-+ File Commander: Profi CP/M disks (.PRO, 800K: 80 x 2 x 5 x 1024,
-  directory from the first sector, 2K blocks): list, view, copy both
-  ways, delete; written back as .PRO (the disk still boots: CP/M from
-  FDD on Profi checked after a file was deleted and copied back)
-! Disks of 1024-byte sectors: sector 5 of tracks other than the first
-  (Profi .PRO layout) was not read (only 1-4 and 9)
-+ Save window: PRO for disks of 1024-byte sectors (default for a
-  disk loaded from .PRO)
-@ Custom ROM: "Select ROM" (was "Add ROM file"): one ROM file, a new
-  one replaces the one before (its pages, notes and name); the file
-  name is next to the button, the ROM list is gone
-
-
-        version 0.40.0                  11 oct 2026
-
-! Custom ROM, big ROM files (ProfROM 512K): slot lists showed every
-  page ("unknown code" up to page 31); now only pages that look like a
-  slot, empty pages never; notes list the recognised pages and count
-  the rest
-+ Custom ROM: Scorpion ProfROM recognised (machine Scorpion + ProfROM),
-  Scorpion's TR-DOS (starts with JP), Shadow Service Monitor, service.rom
-
-
-        version 0.41.0                  11 oct 2026
-
-+ File Commander, Enter on a .COM of a Profi CP/M disk (.PRO) in A:: the
-  machine switches to Profi 1024 when needed, boots CP/M from FDD (menu
-  keys) and types the name at the A> prompt (prompt: Profi BDOS waits
-  in function 10). ATM CP/M disks (TRD 16 x 256, HDD) start as before
-  on Turbo 2+ / xBIOS / EVO
-
-
-        version 0.42.0                  11 oct 2026
-
-- File Commander: starting programs from Profi CP/M disks (0.41.0)
-  removed; Enter on a .COM of a .PRO disk says it can't be started
-+ File Commander, New disk: Profi CP/M (.PRO, 800K, 5 x 1024 sectors,
-  empty, no system)
-
-
-        version 0.42.1                  12 oct 2026
-
-@ Loading a disk into a drive whose disk was changed: the page's own
-  box "Discard changes for <name>?" with OK (focused, Enter) / Cancel
-  (Esc) instead of the browser's "Save disk / Disk A: changed. Save ?"
-  (its OK saved nothing useful). No drive given (drag & drop): the
-  drive the core would pick is asked about
-
-
-        version 0.42.2                  12 oct 2026
-
-@ Drop-down lists everywhere (Load, Save, Options, File Commander,
-  debugger windows, Custom ROM, on-screen keyboard type): drawn by the
-  page (js/usel.js) as the Server list, the same on every browser and
-  on iPad / iPhone (Safari drew its own box and system menu). The list
-  opens under the box, or above it when there is no room; its height
-  never goes past the screen; keys: arrows, Home / End, PgUp / PgDn,
-  Enter / Space, Esc, first letter. List boxes (several rows) stay
-@ Questions in the page's own box (OK focused / Cancel, Enter / Esc),
-  texts as before: "Disk A was modified. Eject without saving?",
-  "Unsaved changes on disk ... will be lost. Switch to ...?", "This disk
-  image is already loaded to drive A: Do you still want to load it to
-  drive B:?" (asked before the core asks)
-
-
-        version 0.42.3                  12 oct 2026
-
-* Load, Server list: "Select from server" until an entry is chosen
-  (Load button off until then)
-@ REST API link, a / hdd / sd: the server files open from an arrow in
-  the field as a list like the others (the browser's suggestion list:
-  iPhone showed nothing / acted on double tap); typing stays free;
-  a: lists disks only (not server list HDD entries)
-
-
-        version 0.42.4                  12 oct 2026
-
-* "Select from server" lists of HDD and SD card (Load, Options / Disk)
-  show the server image that is mounted: the default CP/M HDD from the
-  start, an OS image, one chosen there (was: back to the title after
-  every choice); other HDD number / no image: the title
-
-
-        version 0.42.5                  12 oct 2026
-
-* Drop-down lists: height kept inside the window they belong to
-  (Options, Load, Save, File Commander…) and inside the visible screen
-  (iPad: the model list went over the on-screen keyboard)
-! Server list: its open list stayed in place when the Load window was
-  moved; now it closes on a press anywhere else, as the other lists
-
-
-        version 0.42.6                  12 oct 2026
-
-! Server list: its open list kept inside the Load window and the
-  visible screen too (was: up to 260 px below, past the window)
-* Drop-down lists open downward when at least ~180 px fit below
-
-
-        version 0.42.7                  12 oct 2026
-
-* Drop-down lists (Save / What too): open downward unless less than
-  ~120 px fit there; kept inside their window (a window with no room on
-  both sides of the list: the screen)
-* Version numbers: an essential change (new feature) raises the second
-  number (the third from 0), a small one the third; 99 in the third
-  goes on to the next second. The history renumbered so
-  (0.1.33 stays, 0.1.34 = 0.2.0 … 0.1.90 = 0.37.1, 0.1.101 =
-  0.42.6); File Commander geometry.chs line "(from v 0.37.1)"
-
-
-        version 0.43.0                  12 oct 2026
-
-+ File Commander viewer: Graf in the view list — opens Graf Search
-  over the chosen file only (source "File <name>", offsets from its
-  start, not live); closing Graf Search drops it
-
-
-        version 0.43.1                  12 oct 2026
-
-! File Commander: window size can be changed again by dragging its
-  edges and corners (remembered); not narrower than the buttons under
-  the panels need, height up to the screen; phone: height only
-
-
-        version 0.43.2                  12 oct 2026
-
-! File Commander: size could not be changed on iPad / iPhone (tablets
-  were taken for phones: full width, side grips hidden). Now iPad
-  resizes as PC; phone: height by top / bottom edges and corners
-@ One window resizer (edges and corners, mouse and touch) for File
-  Commander, its viewer and Graf Search (each had its own copy)
-
-
-        version 0.44.0                  13 oct 2026
-
-+ File Commander: Enter / double click / tap on a disk image (TRD, SCL,
-  FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD, SD card or RAM: window to
-  choose drive A: / B: and mount it (changed disk there: "Discard
-  changes" question)
-! Turbo 2+ TR-DOS autorun (Server list, Load window, REST autorun=1)
-  with ATM mode on: menu keys were not taken. ATM mode is off while the
-  menus are walked and comes back after; wait before 128 menu keys is
-  counted in frames (menu was not ready at some clocks)
-@ Server list: CP/M entries always start with ATM mode on
-@ Question boxes centred on the emulator window, not the browser window
-
-
-        version 0.44.1                  14 oct 2026
-
-! File Commander: after entering a folder (FAT SD card / HDD) folders
-  were mixed with files; now "..", folders, then files, as on load
-
-
-        version 0.45.0                  14 oct 2026
-
-+ File Commander: F8 deletes folders (FAT SD card / HDD, iS-DOS) with
-  everything inside them; the question says so. Errors of single items
-  are shown in the status line, the rest is deleted
-
-
-        version 0.45.1                  14 oct 2026
-
-! Load / Server list with Autostart off: entries whose link only picks a
-  machine (TASiS, Chic, NedoOS) said "Nothing to mount". Now every entry
-  mounts: its files, or the HDD / SD card image of its OS. HDD and SD
-  images go in as from Load / Options (no reset, no interface switching)
-
-
-        version 0.45.2                  14 oct 2026
-
-! Load / Server list, Autostart off: a CP/M HDD with another directory
-  size (DirEntries= 512 / 1024) reset the machine. Now the ROM table is
-  set without reset; CP/M takes it at its next start
-
-
-        version 0.45.4                  14 oct 2026
-
-* File Commander: deleted files and folders (FAT, iS-DOS, the last file
-  of TR-DOS) are zeroed on the disk, so a saved zip of the image gets
-  smaller (the image itself keeps the size of the disk)
-
-
-        version 0.45.5                  14 oct 2026
-
-* File Commander: "..", folders, then files, each by name (A-Z, numbers
-  in order: 2 before 10) on FAT, iS-DOS, CP/M and the RAM disk. TR-DOS
-  keeps its catalogue order (boot first; the last file frees its space)
-
-
-        version 0.45.6                  14 oct 2026
-
-* File Commander: the size of a selection counts what is inside the
-  selected folders (sub-folders too); the status line also says how many
-  folders are selected. Sizes from 10 MB are shown in M
-
-
-        version 0.46.0                  14 oct 2026
-
-+ File Commander: sort list next to Delete, for the active panel (each
-  panel keeps its own): name, size (largest first), date (newest first;
-  FAT and iS-DOS disks), disk order. Folders stay before files. Cursor
-  and selection stay on the same items. FAT / iS-DOS file tips show the
-  date
-
-
-        version 0.46.1                  14 oct 2026
-
-- File Commander: sort "disk order" removed (name, size, date stay)
-
-
-        version 0.46.3                  14 oct 2026
-
-* File Commander: sort list in the header of each panel, on the right
-* File Commander: buttons after Delete: menu Files (Download Files,
-  Upload Files: were Get Files / Put Files) and menu Disks (New Disk,
-  HDD Remaster: was HDD...). Menus open inside the window
-
-
-        version 0.47.0                  15 oct 2026
-
-+ Options / System, Pentagon: port #EFF7 block (as the EFF7 page of
-  the Win32 settings): current state of each bit (on) and lock. Locked
-  bits are not changed by programs and stay on Reset; the setting is
-  kept for the model
-! #EFF7 bit 5 (hardware multicolor, 8x1 attributes at #6000) written
-  by a program did nothing: the Win32 build switches the attribute table
-  at each frame (dx.cpp), the web build did not. Now it does
-* File Commander: sorts ext (default: by extension, then by name),
-  name, size; date removed (file tips still show it)
-
-
-        version 0.47.1                  15 oct 2026
-
-* Options / System: the #EFF7 block is shown when Pentagon (or Custom
-  ROM on a Pentagon machine) is chosen in the list, before Start; for a
-  model not started yet the bits set there (on = on and locked) are used
-  when it starts
-
-
-        version 0.48.0                  15 oct 2026
-
-+ REST API: kbd= on-screen keyboard at start: zx, xt, joy, off (hidden).
-  Only for this visit: the visitor's own keyboard setting is not changed.
-  REST API link window: row kbd (- (off) / ZX / XT / Joystick)
-
-
-        version 0.49.0                  16 oct 2026
-
-+ Options / System, model NedoOS: "Image" line with the build date of
-  sd/nedoos.zip (from its nedoos.json; older ZIPs: date of the image
-  file) and Rebuild... window: a new SD card image from the folder
-  release of NedoOS — From GitHub (file by file from github.com, latest
-  commit) or From file (a ZIP of that folder or of the whole
-  repository). FAT32 VHD of the size set (100 MB by default, made
-  bigger when the files need it), saved as nedoos.zip with nedoos.vhd
-  and nedoos.json (date and commit of the release). "Insert as SD card"
-  puts it into the emulator; the NedoOS model then starts from it
-
-
-        version 0.50.0                  16 oct 2026
-
-+ Options / Sound, ZXBUS sound cards:
-  ZX-MultiSound Rev.A2 / Max: switches on its chips here (AY scheme
-  TurboSound with YM2203, SAA1099 on #FF / #1FF, SounDrive, General
-  Sound); Max: + YMF262 OPL3 on #C4-#C7.
-  ZXM-MoonSound: YMF278B OPL4 — FM on #C4-#C7, wavetable on #7E / #7F,
-  1 MB sample RAM, instruments from the 2 MB Yamaha YRW801-M ROM
-  (rom/yrw801.rom on the server or "YRW801 ROM..." from this computer;
-  without it FM only). Ports are off while TR-DOS ports are on.
-  Volume slider OPL3 / OPL4. Chips: ymfm (Aaron Giles, BSD-3-Clause)
-
-
-        version 0.50.1                  16 oct 2026
-
-@ ZXM-MoonSound: the YRW801-M ROM is taken from rom/YRW801-M.zip (the
-  .rom inside) or rom/YRW801-M.rom on the server; "YRW801 ROM..." (for
-  the session only) removed
-* NedoOS Rebuild, From file: paths with \ in the ZIP are folders; the
-  programs sd_boot.$C starts (term.com, cmd.com, autoexec.bat) are
-  checked in bin/ before the image is made (a ZIP without them: error
-  saying what is missing); ZIP files without dates do not give the
-  build date
-
-
-        version 0.50.2                  16 oct 2026
-
-! NedoOS Rebuild: the image did not start with the NedoOS release of
-  14.10.2026 ("term.com not found"): its kernel does not find files on
-  1K clusters, which the 100 MB FAT32 image had. Now 512-byte clusters
-  (as the NedoOS images), and each folder gets its room at once, in
-  clusters that follow each other
-
-
-        version 0.50.3                  16 oct 2026
-
-* System: Start closes Options and the NedoOS image window
-
-
-        version 0.50.4                  16 oct 2026
-
-* ZXM-MoonSound: the wavetable ports of CPLD firmware 1.01 #C2 / #C3
-  too (NedoOS gp uses them on ZX Evolution, where #7E / #7F do not work)
-
-
-        version 0.50.5                  16 oct 2026
-
-* File Commander: after choosing a sort (click or tap) the panel has the
-  focus again (keys work at once)
-* Options / Sound: ZX-MultiSound Off puts the AY block back: single AY,
-  AY-3-8910; Covox / SD as in unreal.ini
-
-
-        version 0.51.0                  16 oct 2026
-
-+ File Commander, New Disk, HDD FAT / SD card: cluster size (Auto,
-  512 B ... 32K; remembered). NedoOS of 10.2026 needs FAT32 with
-  512-byte clusters: it does not start from 1K clusters
-* Alt+F1 opens / closes Options
-* Options / Sound: ZX-MultiSound Off puts the whole AY block (scheme,
-  chip, stereo, volume table, volume) back as unreal.ini has it
-
-
-        version 0.52.0                  16 oct 2026
-
-+ About: link "changes" opens the Changes history window
-
-
-        version 0.53.0                  16 oct 2026
-
-+ Save: ROM — a ROM file from the server (rom/: the ROMs of the models,
-  General Sound, the ROM set parts and other entries of rom/roms.json),
-  downloaded as it is (or in a ZIP)
-* File Commander, New Disk FAT32: the backup boot sector has its
-  signature too (fsck no longer reports a difference)
-
-
-        version 0.53.1                  16 oct 2026
-
-* Options / System, NedoOS: Image shows the date only when it is known
-  (nedoos.json, else a real date of the image in the ZIP); a ZIP entry
-  without a date (1980-01-01) gives nothing
-- Custom ROM: the page list under Select ROM (the slot lists show the
-  pages) and the hidden list of several ROM files (one file since
-  0.39.0) removed
-
-
-        version 0.53.2                  16 oct 2026
-
-! Drop-down lists in small windows (Save / What): the list was cut at
-  the window's edge (ROM, Custom ROM out of sight, no scroll bar seen);
-  when the list does not fit in its window it may go past it now
-
-
-        version 0.54.0                  17 oct 2026
-
-+ REST API: rom= — a Custom ROM ZIP (Save / Custom ROM) by path or URL
-  (another site with CORS, e.g. raw.githubusercontent.com): the machine
-  starts with its ROM, slots and settings, for everyone the same; not
-  stored. REST API link window: row rom
-+ Custom ROM ZIP .json: speed, fdd (accurate / fast), hdd (interface)
-  and ini (any unreal.ini keys by section); while that Custom ROM runs
-  they win over the visitor's own settings. Save / Custom ROM writes
-  speed, fdd and hdd as the machine runs
-+ REST API link window: help (?) with all parameters and the .json
-  fields; the parameter list left Keys and files
-
-
-        version 0.55.0                  17 oct 2026
-
-+ Options / System, Custom ROM: Save ROM — the Custom ROM as chosen
-  (ROM + .json in a ZIP), also before Start; server parts of a ROM set
-  are fetched for it. The settings in the .json: from the ZIP it came
-  from, or as the machine runs when this Custom ROM is running
-
-
-        version 0.55.1                  17 oct 2026
-
-* ZIP files made by the emulator (Save, File Commander Download Files,
-  Custom ROM, NedoOS Make Image): the files inside get the date and time
-  they were made (were 1980-01-01)
-
-
-        version 0.55.2                  17 oct 2026
-
-- Options / System, Custom ROM: Save ROM button removed (Save / Custom
-  ROM saves it)
-
-
-        version 0.55.5                  17 oct 2026
-
-! Autorun (Load, server list, REST autorun=1) on Pentagon, Scorpion, KAY,
-  Profi: TR-DOS was entered by reset straight into it, in 48K mode
-  (Quick Commander showed "ZX 48K", no memory pages). Now through the
-  128 menu (Pentagon, Scorpion, KAY: reset to 128 ROM) or the main menu
-  (Profi: TR-DOS 128K): 128K mode, #7FFD paging free
-* Drop-down lists: in a small window (Save) a long list stays inside the
-  emulator window and scrolls (at most 360 px); scroll bar easier to see
-* About / changes: the history opens at its end (newest versions)
-
-
-        version 0.56.0                  17 oct 2026
-
-+ File Commander: editor (Edit, F4) — text or hex, the encodings of the
-  viewer (ZX, CP866, KOI8-R, Windows-1251, Latin-1). Text: every byte
-  keeps its own character (controls as ␀…␟), line ends as the file has
-  them, CP/M text up to ^Z. Hex: overwrite, Ins / Del insert / remove a
-  byte, Tab to the character column. Save (F2, Ctrl+S) writes the file
-  back in place (TR-DOS: in its own sectors when their count stays,
-  otherwise at the end of the disk; same name, type and start)
-* NedoOS Make Image: asks before nedoos.zip is downloaded
-! File Commander: window resize grips were all in one place (since
-  0.52.0); now on the edges and the corner again, as other windows
-
-
-        version 0.57.0                  17 oct 2026
-
-+ Offline copy (sw.js, service worker; https or localhost): the page,
-  scripts, wasm and unreal.ini are kept in the browser for each build;
-  ROMs, disks, HDD / SD images and lists are kept once fetched. Without
-  internet the emulator starts from the copy (iOS home screen too)
-+ Options / System, Offline: Make offline — downloads into the copy the
-  ROMs of the models and, as checked, ROM set parts / GS / YRW801,
-  disks of the server list, HDD images, SD images (NedoOS); Clear files
-+ File Commander editor: Save as (Shift+F2) — a new name, on this disk
-  or the other panel's; offered when the file does not fit back on its
-  disk. Questions of the editor are asked inside its window
-
-
-        version 0.57.4                  17 oct 2026
-
-* Phones / tablets: the on-screen keyboard of a text field (File
-  Commander editor and others) no longer changes the size of the
-  emulator window; it is fitted again when the field is left
-* File Commander editor: window sizes and limits as the viewer
-
-
-        version 0.57.5                  17 oct 2026
-
-* iPhone / iPad: File Commander editor, hex — rows came out in a large
-  font (Safari text autosizing); off for the whole page
-
-
-        version 0.57.6                  17 oct 2026
-
-* Autorun via the 128 menu (Pentagon, Scorpion, KAY, ATM): 1 s in the
-  menu at the usual clock (was 3.4 s), longer at a lower clock
-! File Commander editor: Save writes only into the image the file came
-  from, read again at that moment. Ejected or replaced meanwhile (disk,
-  HDD, SD card), or the file gone: nothing is written, Save as is
-  offered (a panel's disk, the original image stays untouched)
-
-
-        version 0.57.7                  17 oct 2026
-
-! Save, packed into ZIP: the name field is aaa.zip; the file inside
-  always gets the extension of the chosen format (aaa.trd, aaa.scl…),
-  also when the name was edited (was: aa.zip held "aa" without one)
-! File Commander: choosing a source in a panel's list gives that panel
-  the focus again (keys work at once)
-
-
-        version 0.58.0                  17 oct 2026
-
-+ Options / Input: Swap Mouse Buttons (off by default) — Kempston mouse
-  left and right buttons change places (bit 0 of #FADF: the right one,
-  as on the original Kempston mouse). REST API: swapmouse=1 (this visit
-  only), row swapmouse in the REST API link window
-! Sound clock: what is still on its way to the audio worklet is counted
-  exactly (samples sent − received) instead of guessed since its last
-  report. Safari delivers the reports late and unevenly: frames ran in
-  bursts (sound and scrolling jerked) while the host had time to spare
-! Border=wide (unreal.ini, Custom ROM .json ini): the picture was cut
-  right and bottom (the frame buffer held 640x480); now 768x608
-
-
-        version 0.59.0                  17 oct 2026
-
-+ Options / Video: Border — None (256x192), Small (320x240), Wide
-  (384x288: full screens, .bsc). Changed at once, remembered; not chosen
-  yet: unreal.ini (or a Custom ROM ini) decides. ATM, ZX Evolution and
-  Profi have no None (their video modes need the border area)
-
-
-        version 0.60.0                  17 oct 2026
-
-+ Options / Input: Capture mouse by a click on the screen (off by
-  default) — as the mouse button of the toolbar; Esc releases it
-! Safari: the machine ran ~43 frames a second instead of 48.8 (56 / 30 in
-  turns), the sound ran out and broke off. The emulation is now clocked
-  by time in sound samples, the sound queue only corrects it (under
-  60 ms one more frame, over 180 ms one less), measured with the audio
-  clock itself; the "at most 30 ms a refresh" limit is counted from the
-  start of the frames, not from the refresh time Safari passes (it may
-  be old: only one frame a refresh ran)
-
-
-        version 0.60.1                  17 oct 2026
-
-* MHz and fps over the screen are drawn on a canvas of their own, and
-  the drive / HDD / SD rows are refreshed once a second only while
-  Options or Load is open: the page text does not change while the
-  machine runs. Ad blockers in Safari (AdBlock, Adblock Plus) rescan a
-  page on each change and stopped it for ~1/3 s every 1-2 s
-
-
-        version 0.60.2                  17 oct 2026
-
-! MHz and fps over the screen were stretched while the window was
-  resized (redrawn only with the next fps value); now redrawn at once
-  on every change of size
-
-
-        version 0.60.3                  18 oct 2026
-
-* Performance: the tile values and the lines under the graphs are drawn
-  on canvases, the model label is written only when it changes. The
-  open window no longer changes the page text twice a second (ad
-  blockers rescanned the page and broke the Frames measurement)
-
-
-        version 0.61.0                  18 oct 2026
-
-+ Save / Memory block / RAM: the 16K banks to save are chosen in a
-  grid (All, None, Mapped; the mapped ones are outlined), saved one
-  after another in the order of their numbers
-* Hex fields (Save start / length, Graphics address, File viewer Org
-  and Go, debugger breakpoint ranges, Load block address) take only
-  0-9 and A-F (a-f) when typed or pasted
-* System Info is built once and redrawn only where values change
-  (they are drawn on canvases): the open window no longer changes the
-  page text twice a second
-
-
-        version 0.62.0                  18 oct 2026
-
-+ REST API: fdd= with the drive (fdd=a:trd/x.trd, fdd=b:trd/y.trd; no
-  drive: A:), hdd0= / hdd1= for HDD 0 / 1 (hdd= is HDD 0). Old a=, b=
-  and hdd= links work as before. The link window has the drive choice
-  for fdd and hdd
-
-
-        version 0.63.0                  18 oct 2026
-
-+ Save / Memory block / RAM with one bank chosen: offset and length
-  inside the bank (cut to its end while typed; the whole bank at first),
-  the file name gets the range (ram_05_2000-2FFF.bin)
-
-
-        version 0.63.1                  18 oct 2026
-
-! REST API: fdd=a:/path lost the leading "/" (from the site root) and
-  the disk was looked for next to the page (404); now it is taken as is,
-  like a=/path
-* Esc goes to the ZX keyboard as EDIT (Caps Shift+1, "back" in most
-  programs) when no window has the focus and the mouse is not captured;
-  ATM XT keyboard and Quorum as before, a Custom ROM ini may set its own
-
-
-        version 0.64.0                  18 oct 2026
-
-+ Autorun of a disk without its own boot (autorun=1, Start TRDOS boot.b,
-  server list): no boot of the emulator is added, the first BASIC
-  program of the disk starts (RUN "name" typed in TR-DOS), the disk
-  stays as it is. A disk with its own boot, or with no BASIC program,
-  starts as before
-* Autorun on a Custom ROM of Pentagon / KAY with 128 ROM and TR-DOS in
-  its set: through its 128 menu (128K mode), as model=pentagon / kay
-* Tab is EXTEND MODE (Caps Shift+Symbol Shift), as in Fuse and USP;
-  BREAK stays on Shift+Space. A Custom ROM ini may set its own
-
-
-        version 0.65.0                  18 oct 2026
-
-+ Autorun on Profi with a Profi CP/M disk (.PRO) in A: (autorun=1,
-  Start TRDOS boot.b): main menu "CP/M" and "from FDD" are chosen
-! ATM mode stayed off after an autorun when another start (Server list,
-  Load window) or a model change came before the first one had ended;
-  it was then kept off for the session
-! run=: the catalogue put back after the start could go into another
-  disk inserted into the same drive in the meantime
-
-
-        version 0.66.0                  18 oct 2026
-
-+ Load window, local file: Use boot.b (default; with "press in boot") -
-  disk in A: starts its boot, a disk without boot gets the emulator's
-  boot as before 0.64.0; or Autostart TRDOS - its boot, or its first
-  BASIC program (nothing written to the disk). One of them or none.
-  REST API autorun=1 and Server list as in 0.64.0
-
-
-        version 0.66.1                  18 oct 2026
-
-* Use boot.b: "press in boot" keys go only to the menu of the
-  emulator's boot; a boot of the disk's own gets no keys
-
-
-        version 0.67.0                  18 oct 2026
-
-+ REST API: autorun=boot - as Load / Use boot.b (its boot; a disk
-  without boot gets the emulator's boot, press= keys for its menu).
-  run= with no name works as autorun=1. Link window: start "use boot.b"
-  and "run TR-DOS file" (no name: its boot or its first BASIC program)
-* press= keys go only to the menu of the emulator's boot, also with
-  autorun=1 on a disk with no BASIC program to start
-
-
-        version 0.67.1                  18 oct 2026
-
-* REST API link window, run TR-DOS file: the boot the emulator added on
-  load is not in the list (a link brings the disk without it)
-
-
-        version 0.68.0                  19 oct 2026
-
-+ Tools / deBUGa: the second debugger, after Xpeccy (stage 1). Floating
-  window (moved, resized): registers (changed ones lit, click to edit,
-  flags toggle), disassembly with labels, breakpoints (left edge /
-  Space), jump target and taken / not taken at PC, Enter follows a
-  jump, Backspace back; memory dump (type hex), stack (click: go to).
-  Run / Stop F9, Step F7, Over F8, To cursor F4, Out F6. Opening it
-  stops the machine, closing runs on. Same breakpoints and stop as the
-  Unreal debugger; one of the two at a time
-
-
-        version 0.69.0                  19 oct 2026
-
-+ deBUGa, stage 2: its own breakpoints (Breakpoints tab under the
-  listing): Z80 address or range, RAM / ROM physical page:offset (on
-  ATM / EVO paging), execution / read / write; IN / OUT port with mask;
-  INT. Each one stops or only counts its hits; on / off, delete, save
-  and load (.xbrk). The stop line names the breakpoint. Listing: left
-  edge / Space sets ours, a breakpoint of the Unreal debugger is shown
-  as a ring. Active only while deBUGa is open
-* deBUGa: the borders between listing / registers and upper / lower
-  part are dragged to change their sizes (kept)
-
-
-        version 0.69.1                  19 oct 2026
-
-! deBUGa: bytes of the memory dump could not be chosen and typed over
-  after the listing had the keys
-* deBUGa: memory dump from 0000 to FFFF with its own scroll bar (no wrap
-  round), Home / End; the part the keys go to (listing, registers and
-  stack, memory, breakpoints) is chosen by a click in it or by Tab and
-  lit at its left edge
-
-
-        version 0.70.0                  19 oct 2026
-
-+ deBUGa: marks of the listing lines: code, bytes (db), words (dw),
-  addresses (dw label), text (db "..."); Shift+arrows select lines,
-  Mark menu or right click / long press on a line
-+ deBUGa: typing on a listing line assembles in place: Z80 commands,
-  db 1,2,"text", dw #4000,LABEL (numbers #10 $10 0x10 10h %101 or
-  decimal)
-+ deBUGa: labels (:) and comments (;) bound to the RAM / ROM page, so
-  they follow the memory mapping; kept per model in the browser
-+ deBUGa: project file .xmap (marks, labels, comments), load / save of
-  labels lists (PP:AAAA name, AAAA name, name equ #AAAA)
-
-
-        version 0.71.0                  19 oct 2026
-
-+ Options / System: Debugger - which one Shift+F1 opens (Unreal or
-  deBUGa); the Tools menu shows the key at it
-+ deBUGa: help window (? in the title, F1)
-
-
-        version 0.72.0                  19 oct 2026
-
-+ deBUGa: the memory dump shows the Z80 64K or one RAM / ROM page
-  (16K; the pages mapped now are marked with their window), edited in
-  place
-+ deBUGa: Screen tab - ZX screen of a RAM page (the one shown now or
-  any), pixel / attribute address under the pointer, a click shows the
-  byte in the dump
-
-
-        version 0.72.1                  19 oct 2026
-
-! deBUGa: a click on a listing line, a byte of the memory dump, a
-  register or a stack word could get lost (the stop repaints them):
-  they act at the press now; registers are edited in place again
-* deBUGa: project name in the bar (default: the disk in A: or the
-  model); Save .xmap uses it, Load puts the name of the file there
-
-
-        version 0.73.0                  19 oct 2026
-
-+ deBUGa: watches under the stack (address, label or register; 4 bytes
-  there, a press shows the dump from it)
-+ deBUGa: Devices tab - AY registers and channels (both chips with
-  TurboSound), WD1793 registers and state, tape blocks (a press plays
-  from the block)
-+ deBUGa: Fill / Save / Load of a memory block in the dump (Z80 64K or
-  a page); Save as binary or Hobeta file
-
-
-        version 0.74.0                  19 oct 2026
-
-+ new model ZX-Evolution TS-Conf (stage 1): TS-BIOS, 4096 KB, memory
-  pages and #7FFD modes, the #nnAF registers, FMAPS, INT from frame /
-  line / DMA with their own vectors, DMA (RAM, fill, blit, SPI, CRAM,
-  SFILE), vDOS; video ZX, 16c, 256c and text (720 pixels), 256x192 to
-  360x288, scrolling, CRAM palette; the CPU clock (3.5 / 7 / 14 MHz)
-  is set by the program; REST model=tsconf. ROM: rom/zxevo.zip (or
-  .rom) with zxevo.rom of the TS-Conf firmware
-
-
-        version 0.74.1                  19 oct 2026
-
-* Custom ROM: machine ZX-Evolution TS-Conf (whole ROM of 64 / 512 KB)
-
-
-        version 0.74.2                  19 oct 2026
-
-! Custom ROM: the TS-Conf flash image was taken for a ZX-Evolution
-  BaseConf ROM (it has an ATM BIOS set too); now TS-BIOS selects the
-  machine ZX-Evolution TS-Conf
-
-
-        version 0.74.3                  19 oct 2026
-
-@ ZX-Evolution TS-Conf takes its ROM from rom/zxevo.zip (zxevo.rom),
-  not tsconf.rom
-
-
-        version 0.74.4                  19 oct 2026
-
-+ ZX-Evolution TS-Conf: right Shift+F12 resets into TS-BIOS Setup
-  (Symbol Shift held), left Shift+F12 into the CS boot (Caps Shift)
-! ZX-Evolution TS-Conf: Shift+F12 (reset to 48 BASIC) locked #7FFD and
-  left the machine in a broken state
-
-
-        version 0.74.5                  19 oct 2026
-
-! ZX-Evolution TS-Conf: Shift+F12 seemed to hang: left Shift (Caps
-  Shift) started the CS boot from SD, a held F12 reset again and again;
-  now either Shift+F12 opens TS-BIOS Setup
-* ZX-Evolution TS-Conf: CPU clock label and System Info show the clock
-  the program set (3.5 / 7 / 14 MHz)
-
-
-        version 0.74.6                  19 oct 2026
-
-! the emulation core was ~20-30% slower than in 0.53: the ZX-Evolution
-  checks and the Performance window sampling ran after every Z80
-  instruction on all machines; now they cost nothing when not needed
-  (TS-Conf: INT and line events the same way)
-
-
-        version 0.74.7                  19 oct 2026
-
-* max speed: as many frames per screen refresh as fit in its time (was
-  20): a machine heavier per frame (ATM, Evo) lost every other refresh
-  and showed about half the speed
-
-
-        version 0.74.8                  19 oct 2026
-
-! max speed of 0.74.7 was slower on screens over 60 Hz: the time for
-  the picture was taken from every short refresh; now a tick of max
-  speed takes whole refreshes (~33 ms: emulation, then one picture)
-
-
-        version 0.74.9                  19 oct 2026
-
-! ATM Turbo 2+ / ZX-Evolution: with TR-DOS kept on by the ATM ports
-  (~CPM = 0, e.g. the BIOS menu) every instruction in RAM rebuilt the
-  memory map (~20% of the time); now it is skipped when nothing changes
-
-
-        version 0.75.0                  19 oct 2026
-
-+ ZX-Evolution TS-Conf: SPG programs (TS-Labs format, blocks plain or
-  packed with MegaLZ / Hrust) start from Load, File Commander (any
-  disk, SD or HDD) and REST snap=; on another machine the model
-  switches to TS-Conf first
-
-
-        version 0.76.0                  20 oct 2026
-
-+ ZX-Evolution TS-Conf: tiles and sprites (TSU) - two tile layers 64x64
-  with scrolling, palettes and flips, up to 85 sprites 8..64 pixels in
-  three layers (LEAP), drawn per line over the graphics and the border
-  in the pixel area; SFILE / tile map / scroll changes take effect at
-  the line where they are made
-
-
-        version 0.76.1                  20 oct 2026
-
-! ZX-Evolution TS-Conf: the screen was always 360x288 (bigger than the
-  other machines); now it follows Options / Video border: none 256x192,
-  small 320x240, full 360x288
-
-
-        version 0.77.0                  20 oct 2026
-
-+ deBUGa, Devices: TS-Conf block - video and system registers, pages,
-  INT, DMA, the palette (CRAM) and the list of active sprites
-+ deBUGa, Screen: "TS frame" - the TS-Conf picture as the video drew it
-+ Graf Search: 16C and 256C modes (TS-Conf bitmaps, colors from CRAM)
-
-
-        version 0.78.0                  20 oct 2026
-
-! ZX-Evolution TS-Conf: tile and sprite graphics page is added to the
-  bitmap line instead of being cut to a 128K boundary (Zuma: the frog,
-  the level stones and the menu showed garbage)
-* ZX-Evolution TS-Conf: DMA with alignment wraps the address inside
-  its 256 / 512 bytes during a burst
-+ deBUGa, Screen: "As shown" - the last picture drawn, in any mode
-  (ATM CP/M text and EGA, TS-Conf, ZX with the border)
-* deBUGa, Screen: the picture box keeps its size when the source
-  changes (the window no longer twitches); "ZX Screen (05)"
-
-
-        version 0.79.0                  20 oct 2026
-
-+ deBUGa, Screen: CPM - the ATM screen drawn from the RAM now in the
-  current video mode, video page 5 or 7 (follows the code step by step)
-* deBUGa, Screen: the picture is 1:1 at most and smaller when the pane
-  is smaller; it no longer grows and twitches under the pointer
-
-
-        version 0.79.1                  20 oct 2026
-
-* deBUGa, Screen: ZXScr of the other screen page too (05 / 07)
-* deBUGa: the chosen tab under the code (Memory, Screen...) - dark text
-  on orange, the white was hard to read
-
-
-        version 0.79.2                  20 oct 2026
-
-* deBUGa, Screen, CPM: a click opens the byte under the point in the
-  dump (Shift: its attribute) - EGA, hires 640x200 and text 80x25; the
-  hint shows the mode, the position and both addresses
-
-
-        version 0.79.4                  20 oct 2026
-
-! ZX Evo TS-Conf: the HDD hung on the interface chosen in Options / Disk
-  (ATM by default) and TS-Conf software did not see it; now the NEMO IDE
-  is built in, as on ZX Evo BaseConf
-
-
-        version 0.80.0                  20 oct 2026
-
-- model Turbo 2+ xBIOS 1.32XT: TASiS and iS-DOS Chic start on Turbo 2+
-  xBIOS 1.36 now; old links with model=xbiosxt open xBIOS 1.36
-+ server list: SPG tag (a TS-Conf program, starts ZX Evo TS-Conf)
-* deBUGa, Screen: the list is a bit wider (the names fit), with a thin
-  scroll bar, and 40% shorter
-
-
-        version 0.81.0                  20 oct 2026
-
-+ Options / System / Update: SD card images of NedoOS (BaseConf) and
-  Wild Commander (TS-Conf) from GitHub or a ZIP (Make Image moved here
-  from Models & OS)
-+ model Wild Commander (TS-Conf): sd/wc.zip on the SD card, TS-BIOS
-  boots boot.$C (Caps Shift + Reset); REST model=wc
-+ ZX Evo TS-Conf: a ZIP with an SD card image, or with boot.$C and its
-  folders (Wild Commander), goes onto the SD card and boots
-! ZX Evo TS-Conf: DMA takes its time (DMAStatus busy, the DMA INT at the
-  end); with instant DMA an INT came into the middle of the DMA setup
-  (FishBone Crew 20yo hung)
-* ZX Evo TS-Conf: Status reports a VDAC (15-bit colors, as drawn)
-* ZX Evo TS-Conf: the screen never cuts the program's raster: 320x200,
-  320x240 and 360x288 are shown whole whatever the border setting
-
-
-        version 0.82.0                  20 oct 2026
-
-@ ZX Evo TS-Conf starts with Wild Commander: sd/wc.zip goes onto the SD
-  card (when no card is in) and TS-BIOS "Reset to" is set to boot.$C,
-  so every Reset boots it (TR-DOS: Shift+F12, Setup); the model
-  Wild Commander (TS-Conf) is gone, model=wc starts ZX Evo TS-Conf
-* Options / System / Update: the build shown is set when an image is
-  made too
-* ZX Evo TS-Conf: only the 360x288 raster ignores the border setting;
-  320x200 and 320x240 follow it again
-
-
-        version 0.83.0                  20 oct 2026
-
-+ ZX Evo TS-Conf: PC keys mode (XT icon, Ctrl+Alt+Z): emulator hotkeys
-  off, F1-F12 and the other PC keys go to the machine (Wild Commander
-  F1-F10); ZX keys work as before
-
-
-        version 0.83.1                  20 oct 2026
-
-! ZX Evo TS-Conf: the first start could stay in TS-BIOS (its NVRAM was
-  set only when the SD card came in); now it is set before TS-BIOS
-  starts, a card that comes later gets one Reset; no card on the server:
-  Reset to ROM (TR-DOS) as before
-* ZX Evo TS-Conf: Options / Video / Border is off, the picture follows
-  the program's raster: 320x240 (256x192 with a border, 320x200,
-  320x240) or 360x288
-
-
-        version 0.83.2                  20 oct 2026
-
-@ ZX Evo TS-Conf starts in the TS-BIOS Setup with its NVRAM ready
-  ("Reset to: BD boot.$c"); F12 boots Wild Commander from the SD card.
-  A link that loads something (a=, snap=, cpm=...) starts as before.
-  The extra Reset after the card download (0.83.1) is gone
-* ATM mode / PC keys mode: Alt+F1 goes to the machine too (Wild
-  Commander: the drive of the left panel); Options: the toolbar button
-
-
-        version 0.84.0                  20 oct 2026
-
-+ File Commander, viewer: UTF-8 text
-+ touch mouse: a double tap clicks the left button again
-+ REST API: speed= for tsconf: 3.5, 7 or 14 (MHz, or 1x / 2x / 4x), the
-  CPU Speed of TS-BIOS
-
-
-        version 0.84.2                  20 oct 2026
-
-* REST API window: for tsconf speed offers 3.5 / 7 / 14 MHz (TS-BIOS CPU
-  Speed); speed= of tsconf takes only these (1x / 2x / 4x dropped)
-
-
-        version 0.84.3                  20 oct 2026
-
-! File Commander, viewer: ZX Spectrum, Latin-1 and UTF-8 showed
-  "undefined" instead of the characters (since 0.84.0)
-
-
-        version 0.85.0                  21 oct 2026
-
-+ ZX Evo TS-Conf: a TR-DOS disk put into a drive (Load, File
-  Commander) is copied as .trd into the root of the SD card too, so
-  Wild Commander sees it (Enter: its mounter, vDOS); Wild Commander on
-  the screen re-reads its panels. Another SD card, or one with
-  changes, is replaced with wc.zip after a question
-! ZX Evo TS-Conf: disk autostart (Load, File Commander, server list)
-  and tape autostart went to Wild Commander, not to TR-DOS / Tape
-  Loader: TS-BIOS "Reset to" is now set for that reset only
-
-
-        version 0.85.1                  21 oct 2026
-
-* ZX Evo TS-Conf: the SD card with a disk copied onto it for Wild
-  Commander is marked as changed (*); such copies alone still count as
-  wc.zip without changes (no question for the next disk)
-
-
-        version 0.86.0                  21 oct 2026
-
-+ ZX Evo TS-Conf: Wild Commander programs (.wmf, also in a ZIP) from
-  Load and File Commander go into the root of the SD card, as disks
-  do (wc.zip; another card is replaced after a question); Enter on it
-  in Wild Commander. On another machine TS-Conf starts first
-
-
-        version 0.87.0                  21 oct 2026
-
-+ ZX Evo TS-Conf: VDAC2 (FT812 video controller on the SPI of the
-  Z-Controller, port #77 bit 2): its memory and registers, its own
-  raster (REG_HSIZE x REG_VSIZE, up to 1280x1024, REG_ROTATE) shown
-  while VConfig bit 2 is on; frames by its clock and registers; its
-  INT as the line INT; status reports VDAC2
-+ FT812 display list: points, lines, line strips, edge strips,
-  rectangles, bitmaps (all formats but the ROM-font text ones,
-  palettes, nearest / bilinear, wrap, transform matrix), blending,
-  alpha test, stencil, scissor, colour mask, context stack, call /
-  jump / macro, vertex format and translation
-+ FT812 co-processor: CMD_DLSTART, SWAP, MEMWRITE, MEMSET, MEMZERO,
-  MEMCPY, MEMCRC, APPEND, REGREAD, INFLATE (zlib), LOADIMAGE (JPEG,
-  PNG, also from the media FIFO), GETPTR, GETPROPS, SETBITMAP,
-  LOADIDENTITY, TRANSLATE, SCALE, ROTATE, SETMATRIX, GETMATRIX,
-  REG_CMDB_WRITE; ROM fonts and widgets (TEXT, BUTTON, GRADIENT...)
-  are skipped for now
-
-
-        version 0.87.1                  21 oct 2026
-
-! SD card (Z-Controller): an SD v2 card now (CMD8 answered; it was a
-  v1 one), SDHC with block addresses when the program asks for it
-  (ACMD41 HCS), SDSC with byte addresses otherwise. Programs that
-  only know SDHC cards read the card right: Zuma for VDAC2 loaded
-  nothing and showed a black screen after its title
-
-
-        version 0.88.0                  21 oct 2026
-
-+ on-screen joystick: type Arrow keys (the cursor keys, FIRE = Space)
-+ Options / Input / Joystick: the type, the FIRE key of each type
-  (Kempston: its fire bit, fixed) and up to 3 extra buttons next to
-  FIRE, each on / off with its key; the joystick panel has a button
-  (BUTTONS) that opens it
-* deBUGa: the on-screen XT keyboard types into deBUGa (memory, listing,
-  its fields) after a touch in its window; the project name field
-  puts the caret at the end (the text was selected); help: Xpeccy
-  based, the Unreal engine loop core
-* Changes window: each entry wraps by words at the window's width
-
-
-        version 0.88.2                  21 oct 2026
-
-! ZX Evo TS-Conf VDAC2: the FT812 picture is drawn several times
-  faster (bitmaps in fixed point, per pixel format; an unchanged
-  picture is not copied again); Zuma ran at 50 fps with the host at
-  99% even at max speed
-
-
-        version 0.88.3                  21 oct 2026
-
-* ZX Evo TS-Conf VDAC2: CMD_INFLATE goes on from where it stopped as
-  each new chunk of the stream comes (it decoded the whole stream
-  again each time); the length of a JPEG for CMD_LOADIMAGE likewise
-* ZX Evo TS-Conf VDAC2: the FT812 picture is not drawn again when the
-  same display list is swapped in, nor when the program writes the
-  parts of RAM_G the picture does not use (loading the next pictures);
-  Zuma loads twice as fast at max speed, its menu runs faster
+        version 0.1.0                   6 oct 2026
+
++ first version of web port of BK Emulator for Windows 3.7 (WebAssembly)
++ emulation core (devemu) compiled to wasm32-wasi: K1801VM1 CPU, all board models,
+  screen, sound devices, tape, floppy controllers, HDD, state files (.msf);
+  MFC replaced by small compatibility layer (CString, CFile, CArray)
++ BK-0010-01 starts on page: Monitor + Vilnius Basic 1986 (colour screen)
++ bk.ini of original emulator used as is; ROM images loaded from rom/
++ Stop / Start, Reset, zoom (Fit, 1x .. 3x, 4:3 picture), full screen, About
++ page checks for newer build (home-screen apps on iPhone / iPad)
+
+        version 0.2.0                   6 oct 2026
+
++ BK keyboard from PC keyboard (port of original key handling: ЛАТ/РУС,
+  ЗАГЛ/СТР, АР2, СУ, СТОП, ПОВТ, ШАГ ...); Mac / iPad: Option = АР2 / СУ
++ Options window (System, Video, Disk, Input, Sound, About):
+  model (all 13 configurations of original), CPU clock 0.25x .. 10x,
+  window size, colour / black & white monitor, keyboard autorepeat
++ Help window (?): buttons and PC -> BK key table
++ windows move by title bar (double click: back in place)
+@ window size 1.5x by default and as upper limit: smaller window fits
+@ About moved to Options (i)
+- full screen button
+
+        version 0.3.0                   6 oct 2026
+
++ sound: speaker, AY-3-8910, Covox mixed by core, played through Web Audio
+  (AudioWorklet); emulation clocked by sound
++ sound on / off button; Options / Sound: volume, devices, filters, Covox stereo,
+  iOS: mix with other apps; "Tap for sound" while browser keeps sound off
++ About: all models with their ROM files
+* ROM files on server may be named in lower case, as in bk.ini or upper case
+
+        version 0.4.0                   6 oct 2026
+
++ Tools menu: File Commander (from Unreal Speccy web port): two panels,
+  zip sets of BK tape files (img/games.zip from server, zips from host),
+  RAM panel; folders, select, copy, delete, Put / Get Files, drag & drop
++ viewer: text (BK KOI-8, KOI8-R, CP866, 1251), hex, octal, PDP-11 disassembler
++ Run (Enter / double click): file starts in current model (BK-0010 models)
+  through monitor's tape routine (EMT 36): autostart files start by themselves
++ tape emulation (port of EmulateTapeOperation): overlays and data files
+  come from program's set (its folder first); monitor M command too;
+  files saved to tape go to RAM
++ .bin dropped on screen starts, .zip opens in File Commander
+* EMT 36: header cells filled before data, as monitor does
+  (overlays loaded over own loader were spoiled)
+
+        version 0.5.0                   6 oct 2026
+
++ Options / Video: screen filters as in Unreal Speccy web port
+  (Off, Smooth, Scanlines, CRT)
++ Options / Video: monitor Colour, Black & white or Green (phosphor)
+@ sound volume 5% by default
+
+        version 0.6.0                   6 oct 2026
+
++ Max speed button
++ screen is window like others (title: model, clock, fps)
+@ volume: speaker (beeper) has own level, 5% by default; AY and Covox
+  share general one (60%); levels applied in core
+@ monitor: green phosphor by default
+@ File Commander: Run only for .BIN (overlays and data are loaded by programs)
+
+        version 0.7.0                   6 oct 2026
+
++ on-screen keyboards (button at bottom right of screen):
+  BK — BK-0010-01 keyboard as on real machine (НР, АР2, СУ sticky;
+  РУС/ЛАТ, ЗАГЛ/СТР lit; Ъ in ЛАТ = }, НР 0 = {),
+  XT — PC keys, JOY — joystick on cursor keys, fire = space
+  (8/4 directions, autofire, swap, size, overlay on screen, opacity)
++ Options / Input: on-screen modifiers (held, sticky for one key, locked)
++ BK window is active or not like other windows (lighter title bar):
+  PC keys go to BK only while it is active
+@ monochrome: grey levels by default
+@ max speed: fps shows frames reached
+@ keyboard modes (РУС, СТР, АР2, СУ) in title bar next to model
+* ЗАГЛ / СТР follow Caps Lock only when its state changes
+  (on-screen keys set them too)
+
+        version 0.7.1                   7 oct 2026
+
+@ title bar: CPU clock stays at max speed (no "max speed" text, fps shows it);
+  clock step changes only CPU speed, fps stays 50
+
+        version 0.8.0                   7 oct 2026
+
++ File Commander: first button on toolbar, F1 opens / closes it (Tools and Help too)
++ File Commander: help (? in title)
+@ Help, File Commander, Options and changes.txt: texts shortened
+
+        version 0.9.0                   8 oct 2026
+
++ oscilloscope at top left of screen while sound plays (Options / Sound)
++ About: models with their description (as in emulator documentation)
+@ models: 12 configurations of documentation (BK-0011 + SMK-512 removed)
+@ window title bars: active #1f252d, inactive #171b21, buttons share bar background
+@ File Commander: no Run and Re-read buttons (Enter, F2 stay; help)
+@ window size note moved from Options to Help
+* iOS / iPad: no selection, callout or context menu on screen, keyboards, joystick
+
+        version 0.10.0                  8 oct 2026
+
++ state files .msf (BK Emulator 3.7, version 1.2): Enter in File Commander or drop
+  on screen loads state in its model (ROMs fetched first); Tools → Save state puts
+  whole machine to RAM; viewer shows saved screen picture. Page options stay
++ keyboard scripts .bkscript (port of ScriptRunner): line end = ВВОД, | waits 5 s,
+  Russian letters switch РУС / ЛАТ; Enter in File Commander or drop on screen
++ joystick on port 177714 (as original): on-screen JOY → PORT, NumPad with Num Lock
+  off (8 4 6 2 directions, 7 9 1 3 5 buttons; Options → Input)
+@ model BK-0011 + SMK-512 back
+
+        version 0.11.0                  8 oct 2026
+
++ disk images: floppy .img / .bkd / .dsk (KNGMD, A16M, SMK-512), HDD .hdi (SMK-512, master
+  / slave). Enter in File Commander or drop on screen mounts image, drive is asked;
+  A: restarts machine and boots (BK-0010 + KNGMD: S160000 typed); model without
+  controller is switched (choice of controller)
++ Options / Disk: drives A: .. D:, HDD master / slave — Open from host, Get (image with
+  changes made by BK), Eject; fast floppy exchange on / off
+* core compiled without strict aliasing: floppy driver table (EmulateFDD) was read
+  wrong, disks did not boot
+* script typing: each character is a key held 2 frames and let go
+
+        version 0.12.0                  8 oct 2026
+
++ tapes .tap (BK Emulator format) and .wav: played as a real cassette, BK reads them
+  through port 177716 (BK-0011 too; EMT 36 emulation is off meanwhile). Enter in File
+  Commander or drop on screen shows the tape's file (name, address, length, checksum);
+  Load (BK-0010, + 32K, + KNGMD): reset, MO / M and the file's name are typed, tape
+  starts; Play: tape starts at once. Title bar: tape progress, click stops it
+
+        version 0.13.0                  8 oct 2026
+
++ File Commander: files inside floppy images — ANDOS, FAT12 (DX-DOS ...): view, run,
+  copy out, copy in (BK address of .bin kept in directory entry), delete, ANDOS folders;
+  MKDOS, RT-11: view, run, copy out. Enter on image → Files opens it in other panel;
+  the image is changed in place (Get Files saves it)
+
+        version 0.14.0                  8 oct 2026
+
++ Tools → Debugger: disassembler around PC, registers and PSW flags, system registers,
+  memory dump; Run / Stop (F5), Step (F11), Step over (F10), Step out (Shift+F11), Run to
+  cursor (F4), breakpoints (F9, double click), go to address (G); registers and memory
+  words changed by double click. A breakpoint stop opens the window
++ Tools → Memory map: 16 banks of 4K of the address space and where they come from;
+  pages of the physical memory as pictures
++ Tools → Graph Search (from Unreal Speccy web port): memory as pictures, BK 1 bit and
+  2 bit (colour) modes, CPU 64K or physical memory, width, drag, wheel, live view
+
+        version 0.14.1                  8 oct 2026
+
+@ oscilloscope moved to BK window title bar (between keyboard / tape labels and clock;
+  narrows when bar is short)
+@ toolbar buttons above screen keep active window and its focus (File Commander keeps
+  keys while BK is stopped, sped up, reset ...)
+* Debugger: after Run / Stop buttons F5, F10, F11 ... did not work (focus was lost)
+@ page title: Web BK-0010
+
+        version 0.15.0                  11 oct 2026
+
+@ BK window stands where BK keyboard has room under it: opening / closing on-screen
+  keyboards does not move it
++ File Commander, viewer, Debugger, Graph Search: grip at bottom right corner changes
+  window size (works on iPad / iPhone too), size kept; double click: default size
+@ Graph Search: width cut to window on opening, orange width edge is in view
+* iOS / iPad: finger drag does not pull page (lists, help, sliders still scroll)
+
+        version 0.16.0                  12 oct 2026
+
++ File Commander: set bkscript (img/bkscript.zip on server: basic, russian, monitor_load);
+  Enter / double click asks Run, script is typed into BK. UTF-8 scripts converted to 1251
+@ File Commander: server sets named games, bkscript (without .zip)
++ System button on toolbar: Options on System tab (model, clock)
+@ Apply of model closes Options
++ touch screens: windows are moved by strip along left edge too
+@ Graph Search, Memory map, Options: Color (not Colour)
+
+        version 0.17.0                  12 oct 2026
+
++ File Commander: set disks (img/disks.zip on server): ANDOS, DX-DOS, AltPro, RT-11
+  floppies, HDD test.hdi
+@ Enter on disk image (or drop): Boot — machine restarts from it in model for image
+  (ANDOS / MKDOS: current with floppy controller or BK-0010-01 + KNGMD; DX-DOS: KNGMD;
+  .hdi: SMK-512, BK-0011M + SMK-512 by default); Files; A: .. D: — drive without restart.
+  Disks without system file (*.SYS) and RT-11: no Boot
+@ HDD image: Boot (master; floppy taken out of A:) or Slave
+
+        version 0.18.0                  13 oct 2026
+
++ drop-down lists drawn by page (from Unreal Speccy web port, usel.js): same on all
+  browsers and iPad / iPhone, never past screen or window edge
++ toolbar Load: server list from img/list.json (groups files, disks, scripts, states:
+  .zip — set in File Commander, other files open as dropped), From computer
++ toolbar Save: state (.msf); changed disk images (.zip); state + mounted images (.zip)
++ File Commander: mounted drives in panel list (A: .. D:, HDD) — files as BK has them
+  (read only); ⏏ at right of panel ejects
++ on-screen XT and BK keyboards control File Commander, viewer, Debugger, Graph Search
+  while active (arrows, Tab, Enter, Esc, letters); keyboard does not take activation
+@ XT keyboard: row F1 .. F12 (go to page: File Commander, Debugger); Ins .. Num keys
+  in second row
+@ File Commander: image kind not in list (shown next to it); long names end with …
+
+        version 0.19.0                  13 oct 2026
+
++ File Commander: boot button in panel of mounted system disk (left of ⏏): machine
+  restarts from it, image goes to A: (HDD: master)
+@ disk image (Enter, drop, Load): Boot or A: .. D: (no Files); mounted drive is shown in
+  panel at once; File Commander closes only on Boot
+@ File Commander dialogs: ← → (Tab) choose answer, Enter takes it (on-screen keys too)
+* File Commander: pick in panel list moves focus to that panel
+
+        version 0.19.1                  13 oct 2026
+
+@ About: version line "v ... by ae485 (e-mail)"; blocks Hardware, Input, Files, Tools,
+  Not yet instead of This version
+
+        version 0.19.2                  13 oct 2026
+
+@ About: Hardware and Input shortened; Joystick, HDD, Joystick panel rows
+
+        version 0.19.3                  13 oct 2026
+
+@ About: Screen and Keyboard rows reworded
+
+        version 0.19.4                  22 oct 2026
+
+@ questions (disk image, tape, copy, delete ...): centred on BK window, page dimmed

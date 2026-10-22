@@ -1,0 +1,56 @@
+This repository contains files under different terms.
+
+1. The page — MIT License
+
+   Applies to index.html and the JavaScript files (usel.js, app.js, fcmd.js,
+   vkbd.js, diskfs.js, dbg.js, unzip.js, wasi_fs.js), .htaccess, web.config.
+
+   Copyright (c) 2026 ae485
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+2. bk.wasm — BK Emulator for Windows, compiled form
+
+   bk.wasm is the emulation core of BK Emulator for Windows 3.7 with its web
+   layer, compiled to WebAssembly. Its source code is not part of this
+   repository.
+
+   Copyright (c) 2002-2004 Yuriy Kalmykov; gid and contributors.
+   From the headers of the original source files:
+
+     This code may be used in compiled form in any way you desire.
+     This file or it's parts can't be redistributed without the authors
+     written consent, but can be modified for your private needs.
+     Providing that this notice and the authors name and all copyright
+     notices remains intact.
+
+     This file is provided "as is" with no expressed or implied warranty.
+     The author accepts no liability for any damage or loss of business that
+     this product may cause.
+
+   bk.wasm also contains:
+   - BkSound and FDDController from BKBTL, GNU Lesser General Public License
+     version 3 or later (https://www.gnu.org/licenses/lgpl-3.0.html);
+     source: https://github.com/nzeemin/bkbtl
+   - emu2149, YM2149 / AY-3-8910 emulator by Mitsutaka Okazaki.
+
+3. bk.ini — settings file of the original BK Emulator for Windows distribution.
+
+ROM images of the BK computers and their controllers are not part of this
+repository.
