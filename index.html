@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261021165228">
+<meta name="build" content="20261022144423">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -771,8 +771,10 @@ select.usel-src { display: none !important; }
 #fvgo { width: 7ch; height: 24px; padding: 0 4px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; margin-left: -4px; }
 #fvorg { width: 7ch; height: 24px; padding: 0 4px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; margin-left: -4px; }
 #fvorg[hidden], #fvorgl[hidden], #fvgo[hidden], #fvgol[hidden] { display: none; }
-#fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre-wrap; word-break: break-all; tab-size: 8; }
-#fvbody.hex { white-space: pre; word-break: normal; }
+#fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre; tab-size: 8; }
+#fvbody.wrap:not(.hex), #fetext.wrap { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; } /* by words; a word longer than the line: where it must */
+.fvbar .fvwrap { height: 24px; padding: 0 8px; font-size: 12px; }
+.fvbar .fvwrap[hidden] { display: none; }
 #dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
 #dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
 #dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
@@ -1346,7 +1348,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
-      <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
+      <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
       <tr><td>Archives</td><td>ZIP: pick file inside</td></tr>
       <tr><td>HDD</td><td>raw images (.hdd, .img …): Options → HDD</td></tr>
       <tr><td>Save</td><td>disks TRD, SCL, FDI, UDI, TD0, ISD, PRO; HDD + .chs; SD as VHD; SNA; SCR; PNG; memory block BIN; Custom ROM (ROM + json)</td></tr>
@@ -1378,8 +1380,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM): machine is reset; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:</dd>
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
-      <dt>F3</dt><dd>view (text / hex / Z80 code)</dd>
-      <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
+      <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
+      <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
       <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta)</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT)</dd>
       <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
@@ -1636,6 +1638,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <select id="fvenc" title="Encoding (F8 / E)"></select>
     <label id="fvorgl" for="fvorg">Org #</label><input id="fvorg" data-hex="" maxlength="4" spellcheck="false" autocomplete="off" title="Load address (hex) for Hex and Disassembler">
     <label id="fvgol" for="fvgo">Go #</label><input id="fvgo" data-hex="" maxlength="5" spellcheck="false" autocomplete="off" title="Jump to an address (hex), Enter. G in the viewer puts the cursor here">
+    <button id="fvwrap" class="fvwrap" title="Wrap long lines by words at the window's width (W)">Wrap</button>
     <span id="fvinfo"></span>
   </div>
   <pre id="fvbody" tabindex="0"></pre>
@@ -1647,6 +1650,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
     <select id="feenc" title="Encoding (F8)"></select>
     <button id="fesave" title="Write the file back to its disk (F2, Ctrl+S)">Save <kbd>F2</kbd></button>
     <button id="fesaveas" title="Save under a new name, on this disk or the other panel's (Shift+F2)">Save as…</button>
+    <button id="fewrap" class="fvwrap" title="Wrap long lines by words at the window's width (Alt+W); the file keeps its lines">Wrap</button>
     <span id="feinfo"></span>
   </div>
   <textarea id="fetext" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off"></textarea>
@@ -1657,15 +1661,15 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261021165228"></script>
-<script src="js/scancodes.js?v=20261021165228"></script>
-<script src="js/unzip.js?v=20261021165228"></script>
-<script src="js/vkbd.js?v=20261021165228"></script>
-<script src="js/asyncify.js?v=20261021165228"></script>
-<script src="js/gfx.js?v=20261021165228"></script>
-<script src="js/usel.js?v=20261021165228"></script>
-<script src="js/fcmd.js?v=20261021165228"></script>
-<script src="js/dbga.js?v=20261021165228"></script>
-<script src="js/app.js?v=20261021165228"></script>
+<script src="js/wasi_fs.js?v=20261022144423"></script>
+<script src="js/scancodes.js?v=20261022144423"></script>
+<script src="js/unzip.js?v=20261022144423"></script>
+<script src="js/vkbd.js?v=20261022144423"></script>
+<script src="js/asyncify.js?v=20261022144423"></script>
+<script src="js/gfx.js?v=20261022144423"></script>
+<script src="js/usel.js?v=20261022144423"></script>
+<script src="js/fcmd.js?v=20261022144423"></script>
+<script src="js/dbga.js?v=20261022144423"></script>
+<script src="js/app.js?v=20261022144423"></script>
 </body>
 </html>

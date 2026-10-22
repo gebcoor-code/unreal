@@ -902,6 +902,10 @@
   function makeViewer(api) {
     const w = $('fvwin'), body = $('fvbody');
     let file = null, mode = MODES.includes(api.load('fv.mode')) ? api.load('fv.mode') : 'text', enc = api.load('fv.enc') || 'zx';
+    let wrap = api.load('fv.wrap') !== '0'; // text: long lines wrapped by words (the default)
+    const setWrap = (v) => { wrap = v; api.store('fv.wrap', v ? '1' : '0'); $('fvwrap').classList.toggle('on', v); body.classList.toggle('wrap', v); };
+    setWrap(wrap);
+    $('fvwrap').onclick = () => { setWrap(!wrap); body.focus(); };
     const fw = api.floatWin(w, 'fvpos', () => {
       const r = $('fcwin').getBoundingClientRect(), vw = document.documentElement.clientWidth;
       return { x: Math.max(4, Math.min(r.left + 40, vw - w.offsetWidth - 4)), y: Math.max(8, r.top + 30) };
@@ -916,6 +920,7 @@
       const t = table(enc), d = file.data;
       const org = parseInt($('fvorg').value, 16), base = isFinite(org) ? org & 0xFFFF : defOrg(file);
       $('fvorg').hidden = mode === 'text'; $('fvorgl').hidden = mode === 'text'; $('fvgo').hidden = mode === 'text'; $('fvgol').hidden = mode === 'text';
+      $('fvwrap').hidden = mode !== 'text';
       let out = ''; rowAddr = [];
       if (mode === 'dis') {
         const rows = [], n = d.length, hx = (v, l) => v.toString(16).toUpperCase().padStart(l, '0');
@@ -1015,6 +1020,7 @@
       else if (k === 't' || k === 'T' || k === 'h' || k === 'H' || k === 'd' || k === 'D') { mode = { t: 'text', h: 'hex', d: 'dis' }[k.toLowerCase()]; api.store('fv.mode', mode); render(); }
       else if (k === 'F8' || k === 'e' || k === 'E') { const i = ENC.findIndex((x) => x[0] === enc); enc = ENC[(i + 1) % ENC.length][0]; api.store('fv.enc', enc); render(); }
       else if ((k === 'g' || k === 'G' || k === ':') && mode !== 'text') { $('fvgo').focus(); $('fvgo').select(); }
+      else if ((k === 'w' || k === 'W') && mode === 'text') setWrap(!wrap);
       else if (k === 'Home') body.scrollTop = 0;
       else if (k === 'End') body.scrollTop = body.scrollHeight;
       else if (k === 'PageDown' || k === 'PageUp' || k === 'ArrowDown' || k === 'ArrowUp') return; // native scrolling
@@ -1045,6 +1051,11 @@
     const w = $('fewin'), ta = $('fetext'), hx = $('fehex'), rows = hx.querySelector('.ferows'), sp = hx.querySelector('.fesp');
     let doc = null, mode = api.load('fe.mode') === 'hex' ? 'hex' : 'text', enc = api.load('fv.enc') || 'zx', bytes = null, dirty = false, eol = '\r', ctrlZ = false;
     let pos = 0, nib = 0, pane = 'hex';
+    let wrap = api.load('fe.wrap') === '1'; // text: long lines wrapped by words on screen (the file keeps its lines)
+    const setWrap = (v) => { wrap = v; api.store('fe.wrap', v ? '1' : '0'); $('fewrap').classList.toggle('on', v); ta.classList.toggle('wrap', v); ta.wrap = v ? 'soft' : 'off'; };
+    setWrap(wrap);
+    $('fewrap').onclick = () => { setWrap(!wrap); ta.focus(); };
+    const wrapShown = () => { $('fewrap').hidden = mode !== 'text'; };
     const fw = api.floatWin(w, 'fepos', () => {
       const r = $('fcwin').getBoundingClientRect(), vw = document.documentElement.clientWidth;
       return { x: Math.max(4, Math.min(r.left + 60, vw - w.offsetWidth - 4)), y: Math.max(8, r.top + 40) };
@@ -1132,7 +1143,7 @@
       if (m === mode && (m === 'text' ? !ta.hidden : !hx.hidden)) return;
       if (mode === 'text' && !ta.hidden) { const r = fromText(ta.value); bytes = r.b; if (r.bad) info(r.bad + ' characters not in ' + enc + ': saved as ?', true); }
       mode = m; api.store('fe.mode', mode); $('femode').value = mode;
-      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex';
+      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex'; wrapShown();
       if (mode === 'text') { ta.value = toText(bytes); ta.focus(); ta.setSelectionRange(0, 0); ta.scrollTop = 0; }
       else { pos = Math.min(pos, bytes.length); hx.focus(); seen(); }
       showInfo();
@@ -1141,7 +1152,7 @@
       doc = o; bytes = o.data.slice(); pos = 0; nib = 0; pane = 'hex';
       enc = api.load('fv.enc') || enc; $('feenc').value = enc; $('femode').value = mode;
       w.hidden = false; fw.place();
-      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex';
+      ta.hidden = mode !== 'text'; hx.hidden = mode !== 'hex'; wrapShown();
       if (mode === 'text') { ta.value = toText(bytes); ta.scrollTop = 0; ta.focus(); ta.setSelectionRange(0, 0); } else { hx.scrollTop = 0; hx.focus(); drawHex(); }
       setDirty(false);
     }
@@ -1233,6 +1244,7 @@
       else if ((k === 'F2' && e.shiftKey) || ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 's' || k === 'S'))) saveAs('');
       else if (k === 'F2' || ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'S'))) save();
       else if (k === 'F4') setMode(mode === 'text' ? 'hex' : 'text');
+      else if (e.altKey && e.code === 'KeyW' && mode === 'text') setWrap(!wrap);
       else if (k === 'F8') { const i = ENC.findIndex((x) => x[0] === enc); $('feenc').value = ENC[(i + 1) % ENC.length][0]; $('feenc').onchange(); }
       else { e.stopPropagation(); return; } // typing stays in the editor
       e.preventDefault(); e.stopPropagation();

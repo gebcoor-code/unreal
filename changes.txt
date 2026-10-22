@@ -1901,3 +1901,19 @@ Web Unreal Speccy — version history
   same display list is swapped in, nor when the program writes the
   parts of RAM_G the picture does not use (loading the next pictures);
   Zuma loads twice as fast at max speed, its menu runs faster
+
+
+        version 0.89.0                  22 oct 2026
+
++ ZX Evo TS-Conf: an SD card ZIP may have a .json next to the image,
+  {"run": "folder/file.spg"}: after TS-BIOS starts Wild Commander,
+  it goes to the file (its folders from the root), puts the cursor on
+  it and presses Enter (and confirms the clock Wild Commander asks
+  for); loading the ZIP, a server list entry and sd= in a link; such
+  a ZIP on another machine starts TS-Conf; Save of the card in a ZIP
+  keeps the .json
++ File Commander viewer and editor: Wrap — long lines of a text wrap
+  by words at the window's width (viewer: W, on by default; editor:
+  Alt+W, the file keeps its lines)
+* the emulator's wasm is kept on the server packed, unreal/unreal.zip
+  (about a third of the size); a bare unreal/unreal.wasm still works

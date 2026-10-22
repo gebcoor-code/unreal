@@ -6,10 +6,11 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261021165228';
+  const WASM_URL = 'unreal/unreal.wasm?v=20261022144423';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261022144423'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
   const MAIL_PNG = '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';
-  const APP_VER = '0.88.3'; // About, System Info (history: changes.txt)
-  const BUILD = '20261021165228'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.89.0'; // About, System Info (history: changes.txt)
+  const BUILD = '20261022144423'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -197,11 +198,21 @@
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), err ? 4000 : 2500);
   }
 
+  // the emulator: unreal/unreal.zip (its .wasm inside), or unreal/unreal.wasm when there is no zip
+  async function fetchWasm() {
+    let zip = null;
+    try { zip = await fetchBytes(WASM_ZIP_URL); } catch (e) {}
+    if (zip && UnrealZip.isZip(zip)) {
+      const e = UnrealZip.list(zip).find((x) => /\.wasm$/i.test(x.name));
+      if (e) return UnrealZip.extract(zip, e);
+    }
+    return fetchBytes(WASM_URL);
+  }
   async function fetchBytes(url) {
     // revalidate with the server ('no-cache'). Options / System "Force update from server": download again ('reload') —
     // a file replaced by one with an older date (e.g. renamed) gets a 304 on revalidation and the cached copy stays.
     // The wasm has the build in its URL (?v=), so for it a revalidation is always enough.
-    const force = load('fetch.reload') === '1' && !/\.wasm(\?|$)/i.test(url);
+    const force = load('fetch.reload') === '1' && !/\.wasm(\?|$)|unreal\.zip(\?|$)/i.test(url);
     const r = await fetch(encodeURI(url).replace(/\$/g, '%24'), { cache: force ? 'reload' : 'no-cache' });
     if (!r.ok) throw new Error(url + (r.status === 404 ? ' not found (404)' : ' HTTP ' + r.status));
     // some hosts answer a missing file with their own HTML page (status 200)
@@ -258,7 +269,7 @@
   async function start() {
     startedAt = performance.now();
     if (!module) {
-      const [wasm] = await Promise.all([fetchBytes(WASM_URL), ensureFiles(COMMON_FILES), ensureFiles(['sos.l'])]); // sos.l: labels of 48 BASIC for the debugger (optional)
+      const [wasm] = await Promise.all([fetchWasm(), ensureFiles(COMMON_FILES), ensureFiles(['sos.l'])]); // sos.l: labels of 48 BASIC for the debugger (optional)
       for (const f of COMMON_FILES) if (!fs.exists(f)) toast('File not found: ' + f, true);
       module = await WebAssembly.compile(wasm);
     }
@@ -1941,7 +1952,8 @@
   // TS-Conf, or the ZIP has an SPG) with an SD card image in it goes into the SD card; one with boot.$C (Wild Commander and
   // its folder) is put on a new FAT32 SD card. Then TS-BIOS boots boot.$C of the card (Caps Shift + Reset). true: done
   async function tsZip(name, buf) {
-    const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name)), spg = all.some((e) => /\.spg$/i.test(e.name));
+    const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name));
+    const spg = all.some((e) => /\.spg$/i.test(e.name)) || (all.some((e) => /\.json$/i.test(e.name)) && /\.(spg|\$c|wmf)$/i.test(await zipRun(buf, all))); // a card with its program to start
     if (!isTS() && !spg) return false;
     const img = all.filter((e) => /\.(img|vhd|ima|sd)$/i.test(e.name) && e.size >= 1 << 20).sort((a, b) => b.size - a.size)[0];
     const boot = all.filter((e) => /(^|\/)boot\.\$c$/i.test(e.name)).sort((a, b) => a.name.length - b.name.length)[0];
@@ -1957,8 +1969,8 @@
     }
     if (!sdName) return true;
     if (!sdOn()) store('sd.if.' + M(), '1');
-    sdMount(); sdUI(); tsBootSd();
-    toast('SD card: ' + sdName + ' · TS-BIOS starts boot.$C (Caps Shift + Reset)');
+    sdMount(); sdUI(); tsBootSd(); wcAutorun();
+    toast('SD card: ' + sdName + ' · TS-BIOS starts boot.$C (Caps Shift + Reset)' + (sdRun ? ', Wild Commander starts ' + sdRun : ''));
     return true;
   }
   let pendingDrive = -1, fromLoadWin = false;
@@ -1990,7 +2002,7 @@
   let macro = null;
   const zxKeys = (k, d) => [].concat(k).forEach((x) => E.web_zxkey(x, d));
   // a macro that has turned ATM mode off for its menus (xtBack) and is replaced before its end: the new one turns it back on
-  function runMacro(steps) { if (macro && macro.key) zxKeys(macro.key, 0); const back = !!(macro && macro.xtBack); macro = { steps: steps.slice(), n: 0, key: null, xtBack: back }; }
+  function runMacro(steps) { if (macro && macro.key) zxKeys(macro.key, 0); const back = !!(macro && macro.xtBack); macro = { steps: steps.slice(), n: 0, key: null, xtBack: back, pw: 0 }; }
   const xtUser = () => (macro && macro.xtBack ? true : !!E.web_xt_kbd()); // ATM mode as the user has it (a menu macro may hold it off)
   function macroFrame() {
     if (!macro) return;
@@ -2005,6 +2017,11 @@
       if (k && k === macro.pk) { if (++macro.ps >= 10) { macro.steps.shift(); macro.pk = null; } }
       else { macro.pk = k; macro.ps = 0; }
       if (++macro.pw > 3000) { toast('CP/M: no command prompt', true); macro = null; } // ~1 min
+      return;
+    }
+    if (st.until) { // wait for a state of the screen (each frame), at most st.max frames
+      if (st.until()) { macro.steps.shift(); macro.pw = 0; return; }
+      if (++macro.pw > (st.max || 3000)) { if (st.soft) { macro.steps.shift(); macro.pw = 0; return; } if (st.fail) toast(st.fail, true); macro = null; }
       return;
     }
     macro.steps.shift(); macro.pw = 0;
@@ -3185,8 +3202,10 @@
       data = sdName && fs.read(sdName); if (data) { data = vhdFixed(data); sdDirty = false; sdUI(); }
     }
     if (!data) { toast('Nothing to save', true); return; }
-    if (zip) { // aaa.zip with aaa.trd inside
-      downloadBytes(name, await UnrealZip.create([{ name: full, data }]));
+    if (zip) { // aaa.zip with aaa.trd inside (an SD card with its file to start: the .json next to it)
+      const files = [{ name: full, data }];
+      if (t === 'sd' && sdRun) files.push({ name: full.replace(/\.[^.]*$/, '') + '.json', data: new TextEncoder().encode(JSON.stringify({ run: sdRun }, null, 1) + '\n') });
+      downloadBytes(name, await UnrealZip.create(files));
     } else downloadBytes(name, data);
     toast('Downloaded: ' + name);
     fwinShow('savedlg', false); updateUI();
@@ -3923,19 +3942,32 @@
     if (!sdName || !fs.exists(sdName) || !sdOn()) { E.web_sd_mount(0); return false; }
     setName(sdName); return !!E.web_sd_mount(load('sd.ro') === '1' ? 2 : 1);
   }
+  // an SD card ZIP may have a .json next to the image: { "run": "path/file.spg" } — the file Wild Commander starts (TS-Conf)
+  let sdRun = '';
+  async function zipRun(buf, all) {
+    for (const e of all.filter((x) => /\.json$/i.test(x.name) && x.size < 65536)) {
+      try {
+        const j = JSON.parse(new TextDecoder().decode(await UnrealZip.extract(buf, e)));
+        const r = typeof j === 'string' ? j : j && (j.run || j.autorun || j.start || j.file);
+        if (typeof r === 'string' && r.trim()) return r.trim().replace(/\\/g, '/').replace(/^\/+/, '');
+      } catch (err) {}
+    }
+    return '';
+  }
   async function sdFromBytes(name, buf, atStart) {
     try {
-      let nm = name, img = buf;
+      let nm = name, img = buf, run = '';
       if (UnrealZip.isZip(buf)) { // the biggest file of the archive (or an .img / .vhd)
         const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name)), imgs = all.filter((e) => SD_EXT.test(e.name));
         const e = (imgs.length ? imgs : all).reduce((a, b) => (b.size > a.size ? b : a), { size: -1 });
         if (!e.name) throw new Error('SD: the archive is empty');
         nm = e.name.replace(/^.*[\\/]/, ''); img = await UnrealZip.extract(buf, e);
+        run = await zipRun(buf, all);
       }
       if (img.length < 524288) throw new Error('SD: the image is too small (at least 512 KB)');
       nm = nm.replace(/[:\\/]/g, '_');
       if (sdName && sdName !== nm) try { fs.remove(sdName); } catch (e) {}
-      fs.write(nm, img); sdName = nm; sdDirty = false; sdWcOwn = false; sdSrc = null;
+      fs.write(nm, img); sdName = nm; sdDirty = false; sdWcOwn = false; sdSrc = null; sdRun = run;
       if (sdMount()) toast('SD card: ' + nm + ' · ' + Math.round(img.length / 1048576) + ' MB' + (M() === 'EVO' && !atStart ? ' — press Reset: the EVO Reset Service looks for the card at start' : ''));
       else if (!sdOn()) toast('SD card: ' + nm + ' (the Z-Controller is off: Options / Disk / SD card)');
       else toast('SD card: cannot open ' + nm, true);
@@ -4495,6 +4527,68 @@
     for (let o = 0; o + 5 <= m.length; o++) if (m[o] === 83 && m[o + 1] === 101 && m[o + 2] === 116 && m[o + 3] === 85 && m[o + 4] === 80) return true;
     return false;
   }
+  // Wild Commander's text screen (TS-Conf text mode: 256 bytes a row, characters 0..127, their attributes at +128):
+  // rows as text; the key bar row ("SetUP"); the panels: columns 1..44 and 46..89
+  function wcText() {
+    if (!isTS() || !E.web_ts_info) return '';
+    const i = new Uint32Array(E.memory.buffer, E.web_ts_info(), 40), m = new Uint8Array(E.memory.buffer, E.web_mem_ptr() + (i[1] & 0xFF) * 16384, 16384);
+    let t = ''; for (let y = 0; y < 64; y++) t += String.fromCharCode(...m.subarray(y * 256, y * 256 + 128)) + '\n';
+    return t;
+  }
+  function wcScreen() {
+    const i = new Uint32Array(E.memory.buffer, E.web_ts_info(), 40);
+    const m = new Uint8Array(E.memory.buffer, E.web_mem_ptr() + (i[1] & 0xFF) * 16384, 16384);
+    const rows = [], attr = [];
+    for (let y = 0; y < 64; y++) { rows.push(String.fromCharCode(...m.subarray(y * 256, y * 256 + 128)).replace(/[\x00-\x1F\x7F-\xFF]/g, ' ')); attr.push(m.subarray(y * 256 + 128, y * 256 + 256)); }
+    const bar = rows.findIndex((r) => r.includes('SetUP'));
+    if (bar < 4) return null;
+    const half = [[1, 45], [46, 90]];
+    // the active panel: the one with the cursor bar — a background (high nibble) the other file rows do not have
+    const cnt = new Map(), at = [];
+    for (let y = 2; y < bar - 2; y++) for (let h = 0; h < 2; h++) { const b = attr[y][half[h][0] + 1] >> 4; at.push([y, h, b]); cnt.set(b, (cnt.get(b) || 0) + 1); }
+    const cur = at.filter(([, , b]) => cnt.get(b) <= 2).sort((p, q) => cnt.get(p[2]) - cnt.get(q[2]))[0], act = cur ? cur[1] : 0, [c0, c1] = half[act];
+    return {
+      path: rows[1].slice(c0 - 1, c1).trim(), // "0:\" or "0:\DIR\"
+      name: rows[bar - 2].slice(c0, c1).split(/ {2,}/)[0].trim(), // the status line: the long name under the cursor
+    };
+  }
+  // Wild Commander starts a file of the SD card (sdRun, the card's .json): it waits for Wild Commander, goes to the
+  // file's folder from the root (Enter on folders, ".." up), moves the cursor until the status line shows the file and
+  // presses Enter — as the user would. PC keys mode for the keys (back as it was after)
+  function wcAutorun() {
+    if (!sdRun || !isTS()) return;
+    const parts = sdRun.split('/').filter(Boolean), want = sdRun;
+    let depth = 0, dir = 1, last = null, same = 0, flips = 0, steps = 0;
+    const press = (code) => [{ xt: [code] }, { wait: 5 }, { fn: nav }];
+    const lower = (t) => t.toLowerCase();
+    function nav() {
+      if (++steps > 4000 || !isTS()) { toast('Wild Commander: ' + want + ' not found', true); return; }
+      const sc = wcShown() && wcScreen();
+      if (!sc) { macro.steps.unshift({ wait: 10 }, { fn: nav }); return; }
+      const here = lower(sc.path.replace(/^\d+:\\?/, '').replace(/\\$/, '')), need = lower(parts.slice(0, depth).join('\\'));
+      if (here !== need && !(need.startsWith(here) && (here === '' || need[here.length] === '\\'))) { // above or aside the way: up
+        if (sc.name === '..') { macro.steps.unshift(...press('Enter'), { wait: 15 }); last = null; same = flips = 0; dir = 1; return; }
+        if (here === '') { toast('Wild Commander: ' + want + ' not found', true); return; }
+        macro.steps.unshift(...press(dir > 0 ? 'ArrowUp' : 'ArrowDown')); dir = -1; return; // ".." is the first row
+      }
+      if (here !== need) { depth = here ? here.split('\\').length : 0; } // deeper on our way: go on from there
+      const target = lower(parts[depth]);
+      if (lower(sc.name) === target) {
+        macro.steps.unshift({ xt: ['Enter'] }, { wait: 15 });
+        if (depth < parts.length - 1) { depth++; last = null; same = flips = 0; dir = 1; macro.steps.splice(2, 0, { fn: nav }); }
+        else macro.steps.splice(2, 0, { until: () => wcText().includes('RUN File AT'), max: 50, soft: true }, { fn: () => { if (wcText().includes('RUN File AT')) macro.steps.unshift({ xt: ['Enter'] }); } }); // an SPG without its clock: the speed Wild Commander offers
+        return;
+      }
+      if (sc.name === last) { if (++same >= 3) { if (++flips > 2) { toast('Wild Commander: ' + want + ' not found', true); return; } dir = -dir; same = 0; } } // an end of the list: the other way
+      else same = 0;
+      last = sc.name;
+      macro.steps.unshift(...press(dir > 0 ? 'ArrowDown' : 'ArrowUp'));
+    }
+    const xt = !!E.web_xt_kbd();
+    runMacro([{ until: () => !wcShown(), max: 300, soft: true }, // the reset first (a Wild Commander on the screen now is the one before)
+      { until: () => wcShown() && !!wcScreen(), max: 3000, fail: 'Wild Commander did not start: ' + want + ' not run' }, { wait: 50 },
+      { xtmode: 1 }, { fn: nav }, { xtmode: xt ? 1 : 0 }]);
+  }
   // ZX Evo TS-Conf: files for Wild Commander go into the root of the SD card — a disk put into a drive (as .trd: Enter on it
   // in Wild Commander starts its MOUNTER plug-in, vDOS) and a .wmf program (Wild Commander runs it). The card has to be the
   // server's wc.zip without changes (files put there this way do not count); another card, or a changed one, is replaced with
@@ -4918,7 +5012,10 @@
     if (LINK.sd) { // sd=: an SD card image (.img / .vhd or a zip with it) on the Z-Controller
       const url = new URL(lowDir(LINK.sd), location.href).href, name = urlName(url);
       if (!sdOn()) store('sd.if.' + M(), '1'); // like hdd=: the interface goes on
-      try { await sdFromBytes(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true); if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); } } // the card is there from power-on
+      try {
+        await sdFromBytes(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true);
+        if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && sdRun) { tsBootSd(); wcAutorun(); } } // the card is there from power-on
+      }
       catch (err) { toast('Link: ' + name + ': ' + err.message, true); }
     }
     const jobs = [['b', 1, false], ['a', 0, auto], ['tape', -1, auto && !LINK.a], ['snap', -1, false]];
