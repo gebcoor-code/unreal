@@ -25,7 +25,8 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
 | NedoOS (BaseConf) | boot from an SD card image |
 | Custom ROM | a whole ROM of your own, or a 128 / 48 / TR-DOS / Service set, on any of the machines |
 
-ZX Evo TS-Conf is not part of UnrealSpeccy 0.39: it was written for this port basув on TS-Conf Verilog sources and documentation (TS-Labs) and the FT81X Programmers Guide.
+ZX Evo TS-Conf is not part of UnrealSpeccy 0.39: it was written for this port (`web/web_ts.cpp`, `web/web_ft.cpp`)
+after the TS-Conf Verilog sources and documentation (TS-Labs) and the FT81X Programmers Guide.
 
 ## Features
 
@@ -36,8 +37,10 @@ ZX Evo TS-Conf is not part of UnrealSpeccy 0.39: it was written for this port ba
   ZX-MultiSound (OPL3) and ZXM-MoonSound (OPL4) through [ymfm](https://github.com/aaronsgiles/ymfm).
 - **Two debuggers:** the UnrealSpeccy debugger (ported without changing its logic, its modal loops run under Asyncify)
   and deBUGa, modelled on the [Xpeccy](https://github.com/samstyle/Xpeccy) debugger.
-- **File Commander:** two panels over TR-DOS, CP/M, iS-DOS and FAT disks, HDD and SD images: copy, delete,
-  view and edit files, make new disk images, exchange files with the computer.
+- **File Commander:** two panels over TR-DOS, CP/M, iS-DOS and FAT disks, HDD and SD images and a RAM disk with folders:
+  copy, delete, view and edit files, make new disk images, exchange files with the computer.
+  **Compile (F9)** assembles a project with [sjasmplus](https://github.com/z00m128/sjasmplus) built to WebAssembly;
+  the output, listing and log go to the RAM disk.
 - **Graf Search:** memory shown as a picture in ZX, ATM and TS-Conf graphics modes.
 - **On-screen keyboards** (ZX, XT) and joystick, touch mouse, Kempston mouse.
 - **REST API:** a link can choose the machine and its speed, insert disks, tapes, HDD and SD images, and start a program.
@@ -45,9 +48,29 @@ ZX Evo TS-Conf is not part of UnrealSpeccy 0.39: it was written for this port ba
 
 ## Running
 
-The `dist/` folder is the whole site. Put it on any static web server; 
+The `dist/` folder is the whole site. Put it on any static web server;
+
+### Server folders
+
+| Folder | Contents |
+|---|---|
+| `unreal/` | the emulator: `unreal.wasm` (or `unreal.zip` holding it), `unreal.ini`, `boot6.$b`, `CMOS`, `sos.l`; `sjasm.zip` (sjasmplus for File Commander) |
+| `js/` | scripts |
+| `rom/` | ROM images, listed in `roms.json` |
+| `trd/` | disk, tape and snapshot images for the Load window, listed in `trd.json` |
+| `hdd/` | HDD images (ZIP with a `.chs` geometry file), listed in `hdd.json` |
+| `sd/` | SD card images (`.img`, `.vhd` or ZIP), listed in `sd.json` |
 
 ## License
 
 The code written for this port is released under the MIT license, see [LICENSE](LICENSE).
 The UnrealSpeccy sources and the third-party components keep their own terms, which are listed in the same file.
+
+## Credits
+
+- **UnrealSpeccy** by SMT and its contributors.
+- **Xpeccy** by SAM style: the model for the deBUGa debugger.
+- **TS-Labs:** ZX Evolution and TS-Conf.
+- **sjasmplus** by Aprisobal, z00m128 and contributors (BSD-3-Clause).
+- **ymfm** by Aaron Giles; **stb_image** by Sean Barrett; the inflate code follows **puff** by Mark Adler.
+- Web port: ae485.

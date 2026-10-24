@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 ae485 (coor@mail.ru)
+Copyright (c) 2026 ae485
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ UnrealSpeccy 0.39.0 (the emulator core: the sources in the root folder)
     to release updated source code, (unlike GNU Public License requires,
     for example). You may port emulator to any other platform.
 
-Xpeccy (the model for the deBUGa debugger)
+Xpeccy (the model for the deBUGa debugger, web/dbga.js)
   by SAM style, MIT License. https://github.com/samstyle/Xpeccy
 
 ymfm (OPL3 / OPL4 emulation, web/ymfm/)
@@ -47,6 +47,31 @@ ymfm (OPL3 / OPL4 emulation, web/ymfm/)
 stb_image v2.30 (JPEG / PNG decoding for the FT812, web/stb_image.h)
   by Sean Barrett. Public domain or MIT License, at your choice (see the end
   of the file). http://nothings.org/stb
+
+sjasmplus (the Z80 assembler of File Commander: web/sjasm/sjasmplus.wasm, built from https://github.com/z00m128/sjasmplus)
+  Copyright (c) 2016, aprisobal; and contributors. BSD 3-Clause License:
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright notice, this
+      list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    * Neither the name of sjasmplus nor the names of its contributors may be used
+      to endorse or promote products derived from this software without specific
+      prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 puff (the inflate decoder in web/web_ft.cpp follows it)
   Copyright (C) 2002-2013 Mark Adler. zlib License.
