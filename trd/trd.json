@@ -13,6 +13,6 @@
  { "name": "TASiS v5.40", "run": "?model=tasis", "tag": "HDD OS" },
  { "name": "NedoOS", "run": "?model=nedoos", "tag": "SD OS" },
  { "name": "Zuma TS-Conf (simple)", "run": "?model=tsconf&fdd=a:trd/zuma.zip", "tag": "SPG" },
- { "name": "Zuma TS-Conf (VDAC2)", "run": "?model=tsconf&speed=14&fdd=a:trd/zuma-tsconf-vdac2.zip&autorun=boot", "tag": "SD SPG" }, 
+ { "name": "Zuma TS-Conf (VDAC2)", "run": "?model=tsconf&speed=14&sd=trd/zuma-tsconf-vdac2.zip", "tag": "SD SPG" },
  { "name": "Profi CPM FDD", "run": "?model=profi&fdd=a:trd/ProfiCPM.zip", "tag": "PRO" }
 ]
