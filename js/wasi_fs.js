@@ -53,8 +53,17 @@
       this.nextFd = 4;
       this.stdout = opts.stdout || ((s) => console.log(s));
       this.outbuf = ['', ''];
+      this.args = (opts.args || []).map((a) => new TextEncoder().encode(String(a) + '\0'));
       const self = this;
       this.imports = {
+        // command line (sjasmplus in File Commander); no environment
+        args_sizes_get(argc, size) { const v = self.view(); v.setUint32(argc, self.args.length, true); v.setUint32(size, self.args.reduce((n, a) => n + a.length, 0), true); return 0; },
+        args_get(argv, buf) { const v = self.view(), m = self.u8(); let o = buf; self.args.forEach((a, i) => { v.setUint32(argv + i * 4, o, true); m.set(a, o); o += a.length; }); return 0; },
+        environ_sizes_get(cnt, size) { const v = self.view(); v.setUint32(cnt, 0, true); v.setUint32(size, 0, true); return 0; },
+        environ_get() { return 0; },
+        path_readlink() { return ERRNO.INVAL; }, // no symbolic links
+        path_unlink_file(fd, pathPtr, pathLen) { const p = self.str(pathPtr, pathLen); if (!self.fs.exists(p)) return ERRNO.NOENT; self.fs.remove(p); return 0; },
+        path_remove_directory() { return 0; }, // folders exist only as parts of file names
         clock_time_get(id, prec, out) {
           const ns = id === 0 ? BigInt(Date.now()) * 1000000n
                               : BigInt(Math.round(self.now() * 1e6));
@@ -172,7 +181,7 @@
           self.view().setUint32(outFd, fd, true);
           return 0;
         },
-        proc_exit(code) { throw new Error('WASI proc_exit(' + code + ')'); },
+        proc_exit(code) { const e = new Error('WASI proc_exit(' + code + ')'); e.exitCode = code; throw e; },
       };
     }
     now() { return (typeof performance !== 'undefined') ? performance.now() : Date.now(); }

@@ -7,7 +7,7 @@ const SCOPE = new URL(self.registration.scope).pathname; // copies in other fold
 const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
 const SHELL = ['./', 'index.html', 'changes.txt', 'icon.png', 'apple-touch-icon.png',
   'js/wasi_fs.js', 'js/scancodes.js', 'js/unzip.js', 'js/vkbd.js', 'js/asyncify.js', 'js/gfx.js', 'js/usel.js', 'js/fcmd.js', 'js/dbga.js', 'js/app.js',
-  'unreal/unreal.zip', 'unreal/unreal.wasm', 'unreal/unreal.ini', 'unreal/boot6.$b', 'unreal/CMOS', 'unreal/sos.l'];
+  'unreal/unreal.zip', 'unreal/unreal.wasm', 'unreal/sjasm.zip', 'unreal/unreal.ini', 'unreal/boot6.$b', 'unreal/CMOS', 'unreal/sos.l'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {

@@ -6,11 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261022144423';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261022144423'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const WASM_URL = 'unreal/unreal.wasm?v=20261024093502';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261024093502'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261024093502'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '0.89.0'; // About, System Info (history: changes.txt)
-  const BUILD = '20261022144423'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.92.2'; // About, System Info (history: changes.txt)
+  const BUILD = '20261024093502'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -207,6 +208,34 @@
       if (e) return UnrealZip.extract(zip, e);
     }
     return fetchBytes(WASM_URL);
+  }
+  // sjasmplus (z00m128, BSD-3-Clause) in its own WASI with its own file system: files [{ path, data }] of the project,
+  // main: its main file. → { files: [{ path, data }] (output, listing, labels, log), errors, warnings, log, ms }
+  let sjasmMod = null;
+  async function sjasmRun(files, main, proj) {
+    if (!sjasmMod) {
+      let b = null;
+      try { const z = await fetchBytes(SJASM_URL); const e = UnrealZip.list(z).find((x) => /\.wasm$/i.test(x.name)); if (e) b = await UnrealZip.extract(z, e); } catch (e) {}
+      if (!b) b = await fetchBytes(SJASM_URL.replace(/\.zip(\?|$)/, '.wasm$1').replace('sjasm.wasm', 'sjasmplus.wasm'));
+      sjasmMod = await WebAssembly.compile(b);
+    }
+    const mfs = new MemFS();
+    for (const f of files) mfs.write('src/' + f.path, f.data);
+    const lines = [], t0 = performance.now();
+    const w = new WASI(mfs, { args: ['sjasmplus', '--nologo', '--msg=war', '--outprefix=/out/', '--lst=/out/' + proj + '.lst', '--sym=/out/' + proj + '.sym', '/src/' + main], stdout: (l) => lines.push(l) });
+    const inst = await WebAssembly.instantiate(sjasmMod, { wasi_snapshot_preview1: w.imports });
+    w.setMemory(inst.exports.memory);
+    let code = 0;
+    try { inst.exports._start(); } catch (e) { if (e.exitCode === undefined) { lines.push('sjasmplus: ' + e.message); code = 1; } else code = e.exitCode; }
+    for (const s of w.outbuf) if (s) lines.push(s);
+    const ms = Math.round(performance.now() - t0);
+    let errors = lines.filter((l) => /\berror\b/i.test(l) && !/^Errors:/i.test(l)).length; const warnings = lines.filter((l) => /\bwarning\b/i.test(l)).length;
+    if (code && !errors) errors = 1;
+    const text = lines.map((l) => l.replace(/\/src\//g, '')).join('\n') + '\n' + (errors ? 'Errors: ' + errors : 'OK') + ', warnings: ' + warnings + ', ' + ms + ' ms\n';
+    const log = new TextEncoder().encode(text), out = [];
+    for (const [k, f] of mfs.files) if (k.startsWith('out/')) out.push({ path: f.name.replace(/^out\//i, ''), data: f.data.slice(0, f.size) });
+    out.push({ path: proj + '.log', data: log });
+    return { files: out, errors, warnings, log, ms };
   }
   async function fetchBytes(url) {
     // revalidate with the server ('no-cache'). Options / System "Force update from server": download again ('reload') —
@@ -488,7 +517,7 @@
   }
   function tmFrame() { if (!touchMouse) return; if (tmQ.length) tmQ.shift()(); else tmFrameMove(); }
   // touch: dragging moves the program's pointer by the same distance (start on the pointer and it stays under the finger),
-  // releasing stops it; a double tap = a left button click (or LB / RB of the bar, a second finger holds LB). The program reads the Kempston ports as 8-bit
+  // releasing stops it; a double tap = a left button click (MB / RB of the bar: middle and right buttons; a second finger holds the left one). The program reads the Kempston ports as 8-bit
   // counters, so the movement goes out in steps of at most 40 units a frame.
   const tmPend = { x: 0, y: 0 };
   function tmFrameMove() {
@@ -496,7 +525,7 @@
     const x = step(tmPend.x), y = step(tmPend.y);
     if (x || y) { tmPend.x -= x; tmPend.y -= y; mouseSend(x, y, 0, mbtn); }
   }
-  // buttons: tmSticky = LB / RB of the bar, tmFinger = held by a second finger
+  // buttons: tmSticky = MB / RB of the bar (bits 4 / 2), tmFinger = the left one held by a second finger
   let tmSticky = 0, tmFinger = 0;
   function tmButtons() { mbtn = tmSticky | tmFinger; if (E) mouseSend(0, 0, 0, mbtn); mouseUI(); }
   function tmClick(bit) { tmQ.push(() => mouseSend(0, 0, 0, mbtn | bit), () => {}, () => {}, () => mouseSend(0, 0, 0, mbtn)); }
@@ -539,7 +568,7 @@
     let btnPtr = 'mouse';
     $('tmscale').value = load('tmscale') || '1';
     $('tmscale').onchange = () => { store('tmscale', $('tmscale').value); $('tmscale').blur(); mouseUI(); };
-    // the bar under the screen: LB / RB tap = click, long tap = held until the next tap; pps = pointer speed 1 / 2
+    // the bar under the screen: MB / RB tap = click, long tap = held until the next tap; pps = pointer speed 1 / 2
     $('mbar').querySelectorAll('[data-b]').forEach((b) => {
       const bit = +b.dataset.b; let t = null, long = false;
       b.addEventListener('pointerdown', (e) => {
@@ -1035,7 +1064,7 @@
       const sh = muted || isPaused() || !!(audio && audio.ctx.state === 'running') || now - soundAt > 1500;
       if ($('sndhint').hidden !== sh) $('sndhint').hidden = sh; // the page is changed only when something did change
       hudSet('fps', Math.round(fpsCount * 1000 / (now - fpsT)) + ' fps');
-      tsClock();
+      hwClock();
       if (E && E.web_gs_auto_fired && E.web_gs_auto_fired()) toast('General Sound on: the program uses it (Options / Sound)');
       fpsCount = 0; fpsT = now;
       if (optOpen() || !$('loadwin').hidden) updateUI(); // drives, HDD, SD rows: only while a window shows them (they are refreshed when it opens)
@@ -1355,7 +1384,7 @@
       insert: (name, d) => { if (d >= 0) E.web_disk_mark(d, 0); return insertFromFs(name, d, true); }, // FC writes the disk back: no "save the changed disk?" question
       diskName: (d) => drives[d] ? drives[d].name : cstr(E.web_disk_name(d)),
       hddName: (d) => hdds[d], hddParts: (d) => hddGeom(d).parts || null, hddGeo: (d) => hddGeom(d), sdName: () => sdName, sdTouch: () => { sdDirty = true; sdWcOwn = false; sdUI(); }, sdNew: async (name, bytes) => { await sdFromBytes(name, bytes); sdDirty = true; sdUI(); }, hddTouch: (d) => { hddDirty[d] = true; hddUI(); }, hddNew: async (d, name, bytes) => { await hddFromBytes(d, name, bytes); hddDirty[d] = true; hddUI(); }, zip: (files) => UnrealZip.create(files), hddRemount: (d) => { hddDirty[d] = true; hddMount(d); hddUI(); },
-      onClose: () => canvas.focus(), run: fcRun, mountDisk: async (name, data, d, src) => { const before = drives[d]; await putAndInsert(name, data, d, src); return drives[d] !== before; }, graf: (name, data) => { gfx.showFile(name, data); toolsUI(); } });
+      onClose: () => canvas.focus(), run: fcRun, sjasm: sjasmRun, mountDisk: async (name, data, d, src) => { const before = drives[d]; await putAndInsert(name, data, d, src); return drives[d] !== before; }, graf: (name, data) => { gfx.showFile(name, data); toolsUI(); } });
     $('fcbtn').onclick = () => { toolsMenu(false); releaseMouse(); fc.show(!fc.open); fcVk = fc.open; };
     // deBUGa: the second debugger window on the same debugger loop of the core; one of the two debuggers at a time
     dga = UnrealDbga.create({ E: () => E, tsOn: isTS, cstr, floatWin, edgeResize, load, store, activate: activateWin,
@@ -1951,6 +1980,7 @@
   // ZX Evo TS-Conf programs come as the files of an SD card (run from Wild Commander): a ZIP for TS-Conf (the machine is
   // TS-Conf, or the ZIP has an SPG) with an SD card image in it goes into the SD card; one with boot.$C (Wild Commander and
   // its folder) is put on a new FAT32 SD card. Then TS-BIOS boots boot.$C of the card (Caps Shift + Reset). true: done
+  let tsNoAuto = false; // the Load window with Autostart TRDOS off: Wild Commander starts, the card's program (its .json) does not
   async function tsZip(name, buf) {
     const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name));
     const spg = all.some((e) => /\.spg$/i.test(e.name)) || (all.some((e) => /\.json$/i.test(e.name)) && /\.(spg|\$c|wmf)$/i.test(await zipRun(buf, all))); // a card with its program to start
@@ -1969,7 +1999,10 @@
     }
     if (!sdName) return true;
     if (!sdOn()) store('sd.if.' + M(), '1');
-    sdMount(); sdUI(); tsBootSd(); wcAutorun();
+    sdMount(); sdUI();
+    tsBootSd(); // Wild Commander of the card
+    if (tsNoAuto) { toast('SD card: ' + sdName + ' · Wild Commander starts (Autostart off: ' + (sdRun || 'the program') + ' is not run)'); return true; }
+    wcAutorun();
     toast('SD card: ' + sdName + ' · TS-BIOS starts boot.$C (Caps Shift + Reset)' + (sdRun ? ', Wild Commander starts ' + sdRun : ''));
     return true;
   }
@@ -2465,6 +2498,10 @@
       if (dry) return '';
       const data = o.read(); spgLoad(o.name + '.spg', data); return '';
     }
+    if (/^(sna|z80|sp|tap|tzx|csw)$/i.test(o.ext) && o.read) { // a snapshot or a tape (e.g. made by Compile, sjasmplus): loaded as from Load
+      if (dry) return '';
+      const f = o.read(); loadBytes(o.name + '.' + o.ext, f.data || f, -1); return '';
+    }
     if (/^wmf$/i.test(o.ext) && o.read) { // a Wild Commander program: onto the SD card (from the card itself: run it there)
       if (/^SD/.test(o.src || '')) return 'Quick run: start it in Wild Commander (Enter on it)';
       if (dry) return '';
@@ -2614,13 +2651,13 @@
     if (!r.ok) throw new Error(r.status === 404 ? 'not found (404)' : 'HTTP ' + r.status);
     return r;
   }
-  async function loadUrl(u, drive, msg) {
+  async function loadUrl(u, drive, msg, auto) { // auto: the server list's "Autostart after load" (a disk boots, a TS-Conf card runs its program)
     const name = urlName(u);
     if (!LOAD_EXT.test(name)) { msg('Not a disk, tape, snapshot or ZIP: ' + name, true); return false; }
     msg('Loading ' + name + '…');
     try {
       const buf = new Uint8Array(await (await fetchFile(u)).arrayBuffer());
-      autorunNext = false; // "Start TRDOS boot.b" is for the disk / tape / snapshot block (Choose File) only; the server list has its own autostart
+      autorunNext = !!auto; // "Use boot.b" / "Autostart TRDOS" are for the files of this computer; the server list has its own autostart
       loadingUrl = u; try { await loadBytes(name, buf, drive); } finally { loadingUrl = null; }
       autorunNext = false;
       msg('');
@@ -2779,10 +2816,12 @@
   }
   function runRowUI() {
     const it = srvList[srvSel], row = $('ldrunrow');
-    row.hidden = !(it && it.run);
+    row.hidden = !it; // every entry of the server list: its own Autostart after load
     if (row.hidden) return;
-    const on = load('ld.autostart') !== '0', sel = $('ldrunmodel'), ms = runModels(it.rp), def = linkModelKey(it.rp.model) || ms[0];
+    const on = load('ld.autostart') !== '0', sel = $('ldrunmodel');
     $('ldrun').checked = on;
+    if (!it.run) { sel.hidden = true; $('ldrunone').hidden = true; return; } // a plain file: no machine to choose
+    const ms = runModels(it.rp), def = linkModelKey(it.rp.model) || ms[0];
     sel.innerHTML = ms.map((k) => `<option value="${k}">${MODELS[k].name}</option>`).join('');
     sel.value = ms.includes(def) ? def : ms[0];
     sel.hidden = !on || ms.length < 2; $('ldrunone').hidden = !on || ms.length !== 1; $('ldrunone').textContent = 'on ' + MODELS[sel.value].name;
@@ -2796,7 +2835,10 @@
       if (os && !p.hdd && !p.sd) { if (os.sd) p.sd = os.sd; else if (os.hdd) p.hdd = os.hdd; }
       // HDD / SD card as in Load / Options: no interface switching, no reset
       const hddPut = (d) => async (n, b, u) => { cpmDirNoReset = true; try { await hddFromBytes(d, n, b); } finally { cpmDirNoReset = false; } hddSrc[d] = u; hddUI(); };
-      for (const [k, put] of [['hdd', hddPut(0)], ['hdd1', hddPut(1)], ['sd', async (n, b, u) => { await sdFromBytes(n, b); sdSrc = u; sdUI(); }]]) {
+      for (const [k, put] of [['hdd', hddPut(0)], ['hdd1', hddPut(1)], ['sd', async (n, b, u) => {
+        await sdFromBytes(n, b);
+        if (sdName && sdRun && !isTS()) { await setModel('TSCONF', true); if (isTS()) await sdFromBytes(n, b); } // a TS-Conf card with its program (.json): on TS-Conf
+        sdSrc = u; sdUI(); if (isTS() && sdName && sdRun) tsBootSd(); }]]) { // Autostart off: Wild Commander starts, the card's program does not
         if (!p[k]) continue;
         const url = new URL(lowDir(p[k]), location.href).href, name = urlName(url); delete p[k];
         ldMsg('Loading ' + name + '…');
@@ -2809,11 +2851,14 @@
     if (!mountOnly && p.cpm) p.xt = '1'; // CP/M programs: ATM mode (XT keyboard) always on
     if (!Object.keys(p).length) { ldMsg('Nothing to mount in this entry', true); return false; }
     const want = mountOnly ? null : linkModelKey(p.model);
+    if (!mountOnly) tcFromLink(p);
     LINK = p;
     try {
       if (want && (want !== model || OS_MODELS[want])) await setModel(want, true);
+      if (!mountOnly && E) trueClkApply(); // trueclock= / speed= of the entry
+      tsNoAuto = !!mountOnly; // Autostart off: a TS-Conf card (in fdd=, sd=…) starts Wild Commander only, not its program
       await linkApply();
-    } finally { LINK = {}; }
+    } finally { LINK = {}; tsNoAuto = false; }
     return true;
   }
   function ddOpen(v) {
@@ -2861,7 +2906,8 @@
     addUp();
     for (const d of dirs) addItem('dir', d.name + '/', () => brOpen(d.href));
     for (const f of files) addItem('file', f.name, async () => {
-      if (await loadUrl(f.href, ldDrive(), brStat)) brStat('Loaded: ' + f.name);
+      tsNoAuto = !$('ldauto').checked;
+      try { if (await loadUrl(f.href, ldDrive(), brStat)) brStat('Loaded: ' + f.name); } finally { tsNoAuto = false; }
     });
     brStat(dirs.length + files.length ? `${dirs.length} folders, ${files.length} files` : 'No folders or loadable files here');
     const first = list.querySelector('button'); if (first) first.focus();
@@ -2916,7 +2962,8 @@
       if (!it) return;
       ddOpen(false);
       if (it.run) { const ok = await runLink(it.run, $('ldrunmodel').value, !$('ldrun').checked); if (ok) fwinShow('loadwin', false); return; }
-      if (await loadUrl(it.url, ldDrive(), ldMsg)) fwinShow("loadwin", false);
+      tsNoAuto = !$('ldrun').checked; // Autostart after load off: a disk is only inserted, a TS-Conf card boots Wild Commander only
+      try { if (await loadUrl(it.url, ldDrive(), ldMsg, $('ldrun').checked)) fwinShow("loadwin", false); } finally { tsNoAuto = false; }
     };
     const dd = $('ldlist');
     dd.onmousedown = (e) => { e.preventDefault(); dd.focus(); ddOpen($('ldpop').hidden); };
@@ -3620,7 +3667,10 @@
     if (rom) q.push('rom=' + linkEnc(rom)); // the Custom ROM ZIP brings its machine: no model=
     else if (on('model')) q.push('model=' + $('rav_model').value);
     $('rav_model').disabled = $('ra_model').disabled = !!rom;
-    if (on('speed')) q.push('speed=' + $('rav_speed').value);
+    const tc = $('ra_trueclk').checked && !$('ra_trueclk').disabled;
+    $('rav_speed').disabled = $('ra_speed').disabled = tc;
+    if (tc) q.push('trueclock=1');
+    else if (on('speed')) q.push('speed=' + $('rav_speed').value);
     if (on('a') && $('rav_a').value.trim()) q.push('fdd=' + $('rav_fdrv').value + ':' + linkEnc($('rav_a').value.trim()));
     if (on('hdd') && $('rav_hdd').value.trim()) q.push('hdd' + $('rav_hdrv').value + '=' + linkEnc($('rav_hdd').value.trim()));
     if (on('sd') && $('rav_sd').value.trim()) q.push('sd=' + linkEnc($('rav_sd').value.trim()));
@@ -3677,6 +3727,7 @@
       if (ts) for (const m of ['3.5', '7', '14']) { const o = document.createElement('option'); o.value = m; o.textContent = m + ' MHz'; sp.appendChild(o); }
       else SPEEDS.forEach((x) => { const o = document.createElement('option'); o.value = String(x); o.textContent = x + 'x (' + (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz)'; sp.appendChild(o); });
     }
+    $('ra_trueclk').disabled = ts; $('ra_trueclk').closest('label').hidden = ts; // TS-Conf: its own clock always
     if (ts) { const m = isTS() && E && E.web_ts_mult ? E.web_ts_mult() : 1; sp.value = m >= 4 ? '14' : m >= 2 ? '7' : '3.5'; $('ra_speed').checked = isTS() && m > 1; }
     else { sp.value = String(SPEEDS[speedIdx]); $('ra_speed').checked = SPEEDS[speedIdx] !== MODELS[model].speed; }
   }
@@ -3686,6 +3737,7 @@
     if (!ms.options.length) for (const [k, v] of Object.entries(LINK_NAME)) { const o = document.createElement('option'); o.value = v; o.textContent = v + ' — ' + MODELS[k].name; ms.appendChild(o); }
     ms.value = LINK_NAME[model] || ms.value;
     $('rav_rom').value = model === 'CUSTOM' && romLinkUrl ? relUrl(romLinkUrl) : ''; $('ra_rom').checked = !!$('rav_rom').value; // a Custom ROM from a file of this computer has no URL: put the ZIP on a site
+    $('ra_trueclk').checked = trueClk() && !MODELS[model].fixed;
     raSpeedOpts();
     const durl = (i) => (drives[i] && drives[i].url && E.web_disk_present(i) ? relUrl(drives[i].url) : '');
     const fd = durl(0) || !durl(1) ? 0 : 1, u = durl(fd); // the disk in A: (or in B: when A: has none from the site)
@@ -4645,12 +4697,26 @@
     releaseAll(); E.web_zxkey(0, 1); E.web_reset(0);
     setTimeout(() => { if (E) E.web_zxkey(0, 0); }, 1200);
   }
-  function tsClock() {
-    const m = M() === 'TSCONF' && E && E.web_ts_mult ? E.web_ts_mult() : 0;
+  // the machine's own clock (TS-Conf: always; others: True clock): the program switches it, the label follows
+  function hwClock() {
+    const m = E && E.web_hw_mult ? E.web_hw_mult() : 0;
     if (m === tsMult) return; tsMult = m;
-    if (!m) { setSpeed(speedIdx, false); return; }
+    if (!m) { if (!trueClk()) setSpeed(speedIdx, false); return; }
     $('speedmhz').textContent = (3.5 * m) + ' MHz'; mhzLabel();
     $('speedticks').querySelectorAll('span').forEach((t) => t.classList.toggle('on', +t.dataset.x === m));
+  }
+  // True clock (Options / System, off by default): every model runs at its own 3.5 MHz and programs switch its turbo
+  // (TS-Conf works so always: its checkbox is on and locked)
+  // a link may set it for this visit (trueclock=1 / 0; speed= alone: off), not stored; the checkbox ends that
+  let tcLink = null;
+  const tcFromLink = (p) => { if (p.trueclock !== undefined) tcLink = !/^(0|no|off|false)$/i.test(p.trueclock); else if (p.speed !== undefined) tcLink = false; };
+  const trueClk = () => !!MODELS[model].fixed || (tcLink !== null ? tcLink : load('trueclk') === '1');
+  function trueClkApply() {
+    const ts = !!MODELS[model].fixed;
+    $('trueclk').checked = trueClk(); $('trueclk').disabled = ts;
+    $('trueclkrow').title = ts ? 'ZX Evo TS-Conf: always — the program sets the clock (3.5 / 7 / 14 MHz)' : $('trueclkrow').dataset.t || $('trueclkrow').title;
+    if (E && E.web_true_clock && !ts) E.web_true_clock(trueClk() ? baseFrame() : 0);
+    tsMult = -1; setSpeed(speedIdx, false); hwClock();
   }
   // MHz (top centre) and fps (top right) over the screen: drawn on a transparent canvas of its own, at the pixel density of the
   // display — no page text changes every second (ad blockers in Safari rescan the page on each change: 1/3 s stalls)
@@ -4678,9 +4744,10 @@
   }
   function setSpeed(idx, save) {
     if (MODELS[model].fixed) { idx = SPEEDS.indexOf(MODELS[model].speed); save = false; }
-    $('speedrange').closest('.speedbox').classList.toggle('off', !!MODELS[model].fixed);
+    $('speedrange').closest('.speedbox').classList.toggle('off', !!MODELS[model].fixed || trueClk());
     speedIdx = Math.max(0, Math.min(SPEEDS.length - 1, idx));
     const x = SPEEDS[speedIdx];
+    if (trueClk()) { tsMult = 0; hwClock(); return; } // the machine's own clock: the core sets the frame
     if (E) E.web_set_frame(Math.round(baseFrame() * x));
     $('speedrange').value = speedIdx;
     $('speedmhz').textContent = (3.5 * x).toFixed(2).replace(/\.?0+$/, '') + ' MHz';
@@ -4692,10 +4759,12 @@
     $('speedrange').max = String(SPEEDS.length - 1);
     SPEEDS.forEach((x, i) => { const t = document.createElement('span'); t.textContent = speedLabel(x); t.dataset.x = String(x); t.onclick = () => setSpeed(i, true); ticks.appendChild(t); });
     $('speedrange').oninput = () => setSpeed(+$('speedrange').value, true);
+    $('trueclkrow').dataset.t = $('trueclkrow').title;
+    $('trueclk').onchange = () => { tcLink = null; store('trueclk', $('trueclk').checked ? '1' : '0'); trueClkApply(); };
     loadSpeed();
   }
   // ------------------------------------------------------------------ port #EFF7 (Pentagon: Options / System, as the EFF7 page of the Win32 settings)
-  const EFF7_BITS = ['16 colors (4 bits per pixel)', 'Pentagon 512×192 monochrome', 'disable memory above 128K', 'RAM 0 at #0000', 'no turbo (always on)',
+  const EFF7_BITS = ['16 colors (4 bits per pixel)', 'Pentagon 512×192 monochrome', 'disable memory above 128K', 'RAM 0 at #0000', 'no turbo (always on; True clock: off = 7 MHz)',
     'hardware multicolor (8×1 attributes at #6000)', '384×304 video mode', 'CMOS (#DFF7 / #BFF7)'];
   let eff7Built = false;
   const eff7Key = (m) => 'eff7.' + (m || model);
@@ -4741,7 +4810,7 @@
   setInterval(() => { if (optOpen() && curPane === 'sys') eff7UI(); }, 400); // programs change the port: shown while the page is open
   function loadSpeed() {
     speedIdx = SPEEDS.indexOf(MODELS[model].speed); // every start: the model's clock (2.5x = 8.75 MHz), not remembered
-    setSpeed(speedIdx, false);
+    trueClkApply();
   }
 
   // ------------------------------------------------------------------ on-screen keyboard
@@ -4873,7 +4942,7 @@
     buildDrives();
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';
-      if (f) { fwinShow('loadwin', false); autorunNext = fromLoadWin && ($('ldboot').checked ? 'boot' : $('ldauto').checked); await loadFile(f, pendingDrive); autorunNext = false; }
+      if (f) { fwinShow('loadwin', false); autorunNext = fromLoadWin && ($('ldboot').checked ? 'boot' : $('ldauto').checked); tsNoAuto = fromLoadWin && !$('ldauto').checked; try { await loadFile(f, pendingDrive); } finally { autorunNext = false; tsNoAuto = false; } }
       fromLoadWin = false;
       pendingDrive = -1;
       canvas.focus();
@@ -4970,6 +5039,7 @@
   const yes = (v) => v !== undefined && !/^(0|no|off|false)$/i.test(v);
   // before the first start: the model (so only its ROM is downloaded)
   function linkModel() {
+    tcFromLink(LINK);
     if (!LINK.model) return;
     const m = MODEL_ALIASES[LINK.model.toLowerCase().replace(/[\s_-]/g, '')] || Object.keys(MODELS).find((k) => k.toLowerCase() === LINK.model.toLowerCase());
     if (m) model = m; else toast('Link: unknown model "' + LINK.model + '" (' + Object.keys(MODEL_ALIASES).join(', ') + ')', true);
@@ -5014,7 +5084,7 @@
       if (!sdOn()) store('sd.if.' + M(), '1'); // like hdd=: the interface goes on
       try {
         await sdFromBytes(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true);
-        if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && sdRun) { tsBootSd(); wcAutorun(); } } // the card is there from power-on
+        if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && sdRun) { tsBootSd(); if (!tsNoAuto) wcAutorun(); } } // the card is there from power-on
       }
       catch (err) { toast('Link: ' + name + ': ' + err.message, true); }
     }

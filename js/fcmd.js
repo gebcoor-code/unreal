@@ -4,7 +4,7 @@
   'use strict';
   const $ = (id) => document.getElementById(id);
   const TRD_SIZE = 655360;
-  const RAM_CAP = 2 * TRD_SIZE;           // the RAM disk holds as much as two TRD images
+  const RAM_CAP = 16 << 20;               // the RAM disk (with folders): 16 MB
   const CPM_FLOPPY = { bs: 2048, dsm: 315, drm: 127, off: 2 * 4096 };       // ATM BIOS: 16×256 sectors, 2 system tracks
   const CPM_PROFI = { bs: 2048, dsm: 399, drm: 127, off: 0 };               // Profi CP/M (.PRO): 80×2×5×1024, no system tracks (boot: sector 9 = block 2)
   const CPM_HDD = { bs: 2048, dsm: 3161, drm: 127, spt: 17, heads: 5 };    // ATM BIOS: 17 sectors, 5 heads, 1 system track
@@ -779,20 +779,41 @@
     return img;
   }
 
-  // ---- RAM disk: files as they are (TR-DOS or CP/M)
-  function ramdisk(store) {
+  // ---- RAM disk: files as they are (TR-DOS or CP/M), in folders; root: { kids: [] }, a folder: { dir: true, name, kids }
+  function ramdisk(root) {
+    let path = []; // the folders from the root
+    const cwd = () => (path.length ? path[path.length - 1] : root);
+    const used = (d) => d.kids.reduce((s, k) => s + (k.dir ? 256 + used(k) : Math.ceil(k.data.length / 256) * 256), 0);
+    const names = () => path.map((d) => d.name);
+    const same = (x, f) => !x.dir && x.name.trim() === f.name.trim() && (x.zx ? (f.zx && x.zx.type === f.zx.type && (!partExt(f.zx) || x.zx.start === f.zx.start)) : (!f.zx && (x.ext || '').trim().toLowerCase() === (f.ext || '').trim().toLowerCase()));
     return {
       kind: 'RAM',
-      list() { return store.map((f, i) => ({ id: f, name: f.name.trim(), ext: f.zx ? partExt(f.zx) || f.zx.type : (f.ext || '').trim(), zx: f.zx, size: f.data.length, show: f.zx ? f.zx.len : f.data.length, sub: f.zx && f.zx.type !== 'B' ? String(f.zx.start) : '' })); },
-      free() { return RAM_CAP - store.reduce((s, f) => s + Math.ceil(f.data.length / 256) * 256, 0); },
-      read(it) { const f = it.id; return { name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() }; },
+      get path() { return '/' + names().join('/'); },
+      setPath(ns) { path = []; for (const n of ns || []) { const d = cwd().kids.find((k) => k.dir && k.name === n); if (!d) break; path.push(d); } return names(); },
+      enter(it) { if (it.up) path.pop(); else path.push(it.id); return names(); },
+      list() {
+        const out = [];
+        if (path.length) out.push({ id: null, up: true, dir: true, name: '..', ext: '', size: 0, show: '', sub: '' });
+        for (const f of cwd().kids) {
+          if (f.dir) { out.push({ id: f, dir: true, name: f.name, ext: '', size: 0, show: '<DIR>', sub: '' }); continue; }
+          out.push({ id: f, name: f.name.trim(), ext: f.zx ? partExt(f.zx) || f.zx.type : (f.ext || '').trim(), zx: f.zx, size: f.data.length, show: f.zx ? f.zx.len : f.data.length, sub: f.zx && f.zx.type !== 'B' ? String(f.zx.start) : '' });
+        }
+        return out;
+      },
+      free() { return RAM_CAP - used(root); },
+      read(it) { const f = it.id; if (f.dir) throw new Error('a directory'); return { name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() }; },
       write(f) {
         if (Math.ceil(f.data.length / 256) * 256 > this.free()) throw new Error('RAM disk full');
-        const same = (x) => x.name.trim() === f.name.trim() && (x.zx ? (f.zx && x.zx.type === f.zx.type && (!partExt(f.zx) || x.zx.start === f.zx.start)) : (!f.zx && (x.ext || '').trim() === (f.ext || '').trim()));
-        if (store.some(same)) throw new Error('file exists');
-        store.push({ name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() });
+        if (cwd().kids.some((x) => same(x, f))) throw new Error('file exists');
+        cwd().kids.push({ name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() });
       },
-      del(it) { const i = store.indexOf(it.id); if (i >= 0) store.splice(i, 1); },
+      del(it) { if (it.up) return; const k = cwd().kids, i = k.indexOf(it.id); if (i >= 0) k.splice(i, 1); }, // a folder goes with all inside
+      mkdir(name0) {
+        const name = (name0 || '').trim(); if (!name) throw new Error('no name');
+        if (/[\/\\]/.test(name)) throw new Error('no / in a name');
+        if (cwd().kids.some((x) => x.name.trim().toLowerCase() === name.toLowerCase() && (x.dir || !(x.ext || '').trim()))) throw new Error('exists');
+        cwd().kids.push({ dir: true, name, kids: [] });
+      },
     };
   }
 
@@ -1253,7 +1274,7 @@
   }
 
   function create(api) {
-    const win = $('fcwin'), ram = [];
+    const win = $('fcwin'), ram = { kids: [] }; // the RAM disk: a folder tree
     let SRC = [];
     function srcList() {
       const E = api.E(), out = [];
@@ -1664,9 +1685,24 @@
     }
     // Put Files: files from the PC into this panel. A .zip is unpacked (after a question): iS-DOS and FAT get its folders,
     // the others (TR-DOS, CP/M, RAM) take all the files into one place, names cut to what the disk takes
+    // files: File objects, or { path, file } from a dropped folder (path with its folders: "dir/sub/name")
+    async function dropTree(ents) {
+      const out = [];
+      const fileOf = (en) => new Promise((res, rej) => en.file(res, rej));
+      const readAll = (rd) => new Promise((res, rej) => { const all = []; const step = () => rd.readEntries((b) => { if (!b.length) res(all); else { all.push(...b); step(); } }, rej); step(); });
+      const walk = async (en, path) => {
+        if (en.isFile) { out.push({ path, file: await fileOf(en) }); return; }
+        const kids = await readAll(en.createReader());
+        if (!kids.length) out.push({ path, file: {}, dir: true });
+        for (const k of kids) await walk(k, path + '/' + k.name);
+      };
+      for (const en of ents) await walk(en, en.name);
+      return out;
+    }
     async function upload(files) {
       const t = P[act]; if (!t.vol) { status('No disk in this panel', true); return; }
-      const arr = await Promise.all([...files].map((fl) => fl.arrayBuffer().then((b) => [fl.name, new Uint8Array(b)])));
+      const arr = await Promise.all([...files].map((fl) => fl.file ? (fl.dir ? Promise.resolve([fl.path + '/', null]) : fl.file.arrayBuffer().then((b) => [fl.path, new Uint8Array(b)])) : fl.arrayBuffer().then((b) => [fl.name, new Uint8Array(b)])));
+      const folders = arr.some(([nm]) => nm.includes('/'));
       const Z = window.UnrealZip, zips = arr.filter(([nm, d]) => /\.zip$/i.test(nm) && Z && Z.isZip(d));
       const kind = t.vol.kind, tree = !!(t.vol.mkdir && t.vol.setPath), isd = kind === 'iS-DOS';
       let ok = 0, nd = 0; const errs = [];
@@ -1675,7 +1711,7 @@
         load(act);
         status(errs.length ? `${what} ${ok}, errors: ` + errs.slice(0, 6).join('; ') + (errs.length > 6 ? ` … (${errs.length} in all)` : '') : `${what} ${ok} file${ok === 1 ? '' : 's'}${nd ? ', ' + nd + ' folder' + (nd === 1 ? '' : 's') : ''}`, errs.length > 0);
       };
-      if (!zips.length) { // plain files, as always
+      if (!zips.length && !folders) { // plain files, as always
         tickAt = 0;
         for (const [k, [nm, data]] of arr.entries()) {
           await tick(`Adding ${k + 1} / ${arr.length}: ${nm}`);
@@ -1686,7 +1722,11 @@
       // what is going where
       const items = []; // { dirs: [...], name, zip, e } | { dirs, data } for plain files
       for (const [nm, d] of arr) {
-        if (!zips.some((z) => z[1] === d)) { items.push({ dirs: [], name: nm, data: d }); continue; }
+        if (!d || !zips.some((z) => z[1] === d)) { // a plain file, or one of a dropped folder (its path)
+          const parts = nm.split('/').filter((x) => x && x !== '.' && x !== '..');
+          if (!d) { if (parts.length) items.push({ dirs: parts, name: null }); continue; } // an empty folder
+          items.push({ dirs: parts.slice(0, -1), name: parts[parts.length - 1], data: d }); continue;
+        }
         for (const e of Z.list(d, true)) {
           const parts = e.name.replace(/\\/g, '/').split('/').filter((x) => x && x !== '.' && x !== '..');
           if (!parts.length) continue;
@@ -1700,7 +1740,8 @@
       const note = tree ? (dirSet.size ? `The folders are made as in the archive${isd ? ' (names cut to 8 characters)' : ''}.` : '')
         : (dirSet.size ? 'Folders are ignored: all files go into one place. ' : '') +
           (kind === 'TR-DOS' ? 'Names are cut to 8 characters; files other than Hobeta become code files.' : 'Names are cut to 8.3.');
-      if (!await ask({ title: 'Upload Files', text: `Unpack ${zips.map((z) => z[0]).join(', ')}: ${nf} file${nf === 1 ? '' : 's'}${dirSet.size ? ', ' + dirSet.size + ' folder' + (dirSet.size === 1 ? '' : 's') : ''}\ninto ${where}?\n${note}`, ok: 'Copy' })) return;
+      const what = zips.length ? 'Unpack ' + zips.map((z) => z[0]).join(', ') + (folders ? ' and the folders' : '') : 'Copy the dropped folders';
+      if (!await ask({ title: 'Upload Files', text: `${what}: ${nf} file${nf === 1 ? '' : 's'}${dirSet.size ? ', ' + dirSet.size + ' folder' + (dirSet.size === 1 ? '' : 's') : ''}\ninto ${where}?\n${note}`, ok: 'Copy' })) return;
       status('Copying…'); await sleep(20);
       const base = t.dir ? t.dir.slice() : [];
       const dname = (n) => isd ? n.toUpperCase().slice(0, 8) : n;
@@ -1879,12 +1920,14 @@
       if (k === 'Insert' || k === ' ') { if (p.items.length) { toggle(p, p.cur); p.cur = Math.min(p.items.length - 1, p.cur + 1); draw(act); } return true; }
       if (k === '+' || (k === 'a' && (e.ctrlKey || e.metaKey))) { p.items.forEach((_, i) => p.sel.add(i)); draw(act); return true; }
       if (k === '-') { p.sel.clear(); draw(act); return true; }
+      if (k === '*') { p.items.forEach((x, n) => { if (!x.up) toggle(p, n); }); draw(act); return true; } // invert the selection
       if (k === 'Enter') { if (!enter()) run(); return true; }
       if (k === 'Backspace') { goUp(); return true; }
       if (k === 'F3') { view(); return true; }
       if (k === 'F4') { edit(); return true; }
       if (k === 'F5') { copy(); return true; }
       if (k === 'F7') { mkdir(); return true; }
+      if (k === 'F9') { compile(); return true; }
       if (k === 'F8' || k === 'Delete') { del(); return true; }
       if (k === 'F2') { fillSrc(); load(0); load(1); status('Re-read'); return true; }
       if (k === 'Escape' || (k === 'F1' && !e.shiftKey)) { show(false); return true; }
@@ -1892,14 +1935,64 @@
     }
     async function mkdir() { // iS-DOS and FAT (TR-DOS and CP/M have no directories)
       const p = P[act];
-      if (!p.vol || !p.vol.mkdir) { status('MkDir: iS-DOS and FAT disks only', true); return; }
+      if (!p.vol || !p.vol.mkdir) { status('MkDir: iS-DOS, FAT and RAM only', true); return; }
       const body = document.createElement('div'); body.className = 'fchdd';
-      body.innerHTML = `<label class="n">Name <input class="nm" maxlength="${/^FAT/.test(p.vol.kind) ? 64 : 8}" spellcheck="false" autocomplete="off"></label>`;
+      body.innerHTML = `<label class="n">Name <input class="nm" maxlength="${/^FAT|^RAM/.test(p.vol.kind) ? 64 : 8}" spellcheck="false" autocomplete="off"></label>`;
       setTimeout(() => body.querySelector('.nm').focus(), 30);
       if (!await ask({ title: 'MkDir', text: 'New directory in ' + srcName(p) + ' ' + (p.vol.path || '/') + '\n', body, ok: 'Create' })) return;
       const nm = body.querySelector('.nm').value.trim();
       try { p.vol.mkdir(nm); if (p.commit) p.commit(); load(act); status('Directory ' + nm.toUpperCase() + ' created'); }
       catch (e) { status('MkDir: ' + e.message, true); }
+    }
+    // ---- Compile (F9): sjasmplus. The file under the cursor is the main source, its folder (with its subfolders) the
+    // project, on any drive. The result — the files of SAVEBIN / SAVETRD / SAVESNA / OUTPUT…, the listing (.lst), the
+    // labels (.sym) and the messages (.log) — goes to the RAM disk, into the folder named as the main file
+    let compiling = false;
+    async function compile() {
+      const p = P[act], it = p.items[p.cur];
+      if (compiling) return;
+      if (!p.vol || !it || it.dir) { status('Compile: put the cursor on the main source file (.asm)', true); return; }
+      if (!api.sjasm) { status('Compile: sjasmplus is not here', true); return; }
+      const fn = (x) => x.name.trim() + (x.ext && String(x.ext).trim() ? '.' + String(x.ext).trim() : '');
+      const main = fn(it), proj = (it.name.trim() || 'project').replace(/[\/:*?"<>|]/g, '_');
+      compiling = true;
+      try {
+        // the project: the folder of the main file and its subfolders (8 deep, 32 MB at most)
+        const files = [], base = (p.dir || []).slice(); let bytes = 0;
+        const walk = (names, prefix, depth) => {
+          if (p.vol.setPath) p.vol.setPath(names);
+          for (const x of p.vol.list()) {
+            if (x.up) continue;
+            if (x.dir) { if (depth < 8 && p.vol.setPath) { walk(names.concat(x.name), prefix + x.name + '/', depth + 1); p.vol.setPath(names); } continue; }
+            const d = p.vol.read(x).data; bytes += d.length;
+            if (bytes > 32 << 20) throw new Error('the project folder is over 32 MB');
+            files.push({ path: prefix + fn(x), data: d });
+          }
+        };
+        try { walk(base, '', 0); } finally { if (p.vol.setPath) p.vol.setPath(base); }
+        status('Compiling ' + main + ' (' + files.length + ' files)…');
+        await new Promise((r) => setTimeout(r, 20)); // the status shows first
+        const r = await api.sjasm(files, main, proj);
+        // into RAM:/<proj>/ (the same names are replaced)
+        const v = ramdisk(ram); v.setPath([]);
+        if (!v.list().some((x) => x.dir && x.name === proj)) v.mkdir(proj);
+        for (const f of r.files) {
+          const parts = f.path.split('/').filter(Boolean), leaf = parts.pop(), dirs = [proj].concat(parts);
+          v.setPath([]); for (let k = 0; k < dirs.length; k++) { const now = v.setPath(dirs.slice(0, k)); if (now.length !== k) break; if (!v.list().some((x) => x.dir && x.name === dirs[k])) v.mkdir(dirs[k]); }
+          v.setPath(dirs);
+          const dot = leaf.lastIndexOf('.'), nm = dot > 0 ? leaf.slice(0, dot) : leaf, ext = dot > 0 ? leaf.slice(dot + 1) : '';
+          const old = v.list().find((x) => !x.dir && !x.zx && x.name.toLowerCase() === nm.toLowerCase() && String(x.ext).toLowerCase() === ext.toLowerCase());
+          if (old) v.del(old);
+          v.write({ name: nm, ext, data: f.data });
+        }
+        P.forEach((q, i) => { if (q.src === 'RAM') load(i); });
+        const outs = r.files.filter((f) => !/\.(lst|sym|log)$/i.test(f.path)).map((f) => f.path);
+        if (r.errors) {
+          status(`Compile: ${r.errors} error${r.errors > 1 ? 's' : ''}${r.warnings ? ', ' + r.warnings + ' warnings' : ''} — RAM:/${proj}/${proj}.log`, true);
+          viewer.open({ name: proj, ext: 'log', data: r.log }, 'sjasmplus · ' + main);
+        } else status(`Compiled ${main}${r.warnings ? ' (' + r.warnings + ' warnings)' : ''} → RAM:/${proj}: ` + (outs.length ? outs.join(', ') : 'no output files (SAVEBIN / SAVESNA / OUTPUT…)') + ` · ${r.ms} ms`);
+      } catch (e) { status('Compile: ' + e.message, true); }
+      finally { compiling = false; }
     }
     // quick run: the same machinery as the REST API (run= for TR-DOS, cpm= for CP/M)
     // a disk image file (HDD, SD card, RAM): mounted into a drive of the machine
@@ -2011,9 +2104,15 @@
       list.addEventListener('keydown', (e) => { if (key(e)) { e.preventDefault(); e.stopPropagation(); } });
       list.addEventListener('dragover', (e) => { e.preventDefault(); list.classList.add('drop'); });
       list.addEventListener('dragleave', () => list.classList.remove('drop'));
-      list.addEventListener('drop', (e) => { e.preventDefault(); e.stopPropagation(); list.classList.remove('drop'); setAct(i); if (e.dataTransfer.files.length) upload(e.dataTransfer.files); });
+      list.addEventListener('drop', async (e) => {
+        e.preventDefault(); e.stopPropagation(); list.classList.remove('drop'); setAct(i);
+        // a dropped folder: its files with their paths (webkitGetAsEntry; plain files as before)
+        const ents = [...(e.dataTransfer.items || [])].map((x) => x.webkitGetAsEntry && x.webkitGetAsEntry()).filter(Boolean);
+        if (ents.some((x) => x.isDirectory)) { status('Reading the folder…'); try { upload(await dropTree(ents)); } catch (err) { status('Drop: ' + err.message, true); } return; }
+        if (e.dataTransfer.files.length) upload(e.dataTransfer.files);
+      });
     });
-    $('fcmkdir').onclick = mkdir; $('fcview').onclick = view; $('fcedit').onclick = edit;
+    $('fcmkdir').onclick = mkdir; $('fcview').onclick = view; $('fcedit').onclick = edit; $('fccompile').onclick = compile;
     // ---- a new HDD image from chosen drives of a partitioned one (+ its .chs), saved as ZIP
     async function hddBuild() {
       // the HDD of this panel; else the first one with drives in its .chs, else the first one mounted
@@ -2148,7 +2247,7 @@
       if (!v) { viewer.close(); if (!$('fewin').hidden) editor.close(); help(false); menuClose(); }
       win.hidden = !v;
       $('fcbtn').classList.toggle('on', v);
-      if (v) { fitSize(); fw.place(); fillSrc(); load(0); load(1); status('Tab: other panel · Space/Ins: select · Enter: run, mount disk image, open folder · F2 re-read · F3 view · F4 edit · F5 copy · F7 MkDir · F8 delete · ? help'); P[act].el.querySelector('.fclist').focus(); }
+      if (v) { fitSize(); fw.place(); fillSrc(); load(0); load(1); status('F2: Re-read · Enter: run, mount image · F9: Compile (sjasmplus) · ?: help'); P[act].el.querySelector('.fclist').focus(); }
       else if (api.onClose) api.onClose();
     }
     // a key of the on-screen keyboard (KeyboardEvent.code + held modifiers) as if typed into the window in use

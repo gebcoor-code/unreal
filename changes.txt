@@ -1917,3 +1917,65 @@ Web Unreal Speccy — version history
   Alt+W, the file keeps its lines)
 * the emulator's wasm is kept on the server packed, unreal/unreal.zip
   (about a third of the size); a bare unreal/unreal.wasm still works
+
+
+        version 0.90.0                  24 oct 2026
+
++ Options / System / CPU clock: True clock (off by default) — the
+  machine runs at its own 3.5 MHz and programs switch its turbo, as on
+  the real machine: Turbo 2+ (#FF77 D3: 7 MHz), ZX Evo BaseConf (#xx77
+  D3: 14 MHz, #EFF7 D4: 3.5 / 7 MHz, 7 MHz after reset), Pentagon
+  (#EFF7 D4 = 0: 7 MHz), Scorpion Turbo+ (IN #7FFD on, IN #1FFD off);
+  the clock slider is off then, the label shows the clock the program
+  set. ZX Evo TS-Conf works so always (its box is on and locked)
+@ touch mouse: the bar under the screen has MB (the middle button)
+  instead of LB — the left button is a double tap or a second finger
+
+
+        version 0.91.0                  24 oct 2026
+
++ File Commander: Compile (F9) — sjasmplus assembles the file under the
+  cursor; its folder with subfolders is the project (any drive); the
+  output files (SAVEBIN, SAVESNA, SAVETAP, SAVETRD, OUTPUT…), listing,
+  labels and log go to RAM, into the folder named as the main file; on
+  errors the log opens in the viewer. Enter on a .sna / .z80 / .tap /
+  .tzx file loads it
++ File Commander: the RAM disk has folders (MkDir, ZIP upload keeps
+  them, copy of folders) and holds 16 MB
++ REST API: trueclock=1 / 0 — True clock for this visit (not stored);
+  speed= alone turns it off for the visit; the link window has a true
+  clock box next to speed (it turns speed off)
+* ZX Evo TS-Conf: an SD card ZIP loaded from the Load window with its
+  Autostart off is only inserted (no boot, no Wild Commander start)
+
+
+        version 0.92.0                  24 oct 2026
+
++ File Commander: a folder dropped on a panel is copied with its files
+  and subfolders (RAM, FAT, iS-DOS keep the folders)
++ File Commander: * inverts the selection
+* File Commander: compact lists and menus (drive, sort, Files, Disks,
+  viewer and editor modes and encodings)
+! ZX Evo TS-Conf: an SD card ZIP with a program to start (its .json),
+  loaded from the Load window with Autostart TRDOS off, starts only
+  Wild Commander (Use boot.b no longer started the program); a server
+  list entry with Autostart off does the same
+
+
+        version 0.92.1                  24 oct 2026
+
+! Load / Server list: "Autostart after load" decides for every entry
+  of the list (it was shown for link entries only, and an SD card of
+  a plain entry followed Autostart TRDOS): on — a disk boots, a TS-Conf
+  SD card runs its program (its .json); off — the file is only
+  mounted, a TS-Conf card starts Wild Commander only (on another
+  machine TS-Conf starts first). Use boot.b and Autostart TRDOS are for
+  the files of this computer
+* Load: switching Use boot.b no longer moves the window content
+
+
+        version 0.92.2                  24 oct 2026
+
+! Server list: an entry whose link brings a TS-Conf SD card as a disk
+  (fdd=a:…zip) still ran the card's program with Autostart after load
+  off; now Wild Commander starts only
