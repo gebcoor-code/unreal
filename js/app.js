@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261024093502';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261024093502'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261024093502'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261026205644';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261026205644'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261026205644'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAKMAAAAeCAYAAABAOK4rAAAHfUlEQVR42u2bfZBWVR3HP6vggoiiEWoOKYqOrkVMqIy0FcOLleguUThjcTDRyOBYTDZ5oGUjgTo2kg6eFMdS4cw2jilokA7m5BRiL7gmFtIwJTWuEiDQriQvCvXH831m7ty5z+7D7rPLKvc788yZ5zz3d8+953zP9/dydiFHjhw5cuTIkSNHjhw5cuTIkSPHexRV+RS8P+FDfAYYD9zsrAkd9fcG9DkGF6kPcCUwCRgDnAEMAlqBLcCzQHTW/C2ndM/iuGOMiNcCm4EngJnAR4DB2pQfAC4H5gGbfYgP+hBPyymSK2OlSVgN3Atcr67ngZ8D64GtwD7gdOB8oB64FvgKMMmH+BlnzZ/fa+/srJmQk7H3EfE44BfA1UALcIOz5umMS1/T5zc+xEbgNuAbwNM+xLHOmk25dh0FMvoQa4GbgE8opvov8CqwGvips2Zb6vrjgesAA4wABgI7pTx3OWueb4csnbL1Ib4EfEwq1gzMBcYBZwKvOWuG69JFIuIfgMnOmu1lqEor8E0f4mbgHuAxH+JIZ83+dp7hRWC+nmEwsB14HFjgrNntQ6wCZgA3ADVAX2AjsMhZ82SJdzxZz/554GJgqH76J/AUsMRZ8+8jSWC6uLE7nHMf4l5gAHCps+aFjHucI28E0D85p30yVORuYFbqHv0UU10KjAauSticpBhsXMrmQ8BUYKoPscFZszjjwTptm8AngQeA/ulY2Id4HvBt4A2gzlmzM/GeN2vDDQN2AI8A3wOagHpnTZWzZpkPcajiyFnAj0s8Q23GMwzVGON9iJcBDwFfTNldDqz2IU511qzMuO+PgK9l9F+sz3Qf4rijoNol57ySCcz3E0RsEvEGAKcClwALtbBJ/ERkehdo0CL0A0YCa4rq5EOckjF+V2yLmAW8DkwGBolE5+q3eVKgGUUiCsuAu4ALgWqNewvwW+DE1P0XAW+KuKUwW2o1Sap4BvAt4JBUcIPUbYm+D9DGbtYaLNEGSWMPcD9wBXCeFv8s4AvAJmAIsOIoeNT25rzrbtqHeBbwHX1d7KxpSFz3tiauOaVs58u9AtzqrEkqx0YfYj2wFpggIq+shG0K+4EJzpp/Zbj/yUCzs2Zton8i8FXZ3ap48lCCLANSLnufD/Fx4EYf4tnpcYSdQK2zZnei704f4iXAl4CLgPnOmkWJ31/wIU5Tdn+OSPrX1NhzM8Z6A1jpQ1wPvAJ83Ic4ylnT3INkzJzzSipjPXCCVGBhmfZXUSicb5fKpWOvw8ACfa2R26yEbRIrSkzKKOA0xW1J3Ki2wVmz1FmzzVmzw1lzHzCnxBgb1Q4v8fsDKSIWsV7t4SwXr1pmUbGHHWG2vB14Tl9H97Ayrqg0EdMx4wi165w1B8q0v0jty+3Y/BF4R+6yBvhHBWyTKBUvfbh4/wySAizPsFkuF358qv+g2hNLjFWqQL6jmKk7a95u55oPlrq3D3G8Ep/LFEtnXTekh8nYLTFqUhlPUbv7COxPTriOUjv4XaAtdX1XbbMWPI1iwbot1T8IOOCseTNjvHek1GkMS7jjUm6rI7fWEaoyiHgH8Ixc/fB2NkO/Hibjju4mY1tqEctBWyL7LVUO6JMgUluFbMvBHrWDU/2tQLUPcXCJ8Yak+qooHB/uB17qwfroGCVVxYRrtN7lBCUMVUoyexv+15lyYpqMxbioVicW5aDonka0YzNabhYF65WwLQctqXCgiBfVXpdhMy1jsm5SCNOUrjN2MyaqfdZZ83VnzZ+cNbuk3kVc0AvJuE/t6SV+H14OS58A7lT8Mk81t46wBrhDA89OB+kqVzQWyeSs+XuFbMtBM/CWMupkQvag6n0LfYgHgUdVWrpa718cv0bJzhyVMRp6eFH7JSoZWcr5OZWHehu2ikPjgF9lrOktHZLRWfO6YpR5QKMP8WwgKFitVp2rDjjTWTNTNlt8iE1SlNulcMuVkV9I4UjtCg3RmIrPOm1bZrZ50If4FHCND3Gis+bX6n/Sh7gCmA4s1SdJ4F0ad1MiWJ9S6qSjG1E8vbjSh9igTbRL8euX21vULoQGcxIbcqCzZm8nbvNLJVuzfYhbtdn3ybvcBowtx00XF/3+hBvboJ25R5PTmBHjzQJ+J2L/QCpyQG6/XtcscNY8WqJ42lnbcrBYZZW7fYinJPpnUDiZ2aJMuYVCEXysYsoWeYrpwEhnzZajoDCrKBThq6TsLVrUV4DvUjieXdMLlXGpQrBqCqd524D/aJ0/DfywrGDSWXMImOlDfJjCMdQYBfStkt/VwM9SNm+p/HC9VO6jwElSuPXAUmfNuhLq1WnbMtXxZR/iMpF+lQ+xzlmzV++5RJ80rukNK+qsOexD/CzgKJwFD1MS9SrwmJ79nt7GRK1pLYUacR2Fc+tW4PfA7RKcuWWVE95v8CH2VXnkU9qx0501GzqwqQHuA5Y5a5rI0SM4Jv7twIc4kMIZ7mR1rVUss05u5ACF8+QxUsY6qdA0Z82qnCY5GStNyCqVaebLdbSHdcBsZ81fcorkZOxOUvYHplD4C5tRUsS+imWeAx5O/mFFjhw5jkH8HzsgzyJO/agJAAAAAElFTkSuQmCC';
-  const APP_VER = '0.92.2'; // About, System Info (history: changes.txt)
-  const BUILD = '20261024093502'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.94.5'; // About, System Info (history: changes.txt)
+  const BUILD = '20261026205644'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1919,11 +1919,19 @@
   }
   const DISK_EXT = /\.(trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|\$.)$/i;
   let coreAnswer = null; // the answer for the core's next MessageBox question (6 yes, 7 no)
+  // DSK (CPCEMU / EXTENDED): the sector size of its first track (N = 2: 512 bytes)
+  function dsk512(b) {
+    const sig = String.fromCharCode(...b.subarray(0, 8));
+    if (sig !== 'MV - CPC' && sig !== 'EXTENDED' || b.length < 0x200) return false;
+    const t = 0x100; return String.fromCharCode(...b.subarray(t, t + 10)) === 'Track-Info' && b[t + 0x14] === 2;
+  }
   async function putAndInsert(name, buf, drive, src) {
     name = name.replace(/^.*[\\/]/, '').replace(/[:]/g, '_');
     if (drive === ROM_TARGET) { const a = autorunNext; autorunNext = false; loadRomDisk(name, buf, a); return; }
     if (/\.spg$/i.test(name)) { autorunNext = false; await spgLoad(name, buf); return; }
     if (/\.wmf$/i.test(name)) { autorunNext = false; await wcWmf(name, buf); return; }
+    // a +3 / CPC disk (DSK with 512-byte sectors): Spectrum +3 (Beta Disk machines read only TR-DOS disks of 256-byte sectors)
+    if (/\.dsk$/i.test(name) && M() !== 'PLUS3' && dsk512(buf)) { toast(name + ': a +3 disk — Spectrum +3 starts'); const a = autorunNext; await setModel('PLUS3', true); autorunNext = a; if (M() !== 'PLUS3') return; }
     // a disk into a drive whose disk was changed: asked here (the core's "Save disk" question is not used). No drive given:
     // the core's choice (the drive after the last one with a disk; Hobeta: that one)
     let d = drive;
@@ -2606,7 +2614,8 @@
         { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'QUORUM') // ROM-MENU: 3 = Boot DOS
       runMacro([{ reset: 0 }, { wait: w(100) }, { key: ZK.K3 }, ...after(w(150))]);
-    else if (M() === 'PLUS3') toast('Spectrum +3: no TR-DOS (Beta Disk) — the disk is mounted, start it from +3 BASIC', true);
+    else if (M() === 'PLUS3') // the +3 menu: Loader (first) loads "DISK" from A:, as the real machine does
+      runMacro([{ reset: 0 }, { wait: m128(60) }, { key: ZK.ENTER }]);
     // Pentagon, Scorpion, KAY, Profi: through the reset menu into TR-DOS in 128K mode (128 BASIC set up, #7FFD paging works);
     // reset straight into TR-DOS gives 48K mode: programs then see "ZX 48K" (Quick Commander: no memory pages)
     else if (M() === 'PENTAGON' || cm === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS (a Custom ROM may reset elsewhere: 128 ROM)
@@ -3699,14 +3708,25 @@
   function raFiles() {
     const dl = $('ra_files'); dl.innerHTML = '';
     for (const it of srvList) { if (!it.url || (it.rp && !it.rp.a)) continue; const o = document.createElement('option'); o.value = relUrl(it.url); o.label = it.name + (it.cpm ? ' [CP/M]' : ''); o.textContent = o.label; dl.appendChild(o); }
+    const add = (dl, v, name) => { if ([...dl.options].some((o) => o.value === v)) return; const o = document.createElement('option'); o.value = v; o.label = name; o.textContent = name; dl.appendChild(o); };
     const hl = $('ra_hdds'); hl.innerHTML = '';
-    for (const it of hddList) { const o = document.createElement('option'); o.value = relUrl(it.url); o.label = it.name; o.textContent = it.name; hl.appendChild(o); }
+    for (const it of hddList) add(hl, relUrl(it.url), it.name);
     const sl = $('ra_sds'); sl.innerHTML = '';
-    for (const it of sdList) { const o = document.createElement('option'); o.value = relUrl(it.url); o.label = it.name; o.textContent = it.name; sl.appendChild(o); }
+    for (const it of sdList) add(sl, relUrl(it.url), it.name);
+    // server list entries whose link mounts an SD card or an HDD (sd=, hdd=): in those lists too
+    for (const it of srvList) if (it.rp && it.url) { if (it.rp.sd && !it.rp.a) add(sl, relUrl(it.url), it.name); else if ((it.rp.hdd || it.rp.hdd1) && !it.rp.a) add(hl, relUrl(it.url), it.name); }
+  }
+  // a server list entry with its own link chosen in a file field: its machine (and the clock of its link) come along
+  function raEntryModel(it) {
+    if (!it || !it.rp) return;
+    const mk = linkModelKey(it.rp.model); if (!mk || !LINK_NAME[mk]) return;
+    $('rav_model').value = LINK_NAME[mk]; $('ra_model').checked = true; raSpeedOpts();
+    if (it.rp.speed) { const sp = $('rav_speed'), v = String(parseFloat(it.rp.speed)); if ([...sp.options].some((o) => o.value === v)) { sp.value = v; $('ra_speed').checked = true; } }
   }
   function raPicked(d) { // a disk from files.json chosen: its tag decides the start (CP/M: atm710, ATM mode, cpm=)
     const v = $('rav_a').value.trim(); $('ra_a').checked = !!v;
     const it = srvList.find((x) => relUrl(x.url) === v);
+    raEntryModel(it);
     if (!it || !it.cpm) return;
     $('rav_model').value = 'atm710'; $('ra_model').checked = true; $('ra_xt').checked = true; $('rav_start').value = 'cpm';
     if (!$('rav_cpm').value.trim() && !d) $('rav_cpm').value = 'b:'; // drive A: of the emulator is B: in CP/M (its B: is not seen)
@@ -3779,7 +3799,7 @@
     $('rabtn').onclick = () => { toolsMenu(false); showRest($('restwin').hidden); };
     $('raclose').onclick = () => showRest(false);
     $('rav_a').addEventListener('change', () => raPicked($('rav_fdrv').value === 'b' ? 1 : 0)); $('rav_hdd').addEventListener('change', () => { $('ra_hdd').checked = !!$('rav_hdd').value.trim(); });
-    $('rav_sd').addEventListener('change', () => { $('ra_sd').checked = !!$('rav_sd').value.trim(); });
+    $('rav_sd').addEventListener('change', () => { $('ra_sd').checked = !!$('rav_sd').value.trim(); raEntryModel(srvList.find((x) => x.rp && x.rp.sd && relUrl(x.url) === $('rav_sd').value.trim())); });
     $('rav_kbd').addEventListener('change', () => { $('ra_kbd').checked = true; });
     $('rav_model').addEventListener('change', raSpeedOpts); // before raBuild: tsconf has its own speed= values
     $('restwin').addEventListener('input', raBuild); $('restwin').addEventListener('change', raBuild);
@@ -4720,12 +4740,36 @@
   }
   // MHz (top centre) and fps (top right) over the screen: drawn on a transparent canvas of its own, at the pixel density of the
   // display — no page text changes every second (ad blockers in Safari rescan the page on each change: 1/3 s stalls)
-  const hud = { fps: '— fps', mhz: '' };
+  const hud = { fps: '— fps', mhz: '', net: '' };
   let hudW = 0, hudH = 0, hudDpr = 0;
   function hudSet(k, v) { if (hud[k] === v) return; hud[k] = v; hudDraw(); }
   // redrawn whenever its size changes (window resize, zoom, fullscreen, another display): the drawing is not stretched
   if (window.ResizeObserver) new ResizeObserver(() => hudDraw()).observe($('hudc'));
   window.addEventListener('resize', () => hudDraw());
+  // the site answering? HEAD of the page (no service worker in the way: it handles GET only), 5 s at most; every 20 s,
+  // when the network changes and when the page comes back. Options / Offline: "offline" over the screen, on by default
+  let netOff = false;
+  async function netProbe() {
+    if (!/^https?:$/.test(location.protocol)) return;
+    const ac = window.AbortController ? new AbortController() : null, t = ac && setTimeout(() => ac.abort(), 5000);
+    let ok = false;
+    try { const r = await fetch(location.pathname + '?ping=' + Date.now(), { method: 'HEAD', cache: 'no-store', signal: ac && ac.signal }); ok = r.status > 0; } catch (e) { ok = false; }
+    clearTimeout(t);
+    netOff = !ok || navigator.onLine === false; netLabel();
+  }
+  function netLabel() { hudSet('net', netOff && load('offlabel') !== '0' ? 'offline' : ''); }
+  function bindNet() {
+    $('of_label').checked = load('offlabel') !== '0';
+    $('of_label').onchange = () => { store('offlabel', $('of_label').checked ? '1' : '0'); netLabel(); };
+    // the site is checked at start; checking it again (every 20 s, on a network change, on return to the tab) is an option
+    const poll = () => load('offpoll') === '1';
+    $('of_poll').checked = poll();
+    $('of_poll').onchange = () => { store('offpoll', $('of_poll').checked ? '1' : '0'); if (poll()) netProbe(); };
+    window.addEventListener('online', () => { if (poll()) netProbe(); }); window.addEventListener('offline', () => { if (poll()) { netOff = true; netLabel(); } });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden && poll()) netProbe(); });
+    setInterval(() => { if (!document.hidden && poll()) netProbe(); }, 20000);
+    netProbe();
+  }
   function hudDraw() {
     const c = $('hudc'); if (!c) return;
     const r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
@@ -4741,6 +4785,11 @@
       g.shadowBlur = 0; g.fillStyle = 'rgba(225,232,240,.75)'; g.fillText(t, x, 4);
     };
     put(hud.mhz, r.width / 2, 'center'); put(hud.fps, r.width - 5, 'right');
+    if (hud.net) { // "offline": left of the fps, red
+      const x = r.width - 5 - g.measureText(hud.fps || '').width - 10; g.textAlign = 'right';
+      g.fillStyle = '#000'; g.shadowColor = '#000'; g.shadowBlur = 3; g.fillText(hud.net, x + 1, 5);
+      g.shadowBlur = 0; g.fillStyle = 'rgba(255,82,82,.95)'; g.fillText(hud.net, x, 4);
+    }
   }
   function setSpeed(idx, save) {
     if (MODELS[model].fixed) { idx = SPEEDS.indexOf(MODELS[model].speed); save = false; }
@@ -4958,7 +5007,7 @@
     bindNedo();
     bindDebugger();
     bindSysInfo();
-    bindPerf();
+    bindPerf(); bindNet();
     // About: version and author; the e-mail is a picture (not a mailto / text for address harvesters)
     $('aboutver').innerHTML = `v.${APP_VER} by ae485 (<img class="mailimg" alt="e-mail" src="data:image/png;base64,${MAIL_PNG}">). <a href="#" id="chlink">changes</a>.<br>Based on UnrealSpeccy 0.39.0.`;
     $('chlink').onclick = (e) => { e.preventDefault(); showChanges(true); };

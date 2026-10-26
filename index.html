@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261024093502">
+<meta name="build" content="20261026205644">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -864,6 +864,14 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 #screenwrap.fx-crt #fx { border-radius: 14px;
   background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 62%, rgba(0,0,0,.45) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,var(--so, .3)) 50%);
   background-size: 100% 100%, 100% var(--sl, 3px); box-shadow: inset 0 0 18px rgba(0,0,0,.55); }
+/* focus: one orange mark everywhere — no browser ring (white / blue) around fields, buttons, lists and boxes */
+/* fields without a style of their own (made by a dialog, e.g. MkDir): framed as the others, so the focus only turns the
+   frame orange (a browser-drawn field gets a thick square frame once its border color is set) */
+:where(input:not([type]), input[type=text], input[type=number], input[type=search], input[type=url]) { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+input:focus, textarea:focus, button:focus, select:focus, .usel:focus, [tabindex]:focus { outline: none; }
+input:not([type=checkbox]):not([type=radio]):not([type=range]):focus, textarea:focus { border-color: var(--accent); }
+button:focus-visible { border-color: var(--accent); }
+input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=range]:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
 </style>
 </head>
 <body>
@@ -963,11 +971,11 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <div id="gfxwin" class="gfxwin" hidden role="dialog" aria-label="Graf Search">
   <div class="dbghead fhead"><span>Graf Search</span><button id="gfxhelpbtn" title="Help">?</button><button id="gfxclose" title="Close (Esc)">✕</button></div>
   <div class="gfxbar">
-    <select id="gfxmode" title="Mode (M); Text / Hex / Z80asm open the File Commander viewer at this address"><option>ZX</option><option>EGA</option><option>VGA</option><option value="16C" title="TS-Conf 16 colors (4 bits a pixel)">16C</option><option value="256C" title="TS-Conf 256 colors (8 bits a pixel)">256C</option><option value="v:text">TEXT</option><option value="v:hex">HEX</option><option value="v:dis">Z80ASM</option></select>
-    <select id="gfxsrc" title="Memory: CPU 64K, RAM, ROM or the floppy image in a drive"><option value="0">CPU 64K</option><option value="1">RAM</option><option value="2">ROM</option></select>
+    <select id="gfxmode" data-pop-class="fcmpop" title="Mode (M); Text / Hex / Z80asm open the File Commander viewer at this address"><option>ZX</option><option>EGA</option><option>VGA</option><option value="16C" title="TS-Conf 16 colors (4 bits a pixel)">16C</option><option value="256C" title="TS-Conf 256 colors (8 bits a pixel)">256C</option><option value="v:text">TEXT</option><option value="v:hex">HEX</option><option value="v:dis">Z80ASM</option></select>
+    <select id="gfxsrc" data-pop-class="fcmpop" title="Memory: CPU 64K, RAM, ROM or the floppy image in a drive"><option value="0">CPU 64K</option><option value="1">RAM</option><option value="2">ROM</option></select>
     <label title="Start address (G). RAM: page:offset">@<input id="gfxaddr" class="hexin" data-hex=":" spellcheck="false" autocomplete="off"></label>
     <label class="spin" title="Width in pixels, rounded to whole bytes (Ctrl+←/→)">W<input id="gfxw" inputmode="numeric" spellcheck="false" autocomplete="off"></label>
-    <select id="gfxzoom" title="Zoom (Z)"><option value="1">1x</option><option value="2">2x</option><option value="4">4x</option></select>
+    <select id="gfxzoom" data-pop-class="fcmpop" title="Zoom (Z)"><option value="1">1x</option><option value="2">2x</option><option value="4">4x</option></select>
     <label class="chk" title="Inverse (I)"><input type="checkbox" id="gfxinv">Inv</label>
     <label class="chk" title="Redraw 25 times a second while the emulator runs"><input type="checkbox" id="gfxlive">Live view</label>
   </div>
@@ -1011,6 +1019,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label class="chk"><input type="checkbox" id="of_hdd"> HDD images</label>
             <label class="chk"><input type="checkbox" id="of_sd"> SD images</label>
           </div>
+          <label class="chk" title="The site is checked at start (and later too, with the option below): when it does not answer, a red &quot;offline&quot; is shown over the screen, left of the fps"><input type="checkbox" id="of_label" checked> Show 'offline'</label>
+          <label class="chk" title="Off: the site is checked once, at start"><input type="checkbox" id="of_poll"> Check connection every 20 sec</label>
           <div class="offbtns"><button id="ofmake" title="Download what is checked into the offline copy of this site: the emulator then starts without internet (also from the iOS home screen)">Make offline</button><button id="ofclear" title="Drop the downloaded files of the offline copy (the emulator itself stays)">Clear files</button></div>
         </div>
       </div>
@@ -1109,13 +1119,13 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
             <label for="joytype">Type</label>
             <select id="joytype" title="The on-screen joystick (JOY panel)"></select>
             <label for="joyfire">Fire</label>
-            <select id="joyfire" title="The key FIRE presses (Kempston: the fire bit of its port)"></select>
+            <select id="joyfire" data-pop-class="fcmpop" title="The key FIRE presses (Kempston: the fire bit of its port)"></select>
             <span class="joyx"><input type="checkbox" id="joyx0" title="Show this button next to FIRE"> Button 1</span>
-            <select id="joyk0" title="The key this button presses"></select>
+            <select id="joyk0" data-pop-class="fcmpop" title="The key this button presses"></select>
             <span class="joyx"><input type="checkbox" id="joyx1" title="Show this button next to FIRE"> Button 2</span>
-            <select id="joyk1" title="The key this button presses"></select>
+            <select id="joyk1" data-pop-class="fcmpop" title="The key this button presses"></select>
             <span class="joyx"><input type="checkbox" id="joyx2" title="Show this button next to FIRE"> Button 3</span>
-            <select id="joyk2" title="The key this button presses"></select>
+            <select id="joyk2" data-pop-class="fcmpop" title="The key this button presses"></select>
           </div>
         </div>
       </div>
@@ -1389,7 +1399,7 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
-      <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta)</dd>
+      <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM)</dd>
       <dt>F9</dt><dd>Compile with sjasmplus (see below)</dd>
       <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
@@ -1619,20 +1629,20 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
   <div class="dgasplit h" id="dgash" title="Drag: height of the lower part"></div>
   <div class="dgabot" id="dgabot">
     <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
-      <span class="dgatm"><select id="dgamsrc" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
+      <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop" data-pop-extra="24" data-pop-scale="0.6" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
     <div id="dgascr" hidden><canvas id="dgascv" width="256" height="192"></canvas></div>
     <div id="dgabp" hidden>
       <div class="dgabpadd">
-        <select id="dgabk" title="What is watched"><option value="0">Z80 addr</option><option value="1">RAM page</option><option value="2">ROM page</option><option value="3">IN port</option><option value="4">OUT port</option><option value="5">INT</option></select>
+        <select id="dgabk" data-pop-class="fcmpop" title="What is watched"><option value="0">Z80 addr</option><option value="1">RAM page</option><option value="2">ROM page</option><option value="3">IN port</option><option value="4">OUT port</option><option value="5">INT</option></select>
         <input id="dgaba" placeholder="from" spellcheck="false" autocomplete="off" title="Address (hex); RAM / ROM: page:offset (05:1A00); port (hex)">
         <input id="dgabb" placeholder="to" spellcheck="false" autocomplete="off" title="Last address of a range (empty: one); port: mask (hex, FFFF: whole port, 00FF: low byte)">
         <span class="dgaacc"><label title="Execution (stops before the instruction)"><input type="checkbox" id="dgabx" checked>X</label><label title="Read (stops after the instruction)"><input type="checkbox" id="dgabr">R</label><label title="Write (stops after the instruction)"><input type="checkbox" id="dgabw">W</label></span>
-        <select id="dgabact" title="Stop, or only count the hits"><option value="0">Stop</option><option value="1">Count</option></select>
+        <select id="dgabact" data-pop-class="fcmpop" title="Stop, or only count the hits"><option value="0">Stop</option><option value="1">Count</option></select>
         <button id="dgabcur" title="From the cursor line of the listing (RAM / ROM: its physical page now)">Cursor</button><button id="dgabadd" class="primary">Add</button>
       </div>
       <div id="dgablist"></div>
@@ -1673,15 +1683,15 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261024093502"></script>
-<script src="js/scancodes.js?v=20261024093502"></script>
-<script src="js/unzip.js?v=20261024093502"></script>
-<script src="js/vkbd.js?v=20261024093502"></script>
-<script src="js/asyncify.js?v=20261024093502"></script>
-<script src="js/gfx.js?v=20261024093502"></script>
-<script src="js/usel.js?v=20261024093502"></script>
-<script src="js/fcmd.js?v=20261024093502"></script>
-<script src="js/dbga.js?v=20261024093502"></script>
-<script src="js/app.js?v=20261024093502"></script>
+<script src="js/wasi_fs.js?v=20261026205644"></script>
+<script src="js/scancodes.js?v=20261026205644"></script>
+<script src="js/unzip.js?v=20261026205644"></script>
+<script src="js/vkbd.js?v=20261026205644"></script>
+<script src="js/asyncify.js?v=20261026205644"></script>
+<script src="js/gfx.js?v=20261026205644"></script>
+<script src="js/usel.js?v=20261026205644"></script>
+<script src="js/fcmd.js?v=20261026205644"></script>
+<script src="js/dbga.js?v=20261026205644"></script>
+<script src="js/app.js?v=20261026205644"></script>
 </body>
 </html>

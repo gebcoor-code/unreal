@@ -11,6 +11,8 @@
 
   const ascii = (b) => String.fromCharCode(...b).replace(/[^\x20-\x7e]/g, '?');
   const pad = (s, n) => (s + ' '.repeat(n)).slice(0, n);
+  // 'file exists' with the panel item in the way (hit), so a copy can delete it and write again (overwrite)
+  const existsErr = (hit) => Object.assign(new Error('file exists'), { hit });
   const u16 = (a, o) => a[o] | (a[o + 1] << 8);
   const put16 = (a, o, v) => { a[o] = v & 255; a[o + 1] = (v >> 8) & 255; };
   const fmtSize = (n) => n >= 10485760 ? (n / 1048576).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 10240 ? Math.round(n / 1024) + 'K' : String(n);
@@ -95,6 +97,9 @@
         const hob = f0.ext && f0.ext[0] === '$' && hobetaParse(f0.data);
         if (!f0.zx && !hob && f0.data.length > 0xFF00) {
           const n = Math.ceil(f0.data.length / 0xFF00), secs = Math.ceil(f0.data.length / 256);
+          // a part there already: before anything is written (an overwrite deletes the parts one by one, then writes all)
+          const nm = pad(f0.name, 8), hit = this.list().find((x) => x.part && x.name === nm && +x.part >= 1 && +x.part <= n);
+          if (hit) throw existsErr(hit);
           if (img[info + 0xE4] + n > 128) throw new Error('catalog full');
           if (u16(img, info + 0xE5) < secs) throw new Error('disk full');
           if (n > 999) throw new Error('too long');
@@ -113,7 +118,7 @@
         const nm = pad(f.name, 8), ty = f.zx.type.charCodeAt(0), pe = partExt(f.zx);
         for (let i = 0; i < cnt; i++) {
           const e = img.subarray(i * 16, i * 16 + 16);
-          if (e[0] > 1 && ascii(e.subarray(0, 8)) === nm && e[8] === ty && (!pe || u16(e, 9) === f.zx.start)) throw new Error('file exists');
+          if (e[0] > 1 && ascii(e.subarray(0, 8)) === nm && e[8] === ty && (!pe || u16(e, 9) === f.zx.start)) throw existsErr(this.list().find((x) => x.id === i));
         }
         let sec = img[info + 0xE1], trk = img[info + 0xE2];
         img.set(f.data.subarray(0, secs * 256), (trk * 16 + sec) * 256);
@@ -198,7 +203,7 @@
       write(f0) {
         const f = toCpm(f0);
         const nm = pad(cpmName(f.name.trim()), 8), ex = pad(cpmName((f.ext || '').trim()), 3);
-        if (files().some((x) => x.user === 0 && x.name === nm && x.ext === ex)) throw new Error('file exists');
+        if (files().some((x) => x.user === 0 && x.name === nm && x.ext === ex)) throw existsErr(this.list().find((x) => x.id.user === 0 && x.id.name === nm && x.id.ext === ex));
         const recs = Math.max(1, Math.ceil(f.data.length / 128)), nblk = Math.ceil(recs * 128 / p.bs), cap = (exm + 1) * 128, nent = Math.ceil(recs / cap);
         const used = new Set(); for (let b = 0; b < dirBlocks; b++) used.add(b);
         ents().forEach((e) => { if (e[0] <= 15) blocks(e).forEach((b) => used.add(b)); });
@@ -558,7 +563,7 @@
       write(f0) {
         const f = f0.zx ? (partExt(f0.zx) ? partRaw(f0) : { name: f0.name.trim(), ext: '$' + f0.zx.type.toLowerCase(), data: hobetaMake(f0) }) : f0;
         const name = (f.name || 'FILE').trim() + (f.ext && f.ext.trim() ? '.' + f.ext.trim() : '');
-        if (entries(cwd()).some((e) => e.name.toLowerCase() === name.toLowerCase())) throw new Error('file exists');
+        if (entries(cwd()).some((e) => e.name.toLowerCase() === name.toLowerCase())) throw existsErr(this.list().find((x) => !x.dir && !x.up && (x.ext ? x.name + '.' + x.ext : x.name).toLowerCase() === name.toLowerCase()));
         const cs = f.data.length ? freeN(Math.ceil(f.data.length / cb)) : [];
         cs.forEach((c, i) => { const part = f.data.subarray(i * cb, (i + 1) * cb); a.fill(0, coff(c), coff(c) + cb); a.set(part, coff(c)); });
         link(cs);
@@ -682,7 +687,7 @@
         if (f.zx) { addr = f.zx.start; f = { name: f.name, ext: partExt(f.zx) || f.zx.type, data: f.data.slice(0, f.zx.type === 'B' ? f.data.length : Math.min(f.data.length, f.zx.len || f.data.length)) }; }
         const nm = pad((f.name || 'file').trim(), 8), ex = pad((f.ext || '').trim(), 3);
         const dir = cwd();
-        if (entries(dir).some(({ e }) => raw(e.subarray(0, 8)) === nm && raw(e.subarray(8, 11)) === ex)) throw new Error('file exists');
+        if (entries(dir).some(({ e }) => raw(e.subarray(0, 8)) === nm && raw(e.subarray(8, 11)) === ex)) throw existsErr(this.list().find((x) => !x.dir && !x.up && raw(x.id.e.subarray(0, 8)) === nm && raw(x.id.e.subarray(8, 11)) === ex));
         const need = Math.max(1, Math.ceil(f.data.length / 256));
         let start = -1;
         for (let s = 0, run = 0; s < total; s++) { run = isUsed(s) ? 0 : run + 1; if (run === need) { start = s - need + 1; break; } }
@@ -804,7 +809,7 @@
       read(it) { const f = it.id; if (f.dir) throw new Error('a directory'); return { name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() }; },
       write(f) {
         if (Math.ceil(f.data.length / 256) * 256 > this.free()) throw new Error('RAM disk full');
-        if (cwd().kids.some((x) => same(x, f))) throw new Error('file exists');
+        if (cwd().kids.some((x) => same(x, f))) throw existsErr(this.list().find((x) => x.id && same(x.id, f)));
         cwd().kids.push({ name: f.name, ext: f.ext, zx: f.zx && Object.assign({}, f.zx), data: f.data.slice() });
       },
       del(it) { if (it.up) return; const k = cwd().kids, i = k.indexOf(it.id); if (i >= 0) k.splice(i, 1); }, // a folder goes with all inside
@@ -1565,6 +1570,26 @@
     const what = (list) => list.length === 1 ? fname(list[0]) : list.length + ' files (' + fmtSize(list.reduce((n, it) => n + it.size, 0)) + ')';
     const srcName = (p) => (SRC.find((x) => x[0] === p.src) || ['', p.src])[1];
 
+    // files that are on the target already (clash: { label, f, dirs }): one question for all of them; Overwrite deletes
+    // what is in the way and writes again (TR-DOS: split files part by part). → how many were written
+    async function overwrite(vol, clash, errs, enterDirs) {
+      if (!clash.length) return 0;
+      const names = clash.slice(0, 8).map((c) => c.label).join('\n') + (clash.length > 8 ? `\n… (${clash.length} in all)` : '');
+      if (!await ask({ title: 'Overwrite', text: `${clash.length === 1 ? 'This file is' : clash.length + ' files are'} there already:\n${names}\nOverwrite?`, ok: clash.length === 1 ? 'Overwrite' : 'Overwrite all', no: 'Skip', danger: true })) {
+        errs.push(...clash.map((c) => c.label + ': skipped (exists)')); return 0;
+      }
+      let ok = 0; tickAt = 0;
+      for (const [k, c] of clash.entries()) {
+        await tick(`Overwriting ${k + 1} / ${clash.length}: ${c.label}`);
+        if (enterDirs && !enterDirs(c.dirs || [])) continue;
+        try {
+          for (let n = 0; ; n++) {
+            try { vol.write(c.f); ok++; break; } catch (e) { if (!e.hit || e.hit.dir || n > 999) throw e; vol.del(e.hit); }
+          }
+        } catch (e) { errs.push(c.label + ': ' + e.message); }
+      }
+      return ok;
+    }
     async function copy() {
       const s = P[act], t = P[1 - act];
       if (!s.vol || !t.vol) { status('Both panels need a disk', true); return; }
@@ -1590,11 +1615,13 @@
           jobs.push([it.name.trim() + ' (' + g.length + ' parts)', () => joinParts(it.name, parts)]);
         } else jobs.push([fname(it), () => s.vol.read(it)]);
       }
-      let ok = 0; const errs = []; tickAt = 0;
+      let ok = 0; const errs = [], clash = []; tickAt = 0;
       for (const [k, [label, get]] of jobs.entries()) {
         await tick(`Copying ${k + 1} / ${jobs.length}: ${label}`);
-        try { t.vol.write(get()); ok++; } catch (e) { errs.push(label + ': ' + e.message); }
+        let f = null;
+        try { f = get(); t.vol.write(f); ok++; } catch (e) { if (e.hit && f) clash.push({ label, f }); else errs.push(label + ': ' + e.message); }
       }
+      ok += await overwrite(t.vol, clash, errs);
       try { if (ok && t.commit) t.commit(); } catch (e) { errs.push(e.message); }
       load(1 - act); s.sel.clear(); draw(act);
       status(errs.length ? `Copied ${ok}, errors: ` + errs.join('; ') : `Copied ${ok} file${ok === 1 ? '' : 's'}`, errs.length > 0);
@@ -1705,7 +1732,7 @@
       const folders = arr.some(([nm]) => nm.includes('/'));
       const Z = window.UnrealZip, zips = arr.filter(([nm, d]) => /\.zip$/i.test(nm) && Z && Z.isZip(d));
       const kind = t.vol.kind, tree = !!(t.vol.mkdir && t.vol.setPath), isd = kind === 'iS-DOS';
-      let ok = 0, nd = 0; const errs = [];
+      let ok = 0, nd = 0; const errs = [], clash = [];
       const commit = () => { try { if (ok + nd && t.commit) t.commit(); } catch (e) { errs.push(e.message); } };
       const report = (what) => {
         load(act);
@@ -1715,8 +1742,10 @@
         tickAt = 0;
         for (const [k, [nm, data]] of arr.entries()) {
           await tick(`Adding ${k + 1} / ${arr.length}: ${nm}`);
-          try { t.vol.write(pcFile(kind, nm, data)); ok++; } catch (e) { errs.push(nm + ': ' + e.message); }
+          const f = pcFile(kind, nm, data);
+          try { t.vol.write(f); ok++; } catch (e) { if (e.hit) clash.push({ label: nm, f }); else errs.push(nm + ': ' + e.message); }
         }
+        ok += await overwrite(t.vol, clash, errs);
         commit(); report('Added'); return;
       }
       // what is going where
@@ -1760,11 +1789,13 @@
         if (it.name) await tick(`Copying ${++done} / ${nf}: ${it.dirs.concat(it.name).join('/')}${errs.length ? ' · errors: ' + errs.length : ''}`);
         if (tree && !enter(it.dirs)) continue;
         if (!it.name) continue;
+        const label = tree ? it.dirs.concat(it.name).join('/') : it.name; let f = null;
         try {
           const data = it.data || await Z.extract(it.zip, it.e);
-          t.vol.write(pcFile(kind, it.name, data)); ok++;
-        } catch (e) { errs.push((tree ? it.dirs.concat(it.name).join('/') : it.name) + ': ' + e.message); }
+          f = pcFile(kind, it.name, data); t.vol.write(f); ok++;
+        } catch (e) { if (e.hit && f) clash.push({ label, f, dirs: it.dirs }); else errs.push(label + ': ' + e.message); }
       }
+      ok += await overwrite(t.vol, clash, errs, tree ? (dirs) => enter(dirs) : null);
       if (tree) t.vol.setPath(base);
       commit(); report('Copied');
     }

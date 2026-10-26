@@ -3,6 +3,7 @@
 // are kept once fetched (and by Options / System / Offline: Make offline). Always the network first, the copy when it fails.
 'use strict';
 const BUILD = new URL(self.location.href).searchParams.get('v') || 'dev';
+const NET_WAIT = 4000; // ms the site has to answer before the kept copy is used
 const SCOPE = new URL(self.registration.scope).pathname; // copies in other folders of the site keep their own caches
 const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
 const SHELL = ['./', 'index.html', 'changes.txt', 'icon.png', 'apple-touch-icon.png',
@@ -32,18 +33,27 @@ self.addEventListener('fetch', (e) => {
   const rel = decodeURIComponent(u.pathname.slice(SCOPE.length));
   e.respondWith((async () => {
     const store = isFile(rel) ? FILES : CORE;
-    try {
-      const r = await fetch(req);
+    const copy = async () => (await caches.match(u.origin + u.pathname, { ignoreSearch: true })) ||
+      (req.mode === 'navigate' ? (await caches.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await caches.match(self.registration.scope, { ignoreSearch: true })) : null);
+    const net = fetch(req).then((r) => {
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)
       if (r.ok && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
-        const c = await caches.open(store); c.put(u.origin + u.pathname, r.clone()).catch(() => {});
+        caches.open(store).then((c) => c.put(u.origin + u.pathname, r.clone())).catch(() => {});
       }
       return r;
-    } catch (err) { // offline: the copy (the build's ?v= does not matter; the page itself for any navigation)
-      const hit = (await caches.match(u.origin + u.pathname, { ignoreSearch: true })) ||
-        (req.mode === 'navigate' ? (await caches.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await caches.match(self.registration.scope, { ignoreSearch: true })) : null);
-      return hit || Response.error();
-    }
+    });
+    // a site that does not answer (a network that drops the packets silently: fetch would wait for the browser's own
+    // timeout, a black screen on the phone): with a copy at hand, the copy after NET_WAIT ms; the network keeps going
+    // and refreshes the copy if it answers later. No copy: the network as long as it takes
+    const have = await copy();
+    if (!have) { try { return await net; } catch (err) { return Response.error(); } }
+    const late = new Promise((res) => setTimeout(() => res('late'), NET_WAIT));
+    try {
+      const r = await Promise.race([net, late]);
+      if (r !== 'late') return r;
+      net.catch(() => {});
+      return have;
+    } catch (err) { return have; } // offline: the copy (the build's ?v= does not matter; the page itself for any navigation)
   })());
 });
 // the page asks: how much is kept, or to drop the files
