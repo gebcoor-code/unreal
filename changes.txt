@@ -2130,3 +2130,65 @@ Web Unreal Speccy — version history
   Options…), not on the emulator window
 + eject of a changed HDD / SD card image asks first (it was dropped
   silently)
+
+
+        version 0.96.0                  27 oct 2026
+
++ ~ (Shift + `): hides / shows the menu bar and the frame of the
+  emulator window; Options / Video: Menu bar, Hide; a ☰ corner button
+  brings them back (touch screens); REST API hidemenu=1: hidden for
+  this visit (also in the REST API link window)
++ web/tools/ldserver.py: a local web server for Load / Local server
+  (folder listings, CORS and private network answers, read only)
+* Load / Local server: HDD / SD images are listed and load too
+* Load / Media: the machine in the line of the title
+
+
+        version 0.97.0                  27 oct 2026
+
++ Save / Where: Download or Browser storage — disks, HDD / SD images
+  (with their changes), SNA snapshots and the files the emulator wrote
+  are kept by this browser for the next visits
++ Load / Server / Saved: the saved files (tag SAVED, newest first);
+  Run: on the machine it was saved on, started as Local file with
+  Autostart; Mount; Delete (in the ▾ of the button)
+* the ☰ corner button no longer covers the sound meter
+! web/tools/ldserver.py: a folder with spaces (not in quotes) was cut
+  at the first space (404); a missing folder is reported
+
+
+        version 0.98.0                  27 oct 2026
+
+* Load: the browser storage has its own block, Browser storage, under
+  Local file (Run / Mount / Delete in the ▾ of its button); the server
+  list is the server's only again
++ File Commander: drive Browser (the browser storage: view, copy to and
+  from, delete, mount, run) and, once opened in Load, drive Local
+  server (its folders and files, read only)
+
+
+        version 0.98.1                  27 oct 2026
+
+* File Commander: a long name ends with … instead of running over the
+  extension (the whole name: its tooltip)
+
+
+        version 0.99.0                  27 oct 2026
+
++ Options / Video: Hide Frequency, Hide FPS (the text over the screen);
+  with Hide Menu Bar (~) under the lists
++ Options / Offline: Clear browser storage (what Load / Browser storage
+  lists)
+
+
+        version 0.99.1                  27 oct 2026
+
++ Load / Local server window: keys ↑ ↓ Home End PgUp PgDn, Enter
+  (open / load), Backspace (up; the cursor on the folder it came from)
++ File Commander: Enter on a ZIP (Local server, Browser, HDD, SD, RAM)
+  mounts it as Load takes it: its disk into A: / B:, an HDD / SD image
+
+
+        version 0.99.2                  27 oct 2026
+
++ Load / Media: ⏏ of the tape (the core: web_tape_eject)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261027162504">
+<meta name="build" content="20261027203351">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -67,7 +67,7 @@ canvas.smooth { image-rendering: auto; }
   background: rgba(20,24,30,.88); border: 1px solid var(--accent); color: var(--text); cursor: pointer; }
 #sndhint[hidden] { display: none; }
 #toast.err { border-color: var(--warn); }
-#viz { position: absolute; left: 7px; top: 6px; pointer-events: none; opacity: 0; }
+#viz { position: absolute; left: 7px; top: 6px; pointer-events: none; opacity: 0; } body.bare #viz { left: 36px; } /* right of the ☰ corner button */
 #hudc { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; } /* MHz and fps: drawn, not page text (ad blockers rescan a page on every text change) */
 #hud { position: absolute; right: 5px; top: 4px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; pointer-events: none; }
 #fps { font-size: 11px; line-height: 1; color: rgba(225,232,240,.75); font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; }
@@ -396,6 +396,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .corner { position: absolute; bottom: 4px; display: flex; gap: 4px; align-items: center; line-height: normal; opacity: .55; transition: opacity .15s; }
 .corner:hover, .corner:focus-within { opacity: 1; }
 .corner.bl { left: 4px; } .corner.br { right: 4px; }
+.corner.tl { top: 4px; bottom: auto; left: 4px; } #barcorner { display: none; } body.bare #barcorner { display: flex; } /* ~ hid the menu bar: a way back by touch */
+body.bare #toolbar { display: none; } body.bare #mainwin { border-color: transparent; border-radius: 0; box-shadow: none; } body.bare #screenwrap { border-radius: 0; } /* ~: no menu bar, no frame */
 .corner button.ico, .corner select { background: rgba(35,42,51,.25); border-color: rgba(255,255,255,.12); }
 #stage .corner button.ico { width: 26px; height: 20px; border-radius: 4px; }
 #stage .corner button.ico svg { width: 15px; height: 15px; }
@@ -460,15 +462,16 @@ select option { background: var(--panel2); color: var(--text); }
 .ldtags button { padding: 0 7px; height: 20px; font-size: 10px; border-radius: 4px; }
 .ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 /* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
+#ldlistgo.danger, #ldbgo1.danger { background: #b4553f; border-color: #b4553f; color: #fff; }
 .splitbtn { display: flex; flex: none; } /* the text sits as in the other buttons (Open, Choose File…): their padding and line height */
-.splitbtn #ldlistgo { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
+.splitbtn #ldlistgo, .splitbtn #ldbgo1 { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
 .splitbtn > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .splitbtn .splitar { display: flex; align-items: center; padding: 0 5px; margin-left: -1px; border-top-left-radius: 0; border-bottom-left-radius: 0; } .splitbtn .splitar[hidden] { display: none; }
 .splitbtn .splitar.open .usel-arr { transform: rotate(180deg); }
 #ldmedia { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font: 12px ui-monospace, Consolas, monospace; }
 #ldmedia .ml { color: var(--dim); } #ldmedia .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #ldmedia .mn.off { color: var(--dim); }
 #ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
-#loadwin h3.ldmh { display: flex; align-items: center; justify-content: space-between; } /* Settings in the line of the title */
+#loadwin h3.ldmh { display: flex; align-items: center; justify-content: space-between; } .ldmodel { text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); margin-left: 6px; } /* Settings in the line of the title */
 .ldmh button { padding: 1px 9px; font-size: 11px; text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); }
 .ddwrap { position: relative; flex: 1; min-width: 0; }
 .ddl { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-size: 13px; user-select: none; }
@@ -499,7 +502,7 @@ select:focus { outline: none; } select:focus-visible { border-color: var(--accen
 .brpath { padding: 5px 12px; font: 11px ui-monospace, Consolas, monospace; color: var(--dim); border-bottom: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .brlist { flex: 1; overflow-y: auto; min-height: 0; padding: 4px 0; }
 .brlist button { display: flex; width: 100%; gap: 8px; align-items: center; border: 0; border-radius: 0; background: transparent; padding: 4px 12px; text-align: left; font: 13px ui-monospace, Consolas, monospace; color: var(--text); }
-.brlist button:hover, .brlist button:focus { background: var(--panel2); outline: none; }
+.brlist button:hover { background: var(--panel2); } .brlist button:focus { background: rgba(240,160,80,.22); outline: none; } /* the keyboard cursor */
 .brlist button .ic { width: 14px; flex: none; color: var(--accent); }
 .brlist button.dir { color: var(--accent); }
 .brlist button .sz { margin-left: auto; color: var(--dim); font-size: 11px; }
@@ -604,13 +607,14 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 .fckind { font-size: 10px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fclist { flex: 1; min-height: 0; overflow-y: auto; outline: none; font: 12px ui-monospace, Consolas, monospace; padding: 2px 0; }
 .fclist.drop { background: rgba(240,160,80,.08); }
-.fcrow { display: grid; grid-template-columns: minmax(0, 1fr) 4ch 7ch; gap: 6px; padding: 1px 8px; cursor: default; white-space: pre; }
+.fcrow { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4ch 7ch; gap: 6px; padding: 1px 8px; cursor: default; white-space: pre; }
+.fcrow .n, .fcrow .e { overflow: hidden; text-overflow: ellipsis; } /* a long name ends with …, not over the extension (the whole name: its tooltip) */
 .fcrow .s { text-align: right; color: var(--dim); }
 .fcrow.cur { background: var(--panel2); }
 .fcpanel.act .fcrow.cur { background: rgba(240,160,80,.22); }
 .fcrow.sel { color: #ffd479; }
 .fcrow.dir .n, .fcrow.dir .s { color: var(--accent); }
-.fcrow.sel .n::before { content: "▸"; margin-left: -8px; }
+.fcrow.sel::before { content: "▸"; position: absolute; left: 0; }
 .fcmsg { padding: 10px; color: var(--dim); font-family: system-ui, sans-serif; }
 .fcfoot { padding: 2px 8px; font-size: 10px; line-height: 14px; height: 19px; color: var(--dim); border-top: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fcbar { display: flex; flex-wrap: wrap; gap: 3px; padding: 0 6px 4px; }
@@ -877,7 +881,8 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 #modelnote { white-space: pre-line; }
 #forcefetchrow { margin-top: 12px; }
 #offcard .offgrid { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 12px; }
-#offcard .offbtns { display: flex; gap: 8px; margin-top: 8px; } #offcard .offbtns button { padding: 3px 12px; font-size: 12px; }
+#offcard .offbtns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.vidhide { margin-top: 10px; } #offcard .offbtns button { padding: 3px 12px; font-size: 12px; }
 #offstat { white-space: pre-line; margin: 0 0 6px; } #offstat[hidden] { display: none; } #offstat.err { color: #e0785e; }
 /* video filters (drawn over the canvas) */
 #fx { position: absolute; left: 0; top: 0; pointer-events: none; display: none; }
@@ -967,6 +972,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div id="sbar"><div id="sbjoy"></div><div id="mbar"><button data-b="4" title="Middle button: tap = click, long tap = held until the next tap (left button: double tap on the screen, or a second finger)">MB</button><button id="mpps" title="The program moves its pointer 1 or 2 pixels per step">1pps</button><button data-b="2" title="Right button: tap = click, long tap = held until the next tap">RB</button></div></div>
     <div id="dled" hidden><svg id="dledi" viewBox="0 0 12 12"><use href="#i-floppy"/></svg></div>
     <canvas id="viz" width="56" height="16"></canvas>
+    <div class="corner tl" id="barcorner"><button class="ico" id="barshow" title="Show the menu bar and the frame (~)"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
     <div class="corner bl"><button class="ico" id="xt" title="XT-Keyboard"><svg><use href="#i-kbd"/></svg></button></div>
     <div id="xtmsg"></div>
     <div class="corner br">
@@ -1045,7 +1051,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           </div>
           <label class="chk" title="The site is checked at start (and later too, with the option below): when it does not answer, a red &quot;offline&quot; is shown over the screen, left of the fps"><input type="checkbox" id="of_label" checked> Show 'offline'</label>
           <label class="chk" title="Off: the site is checked once, at start"><input type="checkbox" id="of_poll"> Check connection every 20 sec</label>
-          <div class="offbtns"><button id="ofmake" title="Download what is checked into the offline copy of this site: the emulator then starts without internet (also from the iOS home screen)">Make offline</button><button id="ofclear" title="Drop the downloaded files of the offline copy (the emulator itself stays)">Clear files</button></div>
+          <div class="offbtns"><button id="ofmake" title="Download what is checked into the offline copy of this site: the emulator then starts without internet (also from the iOS home screen)">Make offline</button><button id="ofclear" title="Drop the downloaded files of the offline copy (the emulator itself stays)">Clear files</button><button id="ofbrw" title="Delete what Save put into the browser storage (Load / Browser storage)">Clear browser storage</button></div>
         </div>
       </div>
       <div class="pane" data-pane="sys">
@@ -1240,6 +1246,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
               <option value="scan">Scanlines</option><option value="crt">CRT</option>
             </select>
           </div>
+          <div class="optcol vidhide">
+            <label class="chk" title="The menu bar and the frame of the emulator window (~ = Shift + `)"><input type="checkbox" id="vidbare"> Hide Menu Bar (~)</label>
+            <label class="chk" title="The CPU clock over the screen (top centre)"><input type="checkbox" id="vidnomhz"> Hide Frequency</label>
+            <label class="chk" title="Frames per second over the screen (top right)"><input type="checkbox" id="vidnofps"> Hide FPS</label>
+          </div>
         </div>
       </div>
       <div class="pane" data-pane="about">
@@ -1335,6 +1346,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>F5</td><td>start / stop emulation</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu)</td></tr>
+      <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; ATM mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
@@ -1415,13 +1427,13 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="fchelp" hidden role="dialog" aria-label="File Commander help">
   <div class="dbghead fhead"><span>File Commander help</span><button id="fchelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
+    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
     <h4>Keys</h4>
     <dl>
       <dt>Tab</dt><dd>other panel</dd>
       <dt>↑ ↓ Home End PgUp PgDn</dt><dd>move</dd>
       <dt>Space / Ins</dt><dd>select; + all, − none, * invert</dd>
-      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM): machine is reset; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:</dd>
+      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM): machine is reset; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:; a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image)</dd>
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
@@ -1494,8 +1506,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>ZIP</td><td>one file in it: as that file; several: you choose one</td></tr>
     </table>
     <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
+    <h4>Browser storage</h4>
+    <p>The files Save put into this browser (Where: Browser storage), the newest first; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
+    <table class="keys">
+      <tr><td>Run</td><td>on the machine it was saved on, started as Local file with Autostart (an HDD / SD image boots)</td></tr>
+      <tr><td>Mount</td><td>loaded, the machine stays, Load stays open</td></tr>
+      <tr><td>Delete</td><td>out of the browser storage</td></tr>
+    </table>
     <h4>Local server</h4>
-    <p>A folder of a web server on your network: its files open as Local file (the same Autostart).</p>
+    <p>A folder of a web server on your network: its files open as Local file (the same Autostart). Once opened, File Commander shows it as the drive Local server (read only).</p>
     <h4>Server list</h4>
     <p>The entries of trd/trd.json, then hdd/hdd.json and sd/sd.json (an image a trd.json entry brings, by hdd= / sd= or as its OS, is listed once: as that entry). Tag buttons: the entries with any of the chosen tags (several at once); All: every entry.</p>
     <table class="keys">
@@ -1528,6 +1547,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
+      <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit (~ or the ☰ corner shows them; visitor's own setting is not changed)</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
@@ -1563,6 +1583,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_xt">xt</label><span class="ranote">ATM mode on at start</span>
       <label class="chk"><input type="checkbox" id="ra_mute">mute</label><span class="ranote">sound off</span>
       <label class="chk"><input type="checkbox" id="ra_swapmouse">swapmouse</label><span class="ranote">mouse buttons swapped</span>
+      <label class="chk"><input type="checkbox" id="ra_hidemenu">hidemenu</label><span class="ranote">menu bar and frame hidden (~ shows them)</span>
       <label class="chk"><input type="checkbox" id="ra_kbd">kbd</label><select id="rav_kbd" title="On-screen keyboard at start"><option value="off">— (off)</option><option value="zx">ZX</option><option value="xt">XT</option><option value="joy">Joystick</option></select>
     </div>
     <textarea id="raout" readonly rows="3" spellcheck="false"></textarea>
@@ -1575,6 +1596,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div class="body">
       <div class="optgrid">
         <label for="svtype">What</label><select id="svtype"></select>
+        <label for="svdest">Where</label><select id="svdest" title="Download: a file on this computer. Browser storage: kept by this browser for the next visits (Load lists it, tag SAVED)"><option value="pc">Download</option><option value="brw">Browser storage</option></select>
         <label for="svfmt" class="sv-disk">Format</label>
         <select id="svfmt" class="sv-disk">
           <option value="isd" hidden>ISD</option><option value="pro" hidden>PRO</option><option value="0">TRD</option><option value="scl">SCL</option><option value="1">FDI</option><option value="2">UDI</option><option value="3">TD0</option>
@@ -1621,13 +1643,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: RUN its first BASIC program (nothing is written to the disk)"><input type="radio" name="ldnb" id="ldbasic" value="basic">first BASIC program</label></div>
         <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
       </div></section>
+    <section id="ldbrwsec" hidden><h3>Browser storage</h3>
+      <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
     <section><h3>Local server</h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section id="ldlistsec" hidden><h3>Server list</h3>
       <div class="ldtags" id="ldtags"></div>
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
         <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
-    <section><h3 class="ldmh">Media<button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
+    <section><h3 class="ldmh"><span>Media <span class="ldmodel" id="ldmodel"></span></span><button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
       <div id="ldmedia"></div></section>
     <p class="note" id="ldmsg"></p>
   </div>
@@ -1735,15 +1759,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261027162504"></script>
-<script src="js/scancodes.js?v=20261027162504"></script>
-<script src="js/unzip.js?v=20261027162504"></script>
-<script src="js/vkbd.js?v=20261027162504"></script>
-<script src="js/asyncify.js?v=20261027162504"></script>
-<script src="js/gfx.js?v=20261027162504"></script>
-<script src="js/usel.js?v=20261027162504"></script>
-<script src="js/fcmd.js?v=20261027162504"></script>
-<script src="js/dbga.js?v=20261027162504"></script>
-<script src="js/app.js?v=20261027162504"></script>
+<script src="js/wasi_fs.js?v=20261027203351"></script>
+<script src="js/scancodes.js?v=20261027203351"></script>
+<script src="js/unzip.js?v=20261027203351"></script>
+<script src="js/vkbd.js?v=20261027203351"></script>
+<script src="js/asyncify.js?v=20261027203351"></script>
+<script src="js/gfx.js?v=20261027203351"></script>
+<script src="js/usel.js?v=20261027203351"></script>
+<script src="js/fcmd.js?v=20261027203351"></script>
+<script src="js/dbga.js?v=20261027203351"></script>
+<script src="js/app.js?v=20261027203351"></script>
 </body>
 </html>

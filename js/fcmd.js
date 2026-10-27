@@ -1296,6 +1296,7 @@
         const n = Math.max(1, fatFind(api.fs.read(sd)).length);
         for (let k = 0; k < n; k++) out.push([k ? 'SD.' + k : 'SD', n > 1 ? 'SD ' + (k + 1) : 'SD card']);
       }
+      if (api.extraSrc) out.push(...api.extraSrc()); // the page's own: Browser (its storage), Local server (opened in Load)
       out.push(['RAM', 'RAM']);
       return out;
     }
@@ -1312,6 +1313,7 @@
     function openVol(src) {
       const E = api.E(), fs = api.fs;
       if (src === 'RAM') return { vol: ramdisk(ram), commit: null };
+      const xv = api.extraVol && api.extraVol(src); if (xv) return { vol: xv, commit: null };
       if (/^SD/.test(src)) { // the Z-Controller SD card: FAT partitions, changed in place
         const name = api.sdName && api.sdName(); if (!name || !fs.exists(name)) return { err: 'no SD card' };
         const a = fs.read(name), vols = fatFind(a), k = Math.min(+(src.split('.')[1] || 0) || 0, vols.length - 1);
@@ -1464,6 +1466,10 @@
       const p = P[i];
       const r = openVol(p.src);
       p.vol = r.vol || null; p.commit = r.commit || null; p.msg = r.err || '';
+      if (p.vol) { // a volume that reads in the background (Browser, Local server): drawn again when its listing comes
+        const vol = p.vol;
+        vol.redraw = () => { if (P[i].vol !== vol) return; P[i].items = listed(vol, P[i].sort); P[i].cur = Math.min(P[i].cur, Math.max(0, P[i].items.length - 1)); draw(i); if (vol.err) { status(vol.err, true); vol.err = ''; } };
+      }
       if (p.vol && p.vol.setPath) p.dir = p.vol.setPath(p.dir); // iS-DOS: stay in the same directory
       p.items = p.vol ? listed(p.vol, p.sort) : [];
       p.sel.clear(); p.cur = Math.min(p.cur, Math.max(0, p.items.length - 1));
@@ -1522,7 +1528,7 @@
       const sel = [...p.sel].map((k) => p.items[k]).filter((x) => x && !x.up), n = sel.length;
       const nd = sel.filter((x) => x.dir).length, bytes = sel.reduce((s, x) => s + treeSize(p, x), 0);
       el.querySelector('.fcfoot').textContent = p.vol
-        ? (n ? `${n} selected${nd ? ` (${nd} folder${nd > 1 ? 's' : ''})` : ''}, ${fmtSize(bytes)}` : `${p.items.filter((x) => !x.dir).length} files`) + ` · free ${fmtSize(p.vol.free())}` + dirNote(p.vol) : '\u00a0';
+        ? (n ? `${n} selected${nd ? ` (${nd} folder${nd > 1 ? 's' : ''})` : ''}, ${fmtSize(bytes)}` : `${p.items.filter((x) => !x.dir).length} files`) + (p.vol.free ? ` · free ${fmtSize(p.vol.free())}` : '') + dirNote(p.vol) : '\u00a0';
       const c = list.children[p.cur]; if (c && i === act) c.scrollIntoView({ block: 'nearest' });
     }
     let lastDown = { t: 0 };
@@ -1540,6 +1546,12 @@
     }
     function goUp() { const p = P[act]; if (p.items[0] && p.items[0].up) { p.cur = 0; enter(); return true; } return false; }
     function status(t, err) { $('fcstat').textContent = t || ''; $('fcstat').classList.toggle('err', !!err); }
+    // a volume that reads its files in the background (Browser, Local server): them first, then the usual read()
+    async function prep(p, items) {
+      if (!p.vol || !p.vol.prepare) return true;
+      status('Reading…');
+      try { await p.vol.prepare(items.filter((x) => x && !x.dir && !x.up)); status(''); return true; } catch (e) { status('Read: ' + e.message, true); return false; }
+    }
 
     // ---- own small dialogs inside the window: ask({ title, text, ok }) → Promise<boolean>
     let dlgDone = null;
@@ -1594,7 +1606,9 @@
       const s = P[act], t = P[1 - act];
       if (!s.vol || !t.vol) { status('Both panels need a disk', true); return; }
       if (s.src === t.src) { status('Source and target are the same', true); return; }
+      if (!t.vol.write) { status(srcName(t) + ' is read only', true); return; }
       const list = picked(s); if (!list.length) return;
+      if (!await prep(s, list)) return;
       const conv = s.vol.kind !== t.vol.kind && t.vol.kind !== 'RAM' && s.vol.kind !== 'RAM'
         ? (t.vol.kind === 'TR-DOS' ? '\nOther files become code files (Hobeta .$T files are restored), files over 255 sectors are split (NAME.001…).' : s.vol.kind === 'TR-DOS' ? '\nTR-DOS files are stored as Hobeta (NAME.$T).' : '') : '';
       // split files (NAME.001, .002…): glued back into one file, except onto TR-DOS (255 sectors per file at most)
@@ -1628,6 +1642,7 @@
     }
     async function del() {
       const s = P[act]; if (!s.vol) return;
+      if (!s.vol.del) { status(srcName(s) + ' is read only', true); return; }
       const list = pickedAll(s); if (!list.length) return;
       const nd = list.filter((it) => it.dir).length, nf = list.length - nd;
       const txt = list.length === 1 ? (nd ? 'folder ' + list[0].name + ' with all its contents' : fname(list[0]))
@@ -1650,6 +1665,7 @@
     async function download() {
       const s = P[act]; if (!s.vol) return;
       const sel = pickedAll(s); if (!sel.length) return;
+      if (!await prep(s, sel)) return;
       const hasDir = sel.some((it) => it.dir);
       const fileOf = (it, prefix, seen) => {
         const f = s.vol.read(it);
@@ -1704,10 +1720,10 @@
       let f = null;
       // Hobeta: a TR-DOS file for TR-DOS (its own name); FAT keeps the file as it is; CP/M, iS-DOS: the data under the PC name
       // (several Hobeta files may carry the same inner name)
-      if (/^\$/.test(ext0) && !/^FAT/.test(kind)) { f = hobetaParse(data); if (f && kind !== 'TR-DOS') f.name = base; }
+      if (/^\$/.test(ext0) && !/^FAT|^Browser$/.test(kind)) { f = hobetaParse(data); if (f && kind !== 'TR-DOS') f.name = base; }
       if (!f) f = kind === 'TR-DOS' ? (data.length > 0xFF00 ? { name: pad(base, 8), data } // long: split files (see trdos write)
         : { name: pad(base, 8), zx: { type: 'C', start: 0, len: data.length }, data })
-        : /^FAT/.test(kind) ? { name: full, ext: ext0, data } : { name: base, ext, data };
+        : /^FAT|^Browser$/.test(kind) ? { name: full, ext: ext0, data } : { name: base, ext, data };
       return f;
     }
     // Put Files: files from the PC into this panel. A .zip is unpacked (after a question): iS-DOS and FAT get its folders,
@@ -1728,6 +1744,7 @@
     }
     async function upload(files) {
       const t = P[act]; if (!t.vol) { status('No disk in this panel', true); return; }
+      if (!t.vol.write) { status(srcName(t) + ' is read only', true); return; }
       const arr = await Promise.all([...files].map((fl) => fl.file ? (fl.dir ? Promise.resolve([fl.path + '/', null]) : fl.file.arrayBuffer().then((b) => [fl.path, new Uint8Array(b)])) : fl.arrayBuffer().then((b) => [fl.name, new Uint8Array(b)])));
       const folders = arr.some(([nm]) => nm.includes('/'));
       const Z = window.UnrealZip, zips = arr.filter(([nm, d]) => /\.zip$/i.test(nm) && Z && Z.isZip(d));
@@ -1986,6 +2003,7 @@
       if (!api.sjasm) { status('Compile: sjasmplus is not here', true); return; }
       const fn = (x) => x.name.trim() + (x.ext && String(x.ext).trim() ? '.' + String(x.ext).trim() : '');
       const main = fn(it), proj = (it.name.trim() || 'project').replace(/[\/:*?"<>|]/g, '_');
+      if (!await prep(p, p.items)) return;
       compiling = true;
       try {
         // the project: the folder of the main file and its subfolders (8 deep, 32 MB at most)
@@ -2028,14 +2046,15 @@
     // quick run: the same machinery as the REST API (run= for TR-DOS, cpm= for CP/M)
     // a disk image file (HDD, SD card, RAM): mounted into a drive of the machine
     const DISK_IMG = /^\.(trd|scl|fdi|udi|td0|isd|pro|dsk|ipf)$/i;
-    async function mountImage(s, it) {
+    async function mountImage(s, it, zip) {
       const body = document.createElement('div'); body.className = 'fchdd';
       body.innerHTML = '<div class="hrow">Drive <select class="dv"><option value="0">A:</option><option value="1">B:</option></select></div>';
       body.querySelector('.dv').value = api.load('fc.mountdrv') === '1' ? '1' : '0';
       if (!await ask({ title: 'Mount', text: `Mount ${fname(it)} from ${srcName(s)} into a drive?`, body, ok: 'Mount' })) return;
       const d = +body.querySelector('.dv').value; api.store('fc.mountdrv', String(d));
+      if (!await prep(s, [it])) return;
       const f = s.vol.read(it), name = (f.name || it.name).trim() + '.' + (f.ext || it.ext).trim().toLowerCase();
-      const ok = await api.mountDisk(name, f.data, d, s.src);
+      const ok = zip ? await api.mountZip(name, f.data, d) : await api.mountDisk(name, f.data, d, s.src);
       if (ok === false) return;
       status(fname(it) + ' in drive ' + 'AB'[d] + ':');
       P.forEach((p, i) => { if (p.src === 'AB'[d]) load(i); });
@@ -2043,6 +2062,8 @@
     async function run() {
       const s = P[act]; if (!s.vol || !api.run) return;
       const it = s.items[s.cur]; if (!it || it.dir) return;
+      if (!await prep(s, [it])) return;
+      if (/^zip$/i.test((it.ext || '').trim()) && api.mountZip) { mountImage(s, it, true); return; } // a ZIP: its disk image (or HDD / SD image, TS-Conf card…) as Load takes it
       if (DISK_IMG.test('.' + (it.ext || '').trim()) && s.src !== 'A' && s.src !== 'B' && api.mountDisk) { mountImage(s, it); return; }
       const o = { kind: s.vol.kind, profi: !!s.vol.profi, src: s.src, drive: s.vol.drive || '', name: it.name.trim(), ext: (it.ext || '').trim(), type: it.zx ? it.zx.type : '', read: () => s.vol.read(it).data };
       const err = api.run(o, true);
@@ -2053,10 +2074,11 @@
       show(false);
     }
     // F4: the editor; Save puts the new contents back in place of the file (same name, type, start) and writes the disk
-    function edit() {
+    async function edit() {
       const s = P[act]; if (!s.vol) return;
       const it0 = s.items[s.cur]; if (!it0 || it0.dir) return;
       if (!s.vol.write || !s.vol.del) { status('Edit: this disk cannot be written', true); return; }
+      if (!await prep(s, [it0])) return;
       const f0 = s.vol.read(it0);
       const f = f0.zx && f0.zx.len && f0.zx.type !== 'B' ? Object.assign({}, f0, { data: f0.data.subarray(0, f0.zx.len) }) : f0;
       const key = (x) => x.name + '|' + (x.ext || '') + '|' + (x.zx ? x.zx.type + x.zx.start : '');
@@ -2118,9 +2140,10 @@
       const targets = () => P.map((p, i) => [i, p]).filter(([, p]) => p.vol && p.vol.write).map(([i, p]) => [i, srcName(p) + ' (' + p.vol.kind + ')' + (p.src === at.src && ident(p.src) === at.id ? ' — this disk' : '')]);
       editor.open({ title: srcName(s) + ' ' + fname(it0), name: it0.name.trim() + (it0.ext && !it0.zx ? '.' + it0.ext.trim() : ''), data: f.data, zx: f.zx, save, saveAs, targets, here: () => P.findIndex((p) => p.src === at.src && ident(p.src) === at.id) });
     }
-    function view() {
+    async function view() {
       const s = P[act]; if (!s.vol) return;
       const it = s.items[s.cur]; if (!it || it.dir) return;
+      if (!await prep(s, [it])) return;
       const f = s.vol.read(it);
       viewer.open(f, srcName(s) + ' ' + fname(it));
     }
