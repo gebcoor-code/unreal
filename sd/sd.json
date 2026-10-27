@@ -1,5 +1,5 @@
 [
-  { "name": "SD test BaseConf (8MB, FAT16)", "url": "sd.zip" },
-  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip" },
-  { "name": "Wild Commander (TS-Conf) (FAT32)", "url": "wc.zip" }  
+  { "name": "SD test BaseConf (8MB, FAT16)", "url": "sd.zip", "tag": "SD" },
+  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip", "tag": "SD OS" },
+  { "name": "Wild Commander (TS-Conf) (FAT32)", "url": "wc.zip", "tag": "SD SPG" }
 ]
