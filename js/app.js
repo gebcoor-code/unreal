@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261027092414';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261027092414'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261027092414'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261027132946';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261027132946'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261027132946'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '0.94.6'; // About, System Info (history: changes.txt)
-  const BUILD = '20261027092414'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.95.7'; // About, System Info (history: changes.txt)
+  const BUILD = '20261027132946'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1218,7 +1218,7 @@
     helpZ();
   }
   // a help window always stays just above the window it belongs to (it may lie over it on a narrow screen)
-  const HELP_OF = [['dbghelp', 'dbgwin'], ['dgahelp', 'dgawin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
+  const HELP_OF = [['dbghelp', 'dbgwin'], ['dgahelp', 'dgawin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['ldhelp', 'loadwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
   function helpZ() {
     WINS.forEach((x, k) => { x.style.zIndex = String(8 + 2 * k); });
     for (const [h, p] of HELP_OF) { const he = $(h), pe = $(p); if (he && pe && pe.style.zIndex) he.style.zIndex = String(+pe.style.zIndex + 1); }
@@ -1891,6 +1891,7 @@
       } else if (noBoot) withBoot(d);
     } else {
       if (!quiet) toast('Loaded: ' + name);
+      if (['tap', 'tzx', 'csw'].includes(ext)) tapeName = name; // Load / Media
       if (autorunNext && !quiet && ['tap', 'tzx', 'csw'].includes(ext)) { autorunNext = false; autorunTape(); toast('Tape: ' + name + ' — autorun'); }
     }
     updateUI();
@@ -1943,7 +1944,7 @@
         coreAnswer = 6;
       }
       if (E.web_disk_present(d) && E.web_disk_changed(d)) {
-        if (!await askBox('Disk ' + DRV[d] + ':', 'Discard changes for ' + (drives[d] ? drives[d].name : diskBase(d)) + '?')) return;
+        if (!loseAsked && !await askBox('Disk ' + DRV[d] + ':', 'Discard changes for ' + (drives[d] ? drives[d].name : diskBase(d)) + '?')) return;
         E.web_disk_mark(d, 0);
       }
     }
@@ -1965,12 +1966,75 @@
   // first BASIC program (REST API autorun=1, Server list, Autostart TRDOS); 'boot': its boot, the emulator's boot added when
   // the disk has none (Use boot.b)
   let autorunNext = false, zipAuto = false, loadingUrl = null, linkLoading = false; // loadingUrl: where the file being loaded came from
+  // Load / Local file: Autostart (and its choices) for the files of this computer — Choose File, a drop on the screen, Local server
+  let hdBoot = false; // Autostart + Boot from HDD / SD: an HDD / SD card image boots
+  const ldAuto = () => $('ldauto').checked;
+  const ldMode = () => ldAuto() ? ($('ldboot').checked ? 'boot' : true) : false; // autorunNext: 'boot' = boot.b menu, true = first BASIC program
+  async function withLocal(fn) {
+    autorunNext = ldMode(); tsNoAuto = !ldAuto(); hdBoot = ldAuto() && $('ldhdboot').checked;
+    try { await fn(); } finally { autorunNext = false; tsNoAuto = false; hdBoot = false; }
+  }
+  // unsaved changes of the media a load replaces: one question (Run of the server list asks first for all it replaces: loseAsked)
+  let loseAsked = false;
+  function loseList(keys) { // 'a'…'d', 'hdd0', 'hdd1', 'sd'
+    const out = [];
+    for (const k of keys) {
+      if (/^[a-d]$/.test(k)) { const i = 'abcd'.indexOf(k); if (E && E.web_disk_present(i) && E.web_disk_changed(i)) out.push(DRV[i] + ': ' + (drives[i] ? drives[i].name : diskBase(i))); }
+      else if (/^hdd[01]$/.test(k)) { const d = +k[3]; if (hdds[d] && hddDirty[d]) out.push('HDD ' + d + ': ' + hdds[d]); }
+      else if (k === 'sd' && sdName && sdDirty && !sdWcOwn) out.push('SD: ' + sdName);
+    }
+    return out;
+  }
+  async function loseOk(keys) {
+    if (loseAsked) return true;
+    const l = loseList(keys);
+    return !l.length || askBox('Unsaved changes', 'These changes will be lost:\n' + l.join('\n'), 'Continue');
+  }
+  // an HDD or SD card image from Load (Local file, Local server, a drop): HDD 0 or the SD card. .hdd / .hdf (or a .chs with
+  // it): HDD; ZX Evo (Z-Controller built in): SD; else asked (the last answer first)
+  async function imgFromBytes(name, buf) {
+    let inner = name;
+    if (UnrealZip.isZip(buf)) {
+      const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name));
+      inner = all.some((e) => /\.chs$/i.test(e.name)) ? 'x.hdd' : all.reduce((a, b) => (b.size > a.size ? b : a), { size: -1, name }).name;
+    }
+    let toSd;
+    if (/\.(hdd|hdf)$/i.test(inner)) toSd = false;
+    else if (sdBuiltIn()) toSd = true;
+    else {
+      const last = load('ld.imgto') === 'sd';
+      toSd = (await askBox(name, 'An HDD or an SD card image?', last ? 'SD card' : 'HDD 0', last ? 'HDD 0' : 'SD card')) === last;
+      store('ld.imgto', toSd ? 'sd' : 'hdd');
+    }
+    if (toSd) {
+      if (!await sdFromBytes(name, buf)) return;
+      sdSrc = null;
+      if (!sdOn()) { store('sd.if.' + M(), '1'); sdMount(); sdUI(); } // the Z-Controller switched on for this machine
+      if (hdBoot) sdBoot();
+    } else {
+      if (!await hddFromBytes(0, name, buf)) return;
+      if (hdBoot && hdds[0]) hddBoot();
+    }
+  }
+  function hddBoot() { // Boot from HDD: the machine boots its HDD 0 (xBIOS: Boot → HDD in its setup; the others: Reset)
+    if (!E.web_hdd_scheme(-1)) { toast('HDD 0: ' + MODELS[model].name + ' has no HDD interface on (Options / Disk / HDD)', true); return; }
+    const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx]));
+    if (M() === 'XBIOS136') runMacro([{ reset: 0 }, { wait: w(100) }, { xtmode: 1 }, { xt: ['Space'] }, { wait: w(60) }, ...rep(2, { xt: ['ArrowDown'] }), { wait: 10 }, { xt: ['Enter'] }]);
+    else E.web_reset(0);
+    toast('HDD 0: ' + hdds[0] + ' — boot');
+  }
+  function sdBoot() { // Boot from SD: TS-Conf: Wild Commander (and the card's program, its .json); ZX Evo BaseConf: Reset Service 5 = SD card; the others: Reset
+    if (isTS()) { tsBootSd(); if (sdRun) wcAutorun(); return; }
+    if (M() === 'EVO') { const k = Math.max(1, 2 / SPEEDS[speedIdx]); runMacro([{ reset: 0 }, { wait: Math.ceil(150 * k) }, { xtmode: 1 }, { xt: ['Digit5'] }]); }
+    else E.web_reset(0);
+    toast('SD card: ' + sdName + ' — boot');
+  }
   async function loadBytes(name, buf, drive) {
-    if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await hddFromBytes(0, name, buf); return; } await putAndInsert(name, buf, drive); return; }
+    if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await imgFromBytes(name, buf); return; } await putAndInsert(name, buf, drive); return; }
     try {
       if (await tsZip(name, buf)) return;
       const entries = UnrealZip.list(buf).filter((e) => LOADABLE.test(e.name));
-      if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await hddFromBytes(0, name, buf); return; }
+      if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await imgFromBytes(name, buf); return; }
       if (!entries.length) { toast('No disk, tape or snapshot images in the archive', true); return; }
       const pick = async (e) => putAndInsert(e.name, await UnrealZip.extract(buf, e), drive);
       if (entries.length === 1) { await pick(entries[0]); return; }
@@ -2016,7 +2080,7 @@
   }
   let pendingDrive = -1, fromLoadWin = false;
   // F3, the Load button and the drive Insert buttons open the Load window
-  function openFile(drive) { showLoad(drive); }
+  function openFile(drive) { pendingDrive = drive; fromLoadWin = false; $('file').click(); } // Options / Disk: Insert into this drive (no autostart)
 
   // ------------------------------------------------------------------ floating windows (Load, server browser, Save, ZIP)
   const fwins = {};
@@ -2030,9 +2094,9 @@
       releaseAll(); releaseMouse(); w.hidden = false; fwins[id].place();
       // touch screens: focus the window itself, a focused select / input would pop up its picker or the on-screen keyboard
       if (matchMedia('(pointer: coarse)').matches) { w.tabIndex = -1; w.focus({ preventScroll: true }); }
-      else { const f = w.querySelector('input:not([hidden]), select, button.primary'); if (f) f.focus(); }
+      else { const f = w.querySelector('[data-autofocus], input:not([hidden]):not([type=checkbox]):not([type=radio]), select, button.primary:not([hidden])'); if (f) f.focus(); }
     }
-    else { w.hidden = true; canvas.focus(); }
+    else { w.hidden = true; if (id === 'loadwin') ldHelp(false); canvas.focus(); }
   }
 
   // ------------------------------------------------------------------ autorun: reset to TR-DOS and type RUN (boots "boot")
@@ -2635,10 +2699,9 @@
 
   // ------------------------------------------------------------------ Load window: local server, local file, server list, URL
   const LOAD_EXT = /\.(zip|trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|wmf|pal|\$.)$/i;
-  const ldDrive = () => +$('lddrive').value;
+  const ldDrive = () => 0; // Load mounts disks into A: (B: and the ROM disk: Options / Disk)
   function ldMsg(t, err) { $('ldmsg').textContent = t || ''; $('ldmsg').classList.toggle('err', !!err); }
   function showLoad(drive) {
-    $('lddrive').value = String(drive >= 0 && drive < NDRIVES ? drive : 0); // always A: unless a drive's Insert opened it
     ldMsg(''); ldStoreUI();
     fwinShow('loadwin', true);
   }
@@ -2666,7 +2729,7 @@
     msg('Loading ' + name + '…');
     try {
       const buf = new Uint8Array(await (await fetchFile(u)).arrayBuffer());
-      autorunNext = !!auto; // "Use boot.b" / "Autostart TRDOS" are for the files of this computer; the server list has its own autostart
+      autorunNext = auto || false; // true: boot or the first BASIC program; 'boot': boot or the boot.b menu (Local file / Local server)
       loadingUrl = u; try { await loadBytes(name, buf, drive); } finally { loadingUrl = null; }
       autorunNext = false;
       msg('');
@@ -2730,51 +2793,37 @@
     const abs = (u) => { try { return new URL(u, location.href).href; } catch (e) { return ''; } };
     const show = (sel, list, src, on) => { if (!sel) return; const i = on && src ? list.findIndex((x) => x.url === abs(src)) : -1; sel.value = i >= 0 ? String(i) : ''; };
     const hdOn = (d) => !!(hdds[d] && E && E.web_hdd_get(d, 5));
-    show($('ldhddsrv'), hddList, hddSrc[+$('ldhddn').value], hdOn(+$('ldhddn').value));
     for (let d = 0; d < NHDD; d++) { const g = $('hddgeo' + d); if (g) show(g.querySelector('.srv'), hddList, hddSrc[d], hdOn(d)); }
     const sdIn = !!(sdName && fs.exists(sdName));
-    show($('ldsdsrv'), sdList, sdSrc, sdIn); show($('sdgeo') && $('sdgeo').querySelector('.srv'), sdList, sdSrc, sdIn);
+    show($('sdgeo') && $('sdgeo').querySelector('.srv'), sdList, sdSrc, sdIn);
   }
-  // Load window: HDD and SD card rows show what Options / Disk has mounted
+  // Load window, Media: what is mounted now (a changed image with *), ⏏ as in Options / Disk; empty drives are not listed
+  let tapeName = '';
   function ldStoreUI() {
-    if (!$('ldhddname') || !E) return;
-    const rdOpt = $('lddrive').querySelector('[value="9"]'); rdOpt.hidden = M() !== 'XBIOS136'; // ROM disk: xBIOS XT only
-    if (rdOpt.hidden && ldDrive() === ROM_TARGET) $('lddrive').value = '0';
-    const dd = ldDrive(), dn = dd === ROM_TARGET ? (romDisk ? romDisk.name : '') : E.web_disk_present(dd) ? (drives[dd] ? drives[dd].name : cstr(E.web_disk_name(dd)).replace(/^.*[\\/]/, '')) + (E.web_disk_changed(dd) ? ' *' : '') : '';
-    $('lddname').textContent = dn || '— empty —'; $('lddname').classList.toggle('off', !dn); $('lddej').hidden = !dn;
-    const d = +$('ldhddn').value, on = !!(hdds[d] && E.web_hdd_get(d, 5));
-    $('ldhddname').textContent = on ? hdds[d] + (hddDirty[d] ? ' *' : '') : (E.web_hdd_scheme(-1) ? '— empty —' : '— empty (interface off) —');
-    $('ldhddname').classList.toggle('off', !on); $('ldhddej').hidden = !on;
-    const sd = !!(sdName && fs.exists(sdName));
-    $('ldsdname').textContent = sd ? sdName + (sdDirty ? ' *' : '') : sdOn() ? '— empty —' : '— empty (Z-Controller off) —';
-    $('ldsdname').classList.toggle('off', !sd); $('ldsdej').hidden = !sd;
-    srvShow();
+    const box = $('ldmedia'); if (!box || !E) return;
+    const rows = [];
+    for (let i = 0; i < NDRIVES; i++) if (E.web_disk_present(i))
+      rows.push([DRV[i] + ':', (drives[i] ? drives[i].name : cstr(E.web_disk_name(i)).replace(/^.*[\\/]/, '')) + (E.web_disk_changed(i) ? ' *' : ''), () => $('drv' + i).querySelector('.eject').click()]);
+    if (romDisk && M() === 'XBIOS136') rows.push(['ROM', romDisk.name, () => $('romdiskdel').click()]);
+    for (let d = 0; d < NHDD; d++) if (hdds[d] && E.web_hdd_get(d, 5)) rows.push(['HDD ' + d, hdds[d] + (hddDirty[d] ? ' *' : ''), () => $('hdd' + d).querySelector('.eject').click()]);
+    if (sdName && fs.exists(sdName)) rows.push(['SD', sdName + (sdDirty && !sdWcOwn ? ' *' : '') + (sdOn() ? '' : ' (off)'), () => $('sdcard').querySelector('.eject').click(), !sdOn()]);
+    if (tapeName && E.web_tape_list() >= 0) rows.push(['Tape', tapeName, null]);
+    box.textContent = '';
+    const add = (cls, t) => { const e = document.createElement('span'); e.className = cls; e.textContent = t; box.appendChild(e); return e; };
+    add('mm', MODELS[model].name);
+    if (!rows.length) add('mm', '— nothing mounted —');
+    for (const [l, n, ej, off] of rows) {
+      add('ml', l); add('mn' + (off ? ' off' : ''), n);
+      if (ej) { const b = document.createElement('button'); b.className = 'ldej'; b.title = 'Eject'; b.textContent = '⏏'; b.onclick = async () => { await ej(); ldStoreUI(); }; box.appendChild(b); }
+      else add('', '');
+    }
   }
   function bindLdStore() {
-    $('ldhddn').onchange = ldStoreUI;
-    // ⏏: the same as the buttons in Options / Disk
-    $('lddej').onclick = () => { const d = ldDrive(); if (d === ROM_TARGET) $('romdiskdel').click(); else $('drv' + d).querySelector('.eject').click(); ldStoreUI(); };
-    $('ldhddej').onclick = () => { $('hdd' + $('ldhddn').value).querySelector('.eject').click(); ldStoreUI(); };
-    $('ldsdej').onclick = () => { $('sdcard').querySelector('.eject').click(); ldStoreUI(); };
-    $('lddrive').addEventListener('change', ldStoreUI);
-    $('ldhddfile').onclick = () => hddPick(+$('ldhddn').value);
-    $('ldsdfile').onclick = () => $('sdfile').click();
-    $('ldhddsrv').onchange = async (e) => {
-      const it = e.target.value === '' ? null : hddList[+e.target.value]; if (!it) return;
-      const d = +$('ldhddn').value; ldMsg('Loading ' + it.name + '…');
-      try { await hddFromBytes(d, it.url.replace(/^.*\//, ''), await fetchBytes(it.url)); hddSrc[d] = it.url; ldMsg(''); } catch (err) { ldMsg(err.message, true); }
-      srvShow();
-    };
-    $('ldsdsrv').onchange = async (e) => {
-      const it = e.target.value === '' ? null : sdList[+e.target.value]; if (!it) return;
-      ldMsg('Loading ' + it.name + '…');
-      try { await sdFromBytes(it.url.replace(/^.*\//, ''), await fetchBytes(it.url)); sdSrc = it.url; ldMsg(''); } catch (err) { ldMsg(err.message, true); }
-      srvShow();
-    };
+    $('lddisk').onclick = () => { showOptions(true); const t = document.querySelector('#options [data-tab="opt"]'); if (t) t.click(); };
   }
+
   async function loadHddList() {
     hddList = await fetchList('hdd/hdd.json');
-    srvSelect($('ldhddsrv'), hddList);
     document.querySelectorAll('#hdds .srv').forEach((sel) => {
       sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>' + hddList.map((it, i) => `<option value="${i}"></option>`).join('');
       hddList.forEach((it, i) => { sel.options[i + 1].textContent = it.name; });
@@ -2782,20 +2831,53 @@
     });
     srvShow();
   }
+  // Server list: trd/trd.json, then hdd/hdd.json and sd/sd.json (their entries get the tag HDD / SD when they have none);
+  // the tag buttons above it show the entries of one tag
   async function loadServerList() {
-    srvList = await fetchList('trd/trd.json');
+    const trd = await fetchList('trd/trd.json');
+    const own = (list, kind, tag) => list.map((it) => Object.assign({}, it, { kind }, it.tag ? {} : { tag, tags: [tag] }));
+    // an hdd.json / sd.json image that a trd.json entry already brings (its hdd= / sd=, or the image of its OS): listed once,
+    // as that entry (Run, and Mount in its ▾)
+    const abs = (u) => { try { return new URL(lowDir(u), location.href).href; } catch (e) { return u; } }, brought = new Set();
+    for (const it of trd) if (it.rp) {
+      for (const k of ['hdd', 'hdd1', 'sd']) if (it.rp[k]) brought.add(abs(it.rp[k]));
+      const os = OS_MODELS[linkModelKey(it.rp.model)]; if (os) brought.add(abs(os.hdd || os.sd));
+    }
+    const fresh = (list) => list.filter((it) => !brought.has(it.url));
+    srvList = trd.map((it) => Object.assign({ kind: 'trd' }, it)).concat(own(fresh(hddList), 'hdd', 'HDD'), own(fresh(sdList), 'sd', 'SD'));
     const pop = $('ldpop'); pop.innerHTML = '';
     srvList.forEach((it, i) => {
       const d = document.createElement('div');
       d.className = 'dditem'; d.dataset.i = i;
-      d.innerHTML = '<span class="ddname"></span>' + (it.tag ? tagIcon(it) : '');
+      d.innerHTML = '<span class="ddname"></span>' + (it.tags && it.tags.length ? tagIcon(it) : '');
       d.firstChild.textContent = it.name;
       d.onmousedown = (e) => { e.preventDefault(); srvPick(i); ddOpen(false); };
       pop.appendChild(d);
     });
+    const tags = [...new Set(srvList.flatMap((it) => it.tags || []))].sort((x, y) => (TAGS.indexOf(x) + 1 || 99) - (TAGS.indexOf(y) + 1 || 99) || x.localeCompare(y));
+    const bar = $('ldtags'); bar.innerHTML = '';
+    for (const t of tags.length > 1 ? ['All', ...tags] : []) {
+      const b = document.createElement('button'); b.textContent = t; b.dataset.t = t === 'All' ? '' : t;
+      b.onclick = () => { // several tags at once (an entry with any of them); All: every entry
+        const set = new Set(ldTags()), t = b.dataset.t;
+        if (!t) set.clear(); else if (set.has(t)) set.delete(t); else set.add(t);
+        store('ld.tags', [...set].join(' ')); srvFilter();
+      };
+      bar.appendChild(b);
+    }
     $('ldlistsec').hidden = !srvList.length;
-    srvPick(-1);
+    srvFilter();
   }
+  const ldTags = () => (load('ld.tags') || '').split(' ').filter(Boolean);
+  const srvShown = (it) => { const ts = ldTags(); return !ts.length || ts.some((t) => (it.tags || []).includes(t)); };
+  function srvFilter() {
+    const ts = ldTags().filter((t) => srvList.some((it) => (it.tags || []).includes(t)));
+    store('ld.tags', ts.join(' '));
+    $('ldtags').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.t ? ts.includes(b.dataset.t) : !ts.length));
+    $('ldpop').querySelectorAll('.dditem').forEach((d) => { d.hidden = !srvShown(srvList[+d.dataset.i]); });
+    srvPick(srvSel >= 0 && srvShown(srvList[srvSel]) ? srvSel : -1);
+  }
+  const srvStep = (from, dir) => { for (let i = from + dir; i >= 0 && i < srvList.length; i += dir) if (srvShown(srvList[i])) return i; return from; };
   // the tag of a list entry is drawn on the right as a small framed label (CP/M images: CPM)
   function tagIcon(it) {
     return (it.tags || []).map((t) => { t = t.replace(/[<>&"]/g, ''); return `<span class="tagic txt${TAGS.includes(t) ? ' tag-' + t.toLowerCase() : ''}" title="${t}">${t}</span>`; }).join('');
@@ -2806,34 +2888,48 @@
     const cur = $('ldlist').querySelector('.ddcur');
     if (i < 0) { // nothing chosen yet
       srvSel = -1; cur.innerHTML = '<span class="ddname ddph">Select from server</span>';
-      $('ldpop').querySelectorAll('.dditem').forEach((d) => d.classList.remove('on')); $('ldlistgo').disabled = true; runRowUI(); return;
+      $('ldpop').querySelectorAll('.dditem').forEach((d) => d.classList.remove('on')); runRowUI(); return;
     }
-    srvSel = Math.max(0, Math.min(srvList.length - 1, i)); $('ldlistgo').disabled = false;
+    srvSel = Math.max(0, Math.min(srvList.length - 1, i));
     const it = srvList[srvSel];
     cur.innerHTML = '<span class="ddname"></span>' + (it.tag ? tagIcon(it) : '');
     cur.firstChild.textContent = it.name;
     $('ldpop').querySelectorAll('.dditem').forEach((d) => d.classList.toggle('on', +d.dataset.i === srvSel));
     runRowUI();
   }
-  // an entry with a run link: "Autostart after load" (the link is started, on the machine chosen here) or just mount its file
   const linkModelKey = (v) => { if (!v) return null; const k = v.toLowerCase().replace(/[\s_-]/g, ''); return MODEL_ALIASES[k] || Object.keys(MODELS).find((x) => x.toLowerCase() === k) || null; };
-  function runModels(rp) { // machines the link can start on
-    const m = linkModelKey(rp.model) || 'ATM710';
-    if (OS_MODELS[m]) return [m];
-    if (rp.cpm) return ['ATM710', 'XBIOS136', 'EVO'];
-    return Object.keys(LINK_NAME).filter((k) => !OS_MODELS[k] && !(k === 'PLUS3' && (rp.a || rp.b)));
-  }
+  // Run: only for an entry with a link (its machine and autostart); Mount: any entry
+  let goMode = 'mount', goFor = null; // the action of the Run / Mount button for the chosen entry
   function runRowUI() {
-    const it = srvList[srvSel], row = $('ldrunrow');
-    row.hidden = !it; // every entry of the server list: its own Autostart after load
-    if (row.hidden) return;
-    const on = load('ld.autostart') !== '0', sel = $('ldrunmodel');
-    $('ldrun').checked = on;
-    if (!it.run) { sel.hidden = true; $('ldrunone').hidden = true; return; } // a plain file: no machine to choose
-    const ms = runModels(it.rp), def = linkModelKey(it.rp.model) || ms[0];
-    sel.innerHTML = ms.map((k) => `<option value="${k}">${MODELS[k].name}</option>`).join('');
-    sel.value = ms.includes(def) ? def : ms[0];
-    sel.hidden = !on || ms.length < 2; $('ldrunone').hidden = !on || ms.length !== 1; $('ldrunone').textContent = 'on ' + MODELS[sel.value].name;
+    const it = srvList[srvSel], m = it && it.run ? linkModelKey(it.rp.model) : null;
+    if (it !== goFor) { goFor = it; goMode = it && it.run ? 'run' : 'mount'; } // another entry: Run when it has a link
+    const run = goMode === 'run', b = $('ldlistgo');
+    b.textContent = run ? 'Run' : 'Mount'; b.classList.toggle('primary', run); b.disabled = !it;
+    b.title = run ? 'Start the entry' + (m ? ' on ' + MODELS[m].name : '') + ' as the server has it' : 'Mount the entry: the machine stays';
+    $('ldlistmore').hidden = !(it && it.run); $('ldlistmore').classList.toggle('primary', run); // an entry with a link: ▾ chooses Run or Mount
+  }
+  // before Run: what the entry replaces (the disks when the machine changes, its HDD / SD card, an OS's own image) — asked
+  // only when unsaved changes would be lost
+  async function runAsk(it) {
+    const p = it.rp || {}, want = linkModelKey(p.model), os = want && OS_MODELS[want];
+    const change = !!(want && (want !== model || os)), keys = [];
+    if (change) keys.push('a', 'b', 'c', 'd'); else { if (p.a) keys.push('a'); if (p.b) keys.push('b'); }
+    if (p.hdd || (os && os.hdd)) keys.push('hdd0');
+    if (p.hdd1) keys.push('hdd1');
+    if (p.sd || (os && os.sd) || (want === 'TSCONF' && (change || p.a))) keys.push('sd');
+    const l = loseList(keys);
+    if (!l.length) return true;
+    return askBox('Run: ' + it.name, (change ? 'Machine: ' + MODELS[model].name + ' → ' + MODELS[want].name + '\n' : '') + 'Unsaved changes will be lost:\n' + l.join('\n'), 'Run');
+  }
+  // Mount of an hdd.json / sd.json entry: into HDD 0 / the SD card, the machine stays
+  async function mountSrv(it) {
+    ldMsg('Loading ' + it.name + '…');
+    try {
+      const b = await fetchBytes(it.url), n = it.url.replace(/^.*\//, '');
+      if (it.kind === 'hdd') { if (!await hddFromBytes(0, n, b)) return false; hddSrc[0] = it.url; }
+      else { if (!await sdFromBytes(n, b)) return false; sdSrc = it.url; if (!sdOn()) { store('sd.if.' + M(), '1'); sdMount(); sdUI(); } }
+      ldMsg(''); srvShow(); return true;
+    } catch (err) { ldMsg(err.message, true); return false; }
   }
   // start a REST API link on this page (the model is switched when it is another one), or mount its files only
   async function runLink(q, mk, mountOnly) {
@@ -2915,8 +3011,7 @@
     addUp();
     for (const d of dirs) addItem('dir', d.name + '/', () => brOpen(d.href));
     for (const f of files) addItem('file', f.name, async () => {
-      tsNoAuto = !$('ldauto').checked;
-      try { if (await loadUrl(f.href, ldDrive(), brStat)) brStat('Loaded: ' + f.name); } finally { tsNoAuto = false; }
+      await withLocal(async () => { if (await loadUrl(f.href, 0, brStat, ldMode())) brStat('Loaded: ' + f.name); }); // as Local file
     });
     brStat(dirs.length + files.length ? `${dirs.length} folders, ${files.length} files` : 'No folders or loadable files here');
     const first = list.querySelector('button'); if (first) first.focus();
@@ -2938,15 +3033,21 @@
   function bindLoad() {
     const saved = load('ldsrv'); if (saved) $('ldsrv').value = saved;
     $('ldfile').onclick = () => { pendingDrive = ldDrive(); fromLoadWin = true; $('file').click(); };
-    // local file autostart: Use boot.b (boot, or the emulator's boot added when the disk has none) or Autostart TRDOS (boot,
-    // or the disk's first BASIC program) — one of them or none; Use boot.b by default
-    const ldStart = (v) => { // 'boot' | 'auto' | ''
-      $('ldboot').checked = v === 'boot'; $('ldauto').checked = v === 'auto'; $('ldpressrow').hidden = v !== 'boot'; store('ld.start', v || 'none');
-    };
+    // Local file: Autostart (on by default); a disk without boot: the boot.b menu (default) or its first BASIC program;
+    // Boot from HDD / SD (on). The settings of before (ld.start: boot / auto / none) carried over once
     const ls = load('ld.start');
-    ldStart(ls === null ? 'boot' : ls === 'none' ? '' : ls);
-    $('ldboot').onchange = () => ldStart($('ldboot').checked ? 'boot' : '');
-    $('ldauto').onchange = () => ldStart($('ldauto').checked ? 'auto' : '');
+    if (load('ld.auto') === null && ls !== null) { store('ld.auto', ls === 'none' ? '0' : '1'); if (ls === 'auto') store('ld.nb', 'basic'); }
+    $('ldauto').checked = load('ld.auto') !== '0';
+    $(load('ld.nb') === 'basic' ? 'ldbasic' : 'ldboot').checked = true;
+    $('ldhdboot').checked = load('ld.hdboot') !== '0';
+    const ldOptUI = () => {
+      $('ldsub').hidden = !ldAuto(); // its choices only while Autostart is on
+      $('ldpressrow').hidden = !$('ldboot').checked;
+    };
+    $('ldauto').onchange = () => { store('ld.auto', ldAuto() ? '1' : '0'); ldOptUI(); };
+    $('ldboot').onchange = $('ldbasic').onchange = () => { store('ld.nb', $('ldbasic').checked ? 'basic' : 'boot'); ldOptUI(); };
+    $('ldhdboot').onchange = () => store('ld.hdboot', $('ldhdboot').checked ? '1' : '0');
+    ldOptUI();
     if (load('ldpress') !== null) $('ldpress').value = load('ldpress');
     $('ldpress').addEventListener('input', () => store('ldpress', $('ldpress').value));
     $('ldsrvgo').onclick = () => {
@@ -2965,33 +3066,62 @@
       brOpen(u);
     };
     $('ldsrv').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('ldsrvgo').click(); });
-    $('ldrun').onchange = () => { store('ld.autostart', $('ldrun').checked ? '1' : '0'); runRowUI(); };
-    $('ldlistgo').onclick = async () => {
-      const it = srvList[srvSel];
-      if (!it) return;
+    // Run: the entry as the server has it (its link: machine, media, autostart); Mount: its files only, the machine stays
+    const srvRun = async () => {
+      const it = srvList[srvSel]; if (!it || !it.run) return;
       ddOpen(false);
-      if (it.run) { const ok = await runLink(it.run, $('ldrunmodel').value, !$('ldrun').checked); if (ok) fwinShow('loadwin', false); return; }
-      tsNoAuto = !$('ldrun').checked; // Autostart after load off: a disk is only inserted, a TS-Conf card boots Wild Commander only
-      try { if (await loadUrl(it.url, ldDrive(), ldMsg, $('ldrun').checked)) fwinShow("loadwin", false); } finally { tsNoAuto = false; }
+      if (!await runAsk(it)) return;
+      loseAsked = true;
+      try { if (await runLink(it.run)) fwinShow('loadwin', false); } finally { loseAsked = false; }
     };
+    const srvMount = async () => {
+      const it = srvList[srvSel]; if (!it) return;
+      ddOpen(false);
+      let ok;
+      if (it.run) ok = await runLink(it.run, null, true);
+      else if (it.kind === 'hdd' || it.kind === 'sd') ok = await mountSrv(it);
+      else { tsNoAuto = true; try { ok = await loadUrl(it.url, 0, ldMsg, false); } finally { tsNoAuto = false; } } // a disk is only inserted, a TS-Conf card boots Wild Commander
+      if (ok) { ldStoreUI(); ldMsg('Mounted: ' + it.name); } // Mount: Load stays open (Media shows it)
+    };
+    $('ldlistgo').onclick = () => (goMode === 'run' && srvList[srvSel] && srvList[srvSel].run ? srvRun() : srvMount());
+    // ▾: Run or Mount (a compact list, as the menus of File Commander)
+    let goPop = null;
+    const goClose = () => { if (goPop) { goPop.remove(); goPop = null; $('ldlistmore').classList.remove('open'); } };
+    $('ldlistmore').onclick = (e) => {
+      e.stopPropagation(); if (goPop) { goClose(); return; }
+      ddOpen(false);
+      const p = document.createElement('div'); p.className = 'usel-pop fcmpop';
+      for (const [t, v] of [['Run', 'run'], ['Mount', 'mount']]) { // the choice is put on the button; the button does it
+        const it = document.createElement('div'); it.className = 'usel-it' + (goMode === v ? ' on' : ''); it.textContent = t;
+        it.onclick = (ev) => { ev.stopPropagation(); goClose(); goMode = v; runRowUI(); $('ldlistgo').focus(); };
+        p.appendChild(it);
+      }
+      document.body.appendChild(p); goPop = p; $('ldlistmore').classList.add('open');
+      const r = $('ldgo').getBoundingClientRect(), w = p.offsetWidth;
+      p.style.left = Math.max(4, r.right - w) + 'px'; p.style.top = (r.bottom + 2) + 'px';
+    };
+    document.addEventListener('pointerdown', (e) => { if (goPop && !goPop.contains(e.target) && !$('ldlistmore').contains(e.target)) goClose(); }, true);
+    document.addEventListener('keydown', (e) => { if (goPop && e.key === 'Escape') { e.stopPropagation(); goClose(); } }, true);
     const dd = $('ldlist');
     dd.onmousedown = (e) => { e.preventDefault(); dd.focus(); ddOpen($('ldpop').hidden); };
     dd.onblur = () => ddOpen(false);
     document.addEventListener('pointerdown', (e) => { if (!$('ldpop').hidden && !$('ldpop').contains(e.target) && !dd.contains(e.target)) ddOpen(false); }, true); // e.g. dragging the window
     dd.onkeydown = (e) => {
       const open = !$('ldpop').hidden;
-      if (e.key === 'ArrowDown') { srvPick(srvSel + 1); e.preventDefault(); }
-      else if (e.key === 'ArrowUp') { srvPick(Math.max(0, srvSel - 1)); e.preventDefault(); }
-      else if (e.key === 'Home') { srvPick(0); e.preventDefault(); }
-      else if (e.key === 'End') { srvPick(srvList.length - 1); e.preventDefault(); }
+      if (e.key === 'ArrowDown') { srvPick(srvStep(srvSel, 1)); e.preventDefault(); }
+      else if (e.key === 'ArrowUp') { srvPick(srvSel < 0 ? srvStep(-1, 1) : srvStep(srvSel, -1)); e.preventDefault(); }
+      else if (e.key === 'Home') { srvPick(srvStep(-1, 1)); e.preventDefault(); }
+      else if (e.key === 'End') { srvPick(srvStep(srvList.length, -1)); e.preventDefault(); }
       else if (e.key === 'Enter') { if (open) ddOpen(false); else $('ldlistgo').click(); e.preventDefault(); }
       else if (e.key === ' ') { ddOpen(!open); e.preventDefault(); }
       else if (e.key === 'Escape' && open) { ddOpen(false); e.preventDefault(); e.stopPropagation(); }
       if (open) { const on = $('ldpop').querySelector('.on'); if (on) on.scrollIntoView({ block: 'nearest' }); }
     };
+    $('ldhelpbtn').onclick = (e) => { e.stopPropagation(); ldHelp($('ldhelp').hidden); };
+    $('ldhelpclose').onclick = () => ldHelp(false);
     for (const id of ['loadwin', 'browsewin', 'savedlg', 'zippick'])
       $(id).querySelector('[data-close]').onclick = () => fwinShow(id, false);
-    loadServerList(); loadHddList(); loadSdList();
+    Promise.all([loadHddList(), loadSdList()]).then(loadServerList); // the server list takes the HDD / SD card lists too
   }
   // ------------------------------------------------------------------ Save dialog: everything is downloaded to the PC
   function downloadBytes(name, data) {
@@ -3707,7 +3837,7 @@
   }
   function raFiles() {
     const dl = $('ra_files'); dl.innerHTML = '';
-    for (const it of srvList) { if (!it.url || (it.rp && !it.rp.a)) continue; const o = document.createElement('option'); o.value = relUrl(it.url); o.label = it.name + (it.cpm ? ' [CP/M]' : ''); o.textContent = o.label; dl.appendChild(o); }
+    for (const it of srvList) { if (!it.url || (it.rp && !it.rp.a) || it.kind === 'hdd' || it.kind === 'sd') continue; const o = document.createElement('option'); o.value = relUrl(it.url); o.label = it.name + (it.cpm ? ' [CP/M]' : ''); o.textContent = o.label; dl.appendChild(o); }
     const add = (dl, v, name) => { if ([...dl.options].some((o) => o.value === v)) return; const o = document.createElement('option'); o.value = v; o.label = name; o.textContent = name; dl.appendChild(o); };
     const hl = $('ra_hdds'); hl.innerHTML = '';
     for (const it of hddList) add(hl, relUrl(it.url), it.name);
@@ -3813,6 +3943,16 @@
     $('rahelpbtn').onclick = (e) => { e.stopPropagation(); raHelp($('rahelp').hidden); };
     $('rahelpclose').onclick = () => raHelp(false);
   }
+  // help of the Load window: at its side, as the REST API help
+  let ldHelpFW = null;
+  function ldHelp(v) {
+    const h = $('ldhelp'), w = $('loadwin');
+    if (!ldHelpFW) ldHelpFW = floatWin(h, 'ldhelppos', () => ({ x: 0, y: 0 }));
+    h.hidden = !v; $('ldhelpbtn').classList.toggle('on', v);
+    if (!v) return;
+    const r = w.getBoundingClientRect();
+    h.style.height = Math.max(r.height, 420) + 'px'; ldHelpFW.setPos(snapRight(r, h));
+  }
   // help of the REST API window: at its side (right, or left when there is no room), the same height; then it can be dragged
   let raHelpFW = null;
   function raHelp(v) {
@@ -3827,7 +3967,7 @@
   // ------------------------------------------------------------------ UI
   function updateUI() {
     if (!E) return;
-    hddUI(); eff7UI();
+    hddUI(); eff7UI(); ldStoreUI();
     const xt = E.web_xt_kbd(), xtt = xt ? 'XT-Keyboard: on' : 'XT-Keyboard: off';
     $('xt').classList.toggle('on', !!xt);
     if ($('xt').title !== xtt) $('xt').title = xtt;
@@ -3974,6 +4114,7 @@
     return { name: e.name.replace(/^.*[\\/]/, ''), img: await UnrealZip.extract(buf, e), geo, geoFrom };
   }
   async function hddFromBytes(d, name, buf, quiet) {
+    if (!quiet && !await loseOk(['hdd' + d])) return false; // the image there has unsaved changes
     try {
       const r = await hddUnpack(name.replace(/[:\\/]/g, '_'), buf);
       let geo = r.geo;
@@ -3999,8 +4140,8 @@
       } else if (!HDD_IF_FIXED[himem()] && !quiet) ifNote = ' · no Interface= in ' + (r.geo ? r.geoFrom : 'a .chs') + ': choose it in Options / Disk / HDD (now ' + IF_NAMES[E.web_hdd_scheme(-1)] + ')';
       const okm = hddMount(d); if (okm) ifNote += cpmDirApply();
       if (okm && !quiet) toast('HDD ' + d + ': ' + nm + ' · ' + g.c + '/' + g.h + '/' + g.s + (r.geo ? ' (from ' + r.geoFrom + ')' : geo ? ' (from the size)' : ' (unreal.ini: no .chs file)') + (g.parts && g.parts.length ? ', ' + g.parts.length + ' drives' : '') + ifNote, !!ifNote && /no Interface|built in|keeps/.test(ifNote));
-    } catch (err) { if (!quiet) toast(err.message, true); else throw err; }
-    hddUI();
+    } catch (err) { if (!quiet) toast(err.message, true); else throw err; hddUI(); return false; }
+    hddUI(); return true;
   }
   // ------------------------------------------------------------------ SD card on the Z-Controller (ZX-Evolution has one built in)
   // the image lives in the page's file system; the core opens it through WASI (ZC=1, [ZC] SDCARD=name)
@@ -4027,6 +4168,7 @@
     return '';
   }
   async function sdFromBytes(name, buf, atStart) {
+    if (!atStart && !await loseOk(['sd'])) return false; // the card there has unsaved changes
     try {
       let nm = name, img = buf, run = '';
       if (UnrealZip.isZip(buf)) { // the biggest file of the archive (or an .img / .vhd)
@@ -4043,8 +4185,8 @@
       if (sdMount()) toast('SD card: ' + nm + ' · ' + Math.round(img.length / 1048576) + ' MB' + (M() === 'EVO' && !atStart ? ' — press Reset: the EVO Reset Service looks for the card at start' : ''));
       else if (!sdOn()) toast('SD card: ' + nm + ' (the Z-Controller is off: Options / Disk / SD card)');
       else toast('SD card: cannot open ' + nm, true);
-    } catch (err) { toast(err.message, true); }
-    sdUI();
+    } catch (err) { toast(err.message, true); sdUI(); return false; }
+    sdUI(); return true;
   }
   function sdUI() {
     const el = $('sdcard'); if (!el) return;
@@ -4072,7 +4214,6 @@
   }
   async function loadSdList() {
     sdList = await fetchList('sd/sd.json');
-    srvSelect($('ldsdsrv'), sdList);
     const sel = $('sdgeo').querySelector('.srv');
     sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>';
     sdList.forEach((it, i) => { const o = document.createElement('option'); o.value = i; o.textContent = it.name; sel.appendChild(o); });
@@ -4189,8 +4330,10 @@
     $('modelsel').value = model;
     modelSelUI();
     $('xt').hidden = !MODELS[model].xt;
-    $('romdiskrow').hidden = !(romDisk && M() === 'XBIOS136');
-    $('romdiskname').textContent = romDisk ? romDisk.name : '';
+    const rd = !!(romDisk && M() === 'XBIOS136'); // ROM disk: Turbo 2+ (it builds the xBIOS 1.36 ROM)
+    $('romdiskrow').hidden = !['XBIOS136', 'ATM710'].includes(M());
+    $('romdiskname').textContent = rd ? romDisk.name : '— empty —';
+    $('romdiskboot').disabled = $('romdiskdel').disabled = !rd;
   }
   // the choice is applied with the Apply button (switching restarts the machine)
   let customDirty = false; // Custom ROM settings changed while it runs: Start applies them
@@ -4383,7 +4526,7 @@
     if (!MODELS[m] || (m === model && !force) || switching) { modelUI(); return; }
     const dirty = [];
     for (let i = 0; i < NDRIVES; i++) if (E && E.web_disk_present(i) && E.web_disk_changed(i)) dirty.push(DRV[i] + ':');
-    if (dirty.length && !await askBox('', 'Unsaved changes on disk ' + dirty.join(' ') + ' will be lost.\nSwitch to ' + MODELS[m].name + '?')) { modelUI(); return; }
+    if (dirty.length && !loseAsked && !await askBox('', 'Unsaved changes on disk ' + dirty.join(' ') + ' will be lost.\nSwitch to ' + MODELS[m].name + '?')) { modelUI(); return; }
     switching = true; modelSelUI();
     releaseAll(); releaseMouse();
     if (dbgOn) debugShown(false);
@@ -4461,6 +4604,7 @@
     $('forcefetch').checked = load('fetch.reload') === '1';
     $('forcefetch').onchange = () => store('fetch.reload', $('forcefetch').checked ? '1' : '0');
     $('romdiskboot').onclick = () => { showOptions(false); romDiskMacro(true); };
+    $('romdiskins').onclick = () => openFile(ROM_TARGET);
     $('romdiskdel').onclick = async () => { romDisk = null; try { fs.remove(ROMDISK_FILE); } catch (e) {} await setModel(xbiosOf(model), true); toast('ROM disk removed'); };
     modelUI();
   }
@@ -4991,7 +5135,10 @@
     buildDrives();
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';
-      if (f) { fwinShow('loadwin', false); autorunNext = fromLoadWin && ($('ldboot').checked ? 'boot' : $('ldauto').checked); tsNoAuto = fromLoadWin && !$('ldauto').checked; try { await loadFile(f, pendingDrive); } finally { autorunNext = false; tsNoAuto = false; } }
+      if (f) { // Load / Local file: its Autostart; Insert of a drive in Options / Disk: only mounted there
+        if (fromLoadWin) { if (ldAuto()) fwinShow('loadwin', false); await withLocal(() => loadFile(f, 0)); ldStoreUI(); } // Autostart off: Load stays open
+        else { const d = pendingDrive; await loadFile(f, d); }
+      }
       fromLoadWin = false;
       pendingDrive = -1;
       canvas.focus();
@@ -5055,7 +5202,7 @@
     document.addEventListener('fullscreenchange', () => { applyScale(); canvas.focus(); });
     const wrap = $('screenwrap');
     wrap.addEventListener('dragover', (e) => e.preventDefault());
-    wrap.addEventListener('drop', (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0], 0); });
+    wrap.addEventListener('drop', (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) withLocal(() => loadFile(f, 0)); }); // as Load / Local file (its Autostart)
     canvas.addEventListener('mousedown', () => { startAudio(); canvas.focus(); });
     for (const ev of ['pointerdown', 'touchend', 'mousedown', 'keydown', 'click']) document.addEventListener(ev, unlockAudio, true);
     updateSoundBtn();

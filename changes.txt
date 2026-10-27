@@ -2043,3 +2043,76 @@ Web Unreal Speccy — version history
 ! offline copy: files of the site (ROMs, disks, HDD / SD images, lists)
   were not kept (the network answer was copied too late, after the page
   had started to read it); Make offline kept nothing but the emulator
+
+
+        version 0.95.0                  27 oct 2026
+
++ Load reworked: Local file (Choose File, a drop on the screen, Local
+  server files): Autostart; a disk without boot: boot.b menu or first
+  BASIC program; Boot from HDD / SD (an HDD / SD card image boots).
+  Disks go into A:, HDD images into HDD 0, SD card images onto the SD
+  card (.img / .vhd: SD on ZX Evo, else asked)
++ Load / Server list: hdd/hdd.json and sd/sd.json entries too; tag
+  buttons show one tag; Run (an entry with a link: as set on the
+  server) and Mount (its files only) instead of Autostart after load
++ Load / Media: the machine and what is mounted (* = changed), eject;
+  Disk settings opens Options / Disk
++ Load / ?: help on what Load does with each kind of file
++ one question before unsaved changes of a disk, HDD or SD card are
+  lost (Run: with the machine it switches to); HDD / SD images were
+  replaced without asking
++ Options / Disk: ROM disk row (Insert, Boot, eject; Turbo 2+); Insert
+  of a drive mounts into that drive directly
+* Load: the B: and ROM disk choice, the HDD and SD card rows moved to
+  Options / Disk
+! Local server: disks now start as Local file does (they never did);
+  a TS-Conf card with Use boot.b did not run its program
+
+
+        version 0.95.1                  27 oct 2026
+
+* Load: blocks framed as the cards of Options; the window is taller
+  (Media fits, the server list opens downwards); the choices of
+  Autostart are shown only while it is on, in one column
+* Load / Server list: several tags at once; Mount keeps Load open (Run
+  and a local file with Autostart close it)
+* Options / Disk: the buttons of A: to D:, ROM disk, HDD and SD card in
+  the same columns
+
+
+        version 0.95.2                  27 oct 2026
+
+* Load / Server list: one button — Run for an entry with a link (its ▾:
+  Run or Mount), Mount for the others
+* Load / Server list: an HDD / SD image that a trd.json entry brings
+  (hdd= / sd=, or the image of its OS: TASiS, NedoOS…) is listed once,
+  as that entry
+
+
+        version 0.95.3                  27 oct 2026
+
+* Load / Server list: the ▾ of Run lists just Run and Mount
+
+
+        version 0.95.4                  27 oct 2026
+
+* Load / Server list: the ▾ of the button chooses Run or Mount (the
+  button shows it), the button does it; another entry: Run again when
+  it has a link. The label is centred in the button
+
+
+        version 0.95.5                  27 oct 2026
+
+* Load / Server list: the Run / Mount button narrower (as Mount), the
+  list wider
+
+
+        version 0.95.6                  27 oct 2026
+
+* Load / Media: Settings… (was Disk settings…) on the right
+* Load / Server list: Run / Mount text placed as in the other buttons
+
+
+        version 0.95.7                  27 oct 2026
+
+* Load / Media: Settings in the line of its title

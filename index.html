@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261027092414">
+<meta name="build" content="20261027132946">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -446,6 +446,30 @@ select option { background: var(--panel2); color: var(--text); }
 .ldopts .lddrv select { height: 28px; font-size: 13px; }
 .ldopts .lddrv input { width: 15px; height: 15px; }
 #ldmsg:empty { display: none; }
+#loadwin .fhead .ldhelpbtn { margin-left: auto; padding: 1px 7px; font-size: 12px; } #loadwin .fhead .ldhelpbtn + [data-close] { margin-left: 4px; }
+.ldrow .ldmain { margin-left: 6px; }
+.ldsub { margin: 6px 0 0 22px; display: flex; flex-direction: column; gap: 4px; } .ldsub[hidden] { display: none; }
+.ldsrow { display: flex; align-items: center; gap: 12px; min-height: 22px; }
+.ldsrow #ldpress { width: 3.2em; height: 20px; font-size: 11px; }
+.ldsrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } .ldsrow .lddrv input { width: 15px; height: 15px; }
+#loadwin .body { min-height: 540px; }
+#loadwin section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; } /* blocks framed as the cards of Options */
+#loadwin .ldrow .ldmain { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #loadwin .ldrow .ldmain input { width: 15px; height: 15px; flex: none; }
+.ldlab { font-size: 12px; color: var(--dim); }
+.ldtags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.ldtags button { padding: 0 7px; height: 20px; font-size: 10px; border-radius: 4px; }
+.ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
+/* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
+.splitbtn { display: flex; flex: none; } /* the text sits as in the other buttons (Open, Choose File…): their padding and line height */
+.splitbtn #ldlistgo { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
+.splitbtn > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.splitbtn .splitar { display: flex; align-items: center; padding: 0 5px; margin-left: -1px; border-top-left-radius: 0; border-bottom-left-radius: 0; } .splitbtn .splitar[hidden] { display: none; }
+.splitbtn .splitar.open .usel-arr { transform: rotate(180deg); }
+#ldmedia { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font: 12px ui-monospace, Consolas, monospace; }
+#ldmedia .ml { color: var(--dim); } #ldmedia .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #ldmedia .mn.off { color: var(--dim); }
+#ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
+#loadwin h3.ldmh { display: flex; align-items: center; justify-content: space-between; } /* Settings in the line of the title */
+.ldmh button { padding: 1px 9px; font-size: 11px; text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); }
 .ddwrap { position: relative; flex: 1; min-width: 0; }
 .ddl { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-size: 13px; user-select: none; }
 .ddl:focus, .ddl.open { border-color: var(--accent); outline: none; }
@@ -454,7 +478,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ddname { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ddpop { box-sizing: border-box; position: fixed; z-index: 20; max-height: 240px; overflow-y: auto; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 3px 0; }
 .ddpop[hidden] { display: none; }
-.dditem { display: flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 13px; cursor: pointer; }
+.dditem { display: flex; align-items: center; gap: 6px; padding: 4px 8px; font-size: 13px; cursor: pointer; } .dditem[hidden] { display: none; }
 .dditem:hover { background: var(--panel); }
 .dditem.on { background: var(--accent); color: #1a1208; }
 .tagic { flex: none; display: inline-flex; align-items: center; color: var(--accent); }
@@ -512,7 +536,6 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #customrom button { padding: 2px 8px; font-size: 12px; }
 #customrom .chk { font-size: 12px; }
 #customrom[hidden], #customrom [hidden] { display: none; }
-#romdiskrow { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; color: var(--dim); }
 #romdiskrow[hidden] { display: none; }
 #nedorow { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: var(--dim); }
 #nedorow[hidden], #nedowin[hidden], #chwin[hidden] { display: none; }
@@ -537,8 +560,8 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #nedostat.err { color: #ff8a7a; }
 #nedoprog { width: 100%; height: 6px; }
 .moonrow { display: flex; gap: 8px; align-items: center; } .moonrow .ranote { flex: 1; } .moonrow button { font-size: 12px; } #moonrom.err { color: #ff8a7a; }
-#romdiskrow b { flex: 1; min-width: 0; color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#romdiskrow button { padding: 2px 8px; font-size: 12px; }
+.pane[data-pane="opt"] .drive { grid-template-columns: 32px minmax(0, 1fr) 58px 52px 32px 42px; } /* A: to D:, ROM disk, HDD, SD: the same columns */
+.pane[data-pane="opt"] .drive > button { width: 100%; padding-left: 0; padding-right: 0; }
 .note + .note { margin-top: 6px; }
 .note .mailimg { height: 1.12em; vertical-align: -0.24em; }
 .filebtn input { display: none; }
@@ -546,7 +569,7 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #ziplist button { text-align: left; font-family: ui-monospace, Consolas, monospace; }
 /* debugger: floating, draggable window */
 #dbgwin { position: fixed; left: 0; top: 0; z-index: 8; background: #000; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); line-height: 0; }
-#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
+#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #ldhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
 #restwin { position: fixed; left: 0; top: 0; z-index: 9; width: min(440px, calc(100vw - 8px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
 #restwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
@@ -779,14 +802,14 @@ select.usel-src { display: none !important; }
 #fvbody.wrap:not(.hex), #fetext.wrap { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; } /* by words; a word longer than the line: where it must */
 .fvbar .fvwrap { height: 24px; padding: 0 8px; font-size: 12px; }
 .fvbar .fvwrap[hidden] { display: none; }
-#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
-#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
-#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
+#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #ldhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
+#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #ldhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
+#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #ldhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #rahelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #ldhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
+:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #rahelp, #ldhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
 :is(#dbghelp, #dgahelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
@@ -804,8 +827,9 @@ select.usel-src { display: none !important; }
 #perfwin .dbghead b { font: 11px ui-monospace, Consolas, monospace; color: var(--dim); font-weight: 400; }
 #perfwin .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
 #pfhelp { width: min(300px, calc(100vw - 8px)); }
-#rahelp { width: min(420px, calc(100vw - 8px)); }
-#rahelp .dbghead { cursor: default; }
+#rahelp, #ldhelp { width: min(420px, calc(100vw - 8px)); }
+#ldhelp table.keys { font-size: 12px; }
+#rahelp .dbghead, #ldhelp .dbghead { cursor: default; }
 #rahelp table.keys td:first-child { white-space: nowrap; vertical-align: top; }
 #pfhelp .dbghead { cursor: default; }
 .pfgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
@@ -1039,8 +1063,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           </div>
           <p class="note" id="modelnote"></p>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
-          <div id="romdiskrow" hidden><span>ROM disk</span><b id="romdiskname"></b><button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button><button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">Remove</button></div>
-        </div>
+                  </div>
         <div class="card">
           <h3>CPU clock</h3>
           <label class="chk" id="trueclkrow" title="The machine's own clock: 3.5 MHz, and programs switch its turbo themselves, as on the real machine — Turbo 2+ (#FF77 D3: 7 MHz), ZX Evo BaseConf (#xx77 D3: 14 MHz, #EFF7 D4: 3.5 / 7 MHz), Pentagon (#EFF7 D4 = 0: 7 MHz), Scorpion Turbo+ (IN #7FFD / #1FFD); the others have no turbo. The slider is off then"><input type="checkbox" id="trueclk"> True clock</label>
@@ -1073,6 +1096,10 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="card">
           <h3>BETA 128</h3>
           <div id="drives"></div>
+          <div class="drive" id="romdiskrow" hidden><span class="dl" title="ROM disk (xBIOS 1.36 XT): a TR-DOS image built into the 1 MB BIOS ROM, a read-only vTR-DOS drive">ROM</span><span class="dname" id="romdiskname">— empty —</span>
+            <button id="romdiskins" title="Build the ROM disk of a disk image (TRD, SCL, FDI…): Turbo 2+ xBIOS 1.36 starts with it">Insert</button>
+            <button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button>
+            <button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">⏏</button><span></span></div>
           <label class="chk fddacc" title="Real WD1793 timing and no TR-DOS ROM traps: slower, but protected loaders and disk tricks work as on the real machine. Off: fast disk access"><input type="checkbox" id="fddacc">Accurate FDD emulation</label>
         </div>
         <div class="card">
@@ -1451,6 +1478,35 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   </div>
 </div>
 
+<div id="ldhelp" hidden role="dialog" aria-label="Load help">
+  <div class="dbghead fhead"><span>Load help</span><button id="ldhelpclose" title="Close">✕</button></div>
+  <div class="hbody">
+    <h4>Local file</h4>
+    <p>Choose File, a file dropped on the screen and the files of Local server go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
+    <table class="keys">
+      <tr><td>Disk</td><td>TRD SCL FDI UDI TD0 ISD PRO HOB $x IPF DSK. Autostart: reset to TR-DOS and RUN its boot. A disk without boot: <b>boot.b menu</b> (the emulator's boot, then the keys of "press") or <b>first BASIC program</b> (nothing is written to the disk)</td></tr>
+      <tr><td>+3 disk</td><td>DSK of 512-byte sectors: Spectrum +3 starts (always). Autostart: its menu, Loader</td></tr>
+      <tr><td>Tape</td><td>TAP TZX CSW. Autostart: reset to the 128 menu (BIOS menu of the machine), Tape Loader</td></tr>
+      <tr><td>Snapshot</td><td>SNA Z80 SP: runs at once, always</td></tr>
+      <tr><td>SPG</td><td>ZX Evo TS-Conf starts and runs it (always)</td></tr>
+      <tr><td>TS-Conf card</td><td>ZIP with an SD card image, or with boot.$C (a new card is made), or with an SPG: ZX Evo TS-Conf starts, Wild Commander boots. Autostart: the program named in the ZIP's .json ({"run": "dir/file.spg"}) runs too</td></tr>
+      <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card). Autostart + <b>Boot from HDD / SD</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset). Off: only mounted</td></tr>
+      <tr><td>ZIP</td><td>one file in it: as that file; several: you choose one</td></tr>
+    </table>
+    <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
+    <h4>Local server</h4>
+    <p>A folder of a web server on your network: its files open as Local file (the same Autostart).</p>
+    <h4>Server list</h4>
+    <p>The entries of trd/trd.json, then hdd/hdd.json and sd/sd.json (an image a trd.json entry brings, by hdd= / sd= or as its OS, is listed once: as that entry). Tag buttons: the entries with any of the chosen tags (several at once); All: every entry.</p>
+    <table class="keys">
+      <tr><td>Run</td><td>an entry with a link: starts it as set on the server (machine, speed, disks, HDD / SD, program). Its ▾ puts Run or Mount on the button; the button does it</td></tr>
+      <tr><td>Mount</td><td>only its files go in (disk: A:, HDD 0, SD card); the machine stays, Load stays open. A TS-Conf card: Wild Commander boots, its program does not run</td></tr>
+    </table>
+    <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
+    <h4>Media</h4>
+    <p>The machine and what is mounted now; * = changed, not saved. ⏏ ejects (as in Options / Disk). Settings (at its title): Options / Disk.</p>
+  </div>
+</div>
 <div id="rahelp" hidden role="dialog" aria-label="REST API help">
   <div class="dbghead fhead"><span>REST API help</span><button id="rahelpclose" title="Close">✕</button></div>
   <div class="hbody">
@@ -1554,29 +1610,25 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="body" id="ddbody"></div>
 </div>
 <div class="fwin" id="loadwin" hidden role="dialog" aria-labelledby="ldtitle">
-  <header class="fhead"><h2 id="ldtitle">Load</h2><button data-close title="Close (Esc)">✕</button></header>
+  <header class="fhead"><h2 id="ldtitle">Load</h2><button id="ldhelpbtn" class="ldhelpbtn" title="Help: what Load does with each kind of file">?</button><button data-close title="Close (Esc)">✕</button></header>
   <div class="body">
-    <section><h3>Disk, tape, snapshot</h3>
-      <div class="ldrow"><select id="lddrive" class="ldnarrow" title="Drive for disk images"><option value="0">A:</option><option value="1">B:</option><option value="9" title="ROM disk (xBIOS XT): the TR-DOS image is built into the 1 MB BIOS ROM and works as a read-only vTR-DOS drive">ROM disk</option></select><span class="ldname" id="lddname"></span><button class="ldej" id="lddej" title="Eject" hidden>⏏</button><button id="ldfile" title="Disk, tape, snapshot or ZIP (or drop it on the screen)">Choose File…</button></div>
-      <div class="ldopts">
-        <label class="lddrv" title="Disk in A: reset to TR-DOS and RUN boot; a disk without boot gets the emulator's boot (boot.b menu). Tape: reset to the 128 menu and Tape Loader"><input type="checkbox" id="ldboot">Use boot.b</label>
-        <label class="lddrv" id="ldpressrow" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">press in boot <input id="ldpress" value="0" spellcheck="false" autocomplete="off"></label>
-      </div>
-      <div class="ldopts">
-        <label class="lddrv" title="Disk in A: reset to TR-DOS and RUN its boot; a disk without boot: its first BASIC program (nothing written to the disk). Tape: reset to the 128 menu and Tape Loader"><input type="checkbox" id="ldauto">Autostart TRDOS</label>
+    <section><h3>Local file</h3>
+      <div class="ldrow"><button id="ldfile" data-autofocus title="Disk, tape, snapshot, SPG, HDD / SD image or ZIP (or drop it on the screen)">Choose File…</button>
+        <label class="lddrv ldmain" title="Start what is loaded (see ?)"><input type="checkbox" id="ldauto">Autostart</label></div>
+      <div class="ldsub" id="ldsub">
+        <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: the emulator's boot.b menu"><input type="radio" name="ldnb" id="ldboot" value="boot">boot.b menu</label>
+          <label class="lddrv" id="ldpressrow" title="Keys pressed in the boot.b menu (0 = the first program). Empty: none">press <input id="ldpress" value="0" spellcheck="false" autocomplete="off"></label></div>
+        <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: RUN its first BASIC program (nothing is written to the disk)"><input type="radio" name="ldnb" id="ldbasic" value="basic">first BASIC program</label></div>
+        <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
       </div></section>
     <section><h3>Local server</h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section id="ldlistsec" hidden><h3>Server list</h3>
+      <div class="ldtags" id="ldtags"></div>
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
-        <div class="ddpop" id="ldpop" hidden></div></div><button id="ldlistgo">Load</button></div>
-      <div class="ldrow" id="ldrunrow" hidden><label class="lddrv" title="The server list only. On: Load starts the entry: its link (machine, disk, program), a disk boots, a TS-Conf SD card runs its program (its .json). Off: the file is only mounted (a TS-Conf SD card: Wild Commander starts)"><input type="checkbox" id="ldrun" checked>Autostart after load</label><select id="ldrunmodel" title="Machine to start on"></select><span id="ldrunone" hidden></span></div></section>
-    <section><h3>HDD</h3>
-      <div class="ldrow"><select id="ldhddn" class="ldnarrow" title="Which HDD (master / slave)"><option value="0">HDD 0</option><option value="1">HDD 1</option></select><span class="ldname" id="ldhddname"></span><button class="ldej" id="ldhddej" title="Unmount" hidden>⏏</button><button id="ldhddfile" title="Mount an image file (.hdd, .img… or ZIP with it and its .chs)">Choose File…</button></div>
-      <div class="ldrow"><select id="ldhddsrv" title="Mount an image from the server (hdd/hdd.json)" hidden></select></div></section>
-    <section><h3>SD card</h3>
-      <div class="ldrow"><span class="ldname" id="ldsdname"></span><button class="ldej" id="ldsdej" title="Unmount" hidden>⏏</button><button id="ldsdfile" title="Mount an SD card image (.img, .vhd or ZIP with it)">Choose File…</button></div>
-      <div class="ldrow"><select id="ldsdsrv" title="Mount an image from the server (sd/sd.json)" hidden></select></div></section>
+        <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
+    <section><h3 class="ldmh">Media<button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
+      <div id="ldmedia"></div></section>
     <p class="note" id="ldmsg"></p>
   </div>
 </div>
@@ -1683,15 +1735,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261027092414"></script>
-<script src="js/scancodes.js?v=20261027092414"></script>
-<script src="js/unzip.js?v=20261027092414"></script>
-<script src="js/vkbd.js?v=20261027092414"></script>
-<script src="js/asyncify.js?v=20261027092414"></script>
-<script src="js/gfx.js?v=20261027092414"></script>
-<script src="js/usel.js?v=20261027092414"></script>
-<script src="js/fcmd.js?v=20261027092414"></script>
-<script src="js/dbga.js?v=20261027092414"></script>
-<script src="js/app.js?v=20261027092414"></script>
+<script src="js/wasi_fs.js?v=20261027132946"></script>
+<script src="js/scancodes.js?v=20261027132946"></script>
+<script src="js/unzip.js?v=20261027132946"></script>
+<script src="js/vkbd.js?v=20261027132946"></script>
+<script src="js/asyncify.js?v=20261027132946"></script>
+<script src="js/gfx.js?v=20261027132946"></script>
+<script src="js/usel.js?v=20261027132946"></script>
+<script src="js/fcmd.js?v=20261027132946"></script>
+<script src="js/dbga.js?v=20261027132946"></script>
+<script src="js/app.js?v=20261027132946"></script>
 </body>
 </html>
