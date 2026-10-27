@@ -1,9 +1,9 @@
 [
-  {"name": "CPM HDD", "url": "cpm.zip"},
-  {"name": "iS-DOS Chic v5.01", "url": "isdos501.zip"},
-  {"name": "TASiS v5.40", "url": "tasis540.zip"},
-  {"name": "ZX-Evo FAT16 10 MB test HDD", "url": "nemo.zip"},
-  {"name": "CPM Neo8 S3M collection. vol1 HDD", "url": "neo8-1.zip"},
-  {"name": "CPM Neo8 S3M collection. vol2 HDD", "url": "neo8-2.zip"},
-  {"name": "CPM Neo8 S3M collection. vol3 HDD", "url": "neo8-3-stm.zip"}
+  { "name": "CPM HDD", "url": "cpm.zip", "tag": "HDD CPM" },
+  { "name": "iS-DOS Chic v5.01", "url": "isdos501.zip", "tag": "HDD OS" },
+  { "name": "TASiS v5.40", "url": "tasis540.zip", "tag": "HDD OS" },
+  { "name": "ZX-Evo FAT16 10 MB test HDD", "url": "nemo.zip", "tag": "HDD" },
+  { "name": "CPM Neo8 S3M collection. vol1", "url": "neo8-1.zip", "tag": "HDD CPM" },
+  { "name": "CPM Neo8 S3M collection. vol2", "url": "neo8-2.zip", "tag": "HDD CPM" },
+  { "name": "CPM Neo8 S3M collection. vol3", "url": "neo8-3-stm.zip", "tag": "HDD CPM" }
 ]
