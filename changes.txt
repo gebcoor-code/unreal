@@ -2036,3 +2036,10 @@ Web Unreal Speccy — version history
 
 * Graf Search (mode, memory, zoom) and Options / Input / Joystick (the
   keys of Fire and Buttons 1-3): compact lists, as in File Commander
+
+
+        version 0.94.6                  27 oct 2026
+
+! offline copy: files of the site (ROMs, disks, HDD / SD images, lists)
+  were not kept (the network answer was copied too late, after the page
+  had started to read it); Make offline kept nothing but the emulator

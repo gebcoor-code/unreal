@@ -37,8 +37,10 @@ self.addEventListener('fetch', (e) => {
       (req.mode === 'navigate' ? (await caches.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await caches.match(self.registration.scope, { ignoreSearch: true })) : null);
     const net = fetch(req).then((r) => {
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)
+      // the copy is cloned at once: later (after caches.open) the page may be reading the body already, and clone() throws
       if (r.ok && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
-        caches.open(store).then((c) => c.put(u.origin + u.pathname, r.clone())).catch(() => {});
+        const keep = r.clone();
+        caches.open(store).then((c) => c.put(u.origin + u.pathname, keep)).catch(() => {});
       }
       return r;
     });
