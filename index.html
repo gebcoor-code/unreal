@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261027132946">
+<meta name="build" content="20261027162504">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1490,7 +1490,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Snapshot</td><td>SNA Z80 SP: runs at once, always</td></tr>
       <tr><td>SPG</td><td>ZX Evo TS-Conf starts and runs it (always)</td></tr>
       <tr><td>TS-Conf card</td><td>ZIP with an SD card image, or with boot.$C (a new card is made), or with an SPG: ZX Evo TS-Conf starts, Wild Commander boots. Autostart: the program named in the ZIP's .json ({"run": "dir/file.spg"}) runs too</td></tr>
-      <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card). Autostart + <b>Boot from HDD / SD</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset). Off: only mounted</td></tr>
+      <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card). An SD card with NedoOS (sd_boot.$C) or Wild Commander (boot.$C) is not asked about. Autostart + <b>Boot from HDD / SD</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset); a NedoOS card starts ZX Evo BaseConf, a Wild Commander card TS-Conf. Off: only mounted</td></tr>
       <tr><td>ZIP</td><td>one file in it: as that file; several: you choose one</td></tr>
     </table>
     <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
@@ -1735,15 +1735,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261027132946"></script>
-<script src="js/scancodes.js?v=20261027132946"></script>
-<script src="js/unzip.js?v=20261027132946"></script>
-<script src="js/vkbd.js?v=20261027132946"></script>
-<script src="js/asyncify.js?v=20261027132946"></script>
-<script src="js/gfx.js?v=20261027132946"></script>
-<script src="js/usel.js?v=20261027132946"></script>
-<script src="js/fcmd.js?v=20261027132946"></script>
-<script src="js/dbga.js?v=20261027132946"></script>
-<script src="js/app.js?v=20261027132946"></script>
+<script src="js/wasi_fs.js?v=20261027162504"></script>
+<script src="js/scancodes.js?v=20261027162504"></script>
+<script src="js/unzip.js?v=20261027162504"></script>
+<script src="js/vkbd.js?v=20261027162504"></script>
+<script src="js/asyncify.js?v=20261027162504"></script>
+<script src="js/gfx.js?v=20261027162504"></script>
+<script src="js/usel.js?v=20261027162504"></script>
+<script src="js/fcmd.js?v=20261027162504"></script>
+<script src="js/dbga.js?v=20261027162504"></script>
+<script src="js/app.js?v=20261027162504"></script>
 </body>
 </html>

@@ -2116,3 +2116,17 @@ Web Unreal Speccy — version history
         version 0.95.7                  27 oct 2026
 
 * Load / Media: Settings in the line of its title
+
+
+        version 0.95.8                  27 oct 2026
+
++ Load / Local file: an SD card image with NedoOS (sd_boot.$C) or Wild
+  Commander (boot.$C) goes onto the SD card without the question; with
+  Autostart and Boot from HDD / SD it starts its machine (ZX Evo
+  BaseConf / TS-Conf) and boots
+! eject of a changed disk (Load / Media, Options / Disk): after the
+  page's question the core asked again in a browser box
+* questions of the page centred on the window that asks (Load,
+  Options…), not on the emulator window
++ eject of a changed HDD / SD card image asks first (it was dropped
+  silently)

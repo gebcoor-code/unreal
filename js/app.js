@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261027132946';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261027132946'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261027132946'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261027162504';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261027162504'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261027162504'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '0.95.7'; // About, System Info (history: changes.txt)
-  const BUILD = '20261027132946'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '0.95.8'; // About, System Info (history: changes.txt)
+  const BUILD = '20261027162504'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1904,8 +1904,9 @@
     w.querySelector('.t').textContent = title || ''; w.querySelector('.t').hidden = !title; w.querySelector('.x').textContent = text || '';
     okb.textContent = ok || 'OK'; nob.textContent = no || 'Cancel';
     releaseAll(); w.hidden = false;
-    { // centred on the emulator window (not the browser window), inside the screen
-      const b = w.querySelector('.box'), r = $('mainwin').getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = window.innerHeight;
+    { // centred on the window that asks (the active floating window: Load, Options…), else the emulator window; inside the screen
+      const own = actWin && !actWin.hidden && actWin.getBoundingClientRect().width ? actWin : $('mainwin');
+      const b = w.querySelector('.box'), r = own.getBoundingClientRect(), vw = document.documentElement.clientWidth, vh = window.innerHeight;
       b.style.position = 'absolute';
       b.style.left = Math.max(8, Math.min(r.left + (r.width - b.offsetWidth) / 2, vw - b.offsetWidth - 8)) + 'px';
       b.style.top = Math.max(8, Math.min(r.top + (r.height - b.offsetHeight) / 2, vh - b.offsetHeight - 8)) + 'px';
@@ -1993,14 +1994,17 @@
   // an HDD or SD card image from Load (Local file, Local server, a drop): HDD 0 or the SD card. .hdd / .hdf (or a .chs with
   // it): HDD; ZX Evo (Z-Controller built in): SD; else asked (the last answer first)
   async function imgFromBytes(name, buf) {
-    let inner = name;
+    let inner = name, img = buf;
     if (UnrealZip.isZip(buf)) {
       const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name));
-      inner = all.some((e) => /\.chs$/i.test(e.name)) ? 'x.hdd' : all.reduce((a, b) => (b.size > a.size ? b : a), { size: -1, name }).name;
+      const big = all.reduce((a, b) => (b.size > a.size ? b : a), { size: -1, name });
+      inner = all.some((e) => /\.chs$/i.test(e.name)) ? 'x.hdd' : big.name;
+      img = big.size > 0 ? await UnrealZip.extract(buf, big) : null;
     }
+    const card = img ? sdCardKind(img) : ''; // 'nedo': NedoOS (sd_boot.$C), 'wc': Wild Commander (boot.$C) — an SD card for sure
     let toSd;
     if (/\.(hdd|hdf)$/i.test(inner)) toSd = false;
-    else if (sdBuiltIn()) toSd = true;
+    else if (card || sdBuiltIn()) toSd = true;
     else {
       const last = load('ld.imgto') === 'sd';
       toSd = (await askBox(name, 'An HDD or an SD card image?', last ? 'SD card' : 'HDD 0', last ? 'HDD 0' : 'SD card')) === last;
@@ -2010,11 +2014,23 @@
       if (!await sdFromBytes(name, buf)) return;
       sdSrc = null;
       if (!sdOn()) { store('sd.if.' + M(), '1'); sdMount(); sdUI(); } // the Z-Controller switched on for this machine
-      if (hdBoot) sdBoot();
+      if (hdBoot) { // a card of an OS boots on its machine: NedoOS on ZX Evo BaseConf, Wild Commander on TS-Conf (the card stays in)
+        const want = card === 'nedo' && M() !== 'EVO' ? 'EVO' : card === 'wc' && !isTS() ? 'TSCONF' : null;
+        if (want) { toast(sdName + ': ' + (card === 'nedo' ? 'NedoOS' : 'Wild Commander') + ' — ' + MODELS[want].name + ' starts'); await setModel(want, true); if (M() !== want) return; }
+        sdBoot();
+      }
     } else {
       if (!await hddFromBytes(0, name, buf)) return;
       if (hdBoot && hdds[0]) hddBoot();
     }
+  }
+  // what boots from an SD card image: its FAT root has sd_boot.$C (NedoOS) or boot.$C (Wild Commander, TS-Conf)
+  function sdCardKind(img) {
+    try {
+      const T = UnrealFC._test, base = T.fatFind(img)[0]; if (base === undefined) return '';
+      const names = T.fatVol(img, base).list().map((x) => (x.name + (x.ext ? '.' + x.ext : '')).toLowerCase());
+      return names.includes('sd_boot.$c') ? 'nedo' : names.includes('boot.$c') ? 'wc' : '';
+    } catch (e) { return ''; }
   }
   function hddBoot() { // Boot from HDD: the machine boots its HDD 0 (xBIOS: Boot → HDD in its setup; the others: Reset)
     if (!E.web_hdd_scheme(-1)) { toast('HDD 0: ' + MODELS[model].name + ' has no HDD interface on (Options / Disk / HDD)', true); return; }
@@ -4226,7 +4242,9 @@
     el.querySelector('.ins').onclick = () => pick.click();
     el.querySelector('.save').onclick = () => openSave('sd');
     $('sdgeo').querySelector('.srv').addEventListener('pointerdown', () => { if (!sdList.length) loadSdList(); }); // sd.json put there later
-    el.querySelector('.eject').onclick = () => { if (sdName) try { fs.remove(sdName); } catch (e) {} sdName = null; sdSrc = null; sdMount(); sdUI(); };
+    el.querySelector('.eject').onclick = async () => {
+      if (sdName && sdDirty && !sdWcOwn && !await askBox('SD card', sdName + ' was modified. Eject without saving?', 'Eject')) return;
+      if (sdName) try { fs.remove(sdName); } catch (e) {} sdName = null; sdSrc = null; sdMount(); sdUI(); };
     el.querySelector('.wp').onchange = (e) => { store('sd.ro', e.target.checked ? '1' : '0'); sdMount(); sdUI(); };
     $('sdif').onchange = (e) => { store('sd.if.' + M(), e.target.value); sdMount(); sdUI(); };
     el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('drop'); });
@@ -4261,7 +4279,9 @@
         <label title="Read only"><input type="checkbox" class="wp">RO</label>`;
       el.querySelector('.ins').onclick = () => hddPick(d);
       el.querySelector('.save').onclick = () => openSave('hdd:' + d);
-      el.querySelector('.eject').onclick = () => { hdds[d] = null; hddMount(d); hddUI(); };
+      el.querySelector('.eject').onclick = async () => {
+        if (hdds[d] && hddDirty[d] && !await askBox('HDD ' + d, hdds[d] + ' was modified. Eject without saving?', 'Eject')) return;
+        hdds[d] = null; hddMount(d); hddUI(); };
       el.querySelector('.wp').onchange = (e) => { const g = Object.assign({}, hddGeom(d), { ro: e.target.checked }); store('hdd.geo' + d, JSON.stringify(g)); hddMount(d); hddUI(); };
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('drop'); });
       el.addEventListener('dragleave', () => el.classList.remove('drop'));
@@ -4315,7 +4335,7 @@
       el.querySelector('.ins').onclick = () => openFile(i);
       el.querySelector('.save').onclick = () => openSave('disk:' + i);
       el.querySelector('.eject').onclick = async () => {
-        if (E.web_disk_changed(i) && !await askBox('', 'Disk ' + DRV[i] + ' was modified. Eject without saving?')) return;
+        if (E.web_disk_changed(i)) { if (!await askBox('Disk ' + DRV[i] + ':', 'Disk ' + DRV[i] + ' was modified. Eject without saving?', 'Eject')) return; E.web_disk_mark(i, 0); } // the core does not ask again
         E.web_eject(i); drives[i] = null; updateUI();
       };
       el.querySelector('.wp').onchange = (e) => E.web_set_wp(i, e.target.checked);
