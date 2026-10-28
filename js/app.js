@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261027203351';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261027203351'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261027203351'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261028110407';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028110407'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261028110407'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '0.99.2'; // About, System Info (history: changes.txt)
-  const BUILD = '20261027203351'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '1.4.1'; // About, System Info (history: changes.txt)
+  const BUILD = '20261028110407'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -46,6 +46,9 @@
     // other Spectrum clones of UnrealSpeccy: one 64K ROM each (KAY: as a ROM set, the core has no single-file KAY ROM)
     SCORPION: { name: 'Scorpion ZS 256', base: 69888, speed: 2.5, xt: false, files: ['scorp295.rom'], note: '256 KB · ROM 2.95 (128 / 48 / service / TR-DOS 5.03)',
       ini: { MISC: { HIMEM: 'SCORPION', RAMSize: '256', CMOS: 'none', RESET: 'SYS' }, ROM: { ROMSET: '', SCORP: 'scorp295.rom' }, ULA: { Preset: 'SCORPION' } } },
+    // Scorpion ZS 256 with the GMX board (web/web_gmx.cpp): 2 MB, 640x200, the 512K flash of the GMX (Loader, shadow monitor)
+    GMX: { name: 'Scorpion ZS 256 GMX', base: 69888, speed: 2.5, xt: false, files: ['gmx644.rom'], note: '2048 KB · GMX: 640×200, turbo · flash 512K (LW/PLM, 21.08.2025): GMX Loader 2.00 (Delete at start: Set Up), Shadow Service Monitor 6.44 (NMI) · SD: Z-Controller · HDD: SMUC',
+      ini: { MISC: { HIMEM: 'PROFSCORP', RAMSize: '2048', CMOS: 'DALLAS', SMUC: '1', RESET: 'MENU', GMX: '1' }, ROM: { ROMSET: '', PROFROM: 'gmx644.rom' }, ULA: { Preset: 'SCORPION' } } },
     PROFI: { name: 'Profi 1024', base: 69888, speed: 2.5, xt: false, files: ['profi.rom'], note: '1024 KB · Profi ROM BIOS (Micco Software)',
       ini: { MISC: { HIMEM: 'PROFI', RAMSize: '1024', CMOS: 'none', RESET: 'SYS' }, ROM: { ROMSET: '', PROFI: 'profi.rom' }, ULA: { Preset: 'PROFI' } } },
     KAY: { name: 'KAY 1024', base: 69888, speed: 2.5, xt: false, files: ['kay1024.rom'], note: '1024 KB · Nemo KAY 1024, JV Kramis 0.3',
@@ -62,6 +65,9 @@
     // NedoOS on the SD card of ZX-Evolution: EVO Reset Service, 5 = SDcard boot (sd_boot.$C)
     NEDOOS: { name: 'NedoOS (BaseConf)', machine: 'EVO', sd: 'sd/nedoos.zip', note: 'NedoOS v0.2188.1 · starts on ZX Evo BaseConf from SD (~30 MB, browser caches once)',
       link: 'https://github.com/alfishe/NedoOS' },
+    // OSZ (izzx) on the SD card of Scorpion GMX: the card's .json puts OS.TRD into A:, it boots the kernel from the card
+    OSZ: { name: 'OSZ (Scorpion GMX)', machine: 'GMX', sd: 'sd/osz.zip', note: 'OSZ 2025.10.08 (izzx), multitasking OS · starts on Scorpion ZS 256 GMX from SD + OS.TRD',
+      link: 'https://github.com/izzx-git/OSZ' },
   };
   for (const [k, v] of Object.entries(OS_MODELS)) MODELS[k] = Object.assign({}, MODELS[v.machine || 'XBIOS136'], v, { machine: v.machine || 'XBIOS136' });
   // ------------------------------------------------------------------ Custom ROM (Options / System)
@@ -1790,7 +1796,7 @@
     if (e.code === 'F12' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey) && M() === 'TSCONF') { if (!e.repeat) tsSetup(); return true; } // TS-BIOS Setup
     if (e.code === 'Backquote' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { setBare(!bare, !bareLink); return true; } // ~: menu bar and frame
     if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return false;
-    if (e.code === 'F12') { E.web_reset(0); return true; }
+    if (e.code === 'F12') { userReset(); return true; }
     if (e.code === 'F2') { openSave(); return true; }
     if (e.code === 'F3') { showLoad(); return true; }
     if (e.code === 'F4') { toggleSound(); return true; }
@@ -2051,7 +2057,7 @@
   async function loadBytes(name, buf, drive) {
     if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await imgFromBytes(name, buf); return; } await putAndInsert(name, buf, drive); return; }
     try {
-      if (await tsZip(name, buf)) return;
+      if (await cardZip(name, buf) || await tsZip(name, buf)) return;
       const entries = UnrealZip.list(buf).filter((e) => LOADABLE.test(e.name));
       if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await imgFromBytes(name, buf); return; }
       if (!entries.length) { toast('No disk, tape or snapshot images in the archive', true); return; }
@@ -2412,6 +2418,7 @@
       if (!sdOn()) store('sd.if.' + M(), '1');
       sdMount(); sdUI();
       if (M() === 'TSCONF') { tsBootSd(); return; } // TS-BIOS: Caps Shift + Reset boots boot.$C of the SD card
+      if (M() === 'GMX') { if (!await sdDisks(true)) toast(os.sd + ': no disk in its .json', true); return; } // OSZ: OS.TRD of the card's ZIP boots
       const k = Math.max(1, 2 / SPEEDS[speedIdx]);
       runMacro([{ reset: 0 }, { wait: Math.ceil(150 * k) }, { xtmode: 1 }, { xt: ['Digit5'] }]);
       return;
@@ -2671,6 +2678,11 @@
   // plan { run: name }: the disk has no boot — RUN "name" instead of RUN (boot); menus that start boot by themselves
   // (xBIOS, Scorpion, Profi, Quorum) stop in TR-DOS with "No file", then RUN "name" is typed; the EVO boot menu runs the
   // first BASIC file by itself
+  // F12 / Reset: the OSZ machine boots OSZ again (OS.TRD in A:, through the 128 menu: "128 TR-DOS"); the others: Reset
+  function userReset() {
+    if (model === 'OSZ' && E.web_disk_present(0)) { autorun(); return; }
+    E.web_reset(0);
+  }
   function autorun(plan) {
     // the EVO service ROM needs CPU time: waits are longer at lower clock (tuned for 2x, doubled at 1x)
     const k = Math.max(1, 2 / SPEEDS[speedIdx]);
@@ -2703,8 +2715,9 @@
     // reset straight into TR-DOS gives 48K mode: programs then see "ZX 48K" (Quick Commander: no memory pages)
     else if (M() === 'PENTAGON' || cm === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS (a Custom ROM may reset elsewhere: 128 ROM)
       runMacro([{ reset: cm ? 2 : 0 }, { wait: m128(50) }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
-    else if (M() === 'SCORPION') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
-      runMacro([{ reset: 2 }, { wait: m128(70) }, { key: ZK.ENTER }, ...after(w(150))]); // its 128 ROM tests memory first: a bit longer
+    else if (M() === 'SCORPION' || M() === 'GMX') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
+      runMacro([{ reset: 2 }, ...(M() === 'GMX' && E.web_gmx_state ? [{ until: () => (E.web_gmx_state() & 0xFF) === 0xC0, max: 1500, soft: true }] : []), // GMX: the loader, the monitor's test (and the SD card) first: until its flash block 4 runs the 128 ROM (turbo on)
+        { wait: m128(70) }, { key: ZK.ENTER }, ...after(w(150))]); // its 128 ROM tests memory first: a bit longer
     else if (M() === 'KAY' || cm === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
       runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'PROFI' && profiCpmDisk(0)) // Profi CP/M disk (.PRO) in A:: main menu "CP/M system" → "from FDD"
@@ -2894,16 +2907,30 @@
   function linkParse(q) { const o = {}; for (const [k, v] of new URLSearchParams(String(q).replace(/^[^?]*\?/, ''))) linkPut(o, k, v); return o; }
   const TAGS = ['CPM', 'HDD', 'PRO', 'SD', 'TRD', 'OS', 'SPG'];
   const tagList = (t) => String(t || '').split(/[\s,;]+/).filter(Boolean).map((x) => (/^cp\/?m$/i.test(x) ? 'CPM' : x.toUpperCase()).slice(0, 6));
+  // a file of a list's link with no folder (sd=osz.zip in sd/sd.json) is in the list's folder; with a folder (trd/x.zip): from the site root
+  function listRel(run, dir) {
+    if (!dir) return run;
+    const q = new URLSearchParams(run.slice(1)); let ch = false;
+    for (const [k, v] of [...q]) {
+      if (!/^(a|b|c|d|fdd\d?|hdd\d?|sd|tape|snap)$/i.test(k)) continue;
+      const m = /^([a-d]:)?(.*)$/i.exec(v), drv = /^fdd/i.test(k) ? m[1] || '' : '', f = /^fdd/i.test(k) ? m[2] : v;
+      if (!f || /[\\/]/.test(f) || /^[a-z]+:/i.test(f)) continue;
+      q.set(k, drv + dir + f); ch = true;
+    }
+    return ch ? '?' + q.toString() : run;
+  }
   async function fetchList(json) {
     let list = [];
     try {
       const r = await fetch(json, { cache: 'no-cache' });
-      if (r.ok) { const j = await r.json(); list = Array.isArray(j) ? j : (j && Array.isArray(j.files) ? j.files : []); }
+      // lines that start with # are comments (not JSON: they go before the parse; a # inside a line stays as it is)
+      if (r.ok) { const j = JSON.parse((await r.text()).replace(/^\s*#.*$/gm, '')); list = Array.isArray(j) ? j : (j && Array.isArray(j.files) ? j.files : []); }
     } catch (e) {}
     const dir = json.replace(/[^/]*$/, ''), out = [];
     for (const it of list) {
       let url = typeof it === 'string' ? it : it && (it.url || it.file);
-      const run = typeof it === 'object' && it && typeof it.run === 'string' && it.run.trim() ? it.run.trim().replace(/^[^?]*\?/, '?') : '';
+      let run = typeof it === 'object' && it && typeof it.run === 'string' && it.run.trim() ? it.run.trim().replace(/^[^?]*\?/, '?') : '';
+      if (run) run = listRel(run, dir);
       const rp = run ? linkParse(run) : null;
       if (!url && rp) url = MOUNT_KEYS.map((k) => rp[k]).find(Boolean) || ''; // the file the link mounts (from the site root)
       if (!url && !run) continue;
@@ -4000,7 +4027,7 @@
   }
 
   // ------------------------------------------------------------------ REST API link builder (Tools): the link for the current machine, to copy
-  const LINK_NAME = { ATM710: 'atm710', XBIOS136: 'xbios136', ATM450: 'atm450', EVO: 'evo', TSCONF: 'tsconf', PENTAGON: 'pentagon', SCORPION: 'scorpion', PROFI: 'profi', KAY: 'kay', PLUS3: 'plus3', QUORUM: 'quorum', TASIS: 'tasis', CHIC: 'chic', NEDOOS: 'nedoos' };
+  const LINK_NAME = { ATM710: 'atm710', XBIOS136: 'xbios136', ATM450: 'atm450', EVO: 'evo', TSCONF: 'tsconf', PENTAGON: 'pentagon', SCORPION: 'scorpion', GMX: 'gmx', PROFI: 'profi', KAY: 'kay', PLUS3: 'plus3', QUORUM: 'quorum', TASIS: 'tasis', CHIC: 'chic', NEDOOS: 'nedoos', OSZ: 'osz' };
   let raFW = null;
   const pageDir = () => location.href.replace(/[?#].*$/, '').replace(/[^/]*$/, '');
   function relUrl(u) { // a file on this site → its path next to index.html
@@ -4364,35 +4391,71 @@
     setName(sdName); return !!E.web_sd_mount(load('sd.ro') === '1' ? 2 : 1);
   }
   // an SD card ZIP may have a .json next to the image: { "run": "path/file.spg" } — the file Wild Commander starts (TS-Conf)
-  let sdRun = '';
-  async function zipRun(buf, all) {
+  // it may also say the machine of the card and disks of the ZIP for the drives: { "model": "gmx", "a": "OS.TRD" } (OSZ)
+  let sdRun = '', sdCfg = null;
+  async function zipCfg(buf, all) { // the card's .json (null: none)
     for (const e of all.filter((x) => /\.json$/i.test(x.name) && x.size < 65536)) {
-      try {
-        const j = JSON.parse(new TextDecoder().decode(await UnrealZip.extract(buf, e)));
-        const r = typeof j === 'string' ? j : j && (j.run || j.autorun || j.start || j.file);
-        if (typeof r === 'string' && r.trim()) return r.trim().replace(/\\/g, '/').replace(/^\/+/, '');
-      } catch (err) {}
+      try { const j = JSON.parse(new TextDecoder().decode(await UnrealZip.extract(buf, e))); if (j && (typeof j === 'string' || typeof j === 'object')) return typeof j === 'string' ? { run: j } : j; } catch (err) {}
     }
-    return '';
+    return null;
+  }
+  async function zipRun(buf, all) {
+    const j = await zipCfg(buf, all), r = j && (j.run || j.autorun || j.start || j.file);
+    return typeof r === 'string' && r.trim() ? r.trim().replace(/\\/g, '/').replace(/^\/+/, '') : '';
+  }
+  const cardModel = (j) => { const m = j && typeof j.model === 'string' ? linkModelKey(j.model) : null; return m && MODELS[m] ? m : null; };
+  async function cardDisks(buf, all, j) { // "a": … "d": the disk images of the ZIP named in its .json
+    const out = [];
+    if (j) ['a', 'b', 'c', 'd'].forEach((k, i) => {
+      const want = typeof j[k] === 'string' ? j[k].replace(/\\/g, '/').replace(/^\/+/, '').toLowerCase() : '';
+      const e = want && all.find((x) => x.name.toLowerCase() === want || x.name.toLowerCase().endsWith('/' + want));
+      if (e) out.push({ drive: i, e });
+    });
+    for (const d of out) { d.name = d.e.name.replace(/^.*[\\/]/, ''); d.data = await UnrealZip.extract(buf, d.e); delete d.e; }
+    return out;
+  }
+  // the disks of the card (its .json) into the drives; auto: A: boots (no disks: the machine boots its SD card)
+  async function sdDisks(auto, skip) {
+    const ds = sdCfg ? sdCfg.disks.filter((d) => !(skip && skip[d.drive])) : [];
+    if (!ds.length) return false;
+    for (const d of ds) { autorunNext = d.drive === 0 ? auto : false; try { await putAndInsert(d.name, d.data, d.drive); } catch (err) { toast(d.name + ': ' + err.message, true); } }
+    autorunNext = false; return true;
+  }
+  // a ZIP with an SD card image and a .json that names its machine: that machine starts with the card (and the disks of the .json)
+  async function cardZip(name, buf) {
+    const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name));
+    if (!all.some((e) => SD_EXT.test(e.name) && e.size >= 1 << 20)) return false;
+    const m = cardModel(await zipCfg(buf, all));
+    if (!m) return false;
+    const auto = autorunNext; autorunNext = false;
+    if (m !== model) { toast(name + ': an SD card for ' + MODELS[m].name); await setModel(m, true); if (model !== m) return true; }
+    if (!await sdFromBytes(name, buf)) return true;
+    if (!sdOn()) { store('sd.if.' + M(), '1'); sdMount(); sdUI(); }
+    if (!await sdDisks(auto) && auto) sdBoot();
+    return true;
   }
   async function sdFromBytes(name, buf, atStart) {
     if (!atStart && !await loseOk(['sd'])) return false; // the card there has unsaved changes
     try {
-      let nm = name, img = buf, run = '';
+      let nm = name, img = buf, run = '', cfg = null;
       if (UnrealZip.isZip(buf)) { // the biggest file of the archive (or an .img / .vhd)
         const all = UnrealZip.list(buf).filter((e) => !/\/$/.test(e.name)), imgs = all.filter((e) => SD_EXT.test(e.name));
         const e = (imgs.length ? imgs : all).reduce((a, b) => (b.size > a.size ? b : a), { size: -1 });
         if (!e.name) throw new Error('SD: the archive is empty');
         nm = e.name.replace(/^.*[\\/]/, ''); img = await UnrealZip.extract(buf, e);
         run = await zipRun(buf, all);
+        const j = await zipCfg(buf, all), ds = await cardDisks(buf, all, j);
+        if (cardModel(j) || ds.length) cfg = { model: cardModel(j), disks: ds };
       }
       if (img.length < 524288) throw new Error('SD: the image is too small (at least 512 KB)');
       nm = nm.replace(/[:\\/]/g, '_');
       if (sdName && sdName !== nm) try { fs.remove(sdName); } catch (e) {}
-      fs.write(nm, img); sdName = nm; sdDirty = false; sdWcOwn = false; sdSrc = null; sdRun = run;
-      if (sdMount()) toast('SD card: ' + nm + ' · ' + Math.round(img.length / 1048576) + ' MB' + (M() === 'EVO' && !atStart ? ' — press Reset: the EVO Reset Service looks for the card at start' : ''));
+      fs.write(nm, img); sdName = nm; sdDirty = false; sdWcOwn = false; sdSrc = null; sdRun = run; sdCfg = cfg;
+      const ok = sdMount();
+      if (ok) toast('SD card: ' + nm + ' · ' + Math.round(img.length / 1048576) + ' MB' + (M() === 'EVO' && !atStart ? ' — press Reset: the EVO Reset Service looks for the card at start' : ''));
       else if (!sdOn()) toast('SD card: ' + nm + ' (the Z-Controller is off: Options / Disk / SD card)');
       else toast('SD card: cannot open ' + nm, true);
+      if (ok && M() === 'GMX' && E.web_gmx_cold) E.web_gmx_cold(); // GMX: its shadow monitor looks for the card at power-on only (a card put in: power off / on)
     } catch (err) { toast(err.message, true); sdUI(); return false; }
     sdUI(); return true;
   }
@@ -5378,7 +5441,7 @@
     const btn = (id, fn) => { $(id).onclick = () => { fn(); if (!modalOpen()) canvas.focus(); }; };
     $('load').onclick = () => { if ($('loadwin').hidden) showLoad(); else fwinShow('loadwin', false); };
     btn('pause', () => setUserPaused(!userPaused));
-    btn('reset', () => E.web_reset(0));
+    btn('reset', () => userReset());
     btn('xt', toggleXT);
     btn('turbo', toggleTurbo);
     bindSpeed();
@@ -5451,7 +5514,7 @@
     atm450: 'ATM450', atm1: 'ATM450',
     evo: 'EVO', zxevo: 'EVO', atm3: 'EVO',
     pentagon: 'PENTAGON', p128: 'PENTAGON', pentagon128: 'PENTAGON',
-    scorpion: 'SCORPION', scorp: 'SCORPION', zs256: 'SCORPION', profi: 'PROFI', kay: 'KAY', kay1024: 'KAY',
+    scorpion: 'SCORPION', scorp: 'SCORPION', zs256: 'SCORPION', gmx: 'GMX', scorpgmx: 'GMX', profi: 'PROFI', kay: 'KAY', kay1024: 'KAY',
     plus3: 'PLUS3', '+3': 'PLUS3', p3: 'PLUS3', quorum: 'QUORUM',
     tasis: 'TASIS', tasis540: 'TASIS', chic: 'CHIC', isdos: 'CHIC', isdos501: 'CHIC', nedoos: 'NEDOOS', nedo: 'NEDOOS', wc: 'TSCONF', wildcommander: 'TSCONF',
   };
@@ -5514,6 +5577,7 @@
       try {
         await sdFromBytes(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true);
         if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && sdRun) { tsBootSd(); if (!tsNoAuto) wcAutorun(); } } // the card is there from power-on
+        if (sdName && sdCfg && (!sdCfg.model || sdCfg.model === model)) await sdDisks(auto, { 0: !!LINK.a, 1: !!LINK.b, 2: !!LINK.c, 3: !!LINK.d }); // the disks of its .json (a= / b= of the link win)
       }
       catch (err) { toast('Link: ' + name + ': ' + err.message, true); }
     }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261027203351">
+<meta name="build" content="20261028110407">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1405,11 +1405,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
+      <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
       <tr><td>Archives</td><td>ZIP: pick file inside</td></tr>
       <tr><td>HDD</td><td>raw images (.hdd, .img …): Options → HDD</td></tr>
       <tr><td>Save</td><td>disks TRD, SCL, FDI, UDI, TD0, ISD, PRO; HDD + .chs; SD as VHD; SNA; SCR; PNG; memory block BIN; Custom ROM (ROM + json)</td></tr>
       <tr><td>ROM</td><td>Custom ROM (Options → System): .rom / .bin / .zip (ZIP with json: machine and pages come back)</td></tr>
-      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": the file (Autostart after load: a disk boots, a TS-Conf SD card runs its program). Use boot.b and Autostart TRDOS are for files of this computer. Tags: CPM HDD PRO SD TRD OS SPG (TS-Conf program: starts ZX Evo TS-Conf)</td></tr>
+      <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "CPM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": the file (Autostart after load: a disk boots, a TS-Conf SD card runs its program). Use boot.b and Autostart TRDOS are for files of this computer. Tags: CPM HDD PRO SD TRD OS SPG (TS-Conf program: starts ZX Evo TS-Conf). A line that starts with # is a comment (trd.json, hdd.json, sd.json). A file in a link with no folder (sd=osz.zip in sd/sd.json) is in the list's folder; with a folder (trd/x.zip): from the site root</td></tr>
       <tr><td>Server ROMs</td><td>rom/&lt;name&gt;.zip (or rom/&lt;name&gt;.rom); parts for ROM sets: rom/roms.json</td></tr>
     </table>
   </div>
@@ -1516,7 +1517,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Local server</h4>
     <p>A folder of a web server on your network: its files open as Local file (the same Autostart). Once opened, File Commander shows it as the drive Local server (read only).</p>
     <h4>Server list</h4>
-    <p>The entries of trd/trd.json, then hdd/hdd.json and sd/sd.json (an image a trd.json entry brings, by hdd= / sd= or as its OS, is listed once: as that entry). Tag buttons: the entries with any of the chosen tags (several at once); All: every entry.</p>
+    <p>The entries of trd/trd.json, then hdd/hdd.json and sd/sd.json (an image a trd.json entry brings, by hdd= / sd= or as its OS, is listed once: as that entry). Tag buttons: the entries with any of the chosen tags (several at once); All: every entry. In these files a line that starts with # is a comment.</p>
     <table class="keys">
       <tr><td>Run</td><td>an entry with a link: starts it as set on the server (machine, speed, disks, HDD / SD, program). Its ▾ puts Run or Mount on the button; the button does it</td></tr>
       <tr><td>Mount</td><td>only its files go in (disk: A:, HDD 0, SD card); the machine stays, Load stays open. A TS-Conf card: Wild Commander boots, its program does not run</td></tr>
@@ -1759,15 +1760,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261027203351"></script>
-<script src="js/scancodes.js?v=20261027203351"></script>
-<script src="js/unzip.js?v=20261027203351"></script>
-<script src="js/vkbd.js?v=20261027203351"></script>
-<script src="js/asyncify.js?v=20261027203351"></script>
-<script src="js/gfx.js?v=20261027203351"></script>
-<script src="js/usel.js?v=20261027203351"></script>
-<script src="js/fcmd.js?v=20261027203351"></script>
-<script src="js/dbga.js?v=20261027203351"></script>
-<script src="js/app.js?v=20261027203351"></script>
+<script src="js/wasi_fs.js?v=20261028110407"></script>
+<script src="js/scancodes.js?v=20261028110407"></script>
+<script src="js/unzip.js?v=20261028110407"></script>
+<script src="js/vkbd.js?v=20261028110407"></script>
+<script src="js/asyncify.js?v=20261028110407"></script>
+<script src="js/gfx.js?v=20261028110407"></script>
+<script src="js/usel.js?v=20261028110407"></script>
+<script src="js/fcmd.js?v=20261028110407"></script>
+<script src="js/dbga.js?v=20261028110407"></script>
+<script src="js/app.js?v=20261028110407"></script>
 </body>
 </html>
