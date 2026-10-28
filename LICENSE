@@ -76,6 +76,9 @@ sjasmplus (the Z80 assembler of File Commander: web/sjasm/sjasmplus.wasm, built 
 puff (the inflate decoder in web/web_ft.cpp follows it)
   Copyright (C) 2002-2013 Mark Adler. zlib License.
 
-ROM images, disk images and other software that the emulator loads are not
-part of this repository and are not covered by this license. They belong to
-their copyright holders.
+ROM images (data/, the rom/ folder of the site), disk, HDD and SD card images
+and other software that the emulator loads are not covered by this license.
+They belong to their copyright holders, among them: the GMX flash of LW / PLM
+(GMX Loader, Shadow Service Monitor of MOA), OSZ by izzx
+(https://github.com/izzx-git/OSZ), NedoOS by Alone Coder and the NedoOS team,
+TS-BIOS and Wild Commander, TR-DOS, the BIOS and ROMs of the machines.

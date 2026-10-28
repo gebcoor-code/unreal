@@ -17,16 +17,19 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
 | ZX Evo TS-Conf | 4096K, TS-BIOS; ZX / 16c / 256c / text modes up to 360×288, tiles and sprites (TSU), DMA, VDAC; VDAC2 (FT812); 3.5 / 7 / 14 MHz; SPG; Wild Commander on the SD card |
 | Pentagon 128 | TR-DOS 5.04TM, port #EFF7 |
 | Scorpion ZS 256 | ROM 2.95 |
+| Scorpion ZS 256 GMX | GMX board: 2048K, 640×200 with hardware scroll, turbo, 512K flash of LW/PLM (GMX Loader 2.00, Shadow Service Monitor 6.44), runs OSZ |
 | Profi 1024 | BIOS 2.2, CP/M from a .PRO disk |
 | KAY 1024 | |
 | Spectrum +3 | +3DOS, µPD765 |
 | Quorum 1024 | |
 | TaSiS v5.40, iS-DOS Chic v5.01 | xBIOS 1.36XT, boot from an HDD image |
 | NedoOS (BaseConf) | boot from an SD card image |
+| OSZ (Scorpion GMX) | the multitasking OS of izzx: SD card image (sd/osz.zip) + OS.TRD |
 | Custom ROM | a whole ROM of your own, or a 128 / 48 / TR-DOS / Service set, on any of the machines |
 
-ZX Evo TS-Conf is not part of UnrealSpeccy 0.39: it was written for this port (`web/web_ts.cpp`, `web/web_ft.cpp`)
-after the TS-Conf Verilog sources and documentation (TS-Labs) and the FT81X Programmers Guide.
+ZX Evo TS-Conf and the GMX board of the Scorpion are not part of UnrealSpeccy 0.39 (it has only a stub of the GMX port #7EFD):
+they were written for this port with use of  TS-Conf Verilog sources and documentation
+(TS-Labs) and FT81X Programmers Guide; GMX with use of documentation; flash: LW/PLM).
 
 ## Features
 
@@ -48,7 +51,8 @@ after the TS-Conf Verilog sources and documentation (TS-Labs) and the FT81X Prog
 
 ## Running
 
-The `dist/` folder is the whole site. Put it on any static web server;
+The `dist/` folder is the whole site. Put it on any static web server; locally, for example:
+
 
 ### Server folders
 
@@ -61,6 +65,13 @@ The `dist/` folder is the whole site. Put it on any static web server;
 | `hdd/` | HDD images (ZIP with a `.chs` geometry file), listed in `hdd.json` |
 | `sd/` | SD card images (`.img`, `.vhd` or ZIP), listed in `sd.json` |
 
+### Server lists
+
+`trd/trd.json`, `hdd/hdd.json` and `sd/sd.json` make the Server list of the Load window (in this order, each entry as
+written); `hdd.json` and `sd.json` also fill Options / Disk. An entry has a `name`, a `tag` (CPM HDD PRO SD TRD OS SPG),
+and `url` (a file: Mount), `run` (a REST link: Run) or both:
+
+
 ## License
 
 The code written for this port is released under the MIT license, see [LICENSE](LICENSE).
@@ -71,6 +82,10 @@ The UnrealSpeccy sources and the third-party components keep their own terms, wh
 - **UnrealSpeccy** by SMT and its contributors.
 - **Xpeccy** by SAM style: the model for the deBUGa debugger.
 - **TS-Labs:** ZX Evolution and TS-Conf.
+- **MOA:** the GMX board of Scorpion ZS 256 and the Shadow Service Monitor; **LW / PLM:** the GMX flash of 2022–2025
+  (GMX Loader 2.00, Shadow Service Monitor 6.44su).
+- **izzx:** [OSZ](https://github.com/izzx-git/OSZ), the multitasking OS of Scorpion GMX.
+- **Alone Coder** and the NedoOS team: [NedoOS](https://nedoos.ru).
 - **sjasmplus** by Aprisobal, z00m128 and contributors (BSD-3-Clause).
 - **ymfm** by Aaron Giles; **stb_image** by Sean Barrett; the inflate code follows **puff** by Mark Adler.
 - Web port: ae485.
