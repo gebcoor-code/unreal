@@ -1,8 +1,6 @@
 [
   { "name": "SD test BaseConf (8MB, FAT16)", "url": "sd.zip", "tag": "SD" },
-  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip", "tag": "SD OS" },
+  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip", "run": "?model=nedoos", "tag": "SD OS" },
   { "name": "Wild Commander (TS-Conf) (FAT32)", "url": "wc.zip", "tag": "SD SPG" },
-  { "name": "OSZ (Scorpion GMX)", "run": "?model=osz", "tag": "SD OS" }
+  { "name": "OSZ (Scorpion GMX)", "url": "osz.zip", "run": "?model=osz", "tag": "SD OS" }
 ]
-
-#sd osz 64 MB FAT32 SD image with the OSZ folder (OSZ 2025.10.08, izzx: https://github.com/izzx-git/OSZ)  OS.TRD: boots the OS kernel from the SD card
