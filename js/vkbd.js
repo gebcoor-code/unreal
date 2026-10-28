@@ -130,6 +130,7 @@
     function unlatchAll() { for (const codes of latched.values()) codes.forEach(up); latched.clear(); refreshMods(); }
     // codes: list of key codes pressed together; group: modifier group (null for ordinary keys)
     function bindKey(el, codes, group) {
+      el._bind = [codes, group]; // the split keyboard binds a copy of a long key (SPACE) the same way
       if (group) { if (!modEls.has(group)) modEls.set(group, []); modEls.get(group).push(el); }
       el.addEventListener('pointerdown', (e) => {
         e.preventDefault(); el.setPointerCapture(e.pointerId);
@@ -155,10 +156,11 @@
       // grid in 0.1-key units: rows with equal totals line up exactly (arrow up above arrow down)
       const r = document.createElement('div'); r.className = 'vk-row';
       const units = row.reduce((t, k) => t + Math.round((k[2] || 1) * 10), 0);
-      r.style.gridTemplateColumns = `repeat(${units}, 1fr)`;
+      r.style.gridTemplateColumns = `repeat(${units}, 1fr)`; r.dataset.u = units;
+      let col = 1;
       for (const [code, label, w] of row) {
         const k = document.createElement('div'); k.className = 'vk-key'; k.textContent = label; k.dataset.code = code;
-        k.style.gridColumn = 'span ' + Math.round((w || 1) * 10);
+        k.style.gridColumn = 'span ' + Math.round((w || 1) * 10); k.dataset.c = col; k.dataset.s = Math.round((w || 1) * 10); col += Math.round((w || 1) * 10);
         if (code.length > 1 && !/^(Key|Digit)/.test(code) && label.length > 1) k.classList.add('small');
         bindKey(k, code.split('+'), MODIFIERS.has(code) ? code : null); // 'ShiftLeft+Semicolon': a key pressed with Shift (':' for CP/M drives)
         r.appendChild(k);
@@ -172,12 +174,12 @@
     const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     let row = 0;
     for (const line of ZX_ROWS) {
-      row++;
+      row++; let col = 1;
       for (const k of line) {
         const el = document.createElement('div');
         el.className = 'zk' + (k.cls ? ' ' + k.cls : '');
         el.style.gridRow = k.rows ? row + ' / span ' + k.rows : String(row);
-        el.style.gridColumn = 'span ' + k.w;
+        el.style.gridColumn = 'span ' + k.w; el.dataset.c = col; el.dataset.s = k.w; col += k.w;
         if (k.m !== undefined) {
           const tl = (k.t || '').length > 6 ? ' long' : '', sl = (k.s || '').length > 2 ? ' long' : (k.s || '').length === 2 ? ' two' : '';
           el.innerHTML = `<span class="t${tl}${k.t === 'WHITE' ? ' white' : ''}" style="${k.tc ? 'color:' + k.tc : ''}">${esc(k.t || '')}</span>` +
@@ -197,11 +199,12 @@
     const z48 = document.createElement('div'); z48.className = 'vk-page vk-z48';
     row = 0;
     for (const line of Z48_ROWS) {
-      row++;
+      row++; let col = 1;
       for (const k of line) {
         const el = document.createElement('div');
         el.style.gridRow = String(row); el.style.gridColumn = 'span ' + (k.gap || k.w);
-        if (k.gap) { z48.appendChild(el); continue; }
+        if (k.gap) { z48.appendChild(el); col += k.gap; continue; }
+        el.dataset.c = col; el.dataset.s = k.w; col += k.w;
         el.className = 'zq' + (k.cls ? ' ' + k.cls : '') + (k.fn ? ' fn' : '') + (k.g !== undefined ? ' num' : ''); el.dataset.k = k.m || k.keys.join('+');
         if (k.fn) el.innerHTML = `<span class="up"></span><span class="cap"><span class="fl">${k.fn}</span></span><span class="dn"></span>`;
         else {
@@ -319,9 +322,9 @@
     // OVL / AF over the screen: in a fixed slot of the page's bottom bar (opts.ovBarHost), else at the bottom centre
     const ovBar = opts.ovBarHost || document.createElement('div'); if (!opts.ovBarHost) ovBar.className = 'vk-ovbar';
     if (opts.overlayHost) opts.overlayHost.appendChild(ovl);
-    let shown = true;
+    let shown = true, land = false; // land: a phone in landscape: the stick and fire are always over the screen
     function layout() {
-      const ov = overlay && !!opts.overlayHost;
+      const ov = (overlay || land) && !!opts.overlayHost;
       if (ov) { ovBar.append(bOver, bAuto); ovl.append(pad, xwrap); if (!opts.ovBarHost) ovl.append(ovBar); }
       else { gripL.appendChild(pad); gripR.appendChild(xwrap); togs.append(bWay, bAuto, bSwap, bSize, bOver, bOpac); }
       joy.classList.toggle('ov', ov);
@@ -333,7 +336,7 @@
     }
     // overlay on the JOY tab: the panel itself is not shown, only the screen with the stick
     function ovlShow() {
-      const on = overlay && !!opts.overlayHost && shown && current === 'joy';
+      const on = (overlay || land) && !!opts.overlayHost && shown && current === 'joy';
       ovl.hidden = !on;
       ovBar.classList.toggle('on', on);
       container.classList.toggle('vk-none', on);
@@ -410,13 +413,54 @@
     pad.addEventListener('contextmenu', (e) => e.preventDefault());
 
     for (const p of Object.values(pages)) container.appendChild(p);
+
+    // ---------------------------------------------------------------- split (a phone in landscape): the left half of a keyboard at
+    // the left edge, the right half at the right edge. Two frames as wide as the whole keyboard (its sizes: the same), each with
+    // the keys of its half where they are in the whole one; a key goes to the side its centre is on. The keys are moved, not
+    // copied (their handlers stay); back in place when the split ends
+    const SPLIT = { xt: 0, zx: 67, zx48: 86 }, splitW = {};
+    let split = false;
+    function splitBuild(id) {
+      const page = pages[id], w = document.createElement('div'); w.className = 'vk-splitw'; w.style.display = 'none';
+      const L = page.cloneNode(false), R = page.cloneNode(false); L.classList.add('vk-half', 'l'); R.classList.add('vk-half', 'r'); L.style.display = R.style.display = '';
+      w.append(L, R); container.appendChild(w);
+      const homes = new Map(), moves = [], twins = [];
+      // a key over the middle (SPACE): its part on each side, the right one a copy that presses the same keys
+      const place = (k, total, l, r) => {
+        const c = +k.dataset.c, n = +k.dataset.s, mid = Math.round(total / 2);
+        if (n >= total / 5 && c - 1 < mid - 2 && c - 1 + n > mid + 2 && k._bind) { // a long key only (SPACE); the others go by their centre
+          const t = k.cloneNode(true); t.classList.remove('down', 'latched'); bindKey(t, ...k._bind);
+          t.style.gridColumn = (mid + 1) + ' / ' + (c + n); r.appendChild(t); twins.push(t);
+          moves.push([k, l, c + ' / ' + (mid + 1)]);
+        } else moves.push([k, (c - 1 + n / 2) < total / 2 ? l : r, c + ' / span ' + n]);
+      };
+      if (id === 'xt') for (const row of [...page.children]) {
+        const rl = row.cloneNode(false), rr = row.cloneNode(false); L.appendChild(rl); R.appendChild(rr); homes.set(row, [...row.children]);
+        for (const k of [...row.children]) place(k, +row.dataset.u, rl, rr);
+      } else {
+        homes.set(page, [...page.children]);
+        for (const k of [...page.children]) if (k.dataset.c) place(k, SPLIT[id], L, R);
+      }
+      splitW[id] = { w, homes, moves, twins };
+    }
+    function setSplit(v) {
+      v = !!v; if (v === split) return; releaseAll(); split = v;
+      for (const id of Object.keys(SPLIT)) {
+        if (v && !splitW[id]) splitBuild(id);
+        const S = splitW[id]; if (!S) continue;
+        if (v) for (const [k, to, gc] of S.moves) { k.style.gridColumn = gc; to.appendChild(k); }
+        else { for (const [k] of S.moves) k.style.gridColumn = 'span ' + k.dataset.s; for (const [home, kids] of S.homes) home.replaceChildren(...kids); }
+      }
+      if (current) show(current);
+    }
     container.addEventListener('contextmenu', (e) => e.preventDefault());
 
     let current = null;
     function show(id) {
       releaseAll();
       current = id;
-      for (const [k, p] of Object.entries(pages)) p.style.display = k === id ? '' : 'none';
+      for (const [k, p] of Object.entries(pages)) p.style.display = k === id && !(split && splitW[k]) ? '' : 'none';
+      for (const [k, S] of Object.entries(splitW)) S.w.style.display = split && k === id ? '' : 'none';
       ovlShow();
       if (opts.onTab) opts.onTab(id);
       if (opts.onLayout) opts.onLayout();
@@ -436,7 +480,9 @@
       // Options / Input / Joystick: the type, the FIRE keys and the extra buttons
       get joy() { return label.value; },
       setJoy(id) { if (!JOY_MAPS[id] || label.value === id) return; releaseAll(); label.value = id; map = JOY_MAPS[id]; if (opts.onJoy) opts.onJoy(id); },
-      setJoyKeys(k) { releaseAll(); jkeys = k || {}; buildExtra(); layout(); } };
+      setJoyKeys(k) { releaseAll(); jkeys = k || {}; buildExtra(); layout(); },
+      setLand(v) { setSplit(v); if (land === !!v) return; land = !!v; layout(); },
+      get split() { return split; }, half() { const S = splitW[current]; return split && S ? S.w.firstChild : null; } };
   }
 
   root.UnrealVKbd = { create, JOY_MAPS, JOY_KEYS };

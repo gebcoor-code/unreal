@@ -2445,3 +2445,82 @@ Web Unreal Speccy — version history
   stays); SYMBOL SHIFT a little smaller (a gap at both sides); CAPS
   SHIFT, ENTER, BREAK SPACE bigger; rows 2-4 a little closer to each
   other: the keyboard is a little lower
+
+
+        version 1.9.0                   28 oct 2026
+
++ A phone turned to landscape: the screen fits the whole height (with
+  the on-screen keyboard too); the keyboards (XT, ZX, ZX 48) lie over
+  the screen, see-through, under the menu bar and above the row of the
+  screen corner buttons (taps between the keys go to the screen); the
+  JOY stick and fire are always over the screen
+* Hide Menu Bar: a click or a tap shows the hidden icons only in a
+  strip along the top or the bottom of the screen (as high as the
+  corner buttons), not anywhere on it
+
+
+        version 1.10.0                  28 oct 2026
+
++ A phone in landscape: the on-screen keyboards (XT, ZX, ZX 48) are
+  split: the left half at the left edge, the right half at the right
+  edge, beside the screen, not over it; a long key (SPACE) is on both
+  halves; back in one piece in portrait. The JOY stick and fire at the
+  edges of the page, as wide as the room beside the screen
+* A phone in landscape: the page does not scroll; the height that is
+  there is taken again when the browser's bars come or go (visual
+  viewport) and after a turn of the phone
+
+
+        version 1.10.1                  28 oct 2026
+
+* A phone in landscape: the stage is fixed to the visible area (its
+  top where the visual viewport starts, centred in its height), not
+  placed by the page flow (on an iPhone it came out ~75 px lower and
+  its bottom was cut); the halves of a split keyboard a little
+  narrower (a key over the middle stays off the screen); JOY: FIRE and
+  the 3 buttons with their middle on the middle of the stick
++ System Info / Host / Viewport: the visual viewport, the page size,
+  home screen, the landscape layout, where the stage is
+
+
+        version 1.10.2                  28 oct 2026
+
+* Hide Menu Bar: OVL / AF of the joystick and MB / 1pps / RB of the
+  touch mouse hide too (a tap along the top or the bottom shows them)
+
+
+        version 1.10.3                  28 oct 2026
+
+* phone landscape: the menu bar buttons shrink to the width of the
+  screen (Yandex Browser: the buttons went out to the right)
+? phone landscape: the page can not scroll; iPhone home screen app:
+  taps hit keys higher than the finger, the menu and corner buttons
+  did not answer
+
+
+        version 1.10.4                  28 oct 2026
+
+* phone landscape, home screen app: with a keyboard or the joystick on
+  the screen is as high as in the browser (82 %), the keys at the
+  sides are bigger
+
+
+        version 1.10.5                  28 oct 2026
+
+* phone landscape: the bottom of the keyboard halves and of the
+  joystick is level with the bottom of the screen
+
+
+        version 1.10.6                  28 oct 2026
+
+* phone landscape in the browser: with a keyboard or the joystick on
+  the screen takes 90 % of the height, the keys at the sides are bigger
+* Hide Menu Bar: OVL / AF of the joystick and MB / 1pps / RB of the
+  touch mouse were not hidden when switched on
+
+
+        version 1.11.0                  28 oct 2026
+
++ Hide Menu Bar by touch: a tap in the top left corner of the screen
+  shows the button for 3 s, a tap on it hides the menu bar (and the
+  same button in the same place shows it back)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261028182918">
+<meta name="build" content="20261028222049">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -276,6 +276,25 @@ button.vk-tog.on { background: rgba(240,160,80,.14); color: var(--accent); borde
 .vk-ovl .vk-xbtn { opacity: var(--jo, .45); }
 /* overlay over the screen: the same sizes as in the panel, a constant transparency, own compositing layers */
 #vkbd.vk-none { display: none !important; }
+/* a phone in landscape: the page does not scroll (the browser's bars stay as they are); the on-screen keyboard is split: its
+   halves at the left and right edges beside the screen (frames as wide as the whole keyboard, --kbw; taps between keys go on) */
+html.land, body.land { height: 100%; overflow: hidden; }
+body.land { position: fixed; inset: 0; } /* the document can not scroll at all: iOS (home screen) drew fixed things lower than it hit-tested them */
+body.land #toolbar { flex-wrap: nowrap; gap: 3px; } body.land #toolbar button.ico { flex: 1 1 0; width: auto; min-width: 18px; max-width: 34px; height: 28px; }
+body.land #toolbar .selwrap { display: none; } body.land #toolbar #speed { min-width: 0; padding: 0 4px; } /* the menu bar fits the width of the screen */
+body.land #stage { position: fixed; left: 0; right: 0; padding: 0; margin: 0 auto !important; } /* top: applyScale (the visible area); no transform: the JOY layer inside is fixed to the page */
+body.land #vkbd { position: fixed; inset: 0; margin: 0; padding: 0; z-index: 20; pointer-events: none; background: none; }
+.vk-splitw { position: absolute; inset: 0; pointer-events: none; }
+.vk-half { position: absolute; bottom: var(--lbot, 6px); width: var(--kbw, 400px); background: transparent !important; pointer-events: none; }
+.vk-half.l { left: 4px; } .vk-half.r { right: 4px; }
+.vk-half .vk-key, .vk-half .zk, .vk-half .zq { pointer-events: auto; }
+.vk-half .z48s { display: none; }
+.vk-half.vk-zx { grid-auto-rows: calc(var(--kbw, 400px) * .078); } .vk-half .vk-key { height: calc(var(--kbw, 400px) * .062); font-size: calc(var(--kbw, 400px) * .022); }
+.vk-half.vk-xt { gap: 3px; }
+body.land #screenwrap .corner { z-index: 25; }
+/* JOY: the stick and fire at the edges of the page, as wide as the room beside the screen */
+body.land .vk-ovl { position: fixed; inset: 0; --js: var(--ljs, 1) !important; padding: 0 6px var(--lbot, 6px); }
+body.land .vk-ovl .vk-fires.x { margin-bottom: calc((200px - 172px) * var(--js) / 2); } /* FIRE and the 3 buttons: their middle on the middle of the stick */
 .vk-ovl { position: absolute; inset: 0; pointer-events: none; z-index: 5; display: flex; align-items: flex-end; justify-content: space-between;
   padding: 0 3% 34px; line-height: normal; --js: 1; }
 .vk-ovl[hidden] { display: none; }
@@ -430,8 +449,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .corner { position: absolute; bottom: 4px; display: flex; gap: 4px; align-items: center; line-height: normal; opacity: .55; transition: opacity .15s; }
 .corner:hover, .corner:focus-within { opacity: 1; }
 .corner.bl { left: 4px; } .corner.br { right: 4px; }
-.corner.tl { top: 4px; bottom: auto; left: 4px; } #barcorner { display: none; } body.bare #barcorner { display: flex; } /* ~ hid the menu bar: a way back by touch */
-body.bare.calm #screenwrap .corner, body.bare.calm #hudc, body.bare.calm #xtmsg { visibility: hidden; } /* Hide Menu Bar: the corner icons and the texts over the screen too, a click / tap shows them for 2 s */
+.corner.tl { top: 4px; bottom: auto; left: 4px; } #barcorner { visibility: hidden; } body.bare #barcorner, #barcorner.peek { visibility: visible; } /* ~ hid the menu bar: a way back by touch; with the menu bar: a tap in the corner shows the button that hides it */
+body.bare.calm #screenwrap .corner, body.bare.calm #hudc, body.bare.calm #xtmsg, body.bare.calm #sbar, body.bare.calm #sbar .on { visibility: hidden; pointer-events: none; } /* #sbar: OVL / AF of the joystick, MB / 1pps / RB of the touch mouse */ /* Hide Menu Bar: the corner icons and the texts over the screen too, a click / tap shows them for 2 s */
 body.bare #toolbar { display: none; } body.bare #mainwin { border-color: transparent; border-radius: 0; box-shadow: none; } body.bare #screenwrap { border-radius: 0; } /* ~: no menu bar, no frame */
 .corner button.ico, .corner select { background: rgba(35,42,51,.25); border-color: rgba(255,255,255,.12); }
 #stage .corner button.ico { width: 26px; height: 20px; border-radius: 4px; }
@@ -1285,7 +1304,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             </select>
           </div>
           <div class="optcol vidhide">
-            <label class="chk" title="The menu bar and the frame of the emulator window (~ = Shift + `); the corner icons, MHz and FPS hide too: a click or a tap on the screen shows them for 2 s"><input type="checkbox" id="vidbare"> Hide Menu Bar (~)</label>
+            <label class="chk" title="The menu bar and the frame of the emulator window (~ = Shift + `); the corner icons, MHz and FPS, OVL / AF and the touch mouse buttons hide too: a click or a tap along the top or the bottom of the screen shows them for 2 s"><input type="checkbox" id="vidbare"> Hide Menu Bar (~)</label>
             <label class="chk" title="The CPU clock over the screen (top centre)"><input type="checkbox" id="vidnomhz"> Hide Frequency</label>
             <label class="chk" title="Frames per second over the screen (top right)"><input type="checkbox" id="vidnofps"> Hide FPS</label>
           </div>
@@ -1441,6 +1460,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>bottom left</td><td>XT keyboard on / off (ATM)</td></tr>
       <tr><td>bottom right</td><td>on-screen keyboard (ZX, ZX 48, XT) and joystick; the list next to it chooses one</td></tr>
+      <tr><td>phone, landscape</td><td>the screen fits the whole height; the on-screen keyboards are split: the left half at the left edge, the right half at the right edge (SPACE on both); the joystick stick and fire at the edges</td></tr>
+      <tr><td>Top left corner</td><td>with the menu bar: a tap shows the button that hides it (for 3 s), a tap on it hides the menu bar; with the menu bar hidden the same button shows it back</td></tr>
+      <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen</td></tr>
     </table>
     <h4>On-screen keyboards</h4>
     <table class="keys">
@@ -1602,7 +1624,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
-      <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit, the corner icons, MHz and FPS hidden too (a click or a tap shows them for 2 s; ~ or the ☰ corner brings the menu bar back; visitor's own setting is not changed)</td></tr>
+      <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit, the corner icons, MHz and FPS hidden too (a click or a tap along the top or the bottom of the screen shows them for 2 s; ~ or the ☰ corner brings the menu bar back; visitor's own setting is not changed)</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx (Spectrum+), zx48 (48K), xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
@@ -1814,15 +1836,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261028182918"></script>
-<script src="js/scancodes.js?v=20261028182918"></script>
-<script src="js/unzip.js?v=20261028182918"></script>
-<script src="js/vkbd.js?v=20261028182918"></script>
-<script src="js/asyncify.js?v=20261028182918"></script>
-<script src="js/gfx.js?v=20261028182918"></script>
-<script src="js/usel.js?v=20261028182918"></script>
-<script src="js/fcmd.js?v=20261028182918"></script>
-<script src="js/dbga.js?v=20261028182918"></script>
-<script src="js/app.js?v=20261028182918"></script>
+<script src="js/wasi_fs.js?v=20261028222049"></script>
+<script src="js/scancodes.js?v=20261028222049"></script>
+<script src="js/unzip.js?v=20261028222049"></script>
+<script src="js/vkbd.js?v=20261028222049"></script>
+<script src="js/asyncify.js?v=20261028222049"></script>
+<script src="js/gfx.js?v=20261028222049"></script>
+<script src="js/usel.js?v=20261028222049"></script>
+<script src="js/fcmd.js?v=20261028222049"></script>
+<script src="js/dbga.js?v=20261028222049"></script>
+<script src="js/app.js?v=20261028222049"></script>
 </body>
 </html>

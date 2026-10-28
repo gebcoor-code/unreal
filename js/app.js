@@ -6,12 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261028182918';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028182918'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261028182918'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261028222049';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028222049'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261028222049'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.8.10'; // About, System Info (history: changes.txt)
-  const BUILD = '20261028182918'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '1.11.0'; // About, System Info (history: changes.txt)
+  // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
+  const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
+  const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
+  let land = false;
+  const BUILD = '20261028222049'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -3760,6 +3764,8 @@
     out.push(['Host', [
       ['Browser', br + (ver ? ' ' + ver : '') + ' · ' + (navigator.userAgentData && navigator.userAgentData.platform || navigator.platform || '')],
       ['Screen', screen.width + '×' + screen.height + ', DPR ' + (window.devicePixelRatio || 1) + ', window ' + innerWidth + '×' + innerHeight],
+      ['Viewport', (window.visualViewport ? 'visual ' + Math.round(visualViewport.width) + '×' + Math.round(visualViewport.height) + ' at ' + Math.round(visualViewport.offsetTop) + ', ' : '') + 'page ' + document.documentElement.clientWidth + '×' + document.documentElement.clientHeight +
+        (navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches) ? ', home screen' : '') + (land ? ', landscape layout' : '') + ', stage at ' + Math.round($('stage').getBoundingClientRect().top)],
       ['CPU threads', navigator.hardwareConcurrency || '?'], ['Device memory', navigator.deviceMemory ? navigator.deviceMemory + ' GB' : '?'],
       ['Touch', matchMedia('(pointer: coarse)').matches ? 'yes' : 'no'],
       ['WASM memory', mb(E.memory.buffer.byteLength)],
@@ -4960,6 +4966,7 @@
     bare = !!v; document.body.classList.toggle('bare', bare); $('vidbare').checked = bare;
     clearTimeout(calmT); document.body.classList.toggle('calm', bare);
     if (save) { store('bare', bare ? '1' : '0'); bareLink = false; }
+    $('barshow').title = bare ? 'Show the menu bar and the frame (~)' : 'Hide the menu bar and the frame (~)';
     applyScale(); hudDraw();
   }
   function applyScale() {
@@ -4969,11 +4976,15 @@
     if (document.fullscreenElement) k = Math.min(window.innerWidth / w, window.innerHeight / h);
     else {
       const vk = $('vkbd');
-      const vkh = vk.hidden ? 0 : vkbd && vkbd.tab === 'joy' ? Math.min(vk.offsetHeight, kbdRoom(canvas.offsetWidth || 640)) : vk.offsetHeight; // the joystick may hang lower
-      const reserved = $('toolbar').offsetHeight + 2 + (vk.hidden ? 0 : vkh + 2) + 8 + 24; // frame, gap + padding
+      const vkh = vk.hidden || land ? 0 : vkbd && vkbd.tab === 'joy' ? Math.min(vk.offsetHeight, kbdRoom(canvas.offsetWidth || 640)) : vk.offsetHeight; // the joystick may hang lower
+      // a phone in landscape: the whole screen, the on-screen keyboards over it (landKbd)
+      const reserved = land ? $('toolbar').offsetHeight + 2 + 2 : $('toolbar').offsetHeight + 2 + (vk.hidden ? 0 : vkh + 2) + 8 + 24; // frame, gap + padding
       const vw = Math.max(360, Math.min(window.innerWidth, document.documentElement.clientWidth || window.innerWidth, (window.visualViewport && window.visualViewport.width) || 1e9)); // the page is never narrower than 360 px
       const vh = Math.min(window.innerHeight, (window.visualViewport && window.visualViewport.height) || 1e9);
-      const fit = Math.max(0.25, Math.min((vw - 18) / w, (vh - reserved) / h));
+      // landscape with a keyboard or the joystick on: the screen is lower than the whole height, so the halves at the sides get wider
+      // and their keys bigger (the home screen app has no browser bars: 82 % keeps the height it has in the browser)
+      const fh = land && !vk.hidden ? Math.round(vh * (HOME_APP ? 0.82 : 0.9)) : vh; // the browser: a bit lower than all of it too
+      const fit = Math.max(0.25, Math.min((vw - 18) / w, (fh - reserved) / h));
       k = v === 'fit' ? fit : Math.min(parseFloat(v), fit); // selected zoom is the upper limit
     }
     const cw = Math.floor(w * k), ch = Math.floor(h * k);
@@ -4985,9 +4996,32 @@
     // vertical place: centred as if the on-screen keyboard (ZX / XT) were shown, so it appears below without moving the window
     if (document.fullscreenElement) { $('stage').style.margin = ''; return; }
     const vh = Math.min(window.innerHeight, (window.visualViewport && window.visualViewport.height) || 1e9);
-    const total = 12 + $('toolbar').offsetHeight + ch + 2 + 8 + kbdRoom(cw) + 12;
-    $('stage').style.margin = Math.max(0, Math.floor((vh - total) / 2)) + 'px auto 0';
+    const total = land ? $('toolbar').offsetHeight + ch + 2 : 12 + $('toolbar').offsetHeight + ch + 2 + 8 + kbdRoom(cw) + 12;
+    // landscape: the stage is fixed to the visible area, centred in its height
+    if (land) { if (window.scrollX || window.scrollY) window.scrollTo(0, 0); $('stage').style.margin = ''; $('stage').style.top = Math.max(0, Math.floor((vh - total) / 2)) + 'px'; } // no scroll: iOS draws fixed things where it hit-tests them then
+    else { $('stage').style.top = ''; $('stage').style.margin = Math.max(0, Math.floor((vh - total) / 2)) + 'px auto 0'; }
+    landKbd();
   }
+  // a phone turned to landscape: the screen fits the whole height, the on-screen keyboards are split: the left half at the
+  // left edge, the right half at the right edge, beside the screen (vkbd setSplit); the JOY stick and fire at the edges too
+  function landUpdate() {
+    const v = !!(LAND_MQ && LAND_MQ.matches); if (v === land) { if (v) applyScale(); return; }
+    land = v; document.body.classList.toggle('land', v); document.documentElement.classList.toggle('land', v); if (vkbd) vkbd.setLand(v); applyScale();
+  }
+  function landKbd() {
+    const vk = $('vkbd'), root = document.documentElement;
+    if (!land) { vk.style.removeProperty('--kbw'); root.style.removeProperty('--side'); root.style.removeProperty('--ljs'); root.style.removeProperty('--lbot'); return; }
+    const vw = window.innerWidth, vh = Math.min(window.innerHeight, (window.visualViewport && window.visualViewport.height) || 1e9), st = $('stage').getBoundingClientRect();
+    const side = Math.max(60, Math.floor(Math.min(st.left, vw - st.right)) - 10); // the room beside the screen
+    root.style.setProperty('--side', side + 'px');
+    root.style.setProperty('--lbot', Math.max(2, Math.floor(vh - st.bottom)) + 'px'); // the keyboards and the stick end where the screen ends
+    root.style.setProperty('--ljs', String(Math.max(0.4, Math.min(1, (side - 10) / 200)))); // the stick: as wide as the room
+    let w = Math.floor(side * 2 * 0.93); vk.style.setProperty('--kbw', w + 'px'); // a key that sits over the middle (by its centre) stays off the screen
+    const half = vkbd && !vk.hidden && vkbd.half(); if (!half) return;
+    const h = half.offsetHeight, max = Math.min(vh, st.bottom) - 8;
+    if (h > max) { w = Math.floor(w * max / h); vk.style.setProperty('--kbw', w + 'px'); }
+  }
+
   // height kept for the on-screen keyboard: the ZX / XT keyboard as measured at this width (an estimate before it was shown)
   const kbdSeen = {};
   function kbdRoom(cw) {
@@ -5431,7 +5465,7 @@
       joyKeys: joyKeys(), onJoySettings: () => { showOptions(true); showPane('inp'); const c = $('joycard'); c.scrollIntoView({ block: 'nearest' }); c.classList.add('hl'); setTimeout(() => c.classList.remove('hl'), 900); },
       overlayHost: $('screenwrap'), ovBarHost: $('sbjoy'), onLayout: () => applyScale(),
       joyOpts: (() => { try { return JSON.parse(load('vkjoyopt') || '{}'); } catch (e) { return {}; } })(), onJoyOpts: (o) => store('vkjoyopt', JSON.stringify(o)) });
-    $('kbdtype').value = vkbd.tab;
+    $('kbdtype').value = vkbd.tab; vkbd.setLand(land); // a phone in landscape already: the stick over the screen
     $('kbdtype').onchange = () => { vkbd.show($('kbdtype').value); $('kbdtype').blur(); applyScale(); };
     const showKbd = (v) => {
       panel.hidden = !v; $('kbdtype').hidden = !v; $('kbdbtn').classList.toggle('on', v);
@@ -5455,8 +5489,23 @@
     setBare(load('bare') === '1', false); // ~: menu bar and frame hidden (as last time)
     $('vidbare').onchange = (e) => setBare(e.target.checked, true);
     for (const [id, k] of [['vidnomhz', 'hud.nomhz'], ['vidnofps', 'hud.nofps']]) { $(id).checked = load(k) === '1'; $(id).onchange = (e) => { store(k, e.target.checked ? '1' : '0'); hudDraw(); }; }
-    $('barshow').onclick = () => { setBare(false, !bareLink); canvas.focus(); };
-    $('screenwrap').addEventListener('pointerdown', calmShow, true); // Hide Menu Bar: the hidden corner icons and texts for 2 s
+    $('barshow').onclick = () => { if (peekFresh) return; $('barcorner').classList.remove('peek'); clearTimeout(peekT); setBare(!bare, !bareLink); canvas.focus(); };
+    let peekT = 0, peekFresh = false; // fresh: the tap that showed the button does not press it too
+    $('screenwrap').addEventListener('pointerdown', (e) => { // Hide Menu Bar: the hidden corner icons and texts for 2 s: a tap in the strip along the top or the bottom (as high as the corner buttons)
+      const r = $('screenwrap').getBoundingClientRect();
+      peekFresh = bare ? document.body.classList.contains('calm') : !$('barcorner').classList.contains('peek');
+      if (!bare) { // with the menu bar: a tap in the top left corner shows (for 3 s) the button that hides it, a second tap presses it
+        const c = $('barshow').getBoundingClientRect(), m = 10;
+        if (!$('barcorner').classList.contains('peek') && e.clientX < c.right + m && e.clientY < c.bottom + m) { $('barcorner').classList.add('peek'); clearTimeout(peekT); peekT = setTimeout(() => $('barcorner').classList.remove('peek'), 3000); }
+        return;
+      }
+      const sz = ($('kbdbtn').offsetHeight || 28) + 8; if (e.clientY - r.top < sz || r.bottom - e.clientY < sz) calmShow();
+    }, true);
+    if (LAND_MQ) { if (LAND_MQ.addEventListener) LAND_MQ.addEventListener('change', landUpdate); else if (LAND_MQ.addListener) LAND_MQ.addListener(landUpdate); }
+    window.addEventListener('resize', landUpdate); window.addEventListener('orientationchange', () => setTimeout(landUpdate, 350)); landUpdate();
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', landUpdate); // the browser's bars come and go: the height that is there
+    { const unscroll = () => { if (land && (window.scrollX || window.scrollY)) window.scrollTo(0, 0); }; // iOS home screen: a scrolled page draws higher than it takes taps
+      window.addEventListener('scroll', unscroll, { passive: true }); if (window.visualViewport) window.visualViewport.addEventListener('scroll', unscroll); }
     buildDrives();
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';
