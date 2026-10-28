@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261028110407">
+<meta name="build" content="20261028112539">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1268,6 +1268,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
           <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
+          <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
           <tr><td>KAY 1024</td><td>1024K, JV Kramis 0.3</td></tr>
           <tr><td>Spectrum +3</td><td>128K, ROM 4.1, +3DOS (µPD765)</td></tr>
@@ -1276,18 +1277,19 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>iS-DOS Chic v5.01</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
           <tr><td>Wild Commander</td><td>from SD card, ZX Evo TS-Conf (<a href="https://github.com/tslabs/zx-evo" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>NedoOS</td><td>from SD card, ZX Evo BaseConf (<a href="https://github.com/alfishe/NedoOS" target="_blank" rel="noopener">GitHub</a>)</td></tr>
+          <tr><td>OSZ</td><td>multitasking OS, from SD card + OS.TRD, Scorpion ZS 256 GMX (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>Custom ROM</td><td>own ROM or ROM set (128 / 48 / TR-DOS / service) on any of these machines; Save keeps ROM + json</td></tr>
         </table>
       </div>
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; TS-Conf 16c / 256c up to 360x288, text 720; filters</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; TS-Conf 16c / 256c up to 360x288, text 720; filters</td></tr>
           <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793), +3 (µPD765)</td></tr>
-          <tr><td>HDD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI</td></tr>
+          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI; SD card: Z-Controller</td></tr>
           <tr><td>Input</td><td>ZX/XT/Joystick virt panel, Kempston mouse</td></tr>
           <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20</td></tr>
         </table>
@@ -1316,6 +1318,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>iS-DOS</td><td>Iskra Soft</td></tr>
           <tr><td>Zuma Deluxe (TS-Conf)</td><td>port: andrewinsidelazarev (<a href="https://github.com/andrewinsidelazarev/Zuma-Deluxe-TS-Config" target="_blank" rel="noopener">GitHub</a>); ball sprites from Zuma-Deluxe-HD by GalaxyShad; the game © PopCap Games / EA</td></tr>
           <tr><td>NedoOS</td><td>Alone Coder and NedoOS team (<a href="https://nedoos.ru" target="_blank" rel="noopener">nedoos.ru</a>)</td></tr>
+          <tr><td>Scorpion ZS 256, GMX</td><td>Scorpion; GMX board and Shadow Service Monitor: MOA (1993–1998)</td></tr>
+          <tr><td>GMX flash 2022–2025</td><td>LW / PLM: GMX Loader 2.00, Shadow Service Monitor 6.44su, Navigator (<a href="https://t.me/ZS_ProfRom" target="_blank" rel="noopener">ZS ProfRom</a>)</td></tr>
+          <tr><td>OSZ</td><td>izzx (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>); with code of LW/PLM, S.V.Bulba, Kulich, Nihirash, ZORBA, GALSTAFF</td></tr>
           <tr><td>TR-DOS</td><td>Technology Research Ltd.</td></tr>
           <tr><td>CP/M 2.2</td><td>Digital Research</td></tr>
           <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad</td></tr>
@@ -1517,7 +1522,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Local server</h4>
     <p>A folder of a web server on your network: its files open as Local file (the same Autostart). Once opened, File Commander shows it as the drive Local server (read only).</p>
     <h4>Server list</h4>
-    <p>The entries of trd/trd.json, then hdd/hdd.json and sd/sd.json (an image a trd.json entry brings, by hdd= / sd= or as its OS, is listed once: as that entry). Tag buttons: the entries with any of the chosen tags (several at once); All: every entry. In these files a line that starts with # is a comment.</p>
+    <p>The entries of trd/trd.json, then hdd/hdd.json, then sd/sd.json, each as written: an image or an OS is written once, in its list (hdd.json / sd.json). An entry may have both: <code>"url"</code> (its image: Mount, and Options / Disk) and <code>"run"</code> (a link: Run), e.g. <code>{"name": "NedoOS", "url": "nedoos.zip", "run": "?model=nedoos", "tag": "SD OS"}</code>. A file with no folder is in the list's folder. Tag buttons: the entries with any of the chosen tags (several at once); All: every entry. In these files a line that starts with # is a comment.</p>
     <table class="keys">
       <tr><td>Run</td><td>an entry with a link: starts it as set on the server (machine, speed, disks, HDD / SD, program). Its ▾ puts Run or Mount on the button; the button does it</td></tr>
       <tr><td>Mount</td><td>only its files go in (disk: A:, HDD 0, SD card); the machine stays, Load stays open. A TS-Conf card: Wild Commander boots, its program does not run</td></tr>
@@ -1760,15 +1765,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261028110407"></script>
-<script src="js/scancodes.js?v=20261028110407"></script>
-<script src="js/unzip.js?v=20261028110407"></script>
-<script src="js/vkbd.js?v=20261028110407"></script>
-<script src="js/asyncify.js?v=20261028110407"></script>
-<script src="js/gfx.js?v=20261028110407"></script>
-<script src="js/usel.js?v=20261028110407"></script>
-<script src="js/fcmd.js?v=20261028110407"></script>
-<script src="js/dbga.js?v=20261028110407"></script>
-<script src="js/app.js?v=20261028110407"></script>
+<script src="js/wasi_fs.js?v=20261028112539"></script>
+<script src="js/scancodes.js?v=20261028112539"></script>
+<script src="js/unzip.js?v=20261028112539"></script>
+<script src="js/vkbd.js?v=20261028112539"></script>
+<script src="js/asyncify.js?v=20261028112539"></script>
+<script src="js/gfx.js?v=20261028112539"></script>
+<script src="js/usel.js?v=20261028112539"></script>
+<script src="js/fcmd.js?v=20261028112539"></script>
+<script src="js/dbga.js?v=20261028112539"></script>
+<script src="js/app.js?v=20261028112539"></script>
 </body>
 </html>

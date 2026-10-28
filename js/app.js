@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261028110407';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028110407'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261028110407'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261028112539';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028112539'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261028112539'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.4.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261028110407'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '1.5.1'; // About, System Info (history: changes.txt)
+  const BUILD = '20261028112539'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2932,31 +2932,29 @@
       let run = typeof it === 'object' && it && typeof it.run === 'string' && it.run.trim() ? it.run.trim().replace(/^[^?]*\?/, '?') : '';
       if (run) run = listRel(run, dir);
       const rp = run ? linkParse(run) : null;
-      if (!url && rp) url = MOUNT_KEYS.map((k) => rp[k]).find(Boolean) || ''; // the file the link mounts (from the site root)
+      let fromLink = false;
+      if (!url && rp) { // the file the link mounts (from the site root), or the image of its OS (model=nedoos / osz / tasis…)
+        const os = OS_MODELS[linkModelKey(rp.model)];
+        url = MOUNT_KEYS.map((k) => rp[k]).find(Boolean) || (os && (os.sd || os.hdd)) || ''; fromLink = !!url;
+      }
       if (!url && !run) continue;
       if (!url) { // a link that only picks a model (an OS on its own HDD / SD card)
         const tags = typeof it === 'object' && it.tag ? String(it.tag) : '';
         out.push({ url: '', run, rp, tag: tags, tags: tagList(tags), cpm: /cp\/?m/i.test(tags), name: (typeof it === 'object' && it.name) || (rp.model || 'link') });
         continue;
       }
-      if (rp && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(url) && !url.startsWith('/')) url = '/' + url.replace(/^\.\//, ''); // run link paths are from the site root
+      if (fromLink && !/^[a-z][a-z0-9+.-]*:|^\/\//i.test(url) && !url.startsWith('/')) url = '/' + url.replace(/^\.\//, ''); // run link paths are from the site root
       url = lowDir(String(url).trim().replace(/^\.\//, ''));
       if (!/^[a-z][a-z0-9+.-]*:|^\/\//i.test(url)) url = url.replace(/%(?![0-9a-f]{2})/gi, '%25').replace(/#/g, '%23').replace(/\?/g, '%3F'); // a file name, not a URL: # ? % are part of it
       const base = url.toLowerCase().startsWith(dir) ? location.href : new URL(dir, location.href).href;
       const tag = typeof it === 'object' && it.tag ? String(it.tag) : '';
-      const ub = rp && url.startsWith("/") && !url.startsWith("//") ? pageDir() + url.slice(1) : null; // a run link file: from the folder of index.html
+      const ub = fromLink && url.startsWith("/") && !url.startsWith("//") ? pageDir() + url.slice(1) : null; // a run link file: from the folder of index.html
       out.push({ url: ub ? new URL(ub).href : new URL(url, base).href, run, rp, tag, tags: tagList(tag), cpm: /cp\/?m/i.test(tag),
         name: (typeof it === 'object' && it.name) || (() => { const n = url.replace(/^.*\//, ''); try { return decodeURIComponent(n); } catch (e) { return n; } })() });
     }
     return out;
   }
   let hddList = [];
-  // Load window, HDD / SD card: a "Select from server" list (hidden when the server has none)
-  function srvSelect(sel, list) {
-    sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>';
-    list.forEach((it, i) => { const o = document.createElement('option'); o.value = i; o.textContent = it.name; sel.appendChild(o); });
-    sel.hidden = !list.length;
-  }
   // the "Select from server" lists show the server image that is mounted (default HDD, an OS, one chosen there); else the title
   function srvShow() {
     const abs = (u) => { try { return new URL(u, location.href).href; } catch (e) { return ''; } };
@@ -2994,26 +2992,19 @@
   async function loadHddList() {
     hddList = await fetchList('hdd/hdd.json');
     document.querySelectorAll('#hdds .srv').forEach((sel) => {
-      sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>' + hddList.map((it, i) => `<option value="${i}"></option>`).join('');
-      hddList.forEach((it, i) => { sel.options[i + 1].textContent = it.name; });
-      sel.hidden = !hddList.length;
+      sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>'; // the entries with an image (a link with no file is for the Server list only)
+      hddList.forEach((it, i) => { if (!it.url) return; const o = document.createElement('option'); o.value = i; o.textContent = it.name; sel.appendChild(o); });
+      sel.hidden = sel.options.length < 2;
     });
     srvShow();
   }
-  // Server list: trd/trd.json, then hdd/hdd.json and sd/sd.json (their entries get the tag HDD / SD when they have none);
-  // the tag buttons above it show the entries of one tag
+  // Server list: trd/trd.json, hdd/hdd.json, sd/sd.json one after another, each entry as written (no merging: an image or
+  // an OS is written once, in its list; an entry may have "url" and "run" both). hdd.json / sd.json entries get the tag
+  // HDD / SD when they have none and go to Options / Disk too (their "url", or the file of "run"). Tag buttons: one tag
   async function loadServerList() {
     const trd = await fetchList('trd/trd.json');
     const own = (list, kind, tag) => list.map((it) => Object.assign({}, it, { kind }, it.tag ? {} : { tag, tags: [tag] }));
-    // an hdd.json / sd.json image that a trd.json entry already brings (its hdd= / sd=, or the image of its OS): listed once,
-    // as that entry (Run, and Mount in its ▾)
-    const abs = (u) => { try { return new URL(lowDir(u), location.href).href; } catch (e) { return u; } }, brought = new Set();
-    for (const it of trd) if (it.rp) {
-      for (const k of ['hdd', 'hdd1', 'sd']) if (it.rp[k]) brought.add(abs(it.rp[k]));
-      const os = OS_MODELS[linkModelKey(it.rp.model)]; if (os) brought.add(abs(os.hdd || os.sd));
-    }
-    const fresh = (list) => list.filter((it) => !brought.has(it.url));
-    srvList = trd.map((it) => Object.assign({ kind: 'trd' }, it)).concat(own(fresh(hddList), 'hdd', 'HDD'), own(fresh(sdList), 'sd', 'SD'));
+    srvList = trd.map((it) => Object.assign({ kind: 'trd' }, it)).concat(own(hddList, 'hdd', 'HDD'), own(sdList, 'sd', 'SD'));
 
     const pop = $('ldpop'); pop.innerHTML = '';
     srvList.forEach((it, i) => {
@@ -4487,8 +4478,8 @@
     sdList = await fetchList('sd/sd.json');
     const sel = $('sdgeo').querySelector('.srv');
     sel.innerHTML = '<option value="" hidden disabled selected>Select from server</option>';
-    sdList.forEach((it, i) => { const o = document.createElement('option'); o.value = i; o.textContent = it.name; sel.appendChild(o); });
-    if (!sdList.length) { const o = document.createElement('option'); o.disabled = true; o.textContent = 'sd/sd.json: nothing there'; sel.appendChild(o); }
+    sdList.forEach((it, i) => { if (!it.url) return; const o = document.createElement('option'); o.value = i; o.textContent = it.name; sel.appendChild(o); });
+    if (sel.options.length < 2) { const o = document.createElement('option'); o.disabled = true; o.textContent = 'sd/sd.json: nothing there'; sel.appendChild(o); }
     sel.hidden = false;  srvShow();
   }
   function bindSd() {
