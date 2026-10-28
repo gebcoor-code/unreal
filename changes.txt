@@ -2355,3 +2355,93 @@ Web Unreal Speccy — version history
 * On-screen joystick: the 3 extra buttons are on by default: Enter,
   Space and 1 (Options / Input / Joystick changes them; a setting
   saved before stays)
+
+
+        version 1.8.0                   28 oct 2026
+
++ On-screen keyboard ZX 48 (kbd=zx48): the 40 keys of the ZX Spectrum
+  48K with its legends: above (extended mode, green; row 1: the colours
+  and EDIT, CAPS LOCK, TRUE VIDEO, INV. VIDEO, the cursor keys,
+  GRAPHICS, DELETE), on the key (the key, the SYMBOL SHIFT sign, the
+  keyword; keys 1-8: the block graphic), under it (red); narrow
+  screens: the keys only
+
+
+        version 1.8.1                   28 oct 2026
+
+* ZX 48 keyboard: all 40 keys of one size, as on the 48K (CAPS SHIFT,
+  ENTER, SYMBOL SHIFT, BREAK / SPACE too); rows 2 and 3 indented by
+  1/2 and 3/4 of a key
+
+
+        version 1.8.2                   28 oct 2026
+
+* ZX 48 keyboard: the rows placed as on the 48K, in 1/8 of a key
+  (from a photo of its keyboard): Q row 1/2 of a key to the right, A
+  row 3/4, CAPS SHIFT row 1/8; stripes in the corner in the colours of
+  this page; the legends above / under the keys from 470 px of width
+
+
+        version 1.8.3                   28 oct 2026
+
+* ZX 48 keyboard: the stripes in the bottom right corner go under the
+  keys (ENTER, SPACE) and take no room: the keys are wider again
+
+
+        version 1.8.4                   28 oct 2026
+
+* ZX 48 keyboard: the stripes placed from the keys as on the 48K: the
+  centre line of the 2nd one through the top right corner of ENTER
+  and the bottom right corner of BREAK SPACE (the slope), from the
+  level of the top of P, 0.35 of a key each; the 3rd and 4th out of
+  the keys, the very corner stays background (drawn again on resize)
+
+
+        version 1.8.5                   28 oct 2026
+
+* ZX 48 keyboard, the stripes: the slope of the line through the
+  bottom right corners of ENTER and BREAK SPACE; the upper edge of the
+  1st stripe comes to the right edge at the level of the top of P and
+  the stripes follow one another down that edge; the 4th leaves a
+  small triangle of background in the corner
+
+
+        version 1.8.6                   28 oct 2026
+
+* ZX 48 keyboard, the stripes: the triangle of background in the
+  bottom right corner as on the 48K (its bottom side 0.8 of a key; the
+  stripes about 0.3 of a key wide)
+
+
+        version 1.8.7                   28 oct 2026
+
+* Help / Keys and files: "On-screen keyboards": ZX, ZX 48 (what its
+  legends mean: on the key, above, under, row 1, the block graphic),
+  XT, JOY, CAPS / SYMBOL SHIFT modes, kbd=
+
+
+        version 1.8.8                   28 oct 2026
+
+* ZX 48 keyboard: bigger legends: the key itself, the red signs and
+  the keywords on the keys, the red words under them; row 1: the block
+  graphic in the top right corner of the key, the red sign under it
+
+
+        version 1.8.9                   28 oct 2026
+
+* ZX 48 keyboard, the legends: rows 2-4: the keyword on the key by its
+  right edge; the red signs on the keys of one size (THEN fits); the
+  red words under the keys and the green ones above them bigger, by
+  the left edge of the key (INVERSE, RESTORE as wide as a key), the
+  green closer to the key; CAPS SHIFT, ENTER, BREAK SPACE bigger.
+  Row 1: the colour and the white function above by the left edge of
+  the key, bigger (GRAPHICS, TRUE VIDEO a little wider than the key);
+  BLACK in an even white frame, apart from DELETE
+
+
+        version 1.8.10                  28 oct 2026
+
+* ZX 48 keyboard: the stripes a little wider (the corner triangle
+  stays); SYMBOL SHIFT a little smaller (a gap at both sides); CAPS
+  SHIFT, ENTER, BREAK SPACE bigger; rows 2-4 a little closer to each
+  other: the keyboard is a little lower

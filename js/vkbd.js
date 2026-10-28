@@ -1,4 +1,4 @@
-// On-screen keyboards for touch devices: XT (PC) keyboard, ZX keyboard (placeholder), joystick.
+// On-screen keyboards for touch devices: XT (PC) keyboard, ZX keyboards (Spectrum+ and 48K), joystick.
 // Keys are reported as KeyboardEvent.code strings through press(code) / release(code).
 (function (root) {
   'use strict';
@@ -76,6 +76,33 @@
      F(ZARR(-90), ['CS', '5'], 4, { cls: 'big' }), F(ZARR(180), ['CS', '6'], 4, { cls: 'big' }), F(ZARR(90), ['CS', '8'], 4, { cls: 'big' }),
      F('SYMBOL<br>SHIFT', ['SS'], 5, { mod: 'SS', short: 'SYM<br>SHIFT' })],
   ];
+
+  // ZX Spectrum 48K keyboard: 40 rubber keys, the legends as on the 48K: above the key (green: extended mode; row 1: the colour
+  // and the CAPS SHIFT function), on the key (the key, the red SYMBOL SHIFT sign, the white keyword; row 1: the block graphic),
+  // under the key (red: extended mode + SYMBOL SHIFT). Grid of 86 columns (a key = 8): 40 keys of one size, CAPS SHIFT, ENTER,
+  // SYMBOL SHIFT and BREAK / SPACE too; the rows indented as on the 48K: Q row 1/2 of a key, A row 3/4, CAPS SHIFT row 1/8.
+  // u: above, uc: its colour, u2: second line above (row 1), m: key, s: red sign, kw: keyword, g: graphic (bits: 1 top right,
+  // 2 top left, 4 bottom right), b: under
+  const N = (m, uc, u, u2, s, g, b) => ({ m, u, uc: C[uc] || '', u2, s, g, b, keys: [m], w: 8 });
+  const K = (m, u, s, kw, b) => ({ m, u, uc: G, s, kw, b, keys: [m], w: 8 });
+  const Z48_ROWS = [
+    [N('1', 'BLUE', 'BLUE', 'EDIT', '!', 1, 'DEF FN'), N('2', 'RED', 'RED', 'CAPS LOCK', '@', 2, 'FN'), N('3', 'MAGENTA', 'MAGENTA', 'TRUE VIDEO', '#', 3, 'LINE'),
+     N('4', 'GREEN', 'GREEN', 'INV. VIDEO', '$', 4, 'OPEN #'), N('5', 'CYAN', 'CYAN', ZARR(-90), '%', 5, 'CLOSE #'), N('6', 'YELLOW', 'YELLOW', ZARR(180), '&', 6, 'MOVE'),
+     N('7', 'WHITE', 'WHITE', ZARR(0), "'", 7, 'ERASE'), N('8', '', '', ZARR(90), '(', 0, 'POINT'), N('9', '', '', 'GRAPHICS', ')', -1, 'CAT'),
+     N('0', 'BLACK', 'BLACK', 'DELETE', '_', -1, 'FORMAT'), { gap: 6 }],
+    [{ gap: 4 }, K('Q', 'SIN', '<=', 'PLOT', 'ASN'), K('W', 'COS', '<>', 'DRAW', 'ACS'), K('E', 'TAN', '>=', 'REM', 'ATN'), K('R', 'INT', '<', 'RUN', 'VERIFY'),
+     K('T', 'RND', '>', 'RAND', 'MERGE'), K('Y', 'STR$', 'AND', 'RETURN', '['), K('U', 'CHR$', 'OR', 'IF', ']'), K('I', 'CODE', 'AT', 'INPUT', 'IN'),
+     K('O', 'PEEK', ';', 'POKE', 'OUT'), K('P', 'TAB', '"', 'PRINT', '©'), { gap: 2 }],
+    [{ gap: 6 }, K('A', 'READ', 'STOP', 'NEW', '~'), K('S', 'RESTORE', 'NOT', 'SAVE', '|'), K('D', 'DATA', 'STEP', 'DIM', '\\'), K('F', 'SGN', 'TO', 'FOR', '{'),
+     K('G', 'ABS', 'THEN', 'GO TO', '}'), K('H', 'SQR', '↑', 'GO SUB', 'CIRCLE'), K('J', 'VAL', '-', 'LOAD', 'VAL$'), K('K', 'LEN', '+', 'LIST', 'SCREEN$'),
+     K('L', 'USR', '=', 'LET', 'ATTR'), { fn: 'ENTER', keys: ['ENT'], w: 8 }],
+    [{ gap: 1 }, { fn: 'CAPS<br>SHIFT', keys: ['CS'], w: 8, mod: 'CS' }, K('Z', 'LN', ':', 'COPY', 'BEEP'), K('X', 'EXP', '£', 'CLEAR', 'INK'), K('C', 'LPRINT', '?', 'CONT', 'PAPER'),
+     K('V', 'LLIST', '/', 'CLS', 'FLASH'), K('B', 'BIN', '*', 'BORDER', 'BRIGHT'), K('N', 'INKEY$', ',', 'NEXT', 'OVER'), K('M', 'PI', '.', 'PAUSE', 'INVERSE'),
+     { fn: 'SYMBOL<br>SHIFT', keys: ['SS'], w: 8, mod: 'SS', cls: 'ss' }, { fn: '<small>BREAK</small><br>SPACE', keys: ['SPC'], w: 8 }, { gap: 5 }],
+  ];
+  // the block graphic of keys 1-8 (GRAPHICS mode): 2x2 squares, white = ink
+  const Z48G = (g) => g < 0 ? '' : `<svg class="g" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" class="gf"/>${
+    [[1, 5, 0], [2, 0, 0], [4, 5, 5], [8, 0, 5]].filter(([b]) => g & b).map(([, x, y]) => `<rect x="${x + .5}" y="${y + .5}" width="4.5" height="4.5"/>`).join('')}</svg>`;
 
   const MIN_HOLD = 60; // ms: ZX keyboard matrix is sampled once per frame
 
@@ -165,6 +192,53 @@
       }
     }
     pages.zx = zx;
+
+    // ---------------------------------------------------------------- ZX Spectrum 48K keyboard
+    const z48 = document.createElement('div'); z48.className = 'vk-page vk-z48';
+    row = 0;
+    for (const line of Z48_ROWS) {
+      row++;
+      for (const k of line) {
+        const el = document.createElement('div');
+        el.style.gridRow = String(row); el.style.gridColumn = 'span ' + (k.gap || k.w);
+        if (k.gap) { z48.appendChild(el); continue; }
+        el.className = 'zq' + (k.cls ? ' ' + k.cls : '') + (k.fn ? ' fn' : '') + (k.g !== undefined ? ' num' : ''); el.dataset.k = k.m || k.keys.join('+');
+        if (k.fn) el.innerHTML = `<span class="up"></span><span class="cap"><span class="fl">${k.fn}</span></span><span class="dn"></span>`;
+        else {
+          const up = k.u2 !== undefined ? `<span class="c${k.u === 'BLACK' ? ' blk' : ''}" style="color:${k.uc}">${esc(k.u || '')}</span><span class="f">${k.u2.startsWith('<svg') ? k.u2 : esc(k.u2)}</span>` : esc(k.u);
+          el.innerHTML = `<span class="up${k.u2 !== undefined ? ' two' : ''}" style="${k.u2 === undefined ? 'color:' + k.uc : ''}">${up}</span>` +
+            `<span class="cap"><span class="m">${esc(k.m)}</span>${k.g !== undefined ? Z48G(k.g) : ''}<span class="s${(k.s || '').length > 2 ? ' long' : ''}">${esc(k.s || '')}</span>` +
+            `<span class="w">${esc(k.kw || '')}</span></span><span class="dn">${esc(k.b || '')}</span>`;
+        }
+        bindKey(el, k.keys.map((n) => 'ZX:' + ZXI[n]), k.mod || null);
+        z48.appendChild(el);
+      }
+    }
+    // the corner: 4 stripes in the colours of this page (the accent), not the machine's; under the keys, taking no room. Placed
+    // from the keys as on the 48K: the slope of the line through the bottom right corners of ENTER and of BREAK SPACE (the
+    // centre of the 2nd stripe goes by them); the upper edge of the 1st one comes to the right edge at the level of the top of
+    // P, and from that point the stripes follow one another down the right edge, so that the 4th one leaves a small triangle
+    // of background in the very corner (that gives their width and place); the 3rd and 4th are out of the keys
+    const zs = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); zs.setAttribute('class', 'z48s'); zs.setAttribute('aria-hidden', 'true');
+    zs.innerHTML = [0, 1, 2, 3].map((i) => `<path class="z${i}"/>`).join('');
+    z48.appendChild(zs);
+    function stripes() {
+      const box = z48.getBoundingClientRect(); if (!box.width) return;
+      const cap = (k) => { const e = z48.querySelector(`.zq[data-k="${k}"] .cap`); return e && e.getBoundingClientRect(); };
+      const p = cap('P'), en = cap('ENT'), sp = cap('SPC'); if (!p || !en || !sp) return;
+      const ax = en.right - box.left, ay = en.bottom - box.top, bx = sp.right - box.left, by = sp.bottom - box.top;
+      const k = (bx - ax) / (by - ay), c = (y) => ax + (y - ay) * k, W = box.width, H = box.height;
+      const yp = p.top - box.top, corner = 0.55 * en.width; // the triangle left in the corner: its bottom side
+      const w = Math.max(0.22 * en.width, Math.min(0.6 * en.width, (c(yp) - c(H) - corner) / 4));
+      const o = W + 1.5 * w - c(yp); // the 1st: its upper edge meets the right edge at the top of P
+      zs.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      zs.querySelectorAll('path').forEach((path, i) => {
+        const l = o + (i - 1) * w - w / 2, r = l + w;
+        path.setAttribute('d', `M${c(0) + l} 0L${c(0) + r} 0L${c(H) + r} ${H}L${c(H) + l} ${H}Z`);
+      });
+    }
+    if (window.ResizeObserver) new ResizeObserver(stripes).observe(z48);
+    pages.zx48 = z48;
 
     // ---------------------------------------------------------------- joystick
     const joy = document.createElement('div'); joy.className = 'vk-page vk-joy';
