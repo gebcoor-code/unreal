@@ -9,12 +9,7 @@
  { "name": "Prince of Persia", "run": "?model=atm710&fdd=a:trd/Prince%20of%20Persia.zip&cpm=b:pr2&xt=1", "tag": "CPM" },
  { "name": "SEA", "run": "?model=atm710&fdd=a:trd/SEA.zip&cpm=b:sea&xt=1", "tag": "CPM" },
  { "name": "Neo8 Tracker player", "run": "?model=atm710&fdd=a:trd/neo8tracker-cpm.zip&cpm=b:neo8&xt=1", "tag": "CPM" },
- { "name": "CPM Neo8 S3M collection. vol1", "run": "?model=atm710&hdd0=hdd/neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
- { "name": "CPM Neo8 S3M collection. vol2", "run": "?model=atm710&hdd0=hdd/neo8-2.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" }, 
- { "name": "CPM Neo8 S3M collection. vol3", "run": "?model=atm710&hdd0=hdd/neo8-3-stm.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },  
- { "name": "TASiS v5.40", "run": "?model=tasis", "tag": "HDD OS" },
- { "name": "iS-DOS Chic v5.01", "run": "?model=chic", "tag": "HDD OS" },
- { "name": "NedoOS", "run": "?model=nedoos", "tag": "SD OS" },
+ { "name": "Neo8 Tracker player (HDD)", "run": "?model=atm710&hdd0=hdd/neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
  { "name": "Zuma TS-Conf (simple)", "run": "?model=tsconf&fdd=a:trd/zuma.zip", "tag": "SPG" },
  { "name": "Zuma TS-Conf (VDAC2)", "run": "?model=tsconf&speed=14&sd=trd/zuma-tsconf-vdac2.zip", "tag": "SD SPG" },
  { "name": "Profi CPM FDD", "run": "?model=profi&fdd=a:trd/ProfiCPM.zip&autorun=1", "tag": "PRO" }
