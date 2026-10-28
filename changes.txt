@@ -2295,3 +2295,63 @@ Web Unreal Speccy — version history
   README.md: the server lists (url + run, # comments, files of the
   list's folder, the .json of an SD card ZIP), credits; LICENSE: the
   GMX flash, OSZ, NedoOS among the software it does not cover
+
+
+        version 1.6.0                   28 oct 2026
+
++ deBUGa / Screen: GMX (39) / (3A): the 640x200 screen of Scorpion GMX
+  from the RAM now (pixels #39 / #3A, attributes #79 / #7A, the scroll
+  #7AFD / #7CFD; the shown one first); a click: the byte in the dump
+  (Shift: its attribute). Core: web_gmx_on, web_gmx_scroll
++ Options / System / Update: OSZ (Scorpion GMX) from GitHub
+  (izzx-git/OSZ, Release/OSZ) or a ZIP: the folder goes to OSZ\ of a
+  FAT32 card, OS.TRD and osz.json ({"model": "gmx", "a": "OS.TRD"})
+  into osz.zip beside the image. Use: the ZIP (its .json too)
++ OSZ machine: F8 / F9 / F10 = Ext+1 (system process) / Ext+9 (None
+  Commander) / Ext+0 (shadow monitor); Ext (Caps Shift + Symbol
+  Shift + key) is three ZX keys, more than a key of the ini keyset
+* Load: the focus of a split button (Run / Mount and ▾) is the whole
+  button (the border between its parts hid the right edge)
+
+
+        version 1.6.1                   28 oct 2026
+
+* Help / Keys: F8 / F9 / F10 and F12 of the OSZ machine, Tab (Ext) and
+  right Shift + Enter (SS+Enter) in OSZ
+
+
+        version 1.7.0                   28 oct 2026
+
++ Load: a ZIP with several disk / tape / snapshot images: the window
+  that chooses one has "Also put the other N files into Browser
+  storage" (on by default, remembered): the chosen one is mounted,
+  the others go to the browser storage (Load / Browser storage, File
+  Commander: Browser); a name that is there already is kept
+
+
+        version 1.7.1                   28 oct 2026
+
+* Load / ZIP: "Put images to Browser Storage" puts all the images of
+  the ZIP there, the mounted one too; the window: "Choose image to
+  mount"
+
+
+        version 1.7.2                   28 oct 2026
+
+* Hide Menu Bar (~, hidemenu=1): the corner icons (☰, keyboards) and
+  the texts over the screen (MHz, FPS, sound meter, disk light, Tap
+  for sound) hide too; a click or a tap on the screen shows them for
+  2 s
+
+
+        version 1.7.3                   28 oct 2026
+
+* Hide Menu Bar: the sound meter, the disk light and Tap for sound stay
+  on the screen (the corner icons, MHz and FPS hide)
+
+
+        version 1.7.4                   28 oct 2026
+
+* On-screen joystick: the 3 extra buttons are on by default: Enter,
+  Space and 1 (Options / Input / Joystick changes them; a setting
+  saved before stays)

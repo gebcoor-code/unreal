@@ -6,12 +6,12 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261028112539';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028112539'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261028112539'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261028162237';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028162237'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261028162237'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.5.1'; // About, System Info (history: changes.txt)
-  const BUILD = '20261028112539'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const APP_VER = '1.7.4'; // About, System Info (history: changes.txt)
+  const BUILD = '20261028162237'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -1797,6 +1797,9 @@
     if (e.code === 'Backquote' && e.shiftKey && !(e.ctrlKey || e.altKey || e.metaKey)) { setBare(!bare, !bareLink); return true; } // ~: menu bar and frame
     if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) return false;
     if (e.code === 'F12') { userReset(); return true; }
+    // OSZ: Ext + key (Caps Shift + Symbol Shift + key: three ZX keys, more than a key of the ini keyset gives) on F keys too:
+    // F8 = Ext+1 (the system process), F9 = Ext+9 (None Commander), F10 = Ext+0 (shadow monitor)
+    if (model === 'OSZ' && OSZ_FKEYS[e.code] !== undefined) { if (!e.repeat) runMacro([{ key: [ZK.CS, ZK.SS, OSZ_FKEYS[e.code]], hold: 8 }]); return true; }
     if (e.code === 'F2') { openSave(); return true; }
     if (e.code === 'F3') { showLoad(); return true; }
     if (e.code === 'F4') { toggleSound(); return true; }
@@ -2068,9 +2071,17 @@
       for (const e of entries) {
         const b = document.createElement('button');
         b.textContent = e.name.replace(/^.*[\\/]/, '') + '  (' + Math.round(e.size / 1024) + ' KB)';
-        b.onclick = async () => { fwinShow('zippick', false); autorunNext = zipAuto; try { await pick(e); } catch (err) { toast(err.message, true); } autorunNext = false; };
+        b.onclick = async () => {
+          fwinShow('zippick', false); autorunNext = zipAuto; const rest = $('ziprest').checked;
+          try { await pick(e); } catch (err) { toast(err.message, true); } autorunNext = false;
+          if (rest) await zipRest(buf, entries); // all the images of the ZIP (the mounted one too): into the browser storage (Load / Browser storage, File Commander: Browser)
+        };
         list.appendChild(b);
       }
+      // the images of the archive into the browser storage too (on by default, remembered)
+      const lb = document.createElement('label'); lb.className = 'chk zrest';
+      lb.innerHTML = '<input type="checkbox" id="ziprest"> Put images to Browser Storage';
+      list.appendChild(lb); $('ziprest').checked = load('zip.rest') !== '0'; $('ziprest').onchange = () => store('zip.rest', $('ziprest').checked ? '1' : '0');
       releaseAll(); fwinShow('zippick', true);
     } catch (err) { toast(err.message, true); }
   }
@@ -2129,6 +2140,7 @@
   const ZK = { CS: 0, Z: 1, R: 2 * 8 + 3, T: 2 * 8 + 4, ENTER: 6 * 8 + 0, K6: 4 * 8 + 4, K7: 4 * 8 + 3,
     K5: 3 * 8 + 4, K8: 4 * 8 + 2, SPACE: 7 * 8 + 0, SS: 7 * 8 + 1, K1: 3 * 8 + 0, K3: 3 * 8 + 2, K4: 3 * 8 + 3, L: 6 * 8 + 1, O: 5 * 8 + 1, A: 1 * 8 + 0, D: 1 * 8 + 2, P: 5 * 8 + 0 };
   const UP = [ZK.CS, ZK.K7], DOWN = [ZK.CS, ZK.K6]; // cursor keys = CAPS SHIFT + 7 / 6
+  const OSZ_FKEYS = { F8: 3 * 8 + 0, F9: 4 * 8 + 1, F10: 4 * 8 + 0 }; // OSZ: F8 / F9 / F10 = Ext + 1 / 9 / 0 (ZX keys 1, 9, 0)
   let macro = null;
   const zxKeys = (k, d) => [].concat(k).forEach((x) => E.web_zxkey(x, d));
   // a macro that has turned ATM mode off for its menus (xtBack) and is replaced before its end: the new one turns it back on
@@ -2207,6 +2219,9 @@
       what: 'folder <b>release</b> of NedoOS' },
     WCTS: { os: 'TSCONF', sd: 'sd/wc.zip', repo: 'tslabs/zx-evo', dir: 'pentevo/soft/WC/exe', boot: /^boot\.\$c$/i, bootName: 'boot.$C', zip: 'wc.zip', vhd: 'wc.vhd', vol: 'WC', key: 'wc', title: 'Wild Commander',
       what: 'Wild Commander: folder <b>pentevo/soft/WC/exe</b> of TS-Labs zx-evo' },
+    // OSZ: the folder goes to OSZ\ of the card; OS.TRD and the card's .json (machine, disk for A:) go into the ZIP beside the image
+    OSZ: { os: 'OSZ', sd: 'sd/osz.zip', repo: 'izzx-git/OSZ', dir: 'Release/OSZ', boot: /^os\.\$c$/i, bootName: 'os.$C', zip: 'osz.zip', vhd: 'osz.vhd', vol: 'OSZ', key: 'osz', title: 'OSZ',
+      sub: 'OSZ', disk: /^os\.trd$/i, card: { model: 'gmx', a: 'OS.TRD' }, what: 'OSZ: folder <b>Release/OSZ</b> of izzx-git/OSZ (OS.TRD in the ZIP for A:)' },
   };
   let updKey = UPD[load('upd.sel')] ? load('upd.sel') : 'NEDOOS';
   const updT = () => UPD[updKey];
@@ -2340,11 +2355,13 @@
       const have = new Set(set.files.map((f) => f.path.toLowerCase()));
       const lost = t.key !== 'nedoos' ? [] : want.filter((x) => !have.has('bin/' + x) && !have.has(x));
       if (lost.length) throw new Error('sd_boot.$C starts ' + lost.join(', ') + ', but the release has no bin/' + lost[0] + ' — this ZIP is not a whole NedoOS release (' + set.files.length + ' files)');
-      const r = await nedoImage(set, mb);
+      const disk = t.disk && set.files.find((f) => t.disk.test(f.path)); // OSZ: OS.TRD for A:, beside the image
+      if (t.disk && !disk) throw new Error('no ' + t.card.a + ' in the folder');
+      const r = await nedoImage(t.sub ? { files: set.files.map((f) => ({ path: t.sub + '/' + f.path, data: f.data })), dirs: [t.sub, ...set.dirs.map((d) => t.sub + '/' + d)] } : set, mb);
       nedoStat('Packing ' + t.zip + '…'); nedoProg(null);
-      const info = { os: t.title, date: set.info.date, commit: set.info.commit, source: set.info.source, built: new Date().toISOString(), size_mb: r.mb, files: r.nfiles };
+      const info = Object.assign({}, t.card || {}, { os: t.title, date: set.info.date, commit: set.info.commit, source: set.info.source, built: new Date().toISOString(), size_mb: r.mb, files: r.nfiles });
       const vhd = vhdFixed(r.img);
-      const zip = await UnrealZip.create([{ name: t.vhd, data: vhd }, { name: t.key + '.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
+      const zip = await UnrealZip.create([{ name: t.vhd, data: vhd }, ...(disk ? [{ name: t.card.a, data: disk.data }] : []), { name: t.key + '.json', data: new TextEncoder().encode(JSON.stringify(info, null, 2) + '\n') }]);
       nedoLast = { zip, vhd, info, t };
       store(t.key + '.build', JSON.stringify({ date: info.date, commit: info.commit, built: info.built })); nedoUI(); // the image to go onto the server
       nedoProg(null); nedoStat('Image made: ' + t.zip + ' ' + (zip.size / 1048576).toFixed(1) + ' MB');
@@ -2403,7 +2420,7 @@
     $('nedofile').onclick = () => $('nedoinput').click();
     $('nedoinput').onchange = (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) nedoRun(async () => { nedoStat('Reading ' + f.name + '…'); return nedoFromZip(new Uint8Array(await f.arrayBuffer())); }); };
     $('nedodl').onclick = () => { if (nedoLast) downloadBytes(nedoLast.t.zip, nedoLast.zip); };
-    $('nedouse').onclick = async () => { if (!nedoLast) return; const t = nedoLast.t; await sdFromBytes(t.vhd, nedoLast.vhd); if (sdName) sdSrc = new URL(lowDir(t.sd), location.href).href; /* the model start keeps it */ store(t.key + '.build', JSON.stringify({ date: nedoLast.info.date, commit: nedoLast.info.commit, built: nedoLast.info.built })); nedoUI(); };
+    $('nedouse').onclick = async () => { if (!nedoLast) return; const t = nedoLast.t; await sdFromBytes(t.zip, new Uint8Array(await nedoLast.zip.arrayBuffer())); /* the ZIP: its .json too (OSZ: the machine, OS.TRD) */ if (sdName) sdSrc = new URL(lowDir(t.sd), location.href).href; /* the model start keeps it */ store(t.key + '.build', JSON.stringify({ date: nedoLast.info.date, commit: nedoLast.info.commit, built: nedoLast.info.built })); nedoUI(); };
   }
   async function osBoot() {
     if (model === 'TSCONF') { await tsWc(); return; }
@@ -2826,6 +2843,20 @@
   async function brwUsage() { try { const e = await navigator.storage.estimate(); return e && e.usage ? (e.usage / 1048576).toFixed(1) + ' MB used' + (e.quota ? ' of ' + Math.round(e.quota / 1048576) + ' MB' : '') : ''; } catch (e) { return ''; } }
   const brwKind = (name, t) => t.startsWith('disk:') ? 'disk' : t.startsWith('hdd:') ? 'hdd' : t === 'sd' ? 'sd' : t === 'sna' ? 'snap'
     : /\.(tap|tzx|csw)$/i.test(name) ? 'tape' : /\.(sna|z80|sp)$/i.test(name) ? 'snap' : DISK_EXT.test(name) ? 'disk' : 'file';
+  // the images of a ZIP into the browser storage (the mounted one too): a name that is there already is kept (not replaced)
+  async function zipRest(buf, entries) {
+    try {
+      if (navigator.storage && navigator.storage.persist) try { await navigator.storage.persist(); } catch (e) {}
+      const have = new Set((await brwList()).map((m) => m.name.toLowerCase())); let n = 0, kept = 0;
+      for (const e of entries) {
+        const name = e.name.replace(/^.*[\\/]/, '').replace(/[:]/g, '_');
+        if (have.has(name.toLowerCase())) { kept++; continue; }
+        const data = await UnrealZip.extract(buf, e);
+        await brwPut({ name, kind: brwKind(name, ''), model, date: Date.now(), size: data.length }, data); have.add(name.toLowerCase()); n++;
+      }
+      brwRefresh(); toast('Browser storage: ' + n + ' file' + (n === 1 ? '' : 's') + ' put' + (kept ? ', ' + kept + ' there already (kept)' : ''));
+    } catch (err) { toast('Browser storage: ' + err.message, true); }
+  }
   async function brwSave(name, data, kind) {
     if (data instanceof Blob) data = new Uint8Array(await data.arrayBuffer()); else if (data instanceof ArrayBuffer) data = new Uint8Array(data); // a ZIP comes as a Blob
     const old = (await brwList()).find((m) => m.name.toLowerCase() === name.toLowerCase());
@@ -4921,8 +4952,13 @@
 
   // ~ (Shift + `), Options / Video, REST API hidemenu=1: the emulator window without its menu bar and frame
   let bare = false, bareLink = false; // bareLink: set by the link for this visit (the setting is not changed)
+  // Hide Menu Bar also hides the corner icons, MHz and FPS (not the sound meter, the disk light, Tap for sound): a click or a
+  // tap on the screen shows them for 2 s
+  let calmT = 0;
+  function calmShow() { if (!bare) return; document.body.classList.remove('calm'); clearTimeout(calmT); calmT = setTimeout(() => { if (bare) document.body.classList.add('calm'); }, 2000); }
   function setBare(v, save) {
     bare = !!v; document.body.classList.toggle('bare', bare); $('vidbare').checked = bare;
+    clearTimeout(calmT); document.body.classList.toggle('calm', bare);
     if (save) { store('bare', bare ? '1' : '0'); bareLink = false; }
     applyScale(); hudDraw();
   }
@@ -5315,7 +5351,9 @@
   }
 
   // Options / Input / Joystick: the FIRE key of each joystick type (Kempston: its port bit) and 3 extra buttons
-  function joyKeys() { try { const k = JSON.parse(load('vkjoykeys') || '{}'); return { fire: k.fire || {}, extra: Array.isArray(k.extra) ? k.extra : [] }; } catch (e) { return { fire: {}, extra: [] }; } }
+  // not set yet: the 3 extra buttons on, Enter, Space and 1 (menus: "1 - start", the choice of the controls)
+  const JOY_EXTRA = [{ on: true, key: 'Enter' }, { on: true, key: 'Space' }, { on: true, key: 'Digit1' }];
+  function joyKeys() { try { const k = JSON.parse(load('vkjoykeys') || '{}'); return { fire: k.fire || {}, extra: Array.isArray(k.extra) ? k.extra : JOY_EXTRA.map((x) => Object.assign({}, x)) }; } catch (e) { return { fire: {}, extra: JOY_EXTRA.map((x) => Object.assign({}, x)) }; } }
   function joyUI() {
     if (!vkbd || !$('joytype')) return;
     const M = UnrealVKbd.JOY_MAPS, K = UnrealVKbd.JOY_KEYS, k = joyKeys(), t = vkbd.joy;
@@ -5326,7 +5364,7 @@
     $('joytype').value = t;
     const kemp = t === 'kempston';
     $('joyfire').disabled = kemp; $('joyfire').value = kemp ? 'KJ_FIRE' : (k.fire[t] || M[t].fire);
-    for (let i = 0; i < 3; i++) { const x = k.extra[i] || {}; $('joyx' + i).checked = !!x.on; $('joyk' + i).value = x.key || ['Space', 'Enter', 'AltRight'][i]; $('joyk' + i).disabled = !x.on; }
+    for (let i = 0; i < 3; i++) { const x = k.extra[i] || {}; $('joyx' + i).checked = !!x.on; $('joyk' + i).value = x.key || JOY_EXTRA[i].key; $('joyk' + i).disabled = !x.on; }
   }
   function bindJoyOptions() {
     const save = () => {
@@ -5418,6 +5456,7 @@
     $('vidbare').onchange = (e) => setBare(e.target.checked, true);
     for (const [id, k] of [['vidnomhz', 'hud.nomhz'], ['vidnofps', 'hud.nofps']]) { $(id).checked = load(k) === '1'; $(id).onchange = (e) => { store(k, e.target.checked ? '1' : '0'); hudDraw(); }; }
     $('barshow').onclick = () => { setBare(false, !bareLink); canvas.focus(); };
+    $('screenwrap').addEventListener('pointerdown', calmShow, true); // Hide Menu Bar: the hidden corner icons and texts for 2 s
     buildDrives();
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261028112539">
+<meta name="build" content="20261028162237">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -397,6 +397,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .corner:hover, .corner:focus-within { opacity: 1; }
 .corner.bl { left: 4px; } .corner.br { right: 4px; }
 .corner.tl { top: 4px; bottom: auto; left: 4px; } #barcorner { display: none; } body.bare #barcorner { display: flex; } /* ~ hid the menu bar: a way back by touch */
+body.bare.calm #screenwrap .corner, body.bare.calm #hudc, body.bare.calm #xtmsg { visibility: hidden; } /* Hide Menu Bar: the corner icons and the texts over the screen too, a click / tap shows them for 2 s */
 body.bare #toolbar { display: none; } body.bare #mainwin { border-color: transparent; border-radius: 0; box-shadow: none; } body.bare #screenwrap { border-radius: 0; } /* ~: no menu bar, no frame */
 .corner button.ico, .corner select { background: rgba(35,42,51,.25); border-color: rgba(255,255,255,.12); }
 #stage .corner button.ico { width: 26px; height: 20px; border-radius: 4px; }
@@ -462,12 +463,15 @@ select option { background: var(--panel2); color: var(--text); }
 .ldtags button { padding: 0 7px; height: 20px; font-size: 10px; border-radius: 4px; }
 .ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 /* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
+#ziplist .zrest { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; cursor: pointer; } #ziplist .zrest input { width: 15px; height: 15px; flex: none; }
 #ldlistgo.danger, #ldbgo1.danger { background: #b4553f; border-color: #b4553f; color: #fff; }
 .splitbtn { display: flex; flex: none; } /* the text sits as in the other buttons (Open, Choose File…): their padding and line height */
 .splitbtn #ldlistgo, .splitbtn #ldbgo1 { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
 .splitbtn > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .splitbtn .splitar { display: flex; align-items: center; padding: 0 5px; margin-left: -1px; border-top-left-radius: 0; border-bottom-left-radius: 0; } .splitbtn .splitar[hidden] { display: none; }
 .splitbtn .splitar.open .usel-arr { transform: rotate(180deg); }
+.splitbtn > button:focus-visible { position: relative; z-index: 1; } /* the focused part over the shared border */
+.splitbtn:has(> button:focus-visible) > button:not([hidden]) { border-color: var(--accent); } /* the focus: the whole button (Run / Mount and ▾) */
 #ldmedia { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font: 12px ui-monospace, Consolas, monospace; }
 #ldmedia .ml { color: var(--dim); } #ldmedia .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #ldmedia .mn.off { color: var(--dim); }
 #ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
@@ -1081,7 +1085,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         </div>
         <div class="card">
           <h3>Update</h3>
-          <div class="selbtn"><select id="updsel" aria-label="What to update" title="The SD card image of an OS model to build anew"><option value="NEDOOS">NedoOS (BaseConf)</option><option value="WCTS">Wild Commander (TS-Conf)</option></select><button id="nedobtn" title="Build a new SD card image from GitHub (the latest commit) or from a ZIP on this computer">Make Image…</button></div>
+          <div class="selbtn"><select id="updsel" aria-label="What to update" title="The SD card image of an OS model to build anew"><option value="NEDOOS">NedoOS (BaseConf)</option><option value="WCTS">Wild Commander (TS-Conf)</option><option value="OSZ">OSZ (Scorpion GMX)</option></select><button id="nedobtn" title="Build a new SD card image from GitHub (the latest commit) or from a ZIP on this computer">Make Image…</button></div>
           <div id="nedorow"><span>Image</span><b id="nedobuild"></b></div>
         </div>
         <div class="card">
@@ -1247,7 +1251,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             </select>
           </div>
           <div class="optcol vidhide">
-            <label class="chk" title="The menu bar and the frame of the emulator window (~ = Shift + `)"><input type="checkbox" id="vidbare"> Hide Menu Bar (~)</label>
+            <label class="chk" title="The menu bar and the frame of the emulator window (~ = Shift + `); the corner icons, MHz and FPS hide too: a click or a tap on the screen shows them for 2 s"><input type="checkbox" id="vidbare"> Hide Menu Bar (~)</label>
             <label class="chk" title="The CPU clock over the screen (top centre)"><input type="checkbox" id="vidnomhz"> Hide Frequency</label>
             <label class="chk" title="Frames per second over the screen (top right)"><input type="checkbox" id="vidnofps"> Hide FPS</label>
           </div>
@@ -1277,7 +1281,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>iS-DOS Chic v5.01</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
           <tr><td>Wild Commander</td><td>from SD card, ZX Evo TS-Conf (<a href="https://github.com/tslabs/zx-evo" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>NedoOS</td><td>from SD card, ZX Evo BaseConf (<a href="https://github.com/alfishe/NedoOS" target="_blank" rel="noopener">GitHub</a>)</td></tr>
-          <tr><td>OSZ</td><td>multitasking OS, from SD card + OS.TRD, Scorpion ZS 256 GMX (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>)</td></tr>
+          <tr><td>OSZ</td><td>multitasking OS, from SD card + OS.TRD, Scorpion ZS 256 GMX; F8 / F9 / F10 = Ext+1 / Ext+9 / Ext+0, right Shift = SS, Tab = Ext (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>Custom ROM</td><td>own ROM or ROM set (128 / 48 / TR-DOS / service) on any of these machines; Save keeps ROM + json</td></tr>
         </table>
       </div>
@@ -1350,7 +1354,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>F4</td><td>sound on / off</td></tr>
       <tr><td>F5</td><td>start / stop emulation</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
-      <tr><td>F12</td><td>reset (BIOS menu)</td></tr>
+      <tr><td>F12</td><td>reset (BIOS menu); OSZ machine: boots OSZ again</td></tr>
+      <tr><td>F8 / F9 / F10</td><td>OSZ machine: Ext+1 (system process) / Ext+9 (None Commander) / Ext+0 (shadow monitor)</td></tr>
       <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; ATM mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
@@ -1366,7 +1371,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>← → ↑ ↓</td><td>cursor (CAPS SHIFT + 5…8)</td></tr>
       <tr><td>Backspace</td><td>DELETE (CAPS SHIFT + 0)</td></tr>
       <tr><td>Caps Lock</td><td>CAPS LOCK (CAPS SHIFT + 2)</td></tr>
-      <tr><td>Tab</td><td>EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT)</td></tr>
+      <tr><td>Tab</td><td>EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT); OSZ: Ext, held with the key (Tab+9: None Commander)</td></tr>
+      <tr><td>right Shift + Enter</td><td>OSZ: SS+Enter, the next task</td></tr>
       <tr><td>Shift + Space</td><td>BREAK (CAPS SHIFT + SPACE)</td></tr>
       <tr><td>` (tilde), Esc</td><td>EDIT (CAPS SHIFT + 1); Esc first releases captured mouse or closes window in focus. ATM XT keyboard: Esc stays Esc</td></tr>
       <tr><td>PgUp / PgDn</td><td>CAPS SHIFT + 3 / 4</td></tr>
@@ -1553,7 +1559,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
-      <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit (~ or the ☰ corner shows them; visitor's own setting is not changed)</td></tr>
+      <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit, the corner icons, MHz and FPS hidden too (a click or a tap shows them for 2 s; ~ or the ☰ corner brings the menu bar back; visitor's own setting is not changed)</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx, xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
@@ -1629,7 +1635,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 </div>
 
 <div class="fwin" id="zippick" hidden role="dialog" aria-labelledby="ziptitle">
-    <header class="fhead"><h2 id="ziptitle">Choose a file from the archive</h2><button data-close title="Close (Esc)">✕</button></header>
+    <header class="fhead"><h2 id="ziptitle">Choose image to mount</h2><button data-close title="Close (Esc)">✕</button></header>
     <div class="body"><div id="ziplist"></div></div>
 </div>
 
@@ -1713,7 +1719,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
       <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3A) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
@@ -1765,15 +1771,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261028112539"></script>
-<script src="js/scancodes.js?v=20261028112539"></script>
-<script src="js/unzip.js?v=20261028112539"></script>
-<script src="js/vkbd.js?v=20261028112539"></script>
-<script src="js/asyncify.js?v=20261028112539"></script>
-<script src="js/gfx.js?v=20261028112539"></script>
-<script src="js/usel.js?v=20261028112539"></script>
-<script src="js/fcmd.js?v=20261028112539"></script>
-<script src="js/dbga.js?v=20261028112539"></script>
-<script src="js/app.js?v=20261028112539"></script>
+<script src="js/wasi_fs.js?v=20261028162237"></script>
+<script src="js/scancodes.js?v=20261028162237"></script>
+<script src="js/unzip.js?v=20261028162237"></script>
+<script src="js/vkbd.js?v=20261028162237"></script>
+<script src="js/asyncify.js?v=20261028162237"></script>
+<script src="js/gfx.js?v=20261028162237"></script>
+<script src="js/usel.js?v=20261028162237"></script>
+<script src="js/fcmd.js?v=20261028162237"></script>
+<script src="js/dbga.js?v=20261028162237"></script>
+<script src="js/app.js?v=20261028162237"></script>
 </body>
 </html>

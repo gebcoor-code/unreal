@@ -227,17 +227,22 @@
     // ---- ZX screen of a RAM page (6144 pixels + 768 attributes), as the stop left it
     const scv = $('dgascv'), scx = scv.getContext('2d'); let scImg = scx.createImageData(256, 192);
     // -3 As Shown: the last picture drawn (any mode); -2 TSframe: the TS-Conf video frame; -1 ZXScr: the ZX screen of the page shown now
-    // (#7FFD bit 3: 7, else 5); -4 / -5 CPM: the ATM picture drawn from the RAM now, the video page shown / the other one; 0..: a RAM page as a ZX screen
+    // (#7FFD bit 3: 7, else 5); -4 / -5 CPM: the ATM picture drawn from the RAM now, the video page shown / the other one; -7 / -8 GMX: the
+    // 640x200 screen of Scorpion GMX from the RAM now (pixels #39 / #3A, attributes #79 / #7A, the scroll), shown / other; 0..: a RAM page as a ZX screen
     let scrPage = -1;
     const scrNow = () => { const c = (E().web_p7ffd() & 8) ? 7 : 5; return scrPage >= 0 ? scrPage : scrPage === -6 ? c ^ 2 : c; }; // -6: the other ZX screen
     const tsOn = () => api.tsOn && api.tsOn() && E().web_ts_frame;
+    const gmxOn = () => !!(E().web_gmx_on && E().web_gmx_on());
+    const gmxPg = (q) => { const c = (E().web_p7ffd() & 8) ? 0x3A : 0x39; return q === -7 ? c : c ^ 3; }; // the shown GMX screen (#7FFD bit 3) / the other one
     function scrSize(w, h) { if (scv.width !== w || scv.height !== h) { scv.width = w; scv.height = h; scImg = scx.createImageData(w, h); } }
     function drawScr() {
       const e = E(), nr = e.web_gfx_size(1) >> 14, pg = Math.min(scrNow(), nr - 1), ts = tsOn();
       const fw = e.web_fb_w(), fh = e.web_fb_h(), cur = (e.web_p7ffd() & 8) ? 7 : 5, atm = !!(e.web_scr_atm && e.web_scr_atm(cur));
-      if ((scrPage === -2 && !ts) || ((scrPage === -4 || scrPage === -5) && !atm)) scrPage = -1;
+      const gmx = gmxOn();
+      if ((scrPage === -2 && !ts) || ((scrPage === -4 || scrPage === -5) && !atm) || ((scrPage === -7 || scrPage === -8) && !gmx)) scrPage = -1;
       const sel = $('dgascrsrc'); let h = '<option value="-3">As Shown</option>' + (ts ? '<option value="-2">TSframe</option>' : '') + `<option value="-1">ZXScr (${hex2(cur)})</option><option value="-6">ZXScr (${hex2(cur ^ 2)})</option>`;
       if (atm) h += `<option value="-4">CPM (${hex2(cur)})</option><option value="-5">CPM (${hex2(cur ^ 2)})</option>`;
+      if (gmx) h += `<option value="-7">GMX (${hex2(gmxPg(-7))})</option><option value="-8">GMX (${hex2(gmxPg(-8))})</option>`;
       for (let i = 0; i < nr; i++) h += `<option value="${i}">RAM ${hex2(i)}</option>`;
       if (sel.dataset.h !== h) { sel.innerHTML = h; sel.dataset.h = h; } sel.value = String(scrPage);
       if (scrPage === -3) { // the last picture the emulator drew: whatever the mode (ATM CP/M text and EGA, TS-Conf, ZX with the border)
@@ -246,6 +251,16 @@
       if ((scrPage === -4 || scrPage === -5)) { // ATM: the screen as the video would draw it from the RAM now (the modes of the last frame), page 5 or 7
         const p = e.web_scr_atm(scrPage === -4 ? cur : cur ^ 2);
         scrSize(fw, fh); new Uint32Array(scImg.data.buffer).set(new Uint32Array(e.memory.buffer, p, fw * fh)); scx.putImageData(scImg, 0, 0); scrFit(); return;
+      }
+      if (scrPage === -7 || scrPage === -8) { // GMX: 80 bytes a line, a byte of 8 pixels and its own attribute (as ZX), from the scroll start
+        scrSize(640, 200);
+        const pg = gmxPg(scrPage), base = e.web_gfx_mem(1, 0, 0), gfx = new Uint8Array(e.memory.buffer, base + pg * 0x4000, 0x4000), atr = new Uint8Array(e.memory.buffer, base + (pg + 0x40) * 0x4000, 0x4000);
+        const pal = new Uint32Array(e.memory.buffer, e.web_gfx_pal(), 16).slice(), px = new Uint32Array(scImg.data.buffer), st = e.web_gmx_scroll();
+        for (let y = 0; y < 200; y++) for (let c = 0; c < 80; c++) {
+          const o = (st + y * 80 + c) & 0x3FFF, b = gfx[o], at = atr[o], br = (at & 0x40) ? 8 : 0, ink = pal[(at & 7) | br], pap = pal[((at >> 3) & 7) | br];
+          for (let k = 0; k < 8; k++) px[y * 640 + c * 8 + k] = (b & (0x80 >> k)) ? ink : pap;
+        }
+        scx.putImageData(scImg, 0, 0); scrFit(); return;
       }
       if (scrPage === -2) { // the frame buffer of the TS video: 720×576 (doubled), every other pixel
         scrSize(360, 288); const fb = new Uint32Array(e.memory.buffer, e.web_ts_frame(), 720 * 576), px = new Uint32Array(scImg.data.buffer);
@@ -279,15 +294,16 @@
         const c = (E().web_p7ffd() & 8) ? 7 : 5, pg = scrPage === -4 ? c : c ^ 2, a = new Int32Array(E().memory.buffer, E().web_atm_at(pg, x, y), 5);
         return a[0] < 0 ? { x, y, ts: 1 } : { x, y, atm: a[0], p: a[1], a: a[2], mx: a[3], my: a[4] };
       }
+      if (scrPage === -7 || scrPage === -8) { const pg = gmxPg(scrPage), o = (E().web_gmx_scroll() + y * 80 + (x >> 3)) & 0x3FFF; return { x, y, gmx: pg, p: pg * 0x4000 + o, a: (pg + 0x40) * 0x4000 + o }; }
       if (scrPage < -1 && scrPage !== -6) return { x, y, ts: 1 };
       if (x < 0 || y < 0 || x > 255 || y > 191) return null;
       return { x, y, p: ((y & 0xC0) << 5) | ((y & 7) << 8) | ((y & 0x38) << 2) | (x >> 3), a: 0x1800 + (y >> 3) * 32 + (x >> 3) };
     }
     const AMODE = { 0: 'EGA', 2: 'hires', 6: 'text' };
-    scv.addEventListener('pointermove', (e) => { const q = scrAt(e); $('dgascrinfo').textContent = q && q.atm !== undefined ? `${AMODE[q.atm]} ${q.atm === 6 ? 'col' : 'x'} ${q.mx} ${q.atm === 6 ? 'row' : 'y'} ${q.my} · ${q.atm === 6 ? 'char' : 'pixel'} ${pa(q.p)}` + (q.a >= 0 ? ` · attr ${pa(q.a)}` : '') : q && q.ts ? `x ${q.x} y ${q.y} of ${scv.width}×${scv.height}` + (scrPage === -2 ? ' (the 256×192 ZX area from x 52 y 48)' : '') : q ? `x ${q.x} y ${q.y} · pixel ${hex2(scrNow())}:${hex4(q.p)} · attr ${hex2(scrNow())}:${hex4(q.a)}` : ''; });
+    scv.addEventListener('pointermove', (e) => { const q = scrAt(e); $('dgascrinfo').textContent = q && q.gmx !== undefined ? `GMX x ${q.x} y ${q.y} · pixel ${pa(q.p)} · attr ${pa(q.a)}` : q && q.atm !== undefined ? `${AMODE[q.atm]} ${q.atm === 6 ? 'col' : 'x'} ${q.mx} ${q.atm === 6 ? 'row' : 'y'} ${q.my} · ${q.atm === 6 ? 'char' : 'pixel'} ${pa(q.p)}` + (q.a >= 0 ? ` · attr ${pa(q.a)}` : '') : q && q.ts ? `x ${q.x} y ${q.y} of ${scv.width}×${scv.height}` + (scrPage === -2 ? ' (the 256×192 ZX area from x 52 y 48)' : '') : q ? `x ${q.x} y ${q.y} · pixel ${hex2(scrNow())}:${hex4(q.p)} · attr ${hex2(scrNow())}:${hex4(q.a)}` : ''; });
     scv.addEventListener('click', (e) => {
       const q = scrAt(e); if (!q || q.ts || !stopped) return; setTab('mem');
-      if (q.atm !== undefined) { const v = e.shiftKey && q.a >= 0 ? q.a : q.p; memSrc(1, v >> 14, v & 0x3FFF); } else memSrc(1, scrNow(), e.shiftKey ? q.a : q.p);
+      if (q.atm !== undefined || q.gmx !== undefined) { const v = e.shiftKey && q.a >= 0 ? q.a : q.p; memSrc(1, v >> 14, v & 0x3FFF); } else memSrc(1, scrNow(), e.shiftKey ? q.a : q.p);
       setPane('mem');
     }); // the byte in the dump (Shift: its attribute)
     $('dgascrsrc').onchange = () => { scrPage = +$('dgascrsrc').value; $('dgascrinfo').textContent = scrPage === -2 ? 'the TS-Conf picture as the video drew it' : scrPage === -3 ? 'the last picture drawn, as on the screen' : 'click: the byte in the dump (Shift: its attribute)'; if (stopped) drawScr(); };
