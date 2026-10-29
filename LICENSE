@@ -82,3 +82,9 @@ They belong to their copyright holders, among them: the GMX flash of LW / PLM
 (GMX Loader, Shadow Service Monitor of MOA), OSZ by izzx
 (https://github.com/izzx-git/OSZ), NedoOS by Alone Coder and the NedoOS team,
 TS-BIOS and Wild Commander, TR-DOS, the BIOS and ROMs of the machines.
+
+The ZX Spectrum 48, 128 and +2 ROMs (data/sinclair.rom: 48, 128 ROM 0 and 1,
++2 ROM 0 and 1; used for RZX playback) are copyright Amstrad, who allow their
+distribution but keep the copyright: they may not be sold or built into
+hardware (a product that contains them may be sold, the charge being for the
+product, not for the ROMs).
