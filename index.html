@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261028222049">
+<meta name="build" content="20261029091031">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -60,6 +60,20 @@ canvas.smooth { image-rendering: auto; }
 #loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--dim); line-height: 1.4; padding: 20px; text-align: center; }
 #pausemark { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.45); color: #fff; font-size: 22px; letter-spacing: .1em; line-height: 1; pointer-events: none; }
 #pausemark.show { display: flex; }
+/* RZX player: over the bottom of the picture, shown by a tap on it */
+#rzxbar { position: absolute; left: 8px; right: 8px; bottom: 30px; z-index: 22; background: rgba(17,20,24,.86); border: 1px solid var(--line); border-radius: 8px;
+  padding: 5px 8px; display: flex; flex-direction: column; gap: 4px; color: var(--text); font-size: 12px; line-height: 1.2; }
+#rzxbar[hidden] { display: none; }
+#savedlg .svrec { display: flex; align-items: center; gap: 8px; } #savedlg .svrec[hidden] { display: none; } #svrecst { color: var(--dim); font-size: 12px; }
+#screenwrap:has(> #rzxbar:not([hidden])) #toast { bottom: 76px; } /* the messages above the player */
+#rzxbar #rzxmsg { color: var(--accent); white-space: nowrap; font-size: 11px; } #rzxbar #rzxmsg:empty { display: none; }
+#rzxbar #rzxpin { color: var(--dim); } #rzxbar #rzxpin svg { transform: rotate(45deg); } #rzxbar #rzxpin.on { color: var(--accent); background: var(--panel2); border-color: var(--line); } #rzxbar #rzxpin.on:hover { border-color: var(--accent); } #rzxbar #rzxpin.on svg { transform: none; fill: currentColor; } /* pin: in = always shown, slanted = hides */
+#rzxbar .rzr { display: flex; align-items: center; gap: 6px; }
+#rzxbar #rzxseek { flex: 1 1 auto; min-width: 40px; accent-color: var(--accent); }
+#rzxbar #rzxtime, #rzxbar #rzxlen { font: 12px ui-monospace, Consolas, monospace; color: var(--dim); white-space: nowrap; }
+#rzxbar button.ico { width: 28px; height: 24px; flex: none; } #rzxbar button.ico svg { width: 15px; height: 15px; }
+#rzxbar #rzxspeed, #rzxbar #rzxtake { height: 24px; padding: 0 7px; font-size: 12px; flex: none; white-space: nowrap; }
+@media (max-width: 520px) { #rzxbar #rzxlen { display: none; } #rzxbar #rzxtake { padding: 0 5px; } }
 #toast { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); background: rgba(20,24,30,.92); border: 1px solid var(--line); color: var(--text);
   border-radius: 6px; padding: 6px 12px; font-size: 13px; line-height: 1.4; max-width: 90%; opacity: 0; transition: opacity .25s; pointer-events: none; }
 #toast.show { opacity: 1; }
@@ -67,7 +81,7 @@ canvas.smooth { image-rendering: auto; }
   background: rgba(20,24,30,.88); border: 1px solid var(--accent); color: var(--text); cursor: pointer; }
 #sndhint[hidden] { display: none; }
 #toast.err { border-color: var(--warn); }
-#viz { position: absolute; left: 7px; top: 6px; pointer-events: none; opacity: 0; } body.bare #viz { left: 36px; } /* right of the ☰ corner button */
+#viz { position: absolute; left: 36px; top: 6px; pointer-events: none; opacity: 0; } /* right of the ☰ corner button (it can show at any time) */
 #hudc { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; } /* MHz and fps: drawn, not page text (ad blockers rescan a page on every text change) */
 #hud { position: absolute; right: 5px; top: 4px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; pointer-events: none; }
 #fps { font-size: 11px; line-height: 1; color: rgba(225,232,240,.75); font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; }
@@ -75,6 +89,9 @@ canvas.smooth { image-rendering: auto; }
   font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; white-space: nowrap; }
 #dled { position: absolute; left: 75%; top: 1px; transform: translateX(-50%); height: 18px; line-height: 1; display: flex; align-items: center; pointer-events: none; }
 #dled[hidden] { display: none; }
+#recmark { position: absolute; left: 25%; top: 2px; transform: translateX(-50%); z-index: 23; height: 18px; padding: 0 7px; border-radius: 9px; font: 600 11px ui-monospace, Consolas, monospace;
+  color: #fff; background: rgba(200,40,40,.75); border: 1px solid rgba(255,120,120,.6); line-height: 1; }
+#recmark[hidden] { display: none; }
 #dledi { width: 18px; height: 18px; display: block; filter: drop-shadow(0 0 1px rgba(0,0,0,.9)); }
 #dled.r, #dled.t { color: #4f9dff; } #dled.w { color: #ff4f43; } #dled.s { color: rgba(225,232,240,.5); }
 #dled.t #dledi { width: 24px; }
@@ -502,7 +519,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ldopts .lddrv select { height: 28px; font-size: 13px; }
 .ldopts .lddrv input { width: 15px; height: 15px; }
 #ldmsg:empty { display: none; }
-#loadwin .fhead .ldhelpbtn { margin-left: auto; padding: 1px 7px; font-size: 12px; } #loadwin .fhead .ldhelpbtn + [data-close] { margin-left: 4px; }
+#loadwin .fhead .ldhelpbtn, #savedlg .fhead .ldhelpbtn { margin-left: auto; padding: 1px 7px; font-size: 12px; } #loadwin .fhead .ldhelpbtn + [data-close], #savedlg .fhead .ldhelpbtn + [data-close] { margin-left: 4px; }
 .ldrow .ldmain { margin-left: 6px; }
 .ldsub { margin: 6px 0 0 22px; display: flex; flex-direction: column; gap: 4px; } .ldsub[hidden] { display: none; }
 .ldsrow { display: flex; align-items: center; gap: 12px; min-height: 22px; }
@@ -520,11 +537,14 @@ select option { background: var(--panel2); color: var(--text); }
 #ldlistgo.danger, #ldbgo1.danger { background: #b4553f; border-color: #b4553f; color: #fff; }
 .splitbtn { display: flex; flex: none; } /* the text sits as in the other buttons (Open, Choose File…): their padding and line height */
 .splitbtn #ldlistgo, .splitbtn #ldbgo1 { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
-.splitbtn > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.splitbtn:not(.single) > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .splitbtn .splitar { display: flex; align-items: center; padding: 0 5px; margin-left: -1px; border-top-left-radius: 0; border-bottom-left-radius: 0; } .splitbtn .splitar[hidden] { display: none; }
 .splitbtn .splitar.open .usel-arr { transform: rotate(180deg); }
-.splitbtn > button:focus-visible { position: relative; z-index: 1; } /* the focused part over the shared border */
-.splitbtn:has(> button:focus-visible) > button:not([hidden]) { border-color: var(--accent); } /* the focus: the whole button (Run / Mount and ▾) */
+.splitbtn { position: relative; }
+.splitbtn > button:hover:not(:disabled) { position: relative; z-index: 1; } /* hover: the part's whole border over the shared line (Mount: its right side) */
+.splitbtn:not(.single):has(> button:focus-visible)::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--accent); border-radius: 6px; pointer-events: none; z-index: 2; } /* focus: one frame around both parts (Run / Mount and ▾), over a dimmed (disabled) part too */
+.splitbtn:not(.single) > button:focus-visible:not(:hover) { border-color: var(--line); }
+.splitbtn:not(.single):has(> button:focus-visible) > .splitar:not([hidden]) { border-left-color: var(--accent); } /* the line between the parts too: Mount closed on its right */ /* Mount alone (single): its own focus border, as any button */
 #ldmedia { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font: 12px ui-monospace, Consolas, monospace; }
 #ldmedia .ml { color: var(--dim); } #ldmedia .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #ldmedia .mn.off { color: var(--dim); }
 #ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
@@ -629,7 +649,7 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 #ziplist button { text-align: left; font-family: ui-monospace, Consolas, monospace; }
 /* debugger: floating, draggable window */
 #dbgwin { position: fixed; left: 0; top: 0; z-index: 8; background: #000; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); line-height: 0; }
-#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #ldhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
+#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #rahelp[hidden], #ldhelp[hidden], #svhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
 #restwin { position: fixed; left: 0; top: 0; z-index: 9; width: min(440px, calc(100vw - 8px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
 #restwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
@@ -863,14 +883,14 @@ select.usel-src { display: none !important; }
 #fvbody.wrap:not(.hex), #fetext.wrap { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; } /* by words; a word longer than the line: where it must */
 .fvbar .fvwrap { height: 24px; padding: 0 8px; font-size: 12px; }
 .fvbar .fvwrap[hidden] { display: none; }
-#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #ldhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
-#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #ldhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
-#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #ldhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
+#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #rahelp .dbghead, #ldhelp .dbghead, #svhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
+#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #rahelp .dbghead span, #ldhelp .dbghead span, #svhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
+#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #rahelp .dbghead button, #ldhelp .dbghead button, #svhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #svhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #ldhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #rahelp, #ldhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #rahelp, #ldhelp, #svhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #rahelp, #ldhelp, #svhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
+:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #rahelp, #ldhelp, #svhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
 :is(#dbghelp, #dgahelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
@@ -888,9 +908,9 @@ select.usel-src { display: none !important; }
 #perfwin .dbghead b { font: 11px ui-monospace, Consolas, monospace; color: var(--dim); font-weight: 400; }
 #perfwin .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
 #pfhelp { width: min(300px, calc(100vw - 8px)); }
-#rahelp, #ldhelp { width: min(420px, calc(100vw - 8px)); }
-#ldhelp table.keys { font-size: 12px; }
-#rahelp .dbghead, #ldhelp .dbghead { cursor: default; }
+#rahelp, #ldhelp, #svhelp { width: min(420px, calc(100vw - 8px)); }
+#ldhelp table.keys, #svhelp table.keys { font-size: 12px; }
+#rahelp .dbghead, #ldhelp .dbghead, #svhelp .dbghead { cursor: default; }
 #rahelp table.keys td:first-child { white-space: nowrap; vertical-align: top; }
 #pfhelp .dbghead { cursor: default; }
 .pfgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
@@ -1027,6 +1047,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div id="toast"></div>
     <canvas id="hudc" aria-hidden="true"></canvas>
     <div id="sbar"><div id="sbjoy"></div><div id="mbar"><button data-b="4" title="Middle button: tap = click, long tap = held until the next tap (left button: double tap on the screen, or a second finger)">MB</button><button id="mpps" title="The program moves its pointer 1 or 2 pixels per step">1pps</button><button data-b="2" title="Right button: tap = click, long tap = held until the next tap">RB</button></div></div>
+    <button id="recmark" hidden title="RZX recording: Save / Input recording (RZX) stops it">● REC <span id="rectime">0:00</span></button>
     <div id="dled" hidden><svg id="dledi" viewBox="0 0 12 12"><use href="#i-floppy"/></svg></div>
     <canvas id="viz" width="56" height="16"></canvas>
     <div class="corner tl" id="barcorner"><button class="ico" id="barshow" title="Show the menu bar and the frame (~)"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
@@ -1034,9 +1055,19 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div id="xtmsg"></div>
     <div class="corner br">
       <select id="kbdtype" title="Keyboard" hidden>
-        <option value="xt">XT</option><option value="zx">ZX</option><option value="zx48">ZX 48</option><option value="joy">JOY</option>
+        <option value="xt">XT</option><option value="zx">ZX+</option><option value="zx48">ZX-48</option><option value="joy">JOY</option>
       </select>
       <button class="ico" id="kbdbtn" title="On-screen keyboard"><svg><use href="#i-vkbd"/></svg></button>
+    </div>
+    <div id="rzxbar" hidden>
+      <div class="rzr">
+        <button class="ico" id="rzxplay" title="Pause"><svg><use href="#i-pause"/></svg></button>
+        <span id="rzxtime">0:00</span><input type="range" id="rzxseek" min="0" max="1" value="0" step="1" title="Seek"><span id="rzxlen">0:00</span>
+        <button id="rzxspeed" title="Playback speed (the frames between without sound)">1×</button>
+        <button id="rzxtake" title="Stop the recording here and play on yourself">Take control</button>
+        <span id="rzxmsg"></span>
+        <button class="ico" id="rzxpin" title="Player stays on screen"><svg viewBox="0 0 24 24"><path d="M9 3h6l-1 7 3 3v1H7v-1l3-3z"/><path d="M12 14v7"/></svg></button>
+      </div>
     </div>
     <button id="sndhint" hidden title="Browsers start sound only after a click or a key">🔊 Tap for sound</button>
     <div id="loading">Loading…</div>
@@ -1380,7 +1411,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>OSZ</td><td>izzx (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>); with code of LW/PLM, S.V.Bulba, Kulich, Nihirash, ZORBA, GALSTAFF</td></tr>
           <tr><td>TR-DOS</td><td>Technology Research Ltd.</td></tr>
           <tr><td>CP/M 2.2</td><td>Digital Research</td></tr>
-          <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad</td></tr>
+          <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad; the ROMs of 48 / 128 / +2 (RZX playback): © Amstrad, distributed with their permission</td></tr>
+          <tr><td>RZX format</td><td>Ramsoft, the authors of Fuse, SpecEmu, SPIN and Spectaculator; recordings: <a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">The RZX Archive</a></td></tr>
           <tr><td>ATM Turbo 2+ hardware</td><td>MicroART</td></tr>
           <tr><td>Honey Commander</td><td>Honey Soft</td></tr>
           <tr><td>sjasmplus (FC Compile)</td><td>Aprisobal, z00m128 and contributors (<a href="https://github.com/z00m128/sjasmplus" target="_blank" rel="noopener">GitHub</a>, BSD-3-Clause)</td></tr>
@@ -1408,7 +1440,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>F5</td><td>start / stop emulation</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu); OSZ machine: boots OSZ again</td></tr>
-      <tr><td>F8 / F9 / F10</td><td>OSZ machine: Ext+1 (system process) / Ext+9 (None Commander) / Ext+0 (shadow monitor)</td></tr>
+      <tr><td>F8 / F9 / F10</td><td>Scorpion GMX (OSZ too): Ext+1 (OSZ system process) / Ext+9 (None Commander) / Ext+0 (shadow monitor); on-screen XT keyboard too</td></tr>
       <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; ATM mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
@@ -1459,25 +1491,27 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Screen corners</h4>
     <table class="keys">
       <tr><td>bottom left</td><td>XT keyboard on / off (ATM)</td></tr>
-      <tr><td>bottom right</td><td>on-screen keyboard (ZX, ZX 48, XT) and joystick; the list next to it chooses one</td></tr>
+      <tr><td>bottom right</td><td>on-screen keyboard (ZX+, ZX-48, XT) and joystick; the list next to it chooses one</td></tr>
       <tr><td>phone, landscape</td><td>the screen fits the whole height; the on-screen keyboards are split: the left half at the left edge, the right half at the right edge (SPACE on both); the joystick stick and fire at the edges</td></tr>
       <tr><td>Top left corner</td><td>with the menu bar: a tap shows the button that hides it (for 3 s), a tap on it hides the menu bar; with the menu bar hidden the same button shows it back</td></tr>
       <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen</td></tr>
     </table>
     <h4>On-screen keyboards</h4>
     <table class="keys">
-      <tr><td>ZX</td><td>Spectrum+ layout: its extra keys (EDIT, DELETE, GRAPH, EXTEND MODE, TRUE / INV. VIDEO, CAPS LOCK, BREAK, cursor keys, ; " , .) press the two ZX keys for you</td></tr>
-      <tr><td>ZX 48</td><td>the 40 keys of the ZX Spectrum 48K with its legends: white on the key = keyword (K mode) or letter; red on the key = SYMBOL SHIFT + key; green above = EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT), then the key; red under = EXTEND MODE, then SYMBOL SHIFT + key; row 1: above, white = CAPS SHIFT + digit (EDIT, CAPS LOCK, TRUE / INV. VIDEO, cursor, GRAPHICS, DELETE), the colour = its INK in E mode; on keys 1-8 the block graphic = G mode (CAPS SHIFT + 9). BREAK = CAPS SHIFT + SPACE. Narrow screens: the keys only</td></tr>
+      <tr><td>ZX+</td><td>Spectrum+ layout: its extra keys (EDIT, DELETE, GRAPH, EXTEND MODE, TRUE / INV. VIDEO, CAPS LOCK, BREAK, cursor keys, ; " , .) press the two ZX keys for you</td></tr>
+      <tr><td>ZX-48</td><td>the 40 keys of the ZX Spectrum 48K with its legends: white on the key = keyword (K mode) or letter; red on the key = SYMBOL SHIFT + key; green above = EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT), then the key; red under = EXTEND MODE, then SYMBOL SHIFT + key; row 1: above, white = CAPS SHIFT + digit (EDIT, CAPS LOCK, TRUE / INV. VIDEO, cursor, GRAPHICS, DELETE), the colour = its INK in E mode; on keys 1-8 the block graphic = G mode (CAPS SHIFT + 9). BREAK = CAPS SHIFT + SPACE. Narrow screens: the keys only</td></tr>
       <tr><td>XT</td><td>PC keyboard of ATM mode (Ctrl+Alt+Z)</td></tr>
       <tr><td>JOY</td><td>joystick: Kempston, Sinclair 1 / 2, cursor keys; FIRE and 3 extra buttons (Enter, Space, 1 by default): Options / Input / Joystick</td></tr>
       <tr><td>CAPS / SYMBOL SHIFT</td><td>held, sticky for one key, or locked (Options / Input / Modifier keys); a latched one is green</td></tr>
-      <tr><td>link</td><td>kbd=zx | zx48 | xt | joy | off (REST API)</td></tr>
+      <tr><td>link</td><td>kbd=zx (ZX+) | zx48 (ZX-48) | xt | joy | off (REST API)</td></tr>
     </table>
     <h4>Files</h4>
     <table class="keys">
       <tr><td>Disks</td><td>TRD, SCL, FDI, UDI, TD0, ISD, PRO, $B, $C; DSK, IPF (read-only)</td></tr>
       <tr><td>Tapes</td><td>TAP, TZX, CSW</td></tr>
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
+      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
+      <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
@@ -1591,7 +1625,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Delete</td><td>out of the browser storage</td></tr>
     </table>
     <h4>Local server</h4>
-    <p>A folder of a web server on your network: its files open as Local file (the same Autostart). Once opened, File Commander shows it as the drive Local server (read only).</p>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page). Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
+    <table class="keys">
+      <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
+      <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
+      <tr><td>https</td><td>page on https cannot read http server (browser blocks mixed content): open emulator by http, or give server https</td></tr>
+    </table>
     <h4>Server list</h4>
     <p>The entries of trd/trd.json, then hdd/hdd.json, then sd/sd.json, each as written: an image or an OS is written once, in its list (hdd.json / sd.json). An entry may have both: <code>"url"</code> (its image: Mount, and Options / Disk) and <code>"run"</code> (a link: Run), e.g. <code>{"name": "NedoOS", "url": "nedoos.zip", "run": "?model=nedoos", "tag": "SD OS"}</code>. A file with no folder is in the list's folder. Tag buttons: the entries with any of the chosen tags (several at once); All: every entry. In these files a line that starts with # is a comment.</p>
     <table class="keys">
@@ -1601,6 +1640,33 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
     <h4>Media</h4>
     <p>The machine and what is mounted now; * = changed, not saved. ⏏ ejects (as in Options / Disk). Settings (at its title): Options / Disk.</p>
+  </div>
+</div>
+<div id="svhelp" hidden role="dialog" aria-label="Save help">
+  <div class="dbghead fhead"><span>Save help</span><button id="svhelpclose" title="Close">✕</button></div>
+  <div class="hbody">
+    <p>F2 opens Save (while RZX recording: at Input recording). Enter in a field saves, Esc closes.</p>
+    <h4>What</h4>
+    <table class="keys">
+      <tr><td>Disk A:–D:</td><td>image of drive; * = changed. TRD: 80 tracks of 16 × 256 (TR-DOS, CP/M). SCL: TR-DOS files only. FDI, UDI: any disk (other sector sizes, protection). TD0. ISD / PRO: 800K iS-DOS / Profi CP/M</td></tr>
+      <tr><td>HDD 0 / 1</td><td>image + geometry.chs (interface, CHS, partitions): one ZIP or two files</td></tr>
+      <tr><td>SD card</td><td>VHD (fixed, mounts on PC too); in ZIP with its .json (program to run)</td></tr>
+      <tr><td>Snapshot (SNA)</td><td>128K machine: RAM above 128K and ATM ports are lost</td></tr>
+      <tr><td>Input recording (RZX)</td><td>Start: from next frame snapshot (SZX), then every port read; ● REC on screen (click: Save). Stop, then Download / Save. 48/128K models without extra RAM (Pentagon 128, Spectrum +3, machine started by RZX), CPU clock up to 3x; otherwise Start is off. Reset, other machine, loaded snapshot or RZX player going on: you are asked, yes = recording discarded</td></tr>
+      <tr><td>Screen (SCR)</td><td>6912 bytes of active ZX screen (page 5 or 7)</td></tr>
+      <tr><td>Screenshot (PNG)</td><td>picture as on screen, with border</td></tr>
+      <tr><td>Memory block (BIN)</td><td>CPU 64K: start and length (hex) as Z80 sees it now. RAM: 16K banks one after another; one bank: offset and length inside</td></tr>
+      <tr><td>ROM</td><td>ROM file from server (rom/), unchanged</td></tr>
+      <tr><td>Custom ROM</td><td>ZIP: image + custom.json, loads back as Custom ROM (machine and pages)</td></tr>
+      <tr><td>Written by emulator</td><td>files core wrote (debugger Alt+W, quick save)</td></tr>
+    </table>
+    <h4>Where</h4>
+    <table class="keys">
+      <tr><td>Download</td><td>file on this computer</td></tr>
+      <tr><td>Browser storage</td><td>kept in this browser for next visits: Load / Browser storage, File Commander drive Browser. Disks, HDD, SD card, SNA, RZX, files of emulator</td></tr>
+    </table>
+    <h4>File</h4>
+    <p>File name: extension follows format. Pack into ZIP: name.zip with file inside (not for RZX: packed already). Saving disk, HDD or SD card clears its * mark.</p>
   </div>
 </div>
 <div id="rahelp" hidden role="dialog" aria-label="REST API help">
@@ -1625,7 +1691,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
       <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit, the corner icons, MHz and FPS hidden too (a click or a tap along the top or the bottom of the screen shows them for 2 s; ~ or the ☰ corner brings the menu bar back; visitor's own setting is not changed)</td></tr>
-      <tr><td>kbd=</td><td>on-screen keyboard: zx (Spectrum+), zx48 (48K), xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
+      <tr><td>kbd=</td><td>on-screen keyboard: zx (ZX+), zx48 (ZX-48), xt, joy; off = hidden (visitor's own setting is not changed)</td></tr>
     </table>
     <h4>rom=: one machine for everyone</h4>
     <p>1. Options / System / Custom ROM: Select ROM, machine, slots (e.g. Quick Commander in 128), Start.<br>2. Set clock; Options / Disk: Accurate FDD, HDD interface.<br>3. Save / Custom ROM: ZIP with ROM and its .json.<br>4. Put ZIP on this site or on GitHub, link: <b>?rom=rom/my_machine.zip</b> (or rom=https://raw.githubusercontent.com/…/my_machine.zip). Other parameters (fdd=, hdd0=, run=…) work with it.</p>
@@ -1661,7 +1727,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_mute">mute</label><span class="ranote">sound off</span>
       <label class="chk"><input type="checkbox" id="ra_swapmouse">swapmouse</label><span class="ranote">mouse buttons swapped</span>
       <label class="chk"><input type="checkbox" id="ra_hidemenu">hidemenu</label><span class="ranote">menu bar and frame hidden (~ shows them)</span>
-      <label class="chk"><input type="checkbox" id="ra_kbd">kbd</label><select id="rav_kbd" title="On-screen keyboard at start"><option value="off">— (off)</option><option value="zx">ZX</option><option value="zx48">ZX 48</option><option value="xt">XT</option><option value="joy">Joystick</option></select>
+      <label class="chk"><input type="checkbox" id="ra_kbd">kbd</label><select id="rav_kbd" title="On-screen keyboard at start"><option value="off">— (off)</option><option value="zx">ZX+</option><option value="zx48">ZX-48</option><option value="xt">XT</option><option value="joy">Joystick</option></select>
     </div>
     <textarea id="raout" readonly rows="3" spellcheck="false"></textarea>
     <div class="rabtns"><span class="ranote" id="ranote"></span><button id="racopy" class="primary">Copy</button><button id="raopen">Open</button></div>
@@ -1669,7 +1735,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 </div>
 
 <div class="fwin savemodal" id="savedlg" hidden role="dialog" aria-labelledby="savetitle">
-    <header class="fhead"><h2 id="savetitle">Save</h2><button data-close title="Close (Esc)">✕</button></header>
+    <header class="fhead"><h2 id="savetitle">Save</h2><button id="svhelpbtn" class="ldhelpbtn" title="Help: what Save writes">?</button><button data-close title="Close (Esc)">✕</button></header>
     <div class="body">
       <div class="optgrid">
         <label for="svtype">What</label><select id="svtype"></select>
@@ -1692,7 +1758,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <input id="svlen" class="sv-mem sv-cpu hexfield" data-hex="" value="1B00" spellcheck="false" autocomplete="off">
         <label for="svname">File name</label>
         <input id="svname" spellcheck="false" autocomplete="off">
-        <span></span><label class="chk"><input type="checkbox" id="svzip" checked> Pack into ZIP</label>
+        <label class="sv-rzx">Recording</label>
+        <div class="sv-rzx svrec"><button id="svrec">Start</button><span id="svrecst"></span></div>
+        <span class="sv-zip"></span><label class="chk sv-zip"><input type="checkbox" id="svzip" checked> Pack into ZIP</label>
       </div>
       <p class="note" id="svnote"></p>
       <div class="svbtns"><button id="svgo" class="primary">Download</button></div>
@@ -1727,7 +1795,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <section id="ldlistsec" hidden><h3>Server list</h3>
       <div class="ldtags" id="ldtags"></div>
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
-        <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
+        <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn single" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
     <section><h3 class="ldmh"><span>Media <span class="ldmodel" id="ldmodel"></span></span><button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
       <div id="ldmedia"></div></section>
     <p class="note" id="ldmsg"></p>
@@ -1835,16 +1903,17 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261028222049"></script>
-<script src="js/scancodes.js?v=20261028222049"></script>
-<script src="js/unzip.js?v=20261028222049"></script>
-<script src="js/vkbd.js?v=20261028222049"></script>
-<script src="js/asyncify.js?v=20261028222049"></script>
-<script src="js/gfx.js?v=20261028222049"></script>
-<script src="js/usel.js?v=20261028222049"></script>
-<script src="js/fcmd.js?v=20261028222049"></script>
-<script src="js/dbga.js?v=20261028222049"></script>
-<script src="js/app.js?v=20261028222049"></script>
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
+<script src="js/wasi_fs.js?v=20261029091031"></script>
+<script src="js/scancodes.js?v=20261029091031"></script>
+<script src="js/unzip.js?v=20261029091031"></script>
+<script src="js/vkbd.js?v=20261029091031"></script>
+<script src="js/asyncify.js?v=20261029091031"></script>
+<script src="js/gfx.js?v=20261029091031"></script>
+<script src="js/usel.js?v=20261029091031"></script>
+<script src="js/fcmd.js?v=20261029091031"></script>
+<script src="js/dbga.js?v=20261029091031"></script>
+<script src="js/rzx.js?v=20261029091031"></script>
+<script src="js/app.js?v=20261029091031"></script>
 </body>
 </html>

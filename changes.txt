@@ -2524,3 +2524,102 @@ Web Unreal Speccy — version history
 + Hide Menu Bar by touch: a tap in the top left corner of the screen
   shows the button for 3 s, a tap on it hides the menu bar (and the
   same button in the same place shows it back)
+
+
+        version 1.12.0                  28 oct 2026
+
++ RZX input recordings (rzxarchive.co.uk): Load (or a ZIP, drag and
+  drop) plays them. The snapshot in the recording (SNA, Z80, SZX) starts
+  on its machine: ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs
+  (rom/sinclair.rom, new), Spectrum +3 or Pentagon 128; then each frame
+  takes the recorded port values (the count of instruction fetches of
+  the frame, the INT after it), several input blocks and the snapshots
+  between them too
++ RZX player over the screen, shown by a tap on the picture: play /
+  pause, seek bar with the time (back: from a state saved on the way,
+  then the frames without sound), speed 1x 2x 4x 8x, Take control (the
+  game goes on from that moment; play goes on with the recording), close.
+  The end of the recording and "out of sync" (the program went another
+  way, with its time and frame) are shown
++ Custom ROM: the Sinclair 128 and +2 ROMs (sinclair.rom) in the list of
+  ROM set parts
+
+
+        version 1.13.0                  29 oct 2026
+
++ RZX recording: Save / Input recording (RZX), Start and Stop. From the
+  next frame the machine is kept as an SZX snapshot, then the fetches
+  and port values of every frame; ● REC with the time on the screen
+  (a click opens Save); after Stop: Download or Browser storage, as the
+  other files. Pentagon 128, Spectrum +3 and the machines an RZX
+  starts (Take control, then record your own game on); CPU clock up to
+  3x. Reset, another machine, a snapshot or the player going on stop it
+@ RZX player: no file name line; after the start it is always on the
+  screen (fix); its small "hide" button: shown by a tap on the picture
+  for a while, as before ("fix" brings it back). No close button: the
+  player goes with another file, Reset or another machine
+
+
+        version 1.14.0                  29 oct 2026
+
++ Save: help (? at the title), the kinds of files, Where, ZIP
++ RZX recording: Reset, another machine, a snapshot loaded or the RZX
+  player going on ask first ("Stop recording and discard it?"); a reset
+  of the machine itself (core keys) stops the recording (kept)
+* Save / RZX: F2 while recording opens Save at it (as ● REC does);
+  Start is off on machines it cannot record (the reason next to it);
+  no Pack into ZIP for RZX; shorter note
+* Load help: Local server — what it reads (a folder listing), how to
+  set a server up (autoindex, CORS, https)
+* Load: Run / Mount and ▾ in focus: one frame around both parts (it
+  had a break)
+* the sound meter (top left) always right of the ☰ corner button
+
+
+        version 1.14.1                  29 oct 2026
+
+@ RZX player: Take control asks first ("Take control?"); then the
+  recording stops there and the player closes, the game is yours
+* RZX player: hide / fix is a pin icon (in, orange: the player stays on
+  screen; slanted: it hides, a tap on the picture shows it): one size,
+  nothing in the row moves when it is switched
+
+
+        version 1.14.2                  29 oct 2026
+
+* RZX player, Take control: the question is "Take control? (RZX player
+  will be closed)."
+
+
+        version 1.14.3                  29 oct 2026
+
+* Load / Server list: Mount alone (an entry without a link) is a plain
+  button again: rounded corners all round and a full focus frame (its
+  right side had none)
+
+
+        version 1.14.4                  29 oct 2026
+
+* Load: Run / Mount with ▾ in focus: the line between the two parts is
+  orange too (Mount had no right side of the frame)
+
+
+        version 1.14.5                  29 oct 2026
+
+* Load: Mount / Run with ▾ under the mouse: the orange frame of Mount
+  is whole (its right side was under the line of ▾); Browser storage's
+  Run with ▾ too
+
+
+        version 1.15.0                  29 oct 2026
+
++ on-screen XT keyboard: F keys do what they do on the PC keyboard when
+  the machine does not take them (F1 File Commander, F2 Save, F3 Load,
+  F12 Reset …; ATM mode: to the machine, as before)
+* Scorpion GMX: F8 / F9 / F10 = Ext+1 / Ext+9 / Ext+0 on any GMX start
+  (it was only the OSZ machine; a server list link starts GMX + the
+  card), on-screen keyboard too
+! ZX-48 keyboard: the screen swung and kept a wrong size after the
+  keyboard was hidden and shown or its menu opened (iPad landscape):
+  its height follows its width, the fit now counts it so
+@ keyboards renamed: ZX -> ZX+, ZX 48 -> ZX-48 (links: kbd=zx, zx48)

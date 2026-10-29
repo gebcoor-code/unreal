@@ -6,16 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261028222049';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261028222049'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261028222049'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261029091031';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261029091031'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261029091031'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.11.0'; // About, System Info (history: changes.txt)
+  const APP_VER = '1.15.0'; // About, System Info (history: changes.txt)
   // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
   const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
   const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
   let land = false;
-  const BUILD = '20261028222049'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const BUILD = '20261029091031'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -47,6 +47,14 @@
       ini: { MISC: { HIMEM: 'TSL', RAMSize: '4096', CMOS: 'DALLAS', RESET: 'SYS' }, ROM: { ROMSET: '', TSL: 'zxevo.rom' }, ULA: { Preset: 'PENTAGON' } } },
     PENTAGON: { name: 'Pentagon 128', base: 71680, speed: 2.5, xt: false, files: ['pentagon.rom', 'trd504tm.rom'], note: '128 KB · 128K ROM + TR-DOS',
       ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'pentagon' }, 'ROM.pentagon': { 128: 'pentagon.rom:0', sos: 'pentagon.rom:1', dos: 'trd504tm.rom', sys: 'trd504tm.rom' }, ULA: { Preset: 'PENTAGON' } } },
+    // RZX playback (not in the model list): the Sinclair ROMs (sinclair.rom: 48, 128 ROM 0 / 1, +2 ROM 0 / 1; Amstrad allows
+    // their distribution) on the Pentagon's memory and timing: a recording replays the ROM code it ran
+    RZX48: { name: 'ZX Spectrum 48', hidden: true, base: 69888, speed: 1, xt: false, files: ['sinclair.rom'], note: 'RZX playback',
+      ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'zx48' }, 'ROM.zx48': { 128: 'sinclair.rom:0', sos: 'sinclair.rom:0', dos: 'sinclair.rom:0', sys: 'sinclair.rom:0' }, ULA: { Preset: 'PENTAGON' } } },
+    RZX128: { name: 'ZX Spectrum 128', hidden: true, base: 70908, speed: 1, xt: false, files: ['sinclair.rom'], note: 'RZX playback',
+      ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'zx128' }, 'ROM.zx128': { 128: 'sinclair.rom:1', sos: 'sinclair.rom:2', dos: 'sinclair.rom:2', sys: 'sinclair.rom:1' }, ULA: { Preset: 'PENTAGON' } } },
+    RZXP2: { name: 'ZX Spectrum +2', hidden: true, base: 70908, speed: 1, xt: false, files: ['sinclair.rom'], note: 'RZX playback',
+      ini: { MISC: { HIMEM: 'PENTAGON', RAMSize: '128', CMOS: 'none' }, ROM: { ROMSET: 'zxp2' }, 'ROM.zxp2': { 128: 'sinclair.rom:3', sos: 'sinclair.rom:4', dos: 'sinclair.rom:4', sys: 'sinclair.rom:3' }, ULA: { Preset: 'PENTAGON' } } },
     // other Spectrum clones of UnrealSpeccy: one 64K ROM each (KAY: as a ROM set, the core has no single-file KAY ROM)
     SCORPION: { name: 'Scorpion ZS 256', base: 69888, speed: 2.5, xt: false, files: ['scorp295.rom'], note: '256 KB · ROM 2.95 (128 / 48 / service / TR-DOS 5.03)',
       ini: { MISC: { HIMEM: 'SCORPION', RAMSize: '256', CMOS: 'none', RESET: 'SYS' }, ROM: { ROMSET: '', SCORP: 'scorp295.rom' }, ULA: { Preset: 'SCORPION' } } },
@@ -100,6 +108,9 @@
     { file: '2006.rom', slot: 'sos', name: '48 BASIC 2006 (bugfixed, not with 128 BASIC)' },
     { file: 'pentagon.rom', page: 1, slot: 'sos', name: '48 BASIC (Pentagon)' },
     { file: 'pentagon.rom', page: 0, slot: '128', name: '128 BASIC + menu (Pentagon)' },
+    { file: 'sinclair.rom', page: 1, slot: '128', name: '128 BASIC + menu (Sinclair 128)' },
+    { file: 'sinclair.rom', page: 2, slot: 'sos', name: '48 BASIC (Sinclair 128)' },
+    { file: 'sinclair.rom', page: 3, slot: '128', name: '128 BASIC + menu (Spectrum +2)' },
     { file: 'qc_3_05.rom', slot: '128', name: 'Quick Commander 3.05' },
     { file: 'rrom_200.rom', slot: '128', name: 'RRom 2.00 (STS 6.2)' },
     { file: 'trd503.rom', slot: 'dos', name: 'TR-DOS 5.03' },
@@ -510,7 +521,7 @@
   const msum = { x: 0, y: 0 }; // what the core has accumulated (wm_x, wm_y): Kempston X = x, Y = -y (8 bits)
   function mouseSend(dx, dy, dz, b) { msum.x += dx; msum.y += dy; E.web_mouse(dx, dy, dz, b); }
   function canLockMouse() {
-    return E && E.web_mouse_type() === 1 && !dbgOn && !isPaused() && !!canvas.requestPointerLock;
+    return E && E.web_mouse_type() === 1 && !dbgOn && !isPaused() && !rz && !!canvas.requestPointerLock;
   }
   function releaseMouse() { if (mouseLocked && document.exitPointerLock) document.exitPointerLock(); }
   function mouseUI() {
@@ -995,7 +1006,7 @@
     if (p && !dbgOn) releaseAll();
     if (p) releaseMouse();
   }
-  function setUserPaused(v) { userPaused = v; applyRunState(); }
+  function setUserPaused(v) { userPaused = v; applyRunState(); if (rz) rzxUI(); }
   document.addEventListener('visibilitychange', () => { hiddenPaused = document.hidden; applyRunState(); if (document.hidden && IOS) killAudio(); });
   // Safari: pagehide / pageshow (back-forward cache, app switch) and freeze / resume (Chrome) also mean "not visible"
   window.addEventListener('pagehide', () => { hiddenPaused = true; applyRunState(); if (IOS) killAudio(); });
@@ -1053,6 +1064,7 @@
         run = Math.min(Math.floor(frameAcc), 6); frameAcc -= Math.floor(frameAcc);
       }
     }
+    if (rz && rz.seeking) run = 0; // the player is running the frames itself
     const t0 = performance.now();
     for (let i = 0; i < run; i++) {
       // a slow device (or a throttled page) must not dig itself in: at most ~30 ms of emulation per screen refresh
@@ -1065,6 +1077,9 @@
       if (r.value > 100) frameN = r.value;
       frameDone(r.value);
     }
+    if (rz && run && rz.speed > 1 && (E.web_rzx_status() & 1)) E.web_rzx_ff(run * (rz.speed - 1)); // RZX faster: the frames between without sound
+    if (rz) rzxPoll();
+    if (run) recPoll();
     if (run) { const r0 = performance.now(); render(); renderMs += (performance.now() - r0 - renderMs) * 0.1; coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
     else if (isPaused() && ledKey) { ledKey = ''; $('dled').hidden = true; }
     drawViz(now);
@@ -1228,7 +1243,7 @@
     helpZ();
   }
   // a help window always stays just above the window it belongs to (it may lie over it on a narrow screen)
-  const HELP_OF = [['dbghelp', 'dbgwin'], ['dgahelp', 'dgawin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['ldhelp', 'loadwin'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
+  const HELP_OF = [['dbghelp', 'dbgwin'], ['dgahelp', 'dgawin'], ['gfxhelp', 'gfxwin'], ['pfhelp', 'perfwin'], ['rahelp', 'restwin'], ['ldhelp', 'loadwin'], ['svhelp', 'savedlg'], ['fchelp', 'fcwin'], ['mainhelp', 'options']];
   function helpZ() {
     WINS.forEach((x, k) => { x.style.zIndex = String(8 + 2 * k); });
     for (const [h, p] of HELP_OF) { const he = $(h), pe = $(p); if (he && pe && pe.style.zIndex) he.style.zIndex = String(+pe.style.zIndex + 1); }
@@ -1803,7 +1818,7 @@
     if (e.code === 'F12') { userReset(); return true; }
     // OSZ: Ext + key (Caps Shift + Symbol Shift + key: three ZX keys, more than a key of the ini keyset gives) on F keys too:
     // F8 = Ext+1 (the system process), F9 = Ext+9 (None Commander), F10 = Ext+0 (shadow monitor)
-    if (model === 'OSZ' && OSZ_FKEYS[e.code] !== undefined) { if (!e.repeat) runMacro([{ key: [ZK.CS, ZK.SS, OSZ_FKEYS[e.code]], hold: 8 }]); return true; }
+    if (M() === 'GMX' && OSZ_FKEYS[e.code] !== undefined) { if (!e.repeat) runMacro([{ key: [ZK.CS, ZK.SS, OSZ_FKEYS[e.code]], hold: 8 }]); return true; }
     if (e.code === 'F2') { openSave(); return true; }
     if (e.code === 'F3') { showLoad(); return true; }
     if (e.code === 'F4') { toggleSound(); return true; }
@@ -1912,7 +1927,7 @@
     updateUI();
     return true;
   }
-  const LOADABLE = /\.(trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|wmf|pal|\$.)$/i;
+  const LOADABLE = /\.(trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|wmf|pal|rzx|\$.)$/i;
   // the page's question box: resolves true (OK) / false (Cancel, Esc); OK has the focus
   function askBox(title, text, ok, no) {
     const w = $('askbox'), okb = w.querySelector('.ok'), nob = w.querySelector('.no');
@@ -1946,6 +1961,9 @@
     name = name.replace(/^.*[\\/]/, '').replace(/[:]/g, '_');
     if (drive === ROM_TARGET) { const a = autorunNext; autorunNext = false; loadRomDisk(name, buf, a); return; }
     if (/\.spg$/i.test(name)) { autorunNext = false; await spgLoad(name, buf); return; }
+    if (/\.(sna|z80|sp|spg|rzx)$/i.test(name) && !await recGate()) return; // a snapshot: the recording cannot go on
+    if (/\.rzx$/i.test(name)) { autorunNext = false; await rzxOpen(name, buf); return; }
+    if (rz) rzxClose(); // another image: the recording's player goes
     if (/\.wmf$/i.test(name)) { autorunNext = false; await wcWmf(name, buf); return; }
     // a +3 / CPC disk (DSK with 512-byte sectors): Spectrum +3 (Beta Disk machines read only TR-DOS disks of 256-byte sectors)
     if (/\.dsk$/i.test(name) && M() !== 'PLUS3' && dsk512(buf)) { toast(name + ': a +3 disk — Spectrum +3 starts'); const a = autorunNext; await setModel('PLUS3', true); autorunNext = a; if (M() !== 'PLUS3') return; }
@@ -1976,6 +1994,171 @@
     const why = ['', 'not an SPG file', 'a block is missing (the file is cut)', 'a block does not depack'][r & 0xFF];
     if (r) { toast(name + ': ' + why + (r > 0xFF ? ' (block ' + ((r >> 8) + 1) + ')' : ''), true); return; }
     setName(name); toast('SPG: ' + name); updateUI();
+  }
+  // ------------------------------------------------------------------ RZX: input recordings played back (web/rzx.js, web/web_rzx.cpp)
+  // The recording's snapshot starts on its machine (ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs, Spectrum +3, Pentagon); then each frame takes the
+  // recorded port values. The player (over the screen, shown by a tap) seeks by states saved on the way (every few seconds):
+  // back = the nearest state before, then the frames up to there without sound and picture.
+  let rz = null; // { name, total, creator, keys: [{ f, s }], ki, speed, seeking, scratch, note, taken, pin (the player always shown) }
+  const RZ_FPS = 50;
+  const rzTime = (f) => { const t = Math.floor(f / RZ_FPS); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+  async function rzxOpen(name, buf) {
+    let r;
+    try { r = await UnrealRzx.read(buf); } catch (e) { toast(name + ': ' + e.message, true); return; }
+    if (rz) rzxClose();
+    const want = ['RZX48', 'RZX128', 'PLUS3', 'RZXP2', 'PENTAGON'][r.mach] || 'RZX128'; // the machine of the snapshot
+    const rom = MODELS[want].files[0];
+    if (!await ensureFiles([rom])) { toast(name + ': the recording needs ' + srcUrl(rom) + (rom === 'sinclair.rom' ? ' (the ZX Spectrum 48 / 128 / +2 ROMs)' : ''), true); return; }
+    if (M() !== want) { toast(name + ': ' + MODELS[want].name + ' starts'); await setModel(want, true); if (M() !== want) return; }
+    const p = E.malloc(r.buf.length); new Uint8Array(E.memory.buffer, p, r.buf.length).set(r.buf);
+    const total = E.web_rzx_load(p, r.buf.length); // the core keeps the buffer (and frees it)
+    if (!total || !E.web_rzx_start(0)) { toast(name + ': the recording cannot be read', true); E.web_rzx_free(); return; }
+    rz = { name, total, creator: r.creator, keys: [], ki: Math.max(250, Math.ceil(total / 150)), speed: 1, seeking: false, scratch: E.malloc(E.web_rzx_st_size()), note: '', taken: false, pin: true };
+    rzxKey(); setName(name); releaseMouse(); if (touchMouse) setTouchMouse(false);
+    if (userPaused) setUserPaused(false);
+    if (audio) audio.flush();
+    rzxUI(); rzxShow(true);
+    toast('RZX: ' + name + ' · ' + rzTime(total) + (r.creator ? ' · ' + r.creator : ''));
+  }
+  function rzxClose() {
+    if (!rz) return;
+    E.web_rzx_free(); E.free(rz.scratch); rz = null;
+    $('rzxbar').hidden = true; clearTimeout(rzxHideT);
+  }
+  function rzxKey() { // the state of this frame, kept to come back to it
+    const f = E.web_rzx_pos(), k = rz.keys;
+    if (k.some((x) => x.f === f)) return;
+    const s = new Uint8Array(E.memory.buffer, E.web_rzx_state(), E.web_rzx_st_size()).slice();
+    k.push({ f, s }); k.sort((a, b) => a.f - b.f);
+  }
+  const rzLastKey = () => { let m = -1; const f = E.web_rzx_pos(); for (const x of rz.keys) if (x.f <= f && x.f > m) m = x.f; return m; };
+  async function rzxSeek(f) {
+    if (!rz || rz.seeking) return;
+    if (!await recGate()) { rzxUI(); return; } // the player going on ends a recording
+    f = Math.max(0, Math.min(rz.total - 1, Math.round(f)));
+    rz.seeking = true; rz.taken = false; rz.note = ''; rzxUI();
+    let k = null; for (const x of rz.keys) if (x.f <= f && (!k || x.f > k.f)) k = x;
+    const cur = E.web_rzx_pos(), on = E.web_rzx_status() & 1;
+    if (!on || f < cur || (k && k.f > cur)) { new Uint8Array(E.memory.buffer, rz.scratch, k.s.length).set(k.s); E.web_rzx_restore(rz.scratch); }
+    let t0 = performance.now();
+    while (rz && E.web_rzx_pos() < f && (E.web_rzx_status() & 1)) {
+      const n = Math.min(f - E.web_rzx_pos(), rz.ki - (E.web_rzx_pos() - rzLastKey()));
+      if (!E.web_rzx_ff(Math.max(1, n))) break;
+      if (E.web_rzx_pos() - rzLastKey() >= rz.ki) rzxKey();
+      if (performance.now() - t0 > 40) { $('rzxtime').textContent = rzTime(E.web_rzx_pos()); $('rzxseek').value = E.web_rzx_pos(); await new Promise((r) => setTimeout(r, 0)); t0 = performance.now(); }
+    }
+    if (!rz) return;
+    rz.seeking = false;
+    if (audio) audio.flush();
+    render(); rzxPoll(); rzxUI();
+  }
+  // after the frames of a refresh: the end / out of sync, the states on the way
+  function rzxPoll() {
+    if (!rz || rz.seeking) return;
+    const st = E.web_rzx_status(), f = E.web_rzx_pos();
+    if ((st & 1) && f - rzLastKey() >= rz.ki) rzxKey();
+    if ((st & 2) && rz.note !== 'end') { rz.note = 'end'; toast('RZX: the end of the recording — the game goes on, your turn'); rzxUI(); rzxShow(true); }
+    if ((st & 4) && rz.note !== 'sync') {
+      rz.note = 'sync';
+      toast('RZX: out of sync at ' + rzTime(E.web_rzx_bad()) + ' (frame ' + E.web_rzx_bad() + ') — the program went another way', true);
+      rzxUI(); rzxShow(true);
+    }
+    if (!$('rzxbar').hidden && !rzDrag) { $('rzxtime').textContent = rzTime(f); $('rzxseek').value = f; }
+  }
+  const rzPlaying = () => !!(rz && (E.web_rzx_status() & 1));
+  function rzxUI() {
+    if (!rz) return;
+    const on = rzPlaying(), run = on && !userPaused;
+    setIcon('rzxplay', run ? 'i-pause' : 'i-play');
+    $('rzxplay').title = run ? 'Pause' : on ? 'Play' : 'Play the recording from here';
+    $('rzxpin').classList.toggle('on', rz.pin);
+    $('rzxpin').title = rz.pin ? 'Player stays on screen (click: hide it, a tap on picture shows it for a while)' : 'Player hides (click: keep it on screen)';
+    $('rzxmsg').textContent = rz.seeking ? 'seeking…' : rz.note === 'end' ? 'the end — your turn' : rz.note === 'sync' ? 'out of sync' : rz.taken ? 'your turn' : '';
+    $('rzxseek').max = rz.total - 1; $('rzxlen').textContent = rzTime(rz.total);
+    $('rzxspeed').textContent = rz.speed + '×';
+    $('rzxtake').disabled = !on;
+  }
+  let rzxHideT = 0, rzDrag = false;
+  function rzxShow(v) {
+    if (!rz) return;
+    clearTimeout(rzxHideT);
+    $('rzxbar').hidden = !v;
+    if (v && rz.pin) { rzxUI(); rzxPoll(); return; } // fixed: always there
+    if (v) { rzxUI(); rzxPoll(); rzxHideT = setTimeout(() => { if (rz && rzPlaying() && !userPaused && !rzDrag && !$('rzxbar').matches(':hover') && !$('rzxbar').contains(document.activeElement)) $('rzxbar').hidden = true; else if (rz) rzxShow(true); }, 3000); }
+  }
+  // RZX recording (Save / Input recording): the core counts the fetches of each frame and keeps the values of the INs
+  const REC_MACH = { RZX48: 0, RZX128: 1, PLUS3: 2, RZXP2: 3, PENTAGON: 4 };
+  let recDone = null; // the last recording, stopped: { state, mach, frames, n, creator, major, minor, name }
+  const recOn = () => !!(E && E.web_rzx_rec_on && E.web_rzx_rec_on());
+  // why a recording cannot start now ('' = it can)
+  const recWhyNot = () => !(M() in REC_MACH) ? 'not on this machine: 48/128K models only (Pentagon 128, Spectrum +3, a machine an RZX started)'
+    : SPEEDS[speedIdx] > 3 ? 'CPU clock over 3x' : rzPlaying() ? 'RZX plays: Take control first' : '';
+  // a user action that ends the recording (Reset, another machine, a snapshot, the player): asked first; yes = discarded
+  async function recGate() {
+    if (!recOn()) return true;
+    if (!await askBox('RZX recording', 'Stop recording and discard it?', 'Stop')) return false;
+    E.web_rzx_rec_stop(); recDone = null; recUI(); toast('RZX recording: discarded');
+    return true;
+  }
+  function recStart() {
+    const why = recWhyNot(); if (why) { toast('RZX recording: ' + why, true); return; }
+    E.web_rzx_rec_start(REC_MACH[M()]);
+    fwinShow('savedlg', false); canvas.focus();
+    toast('RZX recording: on'); recUI();
+  }
+  function recStop(why) {
+    if (!E || !recOn() && !why) return;
+    E.web_rzx_rec_stop();
+    const n = E.web_rzx_rec_frames(), sp = E.web_rzx_rec_snap();
+    if (n && sp) {
+      const v = APP_VER.split('.');
+      recDone = { state: new Uint8Array(E.memory.buffer, sp, E.web_rzx_st_size()).slice(), mach: REC_MACH[M()] !== undefined ? REC_MACH[M()] : 4,
+        frames: new Uint8Array(E.memory.buffer, E.web_rzx_rec_data(), E.web_rzx_rec_len()).slice(), n,
+        creator: 'Web Unreal Speccy', major: +v[0] || 0, minor: (+v[1] || 0) * 100 + (+v[2] || 0),
+        name: ((rz && rz.name) || cstr(E.web_disk_name(0)) || 'recording').replace(/^.*[\\/]/, '').replace(/\.[^.]*$/, '') + '_rec.rzx' };
+      toast('RZX recording: ' + rzTime(n) + (why ? ' — ' + why : '') + ' (Save / Input recording)', !!why);
+    }
+    recUI();
+  }
+  function recUI() {
+    const on = recOn();
+    $('recmark').hidden = !on;
+    if ($('svrec')) { const why = on ? '' : recWhyNot();
+      $('svrec').textContent = on ? 'Stop' : 'Start'; $('svrec').classList.toggle('primary', on); $('svrec').disabled = !!why;
+      $('svrecst').textContent = on ? 'recording ' + rzTime(E.web_rzx_rec_frames()) : why ? why : recDone ? rzTime(recDone.n) + ' recorded, ready to save' : 'not recording';
+      if ($('svtype').value === 'rzx') $('svgo').disabled = !recDone; }
+  }
+  function recPoll() { // after the frames of a refresh
+    if (!recOn()) { if (!$('recmark').hidden) { const e = E.web_rzx_rec_err(); recStop(e === 1 ? 'a frame too long (CPU clock)' : e === 2 ? 'out of memory' : e === 3 ? 'reset' : 'stopped'); } return; }
+    $('rectime').textContent = rzTime(E.web_rzx_rec_frames());
+    if (!$('savedlg').hidden && $('svtype').value === 'rzx') recUI();
+  }
+  function bindRzx() {
+    // a tap on the picture shows the player (the program does not get the mouse while the recording plays)
+    $('screenwrap').addEventListener('pointerdown', (e) => {
+      if (!rz || e.target !== canvas) return;
+      e.stopPropagation(); e.preventDefault();
+      if (!rz.pin) rzxShow($('rzxbar').hidden);
+    }, true);
+    const done = () => { rzxShow(true); canvas.focus(); };
+    $('rzxplay').onclick = () => {
+      if (!rz) return;
+      if (rzPlaying()) setUserPaused(!userPaused);
+      else { setUserPaused(false); rzxSeek(rz.note === 'end' || rz.note === 'sync' ? 0 : E.web_rzx_pos()); }
+      rzxUI(); done();
+    };
+    $('rzxseek').oninput = () => { rzDrag = true; $('rzxtime').textContent = rzTime(+$('rzxseek').value); clearTimeout(rzxHideT); };
+    $('rzxseek').onchange = async () => { rzDrag = false; await rzxSeek(+$('rzxseek').value); done(); };
+    $('rzxspeed').onclick = () => { if (!rz) return; rz.speed = rz.speed >= 8 ? 1 : rz.speed * 2; rzxUI(); done(); };
+    $('rzxtake').onclick = async () => { // the recording stops where it is, the player goes: the game is yours from here
+      if (!rzPlaying()) return;
+      if (!await askBox('RZX', 'Take control? (RZX player will be closed).', 'Take control')) { done(); return; }
+      if (!rz) return;
+      const at = rzTime(E.web_rzx_pos());
+      E.web_rzx_stop(); rzxClose(); setUserPaused(false); canvas.focus();
+      toast('RZX: your turn from ' + at);
+    };
+    $('rzxpin').onclick = () => { if (!rz) return; rz.pin = !rz.pin; done(); }; // hide: shown by a tap, for a while; fix: always
   }
   async function loadFile(file, drive) { await loadBytes(file.name, new Uint8Array(await file.arrayBuffer()), drive); }
   // autorunNext: set by the Load window just before a load, used by the first disk inserted into A: — true: its boot or its
@@ -2136,7 +2319,7 @@
       if (matchMedia('(pointer: coarse)').matches) { w.tabIndex = -1; w.focus({ preventScroll: true }); }
       else { const f = w.querySelector('[data-autofocus], input:not([hidden]):not([type=checkbox]):not([type=radio]), select, button.primary:not([hidden])'); if (f) f.focus(); }
     }
-    else { w.hidden = true; if (id === 'loadwin') ldHelp(false); canvas.focus(); }
+    else { w.hidden = true; if (id === 'loadwin') ldHelp(false); if (id === 'savedlg') svHelp(false); canvas.focus(); }
   }
 
   // ------------------------------------------------------------------ autorun: reset to TR-DOS and type RUN (boots "boot")
@@ -2700,7 +2883,9 @@
   // (xBIOS, Scorpion, Profi, Quorum) stop in TR-DOS with "No file", then RUN "name" is typed; the EVO boot menu runs the
   // first BASIC file by itself
   // F12 / Reset: the OSZ machine boots OSZ again (OS.TRD in A:, through the 128 menu: "128 TR-DOS"); the others: Reset
-  function userReset() {
+  async function userReset() {
+    if (!await recGate()) return; // RZX recording: asked first
+    if (rz) rzxClose(); // the recording does not go on after a reset
     if (model === 'OSZ' && E.web_disk_present(0)) { autorun(); return; }
     E.web_reset(0);
   }
@@ -2846,7 +3031,7 @@
   }
   async function brwUsage() { try { const e = await navigator.storage.estimate(); return e && e.usage ? (e.usage / 1048576).toFixed(1) + ' MB used' + (e.quota ? ' of ' + Math.round(e.quota / 1048576) + ' MB' : '') : ''; } catch (e) { return ''; } }
   const brwKind = (name, t) => t.startsWith('disk:') ? 'disk' : t.startsWith('hdd:') ? 'hdd' : t === 'sd' ? 'sd' : t === 'sna' ? 'snap'
-    : /\.(tap|tzx|csw)$/i.test(name) ? 'tape' : /\.(sna|z80|sp)$/i.test(name) ? 'snap' : DISK_EXT.test(name) ? 'disk' : 'file';
+    : /\.(tap|tzx|csw)$/i.test(name) ? 'tape' : /\.(sna|z80|sp|rzx)$/i.test(name) ? 'snap' : DISK_EXT.test(name) ? 'disk' : 'file';
   // the images of a ZIP into the browser storage (the mounted one too): a name that is there already is kept (not replaced)
   async function zipRest(buf, entries) {
     try {
@@ -2888,7 +3073,7 @@
   }
 
   // ------------------------------------------------------------------ Load window: local server, local file, server list, URL
-  const LOAD_EXT = /\.(zip|trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|wmf|pal|\$.)$/i;
+  const LOAD_EXT = /\.(zip|trd|scl|fdi|udi|td0|isd|pro|hob|dsk|ipf|tap|tzx|csw|sna|z80|sp|spg|wmf|pal|rzx|\$.)$/i;
   const ldDrive = () => 0; // Load mounts disks into A: (B: and the ROM disk: Options / Disk)
   function ldMsg(t, err) { $('ldmsg').textContent = t || ''; $('ldmsg').classList.toggle('err', !!err); }
   function showLoad(drive) {
@@ -3102,7 +3287,7 @@
     const run = goMode === 'run', b = $('ldlistgo');
     b.textContent = run ? 'Run' : 'Mount'; b.classList.toggle('primary', run); b.disabled = !it;
     b.title = run ? 'Start the entry' + (m ? ' on ' + MODELS[m].name : '') + ' as the server has it' : 'Mount the entry: the machine stays';
-    $('ldlistmore').hidden = !(it && it.run); $('ldlistmore').classList.toggle('primary', run); // an entry with a link: ▾ chooses Run or Mount
+    $('ldlistmore').hidden = !(it && it.run); $('ldlistmore').classList.toggle('primary', run); $('ldgo').classList.toggle('single', $('ldlistmore').hidden); // single: Mount alone, a plain button // an entry with a link: ▾ chooses Run or Mount
   }
   // before Run: what the entry replaces (the disks when the machine changes, its HDD / SD card, an OS's own image) — asked
   // only when unsaved changes would be lost
@@ -3406,7 +3591,7 @@
   function svRomList() {
     const sel = $('svrom'), was = sel.value, seen = new Map();
     const put = (f, t) => { if (!/\.rom$/i.test(f)) return; const k = f.toLowerCase(); if (!seen.has(k)) seen.set(k, [f, []]); if (!seen.get(k)[1].includes(t)) seen.get(k)[1].push(t); };
-    for (const [k, v] of Object.entries(MODELS)) if (!OS_MODELS[k] && !v.custom) put(v.files[0], v.sysName || v.name);
+    for (const [k, v] of Object.entries(MODELS)) if (!OS_MODELS[k] && !v.custom && !v.hidden) put(v.files[0], v.sysName || v.name);
     put(GS_ROM, 'General Sound');
     for (const r of romJson.length ? romJson : romParts) if (r.page === undefined || !seen.has(r.file.toLowerCase())) put(r.file, r.name); // pages of a model ROM: the model says it
     sel.innerHTML = '';
@@ -3441,6 +3626,7 @@
   }
   function openSave(what) {
     if (!E) return;
+    if (!what && recOn()) what = 'rzx'; // recording: Save opens at it (as ● REC does)
     svRomList(); if (!romPartsLoaded) loadRomParts().then(() => { svRomList(); if ($('svtype').value === 'srvrom') svUpdate(true); });
     const sel = $('svtype'); sel.innerHTML = '';
     const add = (v, t, parent) => { const o = document.createElement('option'); o.value = v; o.textContent = t; (parent || sel).appendChild(o); };
@@ -3448,6 +3634,7 @@
     for (let d = 0; d < NHDD; d++) if (hdds[d] && fs.exists(hdds[d])) add('hdd:' + d, `HDD ${d}: ${hdds[d]}${hddDirty[d] ? ' *' : ''}`);
     if (sdName && fs.exists(sdName)) add('sd', `SD card: ${sdName}${sdDirty ? ' *' : ''}`);
     add('sna', 'Snapshot (SNA)');
+    add('rzx', 'Input recording (RZX)');
     add('scr', 'Screen (SCR)');
     add('png', 'Screenshot (PNG)');
     add('mem', 'Memory block (BIN)');
@@ -3477,6 +3664,8 @@
     document.querySelectorAll('#savedlg .sv-one').forEach((e) => { e.hidden = !one; });
     if (rg) $('svbsum').textContent = rg.len + ' bytes';
     document.querySelectorAll('#savedlg .sv-rom').forEach((e) => { e.hidden = t !== 'srvrom'; });
+    document.querySelectorAll('#savedlg .sv-rzx').forEach((e) => { e.hidden = t !== 'rzx'; });
+    $('svgo').disabled = t === 'rzx' && !recDone; if (t === 'rzx') recUI();
     let name = '', note = '';
     if (disk) {
       const d = +t.slice(5);
@@ -3503,6 +3692,9 @@
     } else if (t === 'sna') {
       name = 'snapshot.sna';
       note = 'SNA holds 128K only. Memory above 128K and ATM ports will be lost.';
+    } else if (t === 'rzx') {
+      name = (recDone && recDone.name) || 'recording.rzx';
+      note = 'RZX record starts from the next frame. Works with 48/128K models (without extra RAM). CPU clock up to 3x. ZIP for RZX is useless.';
     } else if (t === 'png') {
       name = 'screen.png';
       note = 'Screenshot as on screen (any video mode, border included).';
@@ -3532,9 +3724,10 @@
     // the field: aaa.zip when packed (the file inside always gets the extension of the format), else aaa.<ext>
     const was = svExtCur; svExtCur = t === 'rom' ? '' : (/\.([^.]+)$/.exec(name) || ['', ''])[1];
     const base = resetName || !$('svname').value ? name.replace(/\.[^.]*$/, '') : svBase($('svname').value, was);
-    $('svname').value = svName(base, $('svzip').checked || t === 'rom');
+    $('svname').value = svName(base, ($('svzip').checked && t !== 'rzx') || t === 'rom');
+    document.querySelectorAll('#savedlg .sv-zip').forEach((e) => { e.hidden = t === 'rzx'; }); // RZX: packed inside already
     // Where: the browser storage takes what Load can load again (disks, HDD / SD images, snapshots, files the emulator wrote)
-    const canBrw = disk || t.startsWith('hdd:') || t === 'sd' || t === 'sna' || t.startsWith('file:');
+    const canBrw = disk || t.startsWith('hdd:') || t === 'sd' || t === 'sna' || t === 'rzx' || t.startsWith('file:');
     $('svdest').querySelector('[value="brw"]').disabled = !canBrw;
     $('svdest').value = canBrw && load('sv.dest') === 'brw' ? 'brw' : 'pc';
     const brw = $('svdest').value === 'brw';
@@ -3569,7 +3762,7 @@
     return out;
   }
   async function doSave() {
-    const t = $('svtype').value, brw = $('svdest').value === 'brw', zip = $('svzip').checked || (brw && t.startsWith('hdd:')); // the browser keeps an HDD with its .chs: one ZIP
+    const t = $('svtype').value, brw = $('svdest').value === 'brw', zip = ($('svzip').checked && t !== 'rzx') || (brw && t.startsWith('hdd:')); // the browser keeps an HDD with its .chs: one ZIP
     store('sv.zip', $('svzip').checked ? '1' : '0');
     // the file goes to the computer (download) or into the browser storage
     const out = async (fn, bytes) => {
@@ -3619,6 +3812,9 @@
       setName('__save.sna');
       if (!E.web_save_sna()) { toast('Cannot save the snapshot', true); return; }
       data = fs.read('__save.sna'); fs.remove('__save.sna');
+    } else if (t === 'rzx') {
+      if (!recDone) { toast('No recording: Start, play, Stop', true); return; }
+      data = await UnrealRzx.write(recDone);
     } else if (t === 'scr') {
       const page = (E.web_p7ffd() & 8) ? 7 : 5;
       data = new Uint8Array(E.memory.buffer, E.web_gfx_mem(1, 0, 0) + page * 0x4000, 6912).slice();
@@ -3689,6 +3885,10 @@
     $('svbnone').onclick = () => { svBankSel.clear(); svUpdate(true); };
     $('svbmap').onclick = () => { svBankSel = new Set(svMapped); svUpdate(true); };
     $('svgo').onclick = doSave;
+    $('svhelpbtn').onclick = (e) => { e.stopPropagation(); svHelp($('svhelp').hidden); };
+    $('svhelpclose').onclick = () => svHelp(false);
+    $('svrec').onclick = () => { if (recOn()) { recStop(); svUpdate(true); $('svgo').focus(); } else recStart(); };
+    $('recmark').onclick = () => openSave('rzx');
     $('dbgdlg').querySelector('[data-close]').onclick = dlgClose;
     $('svzip').checked = load('sv.zip') !== '0';
     $('svzip').onchange = () => { $('svname').value = svName(svBase($('svname').value), $('svzip').checked || $('svtype').value === 'rom'); };
@@ -4216,6 +4416,16 @@
     const r = w.getBoundingClientRect();
     h.style.height = Math.max(r.height, 420) + 'px'; ldHelpFW.setPos(snapRight(r, h));
   }
+  // help of the Save window: at its side, as Load's
+  let svHelpFW = null;
+  function svHelp(v) {
+    const h = $('svhelp'), w = $('savedlg');
+    if (!svHelpFW) svHelpFW = floatWin(h, 'svhelppos', () => ({ x: 0, y: 0 }));
+    h.hidden = !v; $('svhelpbtn').classList.toggle('on', v);
+    if (!v) return;
+    const r = w.getBoundingClientRect();
+    h.style.height = Math.max(r.height, 420) + 'px'; svHelpFW.setPos(snapRight(r, h));
+  }
   // help of the REST API window: at its side (right, or left when there is no room), the same height; then it can be dragged
   let raHelpFW = null;
   function raHelp(v) {
@@ -4630,7 +4840,10 @@
   }
 
   function modelUI() {
-    $('modelsel').value = model;
+    // an RZX machine (not in the list) shows in it while it runs
+    const sel = $('modelsel'); for (const o of [...sel.options]) if (o.dataset.hid) o.remove();
+    if (MODELS[model].hidden) { const o = document.createElement('option'); o.value = model; o.textContent = MODELS[model].name; o.dataset.hid = '1'; sel.appendChild(o); }
+    sel.value = model;
     modelSelUI();
     $('xt').hidden = !MODELS[model].xt;
     const rd = !!(romDisk && M() === 'XBIOS136'); // ROM disk: Turbo 2+ (it builds the xBIOS 1.36 ROM)
@@ -4827,10 +5040,12 @@
   let xtPref = null; // ATM mode (XT keyboard) chosen on an ATM machine: kept across model changes in this session
   async function setModel(m, force) {
     if (!MODELS[m] || (m === model && !force) || switching) { modelUI(); return; }
+    if (!await recGate()) { modelUI(); return; } // RZX recording: asked first
     const dirty = [];
     for (let i = 0; i < NDRIVES; i++) if (E && E.web_disk_present(i) && E.web_disk_changed(i)) dirty.push(DRV[i] + ':');
     if (dirty.length && !loseAsked && !await askBox('', 'Unsaved changes on disk ' + dirty.join(' ') + ' will be lost.\nSwitch to ' + MODELS[m].name + '?')) { modelUI(); return; }
     switching = true; modelSelUI();
+    if (rz) rzxClose();
     releaseAll(); releaseMouse();
     if (dbgOn) debugShown(false);
     try { if (E) E.web_save_nv(); } catch (e) {} // keep CMOS changes for the session
@@ -4907,7 +5122,7 @@
   }
   function bindModels() {
     const sel = $('modelsel');
-    for (const [k, v] of Object.entries(MODELS)) { const o = document.createElement('option'); o.value = k; o.textContent = (!OS_MODELS[k] && v.sysName) || v.name; sel.appendChild(o); }
+    for (const [k, v] of Object.entries(MODELS)) { if (v.hidden) continue; const o = document.createElement('option'); o.value = k; o.textContent = (!OS_MODELS[k] && v.sysName) || v.name; sel.appendChild(o); }
     sel.onchange = modelSelUI;
     bindCustom();
     $('modelapply').onclick = () => { const f = sel.value === 'CUSTOM' && customDirty; customDirty = false; showNedo(false); showOptions(false); setModel(sel.value, f); }; // Start: Options (and its NedoOS window) close
@@ -4969,6 +5184,7 @@
     $('barshow').title = bare ? 'Show the menu bar and the frame (~)' : 'Hide the menu bar and the frame (~)';
     applyScale(); hudDraw();
   }
+  let z48r = 0.46; // ZX-48 keyboard: height / width
   function applyScale() {
     const v = $('scale').value;
     const w = canvas.width || 640, h = canvas.height || 480;
@@ -4984,7 +5200,12 @@
       // landscape with a keyboard or the joystick on: the screen is lower than the whole height, so the halves at the sides get wider
       // and their keys bigger (the home screen app has no browser bars: 82 % keeps the height it has in the browser)
       const fh = land && !vk.hidden ? Math.round(vh * (HOME_APP ? 0.82 : 0.9)) : vh; // the browser: a bit lower than all of it too
-      const fit = Math.max(0.25, Math.min((vw - 18) / w, (fh - reserved) / h));
+      // ZX-48: the keyboard's height follows its width (the screen's): its share of the width (measured) goes into the fit, else
+      // each scale saw the keyboard of the scale before and the screen swung (iPad landscape: showing it again, the keyboard menu)
+      const prop = !vk.hidden && !land && vkbd && vkbd.tab === 'zx48';
+      if (prop && vk.offsetWidth > 100) z48r = vk.offsetHeight / vk.offsetWidth;
+      const byH = prop ? (fh - (reserved - vkh) - z48r * 2) / (h + z48r * w) : (fh - reserved) / h;
+      const fit = Math.max(0.25, Math.min((vw - 18) / w, byH));
       k = v === 'fit' ? fit : Math.min(parseFloat(v), fit); // selected zoom is the upper limit
     }
     const cw = Math.floor(w * k), ch = Math.floor(h * k);
@@ -5370,7 +5591,7 @@
     Backquote: [192, '`~'], Minus: [189, '-_'], Equal: [187, '=+'], BracketLeft: [219, '[{'], BracketRight: [221, ']}'],
     Backslash: [220, '\\|'], Semicolon: [186, ';:'], Quote: [222, "'\""], Comma: [188, ',<'], Period: [190, '.>'], Slash: [191, '/?'],
   };
-  const vkMods = new Set(), vkInDbg = new Set();
+  const vkMods = new Set(), vkInDbg = new Set(), vkHeld = new Set(), vkHot = new Set(); // vkHeld: Shift / Ctrl / Alt of the XT keyboard down; vkHot: F keys the page took
   function vkToDebug(code) {
     const shift = vkMods.has('ShiftLeft') || vkMods.has('ShiftRight');
     let vk = 0, ch = 0, m;
@@ -5443,12 +5664,18 @@
       startAudio();
       if (code in KJ_BITS) { kjBits |= KJ_BITS[code]; E.web_kjoy(kjBits); return; }
       if (code.startsWith('ZX:')) { E.web_zxkey(+code.slice(3), 1); return; }
+      if (/^(Shift|Control|Alt)/.test(code)) vkHeld.add(code);
+      if (/^F\d+$/.test(code)) { // F keys as on the PC keyboard: the page's (Save, Load, Reset, OSZ Ext keys …) when the machine does not take them
+        const has = (p) => [...vkHeld].some((c) => c.startsWith(p));
+        if (hotkey({ code, key: code, repeat: false, shiftKey: has('Shift'), ctrlKey: has('Control'), altKey: has('Alt'), metaKey: false })) { vkHot.add(code); return; }
+      }
       const sc = SCAN[code]; if (sc !== undefined) E.web_key(sc, 1, 0);
     };
     const vkRelease = (code) => {
       if (vkFc.delete(code) || vkDga.delete(code)) { vkFcMods.delete(code); return; }
       if (!E) return;
-      vkMods.delete(code);
+      vkMods.delete(code); vkHeld.delete(code);
+      if (vkHot.delete(code)) return; // done by the page on press
       if (vkInDbg.delete(code)) { // pressed inside the debugger: never reaches the machine
         const sc = SCAN[code]; if (sc !== undefined && E.web_debug_active()) E.web_key(sc, 0, 0);
         return;
@@ -5486,6 +5713,7 @@
 
   let kbdNoStore = false, kbdLink = () => {};
   function bindUI() {
+    bindRzx();
     setBare(load('bare') === '1', false); // ~: menu bar and frame hidden (as last time)
     $('vidbare').onchange = (e) => setBare(e.target.checked, true);
     for (const [id, k] of [['vidnomhz', 'hud.nomhz'], ['vidnofps', 'hud.nofps']]) { $(id).checked = load(k) === '1'; $(id).onchange = (e) => { store(k, e.target.checked ? '1' : '0'); hudDraw(); }; }
