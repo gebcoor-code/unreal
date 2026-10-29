@@ -2645,3 +2645,9 @@ Web Unreal Speccy — version history
 @ Options / Video: Mix Frames (GMX only) — on when Scorpion GMX (or OSZ)
   starts, off and not available on the other machines; not remembered
 - Options / Video: Hide Frequency and Hide FPS (Hide Menu Bar hides them)
+
+
+        version 1.16.2                  29 oct 2026
+
+* phone landscape, on-screen keyboards off: the screen keeps 5 px from
+  the top and the bottom edges
