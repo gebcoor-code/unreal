@@ -257,7 +257,7 @@
         const pg = gmxPg(scrPage), base = e.web_gfx_mem(1, 0, 0), gfx = new Uint8Array(e.memory.buffer, base + pg * 0x4000, 0x4000), atr = new Uint8Array(e.memory.buffer, base + (pg + 0x40) * 0x4000, 0x4000);
         const pal = new Uint32Array(e.memory.buffer, e.web_gfx_pal(), 16).slice(), px = new Uint32Array(scImg.data.buffer), st = e.web_gmx_scroll();
         for (let y = 0; y < 200; y++) for (let c = 0; c < 80; c++) {
-          const o = (st + y * 80 + c) & 0x3FFF, b = gfx[o], at = atr[o], br = (at & 0x40) ? 8 : 0, ink = pal[(at & 7) | br], pap = pal[((at >> 3) & 7) | br];
+          const o = (st + y * 80 + c) % 16000, b = gfx[o], at = atr[o], br = (at & 0x40) ? 8 : 0, ink = pal[(at & 7) | br], pap = pal[((at >> 3) & 7) | br];
           for (let k = 0; k < 8; k++) px[y * 640 + c * 8 + k] = (b & (0x80 >> k)) ? ink : pap;
         }
         scx.putImageData(scImg, 0, 0); scrFit(); return;
@@ -294,7 +294,7 @@
         const c = (E().web_p7ffd() & 8) ? 7 : 5, pg = scrPage === -4 ? c : c ^ 2, a = new Int32Array(E().memory.buffer, E().web_atm_at(pg, x, y), 5);
         return a[0] < 0 ? { x, y, ts: 1 } : { x, y, atm: a[0], p: a[1], a: a[2], mx: a[3], my: a[4] };
       }
-      if (scrPage === -7 || scrPage === -8) { const pg = gmxPg(scrPage), o = (E().web_gmx_scroll() + y * 80 + (x >> 3)) & 0x3FFF; return { x, y, gmx: pg, p: pg * 0x4000 + o, a: (pg + 0x40) * 0x4000 + o }; }
+      if (scrPage === -7 || scrPage === -8) { const pg = gmxPg(scrPage), o = (E().web_gmx_scroll() + y * 80 + (x >> 3)) % 16000; return { x, y, gmx: pg, p: pg * 0x4000 + o, a: (pg + 0x40) * 0x4000 + o }; }
       if (scrPage < -1 && scrPage !== -6) return { x, y, ts: 1 };
       if (x < 0 || y < 0 || x > 255 || y > 191) return null;
       return { x, y, p: ((y & 0xC0) << 5) | ((y & 7) << 8) | ((y & 0x38) << 2) | (x >> 3), a: 0x1800 + (y >> 3) * 32 + (x >> 3) };

@@ -6,16 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261029091031';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261029091031'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261029091031'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261029211633';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261029211633'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261029211633'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.15.0'; // About, System Info (history: changes.txt)
+  const APP_VER = '1.16.1'; // About, System Info (history: changes.txt)
   // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
   const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
   const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
   let land = false;
-  const BUILD = '20261029091031'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const BUILD = '20261029211633'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -654,6 +654,29 @@
     E.web_render();
     blit();
   }
+  // Mix Frames (Options / Video): the picture = the mean of the last two emulated frames (gigascreen, objects every other
+  // frame). The frames are rendered as they run (the last two of a refresh), the mix is drawn once
+  let mixOn = false, mixA = null, mixB = null, mixN = 0;
+  function mixUI() { // a machine started: GMX = on, others = off (the box is off there)
+    const g = M() === 'GMX'; mixOn = g; mixN = 0;
+    $('vidmix').checked = g; $('vidmix').disabled = !g;
+  }
+  function mixGrab() {
+    E.web_render();
+    const w = E.web_fb_w(), h = E.web_fb_h(), n = w * h;
+    if (!mixA || mixA.length !== n) { mixA = new Uint32Array(n); mixB = new Uint32Array(n); mixN = 0; }
+    const t = mixA; mixA = mixB; mixB = t; // mixB: the frame before, mixA: this one
+    mixA.set(new Uint32Array(E.memory.buffer, E.web_fb(), n)); mixN++;
+  }
+  function blitMix() {
+    const w = E.web_fb_w(), h = E.web_fb_h();
+    if (!mixA || mixN < 2 || mixA.length !== w * h) { render(); return; }
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; imageData = null; applyScale(); }
+    if (!imageData) imageData = new ImageData(w, h);
+    const o = new Uint32Array(imageData.data.buffer), a = mixA, b = mixB;
+    for (let i = 0; i < o.length; i++) { const x = a[i], y = b[i]; o[i] = x === y ? x : (((x & 0xFEFEFEFE) >>> 1) + ((y & 0xFEFEFEFE) >>> 1)) | 0xFF000000; }
+    ctx2d.putImageData(imageData, 0, 0);
+  }
   function blit() { // copy the wasm frame buffer to the canvas
     const w = E.web_fb_w(), h = E.web_fb_h();
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; imageData = null; applyScale(); }
@@ -1076,11 +1099,12 @@
       if (!r.done) { debugDraw(); tickEnd = performance.now(); return; } // stopped in the debugger
       if (r.value > 100) frameN = r.value;
       frameDone(r.value);
+      if (mixOn && !turbo) mixGrab(); // max speed: no mix (a frame here and there)
     }
     if (rz && run && rz.speed > 1 && (E.web_rzx_status() & 1)) E.web_rzx_ff(run * (rz.speed - 1)); // RZX faster: the frames between without sound
     if (rz) rzxPoll();
     if (run) recPoll();
-    if (run) { const r0 = performance.now(); render(); renderMs += (performance.now() - r0 - renderMs) * 0.1; coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
+    if (run) { const r0 = performance.now(); if (mixOn && !turbo) blitMix(); else render(); renderMs += (performance.now() - r0 - renderMs) * 0.1; coreStatus(now); updLed(); if (pf.timer) pfFrame(performance.now() - t0); }
     else if (isPaused() && ledKey) { ledKey = ''; $('dled').hidden = true; }
     drawViz(now);
     if (now - fpsT >= 1000) {
@@ -2505,7 +2529,7 @@
     let mb = Math.max(64, mb0 | 0), note = ''; const skipped = [];
     for (let tries = 0; tries < 6; tries++) {
       // 512-byte clusters, as the images NedoOS ships (its kernel of 13-14.10.2026 does not find bin/term.com on 1K clusters)
-      const img = T.fatFormat(mb * 1048576, volName || updT().vol, { start: 2048, type: 32, spc: 1 }), base = T.fatFind(img)[0], vol = T.fatVol(img, base);
+      const img = T.fatFormat(mb * 1048576, volName || updT().vol, { start: 2048, type: 32, spc: 1, noLabelEntry: updT().key === 'osz' }), base = T.fatFind(img)[0], vol = T.fatVol(img, base);
       const cb = (img[base + 11] | img[base + 12] << 8) * img[base + 13];
       const per = new Map(); for (const p of [...files.map((f) => f.path), ...dirs]) { const d = p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '', n = p.slice(p.lastIndexOf('/') + 1); per.set(d, (per.get(d) || 0) + 1 + (/^[a-z0-9_$~!#%&'()@^`{}-]{1,8}(\.[a-z0-9_$~!#%&'()@^`{}-]{1,3})?$/i.test(n) ? 0 : Math.ceil(n.length / 13))); } // entries: short + long-name ones
       const need = files.reduce((n, f) => n + Math.ceil(f.data.length / cb) * cb, 0) + [...dirs, ''].reduce((n, d) => n + Math.ceil(((per.get(d) || 0) * 32 + 64) / cb) * cb, 0);
@@ -5052,7 +5076,7 @@
     if (E && MODELS[model].xt) xtPref = xtUser(); // ATM mode stays as it was for this session (not as an autorun macro holds it)
     model = m;
     try {
-      await start(); toast(MODELS[m].name); if (dga) dga.sync(); // deBUGa breakpoints into the new machine
+      await start(); toast(MODELS[m].name); if (dga) dga.sync(); mixUI(); // deBUGa breakpoints into the new machine
       if (MODELS[m].xt && xtPref !== null && !!E.web_xt_kbd() !== xtPref) { E.web_toggle_xt(); updateUI(); }
       await osBoot();
     }
@@ -5499,7 +5523,7 @@
       g.fillStyle = '#000'; g.shadowColor = '#000'; g.shadowBlur = 3; g.fillText(t, x + 1, 5); // the shadow of the old page text
       g.shadowBlur = 0; g.fillStyle = 'rgba(225,232,240,.75)'; g.fillText(t, x, 4);
     };
-    const noMhz = load('hud.nomhz') === '1', noFps = load('hud.nofps') === '1'; // Options / Video: Hide Frequency, Hide FPS
+    const noMhz = false, noFps = false; // (Hide Frequency / Hide FPS were options; Hide Menu Bar hides them now)
     if (!noMhz) put(hud.mhz, r.width / 2, 'center');
     if (!noFps) put(hud.fps, r.width - 5, 'right');
     if (hud.net) { // "offline": left of the fps (at the right edge when the fps is hidden), red
@@ -5716,7 +5740,7 @@
     bindRzx();
     setBare(load('bare') === '1', false); // ~: menu bar and frame hidden (as last time)
     $('vidbare').onchange = (e) => setBare(e.target.checked, true);
-    for (const [id, k] of [['vidnomhz', 'hud.nomhz'], ['vidnofps', 'hud.nofps']]) { $(id).checked = load(k) === '1'; $(id).onchange = (e) => { store(k, e.target.checked ? '1' : '0'); hudDraw(); }; }
+    $('vidmix').onchange = (e) => { mixOn = e.target.checked && M() === 'GMX'; mixN = 0; }; // Mix Frames: GMX only, on at each GMX start (mixUI)
     $('barshow').onclick = () => { if (peekFresh) return; $('barcorner').classList.remove('peek'); clearTimeout(peekT); setBare(!bare, !bareLink); canvas.focus(); };
     let peekT = 0, peekFresh = false; // fresh: the tap that showed the button does not press it too
     $('screenwrap').addEventListener('pointerdown', (e) => { // Hide Menu Bar: the hidden corner icons and texts for 2 s: a tap in the strip along the top or the bottom (as high as the corner buttons)
@@ -5938,7 +5962,7 @@
       linkModel();
       await linkRom(); // rom= (Custom ROM ZIP) wins over model=
       await start();
-      modelUI();
+      modelUI(); mixUI();
       await osBoot();
       $('loading').remove();
       hiddenPaused = document.hidden;

@@ -2623,3 +2623,25 @@ Web Unreal Speccy — version history
   keyboard was hidden and shown or its menu opened (iPad landscape):
   its height follows its width, the fit now counts it so
 @ keyboards renamed: ZX -> ZX+, ZX 48 -> ZX-48 (links: kbd=zx, zx48)
+
+
+        version 1.16.0                  29 oct 2026
+
+! Scorpion GMX, 640x200: the video address goes round after the 16000
+  bytes of the screen (not at 16K), as on the real board: a picture
+  scrolled by a viewer (GMX Pic View: dev3.grf, Down; slide show) moves
+  whole instead of breaking at the bottom; deBUGa Screen GMX too
++ Options / Video: Mix Frames (gigascreen) — the picture is the mix of
+  the last two frames: gigascreen pictures (.mcx and the like) and
+  objects drawn every other frame show steady (a 60 Hz display cannot
+  show the 50 frames a second of the machine evenly: without it they
+  flicker unevenly)
+* OSZ card (sd/osz.zip, Options / Update / OSZ): no volume label entry
+  in the root of the card — OSZ showed it as a second "OSZ"
+
+
+        version 1.16.1                  29 oct 2026
+
+@ Options / Video: Mix Frames (GMX only) — on when Scorpion GMX (or OSZ)
+  starts, off and not available on the other machines; not remembered
+- Options / Video: Hide Frequency and Hide FPS (Hide Menu Bar hides them)

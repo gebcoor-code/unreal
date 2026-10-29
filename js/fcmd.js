@@ -426,8 +426,10 @@
       else { p32(t, 0x0FFFFFF8); p32(t + 4, 0x0FFFFFFF); p32(t + 8, 0x0FFFFFFF); }
     }
     const root = b + (rsvd + 2 * fsz) * 512; // FAT32: cluster 2 (first data cluster)
-    for (let i = 0; i < 11; i++) a[root + i] = lab.charCodeAt(i);
-    a[root + 11] = 0x08;
+    if (!o.noLabelEntry) { // the volume label as a root entry too (OSZ lists it as a file: not there for its card)
+      for (let i = 0; i < 11; i++) a[root + i] = lab.charCodeAt(i);
+      a[root + 11] = 0x08;
+    }
     return a;
   }
   function fatVol(a, base, onWrite) {
