@@ -6,16 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261030181446';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261030181446'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261030181446'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261030211924';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261030211924'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261030211924'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.16.5'; // About, System Info (history: changes.txt)
+  const APP_VER = '1.17.2'; // About, System Info (history: changes.txt)
   // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
   const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
   const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
   let land = false;
-  const BUILD = '20261030181446'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const BUILD = '20261030211924'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2084,7 +2084,7 @@
     if (!rz || rz.seeking) return;
     const st = E.web_rzx_status(), f = E.web_rzx_pos();
     if ((st & 1) && f - rzLastKey() >= rz.ki) rzxKey();
-    if ((st & 2) && rz.note !== 'end') { rz.note = 'end'; toast('RZX: the end of the recording — the game goes on, your turn'); rzxUI(); rzxShow(true); }
+    if ((st & 2) && rz.note !== 'end') { rz.note = 'end'; toast('RZX: Finished'); rzxUI(); rzxShow(true); }
     if ((st & 4) && rz.note !== 'sync') {
       rz.note = 'sync';
       toast('RZX: out of sync at ' + rzTime(E.web_rzx_bad()) + ' (frame ' + E.web_rzx_bad() + ') — the program went another way', true);
@@ -2100,10 +2100,16 @@
     $('rzxplay').title = run ? 'Pause' : on ? 'Play' : 'Play the recording from here';
     $('rzxpin').classList.toggle('on', rz.pin);
     $('rzxpin').title = rz.pin ? 'Player stays on screen (click: hide it, a tap on picture shows it for a while)' : 'Player hides (click: keep it on screen)';
-    $('rzxmsg').textContent = rz.seeking ? 'seeking…' : rz.note === 'end' ? 'the end — your turn' : rz.note === 'sync' ? 'out of sync' : rz.taken ? 'your turn' : '';
+    $('rzxmsg').textContent = rz.seeking ? 'seeking…' : rz.note === 'sync' ? 'out of sync' : rz.taken ? 'your turn' : '';
     $('rzxseek').max = rz.total - 1; $('rzxlen').textContent = rzTime(rz.total);
+    $('rzxtime').style.minWidth = rzTime(rz.total).length + 'ch'; // as wide as the length: the seek bar keeps its size while it plays
     $('rzxspeed').textContent = rz.speed + '×';
-    $('rzxtake').disabled = !on;
+    // the end of the recording: "Finished" in place of Take control, as wide as the button was (the bar keeps its geometry)
+    const tb = $('rzxtake'), fin = rz.note === 'end' && !rz.seeking;
+    if (!fin && tb.offsetWidth) tb.dataset.w = tb.offsetWidth;
+    tb.classList.toggle('fin', fin); tb.textContent = fin ? 'Finished' : 'Take control';
+    tb.style.width = fin && tb.dataset.w ? tb.dataset.w + 'px' : '';
+    tb.disabled = !on || fin;
   }
   let rzxHideT = 0, rzDrag = false;
   function rzxShow(v) {
@@ -2191,14 +2197,16 @@
   // autorunNext: set by the Load window just before a load, used by the first disk inserted into A: — true: its boot or its
   // first BASIC program (REST API autorun=1, Server list, Autostart TRDOS); 'boot': its boot, the emulator's boot added when
   // the disk has none (Use boot.b)
+  let keepNext = false; // the file being loaded: Load / Local file, Save to Browser Storage (withLocal)
   let autorunNext = false, zipAuto = false, loadingUrl = null, linkLoading = false; // loadingUrl: where the file being loaded came from
   // Load / Local file: Autostart (and its choices) for the files of this computer — Choose File, a drop on the screen, Local server
   let hdBoot = false; // Autostart + Boot from HDD / SD: an HDD / SD card image boots
   const ldAuto = () => $('ldauto').checked;
   const ldMode = () => ldAuto() ? ($('ldboot').checked ? 'boot' : true) : false; // autorunNext: 'boot' = boot.b menu, true = first BASIC program
-  async function withLocal(fn) {
+  async function withLocal(fn, local) {
     autorunNext = ldMode(); tsNoAuto = !ldAuto(); hdBoot = ldAuto() && $('ldhdboot').checked;
-    try { await fn(); } finally { autorunNext = false; tsNoAuto = false; hdBoot = false; }
+    keepNext = !!local && $('ldkeep').checked; // Choose File, a drop: Save to Browser Storage
+    try { await fn(); } finally { autorunNext = false; tsNoAuto = false; hdBoot = false; keepNext = false; }
   }
   // unsaved changes of the media a load replaces: one question (Run of the server list asks first for all it replaces: loseAsked)
   let loseAsked = false;
@@ -2272,30 +2280,29 @@
     toast('SD card: ' + sdName + ' — boot');
   }
   async function loadBytes(name, buf, drive) {
-    if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) { await imgFromBytes(name, buf); return; } await putAndInsert(name, buf, drive); return; }
+    const keep = keepNext; keepNext = false; // a local file: into the browser storage too, once it is loaded (on the machine it starts on)
+    if (!UnrealZip.isZip(buf)) { if (HDD_EXT.test(name) && buf.length >= 1 << 20) await imgFromBytes(name, buf); else await putAndInsert(name, buf, drive); if (keep) await brwKeep(name, buf); return; }
     try {
-      if (await cardZip(name, buf) || await tsZip(name, buf)) return;
+      if (await cardZip(name, buf) || await tsZip(name, buf)) { if (keep) await brwKeep(name, buf); return; }
       const entries = UnrealZip.list(buf).filter((e) => LOADABLE.test(e.name));
-      if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await imgFromBytes(name, buf); return; }
+      if (!entries.length && UnrealZip.list(buf).some((e) => HDD_EXT.test(e.name) || e.size >= 4 << 20)) { await imgFromBytes(name, buf); if (keep) await brwKeep(name, buf); return; }
       if (!entries.length) { toast('No disk, tape or snapshot images in the archive', true); return; }
-      const pick = async (e) => putAndInsert(e.name, await UnrealZip.extract(buf, e), drive);
-      if (entries.length === 1) { await pick(entries[0]); return; }
+      const pick = async (e) => { const d = await UnrealZip.extract(buf, e); await putAndInsert(e.name, d, drive); return d; };
+      if (entries.length === 1) { const d = await pick(entries[0]); if (keep) await brwKeep(entries[0].name, d); return; }
       zipAuto = autorunNext; // the choice is made later in the ZIP window
       const list = $('ziplist'); list.innerHTML = '';
       for (const e of entries) {
         const b = document.createElement('button');
         b.textContent = e.name.replace(/^.*[\\/]/, '') + '  (' + Math.round(e.size / 1024) + ' KB)';
         b.onclick = async () => {
-          fwinShow('zippick', false); autorunNext = zipAuto; const rest = $('ziprest').checked;
-          try { await pick(e); } catch (err) { toast(err.message, true); } autorunNext = false;
-          if (rest) await zipRest(buf, entries); // all the images of the ZIP (the mounted one too): into the browser storage (Load / Browser storage, File Commander: Browser)
+          fwinShow('zippick', false); autorunNext = zipAuto; let d = null;
+          try { d = await pick(e); } catch (err) { toast(err.message, true); } autorunNext = false;
+          if (!keep || !d) return; // a local ZIP kept after open: all its images (the mounted one too), or the mounted one only
+          if (await askBox('Browser storage', 'Add all files to Browser Storage?', 'Add all', 'Only this')) await zipRest(buf, entries);
+          else await brwKeep(e.name, d);
         };
         list.appendChild(b);
       }
-      // the images of the archive into the browser storage too (on by default, remembered)
-      const lb = document.createElement('label'); lb.className = 'chk zrest';
-      lb.innerHTML = '<input type="checkbox" id="ziprest"> Put images to Browser Storage';
-      list.appendChild(lb); $('ziprest').checked = load('zip.rest') !== '0'; $('ziprest').onchange = () => store('zip.rest', $('ziprest').checked ? '1' : '0');
       releaseAll(); fwinShow('zippick', true);
     } catch (err) { toast(err.message, true); }
   }
@@ -2827,7 +2834,7 @@
       if (dry) return '';
       const data = o.read(); spgLoad(o.name + '.spg', data); return '';
     }
-    if (/^(sna|z80|sp|tap|tzx|csw)$/i.test(o.ext) && o.read) { // a snapshot or a tape (e.g. made by Compile, sjasmplus): loaded as from Load
+    if (/^(sna|z80|sp|tap|tzx|csw|rzx)$/i.test(o.ext) && o.read) { // a snapshot, a tape (e.g. made by Compile, sjasmplus) or an RZX (its player): loaded as from Load
       if (dry) return '';
       const f = o.read(); loadBytes(o.name + '.' + o.ext, f.data || f, -1); return '';
     }
@@ -2916,14 +2923,18 @@
     if (model === 'OSZ' && E.web_disk_present(0)) { autorun(); return; }
     E.web_reset(0);
   }
+  // GMX after a reset: the loader's blocks first (#7EFD D3 on), then flash block 4 — the 128 ROM (#7EFD = #C0, #40 with True clock: turbo off)
+  function gmx128() { let ld = false; return () => { const v = E.web_gmx_state() & 0x7F; if (v & 8) ld = true; return ld && v === 0x40; }; }
   function autorun(plan) {
+    // the clock the ROM runs at: True clock — the machine's own (3.5 MHz after a reset), else the CPU clock slider
+    const clk = !isTS() && trueClk() ? 1 : SPEEDS[speedIdx];
     // the EVO service ROM needs CPU time: waits are longer at lower clock (tuned for 2x, doubled at 1x)
-    const k = Math.max(1, 2 / SPEEDS[speedIdx]);
-    const w = (f1x) => Math.ceil(f1x / Math.max(1, SPEEDS[speedIdx])); // ROM boot waits, tuned at 1x (shorter at higher clock)
+    const k = Math.max(1, 2 / clk);
+    const w = (f1x) => Math.ceil(f1x / Math.max(1, clk)); // ROM boot waits, tuned at 1x (shorter at higher clock)
     // the menus are walked with ZX keys: ATM mode (XT keyboard) off meanwhile, back on at the end when it was on
     const xtWas = !!(E.web_xt_kbd && E.web_xt_kbd());
     // the 128 menu takes keys after it has run a while: 1 s at the usual clock (2.5x), longer at a lower one
-    const m128 = (f) => Math.max(f, Math.ceil(f * 2.5 / SPEEDS[speedIdx]));
+    const m128 = (f) => Math.max(f, Math.ceil(f * 2.5 / clk));
     const run = plan && plan.run ? zxRunKeys(plan.run) : null;
     const R_ENTER = run || [{ key: ZK.R }, { key: ZK.ENTER }]; // RUN (boot) or RUN "name"
     const after = (wt) => (run ? [{ wait: wt }, ...run] : []); // after a menu that boots by itself
@@ -2949,7 +2960,7 @@
     else if (M() === 'PENTAGON' || cm === 'PENTAGON') // 128 menu: ↑ from Tape Loader = TR-DOS (a Custom ROM may reset elsewhere: 128 ROM)
       runMacro([{ reset: cm ? 2 : 0 }, { wait: m128(50) }, { key: UP }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
     else if (M() === 'SCORPION' || M() === 'GMX') // reset to the 128 menu (not the service ROM): "128 TR-DOS" is its first item and runs boot by itself
-      runMacro([{ reset: 2 }, ...(M() === 'GMX' && E.web_gmx_state ? [{ until: () => (E.web_gmx_state() & 0xFF) === 0xC0, max: 1500, soft: true }] : []), // GMX: the loader, the monitor's test (and the SD card) first: until its flash block 4 runs the 128 ROM (turbo on)
+      runMacro([{ reset: 2 }, ...(M() === 'GMX' && E.web_gmx_state ? [{ until: gmx128(), max: 1500, soft: true }] : []), // GMX: the loader, the monitor's test (and the SD card) first: until its flash block 4 runs the 128 ROM
         { wait: m128(70) }, { key: ZK.ENTER }, ...after(w(150))]); // its 128 ROM tests memory first: a bit longer
     else if (M() === 'KAY' || cm === 'KAY') // reset to the 128 menu (not the service menu): "TR-DOS" is its first item
       runMacro([{ reset: 2 }, { wait: m128(50) }, { key: ZK.ENTER }, { wait: w(120) }, ...R_ENTER]);
@@ -3072,6 +3083,18 @@
       }
       brwRefresh(); toast('Browser storage: ' + n + ' file' + (n === 1 ? '' : 's') + ' put' + (kept ? ', ' + kept + ' there already (kept)' : ''));
     } catch (err) { toast('Browser storage: ' + err.message, true); }
+  }
+  // Load / Local file, Save to Browser Storage: the same data there already — only its date; other data — asked
+  async function brwKeep(name, data) {
+    name = name.replace(/^.*[\\/]/, '').replace(/[:]/g, '_');
+    try {
+      const old = (await brwList()).find((m) => m.name.toLowerCase() === name.toLowerCase());
+      if (old && old.size === data.length) {
+        const od = await brwGet(old.name);
+        if (od && od.length === data.length && od.every((v, i) => v === data[i])) { await brwPut({ ...old, model, date: Date.now() }, od); brwRefresh(old.name); return; }
+      }
+      if (await brwSave(name, data, brwKind(name, ''))) toast('Browser storage: ' + name);
+    } catch (e) { toast('Browser storage: ' + e.message, true); }
   }
   async function brwSave(name, data, kind) {
     if (data instanceof Blob) data = new Uint8Array(await data.arrayBuffer()); else if (data instanceof ArrayBuffer) data = new Uint8Array(data); // a ZIP comes as a Blob
@@ -3455,6 +3478,7 @@
     const ls = load('ld.start');
     if (load('ld.auto') === null && ls !== null) { store('ld.auto', ls === 'none' ? '0' : '1'); if (ls === 'auto') store('ld.nb', 'basic'); }
     $('ldauto').checked = load('ld.auto') !== '0';
+    $('ldkeep').checked = load('ld.keep') !== '0'; $('ldkeep').onchange = () => store('ld.keep', $('ldkeep').checked ? '1' : '0');
     $(load('ld.nb') === 'basic' ? 'ldbasic' : 'ldboot').checked = true;
     $('ldhdboot').checked = load('ld.hdboot') !== '0';
     const ldOptUI = () => {
@@ -3537,13 +3561,18 @@
       if (m !== bFor) { bFor = m; bMode = m && !['hdd', 'sd'].includes(m.kind) ? 'run' : 'mount'; }
       b.textContent = bMode === 'run' ? 'Run' : bMode === 'delete' ? 'Delete' : 'Mount';
       b.classList.toggle('primary', bMode === 'run'); b.classList.toggle('danger', bMode === 'delete'); b.disabled = !m;
-      $('ldbmore').classList.toggle('primary', bMode === 'run');
+      $('ldbmore').classList.toggle('primary', bMode === 'run'); $('ldbmore').classList.toggle('danger', bMode === 'delete');
       b.title = !m ? '' : bMode === 'run' ? 'Load it with Autostart, on ' + (MODELS[m.model] ? MODELS[m.model].name : 'its machine') : bMode === 'delete' ? 'Delete it from the browser storage' : 'Load it: the machine stays';
       $('ldbrw').title = m ? 'Saved ' + new Date(m.date).toLocaleString() + ' · ' + (MODELS[m.model] ? MODELS[m.model].name : m.model) + ' · ' + (m.size >= 10240 ? Math.round(m.size / 1024) + ' KB' : m.size + ' bytes') : '';
     };
     let bMode = 'run', bFor = null;
     brwUI = bUI;
     $('ldbrw').onchange = bUI;
+    $('ldbdelall').onclick = async () => {
+      if (!brwMetas.length || !await askBox('', 'Clean Browser Storage?', 'Clean')) return;
+      try { for (const m of brwMetas.slice()) await brwDel(m.name); ldMsg('Browser storage cleaned'); } catch (e) { ldMsg(e.message, true); }
+      bFor = null; brwCache = null; await brwRefresh();
+    };
     $('ldbmore').onclick = (e) => { e.stopPropagation(); goMenu($('ldbmore'), $('ldbgo'), [['Run', 'run'], ['Mount', 'mount'], ['Delete', 'delete']], bMode, (v) => { bMode = v; bUI(); $('ldbgo1').focus(); }); };
     $('ldbgo1').onclick = async () => {
       const m = bSel(); if (!m) return;
@@ -5771,7 +5800,7 @@
     $('file').onchange = async (e) => {
       const f = e.target.files[0]; e.target.value = '';
       if (f) { // Load / Local file: its Autostart; Insert of a drive in Options / Disk: only mounted there
-        if (fromLoadWin) { if (ldAuto()) fwinShow('loadwin', false); await withLocal(() => loadFile(f, 0)); ldStoreUI(); } // Autostart off: Load stays open
+        if (fromLoadWin) { if (ldAuto()) fwinShow('loadwin', false); await withLocal(() => loadFile(f, 0), true); ldStoreUI(); } // Autostart off: Load stays open
         else { const d = pendingDrive; await loadFile(f, d); }
       }
       fromLoadWin = false;
@@ -5837,7 +5866,7 @@
     document.addEventListener('fullscreenchange', () => { applyScale(); canvas.focus(); });
     const wrap = $('screenwrap');
     wrap.addEventListener('dragover', (e) => e.preventDefault());
-    wrap.addEventListener('drop', (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) withLocal(() => loadFile(f, 0)); }); // as Load / Local file (its Autostart)
+    wrap.addEventListener('drop', (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) withLocal(() => loadFile(f, 0), true); }); // as Load / Local file (its Autostart)
     canvas.addEventListener('mousedown', () => { startAudio(); canvas.focus(); });
     for (const ev of ['pointerdown', 'touchend', 'mousedown', 'keydown', 'click']) document.addEventListener(ev, unlockAudio, true);
     updateSoundBtn();

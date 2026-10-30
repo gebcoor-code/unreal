@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261030181446">
+<meta name="build" content="20261030211924">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -70,9 +70,10 @@ canvas.smooth { image-rendering: auto; }
 #rzxbar #rzxpin { color: var(--dim); } #rzxbar #rzxpin svg { transform: rotate(45deg); } #rzxbar #rzxpin.on { color: var(--accent); background: var(--panel2); border-color: var(--line); } #rzxbar #rzxpin.on:hover { border-color: var(--accent); } #rzxbar #rzxpin.on svg { transform: none; fill: currentColor; } /* pin: in = always shown, slanted = hides */
 #rzxbar .rzr { display: flex; align-items: center; gap: 6px; }
 #rzxbar #rzxseek { flex: 1 1 auto; min-width: 40px; accent-color: var(--accent); }
-#rzxbar #rzxtime, #rzxbar #rzxlen { font: 12px ui-monospace, Consolas, monospace; color: var(--dim); white-space: nowrap; }
+#rzxbar #rzxtime, #rzxbar #rzxlen { font: 12px ui-monospace, Consolas, monospace; color: var(--dim); white-space: nowrap; } #rzxbar #rzxtime { text-align: right; }
 #rzxbar button.ico { width: 28px; height: 24px; flex: none; } #rzxbar button.ico svg { width: 15px; height: 15px; }
 #rzxbar #rzxspeed, #rzxbar #rzxtake { height: 24px; padding: 0 7px; font-size: 12px; flex: none; white-space: nowrap; }
+#rzxbar #rzxtake.fin { background: none; border-color: transparent; color: var(--accent); opacity: 1; font-size: 11px; }
 @media (max-width: 520px) { #rzxbar #rzxlen { display: none; } #rzxbar #rzxtake { padding: 0 5px; } }
 #toast { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); background: rgba(20,24,30,.92); border: 1px solid var(--line); color: var(--text);
   border-radius: 6px; padding: 6px 12px; font-size: 13px; line-height: 1.4; max-width: 90%; opacity: 0; transition: opacity .25s; pointer-events: none; }
@@ -523,6 +524,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ldrow .ldmain { margin-left: 6px; }
 .ldsub { margin: 6px 0 0 22px; display: flex; flex-direction: column; gap: 4px; } .ldsub[hidden] { display: none; }
 .ldsrow { display: flex; align-items: center; gap: 12px; min-height: 22px; }
+.ldkeep { margin-top: 6px; }
 .ldsrow #ldpress { width: 3.2em; height: 20px; font-size: 11px; }
 .ldsrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } .ldsrow .lddrv input { width: 15px; height: 15px; }
 #loadwin .body { min-height: 540px; }
@@ -534,7 +536,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 /* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
 #ziplist .zrest { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; cursor: pointer; } #ziplist .zrest input { width: 15px; height: 15px; flex: none; }
-#ldlistgo.danger, #ldbgo1.danger { background: #b4553f; border-color: #b4553f; color: #fff; }
+#ldlistgo.danger, #ldbgo1.danger, #ldbmore.danger { background: #b4553f; border-color: #b4553f; color: #fff; }
 .splitbtn { display: flex; flex: none; } /* the text sits as in the other buttons (Open, Choose File…): their padding and line height */
 .splitbtn #ldlistgo, .splitbtn #ldbgo1 { width: 62px; padding: 5px 4px; font-weight: 600; text-align: center; } /* as wide as Mount: the list gets the rest */
 .splitbtn:not(.single) > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
@@ -1509,7 +1511,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Disks</td><td>TRD, SCL, FDI, UDI, TD0, ISD, PRO, $B, $C; DSK, IPF (read-only)</td></tr>
       <tr><td>Tapes</td><td>TAP, TZX, CSW</td></tr>
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
-      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
+      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
@@ -1543,7 +1545,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>Tab</dt><dd>other panel</dd>
       <dt>↑ ↓ Home End PgUp PgDn</dt><dd>move</dd>
       <dt>Space / Ins</dt><dd>select; + all, − none, * invert</dd>
-      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM): machine is reset; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:; a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image)</dd>
+      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:; a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image)</dd>
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
@@ -1614,14 +1616,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>TS-Conf card</td><td>ZIP with an SD card image, or with boot.$C (a new card is made), or with an SPG: ZX Evo TS-Conf starts, Wild Commander boots. Autostart: the program named in the ZIP's .json ({"run": "dir/file.spg"}) runs too</td></tr>
       <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card). An SD card with NedoOS (sd_boot.$C) or Wild Commander (boot.$C) is not asked about. Autostart + <b>Boot from HDD / SD</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset); a NedoOS card starts ZX Evo BaseConf, a Wild Commander card TS-Conf. Off: only mounted</td></tr>
       <tr><td>ZIP</td><td>one file in it: as that file; several: you choose one</td></tr>
+      <tr><td>Save to<br>Browser Storage</td><td>(on by default) Choose File and a dropped file are kept in the browser storage too, on the machine they start on. A ZIP of several images: you are asked whether to add all of them (no: only the one chosen). A name that is there already with other data: asked whether to replace</td></tr>
     </table>
     <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
     <h4>Browser storage</h4>
-    <p>The files Save put into this browser (Where: Browser storage), the newest first; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
+    <p>Files Save put into this browser (Where: Browser storage) and local files kept after open, newest first. Each keeps its machine: the one it was saved on (Save) or started on (local file); Run switches to it (not for HDD / SD card images), Mount leaves machine as it is; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
     <table class="keys">
       <tr><td>Run</td><td>on the machine it was saved on, started as Local file with Autostart (an HDD / SD image boots)</td></tr>
       <tr><td>Mount</td><td>loaded, the machine stays, Load stays open</td></tr>
       <tr><td>Delete</td><td>out of the browser storage</td></tr>
+      <tr><td>Delete all</td><td>all files of the browser storage (asked first)</td></tr>
     </table>
     <h4>Local server</h4>
     <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page). Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
@@ -1786,9 +1790,10 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <label class="lddrv" id="ldpressrow" title="Keys pressed in the boot.b menu (0 = the first program). Empty: none">press <input id="ldpress" value="0" spellcheck="false" autocomplete="off"></label></div>
         <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: RUN its first BASIC program (nothing is written to the disk)"><input type="radio" name="ldnb" id="ldbasic" value="basic">first BASIC program</label></div>
         <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
-      </div></section>
+      </div>
+      <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too (Load / Browser storage, File Commander drive Browser)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
     <section id="ldbrwsec" hidden><h3>Browser storage</h3>
-      <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
+      <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div><button id="ldbdelall" title="Delete all files of the browser storage">Delete all</button></div></section>
     <section><h3>Local server</h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section id="ldlistsec" hidden><h3>Server list</h3>
@@ -1903,16 +1908,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261030181446"></script>
-<script src="js/scancodes.js?v=20261030181446"></script>
-<script src="js/unzip.js?v=20261030181446"></script>
-<script src="js/vkbd.js?v=20261030181446"></script>
-<script src="js/asyncify.js?v=20261030181446"></script>
-<script src="js/gfx.js?v=20261030181446"></script>
-<script src="js/usel.js?v=20261030181446"></script>
-<script src="js/fcmd.js?v=20261030181446"></script>
-<script src="js/dbga.js?v=20261030181446"></script>
-<script src="js/rzx.js?v=20261030181446"></script>
-<script src="js/app.js?v=20261030181446"></script>
+<script src="js/wasi_fs.js?v=20261030211924"></script>
+<script src="js/scancodes.js?v=20261030211924"></script>
+<script src="js/unzip.js?v=20261030211924"></script>
+<script src="js/vkbd.js?v=20261030211924"></script>
+<script src="js/asyncify.js?v=20261030211924"></script>
+<script src="js/gfx.js?v=20261030211924"></script>
+<script src="js/usel.js?v=20261030211924"></script>
+<script src="js/fcmd.js?v=20261030211924"></script>
+<script src="js/dbga.js?v=20261030211924"></script>
+<script src="js/rzx.js?v=20261030211924"></script>
+<script src="js/app.js?v=20261030211924"></script>
 </body>
 </html>

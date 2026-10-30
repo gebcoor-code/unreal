@@ -2681,3 +2681,43 @@ Web Unreal Speccy — version history
   without a ghost of its moving things
   (checked with 1.16.4: GMX Pic View 1.0 shows its pictures, the second
   screen #3B; Edge Grinder plays without flicker)
+
+
+        version 1.16.6                  30 oct 2026
+
+* True clock + autorun on Scorpion GMX (Load, REST API autorun=1): the
+  128 menu runs with turbo off (#7EFD = #40, not #C0); autorun waited
+  for #C0 for 30 s, the disk started late or not at all. Waits of
+  autorun with True clock: for 3.5 MHz
+  (checked: Edge Grinder, horizontal dashes in the background after
+  2–3 games: a bug of the game, not of the emulator. Its background is
+  drawn through the stack (LD SP,IY: POP HL: LD (#Cxxx),HL); an
+  interrupt right after LD SP,IY writes its return address over 2 bytes
+  of the map, and the game's handler "restores" them from BC, which
+  holds #78FD there. The game guards only part 2 of 4 of the drawing
+  (LD B,(IY-1): LD C,(IY-2) before LD SP,IY), probably where the
+  interrupt fell at the timing it was tested with; at another clock it
+  falls into part 3. The map stays damaged until it is loaded again)
+
+
+        version 1.17.0                  30 oct 2026
+
++ Load / Local file: Save to Browser Storage after open (on by default):
+  Choose File and a file dropped on the screen are kept in the browser
+  storage too, on the machine they start on (the same data there
+  already: only its date; other data under that name: asked). A ZIP of
+  several images, after the choice: "Add all files to Browser
+  Storage?" (no: only the chosen one). The checkbox "Put images to
+  Browser Storage" of the ZIP window is gone
++ Load / Browser storage: Delete all ("Clean Browser Storage?")
++ File Commander: Enter / double click on an RZX starts its player
+@ RZX player at the end of the recording: "Finished"
+
+
+        version 1.17.1                  30 oct 2026
+
+* Load / Browser storage: Delete chosen — the arrow of the button is red
+  too
+* RZX player at the end: "Finished" in place of Take control (as wide as
+  the button); the time left of the seek bar is as wide as the length:
+  the bar does not change its size while it plays
