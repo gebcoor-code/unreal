@@ -2662,3 +2662,22 @@ Web Unreal Speccy — version history
 * the disk / tape light sits between MHz and "offline" / FPS (it lay over
   "offline" on narrow screens)
 * Hide Menu Bar: "offline" stays on the screen (as the disk light)
+
+
+        version 1.16.4                  30 oct 2026
+
+! Scorpion GMX, 640x200: the second screen (#7FFD D3 = 1) is bank #3B
+  (attributes #7B), as ZX screens 5 / 7 differ by A1 — not #3A of the
+  GMX documentation. Gigascreen pictures of GMX Pic View (.mcx …) showed
+  a black second frame: they flickered with black, Mix Frames made them
+  dark. deBUGa Screen: GMX (#39 / #3B)
+
+
+        version 1.16.5                  30 oct 2026
+
+* Mix Frames (GMX): mixes only while the shown screen changes every
+  frame (gigascreen); a game that shows its two screens in turn every
+  other frame (Edge Grinder: 25 frames a second) is shown as it is,
+  without a ghost of its moving things
+  (checked with 1.16.4: GMX Pic View 1.0 shows its pictures, the second
+  screen #3B; Edge Grinder plays without flicker)

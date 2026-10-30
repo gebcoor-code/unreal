@@ -6,16 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261030151726';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261030151726'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261030151726'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261030181446';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261030181446'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261030181446'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.16.3'; // About, System Info (history: changes.txt)
+  const APP_VER = '1.16.5'; // About, System Info (history: changes.txt)
   // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
   const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
   const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
   let land = false;
-  const BUILD = '20261030151726'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const BUILD = '20261030181446'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -656,7 +656,7 @@
   }
   // Mix Frames (Options / Video): the picture = the mean of the last two emulated frames (gigascreen, objects every other
   // frame). The frames are rendered as they run (the last two of a refresh), the mix is drawn once
-  let mixOn = false, mixA = null, mixB = null, mixN = 0;
+  let mixOn = false, mixA = null, mixB = null, mixN = 0, mixScr = 0;
   function mixUI() { // a machine started: GMX = on, others = off (the box is off there)
     const g = M() === 'GMX'; mixOn = g; mixN = 0;
     $('vidmix').checked = g; $('vidmix').disabled = !g;
@@ -667,10 +667,13 @@
     if (!mixA || mixA.length !== n) { mixA = new Uint32Array(n); mixB = new Uint32Array(n); mixN = 0; }
     const t = mixA; mixA = mixB; mixB = t; // mixB: the frame before, mixA: this one
     mixA.set(new Uint32Array(E.memory.buffer, E.web_fb(), n)); mixN++;
+    mixScr = ((mixScr << 1) | ((E.web_p7ffd() >> 3) & 1)) & 15; // the shown screen (#7FFD D3) of the last 4 frames
   }
   function blitMix() {
     const w = E.web_fb_w(), h = E.web_fb_h();
-    if (!mixA || mixN < 2 || mixA.length !== w * h) { render(); return; }
+    // mixed only while the screen changes every frame (gigascreen: 1 2 1 2); a game with two screens in turn every other frame
+    // (Edge Grinder: 1 1 2 2) is shown as it is, not with its moving things doubled
+    if (!mixA || mixN < 2 || mixA.length !== w * h || (mixScr !== 5 && mixScr !== 10)) { render(); return; }
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; imageData = null; applyScale(); }
     if (!imageData) imageData = new ImageData(w, h);
     const o = new Uint32Array(imageData.data.buffer), a = mixA, b = mixB;

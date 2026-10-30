@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261030151726">
+<meta name="build" content="20261030181446">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1851,7 +1851,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
       <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3A) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · RAM: a page as a ZX screen"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
@@ -1903,16 +1903,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261030151726"></script>
-<script src="js/scancodes.js?v=20261030151726"></script>
-<script src="js/unzip.js?v=20261030151726"></script>
-<script src="js/vkbd.js?v=20261030151726"></script>
-<script src="js/asyncify.js?v=20261030151726"></script>
-<script src="js/gfx.js?v=20261030151726"></script>
-<script src="js/usel.js?v=20261030151726"></script>
-<script src="js/fcmd.js?v=20261030151726"></script>
-<script src="js/dbga.js?v=20261030151726"></script>
-<script src="js/rzx.js?v=20261030151726"></script>
-<script src="js/app.js?v=20261030151726"></script>
+<script src="js/wasi_fs.js?v=20261030181446"></script>
+<script src="js/scancodes.js?v=20261030181446"></script>
+<script src="js/unzip.js?v=20261030181446"></script>
+<script src="js/vkbd.js?v=20261030181446"></script>
+<script src="js/asyncify.js?v=20261030181446"></script>
+<script src="js/gfx.js?v=20261030181446"></script>
+<script src="js/usel.js?v=20261030181446"></script>
+<script src="js/fcmd.js?v=20261030181446"></script>
+<script src="js/dbga.js?v=20261030181446"></script>
+<script src="js/rzx.js?v=20261030181446"></script>
+<script src="js/app.js?v=20261030181446"></script>
 </body>
 </html>

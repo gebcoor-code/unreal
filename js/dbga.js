@@ -233,7 +233,7 @@
     const scrNow = () => { const c = (E().web_p7ffd() & 8) ? 7 : 5; return scrPage >= 0 ? scrPage : scrPage === -6 ? c ^ 2 : c; }; // -6: the other ZX screen
     const tsOn = () => api.tsOn && api.tsOn() && E().web_ts_frame;
     const gmxOn = () => !!(E().web_gmx_on && E().web_gmx_on());
-    const gmxPg = (q) => { const c = (E().web_p7ffd() & 8) ? 0x3A : 0x39; return q === -7 ? c : c ^ 3; }; // the shown GMX screen (#7FFD bit 3) / the other one
+    const gmxPg = (q) => { const c = (E().web_p7ffd() & 8) ? 0x3B : 0x39; return q === -7 ? c : c ^ 2; }; // the shown GMX screen (#7FFD bit 3) / the other one
     function scrSize(w, h) { if (scv.width !== w || scv.height !== h) { scv.width = w; scv.height = h; scImg = scx.createImageData(w, h); } }
     function drawScr() {
       const e = E(), nr = e.web_gfx_size(1) >> 14, pg = Math.min(scrNow(), nr - 1), ts = tsOn();
