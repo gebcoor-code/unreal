@@ -2651,3 +2651,14 @@ Web Unreal Speccy — version history
 
 * phone landscape, on-screen keyboards off: the screen keeps 5 px from
   the top and the bottom edges
+
+
+        version 1.16.3                  30 oct 2026
+
+* offline (service worker): files of this build come from the copy at
+  once; a site that did not answer is not asked again for 30 s (the
+  copies at once, not 4 s for each file: no pauses at the start
+  offline); the wait for an answer is 1.5 s
+* the disk / tape light sits between MHz and "offline" / FPS (it lay over
+  "offline" on narrow screens)
+* Hide Menu Bar: "offline" stays on the screen (as the disk light)

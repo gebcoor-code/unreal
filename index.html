@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261029213045">
+<meta name="build" content="20261030151726">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -87,7 +87,7 @@ canvas.smooth { image-rendering: auto; }
 #fps { font-size: 11px; line-height: 1; color: rgba(225,232,240,.75); font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; }
 #mhz { position: absolute; left: 50%; top: 4px; transform: translateX(-50%); pointer-events: none; font-size: 11px; line-height: 1; color: rgba(225,232,240,.75);
   font-family: ui-monospace, Consolas, monospace; text-shadow: 0 0 2px #000, 0 0 3px #000, 1px 1px 1px #000; white-space: nowrap; }
-#dled { position: absolute; left: 75%; top: 1px; transform: translateX(-50%); height: 18px; line-height: 1; display: flex; align-items: center; pointer-events: none; }
+#dled { position: absolute; left: 70%; top: 1px; transform: translateX(-50%); height: 18px; line-height: 1; display: flex; align-items: center; pointer-events: none; }
 #dled[hidden] { display: none; }
 #recmark { position: absolute; left: 25%; top: 2px; transform: translateX(-50%); z-index: 23; height: 18px; padding: 0 7px; border-radius: 9px; font: 600 11px ui-monospace, Consolas, monospace;
   color: #fff; background: rgba(200,40,40,.75); border: 1px solid rgba(255,120,120,.6); line-height: 1; }
@@ -467,7 +467,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .corner:hover, .corner:focus-within { opacity: 1; }
 .corner.bl { left: 4px; } .corner.br { right: 4px; }
 .corner.tl { top: 4px; bottom: auto; left: 4px; } #barcorner { visibility: hidden; } body.bare #barcorner, #barcorner.peek { visibility: visible; } /* ~ hid the menu bar: a way back by touch; with the menu bar: a tap in the corner shows the button that hides it */
-body.bare.calm #screenwrap .corner, body.bare.calm #hudc, body.bare.calm #xtmsg, body.bare.calm #sbar, body.bare.calm #sbar .on { visibility: hidden; pointer-events: none; } /* #sbar: OVL / AF of the joystick, MB / 1pps / RB of the touch mouse */ /* Hide Menu Bar: the corner icons and the texts over the screen too, a click / tap shows them for 2 s */
+body.bare.calm #screenwrap .corner, body.bare.calm #xtmsg, body.bare.calm #sbar, body.bare.calm #sbar .on { visibility: hidden; pointer-events: none; } /* #sbar: OVL / AF of the joystick, MB / 1pps / RB of the touch mouse */ /* Hide Menu Bar: the corner icons and the texts over the screen too, a click / tap shows them for 2 s */
 body.bare #toolbar { display: none; } body.bare #mainwin { border-color: transparent; border-radius: 0; box-shadow: none; } body.bare #screenwrap { border-radius: 0; } /* ~: no menu bar, no frame */
 .corner button.ico, .corner select { background: rgba(35,42,51,.25); border-color: rgba(255,255,255,.12); }
 #stage .corner button.ico { width: 26px; height: 20px; border-radius: 4px; }
@@ -1493,7 +1493,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>bottom right</td><td>on-screen keyboard (ZX+, ZX-48, XT) and joystick; the list next to it chooses one</td></tr>
       <tr><td>phone, landscape</td><td>the screen fits the whole height; the on-screen keyboards are split: the left half at the left edge, the right half at the right edge (SPACE on both); the joystick stick and fire at the edges</td></tr>
       <tr><td>Top left corner</td><td>with the menu bar: a tap shows the button that hides it (for 3 s), a tap on it hides the menu bar; with the menu bar hidden the same button shows it back</td></tr>
-      <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen</td></tr>
+      <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen; the disk / tape light, the sound meter, "offline" and Tap for sound always stay</td></tr>
     </table>
     <h4>On-screen keyboards</h4>
     <table class="keys">
@@ -1903,16 +1903,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261029213045"></script>
-<script src="js/scancodes.js?v=20261029213045"></script>
-<script src="js/unzip.js?v=20261029213045"></script>
-<script src="js/vkbd.js?v=20261029213045"></script>
-<script src="js/asyncify.js?v=20261029213045"></script>
-<script src="js/gfx.js?v=20261029213045"></script>
-<script src="js/usel.js?v=20261029213045"></script>
-<script src="js/fcmd.js?v=20261029213045"></script>
-<script src="js/dbga.js?v=20261029213045"></script>
-<script src="js/rzx.js?v=20261029213045"></script>
-<script src="js/app.js?v=20261029213045"></script>
+<script src="js/wasi_fs.js?v=20261030151726"></script>
+<script src="js/scancodes.js?v=20261030151726"></script>
+<script src="js/unzip.js?v=20261030151726"></script>
+<script src="js/vkbd.js?v=20261030151726"></script>
+<script src="js/asyncify.js?v=20261030151726"></script>
+<script src="js/gfx.js?v=20261030151726"></script>
+<script src="js/usel.js?v=20261030151726"></script>
+<script src="js/fcmd.js?v=20261030151726"></script>
+<script src="js/dbga.js?v=20261030151726"></script>
+<script src="js/rzx.js?v=20261030151726"></script>
+<script src="js/app.js?v=20261030151726"></script>
 </body>
 </html>

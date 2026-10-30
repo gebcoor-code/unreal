@@ -1,9 +1,12 @@
 // Web Unreal Speccy: offline copy (service worker). Registered by the page as sw.js?v=<build>.
 // The emulator itself (page, scripts, wasm, ini…) is kept per build; files of the site (ROMs, disks, HDD / SD images, lists)
-// are kept once fetched (and by Options / System / Offline: Make offline). Always the network first, the copy when it fails.
+// are kept once fetched (and by Options / System / Offline: Make offline). The network first, the copy when it fails or is
+// slow; a file of this build (?v=<build>) straight from the copy; the site down (no answer a moment ago): the copies at once.
 'use strict';
 const BUILD = new URL(self.location.href).searchParams.get('v') || 'dev';
-const NET_WAIT = 4000; // ms the site has to answer before the kept copy is used
+const NET_WAIT = 1500; // ms the site has to answer before the kept copy is used
+const DOWN_FOR = 30000; // the site did not answer: for this long the copies come at once (no wait for each file)
+let downUntil = 0;
 const SCOPE = new URL(self.registration.scope).pathname; // copies in other folders of the site keep their own caches
 const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
 const SHELL = ['./', 'index.html', 'changes.txt', 'icon.png', 'apple-touch-icon.png',
@@ -35,7 +38,12 @@ self.addEventListener('fetch', (e) => {
     const store = isFile(rel) ? FILES : CORE;
     const copy = async () => (await caches.match(u.origin + u.pathname, { ignoreSearch: true })) ||
       (req.mode === 'navigate' ? (await caches.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await caches.match(self.registration.scope, { ignoreSearch: true })) : null);
+    const have = await copy();
+    const mine = u.searchParams.get('v') === BUILD; // a file of this very build: it does not change
+    if (have && (mine || self.navigator.onLine === false || Date.now() < downUntil)) return have;
+    if (!have && Date.now() < downUntil) return Response.error(); // the site down and no copy: fails at once (was: waited for ever)
     const net = fetch(req).then((r) => {
+      downUntil = 0;
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)
       // the copy is cloned at once: later (after caches.open) the page may be reading the body already, and clone() throws
       if (r.ok && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
@@ -47,15 +55,15 @@ self.addEventListener('fetch', (e) => {
     // a site that does not answer (a network that drops the packets silently: fetch would wait for the browser's own
     // timeout, a black screen on the phone): with a copy at hand, the copy after NET_WAIT ms; the network keeps going
     // and refreshes the copy if it answers later. No copy: the network as long as it takes
-    const have = await copy();
-    if (!have) { try { return await net; } catch (err) { return Response.error(); } }
+    if (!have) { try { return await net; } catch (err) { downUntil = Date.now() + DOWN_FOR; return Response.error(); } }
     const late = new Promise((res) => setTimeout(() => res('late'), NET_WAIT));
     try {
       const r = await Promise.race([net, late]);
       if (r !== 'late') return r;
       net.catch(() => {});
+      downUntil = Date.now() + DOWN_FOR; // slow or silent: the next files from the copies at once
       return have;
-    } catch (err) { return have; } // offline: the copy (the build's ?v= does not matter; the page itself for any navigation)
+    } catch (err) { downUntil = Date.now() + DOWN_FOR; return have; } // offline: the copy (the build's ?v= does not matter; the page itself for any navigation)
   })());
 });
 // the page asks: how much is kept, or to drop the files
