@@ -10,7 +10,7 @@ let downUntil = 0;
 const SCOPE = new URL(self.registration.scope).pathname; // copies in other folders of the site keep their own caches
 const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
 const SHELL = ['./', 'index.html', 'changes.txt', 'icon.png', 'apple-touch-icon.png',
-  'js/wasi_fs.js', 'js/scancodes.js', 'js/unzip.js', 'js/vkbd.js', 'js/asyncify.js', 'js/gfx.js', 'js/usel.js', 'js/fcmd.js', 'js/dbga.js', 'js/rzx.js', 'js/app.js',
+  'js/js.zip',
   'unreal/unreal.zip', 'unreal/unreal.wasm', 'unreal/sjasm.zip', 'unreal/unreal.ini', 'unreal/boot6.$b', 'unreal/CMOS', 'unreal/sos.l'];
 
 self.addEventListener('install', (e) => {
@@ -41,7 +41,7 @@ self.addEventListener('fetch', (e) => {
     const have = await copy();
     const mine = u.searchParams.get('v') === BUILD; // a file of this very build: it does not change
     if (have && (mine || self.navigator.onLine === false || Date.now() < downUntil)) return have;
-    if (!have && Date.now() < downUntil) return Response.error(); // the site down and no copy: fails at once (was: waited for ever)
+    if (!have && store === FILES && Date.now() < downUntil) return Response.error(); // the site down and no copy of a site file: fails at once (was: waited for ever); the page's own files are always asked for
     const net = fetch(req).then((r) => {
       downUntil = 0;
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)

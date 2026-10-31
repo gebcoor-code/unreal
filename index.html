@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261031093033">
+<meta name="build" content="20261031144703">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1514,7 +1514,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Disks</td><td>TRD, SCL, FDI, UDI, TD0, ISD, PRO, $B, $C; DSK, IPF (read-only)</td></tr>
       <tr><td>Tapes</td><td>TAP, TZX, CSW</td></tr>
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
-      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
+      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
@@ -1548,12 +1548,13 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>Tab</dt><dd>other panel</dd>
       <dt>↑ ↓ Home End PgUp PgDn</dt><dd>move</dd>
       <dt>Space / Ins</dt><dd>select; + all, − none, * invert</dd>
-      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM: mount into drive A: or B:; a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image)</dd>
+      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM / Browser: mount into drive A: or B:, or Mount and Run (into A: and Autostart); a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image), also with Mount and Run</dd>
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
       <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
+      <dt>F6</dt><dd>move to other panel: copy, then the files written are deleted here (asked first)</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM, Browser)</dd>
       <dt>F9</dt><dd>Compile with sjasmplus (see below)</dd>
       <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
@@ -1563,8 +1564,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <dl>
       <dt>Files / Download Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
       <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS, FAT and RAM keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
-      <dt>Disks / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
-      <dt>Disks / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
+      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
+      <dt>Files / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
       <dt>ext / name / size</dt><dd>sort of panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
     <h4>Compile (sjasmplus)</h4>
@@ -1623,7 +1624,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
     <h4>Browser storage</h4>
-    <p>Files Save put into this browser (Where: Browser storage) and local files kept after open, newest first. Each keeps its machine: the one it was saved on (Save) or started on (local file); Run switches to it (not for HDD / SD card images), Mount leaves machine as it is. Folders (made in File Commander, drive Browser) come first, with ▸ at the right: click opens one, .. goes back up; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
+    <p>Files Save put into this browser (Where: Browser storage) and local files kept after open, newest first. Each keeps its machine: the one it was saved on (Save) or started on (local file); Run switches to it (not for HDD / SD card images), Mount leaves machine as it is. Files copied in by File Commander have none: Run uses the machine that is on, and opening one as a local file later gives it its machine. Folders (made in File Commander, drive Browser) come first, with ▸ at the right: click opens one, .. goes back up; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
     <table class="keys">
       <tr><td>Run</td><td>on the machine it was saved on, started as Local file with Autostart (an HDD / SD image boots)</td></tr>
       <tr><td>Mount</td><td>loaded, the machine stays, Load stays open</td></tr>
@@ -1826,17 +1827,17 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <button id="fcview" title="View the file (F3)">View <kbd>F3</kbd></button>
     <button id="fcedit" title="Edit the file: text or hex (F4)">Edit <kbd>F4</kbd></button>
     <button id="fccopy" title="Copy to the other panel (F5)">Copy <kbd>F5</kbd></button>
+    <button id="fcmove" title="Move to the other panel (F6)">Move <kbd>F6</kbd></button>
     <button id="fcmkdir" title="New directory (iS-DOS, FAT, RAM)">MkDir <kbd>F7</kbd></button>
     <button id="fcdel" title="Delete (F8)">Delete <kbd>F8</kbd></button>
     <button id="fccompile" title="Compile with sjasmplus (F9): the file under the cursor is the main source, its folder the project (any drive); the result, listing and messages go to RAM, into the folder named as the main file">Compile <kbd>F9</kbd></button>
     <span class="sp"></span>
-    <button id="fcfiles" class="fcmenu" title="Download / upload files">Files <span class="ar">▾</span></button>
-    <button id="fcdisks" class="fcmenu" title="New disk, HDD remaster">Disks <span class="ar">▾</span></button>
+    <button id="fcfiles" class="fcmenu" title="Download / upload files; new disk, HDD remaster">Files <span class="ar">▾</span></button>
   </div>
   <div class="fcstat" id="fcstat"></div>
   <input type="file" id="fcfile" hidden multiple>
   <div id="fcdlg" hidden><div class="box" role="alertdialog"><div class="t"></div><div class="x"></div>
-    <div class="b"><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
+    <div class="b"><button class="alt primary" hidden></button><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
 </div>
 <div id="askbox" hidden><div class="box" role="alertdialog" aria-modal="true"><div class="t"></div><div class="x"></div>
   <div class="b"><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
@@ -1911,16 +1912,50 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261031093033"></script>
-<script src="js/scancodes.js?v=20261031093033"></script>
-<script src="js/unzip.js?v=20261031093033"></script>
-<script src="js/vkbd.js?v=20261031093033"></script>
-<script src="js/asyncify.js?v=20261031093033"></script>
-<script src="js/gfx.js?v=20261031093033"></script>
-<script src="js/usel.js?v=20261031093033"></script>
-<script src="js/fcmd.js?v=20261031093033"></script>
-<script src="js/dbga.js?v=20261031093033"></script>
-<script src="js/rzx.js?v=20261031093033"></script>
-<script src="js/app.js?v=20261031093033"></script>
+<script>
+// the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
+(function () {
+  var JS = ['wasi_fs', 'scancodes', 'unzip', 'vkbd', 'asyncify', 'gfx', 'usel', 'fcmd', 'dbga', 'rzx', 'app'];
+  var m = document.querySelector('meta[name="build"]'), v = m ? '?v=' + m.content : '';
+  function run(name, text) { var s = document.createElement('script'); s.text = text + '\n//# sourceURL=js/' + name + '.js'; document.body.appendChild(s); }
+  function loose(i) { // js/*.js
+    if (i >= JS.length) return;
+    var s = document.createElement('script'); s.src = 'js/' + JS[i] + '.js' + v; s.onload = function () { loose(i + 1); };
+    s.onerror = function () { fail('js/' + JS[i] + '.js not found'); }; document.body.appendChild(s);
+  }
+  function fail(t) { var d = document.createElement('div'); d.style.cssText = 'position:fixed;left:0;right:0;top:0;padding:12px;background:#5a1d17;color:#fff;font:14px sans-serif;z-index:99999'; d.textContent = 'Web Unreal Speccy: ' + t; document.body.appendChild(d); }
+  function u16(b, o) { return b[o] | (b[o + 1] << 8); }
+  function u32(b, o) { return (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0; }
+  async function unzip(b) { // { name: text }
+    var e = -1, out = {}, i;
+    for (i = b.length - 22; i >= 0; i--) if (u32(b, i) === 0x06054B50) { e = i; break; }
+    if (e < 0) throw new Error('js.zip: broken');
+    for (var n = u16(b, e + 10), p = u32(b, e + 16); n--; p += 46 + u16(b, p + 28) + u16(b, p + 30) + u16(b, p + 32)) {
+      var meth = u16(b, p + 10), cs = u32(b, p + 20), off = u32(b, p + 42);
+      var name = new TextDecoder().decode(b.subarray(p + 46, p + 46 + u16(b, p + 28))).replace(/^.*\//, '');
+      var st = off + 30 + u16(b, off + 26) + u16(b, off + 28), d = b.subarray(st, st + cs);
+      if (meth === 8) d = new Uint8Array(await new Response(new Blob([d]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+      out[name] = new TextDecoder().decode(d);
+    }
+    return out;
+  }
+  (async function () {
+    // a failed fetch (an old service worker that took the site for down, a busy local server): tried again; only a
+    // missing js.zip (404) means the separate files
+    var r = null;
+    for (var k = 0; k < 4 && !(r && (r.ok || r.status === 404)); k++) {
+      if (k) await new Promise(function (res) { setTimeout(res, 400 * k); });
+      try { r = await fetch('js/js.zip' + v, k ? { cache: 'reload' } : {}); } catch (err) { r = null; }
+    }
+    if (!r || !r.ok) { if (r && r.status === 404) loose(0); else fail('js/js.zip: ' + (r ? 'HTTP ' + r.status : 'no answer') + ' — reload the page'); return; }
+    try {
+      if (typeof DecompressionStream === 'undefined') throw new Error('this browser cannot unpack js/js.zip (no DecompressionStream)');
+      var f = await unzip(new Uint8Array(await r.arrayBuffer()));
+      for (var i = 0; i < JS.length; i++) { if (f[JS[i] + '.js'] == null) throw new Error('js.zip: no ' + JS[i] + '.js'); }
+      for (i = 0; i < JS.length; i++) run(JS[i], f[JS[i] + '.js']);
+    } catch (err) { fail(err.message); }
+  })();
+})();
+</script>
 </body>
 </html>

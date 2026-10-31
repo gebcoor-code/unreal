@@ -2740,3 +2740,47 @@ Web Unreal Speccy — version history
 
 * Load / Browser storage: an opened folder has no file chosen yet
   ("Select file"), so none is highlighted until one is picked
+
+
+        version 1.19.0                  31 oct 2026
+
+@ scripts in one file, js/js.zip: the page unpacks and runs them (the
+  separate js/*.js files still work when js.zip is not there)
+
+
+        version 1.19.1                  31 oct 2026
+
+! after an RZX the machine stayed ZX Spectrum 48 / 128 (the playback
+  machine): disks opened then failed, and Browser storage kept them with
+  it, so Run started ZX Spectrum 48. Another file now brings back the
+  machine before the RZX; storage never keeps the playback machine for a
+  disk, tape or snapshot (such records saved earlier run on that machine)
+
+
+        version 1.19.2                  31 oct 2026
+
+* start: js/js.zip asked for again when the request fails (an old service
+  worker, a busy local server) instead of falling back to the separate
+  js/*.js files; the service worker always asks the site for the page's
+  own files it has no copy of
+* Load / Browser storage: a file mounted from the list and then ejected
+  is no longer the chosen one (no orange highlight)
+@ Browser storage: files copied in by File Commander have no machine; Run
+  starts them on the machine that is on
+
+
+        version 1.20.0                  31 oct 2026
+
++ File Commander: F6 / Move: copy to the other panel, then the files
+  written are deleted (asked first)
++ File Commander: a disk image or ZIP opened (Enter, double click): Mount
+  and Run puts it into A: and starts it (Autostart)
+@ File Commander: Files and Disks menus in one: Files (Download, Upload,
+  then Disks: New Disk, HDD Remaster)
+* Load / Browser storage: no file chosen at the start (was the first one)
+
+
+        version 1.20.1                  31 oct 2026
+
+* Load / Browser storage: no file chosen: Mount, plain and inactive (was
+  Run in two colors)
