@@ -1,5 +1,5 @@
 [
-  { "name": "CPM HDD", "url": "cpm.zip", "run": "?model=atm710&hdd=cpm.zip&cpm=c:&xt=1", "tag": "HDD CPM" },
+  { "name": "CPM HDD", "url": "cpm.zip", "tag": "HDD CPM" },
   { "name": "iS-DOS Chic v5.01", "url": "isdos501.zip", "run": "?model=chic", "tag": "HDD OS" },
   { "name": "TASiS v5.40", "url": "tasis540.zip", "run": "?model=tasis", "tag": "HDD OS" },
   { "name": "Evo FAT16 10MB test", "url": "nemo.zip", "tag": "HDD" },
