@@ -12,12 +12,16 @@ const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
 const SHELL = ['./', 'index.html', 'changes.txt', 'icon.png', 'apple-touch-icon.png',
   'js/js.zip',
   'unreal/unreal.zip', 'unreal/unreal.wasm', 'unreal/sjasm.zip', 'unreal/unreal.ini', 'unreal/boot6.$b', 'unreal/CMOS', 'unreal/sos.l'];
+const NEED = ['index.html', 'js/js.zip', 'unreal/unreal.ini', 'unreal/boot6.$b']; // and unreal.zip or unreal.wasm
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
     const c = await caches.open(CORE);
-    // one by one: a missing optional file (icon, sos.l) must not stop the rest
-    await Promise.all(SHELL.map(async (u) => { try { const r = await fetch(new Request(u.replace(/\$/g, '%24'), { cache: 'reload' })); if (r.ok) await c.put(u.replace(/\$/g, '%24'), r); } catch (err) {} }));
+    // one by one: a missing optional file (icon, sos.l) must not stop the rest; the ones the emulator cannot start
+    // without must all be there, else this build is not installed (the copy of the build before stays as it was)
+    const got = new Set();
+    await Promise.all(SHELL.map(async (u) => { try { const r = await fetch(new Request(u.replace(/\$/g, '%24'), { cache: 'reload' })); if (r.ok) { await c.put(u.replace(/\$/g, '%24'), r); got.add(u); } } catch (err) {} }));
+    if (!NEED.every((u) => got.has(u)) || !(got.has('unreal/unreal.zip') || got.has('unreal/unreal.wasm'))) { await caches.delete(CORE); throw new Error('offline copy: files missing'); }
     self.skipWaiting();
   })());
 });
@@ -36,8 +40,10 @@ self.addEventListener('fetch', (e) => {
   const rel = decodeURIComponent(u.pathname.slice(SCOPE.length));
   e.respondWith((async () => {
     const store = isFile(rel) ? FILES : CORE;
-    const copy = async () => (await caches.match(u.origin + u.pathname, { ignoreSearch: true })) ||
-      (req.mode === 'navigate' ? (await caches.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await caches.match(self.registration.scope, { ignoreSearch: true })) : null);
+    // the copy of this build only (not of an older build or another copy of the site: caches.match looks into all of them)
+    const copy = async () => { const c = await caches.open(store), core = store === CORE ? c : await caches.open(CORE);
+      return (await c.match(u.origin + u.pathname, { ignoreSearch: true })) ||
+        (req.mode === 'navigate' ? (await core.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await core.match(self.registration.scope, { ignoreSearch: true })) : null); };
     const have = await copy();
     const mine = u.searchParams.get('v') === BUILD; // a file of this very build: it does not change
     if (have && (mine || self.navigator.onLine === false || Date.now() < downUntil)) return have;
@@ -46,7 +52,9 @@ self.addEventListener('fetch', (e) => {
       downUntil = 0;
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)
       // the copy is cloned at once: later (after caches.open) the page may be reading the body already, and clone() throws
-      if (r.ok && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
+      // a file of another build (a page of the build before, still open): not kept in this build's copy
+      const other = u.searchParams.has('v') && u.searchParams.get('v') !== BUILD;
+      if (r.ok && !other && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
         const keep = r.clone();
         caches.open(store).then((c) => c.put(u.origin + u.pathname, keep)).catch(() => {});
       }
@@ -60,8 +68,7 @@ self.addEventListener('fetch', (e) => {
     try {
       const r = await Promise.race([net, late]);
       if (r !== 'late') return r;
-      net.catch(() => {});
-      downUntil = Date.now() + DOWN_FOR; // slow or silent: the next files from the copies at once
+      net.catch(() => { downUntil = Date.now() + DOWN_FOR; }); // slow: this one from the copy; the site is taken for down only when it fails
       return have;
     } catch (err) { downUntil = Date.now() + DOWN_FOR; return have; } // offline: the copy (the build's ?v= does not matter; the page itself for any navigation)
   })());

@@ -2784,3 +2784,146 @@ Web Unreal Speccy — version history
 
 * Load / Browser storage: no file chosen: Mount, plain and inactive (was
   Run in two colors)
+
+
+        version 1.20.2                  31 oct 2026
+
+! File Commander: a disk the machine wrote to after its panel was read is
+  not written over any more (the change is refused, the panel read
+  again); the partitions of one HDD share one image (a copy or move
+  between C: and D: undid the other side's change)
+! File Commander: Overwrite checks the space first and puts the old
+  file back when the new one does not fit (TR-DOS: the old one was lost)
+! File Commander: the text editor kept only the text up to the first ^Z
+  (#1A) of a file that is not TR-DOS: what follows it stays now
+! File Commander: Move into Browser deletes the sources only after the
+  browser has stored the files
+! Save to Browser Storage (SD card, ISD disk): the "changed" mark goes
+  only when the file was stored (No to Replace, a full storage: it stays)
+! Browser storage: a file replaced under another case of its name could
+  be lost when storing the new one failed
+! run= (quick run of a TR-DOS file): the disk's catalogue is not put back
+  over a file the program saved in the meantime
+! Scorpion GMX 640x200: the border "none" wrote past the picture (now a
+  border as on ATM); fast scanlines: the picture in its place
+! RZX: a damaged file could write past its buffers; checked now
+! TS-Conf VDAC2 (FT812): a damaged PNG hung the page; lengths of memory
+  commands kept within RAM_G
+* HDD and SD images of 2 GB and more: sectors past 2 GB read and written
+  in place; New Disk FAT up to 4000 MB (ZIP has no room for more)
+* Browser storage in File Commander: one list refresh after a burst of
+  writes (was: one per file); a folder deleted whatever the case of its
+  name
+
+
+        version 1.21.0                  31 oct 2026
+
+@ loads one at a time: a load started while another one waits (a drop
+  during a question, File Commander, the link at start) waits for its
+  turn; before, one took or cleared the other's Autostart, Save to
+  Browser Storage, Boot from HDD / SD
+@ questions of the page one at a time: a second one waits for the first
+  (the first one stayed unanswered for ever, its load half done)
+! Esc on "An HDD or an SD card image?" cancels (was: the other kind)
+! start macros (HDD / SD / OS boot, CP/M, tape, ROM disk) with True clock:
+  timed for the machine's own speed, as Autostart of a disk (keys came
+  too early with the CPU slider over 1x)
+! a load cancelled or failed ("Unsaved changes": Cancel, a bad image) no
+  longer starts the card or HDD that was there, nor gives it the new
+  image's link (server list, Options, links hdd= / sd=, OS boot)
+! OS boot (NedoOS, TASiS, Chic…): a failed download leaves the mounted
+  image as it was and says why
+! link hdd=: the HDD interface of the machine (GMX: its own, was ATM),
+  both HDD drives mounted again
+! a machine that does not start (a ROM not downloaded): the one before
+  comes back, Apply can try again; a ROM missing because of a network
+  error is downloaded again next time (only "not found" is remembered)
+* two machine switches at once (a drop, Apply during a question) could
+  start two machines
+* the ZIP window (several images): the image picked loads with the
+  choices of its load (link, Autostart off…)
+* a newer build reloads the page only after the link's files are in
+
+
+        version 1.21.1                  31 oct 2026
+
+! offline copy (sw.js): a file of an older build, asked for by a page
+  still open, is not kept as this build's; only this build's copy is
+  served (not one of an older build or of another copy of the site)
+! offline copy: one slow answer (over 1.5 s) no longer takes the site for
+  down for 30 s (files not kept yet failed at once); only a failed request
+  does
+! offline copy: a build is installed only with all its main files (page,
+  js.zip, emulator); a dropped connection while installing could leave
+  a copy without them (the copy of the build before is kept then)
+
+
+        version 1.21.2                  31 oct 2026
+
+* on-screen keyboard: F keys work while paused (F5 goes on, F2 / F3)
+* Browser storage: a local HDD / SD image kept after open is stored as
+  one (Mount, no "HDD or SD?" again); a file gone from the storage reads
+  the storage list again (was the server list)
+* Local server: a folder opened quickly after another no longer shows
+  the two listings mixed
+* Wild Commander autostart on a Custom ROM TS-Conf machine
+* deBUGa: 64 breakpoints at most from the listing too (more broke saving
+  them); texts to and from the debugger in UTF-8 both ways
+* File Commander: Download Files of a Browser folder reads its files
+  (was an archive without them and a success message); a damaged ZIP
+  among uploaded files is reported, the rest goes on; FAT: a long name
+  left by an 8.3 DOS is not shown on the file after it
+* Options / System / Make offline: files not downloaded are reported;
+  the update check reloads again for later new builds of the session
+* ROM disk: drive D: busy leaves no temporary file
+* Scorpion GMX: its port reads go into an RZX recording too (playback
+  went out of sync)
+* TS-Conf VDAC2: the FT812 answers without an SD card in the slot
+* keyboard queue: a full queue no longer drops all queued keys
+
+
+        version 1.21.3                  31 oct 2026
+
+! TS-Conf: the keys held over TS-BIOS's power-up (Symbol Shift: Setup;
+  Caps Shift: the SD card boots) counted in frames of the machine, not in
+  time: a slow download of wc.zip, a hidden tab or turbo no longer let
+  them go too early; a model switch drops them
+! the default HDD (hdd/cpm.hdd) gets its own geometry, not the one left
+  from another image of the session before (C: read garbage)
+* RZX: opening another recording during a seek no longer winds the new
+  one; snapshots between input blocks of no frames are applied
+* a disk insert error of the core is shown again (the answer prepared
+  for its "save the changed disk?" question took it)
+* on-screen keyboard: CAPS SHIFT latched stays down when DELETE (CS+0) is
+  let go; a quick second tap of a key no longer gets cut short
+* memory search: after a machine switch a new search (it compared with
+  the other machine's memory); faster on 4 MB machines
+* Update NedoOS / OSZ from GitHub: the first failed file stops the other
+  downloads (its message stays); the image is made for the system
+  chosen at the start, not one chosen while the files came
+* touch mouse: on after a machine switch too
+* Browser storage that cannot be opened (a private window, blocked site
+  data) is said once instead of just looking empty
+* File Commander: Compile of a project with subfolders on Browser
+* TS-Conf VDAC2 (FT812): a display list CALL deeper than 4 is not taken
+  (its RETURN went astray); a frame of under 1 ms no longer stalls the
+  page; SPG: a damaged hrust block stops depacking
+* debugger: the small picture of the screen with the Normal renderer
+
+
+        version 1.21.4                  31 oct 2026
+
+* Scorpion GMX, Mix Frames (on by default): a frame is rendered and kept
+  for the mix only while the screens go 1 2 1 2 (gigascreen); games and
+  OSZ no longer render every frame twice
+
+
+        version 1.21.5                  31 oct 2026
+
+* a ZIP is read once per load: its directory kept while it is in use, the
+  image unpacked last kept for a moment (a card, a TS-Conf ZIP, an HDD /
+  SD image: one unpacking instead of two or more)
+* File Commander: free space counted once per reading of a panel (FAT32:
+  each cursor move walked the whole FAT); the viewer's address field
+  draws once the typing stops
+* window size changes fitted once per picture (were 2-4 times per event)
