@@ -6,16 +6,16 @@
 
   // Files on the server: index.html in the root, scripts in js/, the emulator (wasm, unreal.ini, boot, CMOS) in unreal/,
   // ROM images in rom/. ROM / boot names must match the ones referenced in unreal.ini.
-  const WASM_URL = 'unreal/unreal.wasm?v=20261030211924';
-  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261030211924'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
-  const SJASM_URL = 'unreal/sjasm.zip?v=20261030211924'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
+  const WASM_URL = 'unreal/unreal.wasm?v=20261031093033';
+  const WASM_ZIP_URL = 'unreal/unreal.zip?v=20261031093033'; // the server keeps the wasm packed (deflate); a bare unreal.wasm is the fallback
+  const SJASM_URL = 'unreal/sjasm.zip?v=20261031093033'; // sjasmplus for File Commander (Compile, F9), loaded at the first compile
   const MAIL_PNG = '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';
-  const APP_VER = '1.17.2'; // About, System Info (history: changes.txt)
+  const APP_VER = '1.18.1'; // About, System Info (history: changes.txt)
   // a phone in landscape (landUpdate, applyScale): the whole screen, the on-screen keyboards over it
   const HOME_APP = !!(navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches)); // started from the home screen
   const LAND_MQ = window.matchMedia ? window.matchMedia('(orientation: landscape) and (max-height: 540px) and (pointer: coarse)') : null;
   let land = false;
-  const BUILD = '20261030211924'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
+  const BUILD = '20261031093033'; // set by make_dist.sh: the build of these files (index.html carries the same in <meta name="build">)
   // Only what the current machine needs is downloaded; the rest is fetched on a model switch.
   const COMMON_FILES = ['unreal.ini', 'boot6.$b'];
   const GS_ROM = 'bootgs.rom'; // NeoGS ROM: fetched when General Sound is switched on
@@ -2990,39 +2990,77 @@
   async function brwList() { try { const d = await brwDb(); return await idbReq(d.transaction('meta').objectStore('meta').getAll()); } catch (e) { return []; } }
   async function brwGet(name) { const d = await brwDb(); return idbReq(d.transaction('data').objectStore('data').get(name)); }
   async function brwPut(meta, data) { const d = await brwDb(), tx = d.transaction(['meta', 'data'], 'readwrite'); tx.objectStore('meta').put(meta); tx.objectStore('data').put(data, meta.name); await idbDone(tx); }
+  async function brwPutDir(meta) { const d = await brwDb(), tx = d.transaction('meta', 'readwrite'); tx.objectStore('meta').put(meta); await idbDone(tx); }
   async function brwDel(name) { const d = await brwDb(), tx = d.transaction(['meta', 'data'], 'readwrite'); tx.objectStore('meta').delete(name); tx.objectStore('data').delete(name); await idbDone(tx); }
   // File Commander drives of the page: Browser (the browser storage: read, write, delete) and Local server (the folder opened
   // in Load / Local server: read only). Their listings and files come in the background: list() starts the reading and the
   // panel is drawn again (redraw); prepare() fetches the files before File Commander reads them
   const splitName = (n) => { const d = n.lastIndexOf('.'); return d > 0 ? [n.slice(0, d), n.slice(d + 1)] : [n, '']; };
+  // folders of the browser storage: a record { name: 'a/b', dir: true } (an empty folder too); a file in one: name 'a/b/x.trd'.
+  // brwDir(metas, prefix) → what is right in the folder prefix ('' = the root, 'a/b/'): { dirs: [names], files: [metas] }
+  const brwBase = (n) => n.slice(n.lastIndexOf('/') + 1);
+  function brwDir(metas, prefix) {
+    const dirs = new Map(), files = [], lp = prefix.toLowerCase();
+    for (const m of metas) {
+      if (!m.name.toLowerCase().startsWith(lp) || m.name.length === prefix.length) continue;
+      const rest = m.name.slice(prefix.length), k = rest.indexOf('/');
+      if (k >= 0) { const d = rest.slice(0, k); if (!dirs.has(d.toLowerCase())) dirs.set(d.toLowerCase(), d); } // a folder known by what is in it
+      else if (m.dir) { if (!dirs.has(rest.toLowerCase())) dirs.set(rest.toLowerCase(), rest); }
+      else files.push(m);
+    }
+    return { dirs: [...dirs.values()].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })), files };
+  }
   function brwVolume() {
     const T = UnrealFC._test;
+    let path = [];
+    const pre = () => (path.length ? path.join('/') + '/' : '');
+    const up = { id: null, up: true, dir: true, name: '..', ext: '', size: 0, show: '', sub: '' };
     const v = {
       kind: 'Browser', label: '',
+      get path() { return '/' + path.join('/'); },
+      setPath(ns) { // the folders that are there (the list not read yet: as asked)
+        path = [];
+        for (const n of ns || []) { if (brwCache && !brwDir(brwCache.metas, pre()).dirs.some((d) => d.toLowerCase() === String(n).toLowerCase())) break; path.push(n); }
+        return path.slice();
+      },
+      enter(it) { if (it.up) path.pop(); else path.push(it.name); return path.slice(); },
       list() {
         if (!brwCache) {
           if (!v.pending) v.pending = brwList().then((m) => { brwCache = { metas: m, data: new Map() }; }, (e) => { brwCache = { metas: [], data: new Map() }; v.err = 'Browser: ' + e.message; })
             .finally(() => { v.pending = null; if (v.redraw) v.redraw(); });
-          return [];
+          return path.length ? [up] : [];
         }
-        return brwCache.metas.map((m) => { const [n, x] = splitName(m.name); return { id: m.name, name: n, ext: x, size: m.size, show: m.size, sub: '' }; });
+        const { dirs, files } = brwDir(brwCache.metas, pre());
+        return (path.length ? [up] : []).concat(dirs.map((d) => ({ id: pre() + d, dir: true, name: d, ext: '', size: 0, show: '<DIR>', sub: '' })),
+          files.map((m) => { const [n, x] = splitName(brwBase(m.name)); return { id: m.name, name: n, ext: x, size: m.size, show: m.size, sub: '' }; }));
+      },
+      mkdir(name0) {
+        const name = (name0 || '').trim(); if (!name) throw new Error('no name');
+        if (/[\/\\:*?"<>|]/.test(name) || name === '.' || name === '..') throw new Error('not a name for a folder');
+        if (!brwCache) throw new Error('not read yet');
+        const full = pre() + name, l = full.toLowerCase();
+        if (brwCache.metas.some((m) => m.name.toLowerCase() === l || m.name.toLowerCase().startsWith(l + '/'))) throw new Error('exists');
+        const meta = { name: full, dir: true, kind: 'dir', model, date: Date.now(), size: 0 };
+        brwCache.metas.push(meta);
+        brwPutDir(meta).then(() => brwRefresh(), (e) => toast('Browser storage: ' + full + ': ' + e.message, true));
       },
       free() { return brwFree; },
-      async prepare(items) { for (const it of items) if (brwCache && !brwCache.data.has(it.id)) { const d = await brwGet(it.id); if (!d) throw new Error(it.id + ' is not there any more'); brwCache.data.set(it.id, d); } },
-      read(it) { const d = brwCache && brwCache.data.get(it.id); if (!d) throw new Error('not read yet'); const [n, x] = splitName(it.id); return { name: n, ext: x, data: d }; },
+      async prepare(items) { for (const it of items) if (brwCache && !it.dir && !brwCache.data.has(it.id)) { const d = await brwGet(it.id); if (!d) throw new Error(it.id + ' is not there any more'); brwCache.data.set(it.id, d); } },
+      read(it) { if (it.dir) throw new Error('a directory'); const d = brwCache && brwCache.data.get(it.id); if (!d) throw new Error('not read yet'); const [n, x] = splitName(brwBase(it.id)); return { name: n, ext: x, data: d }; },
       write(f0) { // a TR-DOS file comes as Hobeta (.$C), as FAT takes it
         const f = f0.zx ? (T.partExt(f0.zx) ? { name: f0.name.trim(), ext: T.partExt(f0.zx), data: f0.data.slice(0, f0.zx.len || f0.data.length) } : { name: f0.name.trim(), ext: '$' + f0.zx.type.toLowerCase(), data: T.hobetaMake(f0) }) : f0;
-        const name = ((f.name || 'file').trim() + (f.ext && String(f.ext).trim() ? '.' + String(f.ext).trim() : '')).replace(/[\\/:*?"<>|]/g, '_');
+        const name = pre() + ((f.name || 'file').trim() + (f.ext && String(f.ext).trim() ? '.' + String(f.ext).trim() : '')).replace(/[\\/:*?"<>|]/g, '_');
         if (!brwCache) throw new Error('not read yet');
-        if (brwCache.metas.some((m) => m.name.toLowerCase() === name.toLowerCase())) throw Object.assign(new Error('file exists'), { hit: v.list().find((x) => x.id.toLowerCase() === name.toLowerCase()) });
+        if (brwCache.metas.some((m) => m.name.toLowerCase() === name.toLowerCase())) throw Object.assign(new Error('file exists'), { hit: v.list().find((x) => x.id && x.id.toLowerCase() === name.toLowerCase()) });
         const data = f.data.slice(), meta = { name, kind: brwKind(name, 'file:'), model, date: Date.now(), size: data.length };
         brwCache.metas.push(meta); brwCache.data.set(name, data);
         brwPut(meta, data).then(() => brwRefresh(), (e) => toast('Browser storage: ' + name + ': ' + e.message, true));
       },
-      del(it) {
-        if (!brwCache) return;
-        brwCache.metas = brwCache.metas.filter((m) => m.name !== it.id); brwCache.data.delete(it.id);
-        brwDel(it.id).then(() => brwRefresh(), (e) => toast('Browser storage: ' + e.message, true));
+      del(it) { // a folder goes with all inside
+        if (!brwCache || it.up) return;
+        const gone = it.dir ? brwCache.metas.filter((m) => m.name === it.id || m.name.toLowerCase().startsWith(it.id.toLowerCase() + '/')) : brwCache.metas.filter((m) => m.name === it.id);
+        brwCache.metas = brwCache.metas.filter((m) => !gone.includes(m)); gone.forEach((m) => brwCache.data.delete(m.name));
+        Promise.all(gone.map((m) => brwDel(m.name))).then(() => brwRefresh(), (e) => toast('Browser storage: ' + e.message, true));
       },
     };
     return v;
@@ -3062,10 +3100,27 @@
   async function brwRefresh(pick) {
     brwMetas = (await brwList()).sort((a, b) => b.date - a.date); brwFreeUpd();
     if (brwCache) brwCache.metas = brwMetas.slice(); // File Commander's copy: the same list (the read files stay)
-    const sel = $('ldbrw'), was = pick || sel.value; sel.innerHTML = '';
-    for (const m of brwMetas) { const o = document.createElement('option'); o.value = m.name; o.textContent = m.name; sel.appendChild(o); }
-    if (brwMetas.some((m) => m.name === was)) sel.value = was;
-    $('ldbrwsec').hidden = !brwMetas.length; brwUI();
+    $('ldbrwsec').hidden = !brwMetas.length;
+    brwFill(pick);
+  }
+  // Load / Browser storage: the folder shown (its own, not File Commander's): '..' first, then the folders (▸ at the right:
+  // a click opens it), then the files, newest first. A folder that is gone: the nearest one up that is there
+  let brwPath = '';
+  function brwFill(pick, nav) { // nav: a folder opened, no file chosen yet (a hidden placeholder, nothing highlighted)
+    const sel = $('ldbrw'), was = pick || sel.value;
+    const there = (pf) => brwMetas.some((m) => { const n = m.name.toLowerCase(); return n.startsWith(pf.toLowerCase()) || n === pf.slice(0, -1).toLowerCase(); });
+    while (brwPath && !there(brwPath)) brwPath = brwPath.replace(/[^/]*\/$/, '');
+    const { dirs, files } = brwDir(brwMetas, brwPath);
+    sel.innerHTML = '';
+    const add = (v, t, nav) => { const o = document.createElement('option'); o.value = v; o.textContent = t; if (nav) o.dataset.nav = nav; sel.appendChild(o); return o; };
+    const f = files.find((m) => m.name === was) || (nav ? null : files[0]);
+    if (!f) { const o = add('', 'Select file'); o.disabled = o.hidden = true; }
+    if (brwPath) add('\u0001..', '..', 'up').title = 'Up: /' + brwPath.replace(/[^/]*\/$/, '');
+    for (const d of dirs) add('\u0002' + brwPath + d, d, 'dir');
+    for (const m of files) add(m.name, brwBase(m.name));
+    sel.value = f ? f.name : sel.options.length ? sel.options[0].value : '';
+    $('ldbrwpath').textContent = brwPath ? '/' + brwPath.replace(/\/$/, '') : '';
+    brwUI();
   }
   async function brwUsage() { try { const e = await navigator.storage.estimate(); return e && e.usage ? (e.usage / 1048576).toFixed(1) + ' MB used' + (e.quota ? ' of ' + Math.round(e.quota / 1048576) + ' MB' : '') : ''; } catch (e) { return ''; } }
   const brwKind = (name, t) => t.startsWith('disk:') ? 'disk' : t.startsWith('hdd:') ? 'hdd' : t === 'sd' ? 'sd' : t === 'sna' ? 'snap'
@@ -3567,7 +3622,12 @@
     };
     let bMode = 'run', bFor = null;
     brwUI = bUI;
-    $('ldbrw').onchange = bUI;
+    $('ldbrw').onchange = () => { // a folder or '..': opened (the list stays open, usel.js: data-nav)
+      const v = $('ldbrw').value;
+      if (v.startsWith('\u0001')) { brwPath = brwPath.replace(/[^/]*\/$/, ''); brwFill('', 1); return; }
+      if (v.startsWith('\u0002')) { brwPath = v.slice(1) + '/'; brwFill('', 1); return; }
+      bUI();
+    };
     $('ldbdelall').onclick = async () => {
       if (!brwMetas.length || !await askBox('', 'Clean Browser Storage?', 'Clean')) return;
       try { for (const m of brwMetas.slice()) await brwDel(m.name); ldMsg('Browser storage cleaned'); } catch (e) { ldMsg(e.message, true); }
@@ -5168,9 +5228,9 @@
   function bindOffline() {
     $('ofmake').onclick = makeOffline;
     $('ofbrw').onclick = async () => { // Load / Browser storage: everything Save put there
-      const n = brwMetas.length;
-      if (!n) { offMsg('Browser storage is empty'); return; }
-      if (!await askBox('Browser storage', 'Delete all ' + n + ' file' + (n === 1 ? '' : 's') + ' saved in this browser (Load / Browser storage)?', 'Delete')) return;
+      const n = brwMetas.filter((m) => !m.dir).length;
+      if (!brwMetas.length) { offMsg('Browser storage is empty'); return; }
+      if (!await askBox('Browser storage', 'Delete all ' + n + ' file' + (n === 1 ? '' : 's') + (n < brwMetas.length ? ' and folders' : '') + ' saved in this browser (Load / Browser storage)?', 'Delete')) return;
       try { for (const m of brwMetas.slice()) await brwDel(m.name); } catch (e) { toast('Browser storage: ' + e.message, true); }
       brwCache = null; await brwRefresh(); offUI();
     };
@@ -5945,7 +6005,8 @@
       if (!sdOn()) store('sd.if.' + M(), '1'); // like hdd=: the interface goes on
       try {
         await sdFromBytes(name, new Uint8Array(await (await fetchFile(url)).arrayBuffer()), true);
-        if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && sdRun) { tsBootSd(); if (!tsNoAuto) wcAutorun(); } } // the card is there from power-on
+        // the card is there from power-on; TS-Conf: a card with its program (.json), or autorun=1: TS-BIOS boots the card (Wild Commander)
+        if (sdName) { sdSrc = url; if (M() === 'EVO') E.web_reset(0); if (isTS() && (sdRun || auto)) { tsBootSd(); if (sdRun && !tsNoAuto) wcAutorun(); } }
         if (sdName && sdCfg && (!sdCfg.model || sdCfg.model === model)) await sdDisks(auto, { 0: !!LINK.a, 1: !!LINK.b, 2: !!LINK.c, 3: !!LINK.d }); // the disks of its .json (a= / b= of the link win)
       }
       catch (err) { toast('Link: ' + name + ': ' + err.message, true); }

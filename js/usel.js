@@ -93,17 +93,20 @@
     render(sel);
   }
 
+  // an option with data-nav (a folder, '..': Load / Browser storage) is taken even when it is the chosen one already, and the
+  // list opens again (the page has put the folder's options in by then)
   function pick(sel, i) {
     if (i < 0 || i >= sel.options.length) return;
     const o = sel.options[i]; if (o.disabled || o.hidden) return;
-    if (sel.selectedIndex !== i) {
+    if (sel.selectedIndex !== i || o.dataset.nav) {
       sel.selectedIndex = i;
       sel.dispatchEvent(new Event('input', { bubbles: true }));
       sel.dispatchEvent(new Event('change', { bubbles: true }));
     }
     render(sel);
   }
-  const usable = (sel) => [...sel.options].map((o, i) => [o, i]).filter(([o]) => !o.disabled && !o.hidden).map(([, i]) => i);
+  const usable = (sel, open) => [...sel.options].map((o, i) => [o, i]).filter(([o]) => !o.disabled && !o.hidden && (open || !o.dataset.nav)).map(([, i]) => i); // closed: ↑ ↓ over the files only
+  const isNav = (sel, i) => !!(sel.options[i] && sel.options[i].dataset.nav);
 
   function open(sel) {
     close();
@@ -116,13 +119,14 @@
       const g = o.parentElement && o.parentElement.tagName === 'OPTGROUP' ? o.parentElement : null;
       if (g !== group) { group = g; if (g) { const h = document.createElement('div'); h.className = 'usel-grp'; h.textContent = g.label; pop.appendChild(h); } }
       const d = document.createElement('div');
-      d.className = 'usel-it' + (i === sel.selectedIndex ? ' on' : '') + (o.disabled ? ' dis' : '') + (g ? ' ing' : '');
+      d.className = 'usel-it' + (i === sel.selectedIndex && !o.dataset.nav ? ' on' : '') + (o.disabled ? ' dis' : '') + (g ? ' ing' : '') + (o.dataset.nav ? ' usel-nav usel-' + o.dataset.nav : '');
       d.textContent = o.textContent || ' '; d.dataset.i = i;
       if (o.title) d.title = o.title;
+      if (o.dataset.nav === 'dir') d.insertAdjacentHTML('beforeend', '<svg class="usel-go" viewBox="0 0 6 10" aria-hidden="true"><path d="M1 1l4 4-4 4"/></svg>');
       pop.appendChild(d);
     });
     pop.addEventListener('pointerdown', (e) => e.preventDefault()); // the box keeps the focus
-    pop.addEventListener('click', (e) => { const d = e.target.closest('.usel-it'); if (!d || d.classList.contains('dis')) return; pick(sel, +d.dataset.i); close(); box.focus({ preventScroll: true }); });
+    pop.addEventListener('click', (e) => { const d = e.target.closest('.usel-it'); if (!d || d.classList.contains('dis')) return; const nav = isNav(sel, +d.dataset.i); pick(sel, +d.dataset.i); close(); if (nav) open(sel); box.focus({ preventScroll: true }); });
     pop.addEventListener('pointermove', (e) => { const d = e.target.closest('.usel-it'); if (d && !d.classList.contains('dis')) hot(d); });
     document.body.appendChild(pop);
     popFor = sel; popAnchor = box; box.classList.add('open'); box.setAttribute('aria-expanded', 'true');
@@ -167,7 +171,7 @@
 
   function keydown(e, sel) {
     const isOpen = popFor === sel, k = e.key;
-    const list = usable(sel);
+    const list = usable(sel, isOpen);
     const cur = isOpen ? +((pop.querySelector('.usel-it.hot') || pop.querySelector('.usel-it.on') || {}).dataset || {}).i : sel.selectedIndex;
     const at = list.indexOf(isNaN(cur) ? sel.selectedIndex : cur);
     const go = (j) => {
@@ -184,7 +188,7 @@
     else if (k === 'PageDown') go(at + 8);
     else if (k === 'PageUp') go(at - 8);
     else if (k === 'Enter' || k === ' ') {
-      if (isOpen) { const d = pop.querySelector('.usel-it.hot'); if (d) pick(sel, +d.dataset.i); close(); }
+      if (isOpen) { const d = pop.querySelector('.usel-it.hot'), nav = d && isNav(sel, +d.dataset.i); if (d) pick(sel, +d.dataset.i); close(); if (nav) open(sel); }
       else if (k === ' ' || !sel.closest('form')) open(sel);
     }
     else if (k === 'Escape' && isOpen) close();

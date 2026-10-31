@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261030211924">
+<meta name="build" content="20261031093033">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -733,6 +733,9 @@ select.usel-src { display: none !important; }
 .usel-combo { position: relative; display: flex; min-width: 0; } .usel-combo > input { flex: 1; min-width: 0; padding-right: 26px; }
 .usel-cbtn { position: absolute; right: 1px; top: 1px; bottom: 1px; width: 24px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; color: var(--text); }
 .usel-combo.open > input { border-color: var(--accent); } .usel-combo.open .usel-arr { transform: rotate(180deg); }
+.usel-it.usel-nav { display: flex; align-items: center; gap: 8px; } .usel-it .usel-go { width: 6px; height: 10px; margin-left: auto; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .8; } /* a folder: ▸ at the right edge */
+.usel-it.usel-up { color: var(--dim); }
+.ldbpath { text-transform: none; letter-spacing: 0; font: 11px ui-monospace, Consolas, monospace; color: var(--text); margin-left: 6px; }
 .usel-it.ing { padding-left: 18px; } .usel-grp { padding: 5px 10px 2px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
 @media (pointer: coarse) { .usel-it { padding: 8px 12px; } }
 /* the page's own question box (instead of the browser's confirm): OK / Cancel, OK has the focus */
@@ -1539,7 +1542,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="fchelp" hidden role="dialog" aria-label="File Commander help">
   <div class="dbghead fhead"><span>File Commander help</span><button id="fchelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
+    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load, with folders: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
     <h4>Keys</h4>
     <dl>
       <dt>Tab</dt><dd>other panel</dd>
@@ -1551,7 +1554,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
       <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
-      <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM)</dd>
+      <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM, Browser)</dd>
       <dt>F9</dt><dd>Compile with sjasmplus (see below)</dd>
       <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
       <dt>F1 / Esc</dt><dd>close File Commander</dd>
@@ -1620,7 +1623,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <p>Autostart off: the file is only mounted (Load stays open). A file for another machine (+3 disk, SPG, TS-Conf card) still switches it.</p>
     <h4>Browser storage</h4>
-    <p>Files Save put into this browser (Where: Browser storage) and local files kept after open, newest first. Each keeps its machine: the one it was saved on (Save) or started on (local file); Run switches to it (not for HDD / SD card images), Mount leaves machine as it is; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
+    <p>Files Save put into this browser (Where: Browser storage) and local files kept after open, newest first. Each keeps its machine: the one it was saved on (Save) or started on (local file); Run switches to it (not for HDD / SD card images), Mount leaves machine as it is. Folders (made in File Commander, drive Browser) come first, with ▸ at the right: click opens one, .. goes back up; only in this browser on this device (clearing the site's data removes them). File Commander shows them as the drive Browser.</p>
     <table class="keys">
       <tr><td>Run</td><td>on the machine it was saved on, started as Local file with Autostart (an HDD / SD image boots)</td></tr>
       <tr><td>Mount</td><td>loaded, the machine stays, Load stays open</td></tr>
@@ -1686,7 +1689,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
-      <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; not on +3 (no TR-DOS)</td></tr>
+      <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
@@ -1792,7 +1795,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
       </div>
       <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too (Load / Browser storage, File Commander drive Browser)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
-    <section id="ldbrwsec" hidden><h3>Browser storage</h3>
+    <section id="ldbrwsec" hidden><h3>Browser storage <span id="ldbrwpath" class="ldbpath"></span></h3>
       <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div><button id="ldbdelall" title="Delete all files of the browser storage">Delete all</button></div></section>
     <section><h3>Local server</h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
@@ -1908,16 +1911,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
 <input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
-<script src="js/wasi_fs.js?v=20261030211924"></script>
-<script src="js/scancodes.js?v=20261030211924"></script>
-<script src="js/unzip.js?v=20261030211924"></script>
-<script src="js/vkbd.js?v=20261030211924"></script>
-<script src="js/asyncify.js?v=20261030211924"></script>
-<script src="js/gfx.js?v=20261030211924"></script>
-<script src="js/usel.js?v=20261030211924"></script>
-<script src="js/fcmd.js?v=20261030211924"></script>
-<script src="js/dbga.js?v=20261030211924"></script>
-<script src="js/rzx.js?v=20261030211924"></script>
-<script src="js/app.js?v=20261030211924"></script>
+<script src="js/wasi_fs.js?v=20261031093033"></script>
+<script src="js/scancodes.js?v=20261031093033"></script>
+<script src="js/unzip.js?v=20261031093033"></script>
+<script src="js/vkbd.js?v=20261031093033"></script>
+<script src="js/asyncify.js?v=20261031093033"></script>
+<script src="js/gfx.js?v=20261031093033"></script>
+<script src="js/usel.js?v=20261031093033"></script>
+<script src="js/fcmd.js?v=20261031093033"></script>
+<script src="js/dbga.js?v=20261031093033"></script>
+<script src="js/rzx.js?v=20261031093033"></script>
+<script src="js/app.js?v=20261031093033"></script>
 </body>
 </html>

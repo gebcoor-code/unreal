@@ -2721,3 +2721,22 @@ Web Unreal Speccy — version history
 * RZX player at the end: "Finished" in place of Take control (as wide as
   the button); the time left of the seek bar is as wide as the length:
   the bar does not change its size while it plays
+
+
+        version 1.18.0                  31 oct 2026
+
++ Browser storage: folders. File Commander, drive Browser: F7 makes a
+  folder, Enter / double click opens it, ".." goes up; files are copied
+  into it (F5 between two Browser panels in different folders, also
+  RAM to RAM), Delete takes a folder with all in it. Load / Browser
+  storage: folders first, with an arrow at the right; a click opens one
+  (the list stays open), ".." at the top goes back, the folder is shown
+  next to the title
++ REST API: autorun=1 with sd= on ZX Evo TS-Conf: TS-BIOS boots the
+  card (Wild Commander) — for server lists (sd.json)
+
+
+        version 1.18.1                  31 oct 2026
+
+* Load / Browser storage: an opened folder has no file chosen yet
+  ("Select file"), so none is highlighted until one is picked

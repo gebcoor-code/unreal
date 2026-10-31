@@ -1607,7 +1607,8 @@
     async function copy() {
       const s = P[act], t = P[1 - act];
       if (!s.vol || !t.vol) { status('Both panels need a disk', true); return; }
-      if (s.src === t.src) { status('Source and target are the same', true); return; }
+      // the same drive: only RAM and Browser, into another folder (one store behind both panels)
+      if (s.src === t.src && !(/^(RAM|Browser)$/.test(s.vol.kind) && (s.dir || []).join('/') !== (t.dir || []).join('/'))) { status('Source and target are the same', true); return; }
       if (!t.vol.write) { status(srcName(t) + ' is read only', true); return; }
       const list = picked(s); if (!list.length) return;
       if (!await prep(s, list)) return;
@@ -1983,15 +1984,15 @@
       if (k === 'Escape' || (k === 'F1' && !e.shiftKey)) { show(false); return true; }
       return false;
     }
-    async function mkdir() { // iS-DOS and FAT (TR-DOS and CP/M have no directories)
+    async function mkdir() { // iS-DOS, FAT, RAM and Browser (TR-DOS and CP/M have no directories)
       const p = P[act];
-      if (!p.vol || !p.vol.mkdir) { status('MkDir: iS-DOS, FAT and RAM only', true); return; }
+      if (!p.vol || !p.vol.mkdir) { status('MkDir: iS-DOS, FAT, RAM and Browser only', true); return; }
       const body = document.createElement('div'); body.className = 'fchdd';
-      body.innerHTML = `<label class="n">Name <input class="nm" maxlength="${/^FAT|^RAM/.test(p.vol.kind) ? 64 : 8}" spellcheck="false" autocomplete="off"></label>`;
+      body.innerHTML = `<label class="n">Name <input class="nm" maxlength="${/^FAT|^RAM|^Browser/.test(p.vol.kind) ? 64 : 8}" spellcheck="false" autocomplete="off"></label>`;
       setTimeout(() => body.querySelector('.nm').focus(), 30);
       if (!await ask({ title: 'MkDir', text: 'New directory in ' + srcName(p) + ' ' + (p.vol.path || '/') + '\n', body, ok: 'Create' })) return;
       const nm = body.querySelector('.nm').value.trim();
-      try { p.vol.mkdir(nm); if (p.commit) p.commit(); load(act); status('Directory ' + nm.toUpperCase() + ' created'); }
+      try { p.vol.mkdir(nm); if (p.commit) p.commit(); load(act); status('Directory ' + (p.vol.kind === 'Browser' ? nm : nm.toUpperCase()) + ' created'); }
       catch (e) { status('MkDir: ' + e.message, true); }
     }
     // ---- Compile (F9): sjasmplus. The file under the cursor is the main source, its folder (with its subfolders) the
