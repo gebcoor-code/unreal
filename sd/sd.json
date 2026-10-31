@@ -1,6 +1,6 @@
 [
   { "name": "SD test BaseConf (8MB, FAT16)", "url": "sd.zip", "tag": "SD" },
-  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip", "tag": "SD OS" },
-  { "name": "Wild Commander (TS-Conf) (FAT32)", "url": "wc.zip", "tag": "SD SPG" },
-  { "name": "OSZ (Scorpion GMX)", "run": "?model=gmx&sd=sd/osz.zip&autorun=1", "tag": "SD OS" }
+  { "name": "NedoOS BaseConf (FAT32)", "url": "nedoos.zip", "run": "?model=nedoos", "tag": "SD OS" },
+  { "name": "Wild Commander (TS-Conf) (FAT32)", "url": "wc.zip", "run": "?model=tsconf&sd=wc.zip&autorun=1", "tag": "SD SPG" },
+  { "name": "OSZ (Scorpion GMX)", "url": "osz.zip", "run": "?model=osz", "tag": "SD OS" }
 ]
