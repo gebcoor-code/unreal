@@ -3025,3 +3025,16 @@ Web Unreal Speccy — version history
   the frame function was no longer inlined after RZX came and was left
   out of the debugger's suspend / resume path. The build now stops when
   that path is broken
+
+
+        version 1.28.0                  1 nov 2026
+
++ RZX player: the states of the whole recording are made in the
+  background (a second copy of the core in a worker), so a click or tap
+  on the seek bar jumps there at once, forward as well as back (an hour
+  long recording: well under a second once they are made; a thin line
+  under the bar shows how far they go). A new place chosen while it
+  seeks is taken at once
+* About: Sprinter row: Estex DSS 1.62 (FAT16 VHD)
+* README: hard disks and SD cards (raw + .chs or fixed VHD, FAT12 / 16 /
+  32, New Disk, Save, the Sprinter disk)

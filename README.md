@@ -1,8 +1,6 @@
 # Web Unreal Speccy
-
-A ZX Spectrum emulator, together with the Soviet and Russian machines compatible with it, that runs in a web browser.
-The core is **UnrealSpeccy 0.39.0** (C++, originally for Windows) compiled to WebAssembly. The Windows layer
-(DirectX, WinAPI dialogs, DirectInput) is replaced with a thin web layer in C++ and JavaScript.
+ZX Spectrum emulator, runs in a web browser.
+Based on  **UnrealSpeccy 0.39.0**.
 
 ## Machines
 
@@ -12,7 +10,7 @@ The core is **UnrealSpeccy 0.39.0** (C++, originally for Windows) compiled to We
 | Turbo 2+ xBIOS 1.36 | vTR-DOS, ROM disk |
 | ATM Turbo 1 (4.50) | 512K, BIOS 1.04.1R |
 | ZX Evo BaseConf | 4096K, Turbo 2+ compatible; EVO Reset Service, CMOS, SD card, NEMO IDE |
-| Sprinter Sp2000 | 4096K, BIOS 3.04 (Peters Plus): text 80×32, graphics 320×256×256 and 640×256×16, 3.5 / 21 MHz; accelerator (block fills and copies), raster effects; IDE, FDD (PC floppies 720K: .img), CMOS; AT keyboard, MS serial mouse, joystick; AY, Covox and Covox Blaster (stereo, 16-bit); boots Estex DSS 1.62  (menu.exe: 1.FM, 2.FN, 3.prompt);
+| Sprinter Sp2000 | 4096K, BIOS 3.04 (Peters Plus): text 80×32, graphics 320×256×256 and 640×256×16, 3.5 / 21 MHz; accelerator (block fills and copies), raster effects; IDE, FDD (PC floppies 720K: .img), CMOS; PC keyboard, mouse, joystick; AY, Covox and Covox Blaster (stereo, 16-bit); boots Estex DSS 1.62  (starts menu.exe: FM, FN, command prompt); Spectrum mode (C:\ZX\SPECTRUM.EXE, TR-DOS 7.01) |
 | ZX Evo TS-Conf | 4096K, TS-BIOS; ZX / 16c / 256c / text modes up to 360×288, tiles and sprites (TSU), DMA, VDAC; VDAC2 (FT812); 3.5 / 7 / 14 MHz; SPG; Wild Commander on the SD card |
 | Pentagon 128 | TR-DOS 5.04TM, port #EFF7 |
 | Scorpion ZS 256 | ROM 2.95 |
@@ -34,8 +32,7 @@ The CMOS of each machine that has one (ZX Evo BaseConf and TS-Conf, Sprinter, GM
 - **Media:** TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF, Hobeta disks; raw PC floppies (IMG 720K / 360K, Sprinter); TAP, TZX, CSW tapes; SNA, Z80 snapshots;
   SPG programs (TS-Conf); RZX input recordings; HDD images (ATM, NEMO, SMUC, Profi, DivIDE interfaces) and SD cards
   (Z-Controller).
-  Everything can also be loaded from a ZIP.
-- **Sound:** AY/YM, TurboSound, SAA1099, General Sound, Soundrive / Covox, beeper, tape sound; ZXBUS sound cards
+  - **Sound:** AY/YM, TurboSound, SAA1099, General Sound, Soundrive / Covox, beeper, tape sound; ZXBUS sound cards
   ZX-MultiSound (OPL3) and ZXM-MoonSound (OPL4) through [ymfm](https://github.com/aaronsgiles/ymfm).
 - **Two debuggers:** the UnrealSpeccy debugger (ported without changing its logic, its modal loops run under Asyncify)
   and deBUGa, modelled on the [Xpeccy](https://github.com/samstyle/Xpeccy) debugger.
@@ -46,22 +43,21 @@ The CMOS of each machine that has one (ZX Evo BaseConf and TS-Conf, Sprinter, GM
 - **Graf Search:** memory shown as a picture in ZX, ATM and TS-Conf graphics modes.
 - **RZX:** playback with a seek bar over the screen and Take control (ZX Spectrum 48 / 128 / +2 on the Sinclair ROMs);
   recording from Save on 48 / 128K models.
-- **On-screen keyboards** (ZX+, ZX-48, XT) and joystick, touch mouse, Kempston mouse.
-- **Screen:** Hide Menu Bar (the top-left corner brings it back), Mix Frames for GMX gigascreen pictures,
-  landscape layout for phones.
-- **REST API:** a link can choose the machine and its speed, insert disks, tapes, HDD and SD images, and start a program.
-- **Offline copy** through a service worker (https or localhost).
+- **On-screen keyboards** (ZX+, ZX48, XT) and joystick, touch mouse, Kempston mouse.
+- **REST API:** link can choose machine and its speed, insert disks, tapes, HDD and SD images, and start a program.
+- **Offline copy** through a service worker.
 
-### Server folders
+### Hard disks and SD cards
 
-| Folder | Contents |
-|---|---|
-| `unreal/` | the emulator: `unreal.wasm` (or `unreal.zip` holding it), `unreal.ini`, `boot6.$b`, `CMOS`, `sos.l`; `sjasm.zip` (sjasmplus for File Commander) |
-| `js/` | scripts: `js.zip` (the page unpacks it; the separate `.js` files also work) |
-| `rom/` | ROM images, listed in `roms.json` |
-| `trd/` | disk, tape and snapshot images for the Load window, listed in `trd.json` |
-| `hdd/` | HDD images (ZIP with a `.chs` geometry file, or a VHD that has its geometry in its footer), listed in `hdd.json`; `dss.zip`: the Sprinter's Estex DSS disk |
-| `sd/` | SD card images (`.img`, `.vhd` or ZIP), listed in `sd.json` |
+- **Images:** a raw image (`.hdd`, `.img`, `.hdf`) with its geometry in a `.chs` file next to it in the ZIP
+  (`CHS=C/H/S Interface=...`), or  **VHD** A dynamic VHD can't be read: convert it to a fixed one.
+- **File systems:** File Commander reads and writes FAT12, FAT16 and FAT32, on a whole image (superfloppy) or in MBR
+  partitions, for HDD and SD images alike.
+- **New Disk** (File Commander): HDD FAT (ZX Evo, NEMO interface) and SD card (Z-Controller) as FAT16 or FAT32
+  (Auto: FAT16 up to 256 MB, FAT32 above; FAT32 needs at least 35 MB); the SD card is made as a VHD.
+  SD images of NedoOS, Wild Commander and OSZ are made as FAT32 VHD.
+- **Save:** SD card goes out as a fixed VHD (it can be mounted on a PC); an HDD that is a VHD goes out alone, a raw one
+  with its `.chs`.
 
 ## License
 

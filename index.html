@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261101194618">
+<meta name="build" content="20261101200537">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -69,7 +69,7 @@ canvas.smooth { image-rendering: auto; }
 #rzxbar #rzxmsg { color: var(--accent); white-space: nowrap; font-size: 11px; } #rzxbar #rzxmsg:empty { display: none; }
 #rzxbar #rzxpin { color: var(--dim); } #rzxbar #rzxpin svg { transform: rotate(45deg); } #rzxbar #rzxpin.on { color: var(--accent); background: var(--panel2); border-color: var(--line); } #rzxbar #rzxpin.on:hover { border-color: var(--accent); } #rzxbar #rzxpin.on svg { transform: none; fill: currentColor; } /* pin: in = always shown, slanted = hides */
 #rzxbar .rzr { display: flex; align-items: center; gap: 6px; }
-#rzxbar #rzxseek { flex: 1 1 auto; min-width: 40px; accent-color: var(--accent); }
+#rzxbar #rzxseek { flex: 1 1 auto; min-width: 40px; accent-color: var(--accent); background: linear-gradient(to right, var(--accent) var(--ix, 0%), transparent var(--ix, 0%)) no-repeat left bottom / 100% 2px; }
 #rzxbar #rzxtime, #rzxbar #rzxlen { font: 12px ui-monospace, Consolas, monospace; color: var(--dim); white-space: nowrap; } #rzxbar #rzxtime { text-align: right; }
 #rzxbar button.ico { width: 28px; height: 24px; flex: none; } #rzxbar button.ico svg { width: 15px; height: 15px; }
 #rzxbar #rzxspeed, #rzxbar #rzxtake { height: 24px; padding: 0 7px; font-size: 12px; flex: none; white-space: nowrap; }
@@ -1359,7 +1359,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
           <tr><td>ZX Evo BaseConf</td><td>4096K; Turbo 2+ compatible (EGA 320x200, hires 640x200, text 80x25, CP/M) and Pentagon 128 / 1024; 3.5 / 7 / 14 MHz; SD (Z-Controller), NEMO IDE, CMOS, PS/2 keyboard and mouse; Reset Service</td></tr>
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
-          <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.04; text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE, FDD, CMOS; AT keyboard, MS serial mouse, joystick (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS; Spectrum mode: C:\ZX\SPECTRUM.EXE or Enter on a TRD in Flex Navigator (TR-DOS 7.01), Ctrl+Alt+Del back to DSS</td></tr>
+          <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.04; text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE, FDD, CMOS; AT keyboard, MS serial mouse, joystick (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS 1.62 (FAT16 VHD: hdd/dss.zip); Spectrum mode: C:\ZX\SPECTRUM.EXE or Enter on a TRD in Flex Navigator (TR-DOS 7.01), Ctrl+Alt+Del back to DSS</td></tr>
           <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
@@ -1520,7 +1520,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Disks</td><td>TRD, SCL, FDI, UDI, TD0, ISD, PRO, $B, $C; DSK, IPF (read-only)</td></tr>
       <tr><td>Tapes</td><td>TAP, TZX, CSW</td></tr>
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
-      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (back: from a state saved on the way, then the frames without sound), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
+      <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (a click or tap jumps there: from the nearest state, then the frames without sound; the states of the whole recording are made in the background, the thin line under the bar shows how far), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
@@ -1958,6 +1958,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       if (typeof DecompressionStream === 'undefined') throw new Error('this browser cannot unpack js/js.zip (no DecompressionStream)');
       var f = await unzip(new Uint8Array(await r.arrayBuffer()));
       for (var i = 0; i < JS.length; i++) { if (f[JS[i] + '.js'] == null) throw new Error('js.zip: no ' + JS[i] + '.js'); }
+      window.UnrealJsSrc = { 'wasi_fs.js': f['wasi_fs.js'] }; // the RZX player's worker runs it too
       for (i = 0; i < JS.length; i++) run(JS[i], f[JS[i] + '.js']);
     } catch (err) { fail(err.message); }
   })();
