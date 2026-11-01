@@ -76,15 +76,25 @@ sjasmplus (the Z80 assembler of File Commander: web/sjasm/sjasmplus.wasm, built 
 puff (the inflate decoder in web/web_ft.cpp follows it)
   Copyright (C) 2002-2013 Mark Adler. zlib License.
 
+MAME Sprinter driver (web/web_sp.cpp, the Sprinter Sp2000 model, follows it:
+src/mame/sinclair/sprinter.cpp and the Z84C015 / Z80 CTC / Z80 SIO devices)
+  Copyright Andrei I. Holub and the MAME contributors. BSD 3-Clause License:
+  redistributions must keep the copyright notice, this condition and the
+  disclaimer of the BSD 3-Clause License (the same text as for sjasmplus
+  above); the names of the copyright holders may not be used to endorse or
+  promote derived products without permission. https://github.com/mamedev/mame
+
 ROM images (data/, the rom/ folder of the site), disk, HDD and SD card images
 and other software that the emulator loads are not covered by this license.
 They belong to their copyright holders, among them: the GMX flash of LW / PLM
 (GMX Loader, Shadow Service Monitor of MOA), OSZ by izzx
 (https://github.com/izzx-git/OSZ), NedoOS by Alone Coder and the NedoOS team,
-TS-BIOS and Wild Commander, TR-DOS, the BIOS and ROMs of the machines.
+TS-BIOS and Wild Commander, TR-DOS, the Sprinter BIOS and Estex DSS of Peters
+Plus, the Sprinter programs on hdd/dss.zip (Estex DSS 1.62, Flex Navigator,
+TASM and GFX Viewer of Anton Enin, FM of Vasil Ivanov, WAVPLAY, the demos and
+the Spectrum mode files of their authors), the BIOS and ROMs of the machines.
 
-The ZX Spectrum 48, 128 and +2 ROMs (data/sinclair.rom: 48, 128 ROM 0 and 1,
-+2 ROM 0 and 1; used for RZX playback) are copyright Amstrad, who allow their
-distribution but keep the copyright: they may not be sold or built into
-hardware (a product that contains them may be sold, the charge being for the
-product, not for the ROMs).
+ZX Spectrum ROMs (data/sinclair.rom: 48, 128 and +2 ROMs, for RZX playback)
+  Copyright Amstrad plc. Amstrad allows them to be distributed with
+  emulators, keeping the copyright message unchanged; they may not be sold or
+  used in commercial products.

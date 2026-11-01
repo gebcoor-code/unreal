@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261031160127">
+<meta name="build" content="20261101181050">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1161,6 +1161,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <label class="crrow" id="crresetrow"><span>Start in</span><select id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
           </div>
           <p class="note" id="modelnote"></p>
+          <div class="crrow" id="nvrow" hidden><button id="nvreset" title="The machine's CMOS settings (BIOS Setup, clock options) are kept in this browser; this puts the typical ones back">Reset CMOS</button></div>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
                   </div>
         <div class="card">
@@ -1358,6 +1359,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
           <tr><td>ZX Evo BaseConf</td><td>4096K; Turbo 2+ compatible (EGA 320x200, hires 640x200, text 80x25, CP/M) and Pentagon 128 / 1024; 3.5 / 7 / 14 MHz; SD (Z-Controller), NEMO IDE, CMOS, PS/2 keyboard and mouse; Reset Service</td></tr>
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
+          <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.04; text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE, FDD, CMOS; AT keyboard, MS serial mouse, joystick (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS</td></tr>
           <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
@@ -1372,18 +1374,20 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>OSZ</td><td>multitasking OS, from SD card + OS.TRD, Scorpion ZS 256 GMX; F8 / F9 / F10 = Ext+1 / Ext+9 / Ext+0, right Shift = SS, Tab = Ext (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>Custom ROM</td><td>own ROM or ROM set (128 / 48 / TR-DOS / service) on any of these machines; Save keeps ROM + json</td></tr>
         </table>
+        <p>CMOS of EVO, TS-Conf, Sprinter, GMX (and its NVRAM): each machine keeps its own in this browser. Options / System / Reset CMOS: the typical settings back.</p>
       </div>
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; TS-Conf 16c / 256c up to 360x288, text 720; filters</td></tr>
-          <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; raster effects; filters</td></tr>
+          <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit)</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
-          <tr><td>Disks</td><td>Beta 128 (WD1793), +3 (µPD765)</td></tr>
-          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI; SD card: Z-Controller</td></tr>
-          <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse</td></tr>
-          <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20</td></tr>
+          <tr><td>Disks</td><td>Beta 128 (WD1793): TR-DOS, CP/M, iS-DOS; Sprinter: PC floppies (FAT12, 720K); +3 (µPD765)</td></tr>
+          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; images HDD, HDF, VHD, IMG</td></tr>
+          <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
+          <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse; PS/2 (ZX Evo), AT keyboard and MS serial mouse (Sprinter)</td></tr>
+          <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz (set by the program)</td></tr>
         </table>
       </div>
       <div class="card">
@@ -1392,7 +1396,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
           <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf, CP/M), devices (AY, WD1793, tape, TS-Conf), projects</td></tr>
           <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA, TS-Conf 16C/256C)</td></tr>
-          <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm; Compile: sjasmplus (F9)</td></tr>
+          <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/FAT floppy/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm; Compile: sjasmplus (F9)</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
           <tr><td>System Info</td><td>CPU, ports, disks, sound, host (live)</td></tr>
           <tr><td>REST API link</td><td>fast link to start model (up to CP/M commands)</td></tr>
@@ -1405,6 +1409,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>eXtra BIOS, vTR-DOS</td><td>ukms[z], NedoPC</td></tr>
           <tr><td>ZX-Evolution, ERS</td><td>NedoPC</td></tr>
           <tr><td>TS-Conf, TS-BIOS</td><td>TS-Labs (TSL), NedoPC; after the Verilog of the configuration and its datasheet</td></tr>
+          <tr><td>Sprinter, BIOS,<br>Estex DSS</td><td>Peters Plus (Ivan Mak and team); MAME driver by Andrei I. Holub (BSD-3-Clause)</td></tr>
+          <tr><td>Sprinter software</td><td>Estex DSS 1.62 (2020); Flex Navigator, TASM, GFX Viewer: Anton Enin; FM: Vasil Ivanov; WAVPLAY, Spectrum mode: Peters Plus; demos of their authors</td></tr>
           <tr><td>TASiS distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
           <tr><td>iS-DOS HDD boot, drivers</td><td>Yu. Korsunin</td></tr>
           <tr><td>iS-DOS</td><td>Iskra Soft</td></tr>
@@ -1542,7 +1548,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="fchelp" hidden role="dialog" aria-label="File Commander help">
   <div class="dbghead fhead"><span>File Commander help</span><button id="fchelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load, with folders: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
+    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS, FAT12 PC floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load, with folders: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
     <h4>Keys</h4>
     <dl>
       <dt>Tab</dt><dd>other panel</dd>
@@ -1564,7 +1570,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <dl>
       <dt>Files / Download Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
       <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS, FAT and RAM keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
-      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
+      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
       <dt>Files / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
       <dt>ext / name / size</dt><dd>sort of panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
@@ -1612,7 +1618,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Local file</h4>
     <p>Choose File, a file dropped on the screen and the files of Local server go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
     <table class="keys">
-      <tr><td>Disk</td><td>TRD SCL FDI UDI TD0 ISD PRO HOB $x IPF DSK. Autostart: reset to TR-DOS and RUN its boot. A disk without boot: <b>boot.b menu</b> (the emulator's boot, then the keys of "press") or <b>first BASIC program</b> (nothing is written to the disk)</td></tr>
+      <tr><td>Disk</td><td>TRD SCL FDI UDI TD0 ISD PRO HOB $x IPF DSK; IMG / IMA 720K / 360K (PC floppy, Sprinter DSS). Autostart: reset to TR-DOS and RUN its boot. A disk without boot: <b>boot.b menu</b> (the emulator's boot, then the keys of "press") or <b>first BASIC program</b> (nothing is written to the disk)</td></tr>
       <tr><td>+3 disk</td><td>DSK of 512-byte sectors: Spectrum +3 starts (always). Autostart: its menu, Loader</td></tr>
       <tr><td>Tape</td><td>TAP TZX CSW. Autostart: reset to the 128 menu (BIOS menu of the machine), Tape Loader</td></tr>
       <tr><td>Snapshot</td><td>SNA Z80 SP: runs at once, always</td></tr>
@@ -1631,13 +1637,6 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Delete</td><td>out of the browser storage</td></tr>
       <tr><td>Delete all</td><td>all files of the browser storage (asked first)</td></tr>
     </table>
-    <h4>Local server</h4>
-    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page). Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
-    <table class="keys">
-      <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
-      <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
-      <tr><td>https</td><td>page on https cannot read http server (browser blocks mixed content): open emulator by http, or give server https</td></tr>
-    </table>
     <h4>Server list</h4>
     <p>The entries of trd/trd.json, then hdd/hdd.json, then sd/sd.json, each as written: an image or an OS is written once, in its list (hdd.json / sd.json). An entry may have both: <code>"url"</code> (its image: Mount, and Options / Disk) and <code>"run"</code> (a link: Run), e.g. <code>{"name": "NedoOS", "url": "nedoos.zip", "run": "?model=nedoos", "tag": "SD OS"}</code>. A file with no folder is in the list's folder. Tag buttons: the entries with any of the chosen tags (several at once); All: every entry. In these files a line that starts with # is a comment.</p>
     <table class="keys">
@@ -1645,6 +1644,13 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Mount</td><td>only its files go in (disk: A:, HDD 0, SD card); the machine stays, Load stays open. A TS-Conf card: Wild Commander boots, its program does not run</td></tr>
     </table>
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
+    <h4>Local server</h4>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page). Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
+    <table class="keys">
+      <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
+      <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
+      <tr><td>https</td><td>page on https cannot read http server (browser blocks mixed content): open emulator by http, or give server https</td></tr>
+    </table>
     <h4>Media</h4>
     <p>The machine and what is mounted now; * = changed, not saved. ⏏ ejects (as in Options / Disk). Settings (at its title): Options / Disk.</p>
   </div>
@@ -1656,7 +1662,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>What</h4>
     <table class="keys">
       <tr><td>Disk A:–D:</td><td>image of drive; * = changed. TRD: 80 tracks of 16 × 256 (TR-DOS, CP/M). SCL: TR-DOS files only. FDI, UDI: any disk (other sector sizes, protection). TD0. ISD / PRO: 800K iS-DOS / Profi CP/M</td></tr>
-      <tr><td>HDD 0 / 1</td><td>image + geometry.chs (interface, CHS, partitions): one ZIP or two files</td></tr>
+      <tr><td>HDD 0 / 1</td><td>image + geometry.chs (interface, CHS, partitions): one ZIP or two files; a VHD alone (its footer holds the geometry)</td></tr>
       <tr><td>SD card</td><td>VHD (fixed, mounts on PC too); in ZIP with its .json (program to run)</td></tr>
       <tr><td>Snapshot (SNA)</td><td>128K machine: RAM above 128K and ATM ports are lost</td></tr>
       <tr><td>Input recording (RZX)</td><td>Start: from next frame snapshot (SZX), then every port read; ● REC on screen (click: Save). Stop, then Download / Save. 48/128K models without extra RAM (Pentagon 128, Spectrum +3, machine started by RZX), CPU clock up to 3x; otherwise Start is off. Reset, other machine, loaded snapshot or RZX player going on: you are asked, yes = recording discarded</td></tr>
@@ -1684,7 +1690,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
       <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
-      <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own). With speed= the visitor's True clock is off for this visit</td></tr>
+      <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own); sprinter: 3.5 (no turbo, for this visit) or 21 (MHz, as the program sets). With speed= the visitor's True clock is off for this visit</td></tr>
       <tr><td>trueclock=1 / 0</td><td>True clock on / off for this visit (not stored): the machine's own clock, programs switch its turbo; speed= is not used then</td></tr>
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
@@ -1749,7 +1755,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <label for="svdest">Where</label><select id="svdest" title="Download: a file on this computer. Browser storage: kept by this browser for the next visits (Load lists it, tag SAVED)"><option value="pc">Download</option><option value="brw">Browser storage</option></select>
         <label for="svfmt" class="sv-disk">Format</label>
         <select id="svfmt" class="sv-disk">
-          <option value="isd" hidden>ISD</option><option value="pro" hidden>PRO</option><option value="0">TRD</option><option value="scl">SCL</option><option value="1">FDI</option><option value="2">UDI</option><option value="3">TD0</option>
+          <option value="isd" hidden>ISD</option><option value="pro" hidden>PRO</option><option value="0">TRD</option><option value="scl">SCL</option><option value="1">FDI</option><option value="2">UDI</option><option value="3">TD0</option><option value="4" hidden>IMG</option>
         </select>
         <label for="svrom" class="sv-rom">ROM</label>
         <select id="svrom" class="sv-rom"></select>
@@ -1798,12 +1804,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too (Load / Browser storage, File Commander drive Browser)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
     <section id="ldbrwsec" hidden><h3>Browser storage <span id="ldbrwpath" class="ldbpath"></span></h3>
       <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div><button id="ldbdelall" title="Delete all files of the browser storage">Delete all</button></div></section>
-    <section><h3>Local server</h3>
-      <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section id="ldlistsec" hidden><h3>Server list</h3>
       <div class="ldtags" id="ldtags"></div>
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
         <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn single" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
+    <section><h3>Local server</h3>
+      <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section><h3 class="ldmh"><span>Media <span class="ldmodel" id="ldmodel"></span></span><button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
       <div id="ldmedia"></div></section>
     <p class="note" id="ldmsg"></p>
@@ -1911,7 +1917,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
 <script>
 // the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
 (function () {

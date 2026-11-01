@@ -2927,3 +2927,80 @@ Web Unreal Speccy — version history
   each cursor move walked the whole FAT); the viewer's address field
   draws once the typing stops
 * window size changes fitted once per picture (were 2-4 times per event)
+
+
+        version 1.22.0                  1 nov 2026
+
++ new machine: Sprinter Sp2000 (Peters Plus), after the MAME driver of
+  Andrei I. Holub: 4096K, flash BIOS 3.04 (rom/sp2k304.rom; it loads the
+  FPGA itself), Setup (Delete at start), the port decoder (DCP) and pages
+  as set by the BIOS, Z84C15 CTC and SIO, AT keyboard, IM 2; video by
+  8x8 cells: text 80x32, 320x256 (256 colors), 640x256 (16), ZX screen;
+  3.5 / 21 MHz (waits of the main RAM in turbo); IDE, FDD (WD1793),
+  CMOS, AY. Boots Estex DSS 1.60 from an HDD image (hdd/dss.zip). Not
+  yet: the accelerator, Covox / Covox Blaster, mouse, Spectrum mode
+
+
+        version 1.22.1                  1 nov 2026
+
+! Sprinter: an HDD of a link or of the server list Run (hdd=) boots: the
+  machine is reset once the image is in (its BIOS looked for the disk
+  before a download ended: "Start from Hard disk...fail"); the status
+  says "Reset" (was "Reset to Service ROM")
+
+
+        version 1.22.2                  1 nov 2026
+
+* HDD image as a fixed VHD (.vhd): its geometry from the VHD footer (an
+  image of 16 heads × 63 sectors with a footer: from its size as before)
+
+
+        version 1.23.0                  1 nov 2026
+
++ Sprinter: the accelerator (LD r,r: size, fill, copy, by lines, double
+  write; AND / XOR / OR functions), memory waits timed per bus access,
+  Covox and Covox Blaster (mono / stereo, 8 / 16 bit, INT by buffer),
+  MS serial mouse on SIO B (the page mouse), joysticks (the page
+  joystick is joystick 1), own CMOS (no "CMOS checksum error"), picture
+  drawn line by line (raster effects)
+@ hdd/dss.zip: dss.vhd (64M, Estex DSS 1.62) with DEMOS, SOFT (FN, FM,
+  TASM, WAVPLAY, GFXVIEW, BIN) and ZX; SYSTEM.BAT loads the Spectrum
+  ROMs (spectrum norun), as GFXVIEW, TASM, CASHDOS and REAL_3D need
+
+
+        version 1.24.0                  1 nov 2026
+
++ CMOS of each machine kept in the browser (EVO, TS-Conf, Sprinter, GMX
+  with its NVRAM; a Custom ROM on them): its own settings come back on
+  the next visit; none yet: the typical one. Options / System / Reset
+  CMOS: the typical settings back
+! Sprinter chosen in System: hdd/dss.zip goes into HDD 0 (an image of
+  another machine there, CP/M or iS-DOS, kept DSS from booting), then
+  Reset; ATM mode (PC keys) on at its start
++ hdd/dss.zip: a menu at the start of DSS (MENU.EXE): 1 FM, 2 Flex
+  Navigator, 3 command prompt; FM in 5 s, Esc: command line
+! Sprinter: a change of the mode table (any mode set) lost one frame INT
+* Sprinter: waits of the main RAM in turbo as measured on the real
+  machine (TIMERV2: ~10.8 MHz; was ~9 MHz): FISH clears its screen in
+  time (a black screen most runs)
+
+
+        version 1.25.0                  1 nov 2026
+
++ PC floppies: raw .img / .ima of 720K or 360K (9 × 512-byte sectors) go
+  into a drive like other disks (Load, a ZIP, File Commander Enter);
+  Save: IMG. Sprinter DSS reads and writes them in A: / B:
++ File Commander: a FAT12 PC floppy in A: / B: (read, copy, write back)
++ REST API link: Sprinter speed 3.5 (no turbo, for this visit) or 21 MHz
+@ Save of an HDD that is a VHD: no geometry.chs (the VHD footer has it)
+@ Load: Server list above Local server
+* About, README, LICENSE: Sprinter software and its authors
+
+
+        version 1.26.0                  1 nov 2026
+
++ File Commander / New Disk: PC floppy, FAT12 720K (.img; Sprinter DSS)
+* Sprinter: Covox / Covox Blaster follow Options / Sound / Covox / SD
+  (off: silent; its volume)
+* About: Sprinter line and Credits; Hardware: Sprinter (video, sound,
+  disks, IDE, input, clock) and CMOS
