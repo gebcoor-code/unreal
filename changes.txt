@@ -3004,3 +3004,24 @@ Web Unreal Speccy — version history
   (off: silent; its volume)
 * About: Sprinter line and Credits; Hardware: Sprinter (video, sound,
   disks, IDE, input, clock) and CMOS
+
+
+        version 1.27.0                  1 nov 2026
+
++ Sprinter: Spectrum mode checked (C:\ZX\SPECTRUM.EXE, Enter on a TRD
+  in Flex Navigator; 128 menu, TR-DOS 7.01, 48 BASIC; a TRD in A: or
+  from the hard disk; Ctrl+Alt+Del back to DSS)
++ Sprinter: FPGA reload through port #2E, game configuration screen
+  (after MAME)
+* Sprinter: reset by a write to page #A0..#AF with #1FFD bit 4
+  (as the FPGA does)
+* Sprinter: WAVPLAY with CASHDOS checked (8 / 16-bit, stereo)
+
+
+        version 1.27.1                  1 nov 2026
+
+! Debuggers (Unreal and deBUGa): stopped working since 1.12.0 (the window
+  opened, but did not close and took no keys or clicks; the machine hung):
+  the frame function was no longer inlined after RZX came and was left
+  out of the debugger's suspend / resume path. The build now stops when
+  that path is broken
