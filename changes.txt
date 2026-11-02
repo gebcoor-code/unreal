@@ -3097,3 +3097,63 @@ Web Unreal Speccy — version history
   and the writing, so the two panels do not undo each other)
 * FC: after a change on a disk (MkDir, Copy, Move, Delete) the other
   panel on the same disk is read again (a new folder shows there at once)
+
+
+        version 1.31.3                  2 nov 2026
+
+! Sprinter: the game configuration of the new FPGA files (TITD K30.ACX,
+  GAME_00, LDCONF GC.BIN) was not recognized; the game picture is on now
+! Sprinter: vertical scroll of the whole picture (port #CB) up moved it by
+  64 lines instead of 1..8 (SPRIN-ZX SCREEN)
+
+
+        version 1.31.4                  2 nov 2026
+
+! Sprinter: Reset (F12) in a game with its own FPGA configuration (TITD)
+  kept that configuration, and the BIOS ran with the game's picture and
+  ports; now the standard configuration is loaded again from the flash
+  and the BIOS starts (DSS boots)
+! Sprinter: Ctrl+Alt+Del in a game configuration does the same
+
+
+        version 1.32.0                  2 nov 2026
+
++ FC: Copy (F5) and Move (F6) take folders with everything inside them
+  (they did files only): between FAT, iS-DOS, RAM and Browser storage the
+  folders are made on the other side; onto TR-DOS and CP/M the files go into
+  one place. Move deletes a folder when all its files went
++ FC: Files / Zero Free Space: the free space of a FAT disk is zeroed (DSS,
+  NedoOS and other tools delete without it), so the saved zip shrinks.
+  FC's own Delete zeroes it already
+* FC: New Disk / HDD FAT is made as one fixed .vhd (its geometry in the VHD
+  footer) instead of .hdd + geometry.chs; the ZX Evo / NEMO / Z-Controller
+  notes are gone from New Disk
+! Sprinter: Ctrl+Alt+Del: the Del key is not passed on after the reset, so
+  the BIOS starts as usual instead of opening its setup (Del at start)
+
+
+        version 1.33.0                  2 nov 2026
+
++ FC: Files / Sprinter Boot: the DSS boot loader onto the panel's FAT hard
+  disk from its DSS\SYS.EXE, as SYS C: does. A new HDD (New Disk / HDD FAT)
+  with the DSS files copied onto it said "Primary failed" at the start: the
+  BIOS found no loader; it boots now
+
+
+        version 1.33.1                  2 nov 2026
+
+! Sprinter: the sound indicator (Channel levels) showed AY only, so music on
+  Covox / Covox Blaster (DOOM 2, MK_DEMO and others) left it still; now it
+  has two more bars, the DAC left and right
+
+
+        version 1.34.0                  2 nov 2026
+
++ REST API link: a file chosen from the list (Load / Server list: trd.json,
+  hdd.json, sd.json) that has its own "run" link puts that whole link into
+  the fields at once (machine, clock, drive, start: cpm= / autorun= / press=,
+  xt=…); then they can be changed
++ FC: Copy / Move / Upload: when the files need more space than the target
+  has, it says so first (needed, free) and asks: Copy what fits or Cancel; at
+  the end the files that did not fit are named in one line ("Not enough free
+  space: N files not copied") instead of a "disk full" error for each

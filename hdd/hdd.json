@@ -7,5 +7,6 @@
   { "name": "Neo8 S3M collection. vol2", "url": "neo8-2.zip", "run": "?model=atm710&hdd=neo8-2.zip&cpm=c:neo8&xt=1", "tag": "HDD ATM" },
   { "name": "Neo8 S3M collection. vol3", "url": "neo8-3-stm.zip", "run": "?model=atm710&hdd=neo8-3-stm.zip&cpm=c:neo8&xt=1", "tag": "HDD ATM" },
   { "name": "Sprinter Estex DSS 1.71", "url": "dss.zip", "run": "?model=sprinter&hdd=dss.zip", "tag": "HDD OS SPR" },
-  { "name": "TMNT Fighters 1.2", "url": "tmntf.zip", "run": "?model=sprinter&hdd=tmntf.zip", "tag": "HDD SPR" }
+  { "name": "TMNT Fighters", "url": "tmntf.zip", "run": "?model=sprinter&hdd=tmntf.zip", "tag": "HDD SPR" },
+  { "name": "Don't Blink demo", "url": "DontBlink.zip", "run": "?model=sprinter&hdd=DontBlink.zip", "tag": "HDD SPR" }  
 ]

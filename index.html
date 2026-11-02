@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261102104103">
+<meta name="build" content="20261102154406">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1559,19 +1559,21 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
-      <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
-      <dt>F6</dt><dd>move to other panel: copy, then the files written are deleted here (asked first)</dd>
+      <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); folders with everything inside (TR-DOS, CP/M: their files into one place); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
+      <dt>F6</dt><dd>move to other panel: copy, then the files written are deleted here (asked first); a folder goes when all its files went</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM, Browser)</dd>
       <dt>F9</dt><dd>Compile with sjasmplus (see below)</dd>
-      <dt>F8 / Del</dt><dd>delete (folders: empty ones)</dd>
+      <dt>F8 / Del</dt><dd>delete (folders with everything inside; FAT: the space is zeroed, a saved zip shrinks)</dd>
       <dt>F1 / Esc</dt><dd>close File Commander</dd>
     </dl>
     <h4>Buttons</h4>
     <dl>
       <dt>Files / Download Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
       <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS, FAT and RAM keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
-      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS, FAT16 / FAT32) or SD card image</dd>
+      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS; FAT16 / FAT32 as .vhd) or SD card image (.vhd)</dd>
       <dt>Files / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
+      <dt>Files / Sprinter Boot</dt><dd>FAT hard disk: writes the DSS boot loader from its DSS\SYS.EXE, as <code>SYS C:</code> does (a new disk with the DSS files copied onto it gives "Primary failed" without it)</dd>
+      <dt>Files / Zero Free Space</dt><dd>FAT: zeroes the free space of the panel's disk (left by DSS, NedoOS and other tools that delete without it), so its saved zip shrinks</dd>
       <dt>ext / name / size</dt><dd>sort of panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
     <h4>Compile (sjasmplus)</h4>
