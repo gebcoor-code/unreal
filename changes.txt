@@ -3038,3 +3038,62 @@ Web Unreal Speccy — version history
 * About: Sprinter row: Estex DSS 1.62 (FAT16 VHD)
 * README: hard disks and SD cards (raw + .chs or fixed VHD, FAT12 / 16 /
   32, New Disk, Save, the Sprinter disk)
+
+
+        version 1.29.0                  2 nov 2026
+
++ deBUGa / Screen, Sprinter: SPframe (the picture as the video would
+  draw it from the video RAM and the mode table now, 736x576) and
+  SP VRAM (the video RAM, a byte a pixel, 1024x256: palette 0, gray when
+  it is unset; the pointer shows the offset and the byte)
+* Debuggers: a read breakpoint went off at the instruction where an INT
+  came (the core looked for a HALT there with a CPU read: in 48 BASIC a
+  breakpoint on #10B0, the start of BIT 5,(IY+1) of KEY-INPUT); that
+  look is no read now
+* About: Sprinter row without "Ctrl+Alt+Del back to DSS"
+
+
+        version 1.30.0                  2 nov 2026
+
++ Load / Server list: tags ATM (was CPM), ZX (was TRD), TSC (was SPG),
+  colors as before; new SPR (Sprinter), its own color. Lists with the
+  old names show the new ones
++ hdd/tmntf.zip: Sprinter disk with TMNT Fighters 1.2 (a menu at the
+  start: the game in 2 s, FM, command prompt)
+
+
+        version 1.31.0                  2 nov 2026
+
++ Sprinter: BIOS 3.06 (Sprinter Team, 25.06.2025) is the model's ROM now;
+  3.04 stays on the site (Custom ROM)
++ hdd/dss.zip: Estex DSS 1.71.57 (the full system of the 3.06 release,
+  demos as before); a menu at the start: FM (in 5 s), Flex Navigator,
+  command prompt
+* hdd/tmntf.zip: on DSS 1.71
+! Sprinter: BIOS 3.06 hung 30 s on each device of the second IDE channel
+  (no drives there read as a busy one); it says None at once now
+! Sprinter: BIOS 3.06 said "CMOS CHECKSUM ERROR" at each start (its sum
+  takes one cell more); the CMOS a browser kept from 3.04 gets the 3.06
+  defaults once, the clock stays
+! HDD: after a write the drive status had no "ready" bit: DSS 1.70 / 1.71
+  waited for ever (copy: "Reading error", SYS: "Writing error")
+* Sprinter: PIO ports #1C..#1F were mixed up (data / control of A and B);
+  the second joystick on LPT is chosen by bit 7 of #1E as the tests
+  expect
+
+
+        version 1.31.1                  2 nov 2026
+
+* About, Credits, README: Sprinter: startup sound, two IDE channels, the
+  start menu of DSS 1.71, Sprinter Team 2009–2025 (update of 25.06.2025),
+  TMNT Fighters (hdd/tmntf.zip)
+
+
+        version 1.31.2                  2 nov 2026
+
+! FC: Copy / Move between two folders of one disk with folders (FAT,
+  iS-DOS: both panels on HDD 0, say) said "Source and target are the
+  same"; it is done now (one panel's copy of the disk does the reading
+  and the writing, so the two panels do not undo each other)
+* FC: after a change on a disk (MkDir, Copy, Move, Delete) the other
+  panel on the same disk is read again (a new folder shows there at once)

@@ -1,10 +1,11 @@
 [
-  { "name": "CPM HDD", "url": "cpm.zip", "tag": "HDD CPM" },
+  { "name": "CPM HDD", "url": "cpm.zip", "tag": "HDD ATM" },
   { "name": "iS-DOS Chic v5.01", "url": "isdos501.zip", "run": "?model=chic", "tag": "HDD OS" },
   { "name": "TASiS v5.40", "url": "tasis540.zip", "run": "?model=tasis", "tag": "HDD OS" },
   { "name": "Evo FAT16 10MB test", "url": "nemo.zip", "tag": "HDD" },
-  { "name": "Neo8 S3M collection. vol1", "url": "neo8-1.zip", "run": "?model=atm710&hdd=neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
-  { "name": "Neo8 S3M collection. vol2", "url": "neo8-2.zip", "run": "?model=atm710&hdd=neo8-2.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
-  { "name": "Neo8 S3M collection. vol3", "url": "neo8-3-stm.zip", "run": "?model=atm710&hdd=neo8-3-stm.zip&cpm=c:neo8&xt=1", "tag": "HDD CPM" },
-  { "name": "Sprinter Estex DSS 1.62", "url": "dss.zip", "run": "?model=sprinter&hdd=dss.zip", "tag": "HDD OS" }  
+  { "name": "Neo8 S3M collection. vol1", "url": "neo8-1.zip", "run": "?model=atm710&hdd=neo8-1.zip&cpm=c:neo8&xt=1", "tag": "HDD ATM" },
+  { "name": "Neo8 S3M collection. vol2", "url": "neo8-2.zip", "run": "?model=atm710&hdd=neo8-2.zip&cpm=c:neo8&xt=1", "tag": "HDD ATM" },
+  { "name": "Neo8 S3M collection. vol3", "url": "neo8-3-stm.zip", "run": "?model=atm710&hdd=neo8-3-stm.zip&cpm=c:neo8&xt=1", "tag": "HDD ATM" },
+  { "name": "Sprinter Estex DSS 1.71", "url": "dss.zip", "run": "?model=sprinter&hdd=dss.zip", "tag": "HDD OS SPR" },
+  { "name": "TMNT Fighters 1.2", "url": "tmntf.zip", "run": "?model=sprinter&hdd=tmntf.zip", "tag": "HDD SPR" }
 ]
