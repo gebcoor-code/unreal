@@ -3235,3 +3235,22 @@ Web Unreal Speccy — version history
 * README: File Commander (folders, ZIP as a folder, mounting from a panel,
   free space, New Disk, Sprinter Boot), TRD of 1 MB, XTf / ZX48, the sound
   indicator, Load / browser storage, the REST API link builder
+
+
+        version 1.38.0                  2 nov 2026
+
++ F6: Screenshot window: the picture of that moment as PNG (as on the
+  screen, any video mode, border included) or SCR (the ZX screen, 6912
+  bytes); Download (Enter); the choice is remembered. Help / Keys and the
+  debugger's key list have it (in ATM / PC keys mode F6 goes to the machine)
+
+
+        version 1.38.1                  2 nov 2026
+
+* Screenshot window: shorter text (PNG: screen as it is, border included;
+  SCR: just for ZX screens), no name / size line
+
+
+        version 1.38.2                  2 nov 2026
+
+* Help / Keys: F6 Screenshot (PNG or SCR)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261102193901">
+<meta name="build" content="20261102200528">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -531,6 +531,9 @@ select option { background: var(--panel2); color: var(--text); }
 .ldsub { margin: 6px 0 0 22px; display: flex; flex-direction: column; gap: 4px; } .ldsub[hidden] { display: none; }
 .ldsrow { display: flex; align-items: center; gap: 12px; min-height: 22px; }
 .ldkeep { margin-top: 6px; }
+.shotbody { display: flex; flex-direction: column; gap: 8px; min-width: 260px; }
+.shotopt { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; } .shotopt .d { flex-basis: 100%; padding-left: 22px; }
+.shotrow { display: flex; justify-content: flex-end; margin-top: 4px; }
 .ldsrow #ldpress { width: 3.2em; height: 20px; font-size: 11px; }
 .ldsrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } .ldsrow .lddrv input { width: 15px; height: 15px; }
 #loadwin .body { min-height: 540px; }
@@ -1454,6 +1457,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>F3</td><td>Load window</td></tr>
       <tr><td>F4</td><td>sound on / off</td></tr>
       <tr><td>F5</td><td>start / stop emulation</td></tr>
+      <tr><td>F6</td><td>Screenshot (PNG or SCR)</td></tr>
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu); OSZ machine: boots OSZ again</td></tr>
       <tr><td>F8 / F9 / F10</td><td>Scorpion GMX (OSZ too): Ext+1 (OSZ system process) / Ext+9 (None Commander) / Ext+0 (shadow monitor); on-screen XT keyboard too</td></tr>
@@ -1786,6 +1790,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       </div>
       <p class="note" id="svnote"></p>
       <div class="svbtns"><button id="svgo" class="primary">Download</button></div>
+    </div>
+</div>
+
+<div class="fwin" id="shotdlg" hidden role="dialog" aria-labelledby="shottitle">
+    <header class="fhead"><h2 id="shottitle">Screenshot</h2><button data-close title="Close (Esc)">✕</button></header>
+    <div class="body shotbody">
+      <label class="shotopt"><input type="radio" name="shotfmt" value="png" checked> <b>PNG</b> <span class="d">screen as it is, border included</span></label>
+      <label class="shotopt"><input type="radio" name="shotfmt" value="scr"> <b>SCR</b> <span class="d">just for ZX screens</span></label>
+      <div class="shotrow"><button id="shotgo" class="primary">Download</button></div>
     </div>
 </div>
 
