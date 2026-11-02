@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261102161155">
+<meta name="build" content="20261102193901">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -314,6 +314,7 @@ body.land #vkbd { position: fixed; inset: 0; margin: 0; padding: 0; z-index: 20;
 .vk-xtf .vk-key.tiny { font-size: clamp(7px, 1.6vw, 10px); letter-spacing: -.02em; }
 .vk-half.vk-xtf .vk-key.tiny { font-size: calc(var(--kbw, 400px) * .014); }
 .vk-xtf .vk-key.nav { transform: translateY(35%); }
+@media (max-width: 600px) { .vk-xtf .vk-key.tiny, .vk-xtf .vk-key.nav { font-size: clamp(5.5px, 1.5vw, 8px); letter-spacing: -.03em; } } /* a phone upright: the labels stay apart */
 body.land #screenwrap .corner { z-index: 25; }
 /* JOY: the stick and fire at the edges of the page, as wide as the room beside the screen */
 body.land .vk-ovl { position: fixed; inset: 0; --js: var(--ljs, 1) !important; padding: 0 6px var(--lbot, 6px); }
@@ -1560,7 +1561,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>Tab</dt><dd>other panel</dd>
       <dt>↑ ↓ Home End PgUp PgDn</dt><dd>move</dd>
       <dt>Space / Ins</dt><dd>select; + all, − none, * invert</dd>
-      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM / Browser: mount into drive A: or B:, or Mount and Run (into A: and Autostart); a ZIP not on A: / B:: into a drive as Load takes it (its disk, or an HDD / SD image), also with Mount and Run</dd>
+      <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM / Browser or in a ZIP: mount into drive A: or B:, or Mount and Run (into A: and Autostart); hard disk / SD card image (HDD, HDF, VHD, IMG, IMA, RAW, BIN, SD of 1 MB and more): into HDD 0, HDD 1 or the SD card (its .chs of the same name or geometry.chs from the same folder goes with it; Reset boots it); a ZIP: opened as a folder (".." at its root goes back): view, copy out and in, MkDir, Delete; a change makes the new archive in place of the old one</dd>
       <dt>Backspace</dt><dd>folder up</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
@@ -1575,8 +1576,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Buttons</h4>
     <dl>
       <dt>Files / Download Files</dt><dd>downloads files to host (one file as is; folders and multiple files as zip or one by one)</dd>
-      <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported, files can be zipped); from zip iS-DOS, FAT and RAM keep folders, TR-DOS and CP/M take all files into one place, names cut</dd>
-      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS; FAT16 / FAT32 as .vhd) or SD card image (.vhd)</dd>
+      <dt>Files / Upload Files</dt><dd>uploads files from host (drop supported); a ZIP goes in as it is (Enter opens it, F5 out of it unpacks); a dropped folder: iS-DOS, FAT and RAM keep its folders, TR-DOS and CP/M take all files into one place, names cut</dd>
+      <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS 640K or 1 MB, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS; FAT16 / FAT32 as .vhd) or SD card image (.vhd)</dd>
       <dt>Files / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
       <dt>Files / Sprinter Boot</dt><dd>FAT hard disk: writes the DSS boot loader from its DSS\SYS.EXE, as <code>SYS C:</code> does (a new disk with the DSS files copied onto it gives "Primary failed" without it)</dd>
       <dt>Files / Zero Free Space</dt><dd>FAT: zeroes the free space of the panel's disk (left by DSS, NedoOS and other tools that delete without it), so its saved zip shrinks</dd>
@@ -1809,7 +1810,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: RUN its first BASIC program (nothing is written to the disk)"><input type="radio" name="ldnb" id="ldbasic" value="basic">first BASIC program</label></div>
         <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
       </div>
-      <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too (Load / Browser storage, File Commander drive Browser)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
+      <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too, as it is (a ZIP is not unpacked: Mount / Run asks which image; File Commander drive Browser opens it as a folder)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
     <section id="ldbrwsec" hidden><h3>Browser storage <span id="ldbrwpath" class="ldbpath"></span></h3>
       <div class="ldrow"><select id="ldbrw" aria-label="Saved in this browser"></select><div class="splitbtn" id="ldbgo"><button id="ldbgo1">Run</button><button id="ldbmore" class="splitar" title="Run, Mount or Delete"><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div><button id="ldbdelall" title="Delete all files of the browser storage">Delete all</button></div></section>
     <section id="ldlistsec" hidden><h3>Server list</h3>

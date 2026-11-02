@@ -3173,3 +3173,65 @@ Web Unreal Speccy — version history
 
 * XTf: PrtSc / ScrLk / Pause in a smaller font; the Ins / Del block of six
   keys set a little lower (a gap under PrtSc / ScrLk / Pause)
+
+
+        version 1.35.2                  2 nov 2026
+
+! Sprinter: with the XT keyboard on (Ctrl+Alt+Z) a read of port #FE went to
+  the ATM keyboard controller, which Sprinter has not: its commands (#55 in
+  the high byte, then #0D) reset the CPU. DontBlink (Demarche, 2025) reads
+  #FE with such values in its INT and stopped with "CPU HALTED" (~3 min in);
+  Sprinter reads the ZX keys only now
+
+
+        version 1.36.0                  2 nov 2026
+
++ TR-DOS disks of 1 MB: 128 cylinders × 2 sides × 16 sectors (256 tracks,
+  the most a TR-DOS catalogue addresses; esxDOS 0.8.9 takes them). A TRD of
+  up to 1 MB opens, is read and written on all its cylinders (the drive steps
+  past 86 on such a disk) and is saved at its size; File Commander writes on
+  all 256 tracks. New Disk / TR-DOS 1M makes an empty one
+* XTf on a phone upright: PrtSc, ScrLk, Pause, Ins, Del, Home, End, PgUp,
+  PgDn in a smaller font (they ran together)
+
+
+        version 1.37.0                  2 nov 2026
+
++ FC: a ZIP is a folder: Enter opens it (".." at its root goes back), its
+  files are viewed, copied out (F5 out of it unpacks, with its folders),
+  mounted (a disk image in it: Enter); F5 / F6 into it, MkDir and Delete
+  change it: the new archive replaces the old file where it lies (a ZIP in
+  a ZIP too). Two panels in the same archive share it
++ FC: Enter on a hard disk / SD card image (HDD, HDF, VHD, IMG, IMA, RAW,
+  BIN, SD of 1 MB and more) mounts it: HDD 0, HDD 1 or the SD card (when
+  the machine has one; ZX Evo and the SD card OS models: the SD card first),
+  not started (Reset boots it); its .chs (the same name, or geometry.chs)
+  from the same folder goes with it. Not into the drive the panel shows
+* FC: Upload puts a ZIP in as it is (it was unpacked after a question)
+* Load: Save to Browser Storage keeps a ZIP as it is (it kept the image
+  taken from it, or asked to add all of them); Mount / Run from the storage
+  asks which image, as Load does
+
+
+        version 1.37.1                  2 nov 2026
+
+! FC: copying new files onto a disk in A: / B: (TR-DOS, iS-DOS, Profi CP/M)
+  said "A: was written by the machine since it was read: not saved": the
+  check of the machine's writes compared the disk with FC's own copy that
+  had the new files in it already; it compares with the disk as read now
+  (only an overwrite with the same bytes went through before)
+
+
+        version 1.37.2                  2 nov 2026
+
+! FC: mounting an HDD image whose .chs has DirEntries= (CP/M C: directory
+  of 512 / 1024 entries) reset the machine (the ROM table is changed); now
+  it is not reset, the table is used from the next CP/M start, as Load with
+  Autostart off does
+
+
+        version 1.37.3                  2 nov 2026
+
+* README: File Commander (folders, ZIP as a folder, mounting from a panel,
+  free space, New Disk, Sprinter Boot), TRD of 1 MB, XTf / ZX48, the sound
+  indicator, Load / browser storage, the REST API link builder
