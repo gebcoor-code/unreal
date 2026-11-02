@@ -3157,3 +3157,19 @@ Web Unreal Speccy — version history
   has, it says so first (needed, free) and asks: Copy what fits or Cancel; at
   the end the files that did not fit are named in one line ("Not enough free
   space: N files not copied") instead of a "disk full" error for each
+
+
+        version 1.35.0                  2 nov 2026
+
++ On-screen keyboard XTf: the full PC keyboard without the number pad
+  (F-keys in groups, PrtSc / ScrLk / Pause, Ins / Del / Home / End / PgUp /
+  PgDn, the arrows as an inverted T, Win, AltGr, Menu); XT stays the short
+  one. kbd=xtf in a link. A phone in landscape: XTf parts in the middle of
+  its main block, the Ins / Del block and the arrows go with the right half
+* Keyboard list: ZX-48 is ZX48 now
+
+
+        version 1.35.1                  2 nov 2026
+
+* XTf: PrtSc / ScrLk / Pause in a smaller font; the Ins / Del block of six
+  keys set a little lower (a gap under PrtSc / ScrLk / Pause)
