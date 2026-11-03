@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261103203219">
+<meta name="build" content="20261103223200">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1317,8 +1317,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>ZXBUS sound cards</h3>
           <div class="optgrid sndgrid">
             <label for="zxms">ZX-MultiSound</label>
-            <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here"><option value="">Off</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
-            <label class="chk span3" for="moon" title="OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/YRW801-M.zip)"><input type="checkbox" id="moon"> ZXM-MoonSound (OPL4)</label>
+            <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here. Auto: each part off until a program uses it — SAA at a write to #FF / #1FF, TurboSound at a chip select of #FE / #FF on #FFFD, TurboSound FM at #F8-#FD, GS as its own Auto (not on ATM / ZX Evo: #FF is their palette)"><option value="">Off</option><option value="auto">Auto</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
+            <label for="moon">MoonSound</label>
+            <select id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/YRW801-M.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
+            <label class="chk span3" for="moonint" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT, so a program can take its interrupts at the rate it sets (players of MSX music: 60 Hz). Held until the program clears it"><input type="checkbox" id="moonint"> MoonSound INT (OPL4 timers)</label>
+            <label class="chk span3" for="moon60" title="The machine's INT comes from the card 60 times a second instead of the frame's 50: players of MSX music (written for 60 Hz) keep their tempo. The picture and the frame stay 50 Hz. Only while MoonSound is on"><input type="checkbox" id="moon60"> MoonSound 60 Hz INT (MSX music)</label>
             <div class="span3 moonrow"><span class="ranote" id="moonrom"></span></div>
             <label for="vol11">OPL3/OPL4</label><input type="range" id="vol11" data-snd="11" min="0" max="200" step="5"><output for="vol11"></output>
           </div>

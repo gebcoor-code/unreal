@@ -3415,3 +3415,45 @@ Web Unreal Speccy — version history
   noise (18-bit LFSR, 31.25 / 15.6 / 7.8 kHz, it was an octave high);
   a new octave / offset taken at the end of a half wave as the chip
   does
+
+
+        version 1.44.0                  3 nov 2026
+
++ ZXM-MoonSound INT (Options / Sound, under the card): the IRQ of the
+  OPL4 timers goes to the Z80 INT as with the jumper of the card, so a
+  program takes interrupts at the rate it sets (MSX music: 60 Hz); held
+  until the program clears it (FM register 4)
+! OPL4 wavetable: a sample is interpolated between its points, as the
+  chip does (it stepped from point to point: shrill, grainy notes when
+  a sample plays above or below its rate)
+! OPL3 / OPL4 FM: the data ports #C5 / #C7 read back the register last
+  selected (they gave #FF; players read and change the registers, MFM
+  Music among them)
+
+
+        version 1.45.0                  3 nov 2026
+
++ ZX-MultiSound Auto (Options / Sound): each part off until a program
+  uses it, as General Sound Auto: SAA1099 at a write to #FF / #1FF,
+  TurboSound FM at a chip select of #F8-#FF on #FFFD, GS by its own Auto
+  (SAA not on ATM / ZX Evo: #FF is their palette there)
++ ZXM-MoonSound: Off / Auto / On; Auto: the card is on from the first
+  touch of its ports (#C4-#C7, #7E / #7F, #C2 / #C3). A note tells when
+  a card comes on
+
+
+        version 1.46.0                  3 nov 2026
+
++ MoonSound 60 Hz INT (Options / Sound, under the card): the machine's
+  INT comes from the card 60 times a second instead of the frame's 50,
+  so players of MSX music keep their tempo; the picture and the frame
+  stay 50 Hz. Only while MoonSound is on (or Auto and on)
+
+
+        version 1.47.0                  3 nov 2026
+
+* ZX-MultiSound and ZXM-MoonSound are Auto by default; MoonSound INT
+  and MoonSound 60 Hz INT are on by default
++ ZX-MultiSound Auto: TurboSound (two AY, the chips the AY options set)
+  at a chip select of #FE / #FF on #FFFD; TurboSound FM (YM2203) only at
+  #F8-#FD (FM on / its status), so a TurboSound program keeps its AY
