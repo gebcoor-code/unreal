@@ -3254,3 +3254,61 @@ Web Unreal Speccy — version history
         version 1.38.2                  2 nov 2026
 
 * Help / Keys: F6 Screenshot (PNG or SCR)
+
+
+        version 1.38.3                  3 nov 2026
+
+* "ATM mode on / off" next to the XT icon is "XT mode on / off" now (the
+  rest of the text as it was); Help, the REST API help and System Info too
+* a phone in landscape: the corner icons and the texts over the screen
+  (MHz, fps, XT mode, joystick / mouse marks) are always hidden there,
+  whatever Hide Menu Bar is; a tap along the top or bottom edge shows them
+  for 2 s. Upright again: as Hide Menu Bar says
+
+
+        version 1.38.4                  3 nov 2026
+
+! SAA1099 (ZX-MultiSound): high notes grunted (E-Tunes 7, 11): the chip was
+  computed 31250 times a second, its edges rounded to 32 us (aliasing). Now
+  its generators run on the chip's own clock, edge by edge, and each edge
+  goes to the sound at its exact moment: the spurious tones are 25-30 dB
+  lower (a 7.7 kHz note: -13 dB before, -37 dB now); the envelopes, the
+  noise and their clocks as before
+
+
+        version 1.39.0                  3 nov 2026
+
++ Pentagon: RAM 128, 512 or 1024 KB (Options / System: RAM, the machine
+  restarts on Start; REST API: ram=512). 512 pages with #7FFD D6, D7,
+  1024 also with D5. E-Tunes 7 (ESI) needs 512: on 128 it stops at
+  "LOADING". The model is named by its RAM (Pentagon 128 / 512 / 1024)
+! a phone in landscape: done as Hide Menu Bar now (1.38.3 kept the icons
+  and the top left button could not be found). Turning to landscape
+  hides the menu bar, the frame, the corner icons and the texts; a tap
+  along the top or bottom edge shows the icons for 2 s, the top left one
+  brings the menu bar back. Upright again: Hide Menu Bar as it was
+  before (the setting is not changed by the turn)
+
+
+        version 1.39.1                  3 nov 2026
+
+! SAA1099 (ZX-MultiSound): loud passages grunted (E-Tunes 7, melodies
+  7-12). The chip was mixed at its full scale, 3.7 times an AY: through
+  the DC filter its steps went over 16 bits and wrapped into bursts of
+  the opposite sign. Now six channels at full level are 1.5 AY chips,
+  and the SAA follows the AY volume (Options / Sound)
+! the DC filter of the sound output saturates now instead of wrapping
+  (any loud mix of AY, SAA, GS, Covox, OPL)
+* the channel indicator (sound meter, channels) shows the 6 SAA1099
+  channels after the AY / GS ones
+
+
+        version 1.39.2                  3 nov 2026
+
+! ZXM-MoonSound / ZX-MultiSound Max (OPL4 / OPL3): the writes to the
+  card's ports went on to the machine too. With OUT (#C4),A the register
+  number is the high byte of the port, and a number below #80 made it
+  #7FFD to the Pentagon (A15 = 0, A1 = 0): the memory pages changed under
+  the program (MoonSound 1: creaks, notes at no volume, then it hung).
+  #C4 / #C6 / #7E also went to the ULA: border colors and beeper clicks.
+  Now the card takes its ports alone, as on the real bus

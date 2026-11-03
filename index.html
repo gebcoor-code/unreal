@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261102200528">
+<meta name="build" content="20261103132154">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1169,6 +1169,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <label class="crrow" id="crsrow_sys"><span>Service</span><select id="crs_sys" title="Service ROM page (Gluk Reset Service and others)"></select></label>
             <label class="crrow" id="crresetrow"><span>Start in</span><select id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
           </div>
+          <label class="crrow" id="pramrow" hidden><span>RAM</span><select id="pram" title="Pentagon memory: 512 KB pages with #7FFD D6, D7, 1024 KB also with D5 (no #7FFD lock then). The machine restarts with it on Start"><option value="128">128 KB</option><option value="512">512 KB</option><option value="1024">1024 KB</option></select></label>
           <p class="note" id="modelnote"></p>
           <div class="crrow" id="nvrow" hidden><button id="nvreset" title="The machine's CMOS settings (BIOS Setup, clock options) are kept in this browser; this puts the typical ones back">Reset CMOS</button></div>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
@@ -1369,7 +1370,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZX Evo BaseConf</td><td>4096K; Turbo 2+ compatible (EGA 320x200, hires 640x200, text 80x25, CP/M) and Pentagon 128 / 1024; 3.5 / 7 / 14 MHz; SD (Z-Controller), NEMO IDE, CMOS, PS/2 keyboard and mouse; Reset Service</td></tr>
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
           <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.06 (setup: Del at start; startup sound; ROM disk with RECOVERY); text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE (2 channels), FDD, CMOS; AT keyboard, MS serial mouse, Sega pads (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS 1.71 (FAT16 VHD: hdd/dss.zip; start menu: FM, Flex Navigator, command prompt); Spectrum mode: C:\ZX\SPECTRUM.EXE (TRD, SCL) or Enter on a TRD in Flex Navigator (TR-DOS 7.03)</td></tr>
-          <tr><td>Pentagon 128</td><td>48K/128K, TR-DOS 5.04TM, #EFF7</td></tr>
+          <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
@@ -1461,11 +1462,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>F7</td><td>start / stop tape</td></tr>
       <tr><td>F12</td><td>reset (BIOS menu); OSZ machine: boots OSZ again</td></tr>
       <tr><td>F8 / F9 / F10</td><td>Scorpion GMX (OSZ too): Ext+1 (OSZ system process) / Ext+9 (None Commander) / Ext+0 (shadow monitor); on-screen XT keyboard too</td></tr>
-      <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; ATM mode: the key goes to the machine)</td></tr>
+      <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; XT mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
-      <tr><td>Ctrl+Alt+Z</td><td>ATM mode (XT keyboard) on/off; ZX Evo TS-Conf: PC keys mode (F1-F12, Esc and the like go to the machine: Wild Commander)</td></tr>
+      <tr><td>Ctrl+Alt+Z</td><td>XT mode (XT keyboard) on/off; ZX Evo TS-Conf: PC keys mode (F1-F12, Esc and the like go to the machine: Wild Commander)</td></tr>
       <tr><td>Esc</td><td>releases captured mouse</td></tr>
     </table>
     <h4>REST API</h4>
@@ -1485,8 +1486,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>, . - + ; ' / \</td><td>SYMBOL SHIFT combinations ([ZX.KEYS] in unreal.ini)</td></tr>
       <tr><td>Numpad 1–9</td><td>Kempston joystick, 5 = fire</td></tr>
     </table>
-    <h4>ATM mode (XT keyboard) → ZX</h4>
-    <p>Turbo 2+, xBIOS, ZX Evo BaseConf with ATM mode on (XT icon, bottom left): keys go to ATM keyboard controller. CP/M and other ATM programs get PC keys; ZX programs get ZX keys from controller's own table. On-screen XT panel sends same keys as real keyboard.</p>
+    <h4>XT mode (XT keyboard) → ZX</h4>
+    <p>Turbo 2+, xBIOS, ZX Evo BaseConf with XT mode on (XT icon, bottom left): keys go to ATM keyboard controller. CP/M and other ATM programs get PC keys; ZX programs get ZX keys from controller's own table. On-screen XT panel sends same keys as real keyboard.</p>
     <table class="keys">
       <tr><td>letters, digits, Space, Enter</td><td>same keys</td></tr>
       <tr><td>Shift / right Shift</td><td>CAPS SHIFT / SYMBOL SHIFT</td></tr>
@@ -1512,7 +1513,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>bottom left</td><td>XT keyboard on / off (ATM)</td></tr>
       <tr><td>bottom right</td><td>on-screen keyboard (ZX+, ZX48, XT, XTf) and joystick; the list next to it chooses one</td></tr>
-      <tr><td>phone, landscape</td><td>the screen fits the whole height; the on-screen keyboards are split: the left half at the left edge, the right half at the right edge (SPACE on both); the joystick stick and fire at the edges</td></tr>
+      <tr><td>phone, landscape</td><td>the screen fits the whole height; always as with Hide Menu Bar (a tap along the top or bottom edge shows the icons for 2 s, the top left one brings the menu bar back); upright again: Hide Menu Bar as it was; the on-screen keyboards are split: the left half at the left edge, the right half at the right edge (SPACE on both); the joystick stick and fire at the edges</td></tr>
       <tr><td>Top left corner</td><td>with the menu bar: a tap shows the button that hides it (for 3 s), a tap on it hides the menu bar; with the menu bar hidden the same button shows it back</td></tr>
       <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen; the disk / tape light, the sound meter, "offline" and Tap for sound always stay</td></tr>
     </table>
@@ -1520,7 +1521,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>ZX+</td><td>Spectrum+ layout: its extra keys (EDIT, DELETE, GRAPH, EXTEND MODE, TRUE / INV. VIDEO, CAPS LOCK, BREAK, cursor keys, ; " , .) press the two ZX keys for you</td></tr>
       <tr><td>ZX48</td><td>the 40 keys of the ZX Spectrum 48K with its legends: white on the key = keyword (K mode) or letter; red on the key = SYMBOL SHIFT + key; green above = EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT), then the key; red under = EXTEND MODE, then SYMBOL SHIFT + key; row 1: above, white = CAPS SHIFT + digit (EDIT, CAPS LOCK, TRUE / INV. VIDEO, cursor, GRAPHICS, DELETE), the colour = its INK in E mode; on keys 1-8 the block graphic = G mode (CAPS SHIFT + 9). BREAK = CAPS SHIFT + SPACE. Narrow screens: the keys only</td></tr>
-      <tr><td>XT</td><td>PC keyboard of ATM mode (Ctrl+Alt+Z), short: the arrows inside the main block, : key for CP/M drives</td></tr>
+      <tr><td>XT</td><td>PC keyboard of XT mode (Ctrl+Alt+Z), short: the arrows inside the main block, : key for CP/M drives</td></tr>
       <tr><td>XTf</td><td>full PC keyboard without the number pad: F1–F12, PrtSc / ScrLk / Pause, Ins / Del / Home / End / PgUp / PgDn, the arrows, Win, AltGr, Menu</td></tr>
       <tr><td>JOY</td><td>joystick: Kempston, Sinclair 1 / 2, cursor keys; FIRE and 3 extra buttons (Enter, Space, 1 by default): Options / Input / Joystick</td></tr>
       <tr><td>CAPS / SYMBOL SHIFT</td><td>held, sticky for one key, or locked (Options / Input / Modifier keys); a latched one is green</td></tr>
@@ -1703,6 +1704,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
       <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
+      <tr><td>ram=</td><td>pentagon: 128, 512 or 1024 (KB) for this visit</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own); sprinter: 3.5 (no turbo, for this visit) or 21 (MHz, as the program sets). With speed= the visitor's True clock is off for this visit</td></tr>
       <tr><td>trueclock=1 / 0</td><td>True clock on / off for this visit (not stored): the machine's own clock, programs switch its turbo; speed= is not used then</td></tr>
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
@@ -1714,7 +1716,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
-      <tr><td>xt=1 mute=1</td><td>ATM mode on; sound off</td></tr>
+      <tr><td>xt=1 mute=1</td><td>XT mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
       <tr><td>hidemenu=1</td><td>no menu bar and frame of the emulator window for this visit, the corner icons, MHz and FPS hidden too (a click or a tap along the top or the bottom of the screen shows them for 2 s; ~ or the ☰ corner brings the menu bar back; visitor's own setting is not changed)</td></tr>
       <tr><td>kbd=</td><td>on-screen keyboard: zx (ZX+), zx48 (ZX48), xt (short XT), xtf (full XT), joy; off = hidden (visitor's own setting is not changed)</td></tr>
@@ -1749,7 +1751,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
       <span class="ralab" id="ral_run">file</span><span class="rarow" id="rar_run"><select id="rav_run"></select><input id="rav_runtxt" placeholder="name" spellcheck="false" autocomplete="off"></span>
       <span class="ralab" id="ral_cpm">commands</span><input id="rav_cpm" placeholder="b:alasm" spellcheck="false" autocomplete="off">
-      <label class="chk"><input type="checkbox" id="ra_xt">xt</label><span class="ranote">ATM mode on at start</span>
+      <label class="chk"><input type="checkbox" id="ra_xt">xt</label><span class="ranote">XT mode on at start</span>
       <label class="chk"><input type="checkbox" id="ra_mute">mute</label><span class="ranote">sound off</span>
       <label class="chk"><input type="checkbox" id="ra_swapmouse">swapmouse</label><span class="ranote">mouse buttons swapped</span>
       <label class="chk"><input type="checkbox" id="ra_hidemenu">hidemenu</label><span class="ranote">menu bar and frame hidden (~ shows them)</span>
