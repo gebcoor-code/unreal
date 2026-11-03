@@ -37,18 +37,18 @@ UnrealSpeccy 0.39.0 (the emulator core: the sources in the root folder)
     to release updated source code, (unlike GNU Public License requires,
     for example). You may port emulator to any other platform.
 
-Xpeccy (the model for the deBUGa debugger, web/dbga.js)
+Xpeccy (the model for the deBUGa debugger)
   by SAM style, MIT License. https://github.com/samstyle/Xpeccy
 
-ymfm (OPL3 / OPL4 emulation, web/ymfm/)
+ymfm (OPL3 / OPL4 emulation)
   Copyright (c) 2021, Aaron Giles. BSD 3-Clause License, the full text is at
-  the top of each file in web/ymfm/. https://github.com/aaronsgiles/ymfm
+  the top of each of its files. https://github.com/aaronsgiles/ymfm
 
-stb_image v2.30 (JPEG / PNG decoding for the FT812, web/stb_image.h)
+stb_image v2.30 (JPEG / PNG decoding for the FT812)
   by Sean Barrett. Public domain or MIT License, at your choice (see the end
   of the file). http://nothings.org/stb
 
-sjasmplus (the Z80 assembler of File Commander: web/sjasm/sjasmplus.wasm, built from https://github.com/z00m128/sjasmplus)
+sjasmplus (the Z80 assembler of File Commander, built from https://github.com/z00m128/sjasmplus)
   Copyright (c) 2016, aprisobal; and contributors. BSD 3-Clause License:
 
     Redistribution and use in source and binary forms, with or without
@@ -73,18 +73,24 @@ sjasmplus (the Z80 assembler of File Commander: web/sjasm/sjasmplus.wasm, built 
     OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-puff (the inflate decoder in web/web_ft.cpp follows it)
+puff (the inflate decoder of the FT812 follows it)
   Copyright (C) 2002-2013 Mark Adler. zlib License.
 
-MAME Sprinter driver (web/web_sp.cpp, the Sprinter Sp2000 model, follows it:
-src/mame/sinclair/sprinter.cpp and the Z84C015 / Z80 CTC / Z80 SIO devices)
+MAME Sprinter driver (the Sprinter Sp2000 model follows it and the MAME
+Z84C015 / Z80 CTC / Z80 SIO devices)
   Copyright Andrei I. Holub and the MAME contributors. BSD 3-Clause License:
   redistributions must keep the copyright notice, this condition and the
   disclaimer of the BSD 3-Clause License (the same text as for sjasmplus
   above); the names of the copyright holders may not be used to endorse or
   promote derived products without permission. https://github.com/mamedev/mame
 
-ROM images (data/, the rom/ folder of the site), disk, HDD and SD card images
+SAM Coupe is written for this port from the SAM Coupe Technical Manual;
+SimCoupe (Simon Owen) and the MAME driver (both GPL) were read for the
+hardware's behavior only, no code is taken from them. The SAM Coupe ROM 3.0
+is Dr Andy Wright's, distributed with his kind permission (as SimCoupe
+distributes it).
+
+ROM images (the rom/ folder of the site), disk, HDD and SD card images
 and other software that the emulator loads are not covered by this license.
 They belong to their copyright holders, among them: the GMX flash of LW / PLM
 (GMX Loader, Shadow Service Monitor of MOA), OSZ by izzx
@@ -95,7 +101,7 @@ on hdd/dss.zip (the system.zip of the Sprinter Team update 3.06, Flex Navigator,
 TASM and GFX Viewer of Anton Enin, FM of Vasil Ivanov, WAVPLAY, the games, demos
 and tools of their authors), the BIOS and ROMs of the machines.
 
-ZX Spectrum ROMs (data/sinclair.rom: 48, 128 and +2 ROMs, for RZX playback)
+ZX Spectrum ROMs (48, 128 and +2 ROMs, for RZX playback)
   Copyright Amstrad plc. Amstrad allows them to be distributed with
   emulators, keeping the copyright message unchanged; they may not be sold or
   used in commercial products.
