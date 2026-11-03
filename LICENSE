@@ -28,7 +28,7 @@ Third-party components
 The license above covers the code written for the web port. The following
 parts keep their own terms.
 
-UnrealSpeccy 0.39.0 (the emulator core: the sources in the root folder)
+UnrealSpeccy 0.39.0
   by SMT and contributors. From its documentation:
 
     UnrealSpeccy is completely freeware. You may use this emulator and its
@@ -83,6 +83,15 @@ Z84C015 / Z80 CTC / Z80 SIO devices)
   disclaimer of the BSD 3-Clause License (the same text as for sjasmplus
   above); the names of the copyright holders may not be used to endorse or
   promote derived products without permission. https://github.com/mamedev/mame
+
+SAASound (the SAA1099 follows it: the latches of the generators, the
+envelope, the noise, the mixer and its tables)
+  Copyright (c) 1998-2025 Dave Hooper, Simon Owen. BSD 3-Clause License:
+  redistributions must keep the copyright notice, this condition and the
+  disclaimer of the BSD 3-Clause License (the same text as for sjasmplus
+  above); the names of the copyright holders may not be used to endorse or
+  promote derived products without permission.
+  https://github.com/stripwax/SAASound
 
 SAM Coupe is written for this port from the SAM Coupe Technical Manual;
 SimCoupe (Simon Owen) and the MAME driver (both GPL) were read for the

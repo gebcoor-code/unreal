@@ -3308,7 +3308,110 @@ Web Unreal Speccy — version history
 ! ZXM-MoonSound / ZX-MultiSound Max (OPL4 / OPL3): the writes to the
   card's ports went on to the machine too. With OUT (#C4),A the register
   number is the high byte of the port, and a number below #80 made it
-  #7FFD to the Pentagon (A15 = 0, A1 = 0): the memory pages changed under
-  the program (MoonSound 1: creaks, notes at no volume, then it hung).
-  #C4 / #C6 / #7E also went to the ULA: border colors and beeper clicks.
-  Now the card takes its ports alone, as on the real bus
+  #7FFD to the Pentagon (A15 = 0, A1 = 0): the memory pages changed
+  under the program (MoonSound 1: creaks, notes at no volume, then it
+  hung). #C4 / #C6 / #7E also went to the ULA: border colors and beeper
+  clicks. Now the card takes its ports alone, as on the real bus
+
+
+        version 1.40.0                  3 nov 2026
+
++ SAM Coupe (Models & OS; REST API: model=sam): 512K, ROM 3.0 (with the
+  kind permission of Dr Andy Wright), Z80B 6 MHz, frame of 312 lines of
+  384 t-states. ASIC: LMPR / HMPR / VMPR paging (ROM0, ROM1, write
+  protect), modes 1-4 (ZX screen, 8x1 attributes, 512x192 in 4 colors,
+  256x192 in 16), CLUT of 16 from 128 colors, border, screen off, flash;
+  frame and line interrupts (palette changes per line: the ROM's color
+  bars), memory contention (slots of 8 / 4 t-states) and the ASIC port
+  waits; light pen and attribute ports; SAA1099 (#FF / #1FF), beeper;
+  Kempston joystick. Written from the SAM Technical Manual, SimCoupe and
+  the MAME driver read as references (no code taken)
++ SAM Coupe keyboard: rows of the Spectrum plus F0-F9 (the keypad; PC
+  F8, F9, F10 too: F9 boots the disk), ESC, TAB, CAPS, DELETE
+  (Backspace, Delete), - + = " ; : , . (also typed as PC symbols, e.g.
+  Shift+; gives :), EDIT (Ins, ]), INV (End), CNTRL (Ctrl), SYMBOL
+  (Alt), cursor keys. ini: [ZX.KEYS.sam]
++ SAM Coupe floppy drives 1 and 2 (WD1772 at #E0 / #F0, on the
+  emulator's WD1793 as drives A: and B:): MGT (800K, also .dsk of 800K)
+  and SAD images load; SAMDOS boots (F9 or BOOT), DIR, SAVE, LOAD work;
+  Save / disk writes MGT. File Commander does not read SAM disks yet
+* the channel indicator: the SAA1099 of the SAM Coupe (no AY there)
+
+
+        version 1.41.0                  3 nov 2026
+
++ SAM Coupe disks: DSK (EXTENDED / CPCEMU) as well, and disks packed
+  with gzip (SimCoupe's .dsk.gz, often named just .dsk) or ZIP. A .dsk
+  of 80 tracks on 2 sides (or 800K raw), .mgt and .sad start the SAM
+  Coupe; +3 disks (40 tracks) still start the Spectrum +3
++ SAM Coupe autorun (Load / Run, REST API autorun=1, File Commander
+  Mount and Run): Reset, a key past the start screen, F9 (BOOT)
++ SAM Coupe: SAMVox (#7C-#7F, 4 channels) and a DAC on printer port 1
+  (#E8, mono; stereo by the strobe of #E9), shown on the channel
+  indicator; the SAM mouse (on the mouse port, read with IN #FE, high
+  byte #FF); SAMBUS clock (#xxEF: the time of this computer); 1 MB of
+  external RAM (HMPR D7, LEPR / HEPR at #80 / #81)
++ File Commander: SAM Coupe disks (SAMDOS / MasterDOS, MGT) in A: / B: -
+  list, copy out and in (between SAM disks with their headers; other
+  files go in as CODE at their address, 32768 when none), delete. New
+  Disk: SAM Coupe (an empty MGT)
++ About / Credits: license - the LICENSE in a window like the changes.
+  LICENSE is in the release archive now (the site's root)
+
+
+        version 1.41.1                  3 nov 2026
+
+! SAM Coupe: the floppy drives run in real time at 6 MHz (bytes, steps
+  and turns were timed for 3.5 MHz, too fast: Lemmings lost data and
+  read again and again)
+! SAM Coupe: the mouse is there from the start (Lemmings looks for it
+  before the page has captured it)
+! File Commander: a SAM disk is taken as SAMDOS only when its directory
+  is sane (names, sector maps); a file whose sectors do not chain as
+  SAMDOS ones is not copied out as garbage (protected disks: Prince of
+  Persia's directory is the author's note, its files are elsewhere)
+
+
+        version 1.42.0                  3 nov 2026
+
++ SAM Coupe: the CPU clock slider works (True clock off: 0.6-120 MHz,
+  1x = 6 MHz); the video, interrupts and memory waits keep the
+  machine's own time
+! File Commander: SAM disks whose sector map marks one sector more
+  than the file has (MNEMO demo) are SAMDOS disks again
+
+
+        version 1.42.1                  3 nov 2026
+
+! SAM Coupe: memory and ASIC port waits are timed at each access of an
+  instruction (the core adds its t-states in pieces): code that keeps
+  pace with the beam runs at its real speed (MNEMO demo part 2: the
+  logo and the bars were sliced)
+! SAM Coupe: a write to the screen shows only from the beam on (the
+  cursor of Lemmings' menu was drawn and cleared within a frame and
+  never seen); a new screen page shows a cell later
+* File Commander: a SAM disk in a program's own format (Lemmings) says
+  so instead of "unknown format"
+
+
+        version 1.42.2                  3 nov 2026
+
+! SAM Coupe: a line interrupt set close ahead (the program moves it from
+  frame to frame) was missed: the CPU ran to the interrupt it expected
+  before. MNEMO demo part 2 then drew its rasters a frame late and lost
+  the music now and then
+
+
+        version 1.43.0                  3 nov 2026
+
++ deBUGa Screen on SAM Coupe: SAMscr - the screen of VMPR in its mode
+  from the RAM now (512x192), any RAM page as a SAM screen; the pointer
+  gives the mode, x, y and the byte (and the attribute in modes 1 / 2),
+  a click: the byte in the dump
+! SAA1099 (ZX-MultiSound, SAM Coupe) as SAASound models the chip: the
+  envelope in 3-bit mode steps by two (it ran an octave low: the fast
+  envelope arpeggios of E-Tunes 7 sounded dull); the mixer (tone with
+  noise, the envelope channel's inverted tone and its PDM levels); the
+  noise (18-bit LFSR, 31.25 / 15.6 / 7.8 kHz, it was an octave high);
+  a new octave / offset taken at the end of a half wave as the chip
+  does
