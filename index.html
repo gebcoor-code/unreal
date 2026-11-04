@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261104110126">
+<meta name="build" content="20261104125251">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1352,7 +1352,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <label for="ulaframe">T-states per INT</label>
             <span class="ulanum"><input type="number" id="ulaframe" min="2000" max="1000000" step="1"><span class="ulau">at 3.5 MHz</span></span>
             <label for="ulaline">T-states per line</label>
-            <span class="ulanum"><input type="number" id="ulaline" min="32" max="1000" step="1"></span>
+            <span class="ulanum"><input type="number" id="ulaline" min="128" max="1000" step="1"></span>
             <label for="ulapaper">Start of paper</label>
             <span class="ulanum"><input type="number" id="ulapaper" min="0" max="1000000" step="1"><span class="ulau">t-states</span></span>
             <label for="ulaint">INT rate</label>
@@ -1382,7 +1382,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default values: MoonSound INT on, frame INT off">↺</button></h3>
           <div class="optcol">
             <label class="chk" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT. Held until the program clears it. Card and rate: Options / Sound"><input type="checkbox" id="u_moonint"> MoonSound INT (OPL4 timers)</label>
-            <label class="chk" id="u_moon60l" title="The machine's INT comes from the card at the rate of Options / Sound instead of the frame's. Only while MoonSound is on"><input type="checkbox" id="u_moon60"> MoonSound frame INT 60 Hz</label>
+            <label class="chk" title="The machine's INT comes from the card at the rate of Options / Sound instead of the frame's. Only while MoonSound is on"><input type="checkbox" id="u_moon60"> MoonSound frame INT <span id="u_moonhz">60</span> Hz</label>
           </div>
         </div>
       </div>
