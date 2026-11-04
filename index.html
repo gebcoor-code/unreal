@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261104090952">
+<meta name="build" content="20261104110126">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -445,6 +445,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .optwin header [data-close] { padding: 2px 8px; }
 .optwin .body { padding: 8px; overflow-y: auto; min-height: 0; position: relative; display: block; }
 .optwin .pane[data-pane="opt"], .optwin .pane[data-pane="sys"] { gap: 8px; }
+#pramrow:not([hidden]) { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; }
 .optwin .pane { gap: 8px; }
 .optwin .pane.gone { display: none; }
 .optwin header .tabq { padding: 2px 9px; font-weight: 700; }
@@ -467,6 +468,12 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .vzcols { display: flex; align-items: center; gap: 6px; color: var(--dim); }
 .vzcols input[type=color] { width: 38px; height: 22px; padding: 0 2px; border: 1px solid var(--line, #444); border-radius: 4px; background: transparent; cursor: pointer; }
 .vzreset { padding: 0 6px; height: 22px; line-height: 1; }
+.optwin .card h3.hdef { display: flex; align-items: center; }
+.defbtn { margin-left: auto; padding: 0 6px; height: 20px; line-height: 1; font-size: 13px; text-transform: none; letter-spacing: 0; }
+.optgrid.ulagrid { grid-template-columns: 120px minmax(0, 1fr); }
+.ulanum { display: flex; align-items: center; gap: 6px; } .ulanum input { width: 90px; } .ulau { color: var(--dim); font-size: 12px; }
+.optcol.ulaopts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; } @media (max-width: 420px) { .optcol.ulaopts { grid-template-columns: 1fr; } } .ulaopts .chk.dis, .ulagrid.dis { opacity: .5; }
+input.moonhz { width: 56px; padding: 1px 4px; }
 @media (max-width: 420px) { .optwin .tabs { gap: 2px; } .optwin .tabs button { padding: 3px 3px; font-size: 11.5px; letter-spacing: -.03em; } }
 .optwin .card { padding: 8px 10px; }
 .optwin .card h3 { margin-bottom: 6px; }
@@ -1137,7 +1144,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 
 <div id="options" class="optwin" hidden role="dialog" aria-label="Options">
     <header class="fhead">
-      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="off">Offline</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="about">About</button></div>
+      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="ula">ULA</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="off">Offline</button><button data-tab="about">About</button></div>
       <button data-close title="Close">✕</button>
     </header>
     <div class="body panes">
@@ -1319,9 +1326,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <label for="zxms">ZX-MultiSound</label>
             <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here. Auto: each part off until a program uses it — SAA at a write to #FF / #1FF, TurboSound at a chip select of #FE / #FF on #FFFD, TurboSound FM at #F8-#FD, GS as its own Auto (not on ATM / ZX Evo: #FF is their palette)"><option value="">Off</option><option value="auto">Auto</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
             <label for="moon">MoonSound</label>
-            <select id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/YRW801-M.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
+            <select id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/yrw801-m.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
             <label class="chk span3" for="moonint" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT, so a program can take its interrupts at the rate it sets (players of MSX music: 60 Hz). Held until the program clears it"><input type="checkbox" id="moonint"> MoonSound INT (OPL4 timers)</label>
-            <label class="chk span3" for="moon60" title="The machine's INT comes from the card 60 times a second instead of the frame's 50: players of MSX music (written for 60 Hz) keep their tempo. The picture and the frame stay 50 Hz. Only while MoonSound is on"><input type="checkbox" id="moon60"> MoonSound 60 Hz INT (MSX music)</label>
+            <label class="chk span3 moonhzrow" title="The machine's INT comes from the card at this rate instead of the frame's (60 Hz: players of MSX music keep their tempo). The picture and the frame stay as they are. Only while MoonSound is on"><input type="checkbox" id="moon60"> MoonSound frame INT <input type="number" class="moonhz" id="moonhz" min="10" max="1000" step="1" value="60"> Hz</label>
             <div class="span3 moonrow"><span class="ranote" id="moonrom"></span></div>
             <label for="vol11">OPL3/OPL4</label><input type="range" id="vol11" data-snd="11" min="0" max="200" step="5"><output for="vol11"></output>
           </div>
@@ -1333,6 +1340,49 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <label class="chk" for="sdon"><input type="checkbox" id="sdon"> Covox / SD</label><input type="range" id="vol3" data-snd="3" min="0" max="200" step="5"><output for="vol3"></output>
             <label for="vol4">Tape loading</label><input type="range" id="vol4" data-snd="4" min="0" max="200" step="5"><output for="vol4"></output>
             <label class="chk span3"><input type="checkbox" id="sndfilter"> Low-pass filter (softer beeper)</label>
+          </div>
+        </div>
+      </div>
+      <div class="pane" data-pane="ula">
+        <div class="card">
+          <h3 class="hdef">ULA timings <span class="h3n" id="ulamodel"></span><button class="defbtn" id="ulat_def" title="Default values (the model's own)">↺</button></h3>
+          <div class="optgrid ulagrid" id="ulatgrid">
+            <label for="ulapre">Preset</label>
+            <select id="ulapre" title="A timing set of unreal.ini ([ULA] PRESET.*); a value changed here makes it custom"></select>
+            <label for="ulaframe">T-states per INT</label>
+            <span class="ulanum"><input type="number" id="ulaframe" min="2000" max="1000000" step="1"><span class="ulau">at 3.5 MHz</span></span>
+            <label for="ulaline">T-states per line</label>
+            <span class="ulanum"><input type="number" id="ulaline" min="32" max="1000" step="1"></span>
+            <label for="ulapaper">Start of paper</label>
+            <span class="ulanum"><input type="number" id="ulapaper" min="0" max="1000000" step="1"><span class="ulau">t-states</span></span>
+            <label for="ulaint">INT rate</label>
+            <span class="ulanum"><input type="number" id="ulaint" min="10" max="1000" step="1"><span class="ulau">Hz</span></span>
+            <label for="ulaintlen">INT length</label>
+            <span class="ulanum"><input type="number" id="ulaintlen" min="1" max="10000" step="1"><span class="ulau">t-states</span></span>
+          </div>
+          <p class="note" id="ulatnote" hidden></p>
+        </div>
+        <div class="card">
+          <h3 class="hdef">ULA options<button class="defbtn" id="ulao_def" title="Default values (the model's own)">↺</button></h3>
+          <div class="optcol ulaopts" id="ulaopts">
+            <label class="chk" title="M1 cycles start at even t-states (Scorpion)"><input type="checkbox" data-ula="6"> Even M1</label>
+            <label class="chk" title="The border changes every 4 t-states (Scorpion)"><input type="checkbox" data-ula="7"> 4T border</label>
+            <label class="chk" title="A read of a port no device answers gives what the ULA reads from video memory at that moment"><input type="checkbox" data-ula="8"> Unstable data bus</label>
+            <label class="chk" title="The same while TR-DOS is on"><input type="checkbox" data-ula="9"> Unstable bus in TR-DOS</label>
+            <label class="chk" title="Port #FF reads the byte the ULA fetches (floating bus)"><input type="checkbox" data-ula="10"> Port #FF</label>
+            <label class="chk" title="The paper is not drawn: the border only"><input type="checkbox" data-ula="11"> No paper</label>
+            <label class="chk" title="ULA+ palette: 64 colors (ports #BF3B / #FF3B)"><input type="checkbox" data-ula="12"> ULA+</label>
+            <label class="chk" title="ATM, ZX Evo, Profi: the colors of the machine's palette"><input type="checkbox" data-ula="14"> Use palette (ATM, Profi)</label>
+            <label class="chk" title="Profi: the 512×240 mode in black and white"><input type="checkbox" data-ula="13"> Profi monochrome</label>
+            <label class="chk" title="Swap of RAM address lines A5-A7 and A8-A10 at a change of RG0 (bit 0 of the video mode, #FF77 / #FE A6), as on some ATM boards: the RAM content is reordered then. Off on a normal board"><input type="checkbox" data-ula="15"> Swap A5-A7, A8-A10</label>
+          </div>
+          <p class="note" id="ulaonote" hidden></p>
+        </div>
+        <div class="card">
+          <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default values: MoonSound INT on, frame INT off">↺</button></h3>
+          <div class="optcol">
+            <label class="chk" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT. Held until the program clears it. Card and rate: Options / Sound"><input type="checkbox" id="u_moonint"> MoonSound INT (OPL4 timers)</label>
+            <label class="chk" id="u_moon60l" title="The machine's INT comes from the card at the rate of Options / Sound instead of the frame's. Only while MoonSound is on"><input type="checkbox" id="u_moon60"> MoonSound frame INT 60 Hz</label>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const DOWN_FOR = 30000; // the site did not answer: for this long the copies com
 let downUntil = 0;
 const SCOPE = new URL(self.registration.scope).pathname; // copies in other folders of the site keep their own caches
 const CORE = 'ue-core:' + SCOPE + ':' + BUILD, FILES = 'ue-files:' + SCOPE;
-const SHELL = ['./', 'index.html', 'changes.txt', 'LICENSE', 'icon.png', 'apple-touch-icon.png',
+const SHELL = ['./', 'index.html', 'changes.zip', 'LICENSE', 'icon.png', 'apple-touch-icon.png',
   'js/js.zip',
   'unreal/unreal.zip', 'unreal/unreal.wasm', 'unreal/sjasm.zip', 'unreal/unreal.ini', 'unreal/boot6.$b', 'unreal/CMOS', 'unreal/sos.l'];
 const NEED = ['index.html', 'js/js.zip', 'unreal/unreal.ini', 'unreal/boot6.$b']; // and unreal.zip or unreal.wasm
