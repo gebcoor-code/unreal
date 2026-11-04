@@ -1,5 +1,6 @@
 [
  { "name": "UFO-2 EGA", "run": "?model=atm710&fdd=a:trd/ufo2ega.zip&cpm=b:ufo2doc&xt=1", "tag": "ATM" },
+ { "name": "UFO-2 EGA", "run": "?model=atm710&hdd=trd/ufo2ega-hdd.zip&cpm=c:ufo2doc&xt=1", "tag": "ATM HDD" }, 
  { "name": "Spirales EGA,VGA", "run": "?model=atm710&fdd=a:trd/newcpm.zip&cpm=b:dzfx320&xt=1", "tag": "ATM" },
  { "name": "8 colors Editor", "run": "?model=atm710&fdd=a:trd/8%20colors%20Editor.zip&autorun=1&press=0", "tag": "ZX" },
  { "name": "Dizzy 5 (CM) (1991)", "run": "?model=atm710&fdd=a:trd/Dizzy%205%20(CM)%20(1991).zip&autorun=1&press=0", "tag": "ZX" },
