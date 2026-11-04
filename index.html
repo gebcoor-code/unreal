@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261104173153">
+<meta name="build" content="20261104213439">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1220,6 +1220,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button>
             <button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">⏏</button><span></span></div>
           <label class="chk fddacc" title="Real WD1793 timing and no TR-DOS ROM traps: slower, but protected loaders and disk tricks work as on the real machine. Off: fast disk access"><input type="checkbox" id="fddacc">Accurate FDD emulation</label>
+          <label class="chk fddacc" title="Number right of the floppy while a drive works: track being read or written (cylinder × 2 + side, hex, as TR-DOS counts them)"><input type="checkbox" id="fddtrk" checked>Track number at disk LED</label>
         </div>
         <div class="card">
           <h3>HDD</h3>
