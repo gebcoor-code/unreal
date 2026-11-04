@@ -3457,3 +3457,10 @@ Web Unreal Speccy — version history
 + ZX-MultiSound Auto: TurboSound (two AY, the chips the AY options set)
   at a chip select of #FE / #FF on #FFFD; TurboSound FM (YM2203) only at
   #F8-#FD (FM on / its status), so a TurboSound program keeps its AY
+
+
+        version 1.47.1                  4 nov 2026
+
+! A ROM missing when its file on the server has the name in lower case
+  (rom/yrw801-m.zip on a case-sensitive server): the name as written,
+  then in lower case
