@@ -44,17 +44,18 @@ self.addEventListener('fetch', (e) => {
     const copy = async () => { const c = await caches.open(store), core = store === CORE ? c : await caches.open(CORE);
       return (await c.match(u.origin + u.pathname, { ignoreSearch: true })) ||
         (req.mode === 'navigate' ? (await core.match(new URL('index.html', self.registration.scope).href, { ignoreSearch: true })) || (await core.match(self.registration.scope, { ignoreSearch: true })) : null); };
-    const have = await copy();
     const mine = u.searchParams.get('v') === BUILD; // a file of this very build: it does not change
+    // a file of another build (the page of a newer one while this worker still runs): the copy here is of this build, and
+    // mixed with that page it breaks it; the network only, as long as it takes (the page tries again when it fails)
+    if (u.searchParams.has('v') && !mine) return fetch(req).catch(() => Response.error());
+    const have = await copy();
     if (have && (mine || self.navigator.onLine === false || Date.now() < downUntil)) return have;
     if (!have && store === FILES && Date.now() < downUntil) return Response.error(); // the site down and no copy of a site file: fails at once (was: waited for ever); the page's own files are always asked for
     const net = fetch(req).then((r) => {
       downUntil = 0;
       // the page's own files and the site's files: refreshed copy (a 404 or an HTML error page is not kept)
       // the copy is cloned at once: later (after caches.open) the page may be reading the body already, and clone() throws
-      // a file of another build (a page of the build before, still open): not kept in this build's copy
-      const other = u.searchParams.has('v') && u.searchParams.get('v') !== BUILD;
-      if (r.ok && !other && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
+      if (r.ok && !(isFile(rel) && /text\/html/i.test(r.headers.get('content-type') || '') && !/\.html?$/i.test(rel))) {
         const keep = r.clone();
         caches.open(store).then((c) => c.put(u.origin + u.pathname, keep)).catch(() => {});
       }

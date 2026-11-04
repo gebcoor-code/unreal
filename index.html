@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261104125251">
+<meta name="build" content="20261104173153">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -474,6 +474,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .ulanum { display: flex; align-items: center; gap: 6px; } .ulanum input { width: 90px; } .ulau { color: var(--dim); font-size: 12px; }
 .optcol.ulaopts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; } @media (max-width: 420px) { .optcol.ulaopts { grid-template-columns: 1fr; } } .ulaopts .chk.dis, .ulagrid.dis { opacity: .5; }
 input.moonhz { width: 56px; padding: 1px 4px; }
+.moonhzrow:not([hidden]) { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; }
 @media (max-width: 420px) { .optwin .tabs { gap: 2px; } .optwin .tabs button { padding: 3px 3px; font-size: 11.5px; letter-spacing: -.03em; } }
 .optwin .card { padding: 8px 10px; }
 .optwin .card h3 { margin-bottom: 6px; }
@@ -1279,7 +1280,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>Visualizer</h3>
           <div class="optgrid sndgrid">
             <label for="vizsel">Effect</label>
-            <select id="vizsel">
+            <select id="vizsel" title="Channel levels: a bar per channel of AY, General Sound, SAA1099, DAC, OPL3 / OPL4 (FM, then wavetable), a gap between sources; a channel shows up once it sounds, a source silent for 4 s goes; a short flash over a bar: a note started (OPL FM and wavetable key on, AY envelope restart)">
               <option value="spectrum">Spectrum</option><option value="mirror">Mirror spectrum</option><option value="scope">Oscilloscope</option>
               <option value="chan">Channel levels</option><option value="water">Spectrogram (waterfall)</option><option value="xy">Goniometer (stereo)</option><option value="off">Off</option>
             </select>
@@ -1327,8 +1328,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here. Auto: each part off until a program uses it — SAA at a write to #FF / #1FF, TurboSound at a chip select of #FE / #FF on #FFFD, TurboSound FM at #F8-#FD, GS as its own Auto (not on ATM / ZX Evo: #FF is their palette)"><option value="">Off</option><option value="auto">Auto</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
             <label for="moon">MoonSound</label>
             <select id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/yrw801-m.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
-            <label class="chk span3" for="moonint" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT, so a program can take its interrupts at the rate it sets (players of MSX music: 60 Hz). Held until the program clears it"><input type="checkbox" id="moonint"> MoonSound INT (OPL4 timers)</label>
-            <label class="chk span3 moonhzrow" title="The machine's INT comes from the card at this rate instead of the frame's (60 Hz: players of MSX music keep their tempo). The picture and the frame stay as they are. Only while MoonSound is on"><input type="checkbox" id="moon60"> MoonSound frame INT <input type="number" class="moonhz" id="moonhz" min="10" max="1000" step="1" value="60"> Hz</label>
+            <label for="moonint">MoonSound INT</label>
+            <select id="moonint" title="Where programs for the card get their INT (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card, held until program clears it (moonmusic_1). Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running; frame INT before and after (moonmusic_1u, made for emulators)"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
+            <div class="moonhzrow" id="moonhzrow" title="INT rate instead of frame INT (60 Hz: MSX music). Picture and frame stay 50 Hz"><input type="number" class="moonhz" id="moonhz" min="10" max="1000" step="1" value="60"> Hz</div>
             <div class="span3 moonrow"><span class="ranote" id="moonrom"></span></div>
             <label for="vol11">OPL3/OPL4</label><input type="range" id="vol11" data-snd="11" min="0" max="200" step="5"><output for="vol11"></output>
           </div>
@@ -1379,10 +1381,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <p class="note" id="ulaonote" hidden></p>
         </div>
         <div class="card">
-          <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default values: MoonSound INT on, frame INT off">↺</button></h3>
-          <div class="optcol">
-            <label class="chk" title="The INT jumper of the card: the IRQ of the OPL4 timers (FM registers 2-4) goes to the Z80 INT. Held until the program clears it. Card and rate: Options / Sound"><input type="checkbox" id="u_moonint"> MoonSound INT (OPL4 timers)</label>
-            <label class="chk" title="The machine's INT comes from the card at the rate of Options / Sound instead of the frame's. Only while MoonSound is on"><input type="checkbox" id="u_moon60"> MoonSound frame INT <span id="u_moonhz">60</span> Hz</label>
+          <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default: Card">↺</button></h3>
+          <div class="optgrid ulagrid">
+            <label for="u_moonint">MoonSound INT</label>
+            <select id="u_moonint" title="Same as Options / Sound (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card. Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
+            <div class="moonhzrow" id="u_moonhzrow" title="INT rate instead of frame INT (60 Hz: MSX music). Picture and frame stay 50 Hz"><input type="number" class="moonhz" id="u_moonhz" min="10" max="1000" step="1" value="60"> Hz</div>
           </div>
         </div>
       </div>
@@ -1496,6 +1499,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Web port</td><td>ae485; WebAssembly: wasi-sdk, Binaryen</td></tr>
           <tr><td>ZX-MultiSound</td><td><a href="https://github.com/SeregaButylkin/zx-multisound" target="_blank" rel="noopener">SeregaButylkin</a></td></tr>
           <tr><td>ZXM-MoonSound</td><td><a href="http://micklab.ru" target="_blank" rel="noopener">Mick Laboratory</a></td></tr>
+          <tr><td>MoonSound troubleshooting</td><td>Mick (<a href="http://micklab.ru" target="_blank" rel="noopener">micklab.ru</a>)</td></tr>
           <tr><td>YM2203, YMF262,<br>YMF278B, YRW801-M</td><td>Yamaha Corporation</td></tr>
         </table>
       </div>
@@ -1600,6 +1604,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>ROM</td><td>Custom ROM (Options → System): .rom / .bin / .zip (ZIP with json: machine and pages come back)</td></tr>
       <tr><td>Server list</td><td>trd/trd.json: [{"name": "…", "run": "?model=atm710&amp;a=trd/x.zip&amp;cpm=b:x&amp;xt=1", "tag": "ATM"}]: Load starts REST link ("Autostart after load", machine can be changed) or only mounts its file; "url" instead of "run": the file (Autostart after load: a disk boots, a TS-Conf SD card runs its program). Use boot.b and Autostart TRDOS are for files of this computer. Tags: CPM HDD PRO SD TRD OS SPG (TS-Conf program: starts ZX Evo TS-Conf). A line that starts with # is a comment (trd.json, hdd.json, sd.json). A file in a link with no folder (sd=osz.zip in sd/sd.json) is in the list's folder; with a folder (trd/x.zip): from the site root</td></tr>
       <tr><td>Server ROMs</td><td>rom/&lt;name&gt;.zip (or rom/&lt;name&gt;.rom); parts for ROM sets: rom/roms.json</td></tr>
+    </table>
+    <h4>MoonSound INT</h4>
+    <p>Players of MSX music (OPL4) keep tempo at 60 Hz, while ZX frame INT is 50 Hz. Options → Sound → MoonSound INT (also Options → ULA) sets where their INT comes from:</p>
+    <table class="keys">
+      <tr><td>Off</td><td>frame INT of machine only (50 Hz); a program made for card INT plays slower or stops</td></tr>
+      <tr><td>Card</td><td>(default) INT jumper of ZXM-MoonSound: IRQ of OPL4 timers (FM registers 2–4) goes to Z80 INT, along with frame INT. Program sets timer (60 Hz) and clears its flag in each INT (register 4 = #80 + its bits); until then INT line stays active. For programs written for real card: moonmusic_1</td></tr>
+      <tr><td>Set INT rate</td><td>machine INT comes at rate set in field under list (60 Hz) instead of frame INT, but only while program keeps an OPL4 timer running with its IRQ enabled (register 4: ST1 or ST2 on, its MASK off); before that (menus, loaders, BASIC, TR-DOS) and after timer stops: frame INT. First INT comes one period after timer start. Picture and frame stay 50 Hz. For programs made for emulators without card INT: they start timer once and never clear its flag (moonmusic_1u)</td></tr>
+      <tr><td>Which one</td><td>with Card, a program that never clears timer flag gets INT again after every EI (hundreds per second): music too fast, notes crackle; use Set INT rate for it. A program that clears flag plays right with Card</td></tr>
     </table>
   </div>
 </div>
