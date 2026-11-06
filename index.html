@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261105163601">
+<meta name="build" content="20261106225642">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -586,7 +586,7 @@ select option { background: var(--panel2); color: var(--text); }
 .dditem.on .tagic { color: #1a1208; }
 .ddcur .tagic + .tagic, .dditem .tagic + .tagic { margin-left: -2px; }
 .tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; }
-.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; }
+.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #ffa24a; }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
 #crname { font-size: 12px; color: var(--text); margin-left: 8px; overflow-wrap: anywhere; }
@@ -1422,7 +1422,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="card">
         <h3>Models &amp; OS</h3>
         <table class="keys">
-          <tr><td>Turbo 2+</td><td>v7.10, 1024K, BIOS v1.07.13, XT</td></tr>
+          <tr><td>Turbo 2+</td><td>v7.10, 1024K, BIOS v1.07.13 (CP/M from disk or HDD, TR-DOS); video ZX, EGA 320x200 (16 of 64 colors), hires 640x200, text 80x25; 3.5 / 7 MHz (programs switch turbo, #FF77); IDE HDD; XT keyboard controller (PC keys in CP/M), Kempston mouse</td></tr>
           <tr><td>Turbo 2+ xBIOS 1.36</td><td>v1.36: 128K, vTR-DOS, ROM disk</td></tr>
           <tr><td>ATM Turbo 1</td><td>v4.50, 512K, BIOS v1.04.1R</td></tr>
           <tr><td>ZX Evo BaseConf</td><td>4096K; Turbo 2+ compatible (EGA 320x200, hires 640x200, text 80x25, CP/M) and Pentagon 128 / 1024; 3.5 / 7 / 14 MHz; SD (Z-Controller), NEMO IDE, CMOS, PS/2 keyboard and mouse; Reset Service</td></tr>
@@ -1654,7 +1654,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>Files / New Disk</dt><dd>empty floppy (TR-DOS 640K or 1 MB, CP/M, iS-DOS, Profi CP/M, PC FAT12 720K), HDD (CP/M, iS-DOS; FAT16 / FAT32 as .vhd) or SD card image (.vhd)</dd>
       <dt>Files / HDD Remaster</dt><dd>remastering HDD image (stores zip with image and its .chs)</dd>
       <dt>Files / Sprinter Boot</dt><dd>FAT hard disk: writes the DSS boot loader from its DSS\SYS.EXE, as <code>SYS C:</code> does (a new disk with the DSS files copied onto it gives "Primary failed" without it)</dd>
-      <dt>Files / Zero Free Space</dt><dd>FAT: zeroes the free space of the panel's disk (left by DSS, NedoOS and other tools that delete without it), so its saved zip shrinks</dd>
+      <dt>Files / Zero Free Space</dt><dd>clears free space of the panel's disk (DOSes delete without it), so its saved zip shrinks: FAT free clusters, TR-DOS sectors after the last file, CP/M free blocks and entries (#E5, as CP/M formats), iS-DOS and SAMDOS free sectors. Deleted files can't be recovered after it</dd>
       <dt>ext / name / size</dt><dd>sort of panel (right of its header): folders first; ext: by extension, then by name; size: largest first</dd>
     </dl>
     <h4>Compile (sjasmplus)</h4>
@@ -1780,6 +1780,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
+      <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, hdd0=brw:cpm.zip, sd=brw:card.zip (file fields of this window offer them, marked [Browser]). Works only in this browser</td></tr>
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
