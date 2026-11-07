@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261106225642">
+<meta name="build" content="20261107213101">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -550,6 +550,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ldlab { font-size: 12px; color: var(--dim); }
 .ldtags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
 .ldtags button { padding: 0 7px; height: 20px; font-size: 10px; border-radius: 4px; }
+@media (max-width: 520px) { .ldtags { gap: 2px; } .ldtags button { flex: 1 0 auto; padding: 0 2px; height: 22px; font-size: 9.5px; letter-spacing: -.02em; } } /* phones: the tags in one line */
 .ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 /* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
 #ziplist .zrest { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; cursor: pointer; } #ziplist .zrest input { width: 15px; height: 15px; flex: none; }
@@ -586,7 +587,7 @@ select option { background: var(--panel2); color: var(--text); }
 .dditem.on .tagic { color: #1a1208; }
 .ddcur .tagic + .tagic, .dditem .tagic + .tagic { margin-left: -2px; }
 .tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; }
-.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #ffa24a; }
+.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #b8c2ff; }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
 #crname { font-size: 12px; color: var(--text); margin-left: 8px; overflow-wrap: anywhere; }
@@ -624,6 +625,7 @@ input[type=range] { width: 160px; accent-color: var(--accent); }
 table.keys { border-collapse: collapse; width: 100%; font-size: 13px; }
 table.keys td { padding: 3px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Consolas, monospace; color: var(--accent); width: 1%; padding-right: 12px; }
+table.keys.k13 td:first-child { width: 13ch; } table.keys.k15 td:first-child { width: 15ch; } /* Credits: "troubleshooting" */ /* Credits, Help XT mode / on-screen keyboards: as wide as "REST API link" of Tools */
 .note { font-size: 12px; color: var(--dim); margin: 0; }
 .note a, .keys a { color: var(--accent); }
 [data-pane="about"] .keys td + td a { color: inherit; } /* About: links in the right column in the text color */
@@ -684,7 +686,7 @@ table.keys td:first-child { white-space: nowrap; font-family: ui-monospace, Cons
 .ragrid input:not([type]) { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0 8px; font-family: ui-monospace, Consolas, monospace; }
 .ragrid [hidden] { display: none !important; }
 .ragrid .ratc { white-space: nowrap; flex: none; }
-.rarow { display: flex; gap: 6px; min-width: 0; } .rarow > * { flex: 1; min-width: 0; } .rarow > .radrv { flex: 0 0 56px; }
+.rarow { display: flex; gap: 6px; min-width: 0; } .rarow > * { flex: 1; min-width: 0; } .rarow > .radrv { flex: 0 0 56px; } .rarow > [data-c~="raram"] { flex: 0 0 90px; } .rarow > [data-c~="radrv"] { flex: 0 0 56px; }
 .ranote { font-size: 11px; color: var(--dim); }
 #raout { width: 100%; resize: vertical; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 12px/1.4 ui-monospace, Consolas, monospace; word-break: break-all; }
 .rabtns { display: flex; gap: 6px; align-items: center; } .rabtns .ranote { flex: 1; } #ranote { color: var(--accent); }
@@ -1473,35 +1475,34 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       </div>
       <div class="card">
         <h3 class="crhead">Credits <a href="#" id="liclink">license</a></h3>
-        <table class="keys">
+        <table class="keys k13 k15">
           <tr><td>UnrealSpeccy</td><td>SMT (author), Alone Coder, deathsoft (0.38–0.39.0) and contributors; freeware with sources</td></tr>
-          <tr><td>eXtra BIOS, vTR-DOS</td><td>ukms[z], NedoPC</td></tr>
-          <tr><td>ZX-Evolution, ERS</td><td>NedoPC</td></tr>
-          <tr><td>TS-Conf, TS-BIOS</td><td>TS-Labs (TSL), NedoPC; after the Verilog of the configuration and its datasheet</td></tr>
+          <tr><td>eXtra BIOS,<br>vTR-DOS</td><td>ukms[z], NedoPC</td></tr>
+          <tr><td>ZX-Evolution,<br>ERS</td><td>NedoPC</td></tr>
+          <tr><td>TS-Conf,<br>TS-BIOS</td><td>TS-Labs (TSL), NedoPC; after the Verilog of the configuration and its datasheet</td></tr>
           <tr><td>SAM Coupé</td><td>Miles Gordon Technology (1989); ROM 3.0 by Dr Andy Wright, distributed with his kind permission; hardware behavior as SimCoupe (Simon Owen) and the MAME driver show it</td></tr>
           <tr><td>Sprinter, BIOS,<br>Estex DSS</td><td>Peters Plus (Ivan Mak and team); BIOS 3.06, Estex DSS 1.71: Sprinter Team (2009–2025, update of 25.06.2025); MAME driver by Andrei I. Holub (BSD-3-Clause)</td></tr>
-          <tr><td>Sprinter software</td><td>system.zip of the Sprinter Team update 3.06 (Estex DSS 1.71, Spectrum mode, utilities); Flex Navigator, TASM, GFX Viewer: Anton Enin; FM: Vasil Ivanov; WAVPLAY: Peters Plus; TMNT Fighters 1.2 (hdd/tmntf.zip); games, demos and tools of their authors</td></tr>
-          <tr><td>TASiS distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
-          <tr><td>iS-DOS HDD boot, drivers</td><td>Yu. Korsunin</td></tr>
+          <tr><td>Sprinter<br>software</td><td>system.zip of the Sprinter Team update 3.06 (Estex DSS 1.71, Spectrum mode, utilities); Flex Navigator, TASM, GFX Viewer: Anton Enin; FM: Vasil Ivanov; WAVPLAY: Peters Plus; TMNT Fighters 1.2 (hdd/tmntf.zip); games, demos and tools of their authors</td></tr>
+          <tr><td>TASiS<br>distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
+          <tr><td>iS-DOS HDD<br>boot, drivers</td><td>Yu. Korsunin</td></tr>
           <tr><td>iS-DOS</td><td>Iskra Soft</td></tr>
-          <tr><td>Zuma Deluxe (TS-Conf)</td><td>port: andrewinsidelazarev (<a href="https://github.com/andrewinsidelazarev/Zuma-Deluxe-TS-Config" target="_blank" rel="noopener">GitHub</a>); ball sprites from Zuma-Deluxe-HD by GalaxyShad; the game © PopCap Games / EA</td></tr>
+          <tr><td>Zuma Deluxe<br>(TS-Conf)</td><td>port: andrewinsidelazarev (<a href="https://github.com/andrewinsidelazarev/Zuma-Deluxe-TS-Config" target="_blank" rel="noopener">GitHub</a>); ball sprites from Zuma-Deluxe-HD by GalaxyShad; the game © PopCap Games / EA</td></tr>
           <tr><td>NedoOS</td><td>Alone Coder and NedoOS team (<a href="https://nedoos.ru" target="_blank" rel="noopener">nedoos.ru</a>)</td></tr>
-          <tr><td>Scorpion ZS 256, GMX</td><td>Scorpion; GMX board and Shadow Service Monitor: MOA (1993–1998)</td></tr>
-          <tr><td>GMX flash 2022–2025</td><td>LW / PLM: GMX Loader 2.00, Shadow Service Monitor 6.44su, Navigator (<a href="https://t.me/ZS_ProfRom" target="_blank" rel="noopener">ZS ProfRom</a>)</td></tr>
+          <tr><td>Scorpion ZS<br>256, GMX</td><td>Scorpion; GMX board and Shadow Service Monitor: MOA (1993–1998)</td></tr>
+          <tr><td>GMX flash<br>2022–2025</td><td>LW / PLM: GMX Loader 2.00, Shadow Service Monitor 6.44su, Navigator (<a href="https://t.me/ZS_ProfRom" target="_blank" rel="noopener">ZS ProfRom</a>)</td></tr>
           <tr><td>OSZ</td><td>izzx (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>); with code of LW/PLM, S.V.Bulba, Kulich, Nihirash, ZORBA, GALSTAFF</td></tr>
           <tr><td>TR-DOS</td><td>Technology Research Ltd.</td></tr>
           <tr><td>CP/M 2.2</td><td>Digital Research</td></tr>
           <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad; the ROMs of 48 / 128 / +2 (RZX playback): © Amstrad, distributed with their permission</td></tr>
           <tr><td>RZX format</td><td>Ramsoft, the authors of Fuse, SpecEmu, SPIN and Spectaculator; recordings: <a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">The RZX Archive</a></td></tr>
-          <tr><td>ATM Turbo 2+ hardware</td><td>MicroART</td></tr>
+          <tr><td>ATM Turbo 2+<br>hardware</td><td>MicroART</td></tr>
           <tr><td>Honey Commander</td><td>Honey Soft</td></tr>
-          <tr><td>sjasmplus (FC Compile)</td><td>Aprisobal, z00m128 and contributors (<a href="https://github.com/z00m128/sjasmplus" target="_blank" rel="noopener">GitHub</a>, BSD-3-Clause)</td></tr>
+          <tr><td>sjasmplus<br>(FC Compile)</td><td>Aprisobal, z00m128 and contributors (<a href="https://github.com/z00m128/sjasmplus" target="_blank" rel="noopener">GitHub</a>, BSD-3-Clause)</td></tr>
           <tr><td>Xpeccy (deBUGa)</td><td>SAM style (<a href="https://github.com/samstyle/Xpeccy" target="_blank" rel="noopener">Xpeccy</a>, MIT)</td></tr>
-          <tr><td>Web port</td><td>ae485; WebAssembly: wasi-sdk, Binaryen</td></tr>
           <tr><td>ZX-MultiSound</td><td><a href="https://github.com/SeregaButylkin/zx-multisound" target="_blank" rel="noopener">SeregaButylkin</a></td></tr>
           <tr><td>ZXM-MoonSound</td><td><a href="http://micklab.ru" target="_blank" rel="noopener">Mick Laboratory</a></td></tr>
-          <tr><td>MoonSound troubleshooting</td><td>Mick (<a href="http://micklab.ru" target="_blank" rel="noopener">micklab.ru</a>)</td></tr>
-          <tr><td>YM2203, YMF262,<br>YMF278B, YRW801-M</td><td>Yamaha Corporation</td></tr>
+          <tr><td>MoonSound<br>troubleshooting</td><td>Mick (<a href="http://micklab.ru" target="_blank" rel="noopener">micklab.ru</a>)</td></tr>
+          <tr><td>YM2203, YMF262,<br>YMF278B,<br>YRW801-M</td><td>Yamaha Corporation</td></tr>
         </table>
       </div>
       </div>
@@ -1549,16 +1550,16 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <h4>XT mode (XT keyboard) → ZX</h4>
     <p>Turbo 2+, xBIOS, ZX Evo BaseConf with XT mode on (XT icon, bottom left): keys go to ATM keyboard controller. CP/M and other ATM programs get PC keys; ZX programs get ZX keys from controller's own table. On-screen XT panel sends same keys as real keyboard.</p>
-    <table class="keys">
-      <tr><td>letters, digits, Space, Enter</td><td>same keys</td></tr>
-      <tr><td>Shift / right Shift</td><td>CAPS SHIFT / SYMBOL SHIFT</td></tr>
+    <table class="keys k13">
+      <tr><td>letters,<br>digits,<br>Space, Enter</td><td>same keys</td></tr>
+      <tr><td>Shift /<br>right Shift</td><td>CAPS SHIFT / SYMBOL SHIFT</td></tr>
       <tr><td>Ctrl</td><td>EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT)</td></tr>
       <tr><td>Esc</td><td>EDIT (CAPS SHIFT + 1)</td></tr>
-      <tr><td>Caps Lock / Tab / Alt</td><td>CAPS SHIFT + 2 / 3 / 4</td></tr>
+      <tr><td>Caps Lock /<br>Tab / Alt</td><td>CAPS SHIFT + 2 / 3 / 4</td></tr>
       <tr><td>← ↓ ↑ →</td><td>cursor (CAPS SHIFT + 5…8)</td></tr>
-      <tr><td>Backspace, Del / End</td><td>DELETE (CAPS SHIFT + 0) / CAPS SHIFT + 9</td></tr>
-      <tr><td>- = [ ] ; ' ` \ , . /</td><td>SYMBOL SHIFT + J L Y U O P A S N M V</td></tr>
-      <tr><td>F1–F10 / F11 F12</td><td>SYMBOL SHIFT + 1…0 / H F</td></tr>
+      <tr><td>Backspace,<br>Del / End</td><td>DELETE (CAPS SHIFT + 0) / CAPS SHIFT + 9</td></tr>
+      <tr><td>- = [ ] ; ' `<br>\ , . /</td><td>SYMBOL SHIFT + J L Y U O P A S N M V</td></tr>
+      <tr><td>F1–F10 /<br>F11 F12</td><td>SYMBOL SHIFT + 1…0 / H F</td></tr>
     </table>
     <h4>Mouse</h4>
     <table class="keys">
@@ -1579,13 +1580,13 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Hide Menu Bar</td><td>the corner icons, MHz and FPS, OVL / AF, the touch mouse buttons show for 2 s after a tap in the strip along the top or the bottom of the screen; the disk / tape light, the sound meter, "offline" and Tap for sound always stay</td></tr>
     </table>
     <h4>On-screen keyboards</h4>
-    <table class="keys">
+    <table class="keys k13">
       <tr><td>ZX+</td><td>Spectrum+ layout: its extra keys (EDIT, DELETE, GRAPH, EXTEND MODE, TRUE / INV. VIDEO, CAPS LOCK, BREAK, cursor keys, ; " , .) press the two ZX keys for you</td></tr>
-      <tr><td>ZX48</td><td>the 40 keys of the ZX Spectrum 48K with its legends: white on the key = keyword (K mode) or letter; red on the key = SYMBOL SHIFT + key; green above = EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT), then the key; red under = EXTEND MODE, then SYMBOL SHIFT + key; row 1: above, white = CAPS SHIFT + digit (EDIT, CAPS LOCK, TRUE / INV. VIDEO, cursor, GRAPHICS, DELETE), the colour = its INK in E mode; on keys 1-8 the block graphic = G mode (CAPS SHIFT + 9). BREAK = CAPS SHIFT + SPACE. Narrow screens: the keys only</td></tr>
+      <tr><td>ZX48</td><td>the 40 keys of the ZX Spectrum 48K with its legends: white on the key = keyword (K mode) or letter; red on the key = SYMBOL SHIFT + key; green above = EXTEND MODE (CAPS SHIFT + SYMBOL SHIFT), then the key; red under = EXTEND MODE, then SYMBOL SHIFT + key; row 1: above, white = CAPS SHIFT + digit (EDIT, CAPS LOCK, TRUE / INV. VIDEO, cursor, GRAPHICS, DELETE), the color = its INK in E mode; on keys 1-8 the block graphic = G mode (CAPS SHIFT + 9). BREAK = CAPS SHIFT + SPACE. Narrow screens: the keys only</td></tr>
       <tr><td>XT</td><td>PC keyboard of XT mode (Ctrl+Alt+Z), short: the arrows inside the main block, : key for CP/M drives</td></tr>
       <tr><td>XTf</td><td>full PC keyboard without the number pad: F1–F12, PrtSc / ScrLk / Pause, Ins / Del / Home / End / PgUp / PgDn, the arrows, Win, AltGr, Menu</td></tr>
       <tr><td>JOY</td><td>joystick: Kempston, Sinclair 1 / 2, cursor keys; FIRE and 3 extra buttons (Enter, Space, 1 by default): Options / Input / Joystick</td></tr>
-      <tr><td>CAPS / SYMBOL SHIFT</td><td>held, sticky for one key, or locked (Options / Input / Modifier keys); a latched one is green</td></tr>
+      <tr><td>CAPS / SYMBOL<br>SHIFT</td><td>held, sticky for one key, or locked (Options / Input / Modifier keys); a latched one is green</td></tr>
       <tr><td>link</td><td>kbd=zx (ZX+) | zx48 (ZX48) | xt | xtf | joy | off (REST API)</td></tr>
     </table>
     <h4>Files</h4>
@@ -1773,7 +1774,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
       <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
-      <tr><td>ram=</td><td>pentagon: 128, 512 or 1024 (KB) for this visit</td></tr>
+      <tr><td>ram=</td><td>pentagon: 128, 512 or 1024 (KB) for this visit; with no ram=: the one of Options / System</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own); sprinter: 3.5 (no turbo, for this visit) or 21 (MHz, as the program sets). With speed= the visitor's True clock is off for this visit</td></tr>
       <tr><td>trueclock=1 / 0</td><td>True clock on / off for this visit (not stored): the machine's own clock, programs switch its turbo; speed= is not used then</td></tr>
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
@@ -1783,7 +1784,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, hdd0=brw:cpm.zip, sd=brw:card.zip (file fields of this window offer them, marked [Browser]). Works only in this browser</td></tr>
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
-      <tr><td>press=</td><td>with autorun: keys for menu of the emulator's boot (0 = first program, enter); not sent to a boot of the disk's own</td></tr>
+      <tr><td>press=</td><td>with autorun: keys for boot menu (emulator's boot: 0 = first program; disk's own boot: its keys), e.g. 0 or enter</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>XT mode on; sound off</td></tr>
@@ -1811,7 +1812,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="dbghead fhead"><span>REST API link</span><button id="rahelpbtn" title="Help">?</button><button id="raclose" title="Close (Esc)">✕</button></div>
   <div class="rabody">
     <div class="ragrid">
-      <label class="chk"><input type="checkbox" id="ra_model" checked>model</label><select id="rav_model"></select>
+      <label class="chk"><input type="checkbox" id="ra_model" checked>model</label><span class="rarow"><select id="rav_model"></select><select id="rav_ram" class="raram" title="ram=: Pentagon RAM for this visit"><option value="128">128 KB</option><option value="512">512 KB</option><option value="1024">1024 KB</option></select></span>
       <label class="chk"><input type="checkbox" id="ra_rom">rom</label><input id="rav_rom" placeholder="ROM url (CORS enabled)" spellcheck="false" autocomplete="off" title="A Custom ROM ZIP (Save / Custom ROM): the machine, its ROM and settings; instead of model=">
       <label class="chk"><input type="checkbox" id="ra_speed">speed</label><span class="rarow"><select id="rav_speed"></select><label class="chk ratc" title="trueclock=1: the machine's own clock, its program switches the turbo (Options / System / CPU clock: True clock) — for this visit; speed= is off then"><input type="checkbox" id="ra_trueclk">true clock</label></span>
       <label class="chk"><input type="checkbox" id="ra_a">fdd</label><span class="rarow"><select id="rav_fdrv" class="radrv" title="Drive"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off"></span>
