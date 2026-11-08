@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261107213101">
+<meta name="build" content="20261108095928">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -548,9 +548,9 @@ select option { background: var(--panel2); color: var(--text); }
 #loadwin section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; } /* blocks framed as the cards of Options */
 #loadwin .ldrow .ldmain { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #loadwin .ldrow .ldmain input { width: 15px; height: 15px; flex: none; }
 .ldlab { font-size: 12px; color: var(--dim); }
-.ldtags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
-.ldtags button { padding: 0 7px; height: 20px; font-size: 10px; border-radius: 4px; }
-@media (max-width: 520px) { .ldtags { gap: 2px; } .ldtags button { flex: 1 0 auto; padding: 0 2px; height: 22px; font-size: 9.5px; letter-spacing: -.02em; } } /* phones: the tags in one line */
+.ldtags { display: flex; flex-wrap: nowrap; gap: 2px; margin-bottom: 6px; } /* the tags in one line: the buttons share it */
+.ldtags button { flex: 1 1 auto; min-width: 0; padding: 0 2px; height: 20px; font-size: 10px; border-radius: 4px; overflow: hidden; }
+@media (max-width: 520px) { .ldtags { gap: 1px; flex-wrap: nowrap; } .ldtags button { flex: 1 1 auto; min-width: 0; padding: 0 1px; height: 22px; font-size: 9px; letter-spacing: -.04em; overflow: hidden; } } /* phones: the tags in one line */
 .ldtags button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 /* one button: Run (an entry with a link) or Mount; ▾ when both can be done */
 #ziplist .zrest { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; cursor: pointer; } #ziplist .zrest input { width: 15px; height: 15px; flex: none; }
@@ -587,7 +587,7 @@ select option { background: var(--panel2); color: var(--text); }
 .dditem.on .tagic { color: #1a1208; }
 .ddcur .tagic + .tagic, .dditem .tagic + .tagic { margin-left: -2px; }
 .tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; }
-.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #b8c2ff; }
+.tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #b8c2ff; } .tagic.tag-nex { color: #e4e4e4; }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
 #crname { font-size: 12px; color: var(--text); margin-left: 8px; overflow-wrap: anywhere; }
@@ -1431,6 +1431,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
           <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.06 (setup: Del at start; startup sound; ROM disk with RECOVERY); text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE (2 channels), FDD, CMOS; AT keyboard, MS serial mouse, Sega pads (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS 1.71 (FAT16 VHD: hdd/dss.zip; start menu: FM, Flex Navigator, command prompt); Spectrum mode: C:\ZX\SPECTRUM.EXE (TRD, SCL) or Enter on a TRD in Flex Navigator (TR-DOS 7.03)</td></tr>
           <tr><td>SAM Coupé</td><td>512K + 1 MB external, ROM 3.0, 6 MHz; modes 1–4 (256x192 ZX, 256x192 8x1 attributes, 512x192 4 colors, 256x192 16 colors), 128-color palette, line interrupts (raster effects), memory contention; SAA1099, SAMVox and printer port DAC; SAM mouse; SAMBUS clock; 2 floppy drives (WD1772): MGT, SAD, DSK (also packed: .dsk.gz, ZIP); SAMDOS boots from disk (F9 or BOOT; autorun: Reset and BOOT); File Commander: SAMDOS files, New Disk SAM Coupé; SAM keyboard: keypad = F0–F9 (PC F8–F10 too), Ctrl = CNTRL, Alt = SYMBOL, Ins / ] = EDIT, End = INV</td></tr>
+          <tr><td>ZX Spectrum Next</td><td>Z80N (3.5 / 7 / 14 / 28 MHz, set by the program), 1792K; ULA with Timex and ULANext modes, LoRes, Layer 2 (256x192, 320x256, 640x256), 128 sprites, tilemap 40x32 / 80x32, 9-bit palettes, copper, zxnDMA, line and CTC interrupts; AY (2 of the 3 TurboSound chips), DACs; DivMMC (esxDOS) and SD card. NextZXOS boots from sd/next.zip (the System/Next distribution, a ZIP of its folders, made into a FAT32 card; also Load of such a ZIP, REST <code>sd=</code>); ROMs rom/enNextZX.rom, enNxtmmc.rom, enNextMf.rom and sinclair.rom. NEX and DOT files also start on their own (Load, REST <code>snap=</code>)</td></tr>
           <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
@@ -1450,15 +1451,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; raster effects; filters</td></tr>
-          <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit)</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters</td></tr>
+          <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit), Spectrum Next DACs</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793): TR-DOS, CP/M, iS-DOS; Sprinter: PC floppies (FAT12, 720K); SAM Coupé (WD1772): MGT, SAD; +3 (µPD765)</td></tr>
           <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; images HDD, HDF, VHD, IMG</td></tr>
           <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
           <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse; PS/2 (ZX Evo), AT keyboard and MS serial mouse (Sprinter)</td></tr>
-          <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz (set by the program); SAM Coupé 6 MHz</td></tr>
+          <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz, Spectrum Next 3.5 / 7 / 14 / 28 MHz (set by the program); SAM Coupé 6 MHz</td></tr>
         </table>
       </div>
       <div class="card">
@@ -1482,6 +1483,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>TS-Conf,<br>TS-BIOS</td><td>TS-Labs (TSL), NedoPC; after the Verilog of the configuration and its datasheet</td></tr>
           <tr><td>SAM Coupé</td><td>Miles Gordon Technology (1989); ROM 3.0 by Dr Andy Wright, distributed with his kind permission; hardware behavior as SimCoupe (Simon Owen) and the MAME driver show it</td></tr>
           <tr><td>Sprinter, BIOS,<br>Estex DSS</td><td>Peters Plus (Ivan Mak and team); BIOS 3.06, Estex DSS 1.71: Sprinter Team (2009–2025, update of 25.06.2025); MAME driver by Andrei I. Holub (BSD-3-Clause)</td></tr>
+          <tr><td>ZX Spectrum<br>Next</td><td>SpecNext Ltd; after the MAME driver by Andrei I. Holub (BSD-3-Clause) and wiki.specnext.dev</td></tr>
           <tr><td>Sprinter<br>software</td><td>system.zip of the Sprinter Team update 3.06 (Estex DSS 1.71, Spectrum mode, utilities); Flex Navigator, TASM, GFX Viewer: Anton Enin; FM: Vasil Ivanov; WAVPLAY: Peters Plus; TMNT Fighters 1.2 (hdd/tmntf.zip); games, demos and tools of their authors</td></tr>
           <tr><td>TASiS<br>distributive</td><td>Maksagor (Maxim Timonin), NedoPC group</td></tr>
           <tr><td>iS-DOS HDD<br>boot, drivers</td><td>Yu. Korsunin</td></tr>
@@ -1596,7 +1598,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Snapshots</td><td>SNA, Z80, SP</td></tr>
       <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (a click or tap jumps there: from the nearest state, then the frames without sound; the states of the whole recording are made in the background, the thin line under the bar shows how far), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
-      <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=</td></tr>
+      <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=; NEX and DOT (start ZX Spectrum Next; a DOT runs at #2000 as NextZXOS runs it, without arguments), also REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
       <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
@@ -1773,7 +1775,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Parameters</h4>
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below</td></tr>
-      <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, pentagon, scorpion, profi, kay, plus3, quorum, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card)</td></tr>
+      <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, sprinter, specnext, pentagon, scorpion, gmx, profi, kay, plus3, quorum, sam, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card), osz (OSZ on Scorpion GMX)</td></tr>
       <tr><td>ram=</td><td>pentagon: 128, 512 or 1024 (KB) for this visit; with no ram=: the one of Options / System</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own); sprinter: 3.5 (no turbo, for this visit) or 21 (MHz, as the program sets). With speed= the visitor's True clock is off for this visit</td></tr>
       <tr><td>trueclock=1 / 0</td><td>True clock on / off for this visit (not stored): the machine's own clock, programs switch its turbo; speed= is not used then</td></tr>
@@ -2012,7 +2014,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.wmf,.rzx,.$b,.$c,.$d,.hob">
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.nex,.dot,.wmf,.rzx,.$b,.$c,.$d,.hob">
 <script>
 // the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
 (function () {

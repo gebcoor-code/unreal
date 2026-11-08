@@ -77,7 +77,9 @@ puff (the inflate decoder of the FT812 follows it)
   Copyright (C) 2002-2013 Mark Adler. zlib License.
 
 MAME Sprinter driver (the Sprinter Sp2000 model follows it and the MAME
-Z84C015 / Z80 CTC / Z80 SIO devices)
+Z84C015 / Z80 CTC / Z80 SIO devices) and MAME Spectrum Next driver (the ZX
+Spectrum Next model, web/web_nx.cpp, follows it and the Next's documentation
+at wiki.specnext.dev: Z80N, memory, registers, layers, copper, DMA, DivMMC)
   Copyright Andrei I. Holub and the MAME contributors. BSD 3-Clause License:
   redistributions must keep the copyright notice, this condition and the
   disclaimer of the BSD 3-Clause License (the same text as for sjasmplus
@@ -109,6 +111,16 @@ Plus and the Sprinter Team (BIOS 3.06, Estex DSS 1.71), the Sprinter programs
 on hdd/dss.zip (the system.zip of the Sprinter Team update 3.06, Flex Navigator,
 TASM and GFX Viewer of Anton Enin, FM of Vasil Ivanov, WAVPLAY, the games, demos
 and tools of their authors), the BIOS and ROMs of the machines.
+
+ZX Spectrum Next: NextZXOS (enNextZX.rom, Garry Lancaster), esxDOS for the Next
+(enNxtmmc.rom), the Multiface ROM (enNextMf.rom) and the System/Next
+distribution on the SD card (sd/next.zip)
+  Copyright SpecNext Ltd and the authors of each part. The Next License (the
+  license itself under CC BY-SA), the full text is LICENSE.md in the
+  distribution: it cannot be sold, no duplication fee; it may be copied
+  without its source code when the copy has a link to it (link.txt in
+  sd/next.zip). The full distribution: https://www.specnext.com/latestdistro/
+  Sources: https://gitlab.com/thesmog358/tbblue
 
 ZX Spectrum ROMs (48, 128 and +2 ROMs, for RZX playback)
   Copyright Amstrad plc. Amstrad allows them to be distributed with
