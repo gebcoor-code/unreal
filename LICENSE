@@ -122,6 +122,10 @@ distribution on the SD card (sd/next.zip)
   sd/next.zip). The full distribution: https://www.specnext.com/latestdistro/
   Sources: https://gitlab.com/thesmog358/tbblue
 
+SymbOS 4.0 for the ZX Spectrum Next (on the card of sd/next.zip)
+  Copyright Prodatron / SymbiosiS et al. As distributed by its authors, with
+  their readme (symbos.txt in sd/next.zip). http://www.symbos.org
+
 ZX Spectrum ROMs (48, 128 and +2 ROMs, for RZX playback)
   Copyright Amstrad plc. Amstrad allows them to be distributed with
   emulators, keeping the copyright message unchanged; they may not be sold or

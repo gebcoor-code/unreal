@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261108124050">
+<meta name="build" content="20261108172543">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -782,10 +782,15 @@ select.usel-src { display: none !important; }
 .fchdd .h { font-size: 11px; color: var(--dim); margin: 2px 0 0 22px; }
 .fchdd .nm { width: 60%; font-size: 12px; }
 .fchdd .hrow, .fchdd .frow { margin-top: 6px; } .fchdd .geo { margin-top: 10px; }
-.fchdd .fmb { width: 80px; font-size: 12px; }
-.fchdd .ft, .fchdd .fcl { font-size: 12px; height: 22px; padding: 0 4px; }
-.fchdd .fmb { height: 22px; box-sizing: border-box; }
-.fchdd .hrow select { font-size: 12px; margin-right: 8px; }
+.fchdd .fmb { width: 64px; }
+.fchdd select, .fchdd .fmb, .fchdd .nm { height: 20px; padding: 0 4px; font-size: 11px; box-sizing: border-box; } /* compact, as the File Commander panels */
+.ndk .ndrow, .ndk .ndrow > label, .ndk .hrow > span { display: flex; align-items: center; gap: 6px; line-height: normal; }
+.ndk .ndrow { margin-top: 6px; flex-wrap: wrap; } .ndk .frow > .ndrow { margin-top: 0; }
+.ndk .hrow > span { margin-right: 14px; } .ndk .hrow { display: flex; flex-wrap: wrap; }
+.ndk .hdsel { margin-left: 14px; } .ndk .gap { margin-left: 8px; }
+.ndk [hidden] { display: none !important; }
+.ndk .nm { width: 160px; }
+.ndk .d:not(.geo) { margin-top: 3px; }
 .fchdd .hrow select:disabled { opacity: .4; }
 .fchdd .hrow .geo { margin-top: 4px; }
 #fcdlg .fcjoin { display: block; margin-top: 8px; color: var(--text); white-space: normal; }
@@ -1431,7 +1436,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZX Evo TS-Conf</td><td>4096K, TS-BIOS; video ZX / 16c / 256c / text, 256x192 to 360x288, 256 colors of 32768; 2 tile layers, 85 sprites; DMA (copy, blitter, fill, SD, palette, sprites); INT by frame, line, DMA; 3.5 / 7 / 14 MHz; SD, CMOS; SPG programs; VDAC2 (FT812, up to 1280x1024): display list, co-processor (JPEG / PNG, zlib, matrices), no ROM fonts and widgets yet</td></tr>
           <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.06 (setup: Del at start; startup sound; ROM disk with RECOVERY); text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE (2 channels), FDD, CMOS; AT keyboard, MS serial mouse, Sega pads (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS 1.71 (FAT16 VHD: hdd/dss.zip; start menu: FM, Flex Navigator, command prompt); Spectrum mode: C:\ZX\SPECTRUM.EXE (TRD, SCL) or Enter on a TRD in Flex Navigator (TR-DOS 7.03)</td></tr>
           <tr><td>SAM Coupé</td><td>512K + 1 MB external, ROM 3.0, 6 MHz; modes 1–4 (256x192 ZX, 256x192 8x1 attributes, 512x192 4 colors, 256x192 16 colors), 128-color palette, line interrupts (raster effects), memory contention; SAA1099, SAMVox and printer port DAC; SAM mouse; SAMBUS clock; 2 floppy drives (WD1772): MGT, SAD, DSK (also packed: .dsk.gz, ZIP); SAMDOS boots from disk (F9 or BOOT; autorun: Reset and BOOT); File Commander: SAMDOS files, New Disk SAM Coupé; SAM keyboard: keypad = F0–F9 (PC F8–F10 too), Ctrl = CNTRL, Alt = SYMBOL, Ins / ] = EDIT, End = INV</td></tr>
-          <tr><td>ZX Spectrum Next</td><td>Z80N (3.5 / 7 / 14 / 28 MHz, set by the program), 1792K; ULA with Timex and ULANext modes, LoRes, Layer 2 (256x192, 320x256, 640x256), 128 sprites, tilemap 40x32 / 80x32, 9-bit palettes, copper, zxnDMA, line and CTC interrupts; AY (2 of the 3 TurboSound chips), DACs; DivMMC (esxDOS) and SD card. NextZXOS boots from sd/next.zip (the System/Next distribution, a ZIP of its folders, made into a FAT32 card; also Load of such a ZIP, REST <code>sd=</code>); ROMs rom/enNextZX.rom, enNxtmmc.rom, enNextMf.rom and sinclair.rom. NEX and DOT files also start on their own (Load, REST <code>snap=</code>)</td></tr>
+          <tr><td>ZX Spectrum Next</td><td>Z80N (3.5 / 7 / 14 / 28 MHz, set by the program), 1792K; ULA with Timex and ULANext modes, LoRes, Layer 2 (256x192, 320x256, 640x256), 128 sprites, tilemap 40x32 / 80x32, 9-bit palettes, copper, zxnDMA, line and CTC interrupts; AY (2 of the 3 TurboSound chips), DACs; DivMMC (esxDOS) and SD card. NextZXOS boots from sd/next.zip (next.vhd: the System/Next distribution on a FAT16 card); SymbOS 4.0 is on the card too (REST <code>run=symbos.nex</code>). Keyboard: in programs that read the extended keys of the Next (SymbOS) Shift = Caps Shift, Ctrl = Symbol Shift, symbols as typed on the PC; arrows, Backspace, Delete, Esc, Tab, Caps Lock: the Next's own keys; ROMs rom/enNextZX.rom, enNxtmmc.rom, enNextMf.rom and sinclair.rom. NEX and DOT files also start on their own (Load, REST <code>snap=</code>)</td></tr>
           <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
@@ -1466,7 +1471,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <h3>Tools</h3>
         <table class="keys">
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
-          <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf, CP/M, GMX, Sprinter), devices (AY, WD1793, tape, TS-Conf), projects</td></tr>
+          <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf, CP/M, GMX, Sprinter, SAM Coupé, ZX Spectrum Next layers: ULA, Layer 2, tilemap, sprites, sprite patterns), devices (AY, WD1793, tape, TS-Conf), projects</td></tr>
           <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA, TS-Conf 16C/256C)</td></tr>
           <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/FAT floppy/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm; Compile: sjasmplus (F9)</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
@@ -1601,7 +1606,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=; NEX and DOT (start ZX Spectrum Next; a DOT runs at #2000 as NextZXOS runs it, without arguments), also REST snap=</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
-      <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
+      <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). ZX Spectrum Next: <code>{"model": "next", "run": "game.nex"}</code>: the NEX / DOT of the card starts (Autostart, REST <code>autorun=1</code>); without run, or Autostart off: NextZXOS boots from the card. Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
       <tr><td>Archives</td><td>ZIP: pick file inside</td></tr>
       <tr><td>HDD</td><td>raw images (.hdd, .img …): Options → HDD</td></tr>
       <tr><td>Save</td><td>disks TRD, SCL, FDI, UDI, TD0, ISD, PRO; HDD + .chs; SD as VHD; SNA; SCR; PNG; memory block BIN; Custom ROM (ROM + json)</td></tr>
@@ -1787,7 +1792,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for boot menu (emulator's boot: 0 = first program; disk's own boot: its keys), e.g. 0 or enter</td></tr>
-      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1</td></tr>
+      <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1. ZX Spectrum Next: NEX / DOT of SD card, e.g. run=symbos.nex</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
       <tr><td>xt=1 mute=1</td><td>XT mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
@@ -1963,7 +1968,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them">Devices</button>
       <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · SPframe: the Sprinter picture from its video RAM now · SP VRAM: the Sprinter video RAM, a byte a pixel · SAMscr: the SAM Coupé screen of VMPR in its mode · RAM: a page as a ZX screen (SAM: as a SAM screen in the mode of VMPR)"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · SPframe: the Sprinter picture from its video RAM now · SP VRAM: the Sprinter video RAM, a byte a pixel · SAMscr: the SAM Coupé screen of VMPR in its mode · NX ULA, Layer 2, L2 shadow, Tilemap, Sprites, Patterns: one layer of ZX Spectrum Next as its video would draw it now (gray check: transparent) · RAM: a page as a ZX screen (SAM: as a SAM screen in the mode of VMPR)"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
