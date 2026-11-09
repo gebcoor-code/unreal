@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261109152509">
+<meta name="build" content="20261109215203">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1416,6 +1416,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <select id="fxsel">
               <option value="sharp">Off</option><option value="smooth">Smooth</option>
               <option value="scan">Scanlines</option><option value="crt">CRT</option>
+              <option value="text64" title="The 4×8 letters of the ZX screen (64 a line: the press) recognized and drawn 8×16: easier to read. For the press: halves of ordinary 8×8 letters may be taken for 4×8 ones and look odd (as in UnrealSpeccy). Wherever the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next)">Anti-Text64</option>
+              <option value="advmame" title="AdvMAME scale (Scale2x): the picture drawn twice its own size with the corners of slopes filled: smooth edges, no blur. All models; a mode with pixels of its own at that size (640 wide) stays as it is">AdvMAME</option>
             </select>
           </div>
           <div class="optcol vidhide">
@@ -1459,7 +1461,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters (Options / Video): Smooth, Scanlines, CRT, AdvMAME (Scale2x: smooth edges, no blur), Anti-Text64 (4x8 letters of the ZX screen, 64 a line, drawn 8x16: the press reads easier; ordinary 8x8 text may look odd with it)</td></tr>
           <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit), Spectrum Next DACs</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
