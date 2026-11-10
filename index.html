@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261110131548">
+<meta name="build" content="20261110140941">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1493,6 +1493,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>xBR</td><td>edges found and drawn as smooth lines at 30, 45 and 60 degrees at any size, no blur: the smoothest</td></tr>
           <tr><td>Anti-Text64</td><td>text of 4x8 letters (64 a line: the press, text viewers) recognized and drawn with 8x16 letters. Only the lines where at least half of the letters are known: other text (5-dot letters, QC panels) and pictures stay as they are, so it can stay on. Font base of UnrealSpeccy: 1090 letters, inverse too</td></tr>
           <tr><td>Anti-Text42</td><td>the same for 6x8 letters (42 a line). Known letters: the 48K ROM font and the 8x8 font of UnrealSpeccy (Latin, Cyrillic) cut to 6 columns, as 42-column print routines do; other fonts stay as they are</td></tr>
+          <tr><td>Font tables</td><td>a line of 16 and more known letters whose codes go up with the cells (a font table or a font editor, a letter a cell or every second one) stays as it is, so the font drawn by the program is what is looked at: Anti-Text64 and Anti-Text42</td></tr>
+          <tr><td>ZXI</td><td>Pentagon: the ZEsarUX ZXI ports. #CF3B: register number (reads back), #DF3B: its value. Register 4: the version string (write 0 to start over, each read gives the next letter, 0 at the end), #80 bit 0 = 1: Anti-Text64 / 42 off while a program wants its own letters. Reset and loading a snapshot clear the registers</td></tr>
+          <tr><td>Link</td><td><b>fx=</b>text64 (any filter: off, smooth, scan, crt, pal, scale2x, scale3x, xbr, text64, text42) uses that filter for this visit, the one chosen in Options stays saved</td></tr>
           <tr><td>Where</td><td>CRT, PAL, Scale 2x / 3x, xBR: all models (on the machine's own pixels; CRT, PAL, Scale 3x, xBR need WebGL 2). Anti-Text: where the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next). Screenshot (F6), PNG: <b>With filter</b> saves the picture as the filter draws it (CRT, PAL, Scale 3x, xBR at 3 pixels a ZX pixel; Scanlines, Scale 2x, Anti-Text at the frame's size), off: the machine's own picture; Save / PNG does as F6 last chose. Smooth is the browser's and not saved</td></tr>
         </table>
       </div>
@@ -1825,6 +1828,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>press=</td><td>with autorun: keys for boot menu (emulator's boot: 0 = first program; disk's own boot: its keys), e.g. 0 or enter</td></tr>
       <tr><td>run=</td><td>start TR-DOS file from disk in A: (BASIC or code); no name: as autorun=1. ZX Spectrum Next: NEX / DOT of SD card, e.g. run=symbos.nex</td></tr>
       <tr><td>cpm=</td><td>ATM CP/M command (atm710, xbios136, evo): b:alasm; several commands with | between them: b:|dir|alasm (CP/M B: = drive A:, C: = HDD)</td></tr>
+      <tr><td>fx=</td><td>the filter for this visit (Options keeps its own): off, smooth, scan, crt, pal, scale2x, scale3x, xbr, text64, text42</td></tr>
       <tr><td>nedoos=</td><td>NedoOS command (model nedoos), typed in the command line of its file manager after boot: m:/nedogame/ufo2; several with | between them</td></tr>
       <tr><td>xt=1 mute=1</td><td>XT mode on; sound off</td></tr>
       <tr><td>swapmouse=1</td><td>Kempston mouse buttons swapped (as Options / Input / Swap Mouse Buttons), for this visit only</td></tr>
@@ -1867,6 +1871,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_swapmouse">swapmouse</label><span class="ranote">mouse buttons swapped</span>
       <label class="chk"><input type="checkbox" id="ra_hidemenu">hidemenu</label><span class="ranote">menu bar and frame hidden (~ shows them)</span>
       <label class="chk"><input type="checkbox" id="ra_kbd">kbd</label><select id="rav_kbd" title="On-screen keyboard at start"><option value="off">— (off)</option><option value="zx">ZX+</option><option value="zx48">ZX48</option><option value="xt">XT</option><option value="xtf">XTf</option><option value="joy">Joystick</option></select>
+      <label class="chk"><input type="checkbox" id="ra_fx">fx</label><select id="rav_fx" title="fx=: the filter of the picture for this visit (Options keeps its own)"><option value="off">Off</option><option value="smooth">Smooth</option><option value="scan">Scanlines</option><option value="crt">CRT</option><option value="pal">PAL</option><option value="scale2x">Scale 2x</option><option value="scale3x">Scale 3x</option><option value="xbr">xBR</option><option value="text64">Anti-Text64</option><option value="text42">Anti-Text42</option></select>
     </div>
     <textarea id="raout" readonly rows="3" spellcheck="false"></textarea>
     <div class="rabtns"><span class="ranote" id="ranote"></span><button id="racopy" class="primary">Copy</button><button id="raopen">Open</button></div>
