@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261110110715">
+<meta name="build" content="20261110131548">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -728,8 +728,7 @@ table.keys.k13 td:first-child { width: 13ch; } table.keys.k15 td:first-child { w
 .fcbar .fcmenu.open { border-color: var(--accent); }
 @media (max-width: 520px) { /* phones: all buttons in one line — no key hints, smaller */
   .fcbar { gap: 2px; padding: 0 4px 4px; } .fcbar button { padding: 0 3px; font-size: 9.5px; } .fcbar kbd { display: none; } .fcbar .fcmenu .ar { margin-left: 1px; } }
-.usel-pop.fcmpop { font-size: 11px; min-width: 80px; padding: 2px 0; } .usel-pop.fcmpop .usel-it { padding: 2px 8px; line-height: 15px; } .fcmpop .usel-it .d { color: var(--dim); font-size: 9px; margin-left: 8px; } /* File Commander: compact lists and menus */
-@media (pointer: coarse) { .usel-pop.fcmpop .usel-it { padding: 5px 9px; } }
+.usel-pop.fcmpop { font-size: 11px; min-width: 80px; padding: 2px 0; } .usel-pop.fcmpop .usel-it { padding: 5px 9px; line-height: 15px; } .fcmpop .usel-it .d { color: var(--dim); font-size: 9px; margin-left: 8px; } /* File Commander: compact lists and menus */
 .fchead .fckind { flex: 1; min-width: 0; }
 .eff7grid { display: grid; grid-template-columns: auto auto auto 1fr; gap: 1px 10px; align-items: center; font-size: 12px; }
 .eff7grid .eh { font-size: 10px; color: var(--dim); }
@@ -750,10 +749,10 @@ select.usel-src { display: none !important; }
 .usel-pop { scrollbar-width: auto; scrollbar-color: #66717e rgba(255,255,255,.06); }
 .usel-pop.dgapop { scrollbar-width: thin; } .usel-pop.dgapop::-webkit-scrollbar { width: 4px; } /* deBUGa Screen: a narrow bar, the labels fit */
 .usel-pop { box-sizing: border-box; position: fixed; z-index: 70; overflow-y: auto; overscroll-behavior: contain; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 3px 0; font-size: 13px; color: var(--text); -webkit-overflow-scrolling: touch; }
-.usel-pop.cmpop .usel-it { padding: 1px 10px; line-height: 16px; font-size: 12px; } @media (pointer: coarse) { .usel-pop.cmpop .usel-it { padding: 4px 10px; } } /* compact lists (Options) */
+.usel-pop.cmpop .usel-it { padding: 4px 10px; line-height: 16px; font-size: 12px; } /* compact lists (Options) */
 .usel-pop.cmpop { scrollbar-width: thin; } .usel-pop.cmpop::-webkit-scrollbar { width: 4px; } /* their scroll bar narrow */
-.usel-it { padding: 5px 10px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.usel-it.hot { background: var(--panel); } .usel-it.on { background: var(--accent); color: #1a1208; } .usel-it.dis { color: var(--dim); cursor: default; }
+.usel-it { padding: 8px 12px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.usel-it.hot { background: var(--panel); } .usel-pop { -webkit-tap-highlight-color: transparent; } .usel-it.on { background: var(--accent); color: #1a1208; } .usel-it.dis { color: var(--dim); cursor: default; }
 .usel-combo { position: relative; display: flex; min-width: 0; } .usel-combo > input { flex: 1; min-width: 0; padding-right: 26px; }
 .usel-cbtn { position: absolute; right: 1px; top: 1px; bottom: 1px; width: 24px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; color: var(--text); }
 .usel-combo.open > input { border-color: var(--accent); } .usel-combo.open .usel-arr { transform: rotate(180deg); }
@@ -761,7 +760,7 @@ select.usel-src { display: none !important; }
 .usel-it.usel-up { color: var(--dim); }
 .ldbpath { text-transform: none; letter-spacing: 0; font: 11px ui-monospace, Consolas, monospace; color: var(--text); margin-left: 6px; }
 .usel-it.ing { padding-left: 18px; } .usel-grp { padding: 5px 10px 2px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
-@media (pointer: coarse) { .usel-it { padding: 8px 12px; } }
+/* lists: the lines as tall as for a finger on every device */
 /* the page's own question box (instead of the browser's confirm): OK / Cancel, OK has the focus */
 #askbox { position: fixed; inset: 0; background: rgba(5,7,10,.55); display: flex; align-items: center; justify-content: center; z-index: 60; }
 #askbox[hidden] { display: none; }
