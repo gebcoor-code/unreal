@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261110140941">
+<meta name="build" content="20261110163725">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1493,8 +1493,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>xBR</td><td>edges found and drawn as smooth lines at 30, 45 and 60 degrees at any size, no blur: the smoothest</td></tr>
           <tr><td>Anti-Text64</td><td>text of 4x8 letters (64 a line: the press, text viewers) recognized and drawn with 8x16 letters. Only the lines where at least half of the letters are known: other text (5-dot letters, QC panels) and pictures stay as they are, so it can stay on. Font base of UnrealSpeccy: 1090 letters, inverse too</td></tr>
           <tr><td>Anti-Text42</td><td>the same for 6x8 letters (42 a line). Known letters: the 48K ROM font and the 8x8 font of UnrealSpeccy (Latin, Cyrillic) cut to 6 columns, as 42-column print routines do; other fonts stay as they are</td></tr>
-          <tr><td>Font tables</td><td>a line of 16 and more known letters whose codes go up with the cells (a font table or a font editor, a letter a cell or every second one) stays as it is, so the font drawn by the program is what is looked at: Anti-Text64 and Anti-Text42</td></tr>
-          <tr><td>ZXI</td><td>Pentagon: the ZEsarUX ZXI ports. #CF3B: register number (reads back), #DF3B: its value. Register 4: the version string (write 0 to start over, each read gives the next letter, 0 at the end), #80 bit 0 = 1: Anti-Text64 / 42 off while a program wants its own letters. Reset and loading a snapshot clear the registers</td></tr>
+          <tr><td>Font tables</td><td>16 and more known letters in a line whose codes go up with the cells (a font table or a font editor, a letter a cell or every second one): that run, from its first letter to its last, stays as drawn by the program; the rest of the line is drawn anew: Anti-Text64 and Anti-Text42</td></tr>
+          <tr><td>ZXI</td><td>Pentagon: the ZEsarUX ZXI ports. #CF3B: register number (reads back), #DF3B: its value. Register 4: the name "WUS" (write 0 to start over, each read gives the next letter, 0 at the end), #80 bit 0 = 1: Anti-Text64 / 42 off while a program wants its own letters. Reset and loading a snapshot clear the registers</td></tr>
           <tr><td>Link</td><td><b>fx=</b>text64 (any filter: off, smooth, scan, crt, pal, scale2x, scale3x, xbr, text64, text42) uses that filter for this visit, the one chosen in Options stays saved</td></tr>
           <tr><td>Where</td><td>CRT, PAL, Scale 2x / 3x, xBR: all models (on the machine's own pixels; CRT, PAL, Scale 3x, xBR need WebGL 2). Anti-Text: where the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next). Screenshot (F6), PNG: <b>With filter</b> saves the picture as the filter draws it (CRT, PAL, Scale 3x, xBR at 3 pixels a ZX pixel; Scanlines, Scale 2x, Anti-Text at the frame's size), off: the machine's own picture; Save / PNG does as F6 last chose. Smooth is the browser's and not saved</td></tr>
         </table>
