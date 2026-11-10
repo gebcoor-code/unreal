@@ -44,6 +44,9 @@ ymfm (OPL3 / OPL4 emulation)
   Copyright (c) 2021, Aaron Giles. BSD 3-Clause License, the full text is at
   the top of each of its files. https://github.com/aaronsgiles/ymfm
 
+xBR level 2 (the shader of the xBR filter, web/glfx.js, rewritten from its GLSL)
+  Copyright (C) 2011-2016 Hyllian - sergiogdb@gmail.com. MIT License.
+
 stb_image v2.30 (JPEG / PNG decoding for the FT812)
   by Sean Barrett. Public domain or MIT License, at your choice (see the end
   of the file). http://nothings.org/stb

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261110083915">
+<meta name="build" content="20261110110715">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -539,9 +539,11 @@ select option { background: var(--panel2); color: var(--text); }
 .ldsub { margin: 6px 0 0 22px; display: flex; flex-direction: column; gap: 4px; } .ldsub[hidden] { display: none; }
 .ldsrow { display: flex; align-items: center; gap: 12px; min-height: 22px; }
 .ldkeep { margin-top: 6px; }
-.shotbody { display: flex; flex-direction: column; gap: 8px; min-width: 260px; }
-.shotopt { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; } .shotopt .d { flex-basis: 100%; padding-left: 22px; }
-.shotrow { display: flex; justify-content: flex-end; margin-top: 4px; }
+#shotdlg { width: auto; min-width: 0; } /* Screenshot: as wide as its lines */
+.shotbody { display: flex; flex-direction: column; gap: 4px; }
+.shotline { display: flex; gap: 14px; align-items: center; } .shotline label { display: flex; gap: 5px; align-items: center; white-space: nowrap; }
+#shotfxl.dis { color: var(--dim); } .shotline .d { color: var(--dim); }
+.shotrow { display: flex; justify-content: flex-end; margin-top: 2px; }
 .ldsrow #ldpress { width: 3.2em; height: 20px; font-size: 11px; }
 .ldsrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } .ldsrow .lddrv input { width: 15px; height: 15px; }
 #loadwin .body { min-height: 540px; }
@@ -748,6 +750,8 @@ select.usel-src { display: none !important; }
 .usel-pop { scrollbar-width: auto; scrollbar-color: #66717e rgba(255,255,255,.06); }
 .usel-pop.dgapop { scrollbar-width: thin; } .usel-pop.dgapop::-webkit-scrollbar { width: 4px; } /* deBUGa Screen: a narrow bar, the labels fit */
 .usel-pop { box-sizing: border-box; position: fixed; z-index: 70; overflow-y: auto; overscroll-behavior: contain; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.5); padding: 3px 0; font-size: 13px; color: var(--text); -webkit-overflow-scrolling: touch; }
+.usel-pop.cmpop .usel-it { padding: 1px 10px; line-height: 16px; font-size: 12px; } @media (pointer: coarse) { .usel-pop.cmpop .usel-it { padding: 4px 10px; } } /* compact lists (Options) */
+.usel-pop.cmpop { scrollbar-width: thin; } .usel-pop.cmpop::-webkit-scrollbar { width: 4px; } /* their scroll bar narrow */
 .usel-it { padding: 5px 10px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .usel-it.hot { background: var(--panel); } .usel-it.on { background: var(--accent); color: #1a1208; } .usel-it.dis { color: var(--dim); cursor: default; }
 .usel-combo { position: relative; display: flex; min-width: 0; } .usel-combo > input { flex: 1; min-width: 0; padding-right: 26px; }
@@ -995,12 +999,10 @@ button.primary { background: var(--accent); color: #1a1208; border-color: var(--
 /* video filters (drawn over the canvas) */
 #fx { position: absolute; left: 0; top: 0; pointer-events: none; display: none; }
 #screenwrap.fx-smooth canvas { image-rendering: auto; }
-#screenwrap.fx-scan #fx, #screenwrap.fx-crt #fx { display: block;
+#screenwrap.fx-scan #fx { display: block;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,var(--so, .35)) 50%); background-size: 100% var(--sl, 3px); }
-#screenwrap.fx-crt canvas { image-rendering: auto; filter: saturate(1.2) contrast(1.06) brightness(1.12) blur(.35px); border-radius: 14px; }
-#screenwrap.fx-crt #fx { border-radius: 14px;
-  background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 62%, rgba(0,0,0,.45) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,var(--so, .3)) 50%);
-  background-size: 100% 100%, 100% var(--sl, 3px); box-shadow: inset 0 0 18px rgba(0,0,0,.55); }
+#glscreen { position: absolute; left: 0; top: 0; pointer-events: none; display: none; } /* xBR, CRT, PAL (glfx.js) */
+#screenwrap.fx-gl #glscreen { display: block; } #screenwrap.fx-gl #screen { opacity: 0; }
 /* focus: one orange mark everywhere — no browser ring (white / blue) around fields, buttons, lists and boxes */
 /* fields without a style of their own (made by a dialog, e.g. MkDir): framed as the others, so the focus only turns the
    frame orange (a browser-drawn field gets a thick square frame once its border color is set) */
@@ -1073,6 +1075,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   </div>
   <div id="screenwrap">
     <canvas id="screen" width="640" height="480" tabindex="0" style="width:0;height:0"></canvas>
+    <canvas id="glscreen" width="1" height="1"></canvas>
     <div id="fx"></div>
     <div id="pausemark">PAUSE</div>
     <div id="toast"></div>
@@ -1176,17 +1179,17 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="pane" data-pane="sys">
         <div class="card">
           <h3>Models &amp; OS</h3>
-          <div class="selbtn"><select id="modelsel" aria-label="Model"></select><button id="modelapply" class="primary" disabled title="Start this model (the machine restarts)">Start</button></div>
+          <div class="selbtn"><select data-pop-class="cmpop" id="modelsel" aria-label="Model"></select><button id="modelapply" class="primary" disabled title="Start this model (the machine restarts)">Start</button></div>
           <div id="customrom" hidden>
             <div class="crrow"><button id="crfile" title="ROM images (16 KB pages: .rom / .bin, also in .zip). A ZIP saved here (Save / Custom ROM) brings its settings too">Select ROM…</button><span id="crname"></span></div>
-            <label class="crrow"><span>Machine</span><select id="crmach" title="The machine the ROM runs on (memory model, RAM, timings)"></select></label>
-            <label class="crrow" id="crsrow_128"><span>128</span><select id="crs_128" title="128 BASIC / menu page (or a replacement: Quick Commander, RRom)"></select></label>
-            <label class="crrow" id="crsrow_sos"><span>48 BASIC</span><select id="crs_sos" title="48 BASIC page (required)"></select></label>
-            <label class="crrow" id="crsrow_dos"><span>TR-DOS</span><select id="crs_dos" title="TR-DOS page"></select></label>
-            <label class="crrow" id="crsrow_sys"><span>Service</span><select id="crs_sys" title="Service ROM page (Gluk Reset Service and others)"></select></label>
-            <label class="crrow" id="crresetrow"><span>Start in</span><select id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
+            <label class="crrow"><span>Machine</span><select data-pop-class="cmpop" id="crmach" title="The machine the ROM runs on (memory model, RAM, timings)"></select></label>
+            <label class="crrow" id="crsrow_128"><span>128</span><select data-pop-class="cmpop" id="crs_128" title="128 BASIC / menu page (or a replacement: Quick Commander, RRom)"></select></label>
+            <label class="crrow" id="crsrow_sos"><span>48 BASIC</span><select data-pop-class="cmpop" id="crs_sos" title="48 BASIC page (required)"></select></label>
+            <label class="crrow" id="crsrow_dos"><span>TR-DOS</span><select data-pop-class="cmpop" id="crs_dos" title="TR-DOS page"></select></label>
+            <label class="crrow" id="crsrow_sys"><span>Service</span><select data-pop-class="cmpop" id="crs_sys" title="Service ROM page (Gluk Reset Service and others)"></select></label>
+            <label class="crrow" id="crresetrow"><span>Start in</span><select data-pop-class="cmpop" id="crreset" title="ROM selected on Reset"><option value="">auto</option><option value="SYS">Service</option><option value="MENU">128</option><option value="BASIC">48 BASIC</option><option value="DOS">TR-DOS</option></select></label>
           </div>
-          <label class="crrow" id="pramrow" hidden><span>RAM</span><select id="pram" title="Pentagon memory: 512 KB pages with #7FFD D6, D7, 1024 KB also with D5 (no #7FFD lock then). The machine restarts with it on Start"><option value="128">128 KB</option><option value="512">512 KB</option><option value="1024">1024 KB</option></select></label>
+          <label class="crrow" id="pramrow" hidden><span>RAM</span><select data-pop-class="cmpop" id="pram" title="Pentagon memory: 512 KB pages with #7FFD D6, D7, 1024 KB also with D5 (no #7FFD lock then). The machine restarts with it on Start"><option value="128">128 KB</option><option value="512">512 KB</option><option value="1024">1024 KB</option></select></label>
           <p class="note" id="modelnote"></p>
           <div class="crrow" id="nvrow" hidden><button id="nvreset" title="The machine's CMOS settings (BIOS Setup, clock options) are kept in this browser; this puts the typical ones back">Reset CMOS</button></div>
           <label class="chk" id="forcefetchrow" title="ROMs, disks and HDD images are downloaded again on every start, not taken from the browser cache"><input type="checkbox" id="forcefetch"> Force update ROM and HDD from server</label>
@@ -1202,14 +1205,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         </div>
         <div class="card">
           <h3>Update</h3>
-          <div class="selbtn"><select id="updsel" aria-label="What to update" title="The SD card image of an OS model to build anew"><option value="NEDOOS">NedoOS (BaseConf)</option><option value="WCTS">Wild Commander (TS-Conf)</option><option value="OSZ">OSZ (Scorpion GMX)</option></select><button id="nedobtn" title="Build a new SD card image from GitHub (the latest commit) or from a ZIP on this computer">Make Image…</button></div>
+          <div class="selbtn"><select data-pop-class="cmpop" id="updsel" aria-label="What to update" title="The SD card image of an OS model to build anew"><option value="NEDOOS">NedoOS (BaseConf)</option><option value="WCTS">Wild Commander (TS-Conf)</option><option value="OSZ">OSZ (Scorpion GMX)</option></select><button id="nedobtn" title="Build a new SD card image from GitHub (the latest commit) or from a ZIP on this computer">Make Image…</button></div>
           <div id="nedorow"><span>Image</span><b id="nedobuild"></b></div>
         </div>
         <div class="card">
           <h3>Debugger</h3>
           <div class="optcol">
             <label class="chk" title="The debugger opened by Shift+F1 (Tools menu: the key is shown at it). The other one opens from the Tools menu">Shift+F1 opens
-              <select id="dbgdef"><option value="u">Debugger (Unreal)</option><option value="x">deBUGa (Xpeccy)</option></select></label>
+              <select data-pop-class="cmpop" id="dbgdef"><option value="u">Debugger (Unreal)</option><option value="x">deBUGa (Xpeccy)</option></select></label>
           </div>
         </div>
         <div class="card" id="eff7card" hidden>
@@ -1234,7 +1237,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>HDD</h3>
           <div class="optgrid hddgrid">
             <label for="hddif">Interface</label>
-            <select id="hddif">
+            <select data-pop-class="cmpop" id="hddif">
               <option value="0">None</option><option value="1">ATM</option><option value="2">NEMO</option><option value="3">NEMO-A8</option>
               <option value="4">NEMO-DIVIDE</option><option value="5">SMUC</option><option value="6">PROFI</option><option value="7">DIVIDE</option>
             </select>
@@ -1246,14 +1249,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>SD card</h3>
           <div class="optgrid hddgrid">
             <label for="sdif">Interface</label>
-            <select id="sdif"><option value="0">None</option><option value="1">Z-Controller</option></select>
+            <select data-pop-class="cmpop" id="sdif"><option value="0">None</option><option value="1">Z-Controller</option></select>
           </div>
           <div class="drive" id="sdcard"><span class="dl" title="SD card on the Z-Controller (built into ZX Evo)">SD:</span><span class="dname">— empty —</span>
             <button class="ins" title="Mount an SD card image (.img, .vhd or a ZIP with it)">Insert</button>
             <button class="save" title="Download the image (with the changes)">Save</button>
             <button class="eject" title="Unmount">⏏</button>
             <label title="Read only: writes are dropped"><input type="checkbox" class="wp">RO</label></div>
-          <div class="hddgeo" id="sdgeo"><span class="sz" title="Size of the image"></span> <select class="srv" title="Mount an image from the server (sd/sd.json)" hidden></select></div>
+          <div class="hddgeo" id="sdgeo"><span class="sz" title="Size of the image"></span> <select data-pop-class="cmpop" class="srv" title="Mount an image from the server (sd/sd.json)" hidden></select></div>
         </div>
       </div>
       <div class="pane" data-pane="inp">
@@ -1261,20 +1264,20 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>Keyboard &amp; mouse</h3>
           <div class="optcol">
             <label class="chk" title="CAPS / SYMBOL SHIFT, Shift, Ctrl, Alt of the on-screen keyboards">Modifier keys
-              <select id="sticky"><option value="0">held while pressed</option><option value="1">sticky: one key</option><option value="2">locked until tapped again</option></select></label>
+              <select data-pop-class="cmpop" id="sticky"><option value="0">held while pressed</option><option value="1">sticky: one key</option><option value="2">locked until tapped again</option></select></label>
             <label class="chk" title="Drag on the screen moves the pointer. Programs move their pointer 1 or 2 pixels per Kempston step: if the pointer runs ahead of / behind the finger, switch this">Touch mouse: program pointer moves
-              <select id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
+              <select data-pop-class="cmpop" id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
             <label class="chk" title="A click on the emulator screen captures the mouse as the mouse button of the toolbar does (Esc releases it)"><input type="checkbox" id="mclick"> Capture mouse by a click on the screen</label>
             <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX Evo)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
             <label class="chk" title="ZX Spectrum Next. Auto: the PC layout of the other models; a program that reads the extended keys of the Next itself (NR #68 bit 4: SymbOS) gets the Next's own keys. Next: Shift = Caps Shift, Ctrl = Symbol Shift, symbols as typed on the Next (SymbOS: as its own keyboard table has them), arrows, Backspace, Delete, Esc, Tab, Caps Lock the extended keys">ZX Spectrum Next keys
-              <select id="nxkeys"><option value="0">Auto</option><option value="1">PC layout</option><option value="2">Next</option></select></label>
+              <select data-pop-class="cmpop" id="nxkeys"><option value="0">Auto</option><option value="1">PC layout</option><option value="2">Next</option></select></label>
           </div>
         </div>
         <div class="card" id="joycard">
           <h3>Joystick</h3>
           <div class="optgrid joygrid">
             <label for="joytype">Type</label>
-            <select id="joytype" title="The on-screen joystick (JOY panel)"></select>
+            <select data-pop-class="cmpop" id="joytype" title="The on-screen joystick (JOY panel)"></select>
             <label for="joyfire">Fire</label>
             <select id="joyfire" data-pop-class="fcmpop" title="The key FIRE presses (Kempston: the fire bit of its port)"></select>
             <span class="joyx"><input type="checkbox" id="joyx0" title="Show this button next to FIRE"> Button 1</span>
@@ -1291,7 +1294,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>Visualizer</h3>
           <div class="optgrid sndgrid">
             <label for="vizsel">Effect</label>
-            <select id="vizsel" title="Channel levels: a bar per channel of AY, General Sound, SAA1099, DAC, OPL3 / OPL4 (FM, then wavetable), a gap between sources; a channel shows up once it sounds, a source silent for 4 s goes; a short flash over a bar: a note started (OPL FM and wavetable key on, AY envelope restart)">
+            <select data-pop-class="cmpop" id="vizsel" title="Channel levels: a bar per channel of AY, General Sound, SAA1099, DAC, OPL3 / OPL4 (FM, then wavetable), a gap between sources; a channel shows up once it sounds, a source silent for 4 s goes; a short flash over a bar: a note started (OPL FM and wavetable key on, AY envelope restart)">
               <option value="spectrum">Spectrum</option><option value="mirror">Mirror spectrum</option><option value="scope">Oscilloscope</option>
               <option value="chan">Channel levels</option><option value="water">Spectrogram (waterfall)</option><option value="xy">Goniometer (stereo)</option><option value="off">Off</option>
             </select>
@@ -1313,14 +1316,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>AY / YM</h3>
           <div class="optgrid sndgrid">
             <label for="aysel">Scheme</label>
-            <select id="aysel">
+            <select data-pop-class="cmpop" id="aysel">
               <option value="2">Single AY</option><option value="6">TurboSound (NedoPC)</option><option value="4">Quadro (#AFFD/#EFFD)</option>
               <option value="5">POS (port #1F)</option><option value="3">Pseudo-turbo</option>
             </select>
             <label for="aychip">Chip</label>
-            <select id="aychip"><option value="0">AY-3-8910</option><option value="1">YM2149</option><option value="2">YM2203 (FM)</option></select>
-            <label for="aystereo">Stereo</label><select id="aystereo"></select>
-            <label for="ayvoltab">Volume table</label><select id="ayvoltab"></select>
+            <select data-pop-class="cmpop" id="aychip"><option value="0">AY-3-8910</option><option value="1">YM2149</option><option value="2">YM2203 (FM)</option></select>
+            <label for="aystereo">Stereo</label><select data-pop-class="cmpop" id="aystereo"></select>
+            <label for="ayvoltab">Volume table</label><select data-pop-class="cmpop" id="ayvoltab"></select>
             <label for="vol1">Volume</label><input type="range" id="vol1" data-snd="1" min="0" max="200" step="5"><output for="vol1"></output>
           </div>
         </div>
@@ -1328,7 +1331,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>General Sound</h3>
           <div class="optgrid sndgrid">
             <label for="gssel">Mode</label>
-            <select id="gssel" title="Auto: off until a program uses General Sound (ports #BB / #B3), then on — the GS Z80 costs host CPU"><option value="0">Off</option><option value="2">Auto</option><option value="1">NeoGS (Z80) — CPU-heavy</option></select>
+            <select data-pop-class="cmpop" id="gssel" title="Auto: off until a program uses General Sound (ports #BB / #B3), then on — the GS Z80 costs host CPU"><option value="0">Off</option><option value="2">Auto</option><option value="1">NeoGS (Z80) — CPU-heavy</option></select>
             <label for="vol2">Volume</label><input type="range" id="vol2" data-snd="2" min="0" max="200" step="5"><output for="vol2"></output>
           </div>
         </div>
@@ -1336,11 +1339,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>ZXBUS sound cards</h3>
           <div class="optgrid sndgrid">
             <label for="zxms">ZX-MultiSound</label>
-            <select id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here. Auto: each part off until a program uses it — SAA at a write to #FF / #1FF, TurboSound at a chip select of #FE / #FF on #FFFD, TurboSound FM at #F8-#FD, GS as its own Auto (not on ATM / ZX Evo: #FF is their palette)"><option value="">Off</option><option value="auto">Auto</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
+            <select data-pop-class="cmpop" id="zxms" title="2 × YM2203 (TurboSound FM), SAA1099 (#FF / #1FF), General Sound, SounDrive; Max: + YMF262 OPL3 (#C4-#C7). Sets AY, GS and Covox / SD here. Auto: each part off until a program uses it — SAA at a write to #FF / #1FF, TurboSound at a chip select of #FE / #FF on #FFFD, TurboSound FM at #F8-#FD, GS as its own Auto (not on ATM / ZX Evo: #FF is their palette)"><option value="">Off</option><option value="auto">Auto</option><option value="a2">Rev.A2</option><option value="max">Max (+ OPL3)</option></select>
             <label for="moon">MoonSound</label>
-            <select id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/yrw801-m.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
+            <select data-pop-class="cmpop" id="moon" title="ZXM-MoonSound: OPL4 (YMF278B): FM #C4-#C7, wavetable #7E / #7F (firmware 1.01: also #C2 / #C3); instruments from the 2 MB Yamaha YRW801-M ROM (rom/yrw801-m.zip). Auto: off until a program touches these ports, then on from that access"><option value="0">Off</option><option value="auto">Auto</option><option value="1">On (OPL4)</option></select>
             <label for="moonint">MoonSound INT</label>
-            <select id="moonint" title="Where programs for the card get their INT (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card, held until program clears it (moonmusic_1). Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running; frame INT before and after (moonmusic_1u, made for emulators)"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
+            <select data-pop-class="cmpop" id="moonint" title="Where programs for the card get their INT (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card, held until program clears it (moonmusic_1). Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running; frame INT before and after (moonmusic_1u, made for emulators)"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
             <div class="moonhzrow" id="moonhzrow" title="INT rate instead of frame INT (60 Hz: MSX music). Picture and frame stay 50 Hz"><input type="number" class="moonhz" id="moonhz" min="10" max="1000" step="1" value="60"> Hz</div>
             <div class="span3 moonrow"><span class="ranote" id="moonrom"></span></div>
             <label for="vol11">OPL3/OPL4</label><input type="range" id="vol11" data-snd="11" min="0" max="200" step="5"><output for="vol11"></output>
@@ -1361,7 +1364,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3 class="hdef">ULA timings <span class="h3n" id="ulamodel"></span><button class="defbtn" id="ulat_def" title="Default values (the model's own)">↺</button></h3>
           <div class="optgrid ulagrid" id="ulatgrid">
             <label for="ulapre">Preset</label>
-            <select id="ulapre" title="A timing set of unreal.ini ([ULA] PRESET.*); a value changed here makes it custom"></select>
+            <select data-pop-class="cmpop" id="ulapre" title="A timing set of unreal.ini ([ULA] PRESET.*); a value changed here makes it custom"></select>
             <label for="ulaframe">T-states per INT</label>
             <span class="ulanum"><input type="number" id="ulaframe" min="2000" max="1000000" step="1"><span class="ulau">at 3.5 MHz</span></span>
             <label for="ulaline">T-states per line</label>
@@ -1395,7 +1398,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default: Card">↺</button></h3>
           <div class="optgrid ulagrid">
             <label for="u_moonint">MoonSound INT</label>
-            <select id="u_moonint" title="Same as Options / Sound (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card. Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
+            <select data-pop-class="cmpop" id="u_moonint" title="Same as Options / Sound (Help: MoonSound INT). Card: IRQ of OPL4 timers, as INT jumper of the card. Set INT rate: machine INT at rate below instead of frame INT while program keeps an OPL4 timer running"><option value="off">Off</option><option value="card">Card</option><option value="hz">Set INT rate</option></select>
             <div class="moonhzrow" id="u_moonhzrow" title="INT rate instead of frame INT (60 Hz: MSX music). Picture and frame stay 50 Hz"><input type="number" class="moonhz" id="u_moonhz" min="10" max="1000" step="1" value="60"> Hz</div>
           </div>
         </div>
@@ -1405,20 +1408,25 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>Video</h3>
           <div class="optgrid">
             <label for="scale">Window size</label>
-            <select id="scale">
+            <select data-pop-class="cmpop" id="scale">
               <option value="fit">Fit</option><option value="1">1x</option><option value="1.5" selected>1.5x</option><option value="2">2x</option>
             </select>
             <label for="bordersel">Border</label>
-            <select id="bordersel" title="Border around the picture: none 256×192, small 320×240, wide 384×288 (full screens, .bsc)"><option value="0">None</option><option value="1">Small</option><option value="2">Wide</option></select>
+            <select data-pop-class="cmpop" id="bordersel" title="Border around the picture: none 256×192, small 320×240, wide 384×288 (full screens, .bsc)"><option value="0">None</option><option value="1">Small</option><option value="2">Wide</option></select>
             <label for="palsel">Palette</label>
-            <select id="palsel"></select>
+            <select data-pop-class="cmpop" id="palsel"></select>
             <label for="fxsel">Filter</label>
-            <select id="fxsel">
-              <option value="sharp">Off</option><option value="smooth">Smooth</option>
-              <option value="scan">Scanlines</option><option value="crt">CRT</option>
-              <option value="text64" title="The 4×8 letters of the ZX screen (64 a line: the press) recognized and drawn 8×16: easier to read. For the press: halves of ordinary 8×8 letters may be taken for 4×8 ones and look odd (as in UnrealSpeccy). Wherever the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next)">Anti-Text64</option>
-              <option value="text64ext" title="Anti-Text64 for text lines (8 dots high) where at least half of the cells with something in them are recognized letters: other text (5-dot letters, 51 a line: QC panels) and pictures stay as they are, so it can stay on">Text64ext</option>
-              <option value="advmame" title="AdvMAME scale (Scale2x): the picture drawn twice its own size with the corners of slopes filled: smooth edges, no blur. All models; a mode with pixels of its own at that size (640 wide) stays as it is">AdvMAME</option>
+            <select id="fxsel" data-pop-class="cmpop" title="How the picture is drawn: see Help, Filters">
+              <option value="sharp" title="The pixels as they are, sharp">Off</option>
+              <option value="smooth" title="The browser's smoothing when the picture is scaled: soft edges">Smooth</option>
+              <option value="scan" title="Dark lines between the lines of the picture">Scanlines</option>
+              <option value="crt" title="A TV tube (WebGL): a slightly curved screen, soft beam lines (wider where brighter), colors blurred a little across, a phosphor mask on a big screen, darker corners">CRT</option>
+              <option value="pal" title="A home TV's colors (WebGL): the brightness sharp, the color blurred across over a few pixels, so fine patterns of two colors mix into one as on a TV">PAL</option>
+              <option value="scale2x" title="Scale2x (AdvMAME): each pixel drawn 2×2 with the corners of slopes filled from the neighbors: smoother edges, no blur. All models; a mode with pixels of its own at that size (640 wide) stays as it is. Without WebGL too">Scale 2x</option>
+              <option value="scale3x" title="Scale3x (AdvMAME, WebGL): the same in 3×3 parts: finer steps on a big screen">Scale 3x</option>
+              <option value="xbr" title="xBR (WebGL): the edges of the pixels found and drawn as smooth lines at 30, 45 and 60 degrees at any size, no blur: the smoothest">xBR</option>
+              <option value="text64" title="Text of 4×8 letters (64 a line: the press, text viewers) recognized and drawn with 8×16 letters: easier to read. Only the text lines where at least half of the letters are known: other text (5-dot letters: QC panels) and pictures stay as they are, so it can stay on. Wherever the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next)">Anti-Text64</option>
+              <option value="text42" title="The same for text of 6×8 letters (42 a line), drawn 8×16. Known letters: the font of the 48K ROM and the 8×8 font of UnrealSpeccy (Latin, Cyrillic) cut to 6 columns, as 42-column print routines do; text in other fonts stays as it is">Anti-Text42</option>
             </select>
           </div>
           <div class="optcol vidhide">
@@ -1462,7 +1470,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="card">
         <h3>Hardware</h3>
         <table class="keys">
-          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters (Options / Video): Smooth, Scanlines, CRT, AdvMAME (Scale2x: smooth edges, no blur), Anti-Text64 (4x8 letters of the ZX screen, 64 a line, drawn 8x16: the press reads easier; ordinary 8x8 text may look odd with it), Text64ext (the same, only on text lines where at least half of the letters are recognized: can stay on)</td></tr>
+          <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters (Options / Video, see Filters below): CRT, PAL, Scale 2x / 3x, xBR, Anti-Text64, Anti-Text42</td></tr>
           <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit), Spectrum Next DACs</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
@@ -1471,6 +1479,22 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
           <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse; PS/2 (ZX Evo), AT keyboard and MS serial mouse (Sprinter); ZX Spectrum Next keys: Auto, PC layout, Next (Options / Input)</td></tr>
           <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz, Spectrum Next 3.5 / 7 / 14 / 28 MHz (set by the program); SAM Coupé 6 MHz</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Filters</h3>
+        <table class="keys">
+          <tr><td>Off</td><td>the pixels as they are</td></tr>
+          <tr><td>Smooth</td><td>the browser's smoothing when the picture is scaled</td></tr>
+          <tr><td>Scanlines</td><td>dark lines between the lines of the picture</td></tr>
+          <tr><td>CRT</td><td>a TV tube: slightly curved screen, soft beam lines (wider where brighter), colors blurred a little across, phosphor mask on a big screen, darker corners</td></tr>
+          <tr><td>PAL</td><td>a home TV's colors: brightness sharp, color blurred across over a few pixels, so fine patterns of two colors mix into one</td></tr>
+          <tr><td>Scale 2x</td><td>Scale2x (AdvMAME): each pixel 2x2 with the corners of slopes filled: smoother edges, no blur; works without WebGL</td></tr>
+          <tr><td>Scale 3x</td><td>the same in 3x3 parts: finer steps on a big screen</td></tr>
+          <tr><td>xBR</td><td>edges found and drawn as smooth lines at 30, 45 and 60 degrees at any size, no blur: the smoothest</td></tr>
+          <tr><td>Anti-Text64</td><td>text of 4x8 letters (64 a line: the press, text viewers) recognized and drawn with 8x16 letters. Only the lines where at least half of the letters are known: other text (5-dot letters, QC panels) and pictures stay as they are, so it can stay on. Font base of UnrealSpeccy: 1090 letters, inverse too</td></tr>
+          <tr><td>Anti-Text42</td><td>the same for 6x8 letters (42 a line). Known letters: the 48K ROM font and the 8x8 font of UnrealSpeccy (Latin, Cyrillic) cut to 6 columns, as 42-column print routines do; other fonts stay as they are</td></tr>
+          <tr><td>Where</td><td>CRT, PAL, Scale 2x / 3x, xBR: all models (on the machine's own pixels; CRT, PAL, Scale 3x, xBR need WebGL 2). Anti-Text: where the picture is the ZX screen (ATM, Evo, Profi, GMX in their ZX mode too; not TS-Conf, Sprinter, SAM Coupé, Next). Screenshot (F6), PNG: <b>With filter</b> saves the picture as the filter draws it (CRT, PAL, Scale 3x, xBR at 3 pixels a ZX pixel; Scanlines, Scale 2x, Anti-Text at the frame's size), off: the machine's own picture; Save / PNG does as F6 last chose. Smooth is the browser's and not saved</td></tr>
         </table>
       </div>
       <div class="card">
@@ -1886,8 +1910,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div class="fwin" id="shotdlg" hidden role="dialog" aria-labelledby="shottitle">
     <header class="fhead"><h2 id="shottitle">Screenshot</h2><button data-close title="Close (Esc)">✕</button></header>
     <div class="body shotbody">
-      <label class="shotopt"><input type="radio" name="shotfmt" value="png" checked> <b>PNG</b> <span class="d">screen as it is, border included</span></label>
-      <label class="shotopt"><input type="radio" name="shotfmt" value="scr"> <b>SCR</b> <span class="d">just for ZX screens</span></label>
+      <div class="shotline"><label title="The screen as it is, border included"><input type="radio" name="shotfmt" value="png" checked> <b>PNG</b></label>
+        <label id="shotfxl" title="PNG as the filter of Options / Video draws it (CRT, PAL, Scale 3x, xBR: 3 pixels a ZX pixel); off: the machine's own picture"><input type="checkbox" id="shotfx"> With filter <span class="d" id="shotfxname"></span></label></div>
+      <div class="shotline"><label title="6912 bytes of the ZX screen: just for ZX screens"><input type="radio" name="shotfmt" value="scr"> <b>SCR</b></label></div>
       <div class="shotrow"><button id="shotgo" class="primary">Download</button></div>
     </div>
 </div>
@@ -2033,7 +2058,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <script>
 // the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
 (function () {
-  var JS = ['wasi_fs', 'scancodes', 'unzip', 'vkbd', 'asyncify', 'gfx', 'usel', 'fcmd', 'dbga', 'rzx', 'app'];
+  var JS = ['wasi_fs', 'scancodes', 'unzip', 'vkbd', 'asyncify', 'gfx', 'glfx', 'usel', 'fcmd', 'dbga', 'rzx', 'app'];
   var m = document.querySelector('meta[name="build"]'), v = m ? '?v=' + m.content : '';
   function run(name, text) { var s = document.createElement('script'); s.text = text + '\n//# sourceURL=js/' + name + '.js'; document.body.appendChild(s); }
   function loose(i) { // js/*.js
