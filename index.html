@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261111151954">
+<meta name="build" content="20261111175330">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1840,6 +1840,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <h4>rom=: one machine for everyone</h4>
     <p>1. Options / System / Custom ROM: Select ROM, machine, slots (e.g. Quick Commander in 128), Start.<br>2. Set clock; Options / Disk: Accurate FDD, HDD interface.<br>3. Save / Custom ROM: ZIP with ROM and its .json.<br>4. Put ZIP on this site or on GitHub, link: <b>?rom=rom/my_machine.zip</b> (or rom=https://raw.githubusercontent.com/…/my_machine.zip). Other parameters (fdd=, hdd0=, run=…) work with it.</p>
+    <p><b>CMOS of a Custom ROM.</b> A machine with a CMOS (Pentagon with "ini": {"MISC": {"CMOS": "DALLAS"}}, Scorpion, EVO…) keeps it in the browser, and by default every Custom ROM of that machine shares one. A program in ROM may keep its settings there, and they reach every other ZIP: Quick Commander keeps its drive (cell #10) and starts on it, so a QC left on B starts on the empty B under another ZIP that puts its disk in A. Add <b>"cmos"</b> to the ZIP's .json: <b>"own"</b> — its own CMOS (by the ZIP's file name, so ZIPs must have different names), the visitor's settings are kept; <b>"fresh"</b> — the typical CMOS at every visit, the same start for everyone (a catalogue of disks). No CMOS needed (no clock): leave "CMOS" out of "ini".</p>
     <h4>.json in ZIP</h4>
     <table class="keys">
       <tr><td>machine</td><td>PENT128, PENT1024, KAY, SCORPION, PROFSCORP, PROFI, PLUS3, QUORUM, ATM450, ATM710, EVO</td></tr>
@@ -1849,6 +1850,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>fdd</td><td>accurate (WD1793 timing, no TR-DOS traps) or fast</td></tr>
       <tr><td>hdd</td><td>HDD interface: NONE, ATM, NEMO, NEMO-A8, NEMO-DIVIDE, SMUC, PROFI, DIVIDE</td></tr>
       <tr><td>ini</td><td>any unreal.ini keys, by section (written by hand): {"BETA128": {"Traps": 0, "Fast": 1, "IL": 2}, "MISC": {"RAMSize": 512}}</td></tr>
+      <tr><td>cmos</td><td>its CMOS / NVRAM in the browser (a machine with one: "ini": {"MISC": {"CMOS": "DALLAS"}}): no key — shared by every Custom ROM of that machine (Pentagon, Scorpion…); "own" — its own, by the ZIP's file name; "fresh" — the typical one at every visit, what its program saves lives for the visit only. Reset CMOS clears it</td></tr>
     </table>
     <p>speed, fdd, hdd and ini keys win over what visitor has set in Options, while this machine runs. Order: link, then ZIP, then visitor's settings — speed= in link wins over speed of ZIP; HDD image from hdd= whose .chs has Interface= switches that interface on, over hdd of ZIP. Save / Custom ROM writes speed, fdd and hdd as machine runs now.</p>
   </div>
