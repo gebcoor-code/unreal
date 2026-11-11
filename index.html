@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261111102346">
+<meta name="build" content="20261111111727">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1226,7 +1226,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>BETA 128</h3>
           <div id="drives"></div>
           <div class="drive" id="romdiskrow" hidden><span class="dl" title="ROM disk (xBIOS 1.36 XT): a TR-DOS image built into the 1 MB BIOS ROM, a read-only vTR-DOS drive">ROM</span><span class="dname" id="romdiskname">— empty —</span>
-            <button id="romdiskins" title="Build the ROM disk of a disk image (TRD, SCL, FDI…): Turbo 2+ xBIOS 1.36 starts with it">Insert</button>
+            <button id="romdiskins" title="Build the ROM disk of a disk image (TRD, SCL, FDI…): Turbo 2+ xBIOS 1.36 starts with it. A ROM (a .rom, a ROM ZIP) goes to Options / System, Custom ROM">Insert</button>
             <button id="romdiskboot" title="Set up vTR-DOS for the ROM disk and boot it (also after a Reset)">Boot</button>
             <button id="romdiskdel" title="Remove the ROM disk (restarts the machine)">⏏</button><span></span></div>
           <label class="chk fddacc" title="Real WD1793 timing and no TR-DOS ROM traps: slower, but protected loaders and disk tricks work as on the real machine. Off: fast disk access"><input type="checkbox" id="fddacc">Accurate FDD emulation</label>
@@ -1816,7 +1816,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;fdd=a:trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on).</p>
     <h4>Parameters</h4>
     <table class="keys">
-      <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below. With disks in the link (a= b= hdd= sd=) the machine is reset once they are in: a program in ROM (QC and the like) sees them at its start, as on the real machine</td></tr>
+      <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below. With disks in the link (a= b= hdd= sd=) the machine waits for them and starts once they are in, as one switched on with the disks inserted: a program in ROM (QC and the like) sees them at its first start. A ROM set part (one ROM with its slot in the .json) gets the Pentagon's 128 BASIC, 48 BASIC and TR-DOS in the slots it leaves</td></tr>
       <tr><td>model=</td><td>atm710, xbios136, atm450, evo, tsconf, sprinter, specnext, pentagon, scorpion, gmx, profi, kay, plus3, quorum, sam, tasis, chic (TASiS / iS-DOS Chic from HDD), nedoos (NedoOS from SD card), osz (OSZ on Scorpion GMX)</td></tr>
       <tr><td>ram=</td><td>pentagon: 128, 512 or 1024 (KB) for this visit; with no ram=: the one of Options / System</td></tr>
       <tr><td>speed=</td><td>clock: 2 (×3.5 MHz) or 7mhz; tsconf: 3.5, 7 or 14 (MHz) — the CPU Speed of TS-BIOS (programs may set their own); sprinter: 3.5 (no turbo, for this visit) or 21 (MHz, as the program sets). With speed= the visitor's True clock is off for this visit</td></tr>
