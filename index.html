@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261113140714">
+<meta name="build" content="20261113230742">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -759,7 +759,8 @@ select.usel-src { display: none !important; }
 .usel-it.usel-nav { display: flex; align-items: center; gap: 8px; } .usel-it .usel-go { width: 6px; height: 10px; margin-left: auto; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .8; } /* a folder: ▸ at the right edge */
 .usel-it.usel-up { color: var(--dim); }
 .ldbpath { text-transform: none; letter-spacing: 0; font: 11px ui-monospace, Consolas, monospace; color: var(--text); margin-left: 6px; }
-.usel-it.ing { padding-left: 18px; } .usel-grp { padding: 5px 10px 2px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
+.usel-it.ing { padding-left: 18px; } .usel-hid { display: none !important; }
+.usel-grp.usel-fold { display: flex; align-items: center; gap: 8px; cursor: pointer; padding-top: 6px; padding-bottom: 6px; } .usel-grp.usel-fold:hover { color: var(--text); } .usel-fold .usel-go { width: 6px; height: 10px; margin-left: auto; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .12s; } .usel-fold.open .usel-go { transform: rotate(90deg); } .usel-grp { padding: 5px 10px 2px; font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
 /* lists: the lines as tall as for a finger on every device */
 /* the page's own question box (instead of the browser's confirm): OK / Cancel, OK has the focus */
 #askbox { position: fixed; inset: 0; background: rgba(5,7,10,.55); display: flex; align-items: center; justify-content: center; z-index: 60; }
@@ -1178,7 +1179,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="pane" data-pane="sys">
         <div class="card">
           <h3>Models &amp; OS</h3>
-          <div class="selbtn"><select data-pop-class="cmpop" id="modelsel" aria-label="Model"></select><button id="modelapply" class="primary" disabled title="Start this model (the machine restarts)">Start</button></div>
+          <div class="selbtn"><select data-pop-class="cmpop" id="modelsel" aria-label="Model" data-fold></select><button id="modelapply" class="primary" disabled title="Start this model (the machine restarts)">Start</button></div>
           <div id="customrom" hidden>
             <div class="crrow"><button id="crfile" title="ROM images (16 KB pages: .rom / .bin, also in .zip). A ZIP saved here (Save / Custom ROM) brings its settings too">Select ROM…</button><span id="crname"></span></div>
             <label class="crrow"><span>Machine</span><select data-pop-class="cmpop" id="crmach" title="The machine the ROM runs on (memory model, RAM, timings)"></select></label>
