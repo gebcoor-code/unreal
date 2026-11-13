@@ -102,6 +102,14 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
   the source code must have a link to it. The full distribution: https://www.specnext.com/latestdistro/ , sources:
   https://gitlab.com/thesmog358/tbblue
 
+## Core regression checks
+
+Run `python3 tests/baseconf_interrupts.py` with Python 3 and Node to check
+BaseConf and ATM710 frame interrupts against the bundled WASM. No browser,
+downloads or additional packages are needed. See
+[BaseConf interrupt correction](docs/baseconf-interrupts.md) for the
+hardware evidence, binary patch reproduction and test coverage.
+
 ## License
 
 The code written for this port is released under the MIT license, see [LICENSE](LICENSE).
