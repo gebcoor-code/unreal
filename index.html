@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261113230742">
+<meta name="build" content="20261113233046">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1331,7 +1331,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <h3>General Sound</h3>
           <div class="optgrid sndgrid">
             <label for="gssel">Mode</label>
-            <select data-pop-class="cmpop" id="gssel" title="Auto: off until a program uses General Sound (ports #BB / #B3), then on — the GS Z80 costs host CPU"><option value="0">Off</option><option value="2">Auto</option><option value="1">NeoGS (Z80) — CPU-heavy</option></select>
+            <select data-pop-class="cmpop" id="gssel" title="Auto: off until a program uses General Sound (ports #BB / #B3), then on as NeoGS — the GS Z80 costs host CPU. NeoGS: its clock as the program sets it in #0F (24 / 20 / 12 / 10 MHz). GS 12 MHz: the classic General Sound, ROM 1.04, no #0F"><option value="0">Off</option><option value="2">Auto</option><option value="1">NeoGS (Z80) — CPU-heavy</option><option value="3">GS 12 MHz (classic)</option></select>
             <label for="vol2">Volume</label><input type="range" id="vol2" data-snd="2" min="0" max="200" step="5"><output for="vol2"></output>
           </div>
         </div>
@@ -1474,7 +1474,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Video</td><td>ZX 256x192; ATM 320x200, 640x200, 80x25; GMX 640x200; SAM Coupé modes 1–4 (up to 512x192); TS-Conf 16c / 256c up to 360x288, text 720; Sprinter 320x256 (256c), 640x256 (16c), text 80x32, by 8x8 cells, accelerator; Spectrum Next Layer 2, sprites, tilemap, copper; raster effects; filters (Options / Video, see Filters below): CRT, PAL, Scale 2x / 3x, xBR, Anti-Text64, Anti-Text42</td></tr>
           <tr><td>Sound</td><td>AY/YM2149, TurboSound FM, SAA1099, Soundrive / Covox, Sprinter Covox Blaster (stereo, 16-bit), Spectrum Next DACs</td></tr>
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
-          <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch</td></tr>
+          <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch; clock by #0F bits 5-4: #00 24, #20 20, #10 12, #30 10 MHz. GS 12 MHz (Options / Sound): classic General Sound, ROM 1.04, 4 ch, no #0F</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793): TR-DOS, CP/M, iS-DOS; Sprinter: PC floppies (FAT12, 720K); SAM Coupé (WD1772): MGT, SAD; +3 (µPD765)</td></tr>
           <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; images HDD, HDF, VHD, IMG</td></tr>
           <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
