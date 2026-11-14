@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261114105153">
+<meta name="build" content="20261114205133">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -93,6 +93,8 @@ canvas.smooth { image-rendering: auto; }
 #recmark { position: absolute; left: 25%; top: 2px; transform: translateX(-50%); z-index: 23; height: 18px; padding: 0 7px; border-radius: 9px; font: 600 11px ui-monospace, Consolas, monospace;
   color: #fff; background: rgba(200,40,40,.75); border: 1px solid rgba(255,120,120,.6); line-height: 1; }
 #recmark[hidden] { display: none; }
+#ulaxhud { position: absolute; top: 0; z-index: 23; padding: 0; border: 0; border-radius: 4px; background: none; cursor: pointer; color: transparent; font-size: 1px; -webkit-tap-highlight-color: transparent; } /* ZX ULAX: a place to click over its text (drawn with the MHz, hudDraw) */
+#ulaxhud:hover { background: rgba(255,255,255,.08); } #ulaxhud[hidden] { display: none; }
 #dledi { width: 18px; height: 18px; display: block; filter: drop-shadow(0 0 1px rgba(0,0,0,.9)); }
 #dled.r, #dled.t { color: #4f9dff; } #dled.w { color: #ff4f43; } #dled.s { color: rgba(225,232,240,.5); }
 #dled.t #dledi { width: 24px; }
@@ -569,6 +571,7 @@ select option { background: var(--panel2); color: var(--text); }
 .splitbtn:not(.single):has(> button:focus-visible) > .splitar:not([hidden]) { border-left-color: var(--accent); } /* the line between the parts too: Mount closed on its right */ /* Mount alone (single): its own focus border, as any button */
 #ldmedia { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; font: 12px ui-monospace, Consolas, monospace; }
 #ldmedia .ml { color: var(--dim); } #ldmedia .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } #ldmedia .mn.off { color: var(--dim); }
+.ulaxbtns { display: flex; gap: 6px; margin-top: 6px; } #ldmedia .mb { display: flex; gap: 4px; justify-content: flex-end; }
 #ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
 #loadwin h3.ldmh { display: flex; align-items: center; justify-content: space-between; } .ldmodel { text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); margin-left: 6px; } /* Settings in the line of the title */
 .ldmh button { padding: 1px 9px; font-size: 11px; text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); }
@@ -849,7 +852,7 @@ select.usel-src { display: none !important; }
 #dgaprj { height: 24px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; } #dgaprj svg { display: block; }
 #dgaprjn { width: 130px; height: 24px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; }
 #dgaprjn::placeholder { color: var(--dim); opacity: .7; } #dgaprjn:hover, #dgaprjn:focus { color: var(--text); border-color: var(--accent); outline: none; }
-#dgadis .hint { margin-left: 1.5ch; } #dgadis .hint.go { color: #4ade80; } #dgadis .hint.no { color: var(--dim); }
+#dgadis .pp { margin-left: 1.5ch; color: #e879f9; } #dgadis .hint { margin-left: 1.5ch; } #dgadis .hint.go { color: #4ade80; } #dgadis .hint.no { color: var(--dim); }
 #dgadis .dl.pc { background: rgba(90, 169, 255, .22); } #dgadis .dl.cur { box-shadow: inset 0 0 0 1px var(--accent); }
 .dgaside { flex: none; width: 196px; overflow: auto; padding: 4px 8px; }
 .dgargrid { display: grid; grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 8px; }
@@ -1081,6 +1084,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div id="toast"></div>
     <canvas id="hudc" aria-hidden="true"></canvas>
     <div id="sbar"><div id="sbjoy"></div><div id="mbar"><button data-b="4" title="Middle button: tap = click, long tap = held until the next tap (left button: double tap on the screen, or a second finger)">MB</button><button id="mpps" title="The program moves its pointer 1 or 2 pixels per step">1pps</button><button data-b="2" title="Right button: tap = click, long tap = held until the next tap">RB</button></div></div>
+    <button id="ulaxhud" hidden>ULAX</button>
     <button id="recmark" hidden title="RZX recording: Save / Input recording (RZX) stops it">● REC <span id="rectime">0:00</span></button>
     <div id="dled" hidden><svg id="dledi" viewBox="0 0 12 12"><use href="#i-floppy"/></svg></div>
     <canvas id="viz" width="56" height="16"></canvas>
@@ -1394,6 +1398,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           </div>
           <p class="note" id="ulaonote" hidden></p>
         </div>
+        <div class="card" id="ulaxcard">
+          <h3>ZX ULAX <span class="h3n">colorization</span></h3>
+          <div class="optcol">
+            <label class="chk" title="The picture of the ULAX board (Pentagon 128, Spectrum +3): a ZX program in the colors of its .dux. A snapshot with its .dux (or a .dux loaded alone): on at once; a tape / disk with its .dux: switched on by hand once the program has loaded (the first switch on applies the dux). Off: the ZX picture, the dux stays. Also ULAX at the top of the screen, Ctrl+Alt+U"><input type="checkbox" id="ulaxon"> ZX ULAX</label>
+          </div>
+          <p class="note" id="ulaxinfo"></p>
+          <div class="ulaxbtns"><button id="ulaxdux" title="A .dux for the program now in memory: applied at once, ULAX on">Load dux…</button><button id="ulaxagain" title="The dux onto the program in memory once more, as just loaded (it was applied too early: the program loaded more after it). The colors the program set while it ran go; switching ULAX off and on keeps them">Apply .dux again</button><button id="ulaxrm" title="The dux goes, ULAX off">Remove dux</button></div>
+        </div>
         <div class="card">
           <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default: Card">↺</button></h3>
           <div class="optgrid ulagrid">
@@ -1461,7 +1473,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Quorum 1024</td><td>1024K, ROM-MENU 4.2</td></tr>
           <tr><td>TASiS v5.40</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
           <tr><td>iS-DOS Chic v5.01</td><td>from HDD, Turbo 2+ xBIOS 1.36</td></tr>
-          <tr><td>Wild Commander</td><td>from SD card, ZX Evo TS-Conf (<a href="https://github.com/tslabs/zx-evo" target="_blank" rel="noopener">GitHub</a>)</td></tr>
+      <tr><td>Wild Commander</td><td>from SD card, ZX Evo TS-Conf (<a href="https://github.com/tslabs/zx-evo" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>NedoOS</td><td>from SD card, ZX Evo BaseConf (<a href="https://github.com/alfishe/NedoOS" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>OSZ</td><td>multitasking OS, from SD card + OS.TRD, Scorpion ZS 256 GMX; F8 / F9 / F10 = Ext+1 / Ext+9 / Ext+0, right Shift = SS, Tab = Ext (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>)</td></tr>
           <tr><td>Custom ROM</td><td>own ROM or ROM set (128 / 48 / TR-DOS / service) on any of these machines; Save keeps ROM + json</td></tr>
@@ -1572,6 +1584,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
       <tr><td>Ctrl+Alt+Z</td><td>XT mode (XT keyboard) on/off; ZX Evo TS-Conf: PC keys mode (F1-F12, Esc and the like go to the machine: Wild Commander)</td></tr>
+      <tr><td>Ctrl+Alt+U</td><td>ZX ULAX picture on / off (a .dux stays loaded)</td></tr>
       <tr><td>Esc</td><td>releases captured mouse</td></tr>
       <tr><td>Ctrl+Shift+V, Cmd+V</td><td>paste: the text of the clipboard typed on the keyboard of the machine. ATM / XT mode: XT keys; else ZX keys in L mode (letters, CAPS SHIFT capitals, digits, SYMBOL SHIFT symbols; a new line = ENTER): 128 BASIC, CP/M, editors, assemblers. 48K BASIC and the TR-DOS command line take a keyword by one key (K mode): a listing typed there comes out wrong. Characters with no key are left out; not on the SAM Coupé</td></tr>
     </table>
@@ -1642,6 +1655,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (a click or tap jumps there: from the nearest state, then the frames without sound; the states of the whole recording are made in the background, the thin line under the bar shows how far), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=; NEX and DOT (start ZX Spectrum Next; a DOT runs at #2000 as NextZXOS runs it, without arguments), also REST snap=</td></tr>
+      <tr><td>ZX ULAX</td><td>DUX: colors of a ZX program for the ULAX board, on Pentagon 128 and Spectrum +3. While a .dux is loaded, ULAX is at the top of the screen: white on, gray off; a click / tap switches it (also Options / ULA / ZX ULAX, Ctrl+Alt+U). A snapshot or RZX with its .dux (a ZIP, REST snap= dux=), or a .dux loaded alone: applied to the program in memory, on at once. A tape or disk with its .dux: the dux is loaded, ULAX gray; switch it on once the program has loaded (the first switch on applies the dux). Off and on again keeps the colors the program set while it ran; Options / ULA / Apply .dux again applies the dux anew, as just loaded (after a switch on too early: the program loaded more after it), those colors go. A reset keeps the dux (gray: on again once the program is back); another snapshot, another machine or Remove dux take it away; the next disk or tape keeps it (the same program). A ZIP with a snapshot and its .dux on a machine with no ULAX: asked to switch to Pentagon. A .dux of another program does not change how it runs, only its picture (wrong colors): switch ULAX off or remove the dux. A snapshot saved with a dux applied is a ZIP with the .sna, its .dux and the colors of that moment (.ulx). Not yet: full-screen mappers, LowRes</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
       <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). ZX Spectrum Next: <code>{"model": "next", "run": "game.nex"}</code>: the NEX / DOT of the card starts (Autostart, REST <code>autorun=1</code>); without run, or Autostart off: NextZXOS boots from the card. Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
@@ -1826,6 +1840,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
+      <tr><td>dux=</td><td>ZX ULAX colors (.dux) for the program of the link: applied after snap= at once; with a tape or disk it comes once the program runs. With no model= the machine is Pentagon 128 (unless +3)</td></tr>
       <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, hdd0=brw:cpm.zip, sd=brw:card.zip (file fields of this window offer them, marked [Browser]). Works only in this browser</td></tr>
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
@@ -2064,7 +2079,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.nex,.dot,.wmf,.rzx,.$b,.$c,.$d,.hob">
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.nex,.dot,.wmf,.rzx,.dux,.$b,.$c,.$d,.hob">
 <script>
 // the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
 (function () {
