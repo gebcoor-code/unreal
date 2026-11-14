@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261114003058">
+<meta name="build" content="20261114105153">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -880,7 +880,7 @@ select.usel-src { display: none !important; }
 #dgascr canvas { display: block; flex: none; image-rendering: pixelated; cursor: crosshair; } /* size: dbga.js scrFit (from the pane only) */
 .dgabot .dgamemh .dgats { flex: 1 1 0; } /* the hint never wraps the bar (the pane would change height under the pointer) */
 .dgabot .dgats .dgahint { flex: 1 1 0; width: 0; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: right; }
-#dgamsrc, #dgascrsrc { height: 22px; font-size: 12px; }
+#dgamsrc, #dgascrsrc, #dgascrfmt { height: 22px; font-size: 12px; }
 .tspal { display: grid; grid-template-columns: repeat(16, 1fr); gap: 1px; max-width: 272px; }
 .tspal i { display: block; aspect-ratio: 1; border-radius: 1px; }
 .tspal i.g { outline: 1px solid var(--accent, #f80); outline-offset: -1px; }
@@ -1505,7 +1505,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <h3>Tools</h3>
         <table class="keys">
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
-          <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf, CP/M, GMX, Sprinter, SAM Coupé, ZX Spectrum Next layers: ULA, Layer 2, tilemap, sprites, sprite patterns), devices (AY, WD1793, tape, TS-Conf, ZX Spectrum Next registers and ports), Z80N commands on the Next, projects</td></tr>
+          <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf: frame, tile maps, sprites, pages as 16c / 256c; CP/M, GMX, Profi 512x240, Sprinter, SAM Coupé, ZX Spectrum Next layers: ULA, Layer 2, tilemap, sprites, sprite patterns), devices (memory and video ports of each machine, AY, WD1793, µPD765, tape, General Sound, SAA1099, MoonSound / OPL3, SounDrive, Covox, IDE, SD, CMOS, TS-Conf, ZX Spectrum Next registers and ports), the General Sound CPU (CPU: GS), Z80N commands on the Next, projects</td></tr>
           <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA, TS-Conf 16C/256C)</td></tr>
           <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/FAT floppy/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm; Compile: sjasmplus (F9)</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
@@ -1998,7 +1998,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="dbghead fhead"><span>deBUGa (Xpeccy)</span><b id="dgastate"></b><button id="dgahelpbtn" title="Help (F1)">?</button><button id="dgaclose" title="Close (Esc): the machine runs on">✕</button></div>
   <div class="dgabar">
     <button id="dgarun" title="Stop / Run (F9)">Run</button>
-    <button data-c="1" title="Step (F7)">Step</button><button data-c="2" title="Step over CALL / RST / LDIR… (F8)">Over</button><button data-c="3" title="Run to the cursor line (F4)">To cursor</button><button data-c="4" title="Run to return from the subroutine (F6)">Out</button>
+    <button data-c="1" title="Step (F7)">Step</button><button data-c="2" title="Step over CALL / RST / LDIR… (F8)">Over</button><button data-c="3" title="Run to the cursor line (F4)">To cursor</button><button data-c="4" title="Run to return from the subroutine (F6)">Out</button><button id="dgacpu" hidden title="The CPU shown: the machine's Z80 or the General Sound Z80 (its registers, listing, memory, steps; breakpoints of the listing)">CPU: ZX</button>
     <label title="Disassembly from an address (hex), Enter">Go #<input id="dgago" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label>
     <button id="dgamark" title="Mark the selected lines (Shift + arrows / click): code, bytes, words, addresses, text; label (:), comment (;). Also: right click / long press on a line">Mark ▾</button>
     <input id="dgaprjn" placeholder="Project…" spellcheck="false" autocomplete="off" title="Project name: the file of Save .xmap (Load puts the name of the file here)"><button id="dgaprj" title="Project: Save / Load .xmap, labels, Clear (marks, labels, comments of this model are kept in the browser)" aria-haspopup="menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -2010,10 +2010,10 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   </div>
   <div class="dgasplit h" id="dgash" title="Drag: height of the lower part"></div>
   <div class="dgabot" id="dgabot">
-    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="AY, WD1793, tape as the stop left them; ZX Spectrum Next: system, video, NextRegs and ports (a press writes one)">Devices</button>
+    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="The hardware as the stop left it: memory and video ports of the machine, AY, WD1793 / µPD765, tape, sound cards, IDE, SD, CMOS; TS-Conf and ZX Spectrum Next: their registers (Next: a press writes one)">Devices</button>
       <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
-    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · SPframe: the Sprinter picture from its video RAM now · SP VRAM: the Sprinter video RAM, a byte a pixel · SAMscr: the SAM Coupé screen of VMPR in its mode · NX ULA, Layer 2, L2 shadow, Tilemap, Sprites, Patterns: one layer of ZX Spectrum Next as its video would draw it now (gray check: transparent) · RAM: a page as a ZX screen (SAM: as a SAM screen in the mode of VMPR)"></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
+    <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · SPframe: the Sprinter picture from its video RAM now · SP VRAM: the Sprinter video RAM, a byte a pixel · SAMscr: the SAM Coupé screen of VMPR in its mode · Profi 512: the 512x240 screen of page 4 / 6 · TS T0 / T1 map, TS sprites: a TS-Conf tile map / the sprites alone · NX ULA, Layer 2, L2 shadow, Tilemap, Sprites, Patterns: one layer of ZX Spectrum Next as its video would draw it now (gray check: transparent) · RAM: a page as a ZX screen (SAM: as a SAM screen in the mode of VMPR)"></select><select id="dgascrfmt" data-pop-class="dgapop fcmpop" hidden title="TS-Conf: the page as a ZX screen, or the RAM from it as a 512×512 picture of 16 colors (8 pages) / 256 colors (16 pages)"><option value="0">ZX</option><option value="1">16c</option><option value="2">256c</option></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
