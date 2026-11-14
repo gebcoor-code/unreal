@@ -1,7 +1,6 @@
 # Web Unreal Speccy
 
-ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/).
-The core is **UnrealSpeccy 0.39.0** 
+ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is UnrealSpeccy 0.39.0
 
 It runs on desktop browsers, Mac, iPad and iPhone without installation: all it needs is the page on a web server.
 
@@ -14,15 +13,15 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
 | ATM Turbo 1 (4.50) | 512K, BIOS 1.04.1R |
 | ZX Evo BaseConf | 4096K, Turbo 2+ compatible; EVO Reset Service, CMOS, SD card, NEMO IDE |
 | SAM Coupé | 512K + 1 MB external, ROM 3.0, Z80B 6 MHz: modes 1–4 (up to 512×192, 16 of 128 colors), line interrupts, memory contention; SAA1099, SAMVox, printer port DAC; SAM mouse, SAMBUS clock; two WD1772 floppy drives (MGT, SAD, DSK, also gzip / ZIP packed; SAMDOS boots from disk, autorun); SAMDOS files in File Commander; SAM keyboard (keypad = F0–F9) |
-| Sprinter Sp2000 | 4096K, BIOS 3.06 (Sprinter Team; setup, startup sound, ROM disk with RECOVERY): text 80×32, graphics 320×256×256 and 640×256×16, 3.5 / 21 MHz; accelerator (block fills and copies), raster effects; IDE (2 channels), FDD (PC floppies 720K: .img), CMOS; AT keyboard, MS serial mouse, Sega pads; AY, Covox and Covox Blaster (stereo, 16-bit); boots Estex DSS 1.71; Spectrum mode |
+| Sprinter Sp2000 | 4096K, BIOS 3.06 (Sprinter Team; setup, startup sound, ROM disk with RECOVERY): text 80×32, graphics 320×256×256 and 640×256×16, 3.5 / 21 MHz; accelerator (block fills and copies), raster effects; IDE (2 channels), FDD (PC floppies 720K: .img), CMOS; AT keyboard, MS serial mouse, Sega pads; AY, Covox and Covox Blaster (stereo, 16-bit); boots Estex DSS 1.71 from `hdd/dss.zip` (start menu: FM, Flex Navigator, command prompt); Spectrum mode (C:\ZX\SPECTRUM.EXE, TR-DOS 7.03, TRD and SCL) |
 | ZX Evo TS-Conf | 4096K, TS-BIOS; ZX / 16c / 256c / text modes up to 360×288, tiles and sprites (TSU), DMA, VDAC; VDAC2 (FT812); 3.5 / 7 / 14 MHz; SPG; Wild Commander on the SD card |
-| ZX Spectrum Next | 1792K, Z80N at 3.5 / 7 / 14 / 28 MHz: ULA (Timex, ULANext, ULA+), LoRes, Layer 2 (256×192, 320×256, 640×256), 128 sprites, tilemap 40×32 / 80×32, 9-bit palettes, copper, zxnDMA, line and CTC interrupts; AY, DACs; DivMMC (esxDOS) and SD card: NextZXOS; NEX and DOT files also start on their own |
-| Pentagon 128 / 512 / 1024 | TR-DOS 5.04TM, port #EFF7; RAM in Options / System or `ram=` |
+| ZX Spectrum Next | 2048K (1792K for programs), Z80N at 3.5 / 7 / 14 / 28 MHz: ULA (Timex, ULANext, ULA+), LoRes, Layer 2 (256×192, 320×256, 640×256), 128 sprites (collision, 100 a line), tilemap 40×32 / 80×32, 9-bit palettes, blending, copper (changes in the middle of a line too), zxnDMA, line and CTC interrupts; AY, DACs; DivMMC (esxDOS) and SD card: NextZXOS and SymbOS boot from `sd/next.zip`; Multiface and DivMMC NMI buttons; NEX and DOT files also start on their own |
+| Pentagon 128 / 512 / 1024 | TR-DOS 5.04TM, port #EFF7; RAM in Options / System or `ram=`; ZX ULAX (see below) |
 | Scorpion ZS 256 | ROM 2.95 |
 | Scorpion ZS 256 GMX | GMX board: 2048K, 640×200 with hardware scroll, turbo, 512K flash of LW/PLM (GMX Loader 2.00, Shadow Service Monitor 6.44), runs OSZ |
 | Profi 1024 | BIOS 2.2, CP/M from a .PRO disk |
 | KAY 1024 | |
-| Spectrum +3 | +3DOS, µPD765 |
+| Spectrum +3 | +3DOS, µPD765; ZX ULAX |
 | Quorum 1024 | |
 | TaSiS v5.40, iS-DOS Chic v5.01 | xBIOS 1.36XT, boot from an HDD image |
 | NedoOS (BaseConf) | boot from an SD card image |
@@ -33,13 +32,23 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
 
 - **Media:** TRD (640K, and up to 1 MB: 128 cylinders, 256 TR-DOS tracks, as esxDOS takes them), SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF, Hobeta disks; raw PC floppies (IMG 720K / 360K, Sprinter); SAM Coupé MGT and SAD; TAP, TZX, CSW tapes; SNA, Z80 snapshots;
   SPG programs (TS-Conf); NEX and DOT programs (Spectrum Next); RZX input recordings; HDD images (ATM, NEMO, SMUC, Profi, DivIDE interfaces) and SD cards
-  (Z-Controller).
+  (Z-Controller); DUX colorizations (ZX ULAX).
+  Everything can also be loaded from a ZIP.
 - **Sound:** AY/YM, TurboSound, SAA1099, General Sound, Soundrive / Covox, beeper, tape sound; ZXBUS sound cards
   ZX-MultiSound (OPL3) and ZXM-MoonSound (OPL4) through [ymfm](https://github.com/aaronsgiles/ymfm).
   A sound indicator over the screen: channel levels (AY, General Sound, the Sprinter's Covox L / R), spectrum,
   oscilloscope, spectrogram, goniometer.
+- **ZX ULAX:** the colorization board of its authors on Pentagon 128 and Spectrum +3: a `.dux` (the colors of one program) is applied to the program in
+  memory; a snapshot or RZX with its `.dux` (one ZIP, or `snap=` and `dux=` in a link) starts colored at once, a tape or
+  disk with its `.dux` is switched on by hand once the program has loaded. ULAX at the top of the screen while a dux is
+  loaded: white on, gray off, a click / tap or Ctrl+Alt+U switches it. A snapshot saved with a dux is a ZIP with the
+  `.sna`, its `.dux` and the board's state (`.ulx`); an RZX seek keeps the colors of the frame. Not yet: the full-screen
+  mappers and LowRes of the board.
 - **Two debuggers:** the UnrealSpeccy debugger (ported without changing its logic, its modal loops run under Asyncify)
-  and deBUGa, modelled on the [Xpeccy](https://github.com/samstyle/Xpeccy) debugger.
+  and deBUGa, modelled on the [Xpeccy](https://github.com/samstyle/Xpeccy) debugger; both know the Z80N commands of the Next.
+  deBUGa also shows the devices of every machine (memory and video ports, µPD765, sound cards, IDE, SD, CMOS), steps the
+  General Sound Z80 (CPU: GS), and for ZX ULAX: the PPU opcode of each instruction in the listing, a ULAX tab (opcodes and
+  pixels of the Z80 addresses, palette, tables, the dux text; editable), PPU step and a stop at a PPU opcode.
 - **File Commander:** two panels over TR-DOS, CP/M, iS-DOS and FAT disks (FAT12 PC floppies too), HDD and SD images,
   a RAM disk and the browser storage, with folders:
   - copy and move files and whole folders (onto TR-DOS / CP/M their files go into one place); the free space is
@@ -55,8 +64,8 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
   **Compile (F9)** assembles a project with [sjasmplus](https://github.com/z00m128/sjasmplus) built to WebAssembly;
   the output, listing and log go to the RAM disk.
 - **Graf Search:** memory shown as a picture in ZX, ATM and TS-Conf graphics modes.
-- **RZX:** playback with a seek bar over the screen and Take control (ZX Spectrum 48 / 128 / +2 on the Sinclair ROMs);
-  recording from Save on 48 / 128K models.
+- **RZX:** playback with a seek bar over the screen and Take control (ZX Spectrum 48 / 128 / +2 on the Sinclair ROMs),
+  with its ZX ULAX `.dux` too; recording from Save on 48 / 128K models.
 - **On-screen keyboards:** ZX+, ZX48, XT (short, the arrows in the main block) and XTf (the full PC keyboard without
   the number pad); joystick, touch mouse, Kempston mouse. A phone in landscape: the keyboard is split to both sides of the screen.
 - **Screen:** F6 saves a screenshot (PNG as shown, or the ZX screen as SCR); Hide Menu Bar (the top-left corner brings it back), Mix Frames for GMX gigascreen pictures,
@@ -66,17 +75,6 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
 - **REST API:** a link can choose the machine and its speed, insert disks, tapes, HDD and SD images, and start a program;
   Tools / REST API link builds one (a file from the server list brings its own `run` link into the fields).
 - **Offline copy** through a service worker (https or localhost).
-
-### Server folders
-
-| Folder | Contents |
-|---|---|
-| `unreal/` | the emulator: `unreal.wasm` (or `unreal.zip` holding it), `unreal.ini`, `boot6.$b`, `CMOS`, `sos.l`; `sjasm.zip` (sjasmplus for File Commander) |
-| `js/` | scripts: `js.zip` (the page unpacks it; the separate `.js` files also work) |
-| `rom/` | ROM images, listed in `roms.json` |
-| `trd/` | disk, tape and snapshot images for the Load window, listed in `trd.json` |
-| `hdd/` | HDD images (ZIP with a `.chs` geometry file, or a VHD that has its geometry in its footer), listed in `hdd.json`; `dss.zip`: the Sprinter's Estex DSS disk |
-| `sd/` | SD card images (`.img`, `.vhd` or ZIP), listed in `sd.json`; `next.zip`: the Spectrum Next's card (see below) |
 
 ### Hard disks and SD cards
 
@@ -90,15 +88,14 @@ It runs on desktop browsers, Mac, iPad and iPhone without installation: all it n
   The SD images of NedoOS, Wild Commander and OSZ are made as FAT32 VHD.
 - **Save:** an SD card goes out as a fixed VHD (it can be mounted on a PC); an HDD that is a VHD goes out alone, a raw one
   with its `.chs`.
-- **Sprinter:** a 64 MB fixed VHD with one FAT16 partition (16 heads, 63 sectors),
-  Estex DSS 1.71 and the system.zip of the Sprinter Team update 3.06,.
-  
+- **Sprinter:**  a 64 MB fixed VHD with one FAT16 partition (16 heads, 63 sectors),
+  Estex DSS 1.71 and the system.zip of the Sprinter Team update 3.06.
+  a 16 MB disk with DSS 1.71, FM and TMNT Fighters 1.2.
+  A disk of your own: File Commander / New Disk / HDD FAT, copy the DSS files onto it, then Files / Sprinter Boot.
+
 ### ZX Spectrum Next
 
-- **ROMs** in `rom/`: `enNextZX.rom` (NextZXOS, 4 × 16K), `enNxtmmc.rom` (esxDOS for the DivMMC), `enNextMf.rom`
-  (Multiface) from `machines/next/` of the System/Next distribution, and `sinclair.rom` (the 48K ROM that NEX and DOT
-  files started on their own get as ROM 3).
-- **Terms:** the distribution is under the Next License (`LICENSE.md` in it): no sale, no duplication fee; a copy without
+-- **Terms:** the distribution is under the Next License (`LICENSE.md` in it): no sale, no duplication fee; a copy without
   the source code must have a link to it. The full distribution: https://www.specnext.com/latestdistro/ , sources:
   https://gitlab.com/thesmog358/tbblue
 
@@ -113,11 +110,13 @@ The UnrealSpeccy sources and the third-party components keep their own terms, wh
 - **Xpeccy** by SAM style: the model for the deBUGa debugger.
 - **TS-Labs:** ZX Evolution and TS-Conf.
 - **Peters Plus** (Ivan Mak and team): Sprinter Sp2000, its BIOS and Estex DSS; **Sprinter Team:** BIOS 3.06, Estex DSS 1.71
-  and their system software (2009–2025, update of 25.06.2025); **Anton Enin:** Flex Navigator, TASM, GFX Viewer; **Vasil Ivanov:** FM; **Andrei I. Holub:** the MAME Sprinter driver.
+  and their system software (2009–2025, update of 25.06.2025); **Anton Enin:** Flex Navigator, TASM, GFX Viewer; **Vasil Ivanov:** FM (the programs on
+  `hdd/dss.zip`); **Andrei I. Holub:** the MAME Sprinter driver.
 - **MOA:** the GMX board of Scorpion ZS 256 and the Shadow Service Monitor; **LW / PLM:** the GMX flash of 2022–2025
   (GMX Loader 2.00, Shadow Service Monitor 6.44su).
 - **SpecNext Ltd:** ZX Spectrum Next and the System/Next distribution; **Garry Lancaster:** NextZXOS;
   **Andrei I. Holub:** the MAME Spectrum Next driver.
+- **The authors of ZX ULAX:** the board, its documentation, the dux format, the emuL emulator and the game pack of dux colorizations.
 - **izzx:** [OSZ](https://github.com/izzx-git/OSZ), the multitasking OS of Scorpion GMX.
 - **Alone Coder** and the NedoOS team: [NedoOS](https://nedoos.ru).
 - **sjasmplus** by Aprisobal, z00m128 and contributors (BSD-3-Clause).

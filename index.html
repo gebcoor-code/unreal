@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261114205133">
+<meta name="build" content="20261114211955">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -864,7 +864,7 @@ select.usel-src { display: none !important; }
 #dgamem .mrows { position: sticky; top: 0; }
 .dgabot { flex: none; height: 150px; min-height: 60px; display: flex; flex-direction: column; }
 .dgabot .dgamemh button { padding: 1px 8px; font-size: 12px; } .dgabot .dgamemh button.on { border-color: var(--accent); color: #1a1208; } /* dark on orange, like the other tabs */
-.dgabot .dgatm, .dgabot .dgatb, .dgabot .dgats { display: flex; align-items: center; gap: 4px; flex: 1; } .dgabot .dgatb { justify-content: flex-end; } .dgabot [hidden] { display: none !important; }
+.dgabot .dgatm, .dgabot .dgatb, .dgabot .dgats, .dgabot .dgatu { display: flex; align-items: center; gap: 4px; flex: 1; } .dgabot .dgatb { justify-content: flex-end; } .dgabot [hidden] { display: none !important; }
 .dgasplit { flex: none; position: relative; background: var(--line); touch-action: none; z-index: 2; } .dgasplit:hover, .dgasplit.drag { background: var(--accent); }
 .dgasplit::before { content: ''; position: absolute; } /* a wider grip than the 1 px line */
 .dgasplit.v { width: 1px; cursor: ew-resize; } .dgasplit.v::before { top: 0; bottom: 0; left: -4px; right: -4px; }
@@ -883,7 +883,8 @@ select.usel-src { display: none !important; }
 #dgascr canvas { display: block; flex: none; image-rendering: pixelated; cursor: crosshair; } /* size: dbga.js scrFit (from the pane only) */
 .dgabot .dgamemh .dgats { flex: 1 1 0; } /* the hint never wraps the bar (the pane would change height under the pointer) */
 .dgabot .dgats .dgahint { flex: 1 1 0; width: 0; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: right; }
-#dgamsrc, #dgascrsrc, #dgascrfmt { height: 22px; font-size: 12px; }
+#dgamsrc, #dgascrsrc, #dgascrfmt, #dgaumode { height: 22px; font-size: 12px; }
+.dgatu input[type=checkbox] { width: auto; height: auto; margin: 0; } .dgatu #dgaugo, .dgatu #dgaubrk { width: 6ch; }
 .tspal { display: grid; grid-template-columns: repeat(16, 1fr); gap: 1px; max-width: 272px; }
 .tspal i { display: block; aspect-ratio: 1; border-radius: 1px; }
 .tspal i.g { outline: 1px solid var(--accent, #f80); outline-offset: -1px; }
@@ -893,6 +894,12 @@ select.usel-src { display: none !important; }
 #dgawatch .wl .wx { margin-left: auto; color: var(--dim); visibility: hidden; padding: 0 2px; } #dgawatch .wl:hover .wx { visibility: visible; } #dgawatch .wl .wx:hover { color: #f87171; }
 #dgawatch input { width: 100%; box-sizing: border-box; height: 16px; padding: 0 3px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 0; box-shadow: 0 0 0 1px var(--accent); border-radius: 2px; outline: none; }
 #dgadev { flex: 1; min-height: 0; overflow: auto; padding: 4px 8px; font: 12px/16px ui-monospace, Consolas, monospace; color: var(--text); display: flex; flex-wrap: wrap; gap: 4px 24px; align-content: flex-start; }
+#dgaulx { flex: 1; min-height: 0; overflow: auto; padding: 2px 8px; font: 12px/18px ui-monospace, Consolas, monospace; color: var(--text); white-space: nowrap; }
+#dgaulx .ur { display: flex; gap: 8px; align-items: center; } #dgaulx .ur.cur { background: rgba(90, 169, 255, .14); } #dgaulx .ua { color: var(--dim); min-width: 6ch; } #dgaulx .ub { color: var(--dim); min-width: 2ch; }
+#dgaulx .uo { min-width: 17ch; color: #e879f9; } #dgaulx .uw { cursor: pointer; display: inline-flex; align-items: center; gap: 2px; } #dgaulx .uw:hover { color: var(--accent); }
+#dgaulx .uw i { width: 10px; height: 10px; border: 1px solid rgba(255,255,255,.25); display: inline-block; } #dgaulx .uw i.sp { background: repeating-linear-gradient(45deg, #666 0 2px, transparent 2px 4px); }
+#dgaulx .ux { color: var(--dim); font-size: 11px; } #dgaulx input { width: 5ch; height: 16px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--accent); padding: 0 2px; }
+#dgaulx .dl { white-space: pre; } #dgaulx .dl.lit { background: rgba(232, 121, 249, .18); } #dgaulx .dl .dad { cursor: pointer; color: var(--accent); } #dgaulx .uh { color: var(--accent); margin: 4px 0 0; }
 #dgadev .dv { min-width: 230px; } #dgadev h6 { margin: 2px 0; font-size: 12px; color: var(--accent); font-weight: 600; } #dgadev .k { color: var(--dim); display: inline-block; min-width: 9ch; } #dgadev .dim { color: var(--dim); }
 #dgadev .ayr { display: grid; grid-template-columns: repeat(8, 3ch); gap: 0 6px; margin-bottom: 2px; } #dgadev .ayr .sel { background: rgba(240, 160, 80, .35); }
 #dgadev .nxr { display: grid; grid-template-columns: repeat(16, 2ch); gap: 0 5px; } #dgadev .nxr span, #dgadev .np { cursor: pointer; } #dgadev .nxr .u { color: var(--dim); } #dgadev .nxr .sel { background: rgba(240, 160, 80, .35); } #dgadev .nxr span:hover, #dgadev .np:hover { color: var(--accent); }
@@ -2013,7 +2020,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="dbghead fhead"><span>deBUGa (Xpeccy)</span><b id="dgastate"></b><button id="dgahelpbtn" title="Help (F1)">?</button><button id="dgaclose" title="Close (Esc): the machine runs on">✕</button></div>
   <div class="dgabar">
     <button id="dgarun" title="Stop / Run (F9)">Run</button>
-    <button data-c="1" title="Step (F7)">Step</button><button data-c="2" title="Step over CALL / RST / LDIR… (F8)">Over</button><button data-c="3" title="Run to the cursor line (F4)">To cursor</button><button data-c="4" title="Run to return from the subroutine (F6)">Out</button><button id="dgacpu" hidden title="The CPU shown: the machine's Z80 or the General Sound Z80 (its registers, listing, memory, steps; breakpoints of the listing)">CPU: ZX</button>
+    <button data-c="1" title="Step (F7)">Step</button><button data-c="2" title="Step over CALL / RST / LDIR… (F8)">Over</button><button data-c="3" title="Run to the cursor line (F4)">To cursor</button><button data-c="4" title="Run to return from the subroutine (F6)">Out</button><button id="dgappu" hidden title="ZX ULAX: run to the next instruction with a PPU opcode (FULL; Ctrl+F7)">PPU step</button><button id="dgacpu" hidden title="The CPU shown: the machine's Z80 or the General Sound Z80 (its registers, listing, memory, steps; breakpoints of the listing)">CPU: ZX</button>
     <label title="Disassembly from an address (hex), Enter">Go #<input id="dgago" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label>
     <button id="dgamark" title="Mark the selected lines (Shift + arrows / click): code, bytes, words, addresses, text; label (:), comment (;). Also: right click / long press on a line">Mark ▾</button>
     <input id="dgaprjn" placeholder="Project…" spellcheck="false" autocomplete="off" title="Project name: the file of Save .xmap (Load puts the name of the file here)"><button id="dgaprj" title="Project: Save / Load .xmap, labels, Clear (marks, labels, comments of this model are kept in the browser)" aria-haspopup="menu"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -2025,13 +2032,15 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   </div>
   <div class="dgasplit h" id="dgash" title="Drag: height of the lower part"></div>
   <div class="dgabot" id="dgabot">
-    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="The hardware as the stop left it: memory and video ports of the machine, AY, WD1793 / µPD765, tape, sound cards, IDE, SD, CMOS; TS-Conf and ZX Spectrum Next: their registers (Next: a press writes one)">Devices</button>
+    <div class="dgamemh"><button data-t="mem" class="on">Memory</button><button data-t="bp">Breakpoints</button><button data-t="scr" title="The screen as the stop left it: the picture shown, the ZX screen, the TS-Conf frame, the ATM CP/M screen, a RAM page">Screen</button><button data-t="dev" title="The hardware as the stop left it: memory and video ports of the machine, AY, WD1793 / µPD765, tape, sound cards, IDE, SD, CMOS; TS-Conf and ZX Spectrum Next: their registers (Next: a press writes one)">Devices</button><button data-t="ulx" id="dgaulxbtn" hidden title="ZX ULAX: its memory as the stop left it - opcodes and pixels of the Z80 addresses, palette, tables, the dux text; a click on a word edits it">ULAX</button>
       <span class="dgatm"><select id="dgamsrc" data-pop-class="fcmpop" title="Memory: the Z80 64K as paged now, or one RAM / ROM page (@: where it is mapped now)"><option value="0:0">CPU 64K</option></select><label title="Dump from an address (hex), Enter">#<input id="dgamemgo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><button id="dgafill" title="Fill a block with a byte / bytes / text">Fill…</button><button id="dgasave" title="Save a block: binary or Hobeta file (download)">Save…</button><button id="dgaload" title="Load a file into memory">Load…</button></span>
       <span class="dgatb" hidden><button id="dgabpclr" title="Counters to 0">Reset counts</button><button id="dgabpsave" title="Save the list (.xbrk text)">Save</button><button id="dgabpload" title="Load a list (.xbrk)">Load</button></span>
+    <span class="dgatu" hidden><select id="dgaumode" data-pop-class="fcmpop" title="Code: Z80 addresses as paged now (byte, PPU opcode, 8 pixels from the left) · Palette: the 64K palette (flash half from 8000) · Tables: 7A attribute colors, 7B border / signal, 7C active colors, 7E pixel values, 7D opcode tables · dux: the text applied"><option value="code">Code</option><option value="pal">Palette</option><option value="tab">Tables</option><option value="dux">dux</option></select><label title="From an address: Z80 (Code), index (Palette, 7D), hex; Enter">#<input id="dgaugo" data-hex="" maxlength="4" spellcheck="false" autocomplete="off"></label><label title="Code: from the cursor line of the listing; dux: its lines lit"><input type="checkbox" id="dgaufol" checked>Cursor</label><label title="Stop before an instruction with this PPU opcode (FULL): hex, X for any digit (C0XX, 5FXX); empty: off">Stop at<input id="dgaubrk" maxlength="4" spellcheck="false" autocomplete="off"></label></span>
     <span class="dgats" hidden><select id="dgascrsrc" data-pop-class="dgapop fcmpop" title="As Shown: the last picture drawn · TSframe: the TS-Conf frame · ZXScr: the ZX screen of page 5 / 7 (the shown one first) · CPM: the ATM screen from the RAM now (video page 5 / 7) · GMX: the 640x200 screen of Scorpion GMX from the RAM now (page #39 / #3B) · SPframe: the Sprinter picture from its video RAM now · SP VRAM: the Sprinter video RAM, a byte a pixel · SAMscr: the SAM Coupé screen of VMPR in its mode · Profi 512: the 512x240 screen of page 4 / 6 · TS T0 / T1 map, TS sprites: a TS-Conf tile map / the sprites alone · NX ULA, Layer 2, L2 shadow, Tilemap, Sprites, Patterns: one layer of ZX Spectrum Next as its video would draw it now (gray check: transparent) · RAM: a page as a ZX screen (SAM: as a SAM screen in the mode of VMPR)"></select><select id="dgascrfmt" data-pop-class="dgapop fcmpop" hidden title="TS-Conf: the page as a ZX screen, or the RAM from it as a 512×512 picture of 16 colors (8 pages) / 256 colors (16 pages)"><option value="0">ZX</option><option value="1">16c</option><option value="2">256c</option></select><span class="dgahint" id="dgascrinfo">click: the byte in the dump (Shift: its attribute)</span></span>
     </div>
     <div id="dgamem"></div>
     <div id="dgadev" hidden></div>
+    <div id="dgaulx" hidden></div>
     <div id="dgascr" hidden><canvas id="dgascv" width="256" height="192"></canvas></div>
     <div id="dgabp" hidden>
       <div class="dgabpadd">
