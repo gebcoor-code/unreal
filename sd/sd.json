@@ -5,5 +5,5 @@
   { "name": "OSZ (Scorpion GMX)", "url": "osz.zip", "run": "?model=osz", "tag": "SD OS" },
   { "name": "NextZXOS 2.10 (SpecNext)", "url": "next.zip", "run": "?model=specnext", "tag": "SD NEX" },
   { "name": "SymbOS 4.0 (SpecNext)", "url": "next.zip", "run": "?model=specnext&run=symbos.nex", "tag": "SD OS NEX" },
-  { "name": "esxDOS 0.8.9 (DivMMC, Pentagon) (FAT16)", "url": "esxdos.zip", "run": "?model=pentagon&mmc=esxdos.zip", "tag": "MMC" }  
+  { "name": "esxDOS 0.8.9 (DivMMC)", "url": "esxdos.zip", "run": "?model=pentagon&mmc=esxdos.zip", "tag": "MMC OS" }  
 ]
