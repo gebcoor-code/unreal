@@ -1,8 +1,5 @@
 ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is UnrealSpeccy 0.39.0
 
-It runs on desktop browsers, Mac, iPad and iPhone without installation: all it needs is the page on a web server
-(on Windows, `serve.cmd` in the archive starts one with Python). The full description: [README-full.md](README-full.md).
-
 ## Machines
 
 | Model | Notes |
