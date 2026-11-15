@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261114211955">
+<meta name="build" content="20261115164317">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -434,13 +434,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .optwin[hidden] { display: none; }
 /* phones / tablets: at most 70% of the window height, the tab scrolls */
 @media (pointer: coarse), (max-width: 620px) { .optwin { max-height: 70vh; max-height: 70dvh; } .optwin .body { flex: 0 1 auto; } }
-#hdds .hddgeo, #sdgeo { padding-right: 0; }
+#hdds .hddgeo, #sdgeo, #sd2geo, #sdtgeo { padding-right: 0; }
+#dmnote:empty, #gknote:empty { display: none; }
+#gkgeo { display: flex; align-items: center; gap: 10px; } #gkgeo > label { white-space: nowrap; } .gkline { display: flex; align-items: center; gap: 10px; min-width: 0; } .gkline .usel { flex: 0 0 84px; width: 84px; height: 32px; } .gkline label { margin-left: 22px; white-space: nowrap; } .gkline input { flex: 0 0 76px; width: 76px; height: 32px; box-sizing: border-box; padding: 0 8px; text-align: right; font: inherit; }
 .hddwarn { min-height: 1.4em; margin: 2px 4px 0; font-size: 11px; line-height: 1.4em; color: var(--accent); }
-#sdgeo .sz { min-width: 80px; color: var(--dim); }
+#sdgeo .sz, #sd2geo .sz, #sdtgeo .sz { min-width: 80px; color: var(--dim); } #sdtgeo .sz { text-align: right; padding-right: 2px; }
 #sdcard.off .dl, #sdcard.off .dname { opacity: .5; }
 #hdds .hddgeo .chs { width: 80px; }
 #hdds .hddgeo .lba { width: 60px; }
-#hdds .hddgeo .srv, #sdgeo .srv { flex: 1 1 0; min-width: 0; width: 0; height: 22px; font-size: 11px; padding: 0 4px; }
+#hdds .hddgeo .srv, #sdgeo .srv, #sd2geo .srv, #sdtgeo .srv { flex: 1 1 0; min-width: 0; width: 0; height: 22px; font-size: 11px; padding: 0 4px; }
 .optwin header { display: flex; align-items: center; gap: 4px; padding: 6px 8px; border-bottom: 1px solid var(--line); background: var(--panel); cursor: move; touch-action: none; user-select: none; }
 .optwin .tabs { display: flex; gap: 3px; flex: 1; }
 .optwin .tabs button.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
@@ -461,6 +463,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 #mainhelp table.keys { font-size: 12px; }
 .optwin header .tabq.on { background: var(--accent); color: #1a1208; border-color: var(--accent); }
 .optwin .tabs button { padding: 3px 5px; letter-spacing: -.02em; }
+.optwin .tabs button.tabi { display: inline-flex; align-items: center; justify-content: center; padding: 3px 6px; } .optwin .tabs button.tabi svg { display: block; }
 .optgrid.sndgrid { grid-template-columns: 100px minmax(0, 1fr) 38px; }
 .sndgrid select { grid-column: span 2; }
 .sndgrid input[type=range] { width: 100%; margin: 0; }
@@ -591,7 +594,7 @@ select option { background: var(--panel2); color: var(--text); }
 .tagic.txt { font-size: 10px; border: 1px solid currentColor; border-radius: 3px; padding: 0 3px; }
 .dditem.on .tagic { color: #1a1208; }
 .ddcur .tagic + .tagic, .dditem .tagic + .tagic { margin-left: -2px; }
-.tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; }
+.tagic.tag-hdd { color: #5ec8c0; } .tagic.tag-pro { color: #c39bf0; } .tagic.tag-sd { color: #6aaef5; } .tagic.tag-mmc { color: #e070e0; }
 .tagic.tag-zx { color: #8fd17a; } .tagic.tag-os { color: #f08aa8; } .tagic.tag-tsc { color: #e3cf5a; } .tagic.tag-spr { color: #ff5f5f; } .tagic.tag-sam { color: #b8c2ff; } .tagic.tag-nex { color: #e4e4e4; }
 #ldrunrow { gap: 10px; margin-top: 6px; } #ldrunrow[hidden] { display: none; }
 #ldrunrow .lddrv { font-size: 13px; color: var(--text); gap: 6px; cursor: pointer; } #ldrunrow input { accent-color: var(--accent); margin: 0; }
@@ -1167,7 +1170,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 
 <div id="options" class="optwin" hidden role="dialog" aria-label="Options">
     <header class="fhead">
-      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="ula">ULA</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="off">Offline</button><button data-tab="about">About</button></div>
+      <div class="tabs"><button data-tab="sys" class="on">System</button><button data-tab="ula">ULA</button><button data-tab="vid">Video</button><button data-tab="opt">Disk</button><button data-tab="inp">Input</button><button data-tab="snd">Sound</button><button data-tab="off">Offline</button><button data-tab="about" class="tabi" title="About" aria-label="About"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="4.9" r="1" fill="currentColor"/><rect x="7.25" y="6.9" width="1.5" height="4.9" rx=".6" fill="currentColor"/></svg></button></div>
       <button data-close title="Close">✕</button>
     </header>
     <div class="body panes">
@@ -1268,6 +1271,33 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
             <button class="eject" title="Unmount">⏏</button>
             <label title="Read only: writes are dropped"><input type="checkbox" class="wp">RO</label></div>
           <div class="hddgeo" id="sdgeo"><span class="sz" title="Size of the image"></span> <select data-pop-class="cmpop" class="srv" title="Mount an image from the server (sd/sd.json)" hidden></select></div>
+          <div class="hddgeo" id="sdtgeo"><label class="sz" for="sdtime" title="Waits of a real card on both cards (the Z-Controller's, the DivMMC's), in the emulated time: Ideal: none. Realistic: NCR 1-8 bytes, data token 0.1-2 ms, busy after a write 0.25-20 ms, ready 50-500 ms after the first ACMD41 (random; sdseed= in a link repeats it). Slow: the worst case of the specification: 8 bytes, 100 ms, 250 ms, 1 s">Timing</label><select data-pop-class="cmpop" class="srv" id="sdtime"><option value="0">Ideal</option><option value="1">Realistic</option><option value="2">Slow</option></select></div>
+          <input type="file" id="sd2file" accept=".img,.vhd,.zip,.sd" hidden>
+        </div>
+        <div class="card" id="dmbox">
+          <h3>DivMMC <span class="h3n">esxDOS · Pentagon</span></h3>
+          <label class="chk" title="DivMMC on Pentagon: esxDOS in its 8K ROM (rom/esxmmc.zip with ESXMMC.BIN inside, or rom/esxmmc.rom), 128K of RAM, its own card (MMC) next to the Z-Controller's: two cards at once. Automap at RST 0 / 8 / #38, #66, #04C6, #0562 and #3D00..#3DFF (esxDOS returns from the ROM through #3DFD: the TR-DOS entry of the Beta 128 is off; esxDOS has its own TR-DOS), paged out at #1FF8. Ports #E3, #E7 (bit 0: its card), #EB. Restarts the machine"><input type="checkbox" id="dmon">DivMMC (esxDOS)</label>
+          <div class="drive" id="sd2card"><span class="dl" title="SD card of the DivMMC">MMC:</span><span class="dname">— empty —</span>
+            <button class="ins" title="Mount an SD card image for the DivMMC (.img, .vhd or a ZIP with it)">Insert</button>
+            <button class="save" title="Download the image (with the changes)">Save</button>
+            <button class="eject" title="Unmount">⏏</button>
+            <label title="Read only: writes are dropped"><input type="checkbox" class="wp">RO</label></div>
+          <div class="hddgeo" id="sd2geo"><span class="sz"></span> <select data-pop-class="cmpop" class="srv" title="Mount an image from the server (sd/sd.json; esxDOS boots from a card with its SYS folder)"></select></div>
+          <p class="hddwarn" id="dmnote"></p>
+        </div>
+        <div class="card" id="gkbox">
+          <h3>Gotek <span class="h3n">FlashFloppy · Pentagon</span></h3>
+          <div class="hddgrid" id="gkgeo">
+            <label for="gkdrv" title="A Gotek with FlashFloppy 3.42 in a drive of the Beta 128: its USB stick (an image, FAT16 / FAT32), its slots the TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255: status, SET_LBA, SET_CYL, SELECT_IMAGE, SELECT_NAME, the stick's sectors (written inside the FAT volume only); leaving it mounts the slot selected">Drive</label>
+            <div class="gkline"><select data-pop-class="cmpop" id="gkdrv"><option value="-1">Off</option><option value="0">A:</option><option value="1">B:</option></select>
+              <label for="gkrm" title="How long a remount takes after Direct Access: no index pulses meanwhile, a read waits (not measured on a real Gotek yet)">Remount, ms</label><input type="number" id="gkrm" min="0" max="10000" step="50" value="500"></div>
+          </div>
+          <div class="drive" id="usbcard"><span class="dl" title="USB stick of the Gotek: an image with FAT16 / FAT32 (an MBR with a partition, or a superfloppy)">USB:</span><span class="dname">— empty —</span>
+            <button class="ins" title="Insert a USB stick image (.img or a ZIP with it)">Insert</button>
+            <button class="save" title="Download the image (with the changes)">Save</button>
+            <button class="eject" title="Remove">⏏</button><span></span></div>
+          <p class="hddwarn" id="gknote"></p>
+          <input type="file" id="usbfile" accept=".img,.ima,.bin,.zip,.vhd" hidden>
         </div>
       </div>
       <div class="pane" data-pane="inp">
@@ -1408,10 +1438,10 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="card" id="ulaxcard">
           <h3>ZX ULAX <span class="h3n">colorization</span></h3>
           <div class="optcol">
-            <label class="chk" title="The picture of the ULAX board (Pentagon 128, Spectrum +3): a ZX program in the colors of its .dux. A snapshot with its .dux (or a .dux loaded alone): on at once; a tape / disk with its .dux: switched on by hand once the program has loaded (the first switch on applies the dux). Off: the ZX picture, the dux stays. Also ULAX at the top of the screen, Ctrl+Alt+U"><input type="checkbox" id="ulaxon"> ZX ULAX</label>
+            <label class="chk" title="The picture of the ULAX board (Pentagon 128, Spectrum +3): a ZX program in the colors of its .dux. A snapshot with its .dux (or a .dux loaded alone): on at once; a tape / disk with its .dux: switch it on in the game's menu (the first switch on applies the dux). Off: the ZX picture, the dux stays. Also ULAX at the top of the screen, Ctrl+Alt+U"><input type="checkbox" id="ulaxon"> ZX ULAX</label>
           </div>
           <p class="note" id="ulaxinfo"></p>
-          <div class="ulaxbtns"><button id="ulaxdux" title="A .dux for the program now in memory: applied at once, ULAX on">Load dux…</button><button id="ulaxagain" title="The dux onto the program in memory once more, as just loaded (it was applied too early: the program loaded more after it). The colors the program set while it ran go; switching ULAX off and on keeps them">Apply .dux again</button><button id="ulaxrm" title="The dux goes, ULAX off">Remove dux</button></div>
+          <div class="ulaxbtns"><button id="ulaxdux" title="A .dux for the program now in memory: applied at once, ULAX on">Load dux…</button><button id="ulaxagain" title="The dux onto the program in memory once more, as just loaded (it was applied too early: the program loaded more after it). The colors the program set while it ran go; switching ULAX off and on keeps them. Colors a game sets once at its start come back only when it starts again">Apply .dux again</button><button id="ulaxrm" title="The dux goes, ULAX off">Remove dux</button></div>
         </div>
         <div class="card">
           <h3 class="hdef">ZXBUS sound cards<button class="defbtn" id="ulaz_def" title="Default: Card">↺</button></h3>
@@ -1495,7 +1525,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch; clock by #0F bits 5-4: #00 24, #20 20, #10 12, #30 10 MHz. GS 12 MHz (Options / Sound): classic General Sound, ROM 1.04, 4 ch, no #0F</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793): TR-DOS, CP/M, iS-DOS; Sprinter: PC floppies (FAT12, 720K); SAM Coupé (WD1772): MGT, SAD; +3 (µPD765)</td></tr>
-          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; images HDD, HDF, VHD, IMG</td></tr>
+          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; DivMMC with esxDOS and its own card (Pentagon, rom/esxmmc.zip); Gotek with FlashFloppy Direct Access and a USB stick image (Pentagon); real card timing (Ideal / Realistic / Slow); images HDD, HDF, VHD, IMG</td></tr>
           <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
           <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse; PS/2 (ZX Evo), AT keyboard and MS serial mouse (Sprinter); ZX Spectrum Next keys: Auto, PC layout, Next (Options / Input)</td></tr>
           <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz, Spectrum Next 3.5 / 7 / 14 / 28 MHz (set by the program); SAM Coupé 6 MHz</td></tr>
@@ -1551,6 +1581,11 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Scorpion ZS<br>256, GMX</td><td>Scorpion; GMX board and Shadow Service Monitor: MOA (1993–1998)</td></tr>
           <tr><td>GMX flash<br>2022–2025</td><td>LW / PLM: GMX Loader 2.00, Shadow Service Monitor 6.44su, Navigator (<a href="https://t.me/ZS_ProfRom" target="_blank" rel="noopener">ZS ProfRom</a>)</td></tr>
           <tr><td>OSZ</td><td>izzx (<a href="https://github.com/izzx-git/OSZ" target="_blank" rel="noopener">GitHub</a>); with code of LW/PLM, S.V.Bulba, Kulich, Nihirash, ZORBA, GALSTAFF</td></tr>
+          <tr><td>ZX ULAX</td><td>its authors: the board, its documentation, the dux format, the emuL emulator and the dux game pack</td></tr>
+          <tr><td>DivMMC</td><td>Mario Prato (the interface)</td></tr>
+          <tr><td>esxDOS</td><td>Papaya Dezign (lordcoxis, UB880D and contributors); 0.8.9 ROM and system files (<a href="https://esxdos.org/" target="_blank" rel="noopener">esxdos.org</a>)</td></tr>
+          <tr><td>FlashFloppy,<br>Direct Access</td><td>Keir Fraser (<a href="https://github.com/keirf/flashfloppy" target="_blank" rel="noopener">FlashFloppy</a>, da.c); the HxC Floppy Emulator's Direct Access (HxCFEDA): Jean-François Del Nero</td></tr>
+          <tr><td>SD card timing</td><td>the ideal / realistic / slow profiles of Unreal-NG (alfishe)</td></tr>
           <tr><td>TR-DOS</td><td>Technology Research Ltd.</td></tr>
           <tr><td>CP/M 2.2</td><td>Digital Research</td></tr>
           <tr><td>ZX Spectrum</td><td>Sinclair Research / Amstrad; the ROMs of 48 / 128 / +2 (RZX playback): © Amstrad, distributed with their permission</td></tr>
@@ -1587,6 +1622,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; XT mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Shift+F12, Alt+Shift+F11</td><td>ZX Spectrum Next: Multiface button (NextZXOS: NMI menu)</td></tr>
+      <tr><td>Ctrl+F11</td><td>Pentagon with DivMMC: its NMI button (esxDOS: the NMI menu, file browser); without it: TR-DOS magic</td></tr>
       <tr><td>Ctrl+F11</td><td>ZX Spectrum Next: DivMMC button (when NR #06 D4 is on)</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
@@ -1662,7 +1698,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>RZX</td><td>input recordings (<a href="https://rzxarchive.co.uk/" target="_blank" rel="noopener">rzxarchive.co.uk</a>): the snapshot in it (SNA, Z80, SZX) starts on its machine — ZX Spectrum 48 / 128 / +2 with the Sinclair ROMs (rom/sinclair.rom), Spectrum +3, Pentagon 128 — and plays the recorded keys. The player under the picture: ▶ / ❚❚, seek bar (a click or tap jumps there: from the nearest state, then the frames without sound; the states of the whole recording are made in the background, the thin line under the bar shows how far), speed 1× 2× 4× 8×, Take control (asked first: the recording stops there, the player closes, the game is yours; at the end of the recording: Finished in its place); pin: in (orange) = player always there, out = it hides, a tap on the picture shows it for a while. Loading another file, Reset or another machine closes it; another file brings back the machine that was on before the recording. Out of sync (the program went another way): the player says where. Not: protected (competition) recordings, a snapshot in another file</td></tr>
       <tr><td>RZX recording</td><td>Save / Input recording (RZX): Start — from the next frame the machine is kept as a snapshot (SZX) and then every key (the values of the ports), ● REC on the screen (a click opens Save); Stop, then Download / Save (browser storage: Load lists it). Pentagon 128, Spectrum +3 and the machines an RZX starts (Take control, then record your own game); CPU clock up to 3x. Reset, another machine, a snapshot or the RZX player: asked first, yes = recording discarded</td></tr>
       <tr><td>Programs</td><td>SPG (TS-Conf; starts ZX Evo TS-Conf), also from File Commander and REST snap=; NEX and DOT (start ZX Spectrum Next; a DOT runs at #2000 as NextZXOS runs it, without arguments), also REST snap=</td></tr>
-      <tr><td>ZX ULAX</td><td>DUX: colors of a ZX program for the ULAX board, on Pentagon 128 and Spectrum +3. While a .dux is loaded, ULAX is at the top of the screen: white on, gray off; a click / tap switches it (also Options / ULA / ZX ULAX, Ctrl+Alt+U). A snapshot or RZX with its .dux (a ZIP, REST snap= dux=), or a .dux loaded alone: applied to the program in memory, on at once. A tape or disk with its .dux: the dux is loaded, ULAX gray; switch it on once the program has loaded (the first switch on applies the dux). Off and on again keeps the colors the program set while it ran; Options / ULA / Apply .dux again applies the dux anew, as just loaded (after a switch on too early: the program loaded more after it), those colors go. A reset keeps the dux (gray: on again once the program is back); another snapshot, another machine or Remove dux take it away; the next disk or tape keeps it (the same program). A ZIP with a snapshot and its .dux on a machine with no ULAX: asked to switch to Pentagon. A .dux of another program does not change how it runs, only its picture (wrong colors): switch ULAX off or remove the dux. A snapshot saved with a dux applied is a ZIP with the .sna, its .dux and the colors of that moment (.ulx). Not yet: full-screen mappers, LowRes</td></tr>
+      <tr><td>ZX ULAX</td><td>DUX: colors of a ZX program for the ULAX board, on Pentagon 128 and Spectrum +3. While a .dux is loaded, ULAX is at the top of the screen: white on, gray off; a click / tap switches it (also Options / ULA / ZX ULAX, Ctrl+Alt+U). A snapshot or RZX with its .dux (a ZIP, REST snap= dux=), or a .dux loaded alone: applied to the program in memory, on at once. A tape or disk with its .dux: the dux is loaded, ULAX gray; switch it on in the game's menu (the first switch on applies the dux; colors a game sets once at its start, Pogie in Wonderful Dizzy for one, stay unset when it comes on later: Apply .dux again does not bring them back either, start the game again from its menu). Off and on again keeps the colors the program set while it ran; Options / ULA / Apply .dux again applies the dux anew, as just loaded (after a switch on too early: the program loaded more after it), those colors go. A reset keeps the dux (gray: on again once the program is back); another snapshot, another machine or Remove dux take it away; the next disk or tape keeps it (the same program). A ZIP with a snapshot and its .dux on a machine with no ULAX: asked to switch to Pentagon. A .dux of another program does not change how it runs, only its picture (wrong colors): switch ULAX off or remove the dux. A snapshot saved with a dux applied is a ZIP with the .sna, its .dux and the colors of that moment (.ulx). Not yet: full-screen mappers, LowRes</td></tr>
       <tr><td>Wild Commander</td><td>ZX Evo TS-Conf: a TR-DOS disk put into a drive is copied as .trd into the root of the SD card too, a .wmf program (Load, File Commander) goes there only; Enter on it in Wild Commander. The card has to be wc.zip without other changes, else it is replaced with wc.zip after a question</td></tr>
       <tr><td>TS-Conf ZIP</td><td>a ZIP with an SD card image (.img / .vhd) or with boot.$C and its folders (Wild Commander) goes onto the SD card; TS-BIOS then starts boot.$C (Caps Shift + Reset). A .json next to the image, <code>{"run": "folder/file.spg"}</code>, names the file Wild Commander starts then (also with <code>sd=</code> in a link). An SPG that loads more files needs them on the card: start Wild Commander (TS-Conf) and copy them there (File Commander)</td></tr>
       <tr><td>SD card ZIP</td><td>the .json next to the image may name the machine of the card and disks of the ZIP for the drives: <code>{"model": "gmx", "a": "OS.TRD"}</code> (OSZ). ZX Spectrum Next: <code>{"model": "next", "run": "game.nex"}</code>: the NEX / DOT of the card starts (Autostart, REST <code>autorun=1</code>); without run, or Autostart off: NextZXOS boots from the card. Load of the ZIP: that machine starts with the card, A: boots (Autostart). <code>sd=</code> in a link: the disks go in when the link has no a= / b= of its own</td></tr>
@@ -1835,7 +1871,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="rahelp" hidden role="dialog" aria-label="REST API help">
   <div class="dbghead fhead"><span>REST API help</span><button id="rahelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;fdd=a:trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on).</p>
+    <p>Link to this page with parameters starts a machine as set: <b>index.html?model=pentagon&amp;fdd=a:trd/game.trd&amp;run=game</b>. Parameters may also follow #. Paths are on this site; full URL of another site works when that site allows it (CORS, e.g. raw.githubusercontent.com). What a link sets is not stored: visitor's own settings stay (only sd= switches Z-Controller on). Card images after a run (with the writes): Save (F2) / SD card, MMC card, USB stick.</p>
     <h4>Parameters</h4>
     <table class="keys">
       <tr><td>rom=</td><td>Custom ROM ZIP: machine with its ROM and settings (instead of model=), see below. With disks in the link (a= b= hdd= sd=) the machine waits for them and starts once they are in, as one switched on with the disks inserted: a program in ROM (QC and the like) sees them at its first start. A ROM set part (one ROM with its slot in the .json) gets the Pentagon's 128 BASIC, 48 BASIC and TR-DOS in the slots it leaves</td></tr>
@@ -1846,6 +1882,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
+      <tr><td>mmc=</td><td>SD card image for DivMMC (Pentagon): .img, .vhd or zip with it; DivMMC goes on for this visit. Two cards at once with sd=. esxDOS boots from a card with its SYS folder</td></tr>
+      <tr><td>divmmc=1</td><td>DivMMC on Pentagon for this visit (0: off): esxDOS from rom/esxmmc.zip (ESXMMC.BIN inside) or rom/esxmmc.rom, 128K RAM, ports #E3 #E7 #EB; #3Dxx is its own (TR-DOS through esxDOS)</td></tr>
+      <tr><td>sdtiming=</td><td>waits of a real SD card, both cards: ideal (none), realistic (NCR 1-8 bytes, token 0.1-2 ms, busy after write 0.25-20 ms, ready 50-500 ms after first ACMD41), slow (8 bytes, 100 ms, 250 ms, 1 s)</td></tr>
+      <tr><td>gotek=</td><td>Gotek with FlashFloppy (Pentagon) in drive A: or B: with its USB stick image, FAT16 / FAT32: gotek=b:sd/stick.img. Slots: TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255 (FlashFloppy 3.42)</td></tr>
+      <tr><td>gotekremount=</td><td>milliseconds a Gotek remount takes after Direct Access (default 500): no index pulses meanwhile</td></tr>
+      <tr><td>sdseed=</td><td>number: the random waits of sdtiming=realistic, the same each run (link builder adds it)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
       <tr><td>dux=</td><td>ZX ULAX colors (.dux) for the program of the link: applied after snap= at once; with a tape or disk it comes once the program runs. With no model= the machine is Pentagon 128 (unless +3)</td></tr>
       <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, hdd0=brw:cpm.zip, sd=brw:card.zip (file fields of this window offer them, marked [Browser]). Works only in this browser</td></tr>
@@ -1889,6 +1931,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_a">fdd</label><span class="rarow"><select id="rav_fdrv" class="radrv" title="Drive"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off"></span>
       <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><span class="rarow"><select id="rav_hdrv" class="radrv" title="HDD"><option value="0">0</option><option value="1">1</option></select><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"></span><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
       <label class="chk"><input type="checkbox" id="ra_sd">sd</label><input id="rav_sd" list="ra_sds" placeholder="sd/card.zip" spellcheck="false" autocomplete="off">
+      <label class="chk" title="mmc=: the SD card of the DivMMC (Pentagon; the DivMMC goes on for the visit)"><input type="checkbox" id="ra_sd2">mmc</label><input id="rav_sd2" list="ra_sds" placeholder="sd/esxdos.zip" spellcheck="false" autocomplete="off">
+      <label class="chk" title="gotek=: the Gotek (Pentagon) in drive A: or B: with its USB stick image (FAT16 / FAT32)"><input type="checkbox" id="ra_gk">gotek</label><span class="rapair" style="display:flex;gap:4px;min-width:0"><select id="rav_gkd" style="flex:0 0 auto"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_gk" list="ra_sds" placeholder="sd/stick.img" spellcheck="false" autocomplete="off" style="flex:1;min-width:0"></span>
+      <label class="chk" title="sdtiming=: the waits of a real SD card (realistic: with sdseed=, the same waits each time)"><input type="checkbox" id="ra_sdtime">sdtiming</label><select id="rav_sdtime"><option value="0">Ideal</option><option value="1">Realistic</option><option value="2">Slow</option></select>
       <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">use boot.b (A:)</option><option value="run">run TR-DOS file (A:)</option><option value="cpm">cpm= CP/M commands</option><option value="nedoos" hidden>nedoos= NedoOS commands</option></select>
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
       <span class="ralab" id="ral_run">file</span><span class="rarow" id="rar_run"><select id="rav_run"></select><input id="rav_runtxt" placeholder="name" spellcheck="false" autocomplete="off"></span>
