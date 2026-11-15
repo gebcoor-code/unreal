@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261115171716">
+<meta name="build" content="20261115180721">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1275,8 +1275,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <input type="file" id="sd2file" accept=".img,.vhd,.zip,.sd" hidden>
         </div>
         <div class="card" id="dmbox">
-          <h3>DivMMC <span class="h3n">esxDOS · Pentagon</span></h3>
-          <label class="chk" title="DivMMC on Pentagon: esxDOS in its 8K ROM (rom/esxmmc.zip with ESXMMC.BIN inside, or rom/esxmmc.rom), 128K of RAM, its own card (MMC) next to the Z-Controller's: two cards at once. Automap at RST 0 / 8 / #38, #66, #04C6, #0562 and #3D00..#3DFF (esxDOS returns from the ROM through #3DFD: the TR-DOS entry of the Beta 128 is off; esxDOS has its own TR-DOS), paged out at #1FF8. Ports #E3, #E7 (bit 0: its card), #EB. Restarts the machine"><input type="checkbox" id="dmon">DivMMC (esxDOS)</label>
+          <h3>DivMMC <span class="h3n">esxDOS</span></h3>
+          <label class="chk" title="DivMMC on Pentagon, ZX Spectrum 128, Scorpion: esxDOS in its 8K ROM (rom/esxmmc.zip with ESXMMC.BIN inside, or rom/esxmmc.rom), 128K of RAM, its own card (MMC) next to the Z-Controller's: two cards at once. Automap at RST 0 / 8 / #38, #66, #04C6, #0562 and #3D00..#3DFF (esxDOS returns from the ROM through #3DFD: the TR-DOS entry of the Beta 128 is off; esxDOS has its own TR-DOS), paged out at #1FF8. Ports #E3, #E7 (bit 0: its card), #EB. Restarts the machine"><input type="checkbox" id="dmon">DivMMC (esxDOS)</label>
           <div class="drive" id="sd2card"><span class="dl" title="SD card of the DivMMC">MMC:</span><span class="dname">— empty —</span>
             <button class="ins" title="Mount an SD card image for the DivMMC (.img, .vhd or a ZIP with it)">Insert</button>
             <button class="save" title="Download the image (with the changes)">Save</button>
@@ -1286,7 +1286,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <p class="hddwarn" id="dmnote"></p>
         </div>
         <div class="card" id="gkbox">
-          <h3>Gotek <span class="h3n">FlashFloppy · Pentagon</span></h3>
+          <h3>Gotek <span class="h3n">FlashFloppy</span></h3>
           <div class="hddgrid" id="gkgeo">
             <label for="gkdrv" title="A Gotek with FlashFloppy 3.42 in a drive of the Beta 128: its USB stick (an image, FAT16 / FAT32), its slots the TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255: status, SET_LBA, SET_CYL, SELECT_IMAGE, SELECT_NAME, the stick's sectors (written inside the FAT volume only); leaving it mounts the slot selected">Drive</label>
             <div class="gkline"><select data-pop-class="cmpop" id="gkdrv"><option value="-1">Off</option><option value="0">A:</option><option value="1">B:</option></select>
@@ -1501,8 +1501,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Sprinter Sp2000</td><td>4096K, BIOS 3.06 (setup: Del at start; startup sound; ROM disk with RECOVERY); text 80x32, graphics 320x256 (256 colors) and 640x256 (16); 3.5 / 21 MHz; accelerator (fills, copies), raster effects; IDE (2 channels), FDD, CMOS; AT keyboard, MS serial mouse, Sega pads (Kempston keys); AY, Covox, Covox Blaster (stereo, 16-bit); Estex DSS 1.71 (FAT16 VHD: hdd/dss.zip; start menu: FM, Flex Navigator, command prompt); Spectrum mode: C:\ZX\SPECTRUM.EXE (TRD, SCL) or Enter on a TRD in Flex Navigator (TR-DOS 7.03)</td></tr>
           <tr><td>SAM Coupé</td><td>512K + 1 MB external, ROM 3.0, 6 MHz; modes 1–4 (256x192 ZX, 256x192 8x1 attributes, 512x192 4 colors, 256x192 16 colors), 128-color palette, line interrupts (raster effects), memory contention; SAA1099, SAMVox and printer port DAC; SAM mouse; SAMBUS clock; 2 floppy drives (WD1772): MGT, SAD, DSK (also packed: .dsk.gz, ZIP); SAMDOS boots from disk (F9 or BOOT; autorun: Reset and BOOT); File Commander: SAMDOS files, New Disk SAM Coupé; SAM keyboard: keypad = F0–F9 (PC F8–F10 too), Ctrl = CNTRL, Alt = SYMBOL, Ins / ] = EDIT, End = INV</td></tr>
           <tr><td>ZX Spectrum Next</td><td>Z80N (3.5 / 7 / 14 / 28 MHz, set by the program), 2048K (1792K of it for programs, as on the 2 MB Next); ULA with Timex and ULANext modes, LoRes, Layer 2 (256x192, 320x256, 640x256), 128 sprites (collision, 100 a line), tilemap 40x32 / 80x32, 9-bit palettes, blending, copper (changes in the middle of a line too), zxnDMA, line and CTC interrupts; AY (2 of the 3 TurboSound chips), DACs; DivMMC (esxDOS) and SD card; Multiface and DivMMC buttons (Shift+F12, Ctrl+F11). NextZXOS boots from sd/next.zip (next.vhd: the System/Next distribution on a FAT16 card); SymbOS 4.0 is on the card too (REST <code>run=symbos.nex</code>). Keyboard (Options / Input, ZX Spectrum Next keys: Auto, PC layout, Next): in programs that read the extended keys of the Next (SymbOS) Shift = Caps Shift, Ctrl = Symbol Shift, symbols as typed on the PC; arrows, Backspace, Delete, Esc, Tab, Caps Lock: the Next's own keys; ROMs rom/enNextZX.rom, enNxtmmc.rom, enNextMf.rom and sinclair.rom. NEX and DOT files also start on their own (Load, REST <code>snap=</code>)</td></tr>
-          <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7</td></tr>
-          <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03</td></tr>
+          <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7; DivMMC, Gotek</td></tr>
+          <tr><td>ZX Spectrum 128</td><td>128K, the Sinclair ROMs (128 / 48), Beta 128 (TR-DOS 5.04TM); DivMMC, Gotek</td></tr>
+          <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03; DivMMC, Gotek</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
           <tr><td>KAY 1024</td><td>1024K, JV Kramis 0.3</td></tr>
@@ -1525,7 +1526,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>ZXBUS cards</td><td>ZX-MultiSound Rev.A2 / Max (OPL3), ZXM-MoonSound (OPL4, YRW801 ROM)</td></tr>
           <tr><td>General Sound</td><td>NeoGS: Z80, 512KB ROM, 2MB RAM, 8 ch; clock by #0F bits 5-4: #00 24, #20 20, #10 12, #30 10 MHz. GS 12 MHz (Options / Sound): classic General Sound, ROM 1.04, 4 ch, no #0F</td></tr>
           <tr><td>Disks</td><td>Beta 128 (WD1793): TR-DOS, CP/M, iS-DOS; Sprinter: PC floppies (FAT12, 720K); SAM Coupé (WD1772): MGT, SAD; +3 (µPD765)</td></tr>
-          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; DivMMC with esxDOS and its own card (Pentagon, rom/esxmmc.zip); Gotek with FlashFloppy Direct Access and a USB stick image (Pentagon); real card timing (Ideal / Realistic / Slow); images HDD, HDF, VHD, IMG</td></tr>
+          <tr><td>HDD, SD</td><td>IDE: ATM, NEMO, DIVIDE, SMUC, PROFI, Sprinter; SD card: Z-Controller; DivMMC with esxDOS and its own card, Gotek with FlashFloppy Direct Access and a USB stick image (Pentagon, ZX Spectrum 128, Scorpion; esxDOS: rom/esxmmc.zip); real card timing (Ideal / Realistic / Slow); images HDD, HDF, VHD, IMG</td></tr>
           <tr><td>CMOS</td><td>Dallas clock (ZX Evo, GMX, Sprinter): each machine's own, kept in the browser</td></tr>
           <tr><td>Input</td><td>on-screen ZX (Spectrum+, 48K), XT, Joystick; Kempston mouse; PS/2 (ZX Evo), AT keyboard and MS serial mouse (Sprinter); ZX Spectrum Next keys: Auto, PC layout, Next (Options / Input)</td></tr>
           <tr><td>CPU clock</td><td>3.5 MHz x 0.1 … 20; ZX Evo TS-Conf 3.5 / 7 / 14 MHz, Sprinter 3.5 / 21 MHz, Spectrum Next 3.5 / 7 / 14 / 28 MHz (set by the program); SAM Coupé 6 MHz</td></tr>
@@ -1622,7 +1623,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>~ (Shift + `)</td><td>hide / show the menu bar and the frame of the emulator window (also Options / Video; XT mode: the key goes to the machine)</td></tr>
       <tr><td>Shift+F12</td><td>TS-Conf: reset into TS-BIOS Setup</td></tr>
       <tr><td>Shift+F12, Alt+Shift+F11</td><td>ZX Spectrum Next: Multiface button (NextZXOS: NMI menu)</td></tr>
-      <tr><td>Ctrl+F11</td><td>Pentagon with DivMMC: its NMI button (esxDOS: the NMI menu, file browser); without it: TR-DOS magic</td></tr>
+      <tr><td>Ctrl+F11</td><td>DivMMC on: its NMI button (esxDOS: the NMI menu, file browser); without it: TR-DOS magic</td></tr>
       <tr><td>Ctrl+F11</td><td>ZX Spectrum Next: DivMMC button (when NR #06 D4 is on)</td></tr>
       <tr><td>Alt+F1</td><td>Options (in ATM / PC keys mode it goes to the machine)</td></tr>
       <tr><td>/</td><td>max speed on / off</td></tr>
@@ -1882,10 +1883,10 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>fdd=</td><td>disk image (path on this site) with its drive: a:trd/game.trd or b:trd/work.trd; without drive (fdd=trd/game.trd) goes to A:. Two fdd= for both drives. Path from site root: a:/soft/game.trd. Old a= and b= work too. ATM CP/M works with A: only (its B:)</td></tr>
       <tr><td>hdd0= hdd1=</td><td>HDD image for HDD 0 (master) or HDD 1 (slave): zip with image and its .chs, or .hdd (e.g. hdd0=hdd/cpm.zip); hdd= is HDD 0. ATM CP/M works with HDD 0 only (its C:)</td></tr>
       <tr><td>sd=</td><td>SD card image for Z-Controller: .img, .vhd or zip with it (e.g. sd/card.zip)</td></tr>
-      <tr><td>mmc=</td><td>SD card image for DivMMC (Pentagon): .img, .vhd or zip with it; DivMMC goes on for this visit. Two cards at once with sd=. esxDOS boots from a card with its SYS folder</td></tr>
-      <tr><td>divmmc=1</td><td>DivMMC on Pentagon for this visit (0: off): esxDOS from rom/esxmmc.zip (ESXMMC.BIN inside) or rom/esxmmc.rom, 128K RAM, ports #E3 #E7 #EB; #3Dxx is its own (TR-DOS through esxDOS)</td></tr>
+      <tr><td>mmc=</td><td>SD card image for DivMMC (Pentagon, ZX Spectrum 128, Scorpion): .img, .vhd or zip with it; DivMMC goes on for this visit. Two cards at once with sd=. esxDOS boots from a card with its SYS folder</td></tr>
+      <tr><td>divmmc=1</td><td>DivMMC (Pentagon, ZX Spectrum 128, Scorpion) for this visit (0: off): esxDOS from rom/esxmmc.zip (ESXMMC.BIN inside) or rom/esxmmc.rom, 128K RAM, ports #E3 #E7 #EB; #3Dxx is its own (TR-DOS through esxDOS)</td></tr>
       <tr><td>sdtiming=</td><td>waits of a real SD card, both cards: ideal (none), realistic (NCR 1-8 bytes, token 0.1-2 ms, busy after write 0.25-20 ms, ready 50-500 ms after first ACMD41), slow (8 bytes, 100 ms, 250 ms, 1 s)</td></tr>
-      <tr><td>gotek=</td><td>Gotek with FlashFloppy (Pentagon) in drive A: or B: with its USB stick image, FAT16 / FAT32: gotek=b:sd/stick.img. Slots: TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255 (FlashFloppy 3.42)</td></tr>
+      <tr><td>gotek=</td><td>Gotek with FlashFloppy (Pentagon, ZX Spectrum 128, Scorpion) in drive A: or B: with its USB stick image, FAT16 / FAT32: gotek=b:sd/stick.img. Slots: TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255 (FlashFloppy 3.42)</td></tr>
       <tr><td>gotekremount=</td><td>milliseconds a Gotek remount takes after Direct Access (default 500): no index pulses meanwhile</td></tr>
       <tr><td>sdseed=</td><td>number: the random waits of sdtiming=realistic, the same each run (link builder adds it)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
@@ -1931,8 +1932,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_a">fdd</label><span class="rarow"><select id="rav_fdrv" class="radrv" title="Drive"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_a" list="ra_files" placeholder="trd/game.trd" spellcheck="false" autocomplete="off"></span>
       <label class="chk"><input type="checkbox" id="ra_hdd">hdd</label><span class="rarow"><select id="rav_hdrv" class="radrv" title="HDD"><option value="0">0</option><option value="1">1</option></select><input id="rav_hdd" list="ra_hdds" placeholder="hdd/cpm.zip" spellcheck="false" autocomplete="off"></span><datalist id="ra_files"></datalist><datalist id="ra_hdds"></datalist><datalist id="ra_sds"></datalist>
       <label class="chk"><input type="checkbox" id="ra_sd">sd</label><input id="rav_sd" list="ra_sds" placeholder="sd/card.zip" spellcheck="false" autocomplete="off">
-      <label class="chk" title="mmc=: the SD card of the DivMMC (Pentagon; the DivMMC goes on for the visit)"><input type="checkbox" id="ra_sd2">mmc</label><input id="rav_sd2" list="ra_sds" placeholder="sd/esxdos.zip" spellcheck="false" autocomplete="off">
-      <label class="chk" title="gotek=: the Gotek (Pentagon) in drive A: or B: with its USB stick image (FAT16 / FAT32)"><input type="checkbox" id="ra_gk">gotek</label><span class="rapair" style="display:flex;gap:4px;min-width:0"><select id="rav_gkd" style="flex:0 0 auto"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_gk" list="ra_sds" placeholder="sd/stick.img" spellcheck="false" autocomplete="off" style="flex:1;min-width:0"></span>
+      <label class="chk" title="mmc=: the SD card of the DivMMC (Pentagon, ZX Spectrum 128, Scorpion; the DivMMC goes on for the visit)"><input type="checkbox" id="ra_sd2">mmc</label><input id="rav_sd2" list="ra_sds" placeholder="sd/esxdos.zip" spellcheck="false" autocomplete="off">
+      <label class="chk" title="gotek=: the Gotek (Pentagon, ZX Spectrum 128, Scorpion) in drive A: or B: with its USB stick image (FAT16 / FAT32)"><input type="checkbox" id="ra_gk">gotek</label><span class="rapair" style="display:flex;gap:4px;min-width:0"><select id="rav_gkd" style="flex:0 0 auto"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_gk" list="ra_sds" placeholder="sd/stick.img" spellcheck="false" autocomplete="off" style="flex:1;min-width:0"></span>
       <label class="chk" title="sdtiming=: the waits of a real SD card (realistic: with sdseed=, the same waits each time)"><input type="checkbox" id="ra_sdtime">sdtiming</label><select id="rav_sdtime"><option value="0">Ideal</option><option value="1">Realistic</option><option value="2">Slow</option></select>
       <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">use boot.b (A:)</option><option value="run">run TR-DOS file (A:)</option><option value="cpm">cpm= CP/M commands</option><option value="nedoos" hidden>nedoos= NedoOS commands</option></select>
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
