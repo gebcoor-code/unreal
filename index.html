@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261115201136">
+<meta name="build" content="20261115204828">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1774,7 +1774,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="hbody">
     <p>Live graphs, updated twice a second. Big number is current value, line below explains it.</p>
     <h4>Z80 code at</h4><p>Where Z80 runs its code: 64K address space as 4 banks of 16K (page in each bank is signed), 1K blocks glow by how often program counter is there. Big number: hottest block. Below: share of time in ROM / RAM, busy = part of frame CPU is not halted.</p>
-    <h4>Host</h4><p>How much of real time this browser spends emulating. Below: milliseconds per emulated frame (20 ms = real time limit).</p>
+    <h4>Host</h4><p>How much of real time this browser spends emulating. The solid part of the graph: the emulation (core); the light part above it: the picture (draw). Below: milliseconds of each per emulated frame (20 ms in all = real time limit).</p>
     <h4>Memory</h4><p>RAM as map of 16K pages: written pages glow, pages mapped into Z80 address space now are outlined. Big number: pages written since last update.</p>
     <h4>Disk</h4><p>Share of frames with floppy drive busy (reading or writing).</p>
     <h4>I/O</h4><p>Z80 port accesses per frame (IN + OUT).</p>
