@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261115180721">
+<meta name="build" content="20261115201136">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1811,7 +1811,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Snapshot</td><td>SNA Z80 SP: runs at once, always</td></tr>
       <tr><td>SPG</td><td>ZX Evo TS-Conf starts and runs it (always)</td></tr>
       <tr><td>TS-Conf card</td><td>ZIP with an SD card image, or with boot.$C (a new card is made), or with an SPG: ZX Evo TS-Conf starts, Wild Commander boots. Autostart: the program named in the ZIP's .json ({"run": "dir/file.spg"}) runs too</td></tr>
-      <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card). An SD card with NedoOS (sd_boot.$C) or Wild Commander (boot.$C) is not asked about. Autostart + <b>Boot from HDD / SD</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset); a NedoOS card starts ZX Evo BaseConf, a Wild Commander card TS-Conf. Off: only mounted</td></tr>
+      <tr><td>HDD / SD</td><td>.hdd .hdf (or a ZIP with a .chs): HDD 0. .img .vhd .ima .bin .raw: the SD card on ZX Evo; on other machines you are asked (HDD 0 or SD card; on Pentagon, ZX Spectrum 128, Scorpion also MMC: the DivMMC's card). A card with esxDOS (SYS/ESXDOS.SYS) goes into the MMC (DivMMC on; Pentagon if the machine has none). An SD card with NedoOS (sd_boot.$C) or Wild Commander (boot.$C) is not asked about. Autostart + <b>Boot from HDD / SD / MMC</b>: the machine boots from it (xBIOS: Boot → HDD; ZX Evo: Reset Service, SD card; TS-Conf: Wild Commander and the card's program; others: Reset); a NedoOS card starts ZX Evo BaseConf, a Wild Commander card TS-Conf. Off: only mounted</td></tr>
       <tr><td>ZIP</td><td>one file in it: as that file; several: you choose one</td></tr>
       <tr><td>Save to<br>Browser Storage</td><td>(on by default) Choose File and a dropped file are kept in the browser storage too, on the machine they start on. A ZIP of several images: you are asked whether to add all of them (no: only the one chosen). A name that is there already with other data: asked whether to replace</td></tr>
     </table>
@@ -2014,7 +2014,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: the emulator's boot.b menu"><input type="radio" name="ldnb" id="ldboot" value="boot">boot.b menu</label>
           <label class="lddrv" id="ldpressrow" title="Keys pressed in the boot.b menu (0 = the first program). Empty: none">press <input id="ldpress" value="0" spellcheck="false" autocomplete="off"></label></div>
         <div class="ldsrow"><label class="lddrv" title="A disk without its own boot: RUN its first BASIC program (nothing is written to the disk)"><input type="radio" name="ldnb" id="ldbasic" value="basic">first BASIC program</label></div>
-        <div class="ldsrow"><label class="lddrv" title="An HDD or SD card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD</label></div>
+        <div class="ldsrow"><label class="lddrv" title="An HDD, SD or MMC card image: the machine boots from it"><input type="checkbox" id="ldhdboot">Boot from HDD / SD / MMC</label></div>
       </div>
       <div class="ldsrow ldkeep"><label class="lddrv" title="Choose File and a file dropped on the screen: kept in this browser too, as it is (a ZIP is not unpacked: Mount / Run asks which image; File Commander drive Browser opens it as a folder)"><input type="checkbox" id="ldkeep">Save to Browser Storage</label></div></section>
     <section id="ldbrwsec" hidden><h3>Browser storage <span id="ldbrwpath" class="ldbpath"></span></h3>
@@ -2061,7 +2061,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <div class="b"><button class="alt primary" hidden></button><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
 </div>
 <div id="askbox" hidden><div class="box" role="alertdialog" aria-modal="true"><div class="t"></div><div class="x"></div>
-  <div class="b"><button class="ok primary">OK</button><button class="no">Cancel</button></div></div></div>
+  <div class="b"><button class="ok primary">OK</button><button class="no">Cancel</button><button class="alt" hidden></button></div></div></div>
 <div id="dgawin" hidden role="dialog" aria-label="deBUGa" tabindex="-1">
   <div class="dbghead fhead"><span>deBUGa (Xpeccy)</span><b id="dgastate"></b><button id="dgahelpbtn" title="Help (F1)">?</button><button id="dgaclose" title="Close (Esc): the machine runs on">✕</button></div>
   <div class="dgabar">
