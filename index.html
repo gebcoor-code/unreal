@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261115204828">
+<meta name="build" content="20261116104818">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -436,7 +436,7 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse), (max-width: 620px) { .optwin { max-height: 70vh; max-height: 70dvh; } .optwin .body { flex: 0 1 auto; } }
 #hdds .hddgeo, #sdgeo, #sd2geo, #sdtgeo { padding-right: 0; }
 #dmnote:empty, #gknote:empty { display: none; }
-#gkgeo { display: flex; align-items: center; gap: 10px; } #gkgeo > label { white-space: nowrap; } .gkline { display: flex; align-items: center; gap: 10px; min-width: 0; } .gkline .usel { flex: 0 0 84px; width: 84px; height: 32px; } .gkline label { margin-left: 22px; white-space: nowrap; } .gkline input { flex: 0 0 76px; width: 76px; height: 32px; box-sizing: border-box; padding: 0 8px; text-align: right; font: inherit; }
+#gkgeo { display: flex; align-items: center; gap: 10px; } #gkgeo > label { white-space: nowrap; } .gkline { display: flex; align-items: center; gap: 10px; min-width: 0; } .gkline .usel { flex: 0 0 84px; width: 84px; height: 32px; } .gkline label { margin-left: 22px; white-space: nowrap; } #gkbox h3 { display: flex; align-items: center; } #gkfw { width: 78px; height: 24px; margin-left: 8px; padding: 0 4px; font-size: 12px; } .gkbtns { display: flex; gap: 4px; margin-left: auto; } .gkbtns button { width: 30px; height: 24px; padding: 0; font-size: 11px; line-height: 1; } .gkline input { flex: 0 0 76px; width: 76px; height: 32px; box-sizing: border-box; padding: 0 8px; text-align: right; font: inherit; }
 .hddwarn { min-height: 1.4em; margin: 2px 4px 0; font-size: 11px; line-height: 1.4em; color: var(--accent); }
 #sdgeo .sz, #sd2geo .sz, #sdtgeo .sz { min-width: 80px; color: var(--dim); } #sdtgeo .sz { text-align: right; padding-right: 2px; }
 #sdcard.off .dl, #sdcard.off .dname { opacity: .5; }
@@ -1286,9 +1286,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <p class="hddwarn" id="dmnote"></p>
         </div>
         <div class="card" id="gkbox">
-          <h3>Gotek <span class="h3n">FlashFloppy</span></h3>
+          <h3>Gotek <span class="h3n">FlashFloppy</span><select id="gkfw" title="FlashFloppy version: 3.42 sorts the slots by the whole name; 3.44m1 (and master) by the name up to the dot, then the extension (GAME.TRD before GAME 2.TRD). Its version string goes to the Direct Access status (FF-v3.42 / FF-v3.44m1). Changed: the Gotek starts again"><option value="342">3.42</option><option value="344">3.44m1</option></select><span class="gkbtns"><button id="gkprev" title="Gotek button: the image before">◀</button><button id="gksel" title="Gotek button: mount the image again (after an error)">●</button><button id="gknext" title="Gotek button: the image after">▶</button></span></h3>
           <div class="hddgrid" id="gkgeo">
-            <label for="gkdrv" title="A Gotek with FlashFloppy 3.42 in a drive of the Beta 128: its USB stick (an image, FAT16 / FAT32), its slots the TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255: status, SET_LBA, SET_CYL, SELECT_IMAGE, SELECT_NAME, the stick's sectors (written inside the FAT volume only); leaving it mounts the slot selected">Drive</label>
+            <label for="gkdrv" title="A Gotek with FlashFloppy 3.42 and no display in a drive of the Beta 128: its USB stick (an image, FAT16 / FAT32), its slots the images of the stick's root (TRD, DSK, IMG, MGT, HFE… not SCL; no folders), by name. TRD images are disks; other types mount with no sectors. IMAGE_A.CFG on the stick keeps the image chosen. Direct Access on cylinders 254-255 while an image is mounted: status, SET_LBA, SET_CYL, SELECT_IMAGE, SELECT_NAME, the stick's sectors (written inside the FAT volume only); leaving it mounts the slot selected. An image that does not open stops the Gotek until a button">Drive</label>
             <div class="gkline"><select data-pop-class="cmpop" id="gkdrv"><option value="-1">Off</option><option value="0">A:</option><option value="1">B:</option></select>
               <label for="gkrm" title="How long a remount takes after Direct Access: no index pulses meanwhile, a read waits (not measured on a real Gotek yet)">Remount, ms</label><input type="number" id="gkrm" min="0" max="10000" step="50" value="500"></div>
           </div>
@@ -1886,7 +1886,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>mmc=</td><td>SD card image for DivMMC (Pentagon, ZX Spectrum 128, Scorpion): .img, .vhd or zip with it; DivMMC goes on for this visit. Two cards at once with sd=. esxDOS boots from a card with its SYS folder</td></tr>
       <tr><td>divmmc=1</td><td>DivMMC (Pentagon, ZX Spectrum 128, Scorpion) for this visit (0: off): esxDOS from rom/esxmmc.zip (ESXMMC.BIN inside) or rom/esxmmc.rom, 128K RAM, ports #E3 #E7 #EB; #3Dxx is its own (TR-DOS through esxDOS)</td></tr>
       <tr><td>sdtiming=</td><td>waits of a real SD card, both cards: ideal (none), realistic (NCR 1-8 bytes, token 0.1-2 ms, busy after write 0.25-20 ms, ready 50-500 ms after first ACMD41), slow (8 bytes, 100 ms, 250 ms, 1 s)</td></tr>
-      <tr><td>gotek=</td><td>Gotek with FlashFloppy (Pentagon, ZX Spectrum 128, Scorpion) in drive A: or B: with its USB stick image, FAT16 / FAT32: gotek=b:sd/stick.img. Slots: TRD images and folders of the stick's root (folders first, by name). Direct Access on cylinders 254-255 (FlashFloppy 3.42)</td></tr>
+      <tr><td>gotek=</td><td>Gotek with FlashFloppy (Pentagon, ZX Spectrum 128, Scorpion) in drive A: or B: with its USB stick image, FAT16 / FAT32: gotek=b:sd/stick.img. A Gotek with no display: its slots the images of the stick's root (no folders), by name; IMAGE_A.CFG keeps the one chosen. Direct Access on cylinders 254-255 while an image is mounted (FlashFloppy 3.42)</td></tr>
+      <tr><td>gotekfw=</td><td>FlashFloppy version of the Gotek: 342 (default) or 344 (3.44m1: slots sorted by the name up to the dot, then the extension)</td></tr>
       <tr><td>gotekremount=</td><td>milliseconds a Gotek remount takes after Direct Access (default 500): no index pulses meanwhile</td></tr>
       <tr><td>sdseed=</td><td>number: the random waits of sdtiming=realistic, the same each run (link builder adds it)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
