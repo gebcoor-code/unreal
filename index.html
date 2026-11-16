@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261116170305">
+<meta name="build" content="20261116182350">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1892,7 +1892,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>sdseed=</td><td>number: the random waits of sdtiming=realistic, the same each run (link builder adds it)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
       <tr><td>dux=</td><td>ZX ULAX colors (.dux) for the program of the link: applied after snap= at once; with a tape or disk it comes once the program runs. With no model= the machine is Pentagon 128 (unless +3)</td></tr>
-      <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, hdd0=brw:cpm.zip, sd=brw:card.zip (file fields of this window offer them, marked [Browser]). Works only in this browser</td></tr>
+      <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, snap=brw:game.sna, tape=brw:game.tap, hdd0=brw:cpm.zip, sd=brw:card.zip (the storage row of this window lists them all; file fields offer them too, marked [Browser]). Works only in this browser</td></tr>
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
       <tr><td>autorun=boot</td><td>as Load / Use boot.b: its boot; disk without boot gets the emulator's boot (boot.b menu, see press=)</td></tr>
       <tr><td>press=</td><td>with autorun: keys for boot menu (emulator's boot: 0 = first program; disk's own boot: its keys), e.g. 0 or enter</td></tr>
@@ -1935,6 +1935,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <label class="chk"><input type="checkbox" id="ra_sd">sd</label><input id="rav_sd" list="ra_sds" placeholder="sd/card.zip" spellcheck="false" autocomplete="off">
       <label class="chk" title="mmc=: the SD card of the DivMMC (Pentagon, ZX Spectrum 128, Scorpion; the DivMMC goes on for the visit)"><input type="checkbox" id="ra_sd2">mmc</label><input id="rav_sd2" list="ra_sds" placeholder="sd/esxdos.zip" spellcheck="false" autocomplete="off">
       <label class="chk" title="gotek=: the Gotek (Pentagon, ZX Spectrum 128, Scorpion) in drive A: or B: with its USB stick image (FAT16 / FAT32)"><input type="checkbox" id="ra_gk">gotek</label><span class="rapair" style="display:flex;gap:4px;min-width:0"><select id="rav_gkd" style="flex:0 0 auto"><option value="a">A:</option><option value="b">B:</option></select><input id="rav_gk" list="ra_sds" placeholder="sd/stick.img" spellcheck="false" autocomplete="off" style="flex:1;min-width:0"></span>
+      <label class="chk" title="A file of this browser's storage (Load / Browser storage) as brw:NAME, in the parameter of its kind: a disk fdd=a:, a snapshot / RZX snap=, a tape tape=, an HDD hdd0=, an SD card sd=, a DivMMC card mmc=. The link works in this browser only"><input type="checkbox" id="ra_brw">storage</label><select id="rav_brw"><option value="">— (no files)</option></select>
       <label class="chk" title="sdtiming=: the waits of a real SD card (realistic: with sdseed=, the same waits each time)"><input type="checkbox" id="ra_sdtime">sdtiming</label><select id="rav_sdtime"><option value="0">Ideal</option><option value="1">Realistic</option><option value="2">Slow</option></select>
       <span class="ralab">start</span><select id="rav_start"><option value="">—</option><option value="autorun">use boot.b (A:)</option><option value="run">run TR-DOS file (A:)</option><option value="cpm">cpm= CP/M commands</option><option value="nedoos" hidden>nedoos= NedoOS commands</option></select>
       <span class="ralab" id="ral_press">press in boot</span><input id="rav_press" value="0" spellcheck="false" autocomplete="off" title="Keys pressed in the boot menu after it starts (0 = the first program). Empty: none">
