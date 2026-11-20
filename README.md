@@ -1,4 +1,5 @@
-ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is UnrealSpeccy 0.39.0
+ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/) based on UnrealSpeccy 0.39.0
+
 
 ## Machines
 
@@ -13,7 +14,7 @@ ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is Unrea
 | ZX Evo TS-Conf | 4096K, TS-BIOS; ZX / 16c / 256c / text modes up to 360×288, tiles and sprites (TSU), DMA, VDAC; VDAC2 (FT812); 3.5 / 7 / 14 MHz; SPG; Wild Commander on the SD card |
 | ZX Spectrum Next | 2048K (1792K for programs), Z80N at 3.5 / 7 / 14 / 28 MHz: ULA (Timex, ULANext, ULA+), LoRes, Layer 2 (256×192, 320×256, 640×256), 128 sprites (collision, 100 a line), tilemap 40×32 / 80×32, 9-bit palettes, blending, copper (changes in the middle of a line too), zxnDMA, line and CTC interrupts; AY, DACs; DivMMC (esxDOS) and SD card: NextZXOS and SymbOS boot from sd/next.zip; Multiface and DivMMC NMI buttons; NEX and DOT files also start on their own |
 | Pentagon 128 / 512 / 1024 | TR-DOS 5.04TM, port #EFF7; RAM in Options / System or ram=; ZX ULAX (see below); DivMMC, Gotek (see below) |
-| ZX Spectrum 128 | the Sinclair ROMs (128 / 48) with a Beta 128 (TR-DOS 5.04TM); DivMMC, Gotek |
+| ZX Spectrum 128 | the Sinclair ROMs (128 / 48) with a Beta 128 (TR-DOS 5.04TM); the ULA timings of the 128K (228 T × 311 lines, PRESET.SPECTRUM_128 in unreal.ini; no memory contention yet); DivMMC, Gotek |
 | Scorpion ZS 256 | ROM 2.95; DivMMC, Gotek |
 | Scorpion ZS 256 GMX | GMX board: 2048K, 640×200 with hardware scroll, turbo, 512K flash of LW/PLM (GMX Loader 2.00, Shadow Service Monitor 6.44), runs OSZ |
 | Profi 1024 | BIOS 2.2, CP/M from a .PRO disk |
@@ -32,7 +33,7 @@ ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is Unrea
 - ZX ULAX: the colorization board of its authors on Pentagon 128 and Spectrum +3: a .dux (the colors of one program) is applied to the program in memory; a snapshot or RZX with its .dux (one ZIP, or snap= and dux= in a link) starts colored at once, a tape or disk with its .dux is switched on by hand once the program has loaded. ULAX at the top of the screen while a dux is loaded: white on, gray off, a click / tap or Ctrl+Alt+U switches it. A snapshot saved with a dux is a ZIP with the .sna, its .dux and the board's state (.ulx); an RZX seek keeps the colors of the frame. Not yet: the full-screen mappers and LowRes of the board.
 - DivMMC and Gotek on Pentagon, ZX Spectrum 128 and Scorpion ZS 256 (Options / Disk):
     - DivMMC with esxDOS (rom/esxmmc.zip: ESXMMC.BIN of esxDOS 0.8.9) and a card of its own (MMC) next to the Z-Controller's: two cards at once. esxDOS boots from the card (sd/esxdos.zip: its SYS and BIN; mmc= in a link): dot commands, its TR-DOS (.vdisk), its NMI menu (Ctrl+F11). While it is on, #3Dxx is esxDOS's: a TR-DOS disk asks to switch it off;
-    - Gotek with FlashFloppy 3.42 in drive A: or B: (gotek=b:stick.img): its USB stick is an image (FAT16 / FAT32), the slots are the TRD images and folders of its root; Direct Access (cylinders 254–255) for drivers that read and write the stick through the drive; leaving it mounts the slot selected;
+    - Gotek with FlashFloppy 3.42 in drive A: or B: (gotek=b:stick.img): its USB stick is an image (FAT16 / FAT32), a Gotek with no display: the slots are the images of its root (no folders), sorted as 3.42 or 3.44m1 do it, IMAGE_A.CFG keeps the one chosen; Direct Access (cylinders 254–255, while an image is mounted) for drivers that read and write the stick through the drive; leaving it mounts the slot selected; a bad image stops it until a button (◀ ● ▶);
     - SD card timing for both cards: Ideal, Realistic (random, sdseed= repeats it), Slow (the worst case of the specification).
 - Two debuggers: the UnrealSpeccy debugger (ported without changing its logic, its modal loops run under Asyncify) and deBUGa, modelled on the Xpeccy debugger; both know the Z80N commands of the Next. deBUGa also shows the devices of every machine (memory and video ports, µPD765, sound cards, IDE, SD, DivMMC, Gotek, CMOS), steps the General Sound Z80 (CPU: GS), and for ZX ULAX: the PPU opcode of each instruction in the listing, a ULAX tab (opcodes and pixels of the Z80 addresses, palette, tables, the dux text; editable), PPU step and a stop at a PPU opcode.
 - File Commander: two panels over TR-DOS, CP/M, iS-DOS and FAT disks (FAT12 PC floppies too), HDD and SD images (the MMC card and the Gotek's USB stick too), a RAM disk and the browser storage, with folders:
@@ -44,7 +45,7 @@ ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/). The core is Unrea
 - Graf Search: memory shown as a picture in ZX, ATM and TS-Conf graphics modes.
 - RZX: playback with a seek bar over the screen and Take control (ZX Spectrum 48 / 128 / +2 on the Sinclair ROMs), with its ZX ULAX .dux too; recording from Save on 48 / 128K models.
 - On-screen keyboards: ZX+, ZX48, XT (short, the arrows in the main block) and XTf (the full PC keyboard without the number pad); joystick, touch mouse, Kempston mouse. A phone in landscape: the keyboard is split to both sides of the screen.
-- Screen: F6 saves a screenshot (PNG as shown, or the ZX screen as SCR); Hide Menu Bar (the top-left corner brings it back), Mix Frames for GMX gigascreen pictures, landscape layout for phones.
+- Screen: F6 saves a screenshot (PNG as shown, or the ZX screen as SCR); MMC / GOTEK over the screen (gray) while the DivMMC / the Gotek is on, a click switches it off; Hide Menu Bar (the top-left corner brings it back), Mix Frames for GMX gigascreen pictures, landscape layout for phones.
 - Load: the server lists, a local server folder, files of this computer and the browser storage (files kept as they were opened, a ZIP as a ZIP: Mount / Run asks which image).
 - REST API: a link can choose the machine and its speed, insert disks, tapes, HDD, SD, MMC and USB stick images, and start a program; Tools / REST API link builds one (a file from the server list brings its own run link into the fields).
 - Offline copy through a service worker (https or localhost).
