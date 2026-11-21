@@ -14,7 +14,7 @@ ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/) based on UnrealSpe
 | ZX Evo TS-Conf | 4096K, TS-BIOS; ZX / 16c / 256c / text modes up to 360×288, tiles and sprites (TSU), DMA, VDAC; VDAC2 (FT812); 3.5 / 7 / 14 MHz; SPG; Wild Commander on the SD card |
 | ZX Spectrum Next | 2048K (1792K for programs), Z80N at 3.5 / 7 / 14 / 28 MHz: ULA (Timex, ULANext, ULA+), LoRes, Layer 2 (256×192, 320×256, 640×256), 128 sprites (collision, 100 a line), tilemap 40×32 / 80×32, 9-bit palettes, blending, copper (changes in the middle of a line too), zxnDMA, line and CTC interrupts; AY, DACs; DivMMC (esxDOS) and SD card: NextZXOS and SymbOS boot from sd/next.zip; Multiface and DivMMC NMI buttons; NEX and DOT files also start on their own |
 | Pentagon 128 / 512 / 1024 | TR-DOS 5.04TM, port #EFF7; RAM in Options / System or ram=; ZX ULAX (see below); DivMMC, Gotek (see below) |
-| ZX Spectrum 128 | the Sinclair ROMs (128 / 48) with a Beta 128 (TR-DOS 5.04TM); the ULA timings of the 128K (228 T × 311 lines, PRESET.SPECTRUM_128 in unreal.ini; no memory contention yet); DivMMC, Gotek |
+| ZX Spectrum 128 | the Sinclair ROMs (128 / 48) with a Beta 128 (TR-DOS 5.04TM); the ULA timings of the 128K (228 T × 311 lines, PRESET.SPECTRUM_128 in unreal.ini; memory contention of the 128K ULA; the +3 has PRESET.SPECTRUM_PLUS3); DivMMC, Gotek |
 | Scorpion ZS 256 | ROM 2.95; DivMMC, Gotek |
 | Scorpion ZS 256 GMX | GMX board: 2048K, 640×200 with hardware scroll, turbo, 512K flash of LW/PLM (GMX Loader 2.00, Shadow Service Monitor 6.44), runs OSZ |
 | Profi 1024 | BIOS 2.2, CP/M from a .PRO disk |
@@ -53,9 +53,10 @@ ZX Spectrum emulator (https://gebcoor-code.github.io/unreal/) based on UnrealSpe
 ## Hard disks and SD cards
 
 - Images: a raw image (.hdd, .img, .hdf) with its geometry in a .chs file next to it in the ZIP (CHS=C/H/S Interface=...), or a fixed VHD that has the geometry in its footer (no .chs needed). A dynamic VHD is not read: convert it to a fixed one.
+- TR-DOS files outside TR-DOS (FAT cards, Browser storage, the PC): raw files NAME.<type><start> (QC) or NAME.<type>; "as Hobeta" in Copy / Download makes them Hobeta (NAME.$T); CP/M gets Hobeta NAME.<type>TR, iS-DOS keeps the type as the extension and the start in its entry. The RAM disk holds files as they came; they are converted when written (QC names are read only from files of a FAT-like disk or the PC).
 - File systems: File Commander reads and writes FAT12, FAT16 and FAT32, on a whole image (superfloppy) or in MBR partitions, for HDD and SD images alike.
 - New Disk (File Commander): HDD FAT and SD card as FAT16 or FAT32 (Auto: FAT16 up to 256 MB, FAT32 above; FAT32 needs at least 35 MB), both made as a fixed VHD (no .chs). The SD images of NedoOS, Wild Commander and OSZ are made as FAT32 VHD.
-- Save: an SD or MMC card goes out as a fixed VHD (it can be mounted on a PC), the Gotek's USB stick as a raw image; an HDD that is a VHD goes out alone, a raw one with its .chs.
+- Save: an SD, MMC or USB (Gotek) card image goes out as a fixed VHD (it can be mounted on a PC) or a raw IMG, by default as the card was put in (the last choice is kept); an HDD that is a VHD goes out alone, a raw one with its .chs.
 - Sprinter: a 64 MB fixed VHD with one FAT16 partition (16 heads, 63 sectors), Estex DSS 1.71 and the system.zip of the Sprinter Team update 3.06. a 16 MB disk with DSS 1.71, FM and TMNT Fighters 1.2. A disk of your own: File Commander / New Disk / HDD FAT, copy the DSS files onto it, then Files / Sprinter Boot.
 
 ## ZX Spectrum Next

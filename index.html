@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261120173934">
+<meta name="build" content="20261121191406">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1504,7 +1504,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>SAM Coupé</td><td>512K + 1 MB external, ROM 3.0, 6 MHz; modes 1–4 (256x192 ZX, 256x192 8x1 attributes, 512x192 4 colors, 256x192 16 colors), 128-color palette, line interrupts (raster effects), memory contention; SAA1099, SAMVox and printer port DAC; SAM mouse; SAMBUS clock; 2 floppy drives (WD1772): MGT, SAD, DSK (also packed: .dsk.gz, ZIP); SAMDOS boots from disk (F9 or BOOT; autorun: Reset and BOOT); File Commander: SAMDOS files, New Disk SAM Coupé; SAM keyboard: keypad = F0–F9 (PC F8–F10 too), Ctrl = CNTRL, Alt = SYMBOL, Ins / ] = EDIT, End = INV</td></tr>
           <tr><td>ZX Spectrum Next</td><td>Z80N (3.5 / 7 / 14 / 28 MHz, set by the program), 2048K (1792K of it for programs, as on the 2 MB Next); ULA with Timex and ULANext modes, LoRes, Layer 2 (256x192, 320x256, 640x256), 128 sprites (collision, 100 a line), tilemap 40x32 / 80x32, 9-bit palettes, blending, copper (changes in the middle of a line too), zxnDMA, line and CTC interrupts; AY (2 of the 3 TurboSound chips), DACs; DivMMC (esxDOS) and SD card; Multiface and DivMMC buttons (Shift+F12, Ctrl+F11). NextZXOS boots from sd/next.zip (next.vhd: the System/Next distribution on a FAT16 card); SymbOS 4.0 is on the card too (REST <code>run=symbos.nex</code>). Keyboard (Options / Input, ZX Spectrum Next keys: Auto, PC layout, Next): in programs that read the extended keys of the Next (SymbOS) Shift = Caps Shift, Ctrl = Symbol Shift, symbols as typed on the PC; arrows, Backspace, Delete, Esc, Tab, Caps Lock: the Next's own keys; ROMs rom/enNextZX.rom, enNxtmmc.rom, enNextMf.rom and sinclair.rom. NEX and DOT files also start on their own (Load, REST <code>snap=</code>)</td></tr>
           <tr><td>Pentagon</td><td>128K / 512K / 1024K (Options / System: RAM), TR-DOS 5.04TM, #EFF7; DivMMC, Gotek</td></tr>
-          <tr><td>ZX Spectrum 128</td><td>128K, the Sinclair ROMs (128 / 48), Beta 128 (TR-DOS 5.04TM); ULA timings of the 128K (228 T × 311 lines, preset SPECTRUM_128); DivMMC, Gotek</td></tr>
+          <tr><td>ZX Spectrum 128</td><td>128K, the Sinclair ROMs (128 / 48), Beta 128 (TR-DOS 5.04TM); ULA timings of the 128K (228 T × 311 lines, memory contention, preset SPECTRUM_128); DivMMC, Gotek</td></tr>
           <tr><td>Scorpion ZS 256</td><td>256K, ROM 2.95, TR-DOS 5.03; DivMMC, Gotek</td></tr>
           <tr><td>Scorpion ZS 256 GMX</td><td>2048K, 640x200 (own attributes, hardware scroll), turbo; flash 512K: GMX Loader 2.00 (Delete at start), Shadow Service Monitor 6.44 (NMI); SD (Z-Controller), SMUC, Dallas clock</td></tr>
           <tr><td>Profi 1024</td><td>1024K, ROM BIOS 2.2 (Micco Software), CP/M: <a href="https://zxart.ee/prod/250290" target="_blank" rel="noopener">get fdd img</a></td></tr>
@@ -1966,6 +1966,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
         <select id="svfmt" class="sv-disk">
           <option value="isd" hidden>ISD</option><option value="pro" hidden>PRO</option><option value="0">TRD</option><option value="scl">SCL</option><option value="1">FDI</option><option value="2">UDI</option><option value="3">TD0</option><option value="4" hidden>IMG</option><option value="5" hidden>MGT</option>
         </select>
+        <label for="svcard" class="sv-card" hidden>Image</label>
+        <select id="svcard" class="sv-card" hidden title="A card image (SD, MMC, USB stick): VHD is the raw image + a 512-byte footer (mounts on a PC), IMG the raw image"><option value="vhd">VHD (fixed)</option><option value="img">IMG (raw)</option></select>
         <label for="svrom" class="sv-rom">ROM</label>
         <select id="svrom" class="sv-rom"></select>
         <label for="svsrc" class="sv-mem">Memory</label>
