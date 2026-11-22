@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261121191406">
+<meta name="build" content="20261122104612">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1746,7 +1746,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
-      <dt>F5</dt><dd>copy to other panel (TR-DOS ↔ others as Hobeta); folders with everything inside (TR-DOS, CP/M: their files into one place); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
+      <dt>F5</dt><dd>copy to other panel (TR-DOS files: see Copying TR-DOS files); folders with everything inside (TR-DOS, CP/M: their files into one place); files there already: Overwrite or Skip (one question for all; also for files from the PC)</dd>
       <dt>F6</dt><dd>move to other panel: copy, then the files written are deleted here (asked first); a folder goes when all its files went</dd>
       <dt>F7</dt><dd>new folder (iS-DOS, FAT, RAM, Browser)</dd>
       <dt>F9</dt><dd>Compile with sjasmplus (see below)</dd>
@@ -1765,6 +1765,14 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </dl>
     <h4>Compile (sjasmplus)</h4>
     <p>F9 (Compile) assembles the file under the cursor with sjasmplus: it is the main source, its folder with its subfolders is the project (on any drive: RAM, SD card, HDD, a disk). INCLUDE / INCBIN paths are relative to the including file. The result goes to RAM disk, into the folder named as the main file: the files of SAVEBIN, SAVESNA, SAVETAP, SAVETRD, SAVEHOB, OUTPUT…, the listing (.lst), the labels (.sym) and the messages (.log); files with the same names are replaced. On errors the log opens in the viewer. Copy the result where needed (F5), Enter on .sna / .trd runs it. Upload a project to RAM: Files / Upload Files (a ZIP keeps its folders).</p>
+    <h4>Copying TR-DOS files</h4>
+    <p>Only a TR-DOS disk (TRD image) keeps typed files: name, type letter, start, length. Every other disk (CP/M, iS-DOS, FAT: SD card, HDD, PC floppy, Browser storage, RAM, ZIP, files of the PC) keeps plain files: they are copied byte for byte under their own names, with no questions.</p>
+    <p>Two check boxes appear in Copy / Move and Download Files only when one side of the copy is a TR-DOS disk (to it or from it):</p>
+    <dl>
+      <dt>as Hobeta</dt><dd>TR-DOS to another disk: a Hobeta file (17-byte header with the type, start and length), <code>NAME.$t</code> (CP/M: <code>NAME.&lt;TYPE&gt;TR</code>, e.g. <code>NAME.CTR</code>). Unchecked: a plain file. To a TR-DOS disk Hobeta files (<code>.$t</code>, <code>.xTR</code>, checked by their header) are always restored, the box is not needed.</dd>
+      <dt>Ext in start</dt><dd>(not used with as Hobeta) the 3-letter extension and the start field of TR-DOS. TR-DOS to another disk: a type in lower case (t, q, c…) keeps two more letters of the extension in its start field, so <code>t</code> + start "xt" becomes <code>guide_ru.txt</code>; a capital type (B, C, D, #) has a real start and gives <code>NAME.&lt;type&gt;</code> (<code>boot.B</code>), the start is not kept. Another disk to TR-DOS: a 3-letter extension is the type (first letter, lower case) and the start (two more letters), so <code>guide_ru.txt</code> comes back as it was; a 1-letter extension is the type as written, start 0 (a BASIC program: its length; a 4-byte autostart 80 AA after it is kept). Unchecked: the extension is the type letter only (<code>NAME.&lt;type&gt;</code>; <code>CURT.COM</code> becomes <code>CURT.C</code>).</dd>
+    </dl>
+    <p>The choices are remembered. The case of the type letter and of a name is kept as it is. Files over 255 sectors are split on TR-DOS (see Names).</p>
     <h4>Names</h4>
     <p>TR-DOS: 8 characters + type; CP/M and iS-DOS: 8.3; FAT: long names (NAME~1.EXT short name is added).</p>
     <p>Split files (long file cut into parts with same name): shown as NAME.001, NAME.002…; copy joins them into one file (S3M, MOD, ZIP… by contents, otherwise BIN), except onto TR-DOS. File over 255 sectors copied or put onto TR-DOS is split same way.</p>
