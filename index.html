@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261125142137">
+<meta name="build" content="20261125154901">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -725,6 +725,7 @@ table.keys.k13 td:first-child { width: 13ch; } table.keys.k15 td:first-child { w
 .fcrow.dir .n, .fcrow.dir .s { color: var(--accent); }
 .fcrow.sel::before { content: "▸"; position: absolute; left: 0; }
 .fcmsg { padding: 10px; color: var(--dim); font-family: system-ui, sans-serif; }
+.fcfilt { display: flex; align-items: center; gap: 6px; padding: 2px 8px; border-top: 1px solid var(--line); font-size: 10px; color: var(--dim); } .fcfilt[hidden] { display: none; } .fcfilt input { flex: 1; min-width: 0; padding: 1px 5px; font: 12px ui-monospace, Consolas, monospace; }
 .fcfoot { padding: 2px 8px; font-size: 10px; line-height: 14px; height: 19px; color: var(--dim); border-top: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fcbar { display: flex; flex-wrap: wrap; gap: 3px; padding: 0 6px 4px; }
 .fcbar button { padding: 1px 5px; font-size: 10px; line-height: 14px; border-radius: 4px; }
@@ -1750,6 +1751,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <dt>Space / Ins</dt><dd>select; + all, − none, * invert</dd>
       <dt>Enter, double click</dt><dd>open folder; run file (TR-DOS on A:, CP/M .COM, snapshot, tape, SPG): machine is reset; RZX: its player; disk image (TRD, SCL, FDI, UDI, TD0, ISD, PRO, DSK, IPF) on HDD / SD card / RAM / Browser or in a ZIP: mount into drive A: or B:, or Mount and Run (into A: and Autostart); hard disk / SD card image (HDD, HDF, VHD, IMG, IMA, RAW, BIN, SD of 1 MB and more): into HDD 0, HDD 1 or the SD card (its .chs of the same name or geometry.chs from the same folder goes with it; Reset boots it); a ZIP: opened as a folder (".." at its root goes back): view, copy out and in, MkDir, Delete; a change makes the new archive in place of the old one</dd>
       <dt>Backspace</dt><dd>folder up</dd>
+      <dt>Alt</dt><dd>filter of the panel: names with what is typed (also Alt + letter); Esc clears; folder or drive change clears</dd>
       <dt>F2</dt><dd>re-read both panels</dd>
       <dt>F3</dt><dd>view (text / hex / Z80 code); text: Wrap (W) wraps long lines by words</dd>
       <dt>F4</dt><dd>edit: text or hex, encodings as in view; F2 / Ctrl+S save back to disk, F4 text / hex, F8 encoding; text: Wrap (Alt+W); hex: Tab hex / characters, Ins / Del insert / remove byte</dd>
@@ -1849,7 +1851,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
     <h4>Web folder</h4>
-    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Web folder (read only).</p>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up, Alt filters names (Esc clears). Once opened, File Commander shows it as drive Web folder (read only).</p>
     <table class="keys">
       <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
       <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
@@ -2056,6 +2058,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div class="fwin brwin" id="browsewin" hidden role="dialog" aria-labelledby="brtitle">
   <header class="fhead"><h2 id="brtitle">Server</h2><button data-close title="Close (Esc)">✕</button></header>
   <div class="brpath" id="brpath"></div>
+  <div class="fcfilt" id="brfilt" hidden><span>Filter</span><input id="brfin" spellcheck="false" autocomplete="off" aria-label="Filter"></div>
   <div class="brlist" id="brlist"></div>
   <div class="brstat" id="brstat"></div>
 </div>
