@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261125071950">
+<meta name="build" content="20261125080951">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1229,6 +1229,13 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <div class="optcol">
             <label class="chk" title="The debugger opened by Shift+F1 (Tools menu: the key is shown at it). The other one opens from the Tools menu">Shift+F1 opens
               <select data-pop-class="cmpop" id="dbgdef"><option value="u">Debugger (Unreal)</option><option value="x">deBUGa (Xpeccy)</option></select></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Tape</h3>
+          <div class="optcol">
+            <label class="chk" title="Blocks read by the ROM loader (TAP, standard TZX blocks) load at once. Off: at tape speed, as on a real machine; programs with a loader of their own always load at tape speed"><input type="checkbox" id="tapefast" checked> Fast Tape Load</label>
+            <label class="chk" title="The tape starts by itself when a loader waits for it: the ROM loader (LOAD &quot;&quot;) or a loader of a program. Off: start it with F7 or the Tape window"><input type="checkbox" id="tapeauto" checked> Start tape on LOAD</label>
           </div>
         </div>
         <div class="card" id="eff7card" hidden>
