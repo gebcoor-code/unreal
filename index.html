@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261125134927">
+<meta name="build" content="20261125142137">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -578,6 +578,7 @@ select option { background: var(--panel2); color: var(--text); }
 .ulaxbtns { display: flex; gap: 6px; margin-top: 6px; } #ldmedia .mb { display: flex; gap: 4px; justify-content: flex-end; }
 #ldmedia .ldej { padding: 0 6px; height: 20px; line-height: 1; font-size: 11px; } #ldmedia .mm { grid-column: 1 / -1; color: var(--dim); font-family: system-ui, sans-serif; }
 #loadwin h3.ldmh { display: flex; align-items: center; justify-content: space-between; } .ldmodel { text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); margin-left: 6px; } /* Settings in the line of the title */
+.ldmh button.ldicon { padding: 2px 5px; line-height: 0; }
 .ldmh button { padding: 1px 9px; font-size: 11px; text-transform: none; letter-spacing: normal; font-weight: 500; color: var(--text); }
 .ddwrap { position: relative; flex: 1; min-width: 0; }
 .ddl { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-size: 13px; user-select: none; }
@@ -1741,7 +1742,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="fchelp" hidden role="dialog" aria-label="File Commander help">
   <div class="dbghead fhead"><span>File Commander help</span><button id="fchelpclose" title="Close">✕</button></div>
   <div class="hbody">
-    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS, FAT12 PC floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load, with folders: kept for the next visits), Local server (the folder opened in Load / Local server, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
+    <p>Two panels, each on drive: A: / B: (TR-DOS, ATM CP/M, Profi CP/M .PRO, iS-DOS, FAT12 PC floppies), HDD 0 / 1 (ATM CP/M, iS-DOS or FAT drives), SD card (FAT), RAM (scratch disk for this session, 16 MB, with folders), Browser (the browser storage of Save / Load, with folders: kept for the next visits), Web folder (the folder opened in Load / Web folder, with its folders; read only). Active panel has orange frame; changes go to image right away (drive gets * mark: save it with Save).</p>
     <h4>Keys</h4>
     <dl>
       <dt>Tab</dt><dd>other panel</dd>
@@ -1819,7 +1820,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="dbghead fhead"><span>Load help</span><button id="ldhelpclose" title="Close">✕</button></div>
   <div class="hbody">
     <h4>Local file</h4>
-    <p>Choose File, a file dropped on the screen and the files of Local server go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
+    <p>Choose File, a file dropped on the screen and the files of Web folder go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
     <table class="keys">
       <tr><td>Disk</td><td>TRD SCL FDI UDI TD0 ISD PRO HOB $x IPF DSK; IMG / IMA 720K / 360K (PC floppy, Sprinter DSS). Autostart: reset to TR-DOS and RUN its boot. A disk without boot: <b>boot.b menu</b> (the emulator's boot, then the keys of "press") or <b>first BASIC program</b> (nothing is written to the disk)</td></tr>
       <tr><td>+3 disk</td><td>DSK of 512-byte sectors: Spectrum +3 starts (always). Autostart: its menu, Loader</td></tr>
@@ -1847,8 +1848,8 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>Mount</td><td>only its files go in (disk: A:, HDD 0, SD card); the machine stays, Load stays open. A TS-Conf card: Wild Commander boots, its program does not run</td></tr>
     </table>
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
-    <h4>Local server</h4>
-    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
+    <h4>Web folder</h4>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Web folder (read only).</p>
     <table class="keys">
       <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
       <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
@@ -2044,7 +2045,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="ldtags" id="ldtags"></div>
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
         <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn single" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
-    <section><h3>Local server</h3>
+    <section><h3 class="ldmh"><span>Web folder</span><button id="ldsrvdef" class="ldicon" title="Default folder" aria-label="Default folder"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.6-3.7M3 2.6v3h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
       <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/ or /games/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section><h3 class="ldmh"><span>Media <span class="ldmodel" id="ldmodel"></span></span><button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
       <div id="ldmedia"></div></section>
