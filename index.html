@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261125132129">
+<meta name="build" content="20261125134927">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1848,7 +1848,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
     <h4>Local server</h4>
-    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page). Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up. Once opened, File Commander shows it as drive Local server (read only).</p>
     <table class="keys">
       <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
       <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
@@ -2045,7 +2045,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <div class="ldrow"><div class="ddwrap"><div class="ddl" id="ldlist" tabindex="0" role="listbox" title="Files on the server"><span class="ddcur"></span><svg class="usel-arr ddarr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></div>
         <div class="ddpop" id="ldpop" hidden></div></div><div class="splitbtn single" id="ldgo"><button id="ldlistgo" title="Mount the entry">Mount</button><button id="ldlistmore" class="splitar" title="Run or Mount" hidden><svg class="usel-arr" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button></div></div></section>
     <section><h3>Local server</h3>
-      <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
+      <div class="ldrow"><input id="ldsrv" placeholder="//192.168.1.1/trd/ or /games/" spellcheck="false" autocomplete="off"><button id="ldsrvgo">Open</button></div></section>
     <section><h3 class="ldmh"><span>Media <span class="ldmodel" id="ldmodel"></span></span><button id="lddisk" title="Options / Disk: drives A: to D:, ROM disk, HDD, SD card">Settings</button></h3>
       <div id="ldmedia"></div></section>
     <p class="note" id="ldmsg"></p>
