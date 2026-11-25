@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261125110111">
+<meta name="build" content="20261125132129">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -1907,6 +1907,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
       <tr><td>gotekremount=</td><td>milliseconds a Gotek remount takes after Direct Access (default 500): no index pulses meanwhile</td></tr>
       <tr><td>sdseed=</td><td>number: the random waits of sdtiming=realistic, the same each run (link builder adds it)</td></tr>
       <tr><td>tape= snap=</td><td>tape or snapshot</td></tr>
+      <tr><td>file=</td><td>ZIP with several files in a=, b=, tape=, snap=: the file to take, number (1, 2… in name order) or name (part of it); autorun=1 without file=: the first by name; otherwise the window of the ZIP asks</td></tr>
       <tr><td>dux=</td><td>ZX ULAX colors (.dux) for the program of the link: applied after snap= at once; with a tape or disk it comes once the program runs. With no model= the machine is Pentagon 128 (unless +3)</td></tr>
       <tr><td>brw:</td><td>file of Browser storage instead of a path: fdd=a:brw:game.trd, snap=brw:game.sna, tape=brw:game.tap, hdd0=brw:cpm.zip, sd=brw:card.zip (the storage row of this window lists them all; file fields offer them too, marked [Browser]). Works only in this browser</td></tr>
       <tr><td>autorun=1</td><td>start disk in A: (or tape): its boot; disk without boot: its first BASIC program (RUN "name" in TR-DOS, nothing written to disk); Profi with CP/M disk (.PRO): CP/M from FDD; ZX Evo TS-Conf with sd=: TS-BIOS boots the card (Wild Commander); not on +3 (no TR-DOS)</td></tr>
