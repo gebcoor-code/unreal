@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261126172534">
+<meta name="build" content="20261126182356">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -402,15 +402,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz { position: absolute; z-index: 3; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz { position: absolute; z-index: 3; touch-action: none; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -418,8 +418,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.s { height: 14px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.sw { width: 26px; height: 26px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.s { height: 14px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp, #pkhelp) .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
@@ -609,8 +609,16 @@ select:focus { outline: none; } select:focus-visible { border-color: var(--accen
 .pokwin { width: min(520px, calc(100vw - 8px)); }
 .pokwin .pklist { width: 100%; min-height: 110px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font: 12px ui-monospace, Consolas, monospace; padding: 2px; }
 .pokwin .pkitems { min-height: 70px; }
+.pokwin .body { flex: 1 1 auto; }
+.pokwin .ldrow { flex-wrap: wrap; }
+.pokwin .ldrow + .ldrow { margin-top: 0; }
+.pokwin .pkv { flex: 1 1 11ch; width: auto; min-width: 11ch; max-width: 22ch; }
+.pokwin .pklist, .pokwin .pkt { flex: 2 0 auto; }
+.pokwin .pkitems, .pokwin .pkt { flex-grow: 1; }
+.pokwin .pkt { resize: none; }
+.pokwin .ldrow:has(.pkv) .chk { white-space: nowrap; }
+.pokwin .pkt { width: 100%; box-sizing: border-box; min-height: 70px; resize: vertical; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font: 12px ui-monospace, Consolas, monospace; padding: 4px; white-space: pre; overflow: auto; }
 .pokwin input[type=text], .pokwin input:not([type]) { min-width: 0; }
-.pokwin .pkv { width: 12ch; flex: 0 1 auto; }
 .pokwin h4 { margin: 8px 0 4px; font-size: 12px; opacity: .8; }
 .duxwin .dxlist { border: 1px solid var(--line); border-radius: 6px; max-height: 260px; min-height: 60px; overflow-y: auto; background: var(--panel2); font: 12px ui-monospace, Consolas, monospace; }
 .duxwin .dxrow { display: grid; grid-template-columns: 11ch 7ch 1fr auto auto auto auto; gap: 6px; align-items: center; padding: 3px 6px; border-bottom: 1px solid var(--line); }
@@ -660,7 +668,7 @@ canvas.dxpicking { cursor: crosshair; touch-action: none; }
 .duxwin .dxpr { align-items: center; gap: 10px; margin: 6px 0; }
 .duxwin .dxbr { display: inline-flex; align-items: center; gap: 6px; }
 .duxwin .dxbr input { width: 34px; height: 24px; padding: 0; border: 1px solid var(--line); background: none; }
-.duxwin .fhead .dxhq { margin-left: auto; padding: 1px 7px; font-size: 12px; } .duxwin .fhead .dxhq + [data-close] { margin-left: 4px; }
+.duxwin .fhead .dxhq, .pokwin .fhead .dxhq { margin-left: auto; padding: 1px 7px; font-size: 12px; } .duxwin .fhead .dxhq + [data-close], .pokwin .fhead .dxhq + [data-close] { margin-left: 4px; }
 .duxwin .dxsp { flex: 1; }
 .duxwin #dxname { flex: 1; min-width: 0; }
 .brwin { width: min(460px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); }
@@ -739,7 +747,7 @@ table.keys.k13 td:first-child { width: 13ch; } table.keys.k15 td:first-child { w
 #ziplist button { text-align: left; font-family: ui-monospace, Consolas, monospace; }
 /* debugger: floating, draggable window */
 #dbgwin { position: fixed; left: 0; top: 0; z-index: 8; background: #000; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); line-height: 0; }
-#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #dxhelp[hidden], #rahelp[hidden], #ldhelp[hidden], #svhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
+#dbgwin[hidden], #dbghelp[hidden], #dgahelp[hidden], #gfxhelp[hidden], #pfhelp[hidden], #dxhelp[hidden], #pkhelp[hidden], #rahelp[hidden], #ldhelp[hidden], #svhelp[hidden], #fchelp[hidden], #mainhelp[hidden], #fcwin[hidden], #sysinfo[hidden], #restwin[hidden] { display: none; }
 #restwin { position: fixed; left: 0; top: 0; z-index: 9; width: min(440px, calc(100vw - 8px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
 #restwin .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; font-size: 13px; color: var(--dim); }
@@ -995,14 +1003,14 @@ select.usel-src { display: none !important; }
 #fvbody.wrap:not(.hex), #fetext.wrap { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; } /* by words; a word longer than the line: where it must */
 .fvbar .fvwrap { height: 24px; padding: 0 8px; font-size: 12px; }
 .fvbar .fvwrap[hidden] { display: none; }
-#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #dxhelp .dbghead, #rahelp .dbghead, #ldhelp .dbghead, #svhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
-#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #dxhelp .dbghead span, #rahelp .dbghead span, #ldhelp .dbghead span, #svhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
-#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #dxhelp .dbghead button, #rahelp .dbghead button, #ldhelp .dbghead button, #svhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #dxhelp, #rahelp, #ldhelp, #svhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
+#dbgwin .dbghead, #dbghelp .dbghead, #dgahelp .dbghead, #gfxhelp .dbghead, #pfhelp .dbghead, #dxhelp .dbghead, #pkhelp .dbghead, #rahelp .dbghead, #ldhelp .dbghead, #svhelp .dbghead, #fchelp .dbghead, #mainhelp .dbghead, #sysinfo .dbghead { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px 0 10px; background: var(--panel); border-bottom: 1px solid var(--line); cursor: move; touch-action: none; user-select: none; line-height: normal; font-size: 13px; color: var(--dim); }
+#dbgwin .dbghead span, #dbghelp .dbghead span, #dgahelp .dbghead span, #gfxhelp .dbghead span, #pfhelp .dbghead span, #dxhelp .dbghead span, #pkhelp .dbghead span, #rahelp .dbghead span, #ldhelp .dbghead span, #svhelp .dbghead span, #fchelp .dbghead span, #mainhelp .dbghead span, #sysinfo .dbghead span { flex: 1; }
+#dbgwin .dbghead button, #dbghelp .dbghead button, #dgahelp .dbghead button, #gfxhelp .dbghead button, #pfhelp .dbghead button, #dxhelp .dbghead button, #pkhelp .dbghead button, #rahelp .dbghead button, #ldhelp .dbghead button, #svhelp .dbghead button, #fchelp .dbghead button, #mainhelp .dbghead button, #sysinfo .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #dxhelp, #pkhelp, #rahelp, #ldhelp, #svhelp, #fchelp) { position: fixed; left: 0; top: 0; z-index: 9; width: min(400px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); display: flex; flex-direction: column;
   background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,.6); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #dxhelp, #rahelp, #ldhelp, #svhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
-:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #dxhelp, #rahelp, #ldhelp, #svhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
-:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #dxhelp, #rahelp, #ldhelp, #svhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #sysinfo, #pfhelp, #dxhelp, #pkhelp, #rahelp, #ldhelp, #svhelp, #fchelp) .hbody { flex: 1; overflow-y: auto; padding: 6px 12px 10px; font-size: 12px; line-height: 1.35; }
+:is(#dbghelp, #dgahelp, #gfxhelp, #mainhelp, #pfhelp, #dxhelp, #pkhelp, #rahelp, #ldhelp, #svhelp, #fchelp) p { margin: 4px 0 8px; color: var(--dim); }
+:is(#dbghelp, #dgahelp, #gfxhelp, #pfhelp, #dxhelp, #pkhelp, #rahelp, #ldhelp, #svhelp, #fchelp) h4 { margin: 12px 0 2px; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
 :is(#dbghelp, #dgahelp, #gfxhelp) h5 { margin: 6px 0 2px; font-size: 12px; color: var(--text); font-weight: 600; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dl { display: grid; grid-template-columns: max-content 1fr; gap: 1px 10px; margin: 0; }
 :is(#dbghelp, #dgahelp, #gfxhelp, #fchelp) dt { font-family: ui-monospace, Consolas, monospace; color: var(--accent); white-space: nowrap; }
@@ -1020,12 +1028,12 @@ select.usel-src { display: none !important; }
 #perfwin .dbghead b { font: 11px ui-monospace, Consolas, monospace; color: var(--dim); font-weight: 400; }
 #perfwin .dbghead button { padding: 1px 7px; font-size: 12px; cursor: pointer; }
 #pfhelp { width: min(300px, calc(100vw - 8px)); }
-#dxhelp { width: min(420px, calc(100vw - 8px)); }
+#dxhelp, #pkhelp { width: min(420px, calc(100vw - 8px)); }
 #rahelp, #ldhelp, #svhelp { width: min(420px, calc(100vw - 8px)); }
 #ldhelp table.keys, #svhelp table.keys { font-size: 12px; }
 #rahelp .dbghead, #ldhelp .dbghead, #svhelp .dbghead { cursor: default; }
 #rahelp table.keys td:first-child { white-space: nowrap; vertical-align: top; }
-#pfhelp .dbghead, #dxhelp .dbghead { cursor: default; }
+#pfhelp .dbghead, #dxhelp .dbghead, #pkhelp .dbghead { cursor: default; }
 .pfgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
 .pft { background: #0e1013; border: 1px solid #1f232a; border-radius: 6px; padding: 6px 8px 5px; min-width: 0; }
 .pft .h { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
@@ -1869,6 +1877,18 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>Limits</h4><p>The colors are set where the program draws, so an object that is drawn by the very routine that draws the background takes the background with it. A sprite drawn shifted by a loop or a table, by PUSH, or by instructions the Builder does not know, may only be colored plainly. Save the dux often.</p>
   </div>
 </div>
+<div id="pkhelp" hidden role="dialog" aria-label="Poke Finder help">
+  <div class="dbghead fhead"><span>Poke Finder help</span><button id="pkhelpclose" title="Close">✕</button></div>
+  <div class="hbody">
+    <p>Poke Finder looks for a value in the memory of the running program (lives, ammo, energy, time) and makes a .POK file of it, or applies the pokes of a .POK file. Tools / Poke Finder. The search is in RAM.</p>
+    <h4>1. Search</h4><p>Press <b>New</b>: every byte of RAM is a candidate. Type the value you see in the program (decimal, or hex as #A0, $A0, 0xA0) and press <b>= value</b>. Then play until the value changes and narrow down again: <b>= value</b> with the new number, or without knowing the number: <b>Changed</b>, <b>Same</b> (it did not change), <b>More</b>, <b>Less</b>, <b>More by</b> / <b>Less by</b> (it grew or fell by the number in the "by" field). A few steps leave a short list. The <b>word</b> box searches 16-bit values (two bytes, low first).</p>
+    <h4>2. Look at the result</h4><p>The list shows page:offset of each address and the Z80 address if it is mapped now. Select addresses (Ctrl, Shift: several). <b>Set</b> writes the "new value" there at once; with <b>Freeze</b> on, the value is written again and again while the window is open.</p>
+    <h4>3. Make a .POK</h4><p>Type the name of the poke ("Infinite lives") and the "new value" (the value the poke puts in), select the addresses and press <b>Add</b>. The poke goes to the list below and to the text field under it. Add more pokes in the same way and press <b>Save .POK</b>.</p>
+    <h4>4. Load, paste, apply</h4><p><b>Load .POK</b> (or drop a .POK file on the page) fills the list. The text field under the list is the file itself: paste a POK text there or edit it, and the list follows at once; the field follows the list too. <b>Remove</b> deletes the selected pokes. Select pokes and press <b>Apply</b>: the values are written into the program. <b>Undo</b> puts back what the last Apply changed. A poke with the value 256 asks for it: type it in "new value" before Apply.</p>
+    <h4>The text of .POK</h4><p><b>N</b>name, then lines <b>M</b> or <b>Z</b> (the last of the poke): bank, address, value, original value; <b>Y</b> at the end. Bank 8 is a CPU address as it is now; banks 0-7 are the 16K pages at #C000.</p>
+    <h4>Limits</h4><p>A .POK holds addresses in banks 0-7 and in the CPU address space only: addresses of other pages (above 7, on machines with more memory) cannot be saved and are skipped. A program that keeps a copy of the value (a lives counter and its display), or sets it again by itself, needs more than one poke; look for the counter by its changes, not by the number on the screen. Apply writes once; use Freeze for a value that the program changes by itself.</p>
+  </div>
+</div>
 <div id="pfhelp" hidden role="dialog" aria-label="Performance help">
   <div class="dbghead fhead"><span>Performance help</span><button id="pfhelpclose" title="Close">✕</button></div>
   <div class="hbody">
@@ -2145,9 +2165,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 </div>
 
 <div class="fwin pokwin" id="pokwin" hidden role="dialog" aria-labelledby="pktitle">
-  <header class="fhead"><h2 id="pktitle">Poke Finder</h2><button data-close title="Close (Esc)">✕</button></header>
+  <header class="fhead"><h2 id="pktitle">Poke Finder</h2><button id="pkhelpbtn" class="dxhq" title="Help">?</button><button data-close title="Close (Esc)">✕</button></header>
   <div class="body">
-    <p class="note">Find a value in RAM (lives, ammo, energy): press New, then narrow down while the value changes in the program. Save what is found as a .POK file.</p>
+    <p class="note">Find a value in RAM (lives, ammo, energy): press New, then narrow down while the value changes in the program. Save what is found as a .POK file, or paste a .POK text into the field under the list.</p>
     <div class="ldrow"><input id="pkv" class="pkv" placeholder="value (dec, #A0)" spellcheck="false" autocomplete="off" title="The value to look for; decimal, or hex as #A0 / $A0 / 0xA0"><input id="pkd" class="pkv" placeholder="by (1, 2…)" spellcheck="false" autocomplete="off" title="For More by / Less by"><label class="chk" title="Search 16-bit values (low byte first)"><input type="checkbox" id="pkw">word</label></div>
     <div class="ldrow"><button id="pknew" title="Start again: every byte of RAM is a candidate">New</button><button id="pkeq" class="primary" title="Keep the addresses that hold the value now">= value</button><button id="pkchg" title="Changed since the last step">Changed</button><button id="pksame" title="Not changed since the last step">Same</button><button id="pkinc" title="Bigger than at the last step">More</button><button id="pkdec" title="Smaller than at the last step">Less</button><button id="pkincd" title="Bigger by exactly the number in by">More by</button><button id="pkdecd" title="Smaller by exactly the number in by">Less by</button></div>
     <select id="pkl" class="pklist" size="8" multiple title="Found addresses: page:offset, the Z80 address when mapped (Ctrl / Shift: several)"></select>
@@ -2155,6 +2175,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>.POK</h4>
     <div class="ldrow"><input id="pkname" placeholder="name of the poke (Infinite lives)" spellcheck="false" autocomplete="off" maxlength="40" style="flex:1"><button id="pkadd" title="The selected addresses become one poke with this name, the value in the field above (or the current one)">Add</button></div>
     <select id="pki" class="pklist pkitems" size="4" multiple title="The pokes of the file"></select>
+    <textarea id="pkt" class="pkt" rows="5" spellcheck="false" autocomplete="off" placeholder="The .POK text: paste it here (Ctrl+V) or copy it; the list above follows" title="The text of the .POK file. What is typed or pasted here goes into the list at once; the list changes this text"></textarea>
     <div class="ldrow"><button id="pkapply" title="Write the selected pokes into the program">Apply</button><button id="pkundo" title="Put the memory back as it was before Apply">Undo</button><button id="pkdel" title="Remove the selected pokes from the list">Remove</button><button id="pkload" title="Open a .POK file">Load .POK</button><button id="pksave" class="primary" title="Save the list as a .POK file">Save .POK</button></div>
     <p class="note" id="pkmsg"></p>
   </div>
