@@ -5,6 +5,7 @@
  { "name": "Demos ATM", "run": "?model=atm710&fdd=a:trd/demos-atm.zip&cpm=b:most&xt=1", "tag": "ATM" }, 
  { "name": "8 colors Editor", "run": "?model=atm710&fdd=a:trd/8%20colors%20Editor.zip&autorun=1&press=0", "tag": "ZX" },
  { "name": "Dizzy5", "run": "?model=atm710&fdd=a:trd/Dizzy%205%20(CM)%20(1991).zip&autorun=1&press=0", "tag": "ZX" },
+ { "name": "Ruff and Reddy (ULAX)", "run": "?model=pentagon&ram=128&snap=trd/Ruff%26Reddy%20(ulax).zip", "tag": "ZX" }, 
  { "name": "Moon Music (MoonSound)", "run": "?model=atm710&fdd=a:trd/moonmusic_1.zip&run=MoonMus1", "tag": "ZX" }, 
  { "name": "Moon Wolf (MoonSound)", "run": "?model=atm710&fdd=a:trd/moonwolf.zip&run=MoonWolf", "tag": "ZX" },  
  { "name": "eTunes 7 (SSA 1099)", "run": "?model=pentagon&ram=512&fdd=a:trd/etunes_07.zip&run=ETUNES-7", "tag": "ZX" },   
