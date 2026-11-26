@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261126132037">
+<meta name="build" content="20261126172534">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -402,15 +402,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz { position: absolute; z-index: 3; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz { position: absolute; z-index: 3; touch-action: none; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -418,8 +418,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.s { height: 14px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.sw { width: 26px; height: 26px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.s { height: 14px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #pokwin, #dxhelp) .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
@@ -606,6 +606,12 @@ select option { background: var(--panel2); color: var(--text); }
 select:focus { outline: none; } select:focus-visible { border-color: var(--accent); }
 #ldmsg.err, .brstat.err { color: #e07a6a; }
 .duxwin { width: min(560px, calc(100vw - 8px)); }
+.pokwin { width: min(520px, calc(100vw - 8px)); }
+.pokwin .pklist { width: 100%; min-height: 110px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font: 12px ui-monospace, Consolas, monospace; padding: 2px; }
+.pokwin .pkitems { min-height: 70px; }
+.pokwin input[type=text], .pokwin input:not([type]) { min-width: 0; }
+.pokwin .pkv { width: 12ch; flex: 0 1 auto; }
+.pokwin h4 { margin: 8px 0 4px; font-size: 12px; opacity: .8; }
 .duxwin .dxlist { border: 1px solid var(--line); border-radius: 6px; max-height: 260px; min-height: 60px; overflow-y: auto; background: var(--panel2); font: 12px ui-monospace, Consolas, monospace; }
 .duxwin .dxrow { display: grid; grid-template-columns: 11ch 7ch 1fr auto auto auto auto; gap: 6px; align-items: center; padding: 3px 6px; border-bottom: 1px solid var(--line); }
 .duxwin .dxrow:last-child { border-bottom: 0; }
@@ -983,6 +989,9 @@ select.usel-src { display: none !important; }
 #fvorg { width: 7ch; height: 24px; padding: 0 4px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; margin-left: -4px; }
 #fvorg[hidden], #fvorgl[hidden], #fvgo[hidden], #fvgol[hidden] { display: none; }
 #fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre; tab-size: 8; }
+#fvpic { flex: 1; min-height: 0; overflow: auto; outline: none; padding: 6px; text-align: center; background: var(--bg, #000); }
+#fvpic[hidden] { display: none; }
+#fvcv { image-rendering: pixelated; max-width: none; vertical-align: top; }
 #fvbody.wrap:not(.hex), #fetext.wrap { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; } /* by words; a word longer than the line: where it must */
 .fvbar .fvwrap { height: 24px; padding: 0 8px; font-size: 12px; }
 .fvbar .fvwrap[hidden] { display: none; }
@@ -1135,8 +1144,9 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <button id="gfxbtn"><svg><use href="#i-gfx"/></svg><span>Graf Search</span></button>
           <button id="pfbtn"><svg><use href="#i-perf"/></svg><span>Performance</span></button>
           <button id="sibtn"><svg><use href="#i-info"/></svg><span>System Info</span></button>
-          <button id="rabtn"><svg><use href="#i-link"/></svg><span>REST API link</span></button>
           <button id="dxbtn" title="Colors for a ZX ULAX .dux made from the program running now"><svg><use href="#i-gfx"/></svg><span>DUX Builder</span></button>
+          <button id="pkbtn" title="Find lives and other values in memory (new, equal, changed, more, less), save the found as a .POK file, load and apply a .POK"><svg><use href="#i-bug"/></svg><span>Poke Finder</span></button>
+          <button id="rabtn"><svg><use href="#i-link"/></svg><span>REST API link</span></button>
         </div>
       </div>
       <button class="ico" id="optbtn" title="Options"><svg><use href="#i-opt"/></svg></button>
@@ -1620,11 +1630,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
           <tr><td>Debugger</td><td>almost full port from Unreal 0.39.0</td></tr>
           <tr><td>deBUGa</td><td>debugger from Xpeccy: registers and flags, disasm with labels and comments, assembler, breakpoints (address, memory, ports, INT, conditions), memory dump with pages, fill / save / load, stack, watches, screen (as shown, ZX, TS-Conf: frame, tile maps, sprites, pages as 16c / 256c; CP/M, GMX, Profi 512x240, Sprinter, SAM Coupé, ZX Spectrum Next layers: ULA, Layer 2, tilemap, sprites, sprite patterns), devices (memory and video ports of each machine, AY, WD1793, µPD765, tape, General Sound, SAA1099, MoonSound / OPL3, SounDrive, Covox, IDE, SD, CMOS, TS-Conf, ZX Spectrum Next registers and ports), the General Sound CPU (CPU: GS), Z80N commands on the Next, projects</td></tr>
           <tr><td>Graf Search</td><td>live memory viewer as graphics (ZX/EGA/VGA, TS-Conf 16C/256C)</td></tr>
-          <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/FAT floppy/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm; Compile: sjasmplus (F9)</td></tr>
+          <tr><td>File Commander</td><td>TRD/CPM/iS-DOS/FAT floppy/HDD/VHD/RAM;<br>viewer: txt/hex/Z80asm/pictures; Compile: sjasmplus (F9)</td></tr>
           <tr><td>Performance</td><td>live graphs: Z80 load, host time, memory, disk, I/O, frames</td></tr>
           <tr><td>System Info</td><td>CPU, ports, disks, sound, host (live)</td></tr>
-          <tr><td>REST API link</td><td>fast link to start model (up to CP/M commands)</td></tr>
           <tr><td>DUX Builder</td><td>colors of the running program into a .dux (ZX ULAX)</td></tr>
+          <tr><td>Poke Finder</td><td>search values (lives…) in memory, save and apply .POK</td></tr>
+          <tr><td>REST API link</td><td>fast link to start model (up to CP/M commands)</td></tr>
         </table>
       </div>
       <div class="card">
@@ -1850,12 +1861,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <h4>The idea</h4><p>A dux does not paint the picture: it sets colors at the moments the program draws. DUX Builder records the instructions that draw (copy a block, draw a sprite with a mask, draw with XOR, write plain bytes), so that you can point at an object on the screen and say what color it is.</p>
     <h4>1. Record</h4><p>Press Record and play: move, shoot, change rooms, so that everything you want to color is drawn while it records. The moving objects are listed at once. Show (hold) lights an object in a bright color, to see which is which. Stop when you have enough.</p>
     <h4>2. Color an object</h4><p><b>Pick</b>: click an object on the screen, then its color box. All the parts of the object that the program draws separately are taken together. A sprite is drawn in one color over any background, as its mask says. <b>Color</b> next to a found object does the same without a click.</p>
-    <h4>3. Paint details</h4><p><b>Paint</b> colors single pixels: choose the brush color, then drag over pixels of the object (Pixel), click Fill object for all pixels of it, Fill layer takes the pixels drawn from the same graphics as the clicked one (a sprite apart from the background of one routine), Rectangle drags a frame, Erase gives a pixel its own color back, Pipette takes the brush color from the screen; the squares are the ZX colors. The pixels are colored in the graphics the program draws from, so the color goes with the object wherever it moves. A pixel that the program calculates (shifted sprites, for example) cannot carry a color yet: the message says so.</p>
+    <h4>3. Paint details</h4><p><b>Paint</b> colors single pixels: choose the brush color, then drag over pixels of the object (Pixel), click Fill object for all pixels of it, Fill layer takes the pixels drawn from the same graphics as the clicked one (a sprite apart from the background of one routine), Rectangle drags a frame, Erase gives a pixel its own color back, Pipette takes the brush color from the screen; the squares are the ZX colors. The pixels are colored in the graphics the program draws from, so the color goes with the object wherever it moves. Sprites drawn through shifts in Z80 registers (RR, SRL, SLA…) are colored too: press Paint while the object moves, the Builder replays that frame once to see where each pixel comes from. A pixel the program calculates in other ways cannot carry a color yet: the message says so.</p>
     <h4>A loaded dux</h4><p>The dux loaded into the page is shown in parts (a comment line starts a part). The box switches a part off, ⊘ (hold) shows the program without it, ◎ flashes on the screen the pixels it colors, ✎ edits its text. Colors of the program lists the colors the dux takes from its palette: change one and see it at once. After Record, a part shows the recorded routines it works on (→ 8029), and an object shows the part that colors it (◀ name): click either to find the other. “not recorded”: nothing at its addresses was drawn while recording.</p>
     <h4>Live, Apply, Save</h4><p>Live applies every change at once. Apply does it by hand. ↶ ↷ (Ctrl+Z, Ctrl+Y) undo and redo objects, painted pixels and colors. Original (hold) shows the program without the dux. Open dux loads a .dux; Add dux puts a second one after the loaded one. Save .dux downloads the file: the parts of the loaded dux that are on, the edits, the Builder's colors and the painted pixels.</p>
     <h4>Clear, Clear all</h4><p>Clear forgets the recording and the objects. Clear all also removes the loaded dux and its colors: the ZX picture again. A reset of the machine clears the recording by itself, as the program starts over.</p>
     <h4>All routines, Reach</h4><p>The list for experts: every routine found, with its colors by hand. Reach is how many bytes around a drawing instruction get the color settings; leave it at 24 unless a color leaks or does not reach.</p>
-    <h4>Limits</h4><p>The colors are set where the program draws, so an object that is drawn by the very routine that draws the background takes the background with it. A sprite drawn shifted bit by bit, or by instructions the Builder does not know, may only be colored plainly. Save the dux often.</p>
+    <h4>Limits</h4><p>The colors are set where the program draws, so an object that is drawn by the very routine that draws the background takes the background with it. A sprite drawn shifted by a loop or a table, by PUSH, or by instructions the Builder does not know, may only be colored plainly. Save the dux often.</p>
   </div>
 </div>
 <div id="pfhelp" hidden role="dialog" aria-label="Performance help">
@@ -2133,6 +2144,21 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="brstat" id="brstat"></div>
 </div>
 
+<div class="fwin pokwin" id="pokwin" hidden role="dialog" aria-labelledby="pktitle">
+  <header class="fhead"><h2 id="pktitle">Poke Finder</h2><button data-close title="Close (Esc)">✕</button></header>
+  <div class="body">
+    <p class="note">Find a value in RAM (lives, ammo, energy): press New, then narrow down while the value changes in the program. Save what is found as a .POK file.</p>
+    <div class="ldrow"><input id="pkv" class="pkv" placeholder="value (dec, #A0)" spellcheck="false" autocomplete="off" title="The value to look for; decimal, or hex as #A0 / $A0 / 0xA0"><input id="pkd" class="pkv" placeholder="by (1, 2…)" spellcheck="false" autocomplete="off" title="For More by / Less by"><label class="chk" title="Search 16-bit values (low byte first)"><input type="checkbox" id="pkw">word</label></div>
+    <div class="ldrow"><button id="pknew" title="Start again: every byte of RAM is a candidate">New</button><button id="pkeq" class="primary" title="Keep the addresses that hold the value now">= value</button><button id="pkchg" title="Changed since the last step">Changed</button><button id="pksame" title="Not changed since the last step">Same</button><button id="pkinc" title="Bigger than at the last step">More</button><button id="pkdec" title="Smaller than at the last step">Less</button><button id="pkincd" title="Bigger by exactly the number in by">More by</button><button id="pkdecd" title="Smaller by exactly the number in by">Less by</button></div>
+    <select id="pkl" class="pklist" size="8" multiple title="Found addresses: page:offset, the Z80 address when mapped (Ctrl / Shift: several)"></select>
+    <div class="ldrow"><input id="pkset" class="pkv" placeholder="new value" spellcheck="false" autocomplete="off"><button id="pkpoke" title="Write the value at the selected addresses">Set</button><label class="chk" title="Keep writing the value (selected addresses)"><input type="checkbox" id="pkfrz">Freeze</label></div>
+    <h4>.POK</h4>
+    <div class="ldrow"><input id="pkname" placeholder="name of the poke (Infinite lives)" spellcheck="false" autocomplete="off" maxlength="40" style="flex:1"><button id="pkadd" title="The selected addresses become one poke with this name, the value in the field above (or the current one)">Add</button></div>
+    <select id="pki" class="pklist pkitems" size="4" multiple title="The pokes of the file"></select>
+    <div class="ldrow"><button id="pkapply" title="Write the selected pokes into the program">Apply</button><button id="pkundo" title="Put the memory back as it was before Apply">Undo</button><button id="pkdel" title="Remove the selected pokes from the list">Remove</button><button id="pkload" title="Open a .POK file">Load .POK</button><button id="pksave" class="primary" title="Save the list as a .POK file">Save .POK</button></div>
+    <p class="note" id="pkmsg"></p>
+  </div>
+</div>
 <div class="fwin duxwin" id="duxwin" hidden role="dialog" aria-labelledby="dxtitle">
   <header class="fhead"><h2 id="dxtitle">DUX Builder</h2><button id="dxhelpbtn" class="dxhq" title="Help">?</button><button data-close title="Close (Esc)">✕</button></header>
   <div class="body">
@@ -2223,7 +2249,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <div id="fvwin" hidden role="dialog" aria-label="Viewer">
   <div class="dbghead fhead"><span id="fvtitle">Viewer</span><button id="fvclose" title="Close (Esc)">✕</button></div>
   <div class="fvbar">
-    <select id="fvmode" data-pop-class="fcmpop" title="View: F4 cycles · T text · H hex · D Z80asm · G go to address · Graf: Graf Search over this file"><option value="text">Text</option><option value="hex">Hex</option><option value="dis">Z80asm</option><option value="gfx">Graf</option></select>
+    <select id="fvmode" data-pop-class="fcmpop" title="View: F4 cycles · T text · H hex · D Z80asm · G go to address · Graf: Graf Search over this file"><option value="text">Text</option><option value="hex">Hex</option><option value="dis">Z80asm</option><option value="scr">ZX Scr</option><option value="img">Picture</option><option value="gfx">Graf</option></select>
     <select id="fvenc" data-pop-class="fcmpop" title="Encoding (F8 / E)"></select>
     <label id="fvorgl" for="fvorg">Org #</label><input id="fvorg" data-hex="" maxlength="4" spellcheck="false" autocomplete="off" title="Load address (hex) for Hex and Disassembler">
     <label id="fvgol" for="fvgo">Go #</label><input id="fvgo" data-hex="" maxlength="5" spellcheck="false" autocomplete="off" title="Jump to an address (hex), Enter. G in the viewer puts the cursor here">
@@ -2231,6 +2257,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <span id="fvinfo"></span>
   </div>
   <pre id="fvbody" tabindex="0"></pre>
+  <div id="fvpic" tabindex="0" hidden><canvas id="fvcv" width="256" height="192"></canvas></div>
 </div>
 <div id="fewin" hidden role="dialog" aria-label="Editor">
   <div class="dbghead fhead"><span id="fetitle">Editor</span><button id="feclose" title="Close (Esc)">✕</button></div>
@@ -2249,7 +2276,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
 <input type="file" id="hddfile" hidden>
 <input type="file" id="sdfile" hidden>
 <input type="file" id="crinput" hidden accept=".rom,.bin,.zip">
-<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.nex,.dot,.wmf,.rzx,.dux,.$b,.$c,.$d,.hob">
+<input type="file" id="file" hidden accept=".zip,.hdd,.img,.ima,.hdf,.trd,.scl,.fdi,.udi,.td0,.isd,.pro,.dsk,.mgt,.sad,.ipf,.pal,.tap,.tzx,.csw,.sna,.z80,.sp,.spg,.nex,.dot,.wmf,.rzx,.dux,.pok,.$b,.$c,.$d,.hob">
 <script>
 // the scripts: js/js.zip (one file, deflate; unpacked here, run in this order); without it the files of js/ one by one
 (function () {
