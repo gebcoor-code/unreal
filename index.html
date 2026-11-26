@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261126130157">
+<meta name="build" content="20261126132037">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -402,15 +402,15 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 .gfxbar .chk input { width: 14px; height: 14px; }
 .gfxmain { flex: 1 1 auto; min-height: 0; display: flex; background: #000; }
 .gfxview { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; overflow-x: auto; overflow-y: hidden; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz { position: absolute; z-index: 3; touch-action: none; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
-:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz { position: absolute; z-index: 3; touch-action: none; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+:is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize;
   background: linear-gradient(135deg, transparent 55%, var(--dim) 55%, var(--dim) 62%, transparent 62%, transparent 72%, var(--dim) 72%, var(--dim) 79%, transparent 79%); opacity: .7; }
 .gfxview canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; cursor: grab; }
 .gfxcw { position: relative; flex: none; margin-right: auto; padding-right: 10px; align-self: flex-start; }
@@ -418,8 +418,8 @@ input, textarea, [contenteditable] { -webkit-user-select: text; user-select: tex
 @media (pointer: coarse) { /* fingers: wider grips for the picture edge and the window edges */
   .gfxcw { padding-right: 26px; }
   .gfxedge { width: 26px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.s { height: 14px; }
-  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin) .rz.sw { width: 26px; height: 26px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.e, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.w { width: 16px; } :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.s { height: 14px; }
+  :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.se, :is(.gfxwin, #fvwin, #fewin, #fcwin, #chwin, #dgawin, #duxwin, #dxhelp) .rz.sw { width: 26px; height: 26px; }
 }
 .gfxedge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 1px; background: var(--accent); opacity: .75; }
 .gfxedge:hover::before, .gfxedge.drag::before { width: 2px; opacity: 1; }
