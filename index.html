@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261126184651">
+<meta name="build" content="20261127065139">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -604,7 +604,7 @@ select option { background: var(--panel2); color: var(--text); }
 #ldrunmodel { height: 26px; font-size: 12px; } #ldrunmodel[hidden] { display: none; } #ldrunone { font-size: 12px; color: var(--dim); }
 /* selects: one focus mark (orange, as on hover), not the browser's blue ring next to the hover border */
 select:focus { outline: none; } select:focus-visible { border-color: var(--accent); }
-#ldmsg.err, .brstat.err { color: #e07a6a; }
+#ldmsg.err { color: #e07a6a; }
 .duxwin { width: min(560px, calc(100vw - 8px)); }
 .pokwin { width: min(520px, calc(100vw - 8px)); }
 .pokwin .pklist { width: 100%; min-height: 110px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font: 12px ui-monospace, Consolas, monospace; padding: 2px; }
@@ -671,15 +671,6 @@ canvas.dxpicking { cursor: crosshair; touch-action: none; }
 .duxwin .fhead .dxhq, .pokwin .fhead .dxhq { margin-left: auto; padding: 1px 7px; font-size: 12px; } .duxwin .fhead .dxhq + [data-close], .pokwin .fhead .dxhq + [data-close] { margin-left: 4px; }
 .duxwin .dxsp { flex: 1; }
 .duxwin #dxname { flex: 1; min-width: 0; }
-.brwin { width: min(460px, calc(100vw - 8px)); height: min(480px, calc(100vh - 16px)); }
-.brpath { padding: 5px 12px; font: 11px ui-monospace, Consolas, monospace; color: var(--dim); border-bottom: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.brlist { flex: 1; overflow-y: auto; min-height: 0; padding: 4px 0; }
-.brlist button { display: flex; width: 100%; gap: 8px; align-items: center; border: 0; border-radius: 0; background: transparent; padding: 4px 12px; text-align: left; font: 13px ui-monospace, Consolas, monospace; color: var(--text); }
-.brlist button:hover { background: var(--panel2); } .brlist button:focus { background: rgba(240,160,80,.22); outline: none; } /* the keyboard cursor */
-.brlist button .ic { width: 14px; flex: none; color: var(--accent); }
-.brlist button.dir { color: var(--accent); }
-.brlist button .sz { margin-left: auto; color: var(--dim); font-size: 11px; }
-.brstat { padding: 4px 12px; font-size: 11px; color: var(--dim); border-top: 1px solid var(--line); min-height: 22px; }
 .modal .body { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
 .card h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); margin: 0 0 8px; font-weight: 600; }
@@ -996,7 +987,7 @@ select.usel-src { display: none !important; }
 #fvgo { width: 7ch; height: 24px; padding: 0 4px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; margin-left: -4px; }
 #fvorg { width: 7ch; height: 24px; padding: 0 4px; font: 12px ui-monospace, Consolas, monospace; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 4px; margin-left: -4px; }
 #fvorg[hidden], #fvorgl[hidden], #fvgo[hidden], #fvgol[hidden] { display: none; }
-#fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre; tab-size: 8; }
+#fvbody { flex: 1; min-height: 0; margin: 0; padding: 6px 10px; overflow: auto; outline: none; font: 12px/1.35 ui-monospace, Consolas, monospace; color: var(--text); white-space: pre; tab-size: 8; -webkit-user-select: text; user-select: text; cursor: text; }
 #fvpic { flex: 1; min-height: 0; overflow: auto; outline: none; padding: 6px; text-align: center; background: var(--bg, #000); }
 #fvpic[hidden] { display: none; }
 #fvcv { image-rendering: pixelated; max-width: none; vertical-align: top; }
@@ -1391,6 +1382,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
               <select data-pop-class="cmpop" id="sticky"><option value="0">held while pressed</option><option value="1">sticky: one key</option><option value="2">locked until tapped again</option></select></label>
             <label class="chk" title="Drag on the screen moves the pointer. Programs move their pointer 1 or 2 pixels per Kempston step: if the pointer runs ahead of / behind the finger, switch this">Touch mouse: program pointer moves
               <select data-pop-class="cmpop" id="tmscale"><option value="1">1 px per step</option><option value="2">2 px per step</option></select></label>
+            <label class="chk" title="Phones and tablets: off — text fields do not open the system keyboard, type with the on-screen keyboards (the one in use types into the field in focus). On: the system keyboard, as usual"><input type="checkbox" id="syskbd"> System keyboard in text fields</label>
             <label class="chk" title="A click on the emulator screen captures the mouse as the mouse button of the toolbar does (Esc releases it)"><input type="checkbox" id="mclick"> Capture mouse by a click on the screen</label>
             <label class="chk" title="Kempston mouse: left and right button change places (bit 0 of #FADF: the right button, as on the original Kempston mouse; off: the left one, as ZX Evo)"><input type="checkbox" id="mswap"> Swap Mouse Buttons</label>
             <label class="chk" title="ZX Spectrum Next. Auto: the PC layout of the other models; a program that reads the extended keys of the Next itself (NR #68 bit 4: SymbOS) gets the Next's own keys. Next: Shift = Caps Shift, Ctrl = Symbol Shift, symbols as typed on the Next (SymbOS: as its own keyboard table has them), arrows, Backspace, Delete, Esc, Tab, Caps Lock the extended keys">ZX Spectrum Next keys
@@ -1923,7 +1915,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <div class="dbghead fhead"><span>Load help</span><button id="ldhelpclose" title="Close">✕</button></div>
   <div class="hbody">
     <h4>Local file</h4>
-    <p>Choose File, a file dropped on the screen and the files of Web folder go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
+    <p>Choose File and a file dropped on the screen go the same way. Disks go into A:, HDD images into HDD 0, SD card images onto the SD card. B:, the ROM disk and HDD 1: Options / Disk.</p>
     <table class="keys">
       <tr><td>Disk</td><td>TRD SCL FDI UDI TD0 ISD PRO HOB $x IPF DSK; IMG / IMA 720K / 360K (PC floppy, Sprinter DSS). Autostart: reset to TR-DOS and RUN its boot. A disk without boot: <b>boot.b menu</b> (the emulator's boot, then the keys of "press") or <b>first BASIC program</b> (nothing is written to the disk)</td></tr>
       <tr><td>+3 disk</td><td>DSK of 512-byte sectors: Spectrum +3 starts (always). Autostart: its menu, Loader</td></tr>
@@ -1952,7 +1944,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     </table>
     <p>Unsaved changes of a disk, HDD or SD card that a load replaces: you are asked first (Run: once, with the machine it switches to).</p>
     <h4>Web folder</h4>
-    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files Load takes, nothing else. Click / Enter opens folder or loads file as Local file (same Autostart); ↑ ↓ PgUp PgDn Home End move, Backspace goes up, Alt filters names (Esc clears). Once opened, File Commander shows it as drive Web folder (read only).</p>
+    <p>Folder of web server in your network or on this computer: <code>//192.168.1.10:8080/games/</code> (<code>//</code> = protocol of page); folder of the site the emulator is on: <code>/zxdb/files/pub/sinclair/games/</code>. Emulator reads folder listing (HTML page with links): subfolders (links ending with <code>/</code>) and files. Open puts File Commander on it as drive Web folder (read only): there Enter opens folder, runs or mounts file as from any drive, opens ZIP; Backspace goes up, Alt filters names (Esc clears).</p>
     <table class="keys">
       <tr><td>Listing</td><td>autoindex on: nginx <code>autoindex on;</code>, Apache <code>Options +Indexes</code>, IIS Directory Browsing, <code>python3 -m http.server 8080</code>, <code>npx http-server -p 8080 --cors</code></td></tr>
       <tr><td>CORS</td><td>emulator page on another site: server sends <code>Access-Control-Allow-Origin: *</code> (nginx <code>add_header Access-Control-Allow-Origin *;</code>, Apache <code>Header set Access-Control-Allow-Origin "*"</code>, http-server <code>--cors</code>). Python http.server does not: use it for folder on same server as emulator</td></tr>
@@ -2156,12 +2148,6 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   </div>
 </div>
 
-<div class="fwin brwin" id="browsewin" hidden role="dialog" aria-labelledby="brtitle">
-  <header class="fhead"><h2 id="brtitle">Server</h2><button data-close title="Close (Esc)">✕</button></header>
-  <div class="brpath" id="brpath"></div>
-  <div class="fcfilt" id="brfilt" hidden><span>Filter</span><input id="brfin" spellcheck="false" autocomplete="off" aria-label="Filter"></div>
-  <div class="brlist" id="brlist"></div>
-  <div class="brstat" id="brstat"></div>
 </div>
 
 <div class="fwin pokwin" id="pokwin" hidden role="dialog" aria-labelledby="pktitle">
@@ -2173,6 +2159,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
     <select id="pkl" class="pklist" size="8" multiple title="Found addresses: page:offset, the Z80 address when mapped (Ctrl / Shift: several)"></select>
     <div class="ldrow"><input id="pkset" class="pkv" placeholder="new value" spellcheck="false" autocomplete="off"><button id="pkpoke" title="Write the value at the selected addresses">Set</button><label class="chk" title="Keep writing the value (selected addresses)"><input type="checkbox" id="pkfrz">Freeze</label></div>
     <h4>.POK</h4>
+    <p class="note pkcap">Pokes of the list below: select them and press <b>Apply</b> (or double-click one): they are written into the running program, once. Paste or load a .POK and they are selected already.</p>
     <div class="ldrow"><input id="pkname" placeholder="name of the poke (Infinite lives)" spellcheck="false" autocomplete="off" maxlength="40" style="flex:1"><button id="pkadd" title="The selected addresses become one poke with this name, the value in the field above (or the current one)">Add</button></div>
     <select id="pki" class="pklist pkitems" size="4" multiple title="The pokes of the file"></select>
     <textarea id="pkt" class="pkt" rows="5" spellcheck="false" autocomplete="off" placeholder="The .POK text: paste it here (Ctrl+V) or copy it; the list above follows" title="The text of the .POK file. What is typed or pasted here goes into the list at once; the list changes this text"></textarea>
