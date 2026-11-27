@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261127094958">
+<meta name="build" content="20261127102237">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -773,9 +773,10 @@ table.keys.k13 td:first-child { width: 13ch; } table.keys.k15 td:first-child { w
 .fckind { font-size: 10px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fclist { flex: 1; min-height: 0; overflow-y: auto; outline: none; font: 12px ui-monospace, Consolas, monospace; padding: 2px 0; }
 .fclist.drop { background: rgba(240,160,80,.08); }
-.fcrow { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4ch 7ch; gap: 6px; padding: 1px 8px; cursor: default; white-space: pre; }
+.fcrow { position: relative; display: grid; grid-template-columns: var(--fccols, minmax(0, 1fr) 4ch 7ch); gap: 6px; padding: 1px 8px; cursor: default; white-space: pre; }
 .fcrow .n, .fcrow .e { overflow: hidden; text-overflow: ellipsis; } /* a long name ends with …, not over the extension (the whole name: its tooltip) */
 .fcrow .s { text-align: right; color: var(--dim); }
+.fclist.noext .fcrow .e, .fclist.nosize .fcrow .s { display: none; }
 .fcrow.cur { background: var(--panel2); }
 .fcpanel.act .fcrow.cur { background: rgba(240,160,80,.22); }
 .fcrow.sel { color: #ffd479; }
