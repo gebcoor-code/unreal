@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="build" content="20261127110911">
+<meta name="build" content="20261127211007">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link id="favicon" rel="icon" href="icon.png">
 <link id="touchicon" rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -2172,7 +2172,7 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible, input[type=
   <header class="fhead"><h2 id="dxtitle">DUX Builder</h2><button id="dxhelpbtn" class="dxhq" title="Help">?</button><button data-close title="Close (Esc)">✕</button></header>
   <div class="body">
     <p class="note dxhelp"><b>1</b> Record, and play so that the object moves. <b>2</b> Pick, and click the object on the screen. <b>3</b> Choose its color.</p>
-    <div class="ldrow"><button id="dxrec" class="primary" title="Record what the program draws. Play meanwhile, so that the object is drawn">● Record</button><button id="dxpick" title="Click the object on the screen: its color is yours then">Pick</button><button id="dxpaint" title="Paint pixels of the object: details in their own colors">Paint</button><button id="dxundo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled>↶</button><button id="dxredo" title="Redo (Ctrl+Y)" aria-label="Redo" disabled>↷</button><button id="dxclear" title="Forget the recording and the objects">Clear</button><button id="dxall" title="Clear everything: the recording, the objects, the loaded dux and its colors (the ZX picture again)">Clear all</button><span id="dxstat" class="dxdim"></span></div>
+    <div class="ldrow"><button id="dxrec" class="primary" title="Record what the program draws. Play meanwhile, so that the object is drawn">● Record</button><button id="dxauto" title="A first pass in one button: every moving object gets a color">Auto</button><button id="dxpick" title="Click the object on the screen: its color is yours then">Pick</button><button id="dxpaint" title="Paint pixels of the object: details in their own colors">Paint</button><button id="dxundo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled>↶</button><button id="dxredo" title="Redo (Ctrl+Y)" aria-label="Redo" disabled>↷</button><button id="dxclear" title="Forget the recording and the objects">Clear</button><button id="dxall" title="Clear everything: the recording, the objects, the loaded dux and its colors (the ZX picture again)">Clear all</button><span id="dxstat" class="dxdim"></span></div>
     <div class="ldrow dxpr" id="dxpr" hidden><label class="dxbr">Brush <input type="color" id="dxbrush" value="#ff0000" title="The color of the brush"></label><select id="dxtool" title="Pixel: drag over the pixels. Fill object: all pixels of the clicked sprite. Fill layer: all pixels drawn from the same graphics as the clicked one (a sprite apart from the background of one routine). Rectangle: drag a frame. Erase: back to the program's own color. Pipette: take the color from the screen"><option value="pixel">Pixel</option><option value="fill">Fill object</option><option value="layer">Fill layer</option><option value="rect">Rectangle</option><option value="erase">Erase</option><option value="drop">Pipette</option></select><span class="dxsw" id="dxsw"></span><span class="dxdim" id="dxpmsg"></span></div>
     <div class="dximph" id="dximph" hidden></div>
     <div class="dxlist dximp" id="dximp" hidden></div>
